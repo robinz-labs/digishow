@@ -50,3 +50,10 @@ compile_commands.json
 
 # QtCreator local machine specific files for imported projects
 *creator.user*
+
+# macOS system files
+.DS_Store
+
+# Untracked files in this project
+/tools
+/rtmidi
