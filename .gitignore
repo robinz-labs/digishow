@@ -55,5 +55,7 @@ compile_commands.json
 .DS_Store
 
 # Untracked files in this project
-/tools
 /rtmidi
+/tools
+/backup
+
