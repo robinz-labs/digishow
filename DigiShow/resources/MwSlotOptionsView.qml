@@ -83,24 +83,22 @@ Item {
         }
 
 
-        Item {
+        CheckBox {
+            id: checkOutputLowAsZero
+
             anchors.left: parent.left
             anchors.leftMargin: 15
             anchors.bottom: checkOutputInverted.top
-            visible:
+            font.pixelSize: 12
+            text: qsTr("Zero Output While Reach Lower")
+            enabled:
                 sliderMappingInputRange.visible && sliderMappingOutputRange.visible &&
                 sliderMappingOutputRange.first.value > 0
+            opacity: enabled ? 1 : 0
 
-            CheckBox {
-                id: checkOutputLowAsZero
+            // Behavior on opacity { NumberAnimation { duration: 200 } }
 
-                anchors.left: parent.left
-                anchors.bottom: parent.bottom
-                font.pixelSize: 12
-                text: qsTr("Zero Output While Reach Lower")
-
-                onClicked: setSlotOption("outputLowAsZero", checked)
-            }
+            onClicked: setSlotOption("outputLowAsZero", checked)
         }
 
 
