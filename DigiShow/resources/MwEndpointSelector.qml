@@ -213,6 +213,7 @@ Item {
             var newInterfaceIndex = menuInterface.selectedItemValue
             var newEndpointOptions = {}
             var needRestartInterface = false
+            var needStopApp = false
 
             // fill endpoint options
             var type = menuInterface.getSelectedInterfaceConfiguration()["interfaceInfo"]["type"]
@@ -252,7 +253,7 @@ Item {
                 newEndpointOptions["type"] = itemRioc.menuType.selectedItemTag
                 newEndpointOptions["channel"] = itemRioc.menuChannel.selectedItemValue
 
-                needRestartInterface = true
+                needStopApp = true
 
             } else if (type === DigishowEnvironment.InterfaceHue) {
 
@@ -311,6 +312,11 @@ Item {
             // restart interface if necessary
             if (app.isRunning && needRestartInterface) {
                 digishow.restartInterface(interfaceIndex)
+            }
+
+            // stop digishow app service if necessary
+            if (app.isRunning && needStopApp) {
+                app.stop()
             }
 
         }
