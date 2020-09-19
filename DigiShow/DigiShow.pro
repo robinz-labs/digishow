@@ -1,6 +1,3 @@
-#20200901-0310 *
-#20200905-1720
-
 QT += quick serialport webengine
 
 CONFIG += c++11
