@@ -31,6 +31,7 @@ Item {
             title: ""
             color: "#000000"
             assigned: false
+            startup: false
         }
     }
 
@@ -63,7 +64,7 @@ Item {
                 box.border.color: "#ffffff"
                 label.font.pixelSize: 12
                 label.font.bold: model.assigned
-                label.text: model.title
+                label.text: (model.startup ? "► " : "") + model.title
                 label.visible: !textLaunchTitle.visible
                 opacity: model.assigned || model.name === editingLaunchName ? 1.0 : 0.25
 
@@ -124,6 +125,7 @@ Item {
 
                 CMenu {
                     id: menu
+                    width: 150
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
                     CMenuItem {
@@ -142,10 +144,22 @@ Item {
                     }
                     CMenuItem {
                         text: qsTr("Delete")
+                        enabled: model.assigned
                         onTriggered: {
                             menu.close()
                             model.assigned = false
+                            model.startup = false
                             app.deleteLaunch(model.name)
+                            window.isModified = true
+                        }
+                    }
+                    CMenuItem {
+                        text: (model.startup ? qsTr("No Launch on Startup") : qsTr("Launch on Startup"))
+                        enabled: model.assigned
+                        onTriggered: {
+                            menu.close()
+                            model.startup = !model.startup
+                            app.setLaunchOption(model.name, "startup", model.startup)
                             window.isModified = true
                         }
                     }
@@ -342,12 +356,14 @@ Item {
             }
             var title = qsTr("Launch") + " " + (n+1);
             var assigned = false
+            var startup = false
 
             // load user data
             var launch = app.getLaunchOptions(name);
             if (Object.keys(launch).length > 0) {
 
                 if (launch["assigned"] !== undefined) assigned = launch["assigned"];
+                if (launch["startup"]  !== undefined) startup  = launch["startup"];
                 if (launch["title"]    !== undefined) title    = launch["title"];
                 if (launch["color"]    !== undefined) color    = launch["color"];
             }
@@ -357,7 +373,8 @@ Item {
                 name: name,
                 title: title,
                 color: color,
-                assigned: assigned
+                assigned: assigned,
+                startup: startup
             });
         }
 

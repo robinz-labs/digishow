@@ -306,6 +306,14 @@ bool DigishowApp::start()
     m_running = true;
     emit isRunningChanged();
 
+    // start launch items with startup flags
+    QStringList launchNames = m_launches.keys();
+    for (int n=0 ; n<launchNames.length() ; n++) {
+        QString launchName = launchNames[n];
+        bool startup = m_launches.value(launchName).toMap().value("startup").toBool();
+        if (startup) startLaunch(launchName);
+    }
+
     return !hasError;
 }
 
