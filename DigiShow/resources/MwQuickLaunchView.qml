@@ -129,21 +129,21 @@ Item {
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
                     CMenuItem {
-                        text: model.assigned ? qsTr("Edit") : qsTr("Create")
+                        text: model.assigned ? qsTr("Edit Launch") : qsTr("Create Launch")
                         onTriggered: {
                             menu.close()
                             popupOptions.open()
                         }
                     }
                     CMenuItem {
-                        text: qsTr("Rename")
+                        text: qsTr("Rename Launch")
                         onTriggered: {
                             menu.close()
                             textLaunchTitle.showRename()
                         }
                     }
                     CMenuItem {
-                        text: qsTr("Delete")
+                        text: qsTr("Delete Launch")
                         enabled: model.assigned
                         onTriggered: {
                             menu.close()

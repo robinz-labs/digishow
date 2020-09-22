@@ -87,7 +87,9 @@ Item {
         }
 
         // init rioc channel option menu
-        refreshMenuChannel()
+        if (menuRiocChannel.count === 0) {
+            refreshMenuChannel()
+        }
     }
 
     function refreshMenuChannel() {
