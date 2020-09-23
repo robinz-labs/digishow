@@ -13,17 +13,16 @@ DigiShow LINK app enables signal transferring between MIDI, DMX, Modbus, Arduino
 DigiShow makes all things digital work together for your awesome show time, enjoys !!
 
 ## Executable app downloads
+Please visit http://robinz.org/labs/digishow to download releases 
 - DigiShow LINK for macOS (64bit)
-http://robinz.org/labs/downloads/digishow_mac_20200907.zip
 - DigiShow LINK for windows (64bit)
-http://robinz.org/labs/downloads/digishow_win_20200912.zip
 
 ## Extra downloads and resources
 - [ MIDI ] virtual MIDI bus driver [learn](https://help.ableton.com/hc/en-us/articles/209774225-How-to-setup-a-virtual-MIDI-bus) 
 - [ MIDI ] virtual MIDI network driver [learn](https://help.ableton.com/hc/en-us/articles/209071169-How-to-setup-a-virtual-MIDI-network) 
 - [ MIDI ] MIDI signal monitor [learn](https://support.native-instruments.com/hc/en-us/articles/209544729-How-to-Monitor-the-Input-of-a-MIDI-Controller)
 - [ DMX ] Enttec Open DMX USB driver (FTDI VCP drivers) [download](https://www.ftdichip.com/Drivers/VCP.htm)
-- [ Arduino ] sketch for Arduino remote IO controls [download](http://robinz.org/labs/downloads/rioc_arduino_20200909.zip)
+- [ Arduino ] sketch for Arduino remote IO controls [download](http://robinz.org/labs/downloads/rioc-arduino.zip)
 
 ## Library dependencies
 Please use qmake tool or QtCreator app to build executables from the source code, and these libraries are required.
