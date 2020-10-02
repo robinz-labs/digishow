@@ -312,7 +312,7 @@ Item {
                             anchors.right: parent.right
                             anchors.rightMargin: 4
                             color: "#dddddd"
-                            text: model.epInValue
+                            text: model.epInAvailable ? model.epInValue : "- -"
                             font.pixelSize: 9
                             font.bold: false
                         }
@@ -460,7 +460,7 @@ Item {
                             anchors.right: parent.right
                             anchors.rightMargin: 4
                             color: "#dddddd"
-                            text: model.epOutValue
+                            text: model.epOutAvailable ? model.epOutValue : "- -"
                             font.pixelSize: 9
                             font.bold: false
                         }
@@ -760,12 +760,14 @@ Item {
             for (var n=0 ; n<slotCount ; n++) {
                 var data = digishow.getSlotRuntimeData(n)
 
-                if (dataModel.get(n).epInValue   !== data["epInValue"  ]) dataModel.setProperty(n, "epInValue",   data["epInValue"])
-                if (dataModel.get(n).epOutValue  !== data["epOutValue" ]) dataModel.setProperty(n, "epOutValue",  data["epOutValue"])
-                if (dataModel.get(n).epInBusy    !== data["epInBusy"   ]) dataModel.setProperty(n, "epInBusy",    data["epInBusy"])
-                if (dataModel.get(n).epOutBusy   !== data["epOutBusy"  ]) dataModel.setProperty(n, "epOutBusy",   data["epOutBusy"])
-                if (dataModel.get(n).slotEnabled !== data["slotEnabled"]) dataModel.setProperty(n, "slotEnabled", data["slotEnabled"])
-                if (dataModel.get(n).slotLinked  !== data["slotLinked" ]) dataModel.setProperty(n, "slotLinked",  data["slotLinked"])
+                if (dataModel.get(n).epInAvailable  !== data["epInAvailable" ]) dataModel.setProperty(n, "epInAvailable",  data["epInAvailable" ])
+                if (dataModel.get(n).epOutAvailable !== data["epOutAvailable"]) dataModel.setProperty(n, "epOutAvailable", data["epOutAvailable"])
+                if (dataModel.get(n).epInValue      !== data["epInValue"     ]) dataModel.setProperty(n, "epInValue",      data["epInValue"     ])
+                if (dataModel.get(n).epOutValue     !== data["epOutValue"    ]) dataModel.setProperty(n, "epOutValue",     data["epOutValue"    ])
+                if (dataModel.get(n).epInBusy       !== data["epInBusy"      ]) dataModel.setProperty(n, "epInBusy",       data["epInBusy"      ])
+                if (dataModel.get(n).epOutBusy      !== data["epOutBusy"     ]) dataModel.setProperty(n, "epOutBusy",      data["epOutBusy"     ])
+                if (dataModel.get(n).slotEnabled    !== data["slotEnabled"   ]) dataModel.setProperty(n, "slotEnabled",    data["slotEnabled"   ])
+                if (dataModel.get(n).slotLinked     !== data["slotLinked"    ]) dataModel.setProperty(n, "slotLinked",     data["slotLinked"    ])
             }
         }
     }
@@ -839,6 +841,8 @@ Item {
         // obtain runtime date
         var data = digishow.getSlotRuntimeData(n)
 
+        var epInAvailable  = data["epInAvailable"]
+        var epOutAvailable = data["epOutAvailable"]
         var epInValue   = data["epInValue"]
         var epOutValue  = data["epOutValue"]
         var epInBusy    = data["epInBusy"]
@@ -868,6 +872,7 @@ Item {
             epInRange: epInRange,
             epInValue: epInValue,
             epInBusy: epInBusy,
+            epInAvailable: epInAvailable,
 
             epOutSignal: epOutSignal,
             epOutColor: epOutColor,
@@ -878,6 +883,7 @@ Item {
             epOutRange: epOutRange,
             epOutValue: epOutValue,
             epOutBusy: epOutBusy,
+            epOutAvailable: epOutAvailable,
 
             epOutFaderValue: 0,
             epOutFaderHold: true,

@@ -81,12 +81,18 @@ QVariantMap DigishowEnvironment::getSlotRuntimeData(int slotIndex)
 
     DigishowSlot *slot = g_app->slotAt(slotIndex);
     if (slot != nullptr) {
-        data["epInValue"  ] = slot->getEndpointInValue();
-        data["epOutValue" ] = slot->getEndpointOutValue();
-        data["epInBusy"   ] = slot->isEndpointInBusy();
-        data["epOutBusy"  ] = slot->isEndpointOutBusy();
-        data["slotEnabled"] = slot->isEnabled();
-        data["slotLinked" ] = slot->isLinked();
+
+        bool epInAvailable  = (slot->getEndpointInValue() != -1);
+        bool epOutAvailable = (slot->getEndpointOutValue() != -1);
+
+        data["epInAvailable" ] = epInAvailable;
+        data["epOutAvailable"] = epOutAvailable;
+        data["epInValue"     ] = (epInAvailable  ? slot->getEndpointInValue()  : 0);
+        data["epOutValue"    ] = (epOutAvailable ? slot->getEndpointOutValue() : 0);
+        data["epInBusy"      ] = slot->isEndpointInBusy();
+        data["epOutBusy"     ] = slot->isEndpointOutBusy();
+        data["slotEnabled"   ] = slot->isEnabled();
+        data["slotLinked"    ] = slot->isLinked();
     }
 
     return data;

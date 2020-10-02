@@ -146,7 +146,7 @@ QVariantMap DigishowSlot::getSlotInfo()
 
 int DigishowSlot::getEndpointInValue()
 {
-    int value = 0;
+    int value = -1;
     switch (m_lastDataIn.signal) {
     case DATA_SIGNAL_ANALOG: value = m_lastDataIn.aValue; break;
     case DATA_SIGNAL_BINARY: value = m_lastDataIn.bValue; break;
@@ -157,7 +157,7 @@ int DigishowSlot::getEndpointInValue()
 
 int DigishowSlot::getEndpointOutValue()
 {
-    int value = 0;
+    int value = -1;
     switch (m_lastDataOut.signal) {
     case DATA_SIGNAL_ANALOG: value = m_lastDataOut.aValue; break;
     case DATA_SIGNAL_BINARY: value = m_lastDataOut.bValue; break;
