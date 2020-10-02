@@ -481,6 +481,12 @@ Item {
                             mouseDown: model.epOutTap
                             onPressed: {
                                 buttonHold.checked = false
+
+                                if (model.slotOutInverted === false && faderOutput.value === 0)
+                                    faderOutput.value = faderOutput.to
+                                if (model.slotOutInverted === true && faderOutput.value === faderOutput.to)
+                                    faderOutput.value = 0
+
                                 model.epOutTap = true
                                 model.epOutValue = Math.round(faderOutput.value)
                                 app.slotAt(index).setEndpointOutValue(model.epOutValue)
