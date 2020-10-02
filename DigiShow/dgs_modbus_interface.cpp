@@ -260,7 +260,7 @@ void DgsModbusInterface::onTimerFired()
             break;
         case ENDPOINT_MODBUS_REGISTER_IN:
         case ENDPOINT_MODBUS_HOLDING_IN:
-            data.signal = DATA_SIGNAL_BINARY;
+            data.signal = DATA_SIGNAL_ANALOG;
             data.aRange = 65535;
             data.aValue = epData.value;
             break;
