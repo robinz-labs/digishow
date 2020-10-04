@@ -306,6 +306,9 @@ bool DigishowApp::start()
     m_running = true;
     emit isRunningChanged();
 
+    // initialize all interfaces
+    for (int n=0 ; n<m_interfaces.length() ; n++) m_interfaces[n]->init();
+
     // start launch items with startup flags
     QStringList launchNames = m_launches.keys();
     for (int n=0 ; n<launchNames.length() ; n++) {

@@ -79,6 +79,7 @@ int DigishowSlot::setDestination(DigishowInterface *interface, int endpointIndex
 {
     // release old destination connection
     if (m_destinationInterface != nullptr) {
+        disconnect(m_destinationInterface, nullptr, this, nullptr);
         m_destinationInterface = nullptr;
         m_destinationEndpointIndex = -1;
         m_slotInfo.outputSignal = 0;
@@ -93,6 +94,8 @@ int DigishowSlot::setDestination(DigishowInterface *interface, int endpointIndex
 
         // set output interval option
         updateSlotOuputInterval();
+
+        connect(m_destinationInterface, SIGNAL(dataPrepared(int, dgsSignalData)), this, SLOT(onDataPrepared(int, dgsSignalData)));
     }
 
     return ERR_NONE;
@@ -628,6 +631,16 @@ void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
         if (g_needLogCtl) qDebug() << "slot_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
         sendDataOut(dataOut);
     }
+}
+
+void DigishowSlot::onDataPrepared(int endpointIndex, dgsSignalData dataOut)
+{
+    // only process data packages prepared for the relevant endpoint
+    if (m_destinationEndpointIndex != endpointIndex) return;
+
+    if (g_needLogCtl) qDebug() << "slot_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
+
+    sendDataOut(dataOut);
 }
 
 void DigishowSlot::onEnvelopeTimerFired()

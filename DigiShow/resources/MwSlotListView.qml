@@ -480,12 +480,14 @@ Item {
                             colorNormal: "transparent"
                             mouseDown: model.epOutTap
                             onPressed: {
-                                buttonHold.checked = false
+                                model.epOutFaderHold = false
 
+                                faderOutput.animated = false
                                 if (model.slotOutInverted === false && faderOutput.value === 0)
-                                    faderOutput.value = faderOutput.to
+                                    model.epOutFaderValue = faderOutput.to
                                 if (model.slotOutInverted === true && faderOutput.value === faderOutput.to)
-                                    faderOutput.value = 0
+                                    model.epOutFaderValue = 0
+                                faderOutput.animated = true
 
                                 model.epOutTap = true
                                 model.epOutValue = Math.round(faderOutput.value)
@@ -509,42 +511,36 @@ Item {
                             label.font.bold: false
                             label.font.pixelSize: 9
                             box.radius: 3
-                            box.border.width: mouseOver || !checked ? 1 : 0
-                            colorNormal: "transparent"
-                            colorChecked: "#666666"
-                            checkable: true
-                            checked: model.epOutFaderHold
-                            onPressed: {
-                                if (!buttonHold.checked) {
+                            box.border.width: mouseOver || !model.epOutFaderHold ? 1 : 0
+                            colorNormal: model.epOutFaderHold ? "#666666" : "transparent"
+                            onClicked: {
+                                if (!model.epOutFaderHold) {
                                     model.epOutValue = Math.round(faderOutput.value)
                                     app.slotAt(index).setEndpointOutValue(model.epOutValue)
                                 }
-                            }
-                            onReleased: {
-                                if (!buttonHold.checked) {
-                                    model.epOutValue = (model.slotOutInverted ? model.epOutRange : 0)
-                                    app.slotAt(index).setEndpointOutValue(model.epOutValue)
-                                }
-                                model.epOutFaderHold = buttonHold.checked
+                                model.epOutFaderHold = !model.epOutFaderHold
                             }
                         }
 
                         CSlider {
                             id: faderOutput
+
+                            property bool animated: true
+
                             width: rectTopLeftBar.width - 710 + 90
                             height:30
                             anchors.right: buttonHold.left
                             anchors.rightMargin: 18
                             anchors.verticalCenter: parent.verticalCenter
-                            value: model.slotLinked && buttonHold.checked ? model.epOutValue : model.epOutFaderValue
+                            value: model.slotLinked && model.epOutFaderHold ? model.epOutValue : model.epOutFaderValue
                             to: model.epOutRange
                             stepSize: 1
                             color: model.epOutColor
 
-                            Behavior on value { NumberAnimation { duration: 300; easing.type: Easing.OutCubic } }
+                            Behavior on value { NumberAnimation { duration: (faderOutput.animated ? 300 : 0); easing.type: Easing.OutCubic } }
 
                             onMoved: {
-                                if (buttonHold.checked) {
+                                if (model.epOutFaderHold) {
                                     model.epOutValue = Math.round(faderOutput.value)
                                     app.slotAt(index).setEndpointOutValue(model.epOutValue)
                                 }

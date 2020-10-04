@@ -40,13 +40,15 @@ public:
     // controls
     virtual int openInterface();
     virtual int closeInterface();
+    virtual int init(); // called after slot service got ready
     virtual int sendData(int endpointIndex, dgsSignalData data);
 
     Q_INVOKABLE bool isInterfaceOpened() { return m_isInterfaceOpened; }
 
 signals:
 
-    void dataReceived(int endpointIndex, dgsSignalData data);
+    void dataReceived(int endpointIndex, dgsSignalData dataIn);
+    void dataPrepared(int endpointIndex, dgsSignalData dataOut);
 
 public slots:
 
@@ -61,6 +63,9 @@ protected:
     QList<dgsEndpointInfo> m_endpointInfoList;
 
     bool m_isInterfaceOpened;
+
+    // initialize endpoint signal
+    int initEndpointValue(int endpointIndex);
 };
 
 #endif // DIGISHOWINTERFACE_H

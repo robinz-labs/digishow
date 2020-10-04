@@ -15,6 +15,7 @@ public:
 
     int openInterface() override;
     int closeInterface() override;
+    int init() override;
     int sendData(int endpointIndex, dgsSignalData data) override;
 
     static QVariantList listOnline();

@@ -109,19 +109,19 @@ Menu {
 
     function selectOption(value) {
 
-        if (value === -1) {
-            selectedIndex = -1
-            optionSelected(value) // emit signal
-            return
-        }
-
-        for (var n=0 ; n< optionItems.length ; n++) {
-            if (optionItems[n].value === value) {
-                selectedIndex = n
-                optionSelected(value) // emit signal
-                return
+        if (value !== -1) {
+            for (var n=0 ; n< optionItems.length ; n++) {
+                if (optionItems[n].value === value) {
+                    selectedIndex = n
+                    optionSelected(value) // emit signal
+                    return
+                }
             }
         }
+
+        selectedIndex = -1
+        optionSelected(-1) // emit signal
+        return
     }
 
     function selectOptionWithTag(tag) {

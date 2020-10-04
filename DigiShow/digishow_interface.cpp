@@ -95,6 +95,7 @@ QVariantMap DigishowInterface::getEndpointInfoAt(int index)
         info["input"   ] = m_endpointInfoList[index].input;
         info["range"   ] = m_endpointInfoList[index].range;
         info["ready"   ] = m_endpointInfoList[index].ready;
+        info["initial" ] = m_endpointInfoList[index].initial;
 
         info["labelEPT"] = m_endpointInfoList[index].labelEPT;
         info["labelEPI"] = m_endpointInfoList[index].labelEPI;
@@ -113,6 +114,15 @@ int DigishowInterface::openInterface()
 int DigishowInterface::closeInterface()
 {
     m_isInterfaceOpened = true;
+    return ERR_NONE;
+}
+
+int DigishowInterface::init()
+{
+    if (!m_isInterfaceOpened) return ERR_DEVICE_NOT_READY;
+
+    // set initial value for all endpoints
+    for (int n=0 ; n<m_endpointOptionsList.length() ; n++) initEndpointValue(n);
     return ERR_NONE;
 }
 
@@ -260,6 +270,7 @@ void DigishowInterface::updateMetadata()
         endpointInfo.output  = false;
         endpointInfo.input   = false;
         endpointInfo.range   = m_endpointOptionsList[n].value("range"  ).toInt();
+        endpointInfo.initial = m_endpointOptionsList[n].value("initial", -1).toDouble();
 
         // set endpoint type
         typeName = m_endpointOptionsList[n].value("type").toString();
@@ -505,6 +516,35 @@ void DigishowInterface::updateMetadata()
 
         m_endpointInfoList.append(endpointInfo);
     }
+}
+
+int DigishowInterface::initEndpointValue(int endpointIndex)
+{
+    if (!m_isInterfaceOpened) return ERR_DEVICE_NOT_READY;
+    if (endpointIndex<0 || endpointIndex>=m_endpointOptionsList.length()) return ERR_INVALID_INDEX;
+
+    // set initial value for the endpoint
+    int n = endpointIndex;
+    if (m_endpointInfoList[n].initial >= 0) {
+        dgsSignalData data;
+        data.signal = m_endpointInfoList[n].signal;
+        data.aRange = m_endpointInfoList[n].range;
+        switch (data.signal) {
+        case DATA_SIGNAL_ANALOG: data.aValue = data.aRange * m_endpointInfoList[n].initial; break;
+        case DATA_SIGNAL_BINARY: data.bValue = (m_endpointInfoList[n].initial != 0); break;
+        }
+
+        if (m_endpointInfoList[n].input) {
+            //qDebug() << "dataReceived" << n << data.signal << data.aValue << data.bValue;
+            emit dataReceived(n, data);
+        }
+        if (m_endpointInfoList[n].output) {
+            //qDebug() << "dataPrepared" << n << data.signal << data.aValue << data.bValue;
+            emit dataPrepared(n, data);
+        }
+    }
+
+    return ERR_NONE;
 }
 
 

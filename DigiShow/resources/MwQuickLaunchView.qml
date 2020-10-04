@@ -67,6 +67,7 @@ Item {
                 label.text: (model.startup ? "► " : "") + model.title
                 label.visible: !textLaunchTitle.visible
                 opacity: model.assigned || model.name === editingLaunchName ? 1.0 : 0.25
+                supportLongPress: true
 
                 onLongPressed: {
 

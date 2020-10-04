@@ -163,6 +163,7 @@ typedef struct dgsEndpointInfo {
     bool input;         // is input signal
     int range;          // data range of the analog signal (optional)
     bool ready;         // is ready to work with the endpoint (optional)
+    double initial;     // initial singal value rate 0 ~ 1.0 (optional)
 
     QString labelEPT;   // a label describes the endpoint
     QString labelEPI;   // EPT is endpoint type, EPI is endpoint identity
@@ -182,6 +183,7 @@ typedef struct dgsEndpointInfo {
       input(false),
       range(0),
       ready(false),
+      initial(-1),
 
       labelEPT(""),
       labelEPI("")

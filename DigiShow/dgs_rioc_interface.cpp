@@ -62,6 +62,13 @@ int DgsRiocInterface::closeInterface()
     return ERR_NONE;
 }
 
+int DgsRiocInterface::init()
+{
+    // nothing to do here
+    // we will set initial signal values for all endpoints after unit started
+    return ERR_NONE;
+}
+
 int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
 {
     int r = DigishowInterface::sendData(endpointIndex, data);
@@ -222,6 +229,9 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
 
             // set ready flag for this endpoint
             m_endpointInfoList[n].ready = done;
+
+            // set initial value for this endpoint
+            initEndpointValue(n);
         }
     }
 

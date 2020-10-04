@@ -50,7 +50,8 @@ signals:
 
 public slots:
 
-    void onDataReceived(int endpointIndex, dgsSignalData data);
+    void onDataReceived(int endpointIndex, dgsSignalData dataIn);  // incoming data is received
+    void onDataPrepared(int endpointIndex, dgsSignalData dataOut); // outgoing data is pareared
     void onDataOutTimerFired();
     void onEnvelopeTimerFired();
 

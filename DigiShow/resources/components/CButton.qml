@@ -23,6 +23,8 @@ Item {
     property alias mouseX: mouseArea.mouseX
     property alias mouseY: mouseArea.mouseY
 
+    property bool supportLongPress: false
+
     signal clicked()
     signal pressed()
     signal released()
@@ -133,8 +135,10 @@ Item {
             })
         }
         onPressAndHold: {
-            button.mouseDown = false
-            button.longPressed() // emit signal
+            if (supportLongPress) {
+                button.mouseDown = false
+                button.longPressed() // emit signal
+            }
         }
     }
 }

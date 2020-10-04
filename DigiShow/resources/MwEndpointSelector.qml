@@ -359,7 +359,8 @@ Item {
         menuInterface.selectOption(interfaceIndex)
 
         // refresh endpoint options
-        if (interfaceIndex !== -1 && endpointIndex !== -1) {
+        if (interfaceIndex !== -1 && endpointIndex !== -1 &&
+            menuInterface.selectedItemValue !== -1) {
 
             // set ui of endpoint options in detail
             var type = menuInterface.getSelectedInterfaceConfiguration()["interfaceInfo"]["type"]
