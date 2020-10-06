@@ -143,7 +143,7 @@ Item {
                         value: 0.5
                         color: Material.accent
 
-                        onMoved: setSlotOption("inputThreshold", value)
+                        onMoved: setSlotOption("inputThreshold", parseFloat(value.toFixed(2)))
 
                         Text {
                             anchors.left: parent.left
@@ -173,8 +173,8 @@ Item {
                         second.value: 1.0
                         color: Material.accent
 
-                        first.onMoved: setSlotOption("inputLow", first.value)
-                        second.onMoved: setSlotOption("inputHigh", second.value)
+                        first.onMoved: setSlotOption("inputLow", parseFloat(first.value.toFixed(2)))
+                        second.onMoved: setSlotOption("inputHigh", parseFloat(second.value.toFixed(2)))
 
                         Text {
                             anchors.left: parent.left
@@ -205,8 +205,8 @@ Item {
                         second.value: 1.0
                         color: Material.accent
 
-                        first.onMoved: setSlotOption("outputLow", first.value)
-                        second.onMoved: setSlotOption("outputHigh", second.value)
+                        first.onMoved: setSlotOption("outputLow", parseFloat(first.value.toFixed(2)))
+                        second.onMoved: setSlotOption("outputHigh", parseFloat(second.value.toFixed(2)))
 
                         Text {
                             anchors.left: parent.left

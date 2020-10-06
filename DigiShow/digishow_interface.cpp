@@ -531,7 +531,7 @@ int DigishowInterface::initEndpointValue(int endpointIndex)
         data.aRange = m_endpointInfoList[n].range;
         switch (data.signal) {
         case DATA_SIGNAL_ANALOG: data.aValue = data.aRange * m_endpointInfoList[n].initial; break;
-        case DATA_SIGNAL_BINARY: data.bValue = (m_endpointInfoList[n].initial != 0); break;
+        case DATA_SIGNAL_BINARY: data.bValue = (m_endpointInfoList[n].initial > 0.5); break;
         }
 
         if (m_endpointInfoList[n].input) {
