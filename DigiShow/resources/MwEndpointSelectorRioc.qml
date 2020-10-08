@@ -39,7 +39,10 @@ Item {
         COptionMenu {
             id: menuRiocType
 
-            onOptionSelected: refreshMenuChannel()
+            onOptionSelected: {
+                refreshMenuChannel()
+                refreshMoreOptions()
+            }
         }
     }
 
@@ -55,6 +58,24 @@ Item {
 
         COptionMenu {
             id: menuRiocChannel
+        }
+    }
+
+    CButton {
+        id: buttonRiocMoreOptions
+        width: 50
+        height: 28
+        anchors.left: buttonRiocChannel.right
+        anchors.leftMargin: 10
+        anchors.top: parent.top
+        label.font.bold: false
+        label.font.pixelSize: 11
+        label.text: qsTr("Opt ...")
+        box.radius: 3
+        onClicked: riocMoreOptions.show()
+
+        MwEndpointMoreOptions {
+            id: riocMoreOptions
         }
     }
 
@@ -90,6 +111,9 @@ Item {
         if (menuRiocChannel.count === 0) {
             refreshMenuChannel()
         }
+
+        // init more options
+        refreshMoreOptions()
     }
 
     function refreshMenuChannel() {
@@ -140,4 +164,47 @@ Item {
         menuRiocChannel.selectedIndex = 0
 
     }
+
+    function refreshMoreOptions() {
+
+        var endpointType = menuRiocType.selectedItemValue
+        var enables = ({})
+
+        enables["optInitialize"] = true
+        if (endpointType === DigishowEnvironment.EndpointRiocDigitalIn ||
+            endpointType === DigishowEnvironment.EndpointRiocDigitalOut) {
+            enables["optInitialB"] = true
+        } else {
+            enables["optInitialA"] = true
+        }
+
+        if (endpointType === DigishowEnvironment.EndpointRiocPfmOut) {
+            enables["optRangeFrequency"] = true
+        }
+        if (endpointType === DigishowEnvironment.EndpointRiocEncoderIn) {
+            enables["optRangeSteps"] = true
+        }
+
+        if (endpointType === DigishowEnvironment.EndpointRiocDigitalIn ||
+            endpointType === DigishowEnvironment.EndpointRiocEncoderIn) {
+            enables["optModePuPd"] = true
+        }
+
+        if (endpointType === DigishowEnvironment.EndpointRiocDigitalIn ||
+            endpointType === DigishowEnvironment.EndpointRiocAnalogIn) {
+            enables["optFilterLevel"] = true
+        }
+
+        if (endpointType === DigishowEnvironment.EndpointRiocDigitalIn ||
+            endpointType === DigishowEnvironment.EndpointRiocAnalogIn ||
+            endpointType === DigishowEnvironment.EndpointRiocEncoderIn) {
+            enables["optSamplingInterval"] = true
+        }
+
+        riocMoreOptions.resetOptions()
+        riocMoreOptions.enableOptions(enables)
+    }
+
+    function setMoreOptions(options) { riocMoreOptions.setOptions(options) }
+    function getMoreOptions() { return riocMoreOptions.getOptions() }
 }

@@ -216,6 +216,12 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                 int updatingInterval = m_endpointOptionsList[n].value("optUpdatingInterval").toInt();
                 if (updatingInterval==0) updatingInterval = 50;
 
+                double initial = m_endpointInfoList[n].initial;
+                int range = m_endpointInfoList[n].range;
+                if (initial >= 0) {
+                    m_rioc->encoderWrite(unit, channel, int(initial*range));
+                }
+
                 done = m_rioc->encoderSetNotification(unit, channel, true, updatingInterval);
 
             } else if (type==ENDPOINT_RIOC_RUDDER_OUT) {
@@ -255,7 +261,7 @@ void DgsRiocInterface::onDigitalInValueUpdated(unsigned char unit, unsigned char
 
 void DgsRiocInterface::onAnalogInValueUpdated(unsigned char unit, unsigned char channel, int value)
 {
-    //qDebug() << "DgsRiocInterface::onDigitalInValueUpdated" << unit << channel << value;
+    //qDebug() << "DgsRiocInterface::onAnalogInValueUpdated" << unit << channel << value;
 
     dgsSignalData data;
     data.signal = DATA_SIGNAL_ANALOG;
@@ -272,7 +278,7 @@ void DgsRiocInterface::onEncoderValueUpdated(unsigned char unit, unsigned char c
     //qDebug() << "DgsRiocInterface::onEncoderValueUpdated" << unit << channel << value;
 
     int endpointIndex = findEndpoint(unit, channel);
-    if (endpointIndex != -1) return;
+    if (endpointIndex == -1) return;
 
     int range = m_endpointInfoList[endpointIndex].range;
     if (range == 0) range = 0xffff;

@@ -251,20 +251,34 @@ int DigishowEnvironment::makeEndpoint(int interfaceIndex, QVariantMap endpointOp
     // look for the matched endpoint that already exists in the interface
     int endpointCount = interface->endpointCount();
     for (int i=0 ; i<endpointCount ; i++) {
+
+        // find endpoint
         QStringList keys = endpointOptions.keys();
         bool matched = true;
         for (int n=0 ; n<keys.length() ; n++) {
             QString key = keys[n];
+            if (key != "initial" && key != "range" && !key.startsWith("opt")) // ignore these options
             if (endpointOptions[key] != interface->endpointOptionsList()->at(i).value(key)) {
                 matched = false;
                 break;
             }
         }
+
+        // endpoint is found
         if (matched) {
-            if (!interface->endpointInfoList()->at(i).enabled) {
-                interface->setEndpointOption(i, "enabled", true);
-                interface->updateMetadata();
+
+            // update these options
+            for (int n=0 ; n<keys.length() ; n++) {
+                QString key = keys[n];
+                if (key == "initial" || key == "range" || key.startsWith("opt")) {
+                    interface->setEndpointOption(i, key, endpointOptions[key]);
+                }
             }
+
+            // enable the endpoint
+            interface->setEndpointOption(i, "enabled", true);
+
+            interface->updateMetadata();
             return i;
         }
     }

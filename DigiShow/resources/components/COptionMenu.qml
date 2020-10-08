@@ -76,6 +76,8 @@ Menu {
                     common.setAncestorProperty(menu, "isModified", true)
                 })
                 addItem(menuItem)
+
+                if (optionItems[n].selected) selectedIndex = n
             }
         }
     }

@@ -150,7 +150,7 @@ Item {
         height: 615
         x: 60
         y: -height-10
-        transformOrigin: Menu.BottomRight
+        transformOrigin: Popup.BottomRight
         modal: true
         focus: true
 

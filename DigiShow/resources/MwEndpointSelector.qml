@@ -252,6 +252,7 @@ Item {
                 newEndpointOptions["unit"] = itemRioc.menuUnit.selectedItemValue
                 newEndpointOptions["type"] = itemRioc.menuType.selectedItemTag
                 newEndpointOptions["channel"] = itemRioc.menuChannel.selectedItemValue
+                newEndpointOptions = utilities.merge(newEndpointOptions, itemRioc.getMoreOptions())
 
                 needStopApp = true
 
@@ -397,6 +398,7 @@ Item {
                 itemRioc.menuUnit.selectOption(endpointInfo["unit"])
                 itemRioc.menuType.selectOption(endpointInfo["type"])
                 itemRioc.menuChannel.selectOption(endpointInfo["channel"])
+                itemRioc.setMoreOptions(endpointOptions)
 
             } else if (type === DigishowEnvironment.InterfaceHue) {
 

@@ -90,5 +90,6 @@
         <file>MwInterfaceListViewHue.qml</file>
         <file>MwInterfaceListViewScreen.qml</file>
         <file>MwInterfaceListViewPipe.qml</file>
+        <file>MwEndpointMoreOptions.qml</file>
     </qresource>
 </RCC>

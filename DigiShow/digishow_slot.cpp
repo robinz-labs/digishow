@@ -604,7 +604,8 @@ void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
     // only process data packages received from the relevant endpoint
     if (m_sourceEndpointIndex != endpointIndex) return;
 
-    if (g_needLogCtl) qDebug() << "slot_in:" << m_sourceEndpointIndex << dataIn.signal << dataIn.aValue << dataIn.aRange << dataIn.bValue;
+    if (g_needLogCtl)
+        qDebug() << "slot_in:" << m_sourceEndpointIndex << dataIn.signal << dataIn.aValue << dataIn.aRange << dataIn.bValue;
 
     m_dataInTimeLastReceived = elapsed();
 
