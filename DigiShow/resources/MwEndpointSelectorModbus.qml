@@ -38,6 +38,8 @@ Item {
 
         COptionMenu {
             id: menuModbusType
+
+            onOptionSelected: refreshMoreOptions()
         }
     }
 
@@ -87,6 +89,30 @@ Item {
         spinModbusChannel.from = 0
         spinModbusChannel.to = 65535
         spinModbusChannel.visible = false
+
+        // init more options
+        refreshMoreOptions()
     }
+
+    function refreshMoreOptions() {
+
+        var endpointType = menuModbusType.selectedItemValue
+        var enables = ({})
+
+        if (endpointType === DigishowEnvironment.EndpointModbusCoilOut) {
+
+            enables["optInitialB"] = true
+
+        } else if (endpointType === DigishowEnvironment.EndpointModbusHoldingOut) {
+
+            enables["optInitialA"] = true
+
+        }
+
+        moreOptions.resetOptions()
+        moreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
+    }
+
 }
 

@@ -94,6 +94,10 @@ Item {
                 itemScreen.visible = false
                 itemPipe  .visible = false
 
+                moreOptions.resetOptions()
+                moreOptions.enableOptions({})
+                buttonMoreOptions.visible = false
+
                 var config = getSelectedInterfaceConfiguration()
                 if (config !== undefined) {
                     switch (config["interfaceInfo"]["type"]) {
@@ -117,6 +121,27 @@ Item {
             }
         }
     }
+
+    CButton {
+        id: buttonMoreOptions
+        width: 28
+        height: 28
+        anchors.right: parent.right
+        anchors.rightMargin: 16
+        anchors.top: buttonInterface.top
+        icon.width: 16
+        icon.height: 16
+        icon.source: "qrc:///images/icon_settings_white.png"
+        colorNormal: "transparent"
+        box.border.width: 1
+        box.radius: 3
+        onClicked: moreOptions.show()
+
+        MwEndpointMoreOptions {
+            id: moreOptions
+        }
+    }
+
 
     MwEndpointSelectorMidi {
 
@@ -252,7 +277,6 @@ Item {
                 newEndpointOptions["unit"] = itemRioc.menuUnit.selectedItemValue
                 newEndpointOptions["type"] = itemRioc.menuType.selectedItemTag
                 newEndpointOptions["channel"] = itemRioc.menuChannel.selectedItemValue
-                newEndpointOptions = utilities.merge(newEndpointOptions, itemRioc.getMoreOptions())
 
                 needStopApp = true
 
@@ -294,6 +318,9 @@ Item {
                 newEndpointOptions["type"] = itemPipe.menuType.selectedItemTag
                 newEndpointOptions["channel"] = itemPipe.spinChannel.value
             }
+
+            // append more options
+            newEndpointOptions = utilities.merge(newEndpointOptions, moreOptions.getOptions())
 
             // save the updated endpoint
             var newEndpointIndex = -1;
@@ -398,7 +425,6 @@ Item {
                 itemRioc.menuUnit.selectOption(endpointInfo["unit"])
                 itemRioc.menuType.selectOption(endpointInfo["type"])
                 itemRioc.menuChannel.selectOption(endpointInfo["channel"])
-                itemRioc.setMoreOptions(endpointOptions)
 
             } else if (type === DigishowEnvironment.InterfaceHue) {
 
@@ -433,6 +459,9 @@ Item {
                 itemPipe.menuType.selectOption(endpointInfo["type"])
                 itemPipe.spinChannel.value = endpointInfo["channel"]
             }
+
+            // set ui with more options
+            moreOptions.setOptions(endpointOptions)
         }
 
         // reset modified flag

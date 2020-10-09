@@ -104,8 +104,9 @@ ApplicationWindow {
                 anchors.left: parent.left
                 anchors.topMargin: 20
                 anchors.leftMargin: 20
+                icon.width: 24
+                icon.height: 24
                 icon.source: "qrc:///images/icon_menu_white.png"
-                icon.sourceSize: Qt.size(24, 24)
                 onClicked: {
                     if (!menu.visible) menu.open()
                     else menu.close()

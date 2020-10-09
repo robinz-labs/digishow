@@ -168,6 +168,13 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                                     static_cast<unsigned char>(filterLevel),
                                     static_cast<unsigned char>(samplingInterval >> 8),
                                     static_cast<unsigned char>(samplingInterval & 0xff));
+
+                // read value
+                bool value;
+                if (m_rioc->digitalInRead(unit, channel, &value)) {
+                    this->onDigitalInValueUpdated(unit, channel, value);
+                }
+
                 done = m_rioc->digitalInSetNotification(unit, channel, true);
 
             } else if (type==ENDPOINT_RIOC_ANALOG_OUT) {
@@ -190,6 +197,12 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                                     static_cast<unsigned char>(samplingInterval >> 8),
                                     static_cast<unsigned char>(samplingInterval & 0xff));
 
+                // read value
+                int value;
+                if (m_rioc->analogInRead(unit, channel, &value)) {
+                    this->onAnalogInValueUpdated(unit, channel, value);
+                }
+
                 int updatingInterval = m_endpointOptionsList[n].value("optUpdatingInterval").toInt();
                 if (updatingInterval==0) updatingInterval = 50;
 
@@ -197,10 +210,10 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
 
             } else if (type==ENDPOINT_RIOC_PFM_OUT) {
 
-                    // set up pfm out channel
-                    int mode = m_endpointOptionsList[n].value("optMode").toInt();
-                    done = m_rioc->setupObject(unit, RO_SOUND_TONE, channel,
-                                               static_cast<unsigned char>(mode));
+                // set up pfm out channel
+                int mode = m_endpointOptionsList[n].value("optMode").toInt();
+                done = m_rioc->setupObject(unit, RO_SOUND_TONE, channel,
+                                           static_cast<unsigned char>(mode));
 
             } else if (type==ENDPOINT_RIOC_ENCODER_IN) {
 
@@ -216,10 +229,17 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                 int updatingInterval = m_endpointOptionsList[n].value("optUpdatingInterval").toInt();
                 if (updatingInterval==0) updatingInterval = 50;
 
+                // write initial value
                 double initial = m_endpointInfoList[n].initial;
                 int range = m_endpointInfoList[n].range;
                 if (initial >= 0) {
                     m_rioc->encoderWrite(unit, channel, int(initial*range));
+                }
+
+                // read value
+                int value;
+                if (m_rioc->encoderRead(unit, channel, &value)) {
+                    this->onEncoderValueUpdated(unit, channel, value);
                 }
 
                 done = m_rioc->encoderSetNotification(unit, channel, true, updatingInterval);

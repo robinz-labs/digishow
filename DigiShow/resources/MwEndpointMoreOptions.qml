@@ -290,7 +290,6 @@ Popup {
 
     function enableOptions(enables) {
 
-        checkOptInitialize     .enabled = (enables["optInitialize"      ] === true)
         spinOptInitialA        .enabled = (enables["optInitialA"        ] === true)
         spinOptInitialB        .enabled = (enables["optInitialB"        ] === true)
         spinOptRangeSteps      .enabled = (enables["optRangeSteps"      ] === true)
@@ -298,6 +297,8 @@ Popup {
         spinOptFilterLevel     .enabled = (enables["optFilterLevel"     ] === true)
         spinOptSamplingInterval.enabled = (enables["optSamplingInterval"] === true)
         buttonOptModePuPd      .enabled = (enables["optModePuPd"        ] === true)
+
+        checkOptInitialize     .enabled = (spinOptInitialA.enabled || spinOptInitialB.enabled)
     }
 
     function resetOptions() {

@@ -35,7 +35,7 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointRiocEncoderIn     : return colorOcean
             case DigishowEnvironment.EndpointRiocRudderOut     : return colorOcean
             case DigishowEnvironment.EndpointModbusDiscreteIn  : return colorCherry
-            case DigishowEnvironment.EndpointModubsCoilOut     : return colorCherry
+            case DigishowEnvironment.EndpointModbusCoilOut     : return colorCherry
             case DigishowEnvironment.EndpointModbusCoilIn      : return colorCherry
             case DigishowEnvironment.EndpointModbusRegisterIn  : return colorRobinEgg
             case DigishowEnvironment.EndpointModbusHoldingOut  : return colorRobinEgg

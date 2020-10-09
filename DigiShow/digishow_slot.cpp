@@ -56,7 +56,7 @@ int DigishowSlot::setSource(DigishowInterface *interface, int endpointIndex)
 {
     // release old source connection
     if (m_sourceInterface != nullptr) {
-        disconnect(m_sourceInterface, nullptr, this, nullptr);
+        disconnect(m_sourceInterface, SIGNAL(dataReceived(int, dgsSignalData)), this, nullptr);
         m_sourceInterface = nullptr;
         m_sourceEndpointIndex = -1;
         m_slotInfo.inputSignal = 0;
@@ -79,7 +79,7 @@ int DigishowSlot::setDestination(DigishowInterface *interface, int endpointIndex
 {
     // release old destination connection
     if (m_destinationInterface != nullptr) {
-        disconnect(m_destinationInterface, nullptr, this, nullptr);
+        disconnect(m_destinationInterface, SIGNAL(dataPrepared(int, dgsSignalData)), this, nullptr);
         m_destinationInterface = nullptr;
         m_destinationEndpointIndex = -1;
         m_slotInfo.outputSignal = 0;

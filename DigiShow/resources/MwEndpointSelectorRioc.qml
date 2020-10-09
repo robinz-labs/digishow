@@ -61,24 +61,6 @@ Item {
         }
     }
 
-    CButton {
-        id: buttonRiocMoreOptions
-        width: 50
-        height: 28
-        anchors.left: buttonRiocChannel.right
-        anchors.leftMargin: 10
-        anchors.top: parent.top
-        label.font.bold: false
-        label.font.pixelSize: 11
-        label.text: qsTr("Opt ...")
-        box.radius: 3
-        onClicked: riocMoreOptions.show()
-
-        MwEndpointMoreOptions {
-            id: riocMoreOptions
-        }
-    }
-
     function refresh() {
         var items
         var n
@@ -170,12 +152,14 @@ Item {
         var endpointType = menuRiocType.selectedItemValue
         var enables = ({})
 
-        enables["optInitialize"] = true
-        if (endpointType === DigishowEnvironment.EndpointRiocDigitalIn ||
-            endpointType === DigishowEnvironment.EndpointRiocDigitalOut) {
-            enables["optInitialB"] = true
-        } else {
-            enables["optInitialA"] = true
+        if (endpointType !== DigishowEnvironment.EndpointRiocDigitalIn &&
+            endpointType !== DigishowEnvironment.EndpointRiocAnalogIn) {
+
+            if (endpointType === DigishowEnvironment.EndpointRiocDigitalOut) {
+                enables["optInitialB"] = true
+            } else {
+                enables["optInitialA"] = true
+            }
         }
 
         if (endpointType === DigishowEnvironment.EndpointRiocPfmOut) {
@@ -201,10 +185,8 @@ Item {
             enables["optSamplingInterval"] = true
         }
 
-        riocMoreOptions.resetOptions()
-        riocMoreOptions.enableOptions(enables)
+        moreOptions.resetOptions()
+        moreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
-
-    function setMoreOptions(options) { riocMoreOptions.setOptions(options) }
-    function getMoreOptions() { return riocMoreOptions.getOptions() }
 }

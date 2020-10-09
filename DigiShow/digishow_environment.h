@@ -58,7 +58,7 @@ public:
         EndpointRiocEncoderIn     = ENDPOINT_RIOC_ENCODER_IN,
         EndpointRiocRudderOut     = ENDPOINT_RIOC_RUDDER_OUT,
         EndpointModbusDiscreteIn  = ENDPOINT_MODBUS_DISCRETE_IN,
-        EndpointModubsCoilOut     = ENDPOINT_MODBUS_COIL_OUT,
+        EndpointModbusCoilOut     = ENDPOINT_MODBUS_COIL_OUT,
         EndpointModbusCoilIn      = ENDPOINT_MODBUS_COIL_IN,
         EndpointModbusRegisterIn  = ENDPOINT_MODBUS_REGISTER_IN,
         EndpointModbusHoldingOut  = ENDPOINT_MODBUS_HOLDING_OUT,

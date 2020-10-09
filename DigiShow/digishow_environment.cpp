@@ -259,6 +259,7 @@ int DigishowEnvironment::makeEndpoint(int interfaceIndex, QVariantMap endpointOp
             QString key = keys[n];
             if (key != "initial" && key != "range" && !key.startsWith("opt")) // ignore these options
             if (endpointOptions[key] != interface->endpointOptionsList()->at(i).value(key)) {
+
                 matched = false;
                 break;
             }
