@@ -24,6 +24,8 @@ QtObject {
 
     property Window playerWindow: Window {
 
+        id: window
+
         width: 800
         height: 450
         flags: Qt.WindowFullscreenButtonHint //| Qt.MaximizeUsingFullscreenGeometryHint //| Qt.FramelessWindowHint
@@ -32,16 +34,46 @@ QtObject {
         Utilities { id: utilities }
         CCommon { id: common }
 
-        Rectangle {
-            id: light
+        MouseArea {
+            id: mouseArea
             anchors.fill: parent
-            color: Qt.rgba(lightR, lightG, lightB, 1.0 - lightW)
-        }
+            hoverEnabled: true
 
-        Rectangle {
-            id: screenboard
-            anchors.fill: parent
-            color: "transparent"
+            Rectangle {
+                id: light
+                anchors.fill: parent
+                color: Qt.rgba(lightR, lightG, lightB, 1.0 - lightW)
+            }
+
+            Rectangle {
+                id: screenboard
+                anchors.fill: parent
+                color: "transparent"
+            }
+
+            CButton {
+                id: buttonFullscreen
+                height: 40
+                width: 40
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.topMargin: 40
+                anchors.leftMargin: 40
+                colorNormal: "black"
+                icon.width: 24
+                icon.height: 24
+                icon.source: ( window.visibility==Window.FullScreen ?
+                    "qrc:///images/icon_fullscreen_exit_white.png" :
+                    "qrc:///images/icon_fullscreen_enter_white.png" )
+                visible: mouseArea.containsMouse
+                onClicked: {
+                    if (window.visibility==Window.FullScreen)
+                        window.showNormal()
+                    else
+                        window.showFullScreen()
+                }
+            }
+
         }
 
     }

@@ -17,6 +17,9 @@
   v1.0.2 20200730-0200
   + added quick launch panel
 
+  v1.0.3 20201011-0350
+  + added more options for endpoint configurations
+
  */
 
 #ifndef DIGISHOW_H
