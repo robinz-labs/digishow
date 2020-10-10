@@ -25,6 +25,8 @@ Item {
 
         COptionMenu {
             id: menuScreenType
+
+            onOptionSelected: refreshMoreOptions()
         }
     }
 
@@ -41,6 +43,8 @@ Item {
 
         COptionMenu {
             id: menuLightControl
+
+            onOptionSelected: refreshMoreOptions()
         }
     }
 
@@ -57,6 +61,8 @@ Item {
 
         COptionMenu {
             id: menuMediaControl
+
+            onOptionSelected: refreshMoreOptions()
         }
     }
 
@@ -101,6 +107,7 @@ Item {
         anchors.bottomMargin: 10
         anchors.left: buttonMediaSelect.left
         anchors.right: parent.right
+        anchors.rightMargin: 38
         text: "file://"
         input.anchors.rightMargin: 30
         visible: menuScreenType.selectedItemValue === DigishowEnvironment.EndpointScreenMedia &&
@@ -527,6 +534,8 @@ Item {
             menuMediaControl.selectedIndex = 0
         }
 
+        // init more options
+        refreshMoreOptions()
     }
 
     function setMediaOptions(options) {
@@ -562,6 +571,36 @@ Item {
         }
 
         return options
+    }    
+
+    function refreshMoreOptions() {
+
+        var endpointType = menuScreenType.selectedItemValue
+        var lightControl = menuLightControl.selectedItemValue
+        var mediaControl = menuMediaControl.selectedItemValue
+        var enables = {}
+
+        if (endpointType === DigishowEnvironment.EndpointScreenLight) {
+
+            enables["optInitialA"] = true
+
+        } else if (endpointType === DigishowEnvironment.EndpointScreenMedia) {
+
+            if (mediaControl === DigishowEnvironment.ControlMediaShow ||
+                mediaControl === DigishowEnvironment.ControlMediaHide ||
+                mediaControl === DigishowEnvironment.ControlMediaClear ||
+                mediaControl === DigishowEnvironment.ControlVideoPlay ||
+                mediaControl === DigishowEnvironment.ControlVideoRepeat) {
+
+                enables["optInitialB"] = true
+            } else {
+                enables["optInitialA"] = true
+            }
+        }
+
+        moreOptions.resetOptions()
+        moreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 
 }

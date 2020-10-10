@@ -150,7 +150,7 @@ Item {
     function refreshMoreOptions() {
 
         var endpointType = menuRiocType.selectedItemValue
-        var enables = ({})
+        var enables = {}
 
         if (endpointType !== DigishowEnvironment.EndpointRiocDigitalIn &&
             endpointType !== DigishowEnvironment.EndpointRiocAnalogIn) {

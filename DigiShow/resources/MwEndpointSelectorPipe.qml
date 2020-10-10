@@ -22,6 +22,8 @@ Item {
 
         COptionMenu {
             id: menuPipeType
+
+            onOptionSelected: refreshMoreOptions()
         }
     }
 
@@ -48,9 +50,9 @@ Item {
         // init pipe type option menu
         if (menuPipeType.count === 0) {
             items = []
-            items.push({ text: qsTr("Note"  ), value: DigishowEnvironment.EndpointPipeNote,   tag:"note"   })
             items.push({ text: qsTr("Analog"), value: DigishowEnvironment.EndpointPipeAnalog, tag:"analog" })
             items.push({ text: qsTr("Binary"), value: DigishowEnvironment.EndpointPipeBinary, tag:"binary" })
+            items.push({ text: qsTr("Note"  ), value: DigishowEnvironment.EndpointPipeNote,   tag:"note"   })
             menuPipeType.optionItems = items
             menuPipeType.selectedIndex = 0
         }
@@ -59,5 +61,27 @@ Item {
         spinPipeChannel.from = 1
         spinPipeChannel.to = 1000
         spinPipeChannel.visible = false
+
+        // init more options
+        refreshMoreOptions()
+    }
+
+    function refreshMoreOptions() {
+
+        var endpointType = menuPipeType.selectedItemValue
+        var enables = {}
+
+        if (endpointType === DigishowEnvironment.EndpointPipeBinary) {
+
+            enables["optInitialB"] = true
+
+        } else if (endpointType === DigishowEnvironment.EndpointPipeAnalog) {
+
+            enables["optInitialA"] = true
+        }
+
+        moreOptions.resetOptions()
+        moreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 }

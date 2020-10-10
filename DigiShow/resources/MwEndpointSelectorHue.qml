@@ -37,6 +37,8 @@ Item {
 
         COptionMenu {
             id: menuHueControl
+
+            onOptionSelected: refreshMoreOptions()
         }
     }
 
@@ -60,8 +62,27 @@ Item {
             //v = DigishowEnvironment.ControlLightHue; items.push({ text: digishow.getLightControlName(v), value: v })
             //v = DigishowEnvironment.ControlLightCt;  items.push({ text: digishow.getLightControlName(v), value: v })
             menuHueControl.optionItems = items
-            menuHueControl.selectedIndex = 0
+            menuHueControl.selectedIndex = 4 // default is brightness
         }
+
+        // init more options
+        refreshMoreOptions()
     }
+
+    function refreshMoreOptions() {
+
+        var control = menuHueControl.selectedItemValue
+        var enables = {}
+
+        if (control === DigishowEnvironment.ControlLightBri) {
+
+            enables["optInitialA"] = true
+        }
+
+        moreOptions.resetOptions()
+        moreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
+    }
+
 }
 

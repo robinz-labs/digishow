@@ -97,7 +97,7 @@ Item {
     function refreshMoreOptions() {
 
         var endpointType = menuModbusType.selectedItemValue
-        var enables = ({})
+        var enables = {}
 
         if (endpointType === DigishowEnvironment.EndpointModbusCoilOut) {
 

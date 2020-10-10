@@ -39,6 +39,8 @@ Item {
 
         COptionMenu {
             id: menuMidiType
+
+            onOptionSelected: refreshMoreOptions()
         }
 
     }
@@ -116,6 +118,26 @@ Item {
             menuMidiControl.optionItems = items
             menuMidiControl.selectedIndex = 0
         }
+
+        // init more options
+        refreshMoreOptions()
     }
+
+    function refreshMoreOptions() {
+
+        var endpointType = menuMidiType.selectedItemValue
+        var enables = {}
+
+        if (endpointType === DigishowEnvironment.EndpointMidiControl ||
+            endpointType === DigishowEnvironment.EndpointMidiProgram) {
+
+            enables["optInitialA"] = true
+        }
+
+        moreOptions.resetOptions()
+        moreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
+    }
+
 }
 

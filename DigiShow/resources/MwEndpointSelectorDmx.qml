@@ -61,6 +61,20 @@ Item {
         spinDmxChannel.from = 1
         spinDmxChannel.to = 512
         spinDmxChannel.visible = false
+
+        // init more options
+        refreshMoreOptions()
     }
+
+    function refreshMoreOptions() {
+
+        var enables = {}
+        enables["optInitialA"] = true
+
+        moreOptions.resetOptions()
+        moreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
+    }
+
 }
 
