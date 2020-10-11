@@ -210,7 +210,7 @@ typedef struct dgsSlotInfo {
 
     // output signal envelop
     int    envelopeAttack;  // in milliseconds, default 0
-    int    envelopePeak;    // in milliseconds, default 0
+    int    envelopeHold;    // in milliseconds, default 0
     int    envelopeDecay;   // in milliseconds, default 0
     double envelopeSustain; // ratio 0.0 ~ 1.0, default 1.0
     int    envelopeRelease; // in milliseconds, default 0
@@ -231,7 +231,7 @@ typedef struct dgsSlotInfo {
         outputInverted(false),
         outputLowAsZero(false),
         envelopeAttack(0),
-        envelopePeak(0),
+        envelopeHold(0),
         envelopeDecay(0),
         envelopeSustain(1.0),
         envelopeRelease(0),

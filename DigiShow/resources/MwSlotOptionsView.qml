@@ -276,7 +276,7 @@ Item {
                     }
 
                     CSpinBox {
-                        id: spinEnvelopePeak
+                        id: spinEnvelopeHold
 
                         width: 120
                         anchors.left: parent.left
@@ -286,7 +286,7 @@ Item {
                         stepSize: 10
                         unit: "ms"
 
-                        onValueModified: setSlotOption("envelopePeak", value)
+                        onValueModified: setSlotOption("envelopeHold", value)
 
                         Text {
                             anchors.right: parent.left
@@ -294,7 +294,7 @@ Item {
                             anchors.verticalCenter: parent.verticalCenter
                             color: "#cccccc"
                             font.pixelSize: 12
-                            text: qsTr("Peak")
+                            text: qsTr("Hold")
                         }
                     }
 
@@ -480,7 +480,7 @@ Item {
 
             itemEnvelopeOptions.visible = true
             spinEnvelopeAttack.visible = true
-            spinEnvelopePeak.visible = true
+            spinEnvelopeHold.visible = true
             spinEnvelopeDecay.visible = true
             spinEnvelopeSustain.visible = true
             spinEnvelopeRelease.visible = true
@@ -492,7 +492,7 @@ Item {
 
             itemEnvelopeOptions.visible = true
             spinEnvelopeAttack.visible = true
-            spinEnvelopePeak.visible = true
+            spinEnvelopeHold.visible = true
             spinEnvelopeDecay.visible = false
             spinEnvelopeSustain.visible = false
             spinEnvelopeRelease.visible = true
@@ -515,7 +515,7 @@ Item {
         sliderMappingOutputRange.second.value = slotInfo["outputHigh"]
 
         spinEnvelopeAttack.value = slotInfo["envelopeAttack"]
-        spinEnvelopePeak.value = slotInfo["envelopePeak"]
+        spinEnvelopeHold.value = slotInfo["envelopeHold"]
         spinEnvelopeDecay.value = slotInfo["envelopeDecay"]
         spinEnvelopeSustain.value = Math.round(slotInfo["envelopeSustain"]*100)
         spinEnvelopeRelease.value = slotInfo["envelopeRelease"]

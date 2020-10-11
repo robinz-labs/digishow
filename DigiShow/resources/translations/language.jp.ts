@@ -645,53 +645,54 @@ with all things digital</source>
 <context>
     <name>MwEndpointMoreOptions</name>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="74"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="66"/>
         <source>Need to Initialize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="102"/>
-        <location filename="../MwEndpointMoreOptions.qml" line="130"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="95"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="124"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="153"/>
         <source>Initial Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="155"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="179"/>
         <source>Value Range (steps)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="180"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="205"/>
         <source>Value Range (Freq.)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="205"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="231"/>
         <source>Smoothing Level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="230"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="257"/>
         <source>Sampling Interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="247"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="278"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="248"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="279"/>
         <source>Internal Pull-Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="249"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="280"/>
         <source>External PU/PD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="259"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="290"/>
         <source>PU/PD Resistor</source>
         <translation type="unfinished"></translation>
     </message>
@@ -729,7 +730,7 @@ with all things digital</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="377"/>
+        <location filename="../MwEndpointSelector.qml" line="378"/>
         <source>More ...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1670,7 +1671,7 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="297"/>
-        <source>Peak</source>
+        <source>Hold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

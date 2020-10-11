@@ -137,7 +137,7 @@ QVariantMap DigishowSlot::getSlotInfo()
     info["outputLowAsZero"] = m_slotInfo.outputLowAsZero;
 
     info["envelopeAttack" ] = m_slotInfo.envelopeAttack;
-    info["envelopePeak"   ] = m_slotInfo.envelopePeak;
+    info["envelopeHold"   ] = m_slotInfo.envelopeHold;
     info["envelopeDecay"  ] = m_slotInfo.envelopeDecay;
     info["envelopeSustain"] = m_slotInfo.envelopeSustain;
     info["envelopeRelease"] = m_slotInfo.envelopeRelease;
@@ -264,7 +264,7 @@ void DigishowSlot::updateSlotInfoItem(const QString &name, const QVariant &value
     else if ( name == "outputInverted" ) m_slotInfo.outputInverted  = value.toBool();
     else if ( name == "outputLowAsZero") m_slotInfo.outputLowAsZero = value.toBool();
     else if ( name == "envelopeAttack" ) m_slotInfo.envelopeAttack  = MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "envelopePeak"   ) m_slotInfo.envelopePeak    = MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "envelopeHold"   ) m_slotInfo.envelopeHold    = MINMAX(value.toInt(), 0, 60000);
     else if ( name == "envelopeDecay"  ) m_slotInfo.envelopeDecay   = MINMAX(value.toInt(), 0, 60000);
     else if ( name == "envelopeSustain") m_slotInfo.envelopeSustain = MINMAX(value.toDouble(), 0.0, 1.0);
     else if ( name == "envelopeRelease") m_slotInfo.envelopeRelease = MINMAX(value.toInt(), 0, 60000);
@@ -489,17 +489,17 @@ dgsSignalData DigishowSlot::envelopeProcessOutputAnalog()
             // attack
             envelopeRatio = static_cast<double>(now-m_envelopeTimeOn) / static_cast<double>(m_slotInfo.envelopeAttack);
 
-        } else if (now < m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopePeak) {
+        } else if (now < m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopeHold) {
 
-            // peak
+            // hold
             envelopeRatio = 1.0;
 
-        } else if (now < m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopePeak + m_slotInfo.envelopeDecay) {
+        } else if (now < m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopeHold + m_slotInfo.envelopeDecay) {
 
             // decay
             envelopeRatio =
                     static_cast<double>(1.0-m_slotInfo.envelopeSustain) *
-                    static_cast<double>(m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopePeak + m_slotInfo.envelopeDecay - now) /
+                    static_cast<double>(m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopeHold + m_slotInfo.envelopeDecay - now) /
                     static_cast<double>(m_slotInfo.envelopeDecay) + m_slotInfo.envelopeSustain;
         } else {
 
@@ -560,11 +560,11 @@ dgsSignalData DigishowSlot::envelopeProcessOutputBinary()
     qint64 now = elapsed();
 
     // make output value in the envelope
-    if (m_slotInfo.envelopePeak > 0) {
+    if (m_slotInfo.envelopeHold > 0) {
 
-        // attack + peak
+        // attack + hold
         if (now > m_envelopeTimeOn + m_slotInfo.envelopeAttack) {
-            if (now < m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopePeak)
+            if (now < m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopeHold)
                 envelopeState = true;
             else
                 isEnvelopeFinished = true;

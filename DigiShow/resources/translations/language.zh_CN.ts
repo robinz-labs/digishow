@@ -645,53 +645,54 @@ with all things digital</source>
 <context>
     <name>MwEndpointMoreOptions</name>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="74"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="66"/>
         <source>Need to Initialize</source>
         <translation>需要初始化</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="102"/>
-        <location filename="../MwEndpointMoreOptions.qml" line="130"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="95"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="124"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="153"/>
         <source>Initial Value</source>
         <translation>初始值</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="155"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="179"/>
         <source>Value Range (steps)</source>
         <translation>数值范围 (步数)</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="180"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="205"/>
         <source>Value Range (Freq.)</source>
         <translation>数值范围 (频率)</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="205"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="231"/>
         <source>Smoothing Level</source>
         <translation>平滑滤波强度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="230"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="257"/>
         <source>Sampling Interval</source>
         <translation>采样间隔</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="247"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="278"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="248"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="279"/>
         <source>Internal Pull-Up</source>
         <translation>内置上拉电阻</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="249"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="280"/>
         <source>External PU/PD</source>
         <translation>外置上拉/下拉电阻</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="259"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="290"/>
         <source>PU/PD Resistor</source>
         <translation>上拉/下拉电阻</translation>
     </message>
@@ -729,7 +730,7 @@ with all things digital</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="377"/>
+        <location filename="../MwEndpointSelector.qml" line="378"/>
         <source>More ...</source>
         <translation>更多接口 ...</translation>
     </message>
@@ -1669,27 +1670,27 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <message>
         <location filename="../MwSlotOptionsView.qml" line="274"/>
         <source>Attack</source>
-        <translation>进入延时</translation>
+        <translation>A 渐入时长</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="297"/>
-        <source>Peak</source>
-        <translation>峰值时长</translation>
+        <source>Hold</source>
+        <translation>H 保持时长</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="320"/>
         <source>Decay</source>
-        <translation>衰减时长</translation>
+        <translation>D 衰减时长</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="344"/>
         <source>Sustain</source>
-        <translation>保持水平</translation>
+        <translation>S 延续水平</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="367"/>
         <source>Release</source>
-        <translation>退出延时</translation>
+        <translation>R 渐出时长</translation>
     </message>
 </context>
 </TS>
