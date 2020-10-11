@@ -129,10 +129,10 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: 16
         anchors.top: buttonInterface.top
+        colorNormal: moreOptions.isDefault ? "transparent" : "#666666"
         icon.width: 16
         icon.height: 16
         icon.source: "qrc:///images/icon_settings_white.png"
-        colorNormal: "transparent"
         box.border.width: 1
         box.radius: 3
         onClicked: moreOptions.show()
@@ -321,6 +321,7 @@ Item {
 
             // append more options
             newEndpointOptions = utilities.merge(newEndpointOptions, moreOptions.getOptions())
+            moreOptions.setOptions(newEndpointOptions) // here refresh ui
 
             // save the updated endpoint
             var newEndpointIndex = -1;

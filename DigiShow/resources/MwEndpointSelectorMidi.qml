@@ -131,7 +131,7 @@ Item {
         if (endpointType === DigishowEnvironment.EndpointMidiControl ||
             endpointType === DigishowEnvironment.EndpointMidiProgram) {
 
-            enables["optInitialA"] = true
+            enables["optInitialMidi"] = true
         }
 
         moreOptions.resetOptions()

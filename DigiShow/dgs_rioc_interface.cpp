@@ -233,7 +233,7 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                 double initial = m_endpointInfoList[n].initial;
                 int range = m_endpointInfoList[n].range;
                 if (initial >= 0) {
-                    m_rioc->encoderWrite(unit, channel, int(initial*range));
+                    m_rioc->encoderWrite(unit, channel, round(initial*range));
                 }
 
                 // read value
