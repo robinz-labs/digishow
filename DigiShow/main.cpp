@@ -1,5 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+//#include <QtQml/QQmlComponent>
+//#include <QtQuick/QQuickWindow>
 #include <QtWebEngine/qtwebengineglobal.h>
 #include <QFileOpenEvent>
 #include <QFont>
@@ -92,7 +94,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QCoreApplication::setOrganizationName("robinz");
-    QCoreApplication::setOrganizationDomain("robinz");
+    QCoreApplication::setOrganizationDomain("robinz.org");
     QCoreApplication::setApplicationName(g_appname);
     QCoreApplication::setApplicationVersion(g_version);
 
@@ -114,6 +116,11 @@ int main(int argc, char *argv[])
 
     // start main ui
     QQmlApplicationEngine engine;
+
+    //QQmlComponent component(&engine);
+    //component.loadUrl(QUrl("qrc:///Splash.qml"));
+    //if (component.isReady()) component.create();
+
     const QUrl url(QStringLiteral("qrc:///MainWindow.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

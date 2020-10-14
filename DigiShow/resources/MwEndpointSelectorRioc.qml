@@ -8,7 +8,7 @@ import "components"
 Item {
     id: itemRioc
 
-    property alias menuUnit:    menuRiocUnit
+    property alias spinUnit:    spinRiocUnit
     property alias menuType:    menuRiocType
     property alias menuChannel: menuRiocChannel
 
@@ -18,11 +18,11 @@ Item {
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: menuRiocUnit.selectedItemText
-        onClicked: menuRiocUnit.showOptions()
+        text: qsTr("Unit") + " " + spinRiocUnit.value
+        onClicked: spinRiocUnit.visible = true
 
-        COptionMenu {
-            id: menuRiocUnit
+        COptionSpinBox {
+            id: spinRiocUnit
         }
     }
 
@@ -65,14 +65,10 @@ Item {
         var items
         var n
 
-        // init rioc unit option menu
-        if (menuRiocUnit.count === 0) {
-            items = []
-            for (n=1 ; n<256 ; n++)
-                items.push({ text: qsTr("Unit") + " " + n, value: n })
-            menuRiocUnit.optionItems = items
-            menuRiocUnit.selectedIndex = 0
-        }
+        // init rioc unit option spinbox
+        spinRiocUnit.from = 1
+        spinRiocUnit.to = 255
+        spinRiocUnit.visible = false
 
         // init rioc type option menu
         if (menuRiocType.count === 0) {

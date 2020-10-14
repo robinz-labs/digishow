@@ -13,7 +13,7 @@ DgsScreenInterface::DgsScreenInterface(QObject *parent) : DigishowInterface(pare
     m_qmlComponentPlayer->loadUrl(QUrl("qrc:///ScreenPlayer.qml"));
     m_player = nullptr;
 
-    QQuickWindow::setDefaultAlphaBuffer(true);
+    //QQuickWindow::setDefaultAlphaBuffer(true);
 }
 
 DgsScreenInterface::~DgsScreenInterface()

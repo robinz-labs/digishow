@@ -154,6 +154,7 @@ Item {
                             window.isModified = true
                         }
                     }
+                    /*
                     CMenuItem {
                         text: (model.startup ? qsTr("No Launch on Startup") : qsTr("Launch on Startup"))
                         enabled: model.assigned
@@ -164,6 +165,7 @@ Item {
                             window.isModified = true
                         }
                     }
+                    */
                 }
 
             }

@@ -48,6 +48,7 @@ Popup {
             padding: 0
             visible: enabled
 
+
             onClicked: {
                 if (!checked) {
                     spinOptInitialA.value = 0
@@ -81,6 +82,7 @@ Popup {
             unit: "%"
             visible: enabled
 
+
             onValueModified: {
                 checkOptInitialize.checked = true
                 isModified = true
@@ -109,6 +111,7 @@ Popup {
             stepSize: 1
             unit: ""
             visible: enabled
+
 
             onValueModified: {
                 checkOptInitialize.checked = true
@@ -139,6 +142,7 @@ Popup {
             unit: ""
             visible: enabled
 
+
             onValueModified: {
                 checkOptInitialize.checked = true
                 isModified = true
@@ -168,6 +172,7 @@ Popup {
             unit: ""
             visible: enabled
 
+
             onValueModified: isModified = true
 
             Text {
@@ -193,6 +198,7 @@ Popup {
             stepSize: 100
             unit: "Hz"
             visible: enabled
+
 
             onValueModified: isModified = true
 
@@ -220,6 +226,7 @@ Popup {
             unit: ""
             visible: enabled
 
+
             onValueModified: isModified = true
 
             Text {
@@ -246,6 +253,7 @@ Popup {
             unit: "µs"
             visible: enabled
 
+
             onValueModified: isModified = true
 
             Text {
@@ -265,6 +273,7 @@ Popup {
             anchors.left: parent.left
             anchors.leftMargin: 110
             visible: enabled
+
 
             text: menuOptModePuPd.selectedItemText
             onClicked: menuOptModePuPd.showOptions()
@@ -290,14 +299,20 @@ Popup {
                 text: qsTr("PU/PD Resistor")
             }
         }
-
-
     }
 
     function show() {
 
-        this.open()
-        common.runLater(showOptions) // force to refresh
+        // refresh options form height
+        var height = 0
+        for (var n=0; n<columnMoreOptions.children.length; n++) {
+            var child = columnMoreOptions.children[n]
+            if (child.enabled) height += child.height + columnMoreOptions.spacing
+        }
+        if (height > 0) height -= columnMoreOptions.spacing
+        columnMoreOptions.height = height
+
+        showOptions()
     }
 
     function showOptions() {

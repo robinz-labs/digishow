@@ -274,7 +274,7 @@ Item {
 
             } else if (type === DigishowEnvironment.InterfaceRioc) {
 
-                newEndpointOptions["unit"] = itemRioc.menuUnit.selectedItemValue
+                newEndpointOptions["unit"] = itemRioc.spinUnit.value
                 newEndpointOptions["type"] = itemRioc.menuType.selectedItemTag
                 newEndpointOptions["channel"] = itemRioc.menuChannel.selectedItemValue
 
@@ -423,7 +423,7 @@ Item {
 
             } else if (type === DigishowEnvironment.InterfaceRioc) {
 
-                itemRioc.menuUnit.selectOption(endpointInfo["unit"])
+                itemRioc.spinUnit.value = endpointInfo["unit"]
                 itemRioc.menuType.selectOption(endpointInfo["type"])
                 itemRioc.menuChannel.selectOption(endpointInfo["channel"])
 

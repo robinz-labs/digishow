@@ -94,5 +94,6 @@
         <file>MwInterfaceListViewScreen.qml</file>
         <file>MwInterfaceListViewPipe.qml</file>
         <file>MwEndpointMoreOptions.qml</file>
+        <file>Splash.qml</file>
     </qresource>
 </RCC>

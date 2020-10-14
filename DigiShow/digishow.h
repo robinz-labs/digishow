@@ -20,6 +20,8 @@
   v1.0.3 20201011-0350
   + added more options for endpoint configurations
 
+  v1.1.0 20201012-2350
+
  */
 
 #ifndef DIGISHOW_H

@@ -509,6 +509,12 @@ ApplicationWindow {
         dim: true
         focus: true
 
+        onVisibleChanged: {
+            textSlogan.visible = false
+            textSlogan.reset()
+            timerSlogan.stop()
+        }
+
         background: Image {
             anchors.fill: parent
             source: "qrc:///images/background_about.png"
@@ -521,6 +527,14 @@ ApplicationWindow {
             MouseArea {
                 anchors.fill: parent
                 onClicked: popupAbout.close()
+            }
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                textSlogan.visible = true
+                timerSlogan.start()
             }
         }
 
@@ -550,15 +564,55 @@ ApplicationWindow {
         }
 
         Text {
+            id: textSlogan
             anchors.top: parent.top
-            anchors.topMargin: 280
+            anchors.topMargin: 300
             anchors.left: parent.left
             anchors.leftMargin: 60
             color: "#666666"
             lineHeight: 1.5
-            font.bold: false
+            verticalAlignment: Text.AlignVCenter
+            font.bold: true
             font.pixelSize: 14
-            text: qsTr("enchanting \r\nyour show time \r\nwith all things digital")
+            scale: 1
+            rotation: 0
+            text: qsTr("Jam with All Things Digital")
+            visible: false
+
+            Behavior on color { ColorAnimation { duration: 600 } }
+            Behavior on scale { NumberAnimation { duration: 1500; easing.type: Easing.OutCubic } }
+            Behavior on rotation { NumberAnimation { duration: 1500; easing.type: Easing.OutCubic } }
+
+            Timer {
+                id: timerSlogan
+
+                property int tick: 0
+
+                interval: 1000
+                repeat: true
+                running: false
+
+                onRunningChanged: tick = 0
+
+                onTriggered: {
+
+                    if (tick < 10) {
+                        textSlogan.color = Qt.rgba(Math.random(), Math.random(), Math.random(), 0.8)
+                        textSlogan.scale = Math.random()*5 + 1.0
+                        textSlogan.rotation = Math.random()*90 - 45
+                        tick++
+                    } else {
+                        textSlogan.reset()
+                        stop()
+                    }
+                }
+            }
+
+            function reset() {
+                scale = 1
+                rotation = 0
+                color = "#666666"
+            }
         }
 
         Text {
