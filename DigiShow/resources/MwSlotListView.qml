@@ -482,12 +482,10 @@ Item {
                             onPressed: {
                                 model.epOutFaderHold = false
 
-                                faderOutput.animated = false
-                                if (model.slotOutInverted === false && faderOutput.value === 0)
-                                    model.epOutFaderValue = faderOutput.to
-                                if (model.slotOutInverted === true && faderOutput.value === faderOutput.to)
+                                if (model.slotOutInverted === false && model.epOutFaderValue === 0)
+                                    model.epOutFaderValue = model.epOutRange
+                                if (model.slotOutInverted === true && model.epOutFaderValue === model.epOutRange)
                                     model.epOutFaderValue = 0
-                                faderOutput.animated = true
 
                                 model.epOutTap = true
                                 model.epOutValue = Math.round(faderOutput.value)
@@ -525,8 +523,6 @@ Item {
                         CSlider {
                             id: faderOutput
 
-                            property bool animated: true
-
                             width: rectTopLeftBar.width - 710 + 90
                             height:30
                             anchors.right: buttonHold.left
@@ -537,7 +533,7 @@ Item {
                             stepSize: 1
                             color: model.epOutColor
 
-                            Behavior on value { NumberAnimation { duration: (faderOutput.animated ? 300 : 0); easing.type: Easing.OutCubic } }
+                            Behavior on value { NumberAnimation { duration: (model.slotLinked && model.epOutFaderHold ? 300 : 0); easing.type: Easing.OutCubic } }
 
                             onMoved: {
                                 if (model.epOutFaderHold) {
@@ -672,6 +668,12 @@ Item {
 
                         // tap
                         dataModel.setProperty(selectedIndex, "epOutFaderHold", false)
+
+                        if (model.slotOutInverted === false && model.epOutFaderValue === 0)
+                            dataModel.setProperty(selectedIndex, "epOutFaderValue", model.epOutRange)
+                        if (model.slotOutInverted === true && model.epOutFaderValue === model.epOutRange)
+                            dataModel.setProperty(selectedIndex, "epOutFaderValue", 0)
+
                         dataModel.setProperty(selectedIndex, "epOutTap", true)
                         slot.setEndpointOutValue(model.epOutFaderValue)
 
@@ -681,7 +683,7 @@ Item {
                     } else if (event.key === Qt.Key_Left || event.key === Qt.Key_Right) {
 
                         // fader - or fader +
-                        var signal = (event.key === Qt.Key_Left ? -1 : 1);
+                        var signal = (event.key === Qt.Key_Left ? -1 : 1)
                         var epOutFaderValue = (model.epOutSignal === DigishowEnvironment.SignalBinary
                                                ? model.epOutFaderValue + signal * 1
                                                : model.epOutFaderValue + signal * Math.round(model.epOutRange * 0.1) )
