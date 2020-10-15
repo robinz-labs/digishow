@@ -1,4 +1,4 @@
-# digishow
+# DigiShow LINK
 DigiShow is an easy-to-use software aims at controls for live performances and interactive shows with music, lights, displays, machines, robots and more digital things. With using DigiShow LINK app, a DJ can arrange cue actions in Ableton Live and control automations on the stage. A drummer can play beats with dynamic show lightings. A geek musician can make own DIY instruments played for highlights of the performance. Also, an artist can create new art works with more interactive media elements.
 
 DigiShow LINK app enables signal transferring between MIDI, DMX, Modbus, Arduino, Philips Hue and more digital device interfaces.
