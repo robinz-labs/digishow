@@ -596,7 +596,7 @@ ApplicationWindow {
 
                 onTriggered: {
 
-                    if (tick < 10) {
+                    if (tick < 8) {
                         textSlogan.color = Qt.rgba(Math.random(), Math.random(), Math.random(), 0.8)
                         textSlogan.scale = Math.random()*5 + 1.0
                         textSlogan.rotation = Math.random()*90 - 45

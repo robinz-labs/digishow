@@ -45,6 +45,7 @@
         <file>images/icon_interface_pipe_white@2x.png</file>
         <file>images/icon_interface_rioc_white@2x.png</file>
         <file>images/icon_interface_screen_white@2x.png</file>
+        <file>images/AHDSR.png</file>
         <file>images/logo.png</file>
         <file>components/CCommon.qml</file>
         <file>components/CButton.qml</file>

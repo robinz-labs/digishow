@@ -247,6 +247,43 @@ Item {
                     text: qsTr("Output Envelope")
                 }
 
+                CButton {
+                    id: buttonEnvelopeHelp
+
+                    width: 18
+                    height: 18
+                    anchors.verticalCenter: labelEnvelope.verticalCenter
+                    anchors.left: labelEnvelope.right
+                    anchors.leftMargin: 10
+                    label.text: "?"
+                    label.font.pixelSize: 11
+                    label.font.bold: true
+                    box.radius: 9
+
+                    onClicked: popupEnvelopeHelp.open()
+                }
+
+                Popup {
+                    id: popupEnvelopeHelp
+                    width: 750
+                    height: 450
+                    anchors.centerIn: Overlay.overlay
+                    modal: true
+                    dim: true
+                    clip: true
+
+                    background: Rectangle {
+                        anchors.fill: parent
+                        color: "black"
+                        radius: 12
+                    }
+
+                    Image {
+                        anchors.fill: parent
+                        source: "qrc:///images/AHDSR.png"
+                    }
+                }
+
                 Column {
                     anchors.top: labelEnvelope.bottom
                     anchors.topMargin: 30
@@ -479,6 +516,7 @@ Item {
             sliderMappingOutputRange.visible = true
 
             itemEnvelopeOptions.visible = true
+            buttonEnvelopeHelp.visible = true
             spinEnvelopeAttack.visible = true
             spinEnvelopeHold.visible = true
             spinEnvelopeDecay.visible = true
@@ -491,6 +529,7 @@ Item {
             checkOutputInverted.visible = true
 
             itemEnvelopeOptions.visible = true
+            buttonEnvelopeHelp.visible = false
             spinEnvelopeAttack.visible = true
             spinEnvelopeHold.visible = true
             spinEnvelopeDecay.visible = false
