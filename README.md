@@ -10,22 +10,43 @@ DigiShow LINK app enables signal transferring between MIDI, DMX, Modbus, Arduino
 - Philips Hue is the popular smart home wireless-controlled lights.
 - DigiShow can also control presenting videos, pictures and web contents on multiple screens dynamically.
 
-DigiShow makes all things digital work together for your awesome show time, enjoys !!
+DigiShow makes all digital things work together for your awesome show time, enjoys !!
 
 ## Official release downloads
-Please visit http://robinz.org/labs/digishow to download executable apps of the latest releases:
+Please visit http://robinz.org/labs/digishow to download the latest releases:
 - DigiShow LINK for macOS (64bit)
 - DigiShow LINK for windows (64bit)
 
-## Extra downloads and resources
-- [ Arduino ] sketch for Arduino remote IO controls [download](https://github.com/robinz-labs/rioc-arduino/releases)
-- [ DMX ] ENTTEC Open DMX USB driver (FTDI VCP drivers) [download](https://www.ftdichip.com/Drivers/VCP.htm)
-- [ MIDI ] virtual MIDI bus driver [learn](https://help.ableton.com/hc/en-us/articles/209774225-How-to-setup-a-virtual-MIDI-bus) 
-- [ MIDI ] virtual MIDI network driver [learn](https://help.ableton.com/hc/en-us/articles/209071169-How-to-setup-a-virtual-MIDI-network) 
-- [ MIDI ] MIDI signal monitor [learn](https://support.native-instruments.com/hc/en-us/articles/209544729-How-to-Monitor-the-Input-of-a-MIDI-Controller)
+## Install and run DigiShow LINK apps
+macOS:
+Unzip the downloaded file, copy app "DigiShow" to your Applications folder and run it.
 
+Windows:
+Unzip the downloaded file, copy folder "DigiShow LINK" to your disk and run "DigiShow.exe" in the folder.
+
+## Extra downloads and resources
+[ Arduino ] sketch for Arduino remote IO controls
+Required to enable DigiShow LINK to configure and control IO on your Arduino units remotely.
+[download](https://github.com/robinz-labs/rioc-arduino/releases)
+
+[ DMX ] ENTTEC Open DMX USB driver (FTDI VCP drivers) 
+Required to enable DigiShow LINK to control DMX lightings through an ENTTEC adapter.
+[download](https://www.ftdichip.com/Drivers/VCP.htm)
+
+[ MIDI ] virtual MIDI bus driver 
+Required to enable DigiShow LINK to communicate with other MIDI apps running on a same computer.
+[learn](https://help.ableton.com/hc/en-us/articles/209774225-How-to-setup-a-virtual-MIDI-bus) 
+ 
+[ MIDI ] virtual MIDI network driver 
+Required to enable DigiShow LINK to communicate with other MIDI apps running on different computers.
+[learn](https://help.ableton.com/hc/en-us/articles/209071169-How-to-setup-a-virtual-MIDI-network) 
+
+[ MIDI ] MIDI signal monitor 
+A utility that is helpful to understand MIDI Note, CC signals transferring between your MIDI devices and apps.  
+[learn](https://support.native-instruments.com/hc/en-us/articles/209544729-How-to-Monitor-the-Input-of-a-MIDI-Controller)
+ 
 ## Developer resources
-DigiShow is open-sourced. If you would like to rebuild this software using the source code we contributed, please visit https://github.com/robinz-labs/ .
+DigiShow is open-source. If you would like to rebuild this software using the source code we contributed, please visit https://github.com/robinz-labs/ .
 
 Please use qmake tool or QtCreator app to build executables from the source code, and confirm these library dependencies are required:
 - Qt 5.12 or higher http://www.qt.io
