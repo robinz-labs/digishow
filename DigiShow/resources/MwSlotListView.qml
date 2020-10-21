@@ -10,9 +10,14 @@ Item {
 
     id: slotListView
 
-    property int selectedIndex: -1
-    property alias currentIndex: listView.currentIndex
+    property int   selectedIndex: -1 // index to data modal
+    property int   currentIndex:  -1 // index to data modal
+    property alias currentIndexVisual: listView.currentIndex // index to visual modal
     property alias listItemCount: dataModel.count
+
+    onSelectedIndexChanged: currentIndex = selectedIndex
+    onCurrentIndexChanged: currentIndexVisual = getVisualItemIndex(currentIndex)
+    onCurrentIndexVisualChanged: currentIndex = getDataItemIndex(currentIndexVisual)
 
     Rectangle {
 
@@ -122,7 +127,7 @@ Item {
                     id: content
                     anchors.fill: dragArea
                     border.width: 2
-                    border.color: selectedIndex===index ? "#cccccc" : listView.currentIndex===index ? "#666666" : color
+                    border.color: selectedIndex===index ? "#cccccc" : currentIndex===index ? "#666666" : color
                     color: "#222222"
                     radius: 4
 
@@ -575,7 +580,7 @@ Item {
                         visualModel.items.move(
                                 drag.source.DelegateModel.itemsIndex,
                                 dragArea.DelegateModel.itemsIndex)
-                        listView.currentIndex = index
+                        currentIndex = index ///
                     }
                 }
             }
@@ -600,11 +605,10 @@ Item {
             spacing: 30
             cacheBuffer: 50
 
-            currentIndex: selectedIndex
-
             snapMode: ListView.SnapToItem
             focus: true
 
+            highlightFollowsCurrentItem: true
             highlightMoveVelocity: -1
             highlightMoveDuration: 300
 
@@ -698,15 +702,14 @@ Item {
                 }
 
                 // change current slot item
-                var currentVisualItemIndex = getVisualItemIndex(currentIndex)
+                var indexVisual = currentIndexVisual
 
-                if (currentVisualItemIndex !== -1) {
+                if (indexVisual !== -1) {
                     if (event.key === Qt.Key_Up || event.key === Qt.Key_PageUp) {
 
                         // move up
-                        currentVisualItemIndex -=  (event.key === Qt.Key_PageUp ? Math.floor(listView.height / 100) : 1)
-                        currentVisualItemIndex = Math.max(currentVisualItemIndex, 0)
-                        currentIndex = getDataItemIndex(currentVisualItemIndex)
+                        indexVisual -=  (event.key === Qt.Key_PageUp ? Math.floor(listView.height / 100) : 1)
+                        currentIndexVisual = Math.max(indexVisual, 0)
 
                         event.accepted = true
                         return
@@ -714,19 +717,19 @@ Item {
                     } else if (event.key === Qt.Key_Down || event.key === Qt.Key_PageDown) {
 
                         // move down
-                        currentVisualItemIndex += (event.key === Qt.Key_PageDown ? Math.floor(listView.height / 100) : 1)
-                        currentVisualItemIndex = Math.min(currentVisualItemIndex, visualModel.items.count-1)
-                        currentIndex = getDataItemIndex(currentVisualItemIndex)
+                        indexVisual += (event.key === Qt.Key_PageDown ? Math.floor(listView.height / 100) : 1)
+                        currentIndexVisual = Math.min(indexVisual, visualModel.items.count-1)
 
                         event.accepted = true
                         return
                     }
                 }
 
+
                 // change selected slot item
                 if (event.key === Qt.Key_Space || event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
 
-                    selectedIndex = currentIndex
+                    selectedIndex = slotListView.currentIndex
 
                     event.accepted = true
                     return
@@ -735,7 +738,7 @@ Item {
                 // delete the selected slot
                 if (event.key === Qt.Key_Delete) {
 
-                    deleteSlot(currentIndex)
+                    deleteSlot(slotListView.currentIndex)
 
                     event.accepted = true
                     return
@@ -906,15 +909,15 @@ Item {
                 selectedIndex = -1
                 currentIndex = -1
 
-                var visualItemIndex = getVisualItemIndex(deletedIndex)
+                var indexVisaul = getVisualItemIndex(deletedIndex)
 
                 app.deleteSlot(deletedIndex)
                 dataModel.remove(deletedIndex) //refresh()
 
-                if (visualItemIndex >= 0 &&
-                    visualItemIndex < visualModel.items.count) {
+                if (indexVisaul >= 0 &&
+                    indexVisaul < visualModel.items.count) {
 
-                    currentIndex = getDataItemIndex(visualItemIndex)
+                    currentIndexVisual = indexVisaul
                 }
             }
 
@@ -953,6 +956,9 @@ Item {
     }
 
     function getVisualItemIndex(dataItemIndex) {
+
+        if (dataItemIndex === -1) return -1
+
         var visualItemIndex = -1
         for (var n=0 ; n<visualModel.items.count ; n++) {
             if (dataItemIndex === visualModel.items.get(n).model.index) {
@@ -964,6 +970,9 @@ Item {
     }
 
     function getDataItemIndex(visualItemIndex) {
+
+        if (visualItemIndex === -1) return -1
+
         return visualModel.items.get(visualItemIndex).model.index
     }
 

@@ -626,14 +626,13 @@ QVariantList DigishowApp::getSlotLaunchDetails(const QString &launchName)
 
     for (int n=0 ; n<m_slots.length() ; n++) {
         DigishowSlot* slot = m_slots[n];
+        QVariantMap details;
         if (slot->slotOptions()->contains("launchDetails")) {
             QVariantMap launchDetails = slot->slotOptions()->value("launchDetails").toMap();
-            if (launchDetails.contains(launchName)) {
-                listDetails.append(launchDetails.value(launchName).toMap());
-            } else {
-                listDetails.append(QVariantMap());
-            }
+            if (launchDetails.contains(launchName))
+                details = launchDetails.value(launchName).toMap();
         }
+        listDetails.append(details);
     }
 
     return listDetails;

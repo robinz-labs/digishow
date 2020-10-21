@@ -59,11 +59,12 @@ Item {
 
                 anchors.fill: parent
                 anchors.margins: 3
-                colorNormal: model.color
+                colorNormal: model.name === editingLaunchName ? Material.accent : model.color
                 colorActivated: "#000000"
                 box.border.color: "#ffffff"
                 label.font.pixelSize: 12
                 label.font.bold: model.assigned
+                //label.font.underline: model.name === editingLaunchName
                 label.text: (model.startup ? "► " : "") + model.title
                 label.visible: !textLaunchTitle.visible
                 opacity: model.assigned || model.name === editingLaunchName ? 1.0 : 0.25
