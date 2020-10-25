@@ -83,6 +83,24 @@ ApplicationWindow {
         common.runLater(appClose)
     }
 
+    DropArea {
+        id: dropArea
+        anchors.fill: parent
+        keys: ["text/uri-list"]
+        onEntered: drag.accepted = drag.hasUrls
+        onDropped: {
+            if (drop.hasUrls) {
+                var fileUrl = drop.urls[0]
+                if (fileUrl.startsWith("file://") && fileUrl.endsWith(".dgs")) {
+                    drop.acceptProposedAction()
+                    common.runLater(function() {
+                        fileOpen(utilities.urlToPath(fileUrl))
+                    })
+                }
+            }
+        }
+    }
+
     Rectangle {
         id: rectRoot
         color: "#111111"

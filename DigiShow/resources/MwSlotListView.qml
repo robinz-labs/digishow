@@ -74,7 +74,6 @@ Item {
 
                 drag.target: held ? content : undefined
                 drag.axis: Drag.YAxis
-
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
 
                 //onPressAndHold: held = true
@@ -577,10 +576,16 @@ Item {
                 DropArea {
                     anchors.fill: parent
                     onEntered: {
+
+                        if (drag.formats.length>0) {
+                            drag.accepted = false
+                            return
+                        }
+
                         visualModel.items.move(
                                 drag.source.DelegateModel.itemsIndex,
                                 dragArea.DelegateModel.itemsIndex)
-                        currentIndex = index ///
+                        currentIndex = index
                     }
                 }
             }
