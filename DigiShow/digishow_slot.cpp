@@ -452,6 +452,8 @@ void DigishowSlot::sendDataOut(dgsSignalData dataOut)
 
 void DigishowSlot::envelopeStart(dgsSignalData dataIn)
 {
+    if (envelopeIsRunning()) envelopeCancel();
+
     if (!m_linked) return;
 
     m_envelopeTimeOn = elapsed();
