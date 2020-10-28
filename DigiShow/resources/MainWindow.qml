@@ -676,6 +676,17 @@ ApplicationWindow {
         }
     }
 
+    ColorDialog {
+        property var callbackAfterPicked: null
+
+        id: dialogColorPicker
+        showAlphaChannel: false
+
+        onAccepted: {
+            if (callbackAfterPicked !== null) callbackAfterPicked()
+        }
+    }
+
     MwAppOptionsDialog {
         id: dialogAppOptions
     }

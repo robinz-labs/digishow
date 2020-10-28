@@ -57,17 +57,20 @@ Item {
             CButton {
                 id: buttonLaunch
 
+                property bool isEditing: model.name === editingLaunchName
+
                 anchors.fill: parent
                 anchors.margins: 3
-                colorNormal: model.name === editingLaunchName ? Material.accent : model.color
+                colorNormal: isEditing ? "transparent" : model.color
                 colorActivated: "#000000"
                 box.border.color: "#ffffff"
+                box.border.width: isEditing || mouseOver ? 1 : 0
                 label.font.pixelSize: 12
                 label.font.bold: model.assigned
-                //label.font.underline: model.name === editingLaunchName
+                //label.font.underline: isEditing
                 label.text: (model.startup ? "► " : "") + model.title
                 label.visible: !textLaunchTitle.visible
-                opacity: model.assigned || model.name === editingLaunchName ? 1.0 : 0.25
+                opacity: model.assigned || isEditing ? 1.0 : 0.25
                 supportLongPress: true
 
                 onLongPressed: {
@@ -142,6 +145,19 @@ Item {
                         onTriggered: {
                             menu.close()
                             textLaunchTitle.showRename()
+                        }
+                    }
+                    CMenuItem {
+                        text: qsTr("Set Launch Color")
+                        onTriggered: {
+
+                            dialogColorPicker.callbackAfterPicked = function() {
+                                var color = dialogColorPicker.color.toString()
+                                model.color = color
+                                app.setLaunchOption(model.name, "color", color)
+                            }
+                            dialogColorPicker.color = model.color
+                            dialogColorPicker.open()
                         }
                     }
                     CMenuItem {

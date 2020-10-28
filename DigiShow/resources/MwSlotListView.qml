@@ -924,6 +924,8 @@ Item {
 
                     currentIndexVisual = indexVisaul
                 }
+
+                isModified = true
             }
 
             listView.forceActiveFocus()
