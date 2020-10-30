@@ -60,6 +60,7 @@ int DigishowSlot::setSource(DigishowInterface *interface, int endpointIndex)
         m_sourceInterface = nullptr;
         m_sourceEndpointIndex = -1;
         m_slotInfo.inputSignal = 0;
+        m_slotInfo.inputRange = 0;
     }
 
     // create new source connection
@@ -67,6 +68,7 @@ int DigishowSlot::setSource(DigishowInterface *interface, int endpointIndex)
         m_sourceInterface = interface;
         m_sourceEndpointIndex = endpointIndex;
         m_slotInfo.inputSignal = interface->endpointInfoList()->at(endpointIndex).signal;
+        m_slotInfo.inputRange = interface->endpointInfoList()->at(endpointIndex).range;
         m_lastDataIn = dgsSignalData();
 
         connect(m_sourceInterface, SIGNAL(dataReceived(int, dgsSignalData)), this, SLOT(onDataReceived(int, dgsSignalData)));
@@ -83,6 +85,7 @@ int DigishowSlot::setDestination(DigishowInterface *interface, int endpointIndex
         m_destinationInterface = nullptr;
         m_destinationEndpointIndex = -1;
         m_slotInfo.outputSignal = 0;
+        m_slotInfo.outputRange = 0;
     }
 
     // create new destination connection
@@ -90,6 +93,7 @@ int DigishowSlot::setDestination(DigishowInterface *interface, int endpointIndex
         m_destinationInterface = interface;
         m_destinationEndpointIndex = endpointIndex;
         m_slotInfo.outputSignal = interface->endpointInfoList()->at(endpointIndex).signal;
+        m_slotInfo.outputRange = interface->endpointInfoList()->at(endpointIndex).range;
         m_lastDataOut = dgsSignalData();
 
         // set output interval option
@@ -126,6 +130,8 @@ QVariantMap DigishowSlot::getSlotInfo()
 
     info["inputSignal"    ] = m_slotInfo.inputSignal;
     info["outputSignal"   ] = m_slotInfo.outputSignal;
+    info["inputRange"     ] = m_slotInfo.inputRange;
+    info["outputRange"    ] = m_slotInfo.outputRange;
 
     info["inputThreshold" ] = m_slotInfo.inputThreshold;
     info["inputLow"       ] = m_slotInfo.inputLow;

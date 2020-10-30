@@ -197,6 +197,8 @@ typedef struct dgsSlotInfo {
     // io signal types
     char inputSignal;       // type of the signal received from source endpoint
     char outputSignal;      // type of the signal sent to destination endpoint
+    int inputRange;
+    int outputRange;
 
     // io mapping options
     double inputThreshold;  // threshold 0.0 ~ 1.0
@@ -222,6 +224,8 @@ typedef struct dgsSlotInfo {
     dgsSlotInfo() :
         inputSignal(0),
         outputSignal(0),
+        inputRange(0),
+        outputRange(0),
         inputThreshold(0.5),
         inputLow(0.0),
         inputHigh(1.0),

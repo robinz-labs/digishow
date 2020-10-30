@@ -9,6 +9,9 @@ Item {
 
     id: slotOptionsView
 
+    property int inputFullRange: 0
+    property int outputFullRange: 0
+
     signal slotOptionUpdated(string key, var value)
 
     Item {
@@ -89,6 +92,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 15
             anchors.bottom: checkOutputInverted.top
+            anchors.bottomMargin: -5
             font.pixelSize: 12
             text: qsTr("Zero Output While Reach Lower")
             enabled:
@@ -132,8 +136,8 @@ Item {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.top: labelMapping.bottom
-                    anchors.topMargin: 40
-                    spacing: 80
+                    anchors.topMargin: 66
+                    spacing: 84
 
                     CSlider {
                         id: sliderMappingInputThreshold
@@ -143,25 +147,35 @@ Item {
                         value: 0.5
                         color: Material.accent
 
-                        onMoved: setSlotOption("inputThreshold", parseFloat(value.toFixed(2)))
+                        onMoved: setSlotOption("inputThreshold", parseFloat(value.toFixed(5)))
 
                         Text {
                             anchors.left: parent.left
                             anchors.top: parent.bottom
-                            anchors.topMargin: 20
+                            anchors.topMargin: 15
                             color: "#cccccc"
                             font.pixelSize: 12
-                            text: qsTr("Input Threshold")
+                            text: Math.round(parent.value*100) + " %"
                         }
 
                         Text {
                             anchors.right: parent.right
                             anchors.top: parent.bottom
-                            anchors.topMargin: 20
+                            anchors.topMargin: 15
                             color: "#cccccc"
                             font.pixelSize: 12
-                            text: Math.round(parent.value*100) + " %"
+                            text: Math.round(parent.value*inputFullRange)
                         }
+
+                        Text {
+                            anchors.left: parent.left
+                            anchors.bottom: parent.top
+                            anchors.bottomMargin: 15
+                            color: "#cccccc"
+                            font.pixelSize: 12
+                            text: qsTr("Input Threshold")
+                        }
+
                     }
 
                     CRangeSlider {
@@ -173,26 +187,36 @@ Item {
                         second.value: 1.0
                         color: Material.accent
 
-                        first.onMoved: setSlotOption("inputLow", parseFloat(first.value.toFixed(2)))
-                        second.onMoved: setSlotOption("inputHigh", parseFloat(second.value.toFixed(2)))
+                        first.onMoved: setSlotOption("inputLow", parseFloat(first.value.toFixed(5)))
+                        second.onMoved: setSlotOption("inputHigh", parseFloat(second.value.toFixed(5)))
 
                         Text {
                             anchors.left: parent.left
                             anchors.top: parent.bottom
-                            anchors.topMargin: 20
+                            anchors.topMargin: 15
                             color: "#cccccc"
                             font.pixelSize: 12
-                            text: qsTr("Input Range")
+                            text: Math.round(parent.first.value*100) + " % - " +
+                                  Math.round(parent.second.value*100) + " %"
                         }
 
                         Text {
                             anchors.right: parent.right
                             anchors.top: parent.bottom
-                            anchors.topMargin: 20
+                            anchors.topMargin: 15
                             color: "#cccccc"
                             font.pixelSize: 12
-                            text: Math.round(parent.first.value*100) + " % - " +
-                                  Math.round(parent.second.value*100) + " %"
+                            text: Math.round(parent.first.value*inputFullRange) + " - " +
+                                  Math.round(parent.second.value*inputFullRange)
+                        }
+
+                        Text {
+                            anchors.left: parent.left
+                            anchors.bottom: parent.top
+                            anchors.bottomMargin: 15
+                            color: "#cccccc"
+                            font.pixelSize: 12
+                            text: qsTr("Input Range")
                         }
                     }
 
@@ -205,27 +229,38 @@ Item {
                         second.value: 1.0
                         color: Material.accent
 
-                        first.onMoved: setSlotOption("outputLow", parseFloat(first.value.toFixed(2)))
-                        second.onMoved: setSlotOption("outputHigh", parseFloat(second.value.toFixed(2)))
+                        first.onMoved: setSlotOption("outputLow", parseFloat(first.value.toFixed(5)))
+                        second.onMoved: setSlotOption("outputHigh", parseFloat(second.value.toFixed(5)))
 
                         Text {
                             anchors.left: parent.left
                             anchors.top: parent.bottom
-                            anchors.topMargin: 20
-                            color: "#cccccc"
-                            font.pixelSize: 12
-                            text: qsTr("Output Range")
-                        }
-
-                        Text {
-                            anchors.right: parent.right
-                            anchors.top: parent.bottom
-                            anchors.topMargin: 20
+                            anchors.topMargin: 15
                             color: "#cccccc"
                             font.pixelSize: 12
                             text: Math.round(parent.first.value*100) + " % - " +
                                   Math.round(parent.second.value*100) + " %"
                         }
+
+                        Text {
+                            anchors.right: parent.right
+                            anchors.top: parent.bottom
+                            anchors.topMargin: 15
+                            color: "#cccccc"
+                            font.pixelSize: 12
+                            text: Math.round(parent.first.value*outputFullRange) + " - " +
+                                  Math.round(parent.second.value*outputFullRange)
+                        }
+
+                        Text {
+                            anchors.left: parent.left
+                            anchors.bottom: parent.top
+                            anchors.bottomMargin: 15
+                            color: "#cccccc"
+                            font.pixelSize: 12
+                            text: qsTr("Output Range")
+                        }
+
                     }
                 }
             }
@@ -436,6 +471,9 @@ Item {
         // show / hide options according to input-output signals
         var inputSignal = slotInfo["inputSignal"]
         var outputSignal = slotInfo["outputSignal"]
+
+        inputFullRange = slotInfo["inputRange"]
+        outputFullRange = slotInfo["outputRange"]
 
         checkInputInverted.visible = false
         checkOutputInverted.visible = false
