@@ -676,11 +676,10 @@ ApplicationWindow {
         }
     }
 
-    ColorDialog {
+    MwColorPickerDialog {
         property var callbackAfterPicked: null
 
         id: dialogColorPicker
-        showAlphaChannel: false
 
         onAccepted: {
             if (callbackAfterPicked !== null) callbackAfterPicked()

@@ -1,0 +1,15 @@
+.pragma library
+
+var HotPink  = "#ed1b74"
+var RosePink = "#f386ad"
+var Cherry   = "#ee364e"
+var Salmon   = "#f7a08d"
+var Marigold = "#eae613"
+var Orange   = "#ff9900"
+var Mint     = "#a0d28b"
+var Lime     = "#00a652"
+var RobinEgg = "#18b8b6"
+var Aqua     = "#44baec"
+var Ocean    = "#1177dd"
+var Royal    = "#2b459c"
+var Iris     = "#575aa9"

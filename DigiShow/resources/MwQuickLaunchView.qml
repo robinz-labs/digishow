@@ -4,6 +4,7 @@ import QtQuick.Controls.Material 2.12
 import DigiShow 1.0
 
 import "components"
+import "components/CColor.js" as CColor
 
 Item {
 
@@ -345,20 +346,6 @@ Item {
 
     function refresh() {
 
-        var colorHotPink  = "#ed1b74"
-        var colorRosePink = "#f386ad"
-        var colorCherry   = "#ee364e"
-        var colorSalmon   = "#f7a08d"
-        var colorMarigold = "#eae613"
-        var colorOrange   = "#ff9900"
-        var colorMint     = "#a0d28b"
-        var colorLime     = "#00a652"
-        var colorRobinEgg = "#18b8b6"
-        var colorAqua     = "#44baec"
-        var colorOcean    = "#1177dd"
-        var colorRoyal    = "#2b459c"
-        var colorIris     = "#575aa9"
-
         // prepare launches data model
         dataModel.clear()
         for (var n=0 ; n<50 ; n++) {
@@ -368,11 +355,11 @@ Item {
             var row = Math.floor(n / 5)
             var color
             switch (row % 5) {
-            case 0: color = colorLime; break
-            case 1: color = colorRobinEgg; break
-            case 2: color = colorOcean; break
-            case 3: color = colorIris; break
-            case 4: color = colorHotPink; break
+            case 0: color = CColor.Lime;     break
+            case 1: color = CColor.RobinEgg; break
+            case 2: color = CColor.Ocean;    break
+            case 3: color = CColor.Iris;     break
+            case 4: color = CColor.HotPink;  break
             }
             var title = qsTr("Launch") + " " + (n+1);
             var assigned = false

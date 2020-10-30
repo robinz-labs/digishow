@@ -47,6 +47,7 @@
         <file>images/icon_interface_screen_white@2x.png</file>
         <file>images/AHDSR.png</file>
         <file>images/logo.png</file>
+        <file>components/CColor.js</file>
         <file>components/CCommon.qml</file>
         <file>components/CButton.qml</file>
         <file>components/CItem.qml</file>
@@ -95,6 +96,7 @@
         <file>MwInterfaceListViewScreen.qml</file>
         <file>MwInterfaceListViewPipe.qml</file>
         <file>MwEndpointMoreOptions.qml</file>
+        <file>MwColorPickerDialog.qml</file>
         <file>Splash.qml</file>
     </qresource>
 </RCC>
