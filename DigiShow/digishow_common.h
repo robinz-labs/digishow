@@ -201,7 +201,6 @@ typedef struct dgsSlotInfo {
     int outputRange;
 
     // io mapping options
-    double inputThreshold;  // threshold 0.0 ~ 1.0
     double inputLow;        // mapping bounds 0.0 ~ 1.0
     double inputHigh;
     double outputLow;
@@ -226,7 +225,6 @@ typedef struct dgsSlotInfo {
         outputSignal(0),
         inputRange(0),
         outputRange(0),
-        inputThreshold(0.5),
         inputLow(0.0),
         inputHigh(1.0),
         outputLow(0.0),

@@ -139,45 +139,6 @@ Item {
                     anchors.topMargin: 66
                     spacing: 84
 
-                    CSlider {
-                        id: sliderMappingInputThreshold
-
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        value: 0.5
-                        color: Material.accent
-
-                        onMoved: setSlotOption("inputThreshold", parseFloat(value.toFixed(5)))
-
-                        Text {
-                            anchors.left: parent.left
-                            anchors.top: parent.bottom
-                            anchors.topMargin: 15
-                            color: "#cccccc"
-                            font.pixelSize: 12
-                            text: Math.round(parent.value*100) + " %"
-                        }
-
-                        Text {
-                            anchors.right: parent.right
-                            anchors.top: parent.bottom
-                            anchors.topMargin: 15
-                            color: "#cccccc"
-                            font.pixelSize: 12
-                            text: Math.round(parent.value*inputFullRange)
-                        }
-
-                        Text {
-                            anchors.left: parent.left
-                            anchors.bottom: parent.top
-                            anchors.bottomMargin: 15
-                            color: "#cccccc"
-                            font.pixelSize: 12
-                            text: qsTr("Input Threshold")
-                        }
-
-                    }
-
                     CRangeSlider {
                         id: sliderMappingInputRange
 
@@ -490,7 +451,6 @@ Item {
             checkOutputLowAsZero.visible = true
 
             itemMappingOptions.visible = true
-            sliderMappingInputThreshold.visible = false
             sliderMappingInputRange.visible = true
             sliderMappingOutputRange.visible = true
 
@@ -501,8 +461,7 @@ Item {
             checkOutputInverted.visible = true
 
             itemMappingOptions.visible = true
-            sliderMappingInputThreshold.visible = true
-            sliderMappingInputRange.visible = false
+            sliderMappingInputRange.visible = true
             sliderMappingOutputRange.visible = false
 
         } else if (inputSignal  === DigishowEnvironment.SignalAnalog &&
@@ -511,7 +470,6 @@ Item {
             checkInputInverted.visible = true
 
             itemMappingOptions.visible = true
-            sliderMappingInputThreshold.visible = false
             sliderMappingInputRange.visible = true
             sliderMappingOutputRange.visible = true
 
@@ -522,7 +480,6 @@ Item {
             checkOutputInverted.visible = true
 
             itemMappingOptions.visible = true
-            sliderMappingInputThreshold.visible = false
             sliderMappingInputRange.visible = false
             sliderMappingOutputRange.visible = true
 
@@ -538,7 +495,6 @@ Item {
             checkInputInverted.visible = true
 
             itemMappingOptions.visible = true
-            sliderMappingInputThreshold.visible = false
             sliderMappingInputRange.visible = false
             sliderMappingOutputRange.visible = true
 
@@ -549,7 +505,6 @@ Item {
             checkOutputLowAsZero.visible = true
 
             itemMappingOptions.visible = true
-            sliderMappingInputThreshold.visible = false
             sliderMappingInputRange.visible = true
             sliderMappingOutputRange.visible = true
 
@@ -585,7 +540,6 @@ Item {
         checkOutputInverted.checked = slotInfo["outputInverted"]
         checkOutputLowAsZero.checked = slotInfo["outputLowAsZero"]
 
-        sliderMappingInputThreshold.value = slotInfo["inputThreshold"]
         sliderMappingInputRange.first.value = slotInfo["inputLow"]
         sliderMappingInputRange.second.value = slotInfo["inputHigh"]
         sliderMappingOutputRange.first.value = slotInfo["outputLow"]

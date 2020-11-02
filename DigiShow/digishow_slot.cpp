@@ -133,7 +133,6 @@ QVariantMap DigishowSlot::getSlotInfo()
     info["inputRange"     ] = m_slotInfo.inputRange;
     info["outputRange"    ] = m_slotInfo.outputRange;
 
-    info["inputThreshold" ] = m_slotInfo.inputThreshold;
     info["inputLow"       ] = m_slotInfo.inputLow;
     info["inputHigh"      ] = m_slotInfo.inputHigh;
     info["outputLow"      ] = m_slotInfo.outputLow;
@@ -261,8 +260,7 @@ int DigishowSlot::setLinked(bool linked) {
 
 void DigishowSlot::updateSlotInfoItem(const QString &name, const QVariant &value)
 {
-    if      ( name == "inputThreshold" ) m_slotInfo.inputThreshold  = MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "inputLow"       ) m_slotInfo.inputLow        = MINMAX(value.toDouble(), 0.0, 1.0);
+    if      ( name == "inputLow"       ) m_slotInfo.inputLow        = MINMAX(value.toDouble(), 0.0, 1.0);
     else if ( name == "inputHigh"      ) m_slotInfo.inputHigh       = MINMAX(value.toDouble(), 0.0, 1.0);
     else if ( name == "outputLow"      ) m_slotInfo.outputLow       = MINMAX(value.toDouble(), 0.0, 1.0);
     else if ( name == "outputHigh"     ) m_slotInfo.outputHigh      = MINMAX(value.toDouble(), 0.0, 1.0);
@@ -323,7 +321,17 @@ dgsSignalData DigishowSlot::processInputAnalog(dgsSignalData dataIn)
     } else if  (m_slotInfo.outputSignal == DATA_SIGNAL_BINARY) {
 
         // A to B
-        bool outputState = (inputRatio > m_slotInfo.inputThreshold);
+        bool outputState;
+        if (m_slotInfo.inputLow == 0 && m_slotInfo.inputHigh == 1) {
+            // zero or none-zero
+            outputState = (inputRatio != 0);
+        } else {
+            // outputState = (inputRatio >= m_slotInfo.inputLow && inputRatio <= m_slotInfo.inputHigh);
+            int inputValue     = round(inputRatio * m_slotInfo.inputRange);
+            int inputValueLow  = round(m_slotInfo.inputLow * m_slotInfo.inputRange);
+            int inputValueHigh = round(m_slotInfo.inputHigh * m_slotInfo.inputRange);
+            outputState = (inputValue >= inputValueLow && inputValue <= inputValueHigh);
+        }
         if (m_slotInfo.outputInverted) outputState = !outputState;
 
         dataOut.signal = DATA_SIGNAL_BINARY;
