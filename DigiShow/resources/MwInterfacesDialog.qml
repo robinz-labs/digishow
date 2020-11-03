@@ -99,7 +99,7 @@ Dialog {
                 anchors.topMargin: 40
                 wrapMode: Label.Wrap
                 lineHeight: 1.3
-                text: qsTr("DMX interface is typically for connecting your lights and fixtures on the stage. An Enttec open dmx usb adapter or compatible is required.")
+                text: qsTr("DMX interface is typically for connecting your lights and fixtures on the stage. An Enttec DMX USB Pro adapter or compatible is required.")
             }
 
             MwInterfaceListViewDmx {

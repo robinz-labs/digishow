@@ -364,21 +364,21 @@
         <translation>未命名</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="751"/>
+        <location filename="../MainWindow.qml" line="750"/>
         <source>Would you like to quit DigiShow app ?</source>
         <translation>您是否需要退出 DigiShow 程序 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="751"/>
+        <location filename="../MainWindow.qml" line="750"/>
         <source>Quit</source>
         <translation>退出</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="150"/>
         <location filename="../MainWindow.qml" line="169"/>
-        <location filename="../MainWindow.qml" line="736"/>
-        <location filename="../MainWindow.qml" line="751"/>
-        <location filename="../MainWindow.qml" line="756"/>
+        <location filename="../MainWindow.qml" line="735"/>
+        <location filename="../MainWindow.qml" line="750"/>
+        <location filename="../MainWindow.qml" line="755"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
@@ -391,8 +391,8 @@
         <location filename="../MainWindow.qml" line="150"/>
         <location filename="../MainWindow.qml" line="169"/>
         <location filename="../MainWindow.qml" line="178"/>
-        <location filename="../MainWindow.qml" line="736"/>
-        <location filename="../MainWindow.qml" line="756"/>
+        <location filename="../MainWindow.qml" line="735"/>
+        <location filename="../MainWindow.qml" line="755"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -432,7 +432,7 @@
         <translation>打开 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="755"/>
+        <location filename="../MainWindow.qml" line="754"/>
         <source>Would you like to save all data to a file before close the app ?</source>
         <translation>在关闭应用程序前是否需要将所有数据保存至文件 ?</translation>
     </message>
@@ -454,8 +454,8 @@
     <message>
         <location filename="../MainWindow.qml" line="150"/>
         <location filename="../MainWindow.qml" line="169"/>
-        <location filename="../MainWindow.qml" line="736"/>
-        <location filename="../MainWindow.qml" line="756"/>
+        <location filename="../MainWindow.qml" line="735"/>
+        <location filename="../MainWindow.qml" line="755"/>
         <source>Don&apos;t Save</source>
         <translation>不保存</translation>
     </message>
@@ -535,7 +535,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="734"/>
+        <location filename="../MainWindow.qml" line="733"/>
         <source>Would you like to save current data before open file %1 ?</source>
         <translation>在打开文件 “ %1 ” 前是否需要保存当前数据 ?</translation>
     </message>
@@ -1360,11 +1360,6 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>DMX 接口</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="102"/>
-        <source>DMX interface is typically for connecting your lights and fixtures on the stage. An Enttec open dmx usb adapter or compatible is required.</source>
-        <translation>DMX 接口通常用于连接你的灯光和各种舞台设备。软件运行必须要使用 Enttec open dmx usb 或兼容型号的适配器。</translation>
-    </message>
-    <message>
         <location filename="../MwInterfacesDialog.qml" line="129"/>
         <source>Modbus Interfaces</source>
         <translation>Modbus 接口</translation>
@@ -1410,6 +1405,11 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>屏幕展示</translation>
     </message>
     <message>
+        <location filename="../MwInterfacesDialog.qml" line="102"/>
+        <source>DMX interface is typically for connecting your lights and fixtures on the stage. An Enttec DMX USB Pro adapter or compatible is required.</source>
+        <translation>DMX 接口通常用于连接你的灯光和各种舞台设备。软件运行必须要使用 Enttec DMX USB Pro 或兼容型号的适配器。</translation>
+    </message>
+    <message>
         <location filename="../MwInterfacesDialog.qml" line="259"/>
         <source>DigiShow enables to accept control signals for presenting videos, pictures and web contents on multiple screens.</source>
         <translation>DigiShow 可以通过接受信号，来在多屏幕中控制视频、图片和Web网页内容的播放展示。</translation>
@@ -1453,67 +1453,67 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
 <context>
     <name>MwQuickLaunchView</name>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="137"/>
+        <location filename="../MwQuickLaunchView.qml" line="138"/>
         <source>Edit Launch</source>
         <translation>编辑快捷动作</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="137"/>
+        <location filename="../MwQuickLaunchView.qml" line="138"/>
         <source>Create Launch</source>
         <translation>创建快捷动作</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="144"/>
+        <location filename="../MwQuickLaunchView.qml" line="145"/>
         <source>Rename Launch</source>
         <translation>修改快捷动作名称</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="151"/>
+        <location filename="../MwQuickLaunchView.qml" line="152"/>
         <source>Set Launch Color</source>
         <translation>修改快捷动作颜色</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="164"/>
+        <location filename="../MwQuickLaunchView.qml" line="165"/>
         <source>Delete Launch</source>
         <translation>删除快捷动作</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="265"/>
+        <location filename="../MwQuickLaunchView.qml" line="266"/>
         <source>Create A Launch Item Here to :</source>
         <translation>在此创建 “快捷动作”, 用于 :</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="271"/>
+        <location filename="../MwQuickLaunchView.qml" line="272"/>
         <source>Remember Slot Link States</source>
         <translation>记忆各信号插槽的链接状态</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="279"/>
+        <location filename="../MwQuickLaunchView.qml" line="280"/>
         <source>Remember Output Signals</source>
         <translation>记忆各信号插槽的输出信号</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="297"/>
+        <location filename="../MwQuickLaunchView.qml" line="298"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="309"/>
+        <location filename="../MwQuickLaunchView.qml" line="310"/>
         <source>The launch item has been saved, all you just checked will be replayed as soon as you tap the launch button again.</source>
         <translation>已保存该项 “快捷动作”，当在再次按下此启动按钮时，所有刚才勾选的内容都将被即刻重现。</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="309"/>
+        <location filename="../MwQuickLaunchView.qml" line="310"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="322"/>
+        <location filename="../MwQuickLaunchView.qml" line="323"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="377"/>
+        <location filename="../MwQuickLaunchView.qml" line="364"/>
         <source>Launch</source>
         <translation>快捷动作</translation>
     </message>
@@ -1611,77 +1611,72 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
 <context>
     <name>MwSlotOptionsView</name>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="28"/>
+        <location filename="../MwSlotOptionsView.qml" line="31"/>
         <source>Signal mapping and transform options</source>
         <translation>信号映射和变换参数</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="38"/>
+        <location filename="../MwSlotOptionsView.qml" line="41"/>
         <source>Please select signal endpoints of both source and destination</source>
         <translation>请先选择信号的来源和目标</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="67"/>
+        <location filename="../MwSlotOptionsView.qml" line="70"/>
         <source>Invert Input Signal</source>
         <translation>反转输入信号量</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="80"/>
+        <location filename="../MwSlotOptionsView.qml" line="83"/>
         <source>Invert Output Signal</source>
         <translation>反转输出信号量</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="93"/>
+        <location filename="../MwSlotOptionsView.qml" line="97"/>
         <source>Zero Output While Reach Lower</source>
         <translation>当达到输出下限时输出零值</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="128"/>
+        <location filename="../MwSlotOptionsView.qml" line="132"/>
         <source>Input-output Mapping</source>
         <translation>输入输出信号量映射</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="154"/>
-        <source>Input Threshold</source>
-        <translation>输入信号量阈值</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotOptionsView.qml" line="185"/>
+        <location filename="../MwSlotOptionsView.qml" line="180"/>
         <source>Input Range</source>
         <translation>输入信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="217"/>
+        <location filename="../MwSlotOptionsView.qml" line="222"/>
         <source>Output Range</source>
         <translation>输出信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="247"/>
+        <location filename="../MwSlotOptionsView.qml" line="243"/>
         <source>Output Envelope</source>
         <translation>输出信号包络</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="311"/>
+        <location filename="../MwSlotOptionsView.qml" line="307"/>
         <source>Attack</source>
         <translation>A 渐入时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="334"/>
+        <location filename="../MwSlotOptionsView.qml" line="330"/>
         <source>Hold</source>
         <translation>H 保持时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="357"/>
+        <location filename="../MwSlotOptionsView.qml" line="353"/>
         <source>Decay</source>
         <translation>D 衰减时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="381"/>
+        <location filename="../MwSlotOptionsView.qml" line="377"/>
         <source>Sustain</source>
         <translation>S 延续水平</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="404"/>
+        <location filename="../MwSlotOptionsView.qml" line="400"/>
         <source>Release</source>
         <translation>R 渐出时长</translation>
     </message>

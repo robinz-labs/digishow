@@ -29,7 +29,7 @@ Unzip the downloaded file, copy folder "DigiShow LINK" to your disk and run "Dig
 Required to enable DigiShow LINK to configure and control IO on your Arduino units remotely.
 [download](https://github.com/robinz-labs/rioc-arduino/releases)
 
-[ DMX ] ENTTEC Open DMX USB driver (FTDI VCP drivers) 
+[ DMX ] ENTTEC DMX USB Pro driver (FTDI VCP drivers) 
 Required to enable DigiShow LINK to control DMX lightings through an ENTTEC adapter.
 [download](https://www.ftdichip.com/Drivers/VCP.htm)
 
