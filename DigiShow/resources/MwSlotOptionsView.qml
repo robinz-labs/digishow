@@ -540,6 +540,11 @@ Item {
         checkOutputInverted.checked = slotInfo["outputInverted"]
         checkOutputLowAsZero.checked = slotInfo["outputLowAsZero"]
 
+        sliderMappingInputRange.first.value = 0
+        sliderMappingInputRange.second.value = 1
+        sliderMappingOutputRange.first.value = 0
+        sliderMappingOutputRange.second.value = 1
+
         sliderMappingInputRange.first.value = slotInfo["inputLow"]
         sliderMappingInputRange.second.value = slotInfo["inputHigh"]
         sliderMappingOutputRange.first.value = slotInfo["outputLow"]

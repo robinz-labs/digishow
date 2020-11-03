@@ -201,6 +201,7 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
             } else {
                 value = static_cast<double>(data.aValue) / static_cast<double>(data.aRange==0 ? 10000 : data.aRange);
                 if (value<0 || value>1) return ERR_INVALID_DATA;
+                if (control == CONTROL_MEDIA_SCALE) value = value*2;
             }
 
             QVariant r;

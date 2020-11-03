@@ -162,7 +162,7 @@ QtObject {
 
             if (propertyName === "opacity") {
 
-                console.log(mediaName, propertyName, propertyValue, new Date().getMilliseconds())
+                //console.log(mediaName, propertyName, propertyValue, new Date().getMilliseconds())
 
                 view.stopFadeIn()
             }
@@ -182,13 +182,13 @@ QtObject {
 
             // set media display options
             v = options["mediaOpacity"];   var mediaOpacity   = (v === undefined ? 1.0  : v / 10000)
-            v = options["mediaScale"];     var mediaScale     = (v === undefined ? 1.0  : v / 10000)
+            v = options["mediaScale"];     var mediaScale     = (v === undefined ? 0.5  : v / 10000)
             v = options["mediaRotation"];  var mediaRotation  = (v === undefined ? 0    : v / 10 )
             v = options["mediaXOffset"];   var mediaXOffset   = (v === undefined ? 0.5  : v / 10000)
             v = options["mediaYOffset"];   var mediaYOffset   = (v === undefined ? 0.5  : v / 10000)
 
             view.opacity  = mediaOpacity
-            view.scale    = mediaScale
+            view.scale    = mediaScale*2
             view.rotation = mediaRotation
             view.xOffset  = mediaXOffset
             view.yOffset  = mediaYOffset

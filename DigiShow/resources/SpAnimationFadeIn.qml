@@ -17,19 +17,17 @@ NumberAnimation {
 
     function fadeIn(duration) {
 
-        if (!target.visible) {
-            if (duration===undefined || duration===0) {
+        if (target.visible || duration===undefined || duration===0) {
 
-                // show media view shortly
-                screenPlayer.setFrontMediaView(target)
-                if (mediaShowAlone) screenPlayer.hideAllMediaViewsExcept(target)
+            // show media view shortly
+            screenPlayer.setFrontMediaView(target)
+            if (mediaShowAlone) screenPlayer.hideAllMediaViewsExcept(target)
 
-            } else {
+        } else {
 
-                // show media view with fade-in animation
-                animationFadeIn.duration = duration
-                animationFadeIn.start()
-            }
+            // show media view with fade-in animation
+            animationFadeIn.duration = duration
+            animationFadeIn.start()
         }
     }
 }

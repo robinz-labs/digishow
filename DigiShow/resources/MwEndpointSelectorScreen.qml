@@ -266,7 +266,7 @@ Item {
                 anchors.leftMargin: 105
                 from: 0
                 to: 100
-                value: 100
+                value: 50
                 stepSize: 5
                 unit: "%"
 
@@ -544,7 +544,7 @@ Item {
         v = options["mediaShowAlone"];     checkMediaShowAlone.checked = (v === undefined ? true : v )
         v = options["mediaFadeIn"];        spinMediaFadeIn.value       = (v === undefined ? 300  : v )
         v = options["mediaOpacity"];       spinMediaOpacity.value      = (v === undefined ? 100  : v / 100)
-        v = options["mediaScale"];         spinMediaScale.value        = (v === undefined ? 100  : v / 100)
+        v = options["mediaScale"];         spinMediaScale.value        = (v === undefined ? 50   : v / 100)
         v = options["mediaRotation"];      spinMediaRotation.value     = (v === undefined ? 0    : v / 10 )
         v = options["mediaXOffset"];       spinMediaXOffset.value      = (v === undefined ? 50   : v / 100)
         v = options["mediaYOffset"];       spinMediaYOffset.value      = (v === undefined ? 50   : v / 100)
