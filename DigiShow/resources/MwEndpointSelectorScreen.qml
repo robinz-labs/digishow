@@ -141,8 +141,8 @@ Item {
         title: qsTr("Select Media File")
         folder: shortcuts.home
         selectExisting: true
-        nameFilters: [ qsTr("Video and picture (*.mp4 *.jpg *.png *.svg)"),
-                       qsTr("Web page file (*.htm *.html)") ]
+        nameFilters: [ qsTr("Video and picture") + " (*.mp4 *.mov *.jpg *.png *.svg)",
+                       qsTr("Web page file") +" (*.htm *.html)" ]
         onAccepted: {
             console.log("select media file: ", fileUrl)
             textMediaUrl.text = fileUrl

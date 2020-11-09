@@ -511,7 +511,7 @@ QString DigishowEnvironment::getMediaType(const QString &mediaUrl)
 
     QString mediaUrl1 = mediaUrl.toLower();
 
-    if (mediaUrl1.endsWith(".mp4"))
+    if (mediaUrl1.endsWith(".mp4") || mediaUrl1.endsWith(".mov"))
         return "video";
     else if (mediaUrl1.endsWith(".jpg") || mediaUrl1.endsWith(".png") || mediaUrl1.endsWith(".svg"))
         return "image";

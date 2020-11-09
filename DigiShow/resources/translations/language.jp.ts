@@ -772,12 +772,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMidi.qml" line="108"/>
-        <source>Note</source>
+        <location filename="../MwEndpointSelectorMidi.qml" line="110"/>
+        <source>Mid C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMidi.qml" line="117"/>
+        <location filename="../MwEndpointSelectorMidi.qml" line="112"/>
+        <source>Kick</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMidi.qml" line="123"/>
         <source>CC</source>
         <translation type="unfinished"></translation>
     </message>
@@ -923,12 +928,12 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="144"/>
-        <source>Video and picture (*.mp4 *.jpg *.png *.svg)</source>
+        <source>Video and picture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="145"/>
-        <source>Web page file (*.htm *.html)</source>
+        <source>Web page file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

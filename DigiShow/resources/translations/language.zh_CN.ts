@@ -772,12 +772,17 @@
         <translation>MIDI 程序</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMidi.qml" line="108"/>
-        <source>Note</source>
-        <translation>音符</translation>
+        <location filename="../MwEndpointSelectorMidi.qml" line="110"/>
+        <source>Mid C</source>
+        <translation>中央C</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMidi.qml" line="117"/>
+        <location filename="../MwEndpointSelectorMidi.qml" line="112"/>
+        <source>Kick</source>
+        <translation>底鼓</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMidi.qml" line="123"/>
         <source>CC</source>
         <translation></translation>
     </message>
@@ -924,13 +929,13 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="144"/>
-        <source>Video and picture (*.mp4 *.jpg *.png *.svg)</source>
-        <translation>视频和图片 (*.mp4 *.jpg *.png *.svg)</translation>
+        <source>Video and picture</source>
+        <translation>视频和图片</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="145"/>
-        <source>Web page file (*.htm *.html)</source>
-        <translation>网页文件 (*.htm *.html)</translation>
+        <source>Web page file</source>
+        <translation>网页文件</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="188"/>

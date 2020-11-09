@@ -104,8 +104,14 @@ Item {
         // init midi note option menu
         if (menuMidiNote.count === 0) {
             items = []
-            for (n=127 ; n>=0 ; n--)
-                items.push({ text: qsTr("Note") + " " + digishow.getMidiNoteName(n), value: n })
+            for (n=127 ; n>=0 ; n--) {
+                var noteName = digishow.getMidiNoteName(n)
+                if (noteName === "C3")
+                    noteName += "  ( " + qsTr("Mid C") + " )";
+                else if (noteName === "C1")
+                    noteName += "  ( " + qsTr("Kick") + " )";
+                items.push({ text: noteName, value: n })
+            }
             menuMidiNote.optionItems = items
             menuMidiNote.selectedIndex = 91 // C1
         }
