@@ -236,7 +236,6 @@
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="249"/>
-        <location filename="../../digishow_interface.cpp" line="466"/>
         <source>Screen</source>
         <translation>屏幕</translation>
     </message>
@@ -319,9 +318,13 @@
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="444"/>
-        <location filename="../../digishow_interface.cpp" line="467"/>
         <source>Light</source>
         <translation>灯光</translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="466"/>
+        <source>Backlight</source>
+        <translation>背光灯</translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="498"/>
@@ -1019,8 +1022,8 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="495"/>
-        <source>Screen Light</source>
-        <translation>屏幕灯光</translation>
+        <source>Backlight</source>
+        <translation>背光灯</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="496"/>

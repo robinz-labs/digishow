@@ -203,6 +203,7 @@ Item {
                         onEditingFinished: { labelSlotTitle.doRename() }
                         onFocusChanged: { textSlotTitle.visible = false }
                         Keys.onPressed: { if (event.key === Qt.Key_Escape) textSlotTitle.visible = false }
+                        Keys.onReleased: { event.accepted = true }
                     }
 
                     Rectangle {

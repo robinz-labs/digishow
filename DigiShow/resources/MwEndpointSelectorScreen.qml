@@ -492,8 +492,8 @@ Item {
         // init screen type option menu
         if (menuScreenType.count === 0) {
             items = []
-            items.push({ text: qsTr("Screen Light"), value: DigishowEnvironment.EndpointScreenLight,  tag:"light" })
-            items.push({ text: qsTr("Media Clip"),   value: DigishowEnvironment.EndpointScreenMedia,  tag:"media" })
+            items.push({ text: qsTr("Backlight" ), value: DigishowEnvironment.EndpointScreenLight,  tag:"light" })
+            items.push({ text: qsTr("Media Clip"), value: DigishowEnvironment.EndpointScreenMedia,  tag:"media" })
             menuScreenType.optionItems = items
             menuScreenType.selectedIndex = 0
         }

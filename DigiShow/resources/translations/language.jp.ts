@@ -236,7 +236,6 @@
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="249"/>
-        <location filename="../../digishow_interface.cpp" line="466"/>
         <source>Screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -324,8 +323,12 @@
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="444"/>
-        <location filename="../../digishow_interface.cpp" line="467"/>
         <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="466"/>
+        <source>Backlight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1018,7 +1021,7 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="495"/>
-        <source>Screen Light</source>
+        <source>Backlight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

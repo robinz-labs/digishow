@@ -463,8 +463,8 @@ void DigishowInterface::updateMetadata()
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
             endpointInfo.output = true;
             endpointInfo.range  = 255;
-            endpointInfo.labelEPT = tr("Screen");
-            endpointInfo.labelEPI = tr("Light") + " " + DigishowEnvironment::getLightControlName(endpointInfo.control, true);
+            endpointInfo.labelEPT = tr("Backlight");
+            endpointInfo.labelEPI = DigishowEnvironment::getLightControlName(endpointInfo.control);
             break;
         case ENDPOINT_SCREEN_MEDIA:
             endpointInfo.output = true;
