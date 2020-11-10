@@ -4,23 +4,30 @@
 
   CHANGE LIST
 
-  v1.0.0 20200617-1850
+  v1.0.0 20200617
 
   ! pre-released as the version 1.0
   + added windows msvc compatibility
   + got ready for app deployment on macos and windows
 
-  v1.0.1 20200701-0210
+  v1.0.1 20200701
   - removed all program works with code-type signals
   ! rewrite screen player using new signal controls
 
-  v1.0.2 20200730-0200
+  v1.0.2 20200730
   + added quick launch panel
 
-  v1.0.3 20201011-0350
+  v1.0.3 20201011
   + added more options for endpoint configurations
 
-  v1.1.0 20201012-2350
+  v1.1.0 20201012
+  beta release
+
+  v1.1.1 20201017
+  beta release
+
+  v1.1.2 20201110
+  beta release
 
  */
 
