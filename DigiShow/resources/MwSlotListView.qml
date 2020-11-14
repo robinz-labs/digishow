@@ -202,7 +202,8 @@ Item {
 
                         onEditingFinished: { labelSlotTitle.doRename() }
                         onFocusChanged: { textSlotTitle.visible = false }
-                        Keys.onPressed: { if (event.key === Qt.Key_Escape) textSlotTitle.visible = false }
+                        Keys.priority: Keys.AfterItem
+                        Keys.onPressed: { if (event.key === Qt.Key_Escape) textSlotTitle.visible = false; event.accepted = true }
                         Keys.onReleased: { event.accepted = true }
                     }
 
