@@ -154,43 +154,73 @@
         <translation>视频位置</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="450"/>
+        <location filename="../../digishow_environment.cpp" line="458"/>
         <source>Bank</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="451"/>
+        <location filename="../../digishow_environment.cpp" line="459"/>
         <source>Modulation</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="452"/>
-        <source>Breath</source>
+        <location filename="../../digishow_environment.cpp" line="460"/>
+        <source>Foot Pedal</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="453"/>
-        <source>Foot</source>
+        <location filename="../../digishow_environment.cpp" line="461"/>
+        <source>Data Entry</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="454"/>
+        <location filename="../../digishow_environment.cpp" line="464"/>
+        <source>Expression</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="465"/>
+        <source>Bank (LSB)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="466"/>
+        <source>Sustain</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="468"/>
+        <source>Resonance</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="469"/>
+        <source>Cutoff</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="470"/>
+        <source>Reverb</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="471"/>
+        <source>Chorus</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="467"/>
         <source>Portamento</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../digishow_environment.cpp" line="441"/>
-        <location filename="../../digishow_environment.cpp" line="455"/>
+        <location filename="../../digishow_environment.cpp" line="462"/>
         <source>Volume</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="456"/>
-        <source>Balance</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_environment.cpp" line="457"/>
+        <location filename="../../digishow_environment.cpp" line="463"/>
         <source>Pan</source>
         <translation></translation>
     </message>
@@ -1581,37 +1611,37 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>未命名信号插槽</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="811"/>
+        <location filename="../MwSlotListView.qml" line="813"/>
         <source>Source</source>
         <translation>信号来源</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="812"/>
+        <location filename="../MwSlotListView.qml" line="814"/>
         <source>No Input</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="819"/>
+        <location filename="../MwSlotListView.qml" line="821"/>
         <source>Destination</source>
         <translation>信号目标</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="820"/>
+        <location filename="../MwSlotListView.qml" line="822"/>
         <source>No Output</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="912"/>
+        <location filename="../MwSlotListView.qml" line="914"/>
         <source>Would you like to delete the selected slot ?</source>
         <translation>您是否需要删除所选中的信号插槽 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="912"/>
+        <location filename="../MwSlotListView.qml" line="914"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="912"/>
+        <location filename="../MwSlotListView.qml" line="914"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>

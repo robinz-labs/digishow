@@ -140,7 +140,7 @@
     </message>
     <message>
         <location filename="../../digishow_environment.cpp" line="441"/>
-        <location filename="../../digishow_environment.cpp" line="455"/>
+        <location filename="../../digishow_environment.cpp" line="462"/>
         <source>Volume</source>
         <translation type="unfinished"></translation>
     </message>
@@ -160,37 +160,67 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="450"/>
+        <location filename="../../digishow_environment.cpp" line="458"/>
         <source>Bank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="451"/>
+        <location filename="../../digishow_environment.cpp" line="459"/>
         <source>Modulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="452"/>
-        <source>Breath</source>
+        <location filename="../../digishow_environment.cpp" line="460"/>
+        <source>Foot Pedal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="453"/>
-        <source>Foot</source>
+        <location filename="../../digishow_environment.cpp" line="461"/>
+        <source>Data Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="454"/>
+        <location filename="../../digishow_environment.cpp" line="464"/>
+        <source>Expression</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="465"/>
+        <source>Bank (LSB)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="466"/>
+        <source>Sustain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="468"/>
+        <source>Resonance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="469"/>
+        <source>Cutoff</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="470"/>
+        <source>Reverb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="471"/>
+        <source>Chorus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="467"/>
         <source>Portamento</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="456"/>
-        <source>Balance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_environment.cpp" line="457"/>
+        <location filename="../../digishow_environment.cpp" line="463"/>
         <source>Pan</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1578,37 +1608,37 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="811"/>
+        <location filename="../MwSlotListView.qml" line="813"/>
         <source>Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="812"/>
+        <location filename="../MwSlotListView.qml" line="814"/>
         <source>No Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="819"/>
+        <location filename="../MwSlotListView.qml" line="821"/>
         <source>Destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="820"/>
+        <location filename="../MwSlotListView.qml" line="822"/>
         <source>No Output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="912"/>
+        <location filename="../MwSlotListView.qml" line="914"/>
         <source>Would you like to delete the selected slot ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="912"/>
+        <location filename="../MwSlotListView.qml" line="914"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="912"/>
+        <location filename="../MwSlotListView.qml" line="914"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>

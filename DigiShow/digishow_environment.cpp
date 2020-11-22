@@ -446,17 +446,33 @@ QString DigishowEnvironment::getMediaControlName(int control, bool shortName)
 
 QString DigishowEnvironment::getMidiControlName(int control)
 {
+    // undefined midi cc
+    if (control == 3 || control == 9 ||
+        (control >= 14 && control <= 15) ||
+        (control >= 20 && control <= 31) ||
+        (control >= 85 && control <= 90) ||
+        (control >= 102 && control <= 119)) return "";
+
+    // common midi cc
     switch(control) {
-        case CONTROL_MIDI_BANK:        return tr("Bank");
-        case CONTROL_MIDI_MODULATION:  return tr("Modulation");
-        case CONTROL_MIDI_BREATH:      return tr("Breath");
-        case CONTROL_MIDI_FOOT:        return tr("Foot");
-        case CONTROL_MIDI_PORTAMENTO:  return tr("Portamento");
-        case CONTROL_MIDI_VOLUME:      return tr("Volume");
-        case CONTROL_MIDI_BALANCE:     return tr("Balance");
-        case CONTROL_MIDI_PAN:         return tr("Pan");
+        case 0:  return tr("Bank");
+        case 1:  return tr("Modulation");
+        case 4:  return tr("Foot Pedal");
+        case 6:  return tr("Data Entry");
+        case 7:  return tr("Volume");
+        case 10: return tr("Pan");
+        case 11: return tr("Expression");
+        case 32: return tr("Bank (LSB)");
+        case 64: return tr("Sustain");
+        case 65: return tr("Portamento");
+        case 71: return tr("Resonance");
+        case 74: return tr("Cutoff");
+        case 91: return tr("Reverb");
+        case 93: return tr("Chorus");
     }
-    return "";
+
+    // other midi cc
+    return "-";
 }
 
 QString DigishowEnvironment::getMidiNoteName(int noteNumber)

@@ -111,17 +111,6 @@ public:
     };
     Q_ENUM(MediaControl)
 
-    enum MidiControl {
-        ControlMidiBank       = CONTROL_MIDI_BANK,
-        ControlMidiModulation = CONTROL_MIDI_MODULATION,
-        ControlMidiBreath     = CONTROL_MIDI_BREATH,
-        ControlMidiPortamento = CONTROL_MIDI_PORTAMENTO,
-        ControlMidiVolume     = CONTROL_MIDI_VOLUME,
-        ControlMidiBalance    = CONTROL_MIDI_BALANCE,
-        ControlMidiPan        = CONTROL_MIDI_PAN
-    };
-    Q_ENUM(MidiControl)
-
     explicit DigishowEnvironment(QObject *parent = nullptr);
 
     Q_INVOKABLE static QString appName()    { return g_appname; }

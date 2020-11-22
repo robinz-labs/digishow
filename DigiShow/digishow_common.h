@@ -100,16 +100,6 @@
 #define CONTROL_VIDEO_VOLUME     22
 #define CONTROL_VIDEO_POSITION   23
 
-// midi control number
-#define CONTROL_MIDI_BANK        0  // Bank Select
-#define CONTROL_MIDI_MODULATION  1  // Modulation Wheel
-#define CONTROL_MIDI_BREATH      2  // Breath Controller
-#define CONTROL_MIDI_FOOT        4  // Foot Controller
-#define CONTROL_MIDI_PORTAMENTO  5  // Portamento Time
-#define CONTROL_MIDI_VOLUME      7  // Main Volume
-#define CONTROL_MIDI_BALANCE     8  // Balance
-#define CONTROL_MIDI_PAN         10 // Pan
-
 // signal data package struct
 typedef struct dgsSignalData {
 

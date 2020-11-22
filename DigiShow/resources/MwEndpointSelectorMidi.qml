@@ -63,7 +63,7 @@ Item {
 
     COptionButton {
         id: buttonMidiControl
-        width: 120
+        width: 130
         height: 28
         anchors.left: buttonMidiType.right
         anchors.leftMargin: 10
@@ -120,7 +120,7 @@ Item {
         if (menuMidiControl.count === 0) {
             items = []
             for (n=0 ; n<128 ; n++)
-                items[n] = { text: qsTr("CC") + " " + n + " " + digishow.getMidiControlName(n), value: n }
+                items[n] = { text: qsTr("CC") + " " + n + "  " + digishow.getMidiControlName(n), value: n }
             menuMidiControl.optionItems = items
             menuMidiControl.selectedIndex = 0
         }
