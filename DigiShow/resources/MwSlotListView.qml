@@ -811,7 +811,7 @@ Item {
         var epInColor = "#666666"
         var epInIcon = "qrc:///images/icon_ep_in_white.png"
         var epInLabelEPT = qsTr("Source")
-        var epInLabelEPI = qsTr("No Input")
+        var epInLabelEPI = qsTr("no input")
         var epInRange = 1
 
         var epOutSignal = 0
@@ -819,7 +819,7 @@ Item {
         var epOutColor = "#666666"
         var epOutIcon = "qrc:///images/icon_ep_out_white.png"
         var epOutLabelEPT = qsTr("Destination")
-        var epOutLabelEPI = qsTr("No Output")
+        var epOutLabelEPI = qsTr("no output")
         var epOutRange = 1
 
         var epInInfo = config["epInInfo"]

@@ -131,25 +131,25 @@ Item {
 
                 CMenu {
                     id: menu
-                    width: 150
+                    width: 100
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
                     CMenuItem {
-                        text: model.assigned ? qsTr("Edit Launch") : qsTr("Create Launch")
+                        text: model.assigned ? qsTr("Edit Preset") : qsTr("Create Preset")
                         onTriggered: {
                             menu.close()
                             popupOptions.open()
                         }
                     }
                     CMenuItem {
-                        text: qsTr("Rename Launch")
+                        text: qsTr("Rename")
                         onTriggered: {
                             menu.close()
                             textLaunchTitle.showRename()
                         }
                     }
                     CMenuItem {
-                        text: qsTr("Set Launch Color")
+                        text: qsTr("Set Color")
                         onTriggered: {
 
                             dialogColorPicker.callbackAfterPicked = function() {
@@ -162,7 +162,7 @@ Item {
                         }
                     }
                     CMenuItem {
-                        text: qsTr("Delete Launch")
+                        text: qsTr("Delete")
                         enabled: model.assigned
                         onTriggered: {
                             menu.close()
@@ -263,7 +263,7 @@ Item {
                     topPadding: 5
                     leftPadding: 10
                     font.bold: true
-                    text: qsTr("Create A Launch Item Here to :")
+                    text: qsTr("Create a preset to :")
                 }
 
                 CheckBox {
@@ -307,7 +307,7 @@ Item {
                             model.assigned = true
                             app.updateLaunch(model.name, slotListView.getSlotLaunchOptions())
 
-                            messageBox.show(qsTr("The launch item has been saved, all you just checked will be replayed as soon as you tap the launch button again."), qsTr("OK"))
+                            messageBox.show(qsTr("Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset."), qsTr("OK"))
                             window.isModified = true
                         }
                     }
@@ -361,7 +361,7 @@ Item {
             case 3: color = CColor.Iris;     break
             case 4: color = CColor.HotPink;  break
             }
-            var title = qsTr("Launch") + " " + (n+1);
+            var title = qsTr("Preset") + " " + (n+1);
             var assigned = false
             var startup = false
 

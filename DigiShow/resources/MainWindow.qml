@@ -258,7 +258,7 @@ ApplicationWindow {
 
             CButton {
                 id: buttonQuickLaunch
-                width: 120
+                width: 90
                 height: 27
                 anchors.left: parent.right
                 anchors.leftMargin: -305
@@ -266,11 +266,11 @@ ApplicationWindow {
                 icon.width: 24
                 icon.height: 24
                 icon.source: "qrc:///images/icon_pad_white.png"
-                icon.anchors.horizontalCenterOffset: -43
-                label.text: qsTr("Quick Launch")
+                icon.anchors.horizontalCenterOffset: -28
+                label.text: qsTr("PRESETS")
                 label.font.bold: false
-                label.font.pixelSize: 11
-                label.anchors.horizontalCenterOffset: 12
+                label.font.pixelSize: 9
+                label.anchors.horizontalCenterOffset: 13
                 box.radius: 3
                 box.border.width: 1
                 colorNormal: quickLaunchView.opened ? "#666666" : "transparent"

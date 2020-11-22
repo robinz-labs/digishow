@@ -523,6 +523,11 @@
         <translation>关闭</translation>
     </message>
     <message>
+        <location filename="../MainWindow.qml" line="270"/>
+        <source>PRESETS</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.qml" line="390"/>
         <source>Interface Manager</source>
         <translation>接口管理器</translation>
@@ -576,11 +581,6 @@
         <location filename="../MainWindow.qml" line="431"/>
         <source>Screen ...</source>
         <translation>屏幕 ...</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.qml" line="270"/>
-        <source>Quick Launch</source>
-        <translation>快捷动作</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="578"/>
@@ -1492,33 +1492,33 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <name>MwQuickLaunchView</name>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="138"/>
-        <source>Edit Launch</source>
-        <translation>编辑快捷动作</translation>
+        <source>Edit Preset</source>
+        <translation>编辑预案</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="138"/>
-        <source>Create Launch</source>
-        <translation>创建快捷动作</translation>
+        <source>Create Preset</source>
+        <translation>创建预案</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="145"/>
-        <source>Rename Launch</source>
-        <translation>修改快捷动作名称</translation>
+        <source>Rename</source>
+        <translation>修改名称</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="152"/>
-        <source>Set Launch Color</source>
-        <translation>修改快捷动作颜色</translation>
+        <source>Set Color</source>
+        <translation>修改颜色</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="165"/>
-        <source>Delete Launch</source>
-        <translation>删除快捷动作</translation>
+        <source>Delete</source>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="266"/>
-        <source>Create A Launch Item Here to :</source>
-        <translation>在此创建 “快捷动作”, 用于 :</translation>
+        <source>Create a preset to :</source>
+        <translation>创建预案，以用来：</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="272"/>
@@ -1537,8 +1537,14 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="310"/>
-        <source>The launch item has been saved, all you just checked will be replayed as soon as you tap the launch button again.</source>
-        <translation>已保存该项 “快捷动作”，当在再次按下此启动按钮时，所有刚才勾选的内容都将被即刻重现。</translation>
+        <source>Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset.</source>
+        <translation>已将所有勾选项的当前内容保存到了预案中。
+现在，任何时候都可以通过点击此按钮来启动该预案。</translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="364"/>
+        <source>Preset</source>
+        <translation>预案</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="310"/>
@@ -1549,11 +1555,6 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <location filename="../MwQuickLaunchView.qml" line="323"/>
         <source>Cancel</source>
         <translation>取消</translation>
-    </message>
-    <message>
-        <location filename="../MwQuickLaunchView.qml" line="364"/>
-        <source>Launch</source>
-        <translation>快捷动作</translation>
     </message>
 </context>
 <context>
@@ -1617,18 +1618,18 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="814"/>
-        <source>No Input</source>
+        <source>no input</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotListView.qml" line="822"/>
+        <source>no output</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="821"/>
         <source>Destination</source>
         <translation>信号目标</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="822"/>
-        <source>No Output</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="914"/>

@@ -426,11 +426,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="270"/>
-        <source>Quick Launch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../MainWindow.qml" line="754"/>
         <source>Would you like to save all data to a file before close the app ?</source>
         <translation type="unfinished"></translation>
@@ -510,6 +505,11 @@
     <message>
         <location filename="../MainWindow.qml" line="212"/>
         <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="270"/>
+        <source>PRESETS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1491,32 +1491,32 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
     <name>MwQuickLaunchView</name>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="138"/>
-        <source>Edit Launch</source>
+        <source>Edit Preset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="138"/>
-        <source>Create Launch</source>
+        <source>Create Preset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="145"/>
-        <source>Rename Launch</source>
+        <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="152"/>
-        <source>Set Launch Color</source>
+        <source>Set Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="165"/>
-        <source>Delete Launch</source>
+        <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="266"/>
-        <source>Create A Launch Item Here to :</source>
+        <source>Create a preset to :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1536,7 +1536,12 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="310"/>
-        <source>The launch item has been saved, all you just checked will be replayed as soon as you tap the launch button again.</source>
+        <source>Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="364"/>
+        <source>Preset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1547,11 +1552,6 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
     <message>
         <location filename="../MwQuickLaunchView.qml" line="323"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MwQuickLaunchView.qml" line="364"/>
-        <source>Launch</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1614,17 +1614,17 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="814"/>
-        <source>No Input</source>
+        <source>no input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotListView.qml" line="822"/>
+        <source>no output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="821"/>
         <source>Destination</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="822"/>
-        <source>No Output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
