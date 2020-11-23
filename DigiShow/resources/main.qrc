@@ -35,16 +35,18 @@
         <file>images/icon_interface_hue_white.png</file>
         <file>images/icon_interface_midi_white.png</file>
         <file>images/icon_interface_modbus_white.png</file>
-        <file>images/icon_interface_pipe_white.png</file>
         <file>images/icon_interface_rioc_white.png</file>
         <file>images/icon_interface_screen_white.png</file>
+        <file>images/icon_interface_pipe_white.png</file>
+        <file>images/icon_interface_launch_white.png</file>
         <file>images/icon_interface_dmx_white@2x.png</file>
         <file>images/icon_interface_hue_white@2x.png</file>
         <file>images/icon_interface_midi_white@2x.png</file>
         <file>images/icon_interface_modbus_white@2x.png</file>
-        <file>images/icon_interface_pipe_white@2x.png</file>
         <file>images/icon_interface_rioc_white@2x.png</file>
         <file>images/icon_interface_screen_white@2x.png</file>
+        <file>images/icon_interface_pipe_white@2x.png</file>
+        <file>images/icon_interface_launch_white@2x.png</file>
         <file>images/AHDSR.png</file>
         <file>images/logo.png</file>
         <file>components/CColor.js</file>
@@ -81,6 +83,7 @@
         <file>MwEndpointSelectorHue.qml</file>
         <file>MwEndpointSelectorScreen.qml</file>
         <file>MwEndpointSelectorPipe.qml</file>
+        <file>MwEndpointSelectorLaunch.qml</file>
         <file>MwSlotOptionsView.qml</file>
         <file>MwAppOptionsDialog.qml</file>
         <file>MwInterfacesDialog.qml</file>

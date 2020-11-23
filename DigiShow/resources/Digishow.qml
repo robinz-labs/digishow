@@ -37,6 +37,8 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointPipeAnalog        : return CColor.Aqua
             case DigishowEnvironment.EndpointPipeBinary        : return CColor.RosePink
             case DigishowEnvironment.EndpointPipeNote          : return CColor.Mint
+
+            case DigishowEnvironment.EndpointLaunchPreset      : return CColor.Cherry
         }
 
         return "#666666";

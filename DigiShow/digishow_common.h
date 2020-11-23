@@ -20,8 +20,9 @@
 #define INTERFACE_HUE          4
 #define INTERFACE_DMX          5
 #define INTERFACE_ARTNET       6
-#define INTERFACE_SCREEN       7
-#define INTERFACE_PIPE         9
+#define INTERFACE_SCREEN      90
+#define INTERFACE_PIPE        91
+#define INTERFACE_LAUNCH      92
 
 // controller interface mode id
 #define INTERFACE_MIDI_INPUT         11
@@ -37,10 +38,12 @@
 #define INTERFACE_DMX_ENTTEC_USB     51
 #define INTERFACE_ARTNET_INPUT       61
 #define INTERFACE_ARTNET_OUTPUT      62
-#define INTERFACE_SCREEN_LOCAL       71
-#define INTERFACE_SCREEN_REMOTE      72
-#define INTERFACE_PIPE_LOCAL         91
-#define INTERFACE_PIPE_REMOTE        92
+#define INTERFACE_SCREEN_LOCAL      901
+#define INTERFACE_SCREEN_REMOTE     902
+#define INTERFACE_PIPE_LOCAL        911
+#define INTERFACE_PIPE_REMOTE       912
+#define INTERFACE_LAUNCH_LOCAL      921
+#define INTERFACE_LAUNCH_REMOTE     922
 
 // controller endpoint type id
 #define ENDPOINT_MIDI_NOTE           101
@@ -63,11 +66,12 @@
 #define ENDPOINT_HUE_LIGHT           401
 #define ENDPOINT_DMX_DIMMER          501
 #define ENDPOINT_ARTNET_DIMMER       601
-#define ENDPOINT_SCREEN_LIGHT        701
-#define ENDPOINT_SCREEN_MEDIA        702
-#define ENDPOINT_PIPE_ANALOG         901
-#define ENDPOINT_PIPE_BINARY         902
-#define ENDPOINT_PIPE_NOTE           904
+#define ENDPOINT_SCREEN_LIGHT       9001
+#define ENDPOINT_SCREEN_MEDIA       9002
+#define ENDPOINT_PIPE_ANALOG        9101
+#define ENDPOINT_PIPE_BINARY        9102
+#define ENDPOINT_PIPE_NOTE          9103
+#define ENDPOINT_LAUNCH_PRESET      9201
 
 // signal data type
 #define DATA_SIGNAL_ANALOG  'A'  // analog signal

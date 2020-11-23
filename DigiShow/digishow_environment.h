@@ -21,7 +21,8 @@ public:
         InterfaceDmx    = INTERFACE_DMX,
         InterfaceArtnet = INTERFACE_ARTNET,
         InterfaceScreen = INTERFACE_SCREEN,
-        InterfacePipe   = INTERFACE_PIPE
+        InterfacePipe   = INTERFACE_PIPE,
+        InterfaceLaunch = INTERFACE_LAUNCH
     };
     Q_ENUM(InterfaceType)
 
@@ -41,7 +42,9 @@ public:
         InterfaceScreenLocal      = INTERFACE_SCREEN_LOCAL,
         InterfaceScreenRemote     = INTERFACE_SCREEN_REMOTE,
         InterfacePipeLocal        = INTERFACE_PIPE_LOCAL,
-        InterfacePipeRemote       = INTERFACE_PIPE_REMOTE
+        InterfacePipeRemote       = INTERFACE_PIPE_REMOTE,
+        InterfaceLaunchLocal      = INTERFACE_LAUNCH_LOCAL,
+        InterfaceLaunchRemote     = INTERFACE_LAUNCH_REMOTE
     };
     Q_ENUM(InterfaceMode)
 
@@ -70,7 +73,8 @@ public:
         EndpointScreenMedia       = ENDPOINT_SCREEN_MEDIA,
         EndpointPipeAnalog        = ENDPOINT_PIPE_ANALOG,
         EndpointPipeBinary        = ENDPOINT_PIPE_BINARY,
-        EndpointPipeNote          = ENDPOINT_PIPE_NOTE
+        EndpointPipeNote          = ENDPOINT_PIPE_NOTE,
+        EndpointLaunchPreset      = ENDPOINT_LAUNCH_PRESET
     };
     Q_ENUM(EndpointType)
 

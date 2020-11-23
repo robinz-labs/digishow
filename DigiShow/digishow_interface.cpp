@@ -153,6 +153,7 @@ void DigishowInterface::updateMetadata()
     else if (typeName == "artnet") m_interfaceInfo.type = INTERFACE_ARTNET;
     else if (typeName == "screen") m_interfaceInfo.type = INTERFACE_SCREEN;
     else if (typeName == "pipe"  ) m_interfaceInfo.type = INTERFACE_PIPE;
+    else if (typeName == "launch") m_interfaceInfo.type = INTERFACE_LAUNCH;
 
     // set interface mode
     QString modeName = m_interfaceOptions.value("mode").toString();
@@ -192,6 +193,10 @@ void DigishowInterface::updateMetadata()
         if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_PIPE_LOCAL;
         else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_PIPE_REMOTE;
         break;
+    case INTERFACE_LAUNCH:
+        if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_LAUNCH_LOCAL;
+        else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_LAUNCH_REMOTE;
+        break;
     }
 
     // set interface input flag
@@ -201,7 +206,8 @@ void DigishowInterface::updateMetadata()
              m_interfaceInfo.mode==INTERFACE_ARTNET_OUTPUT ||
              m_interfaceInfo.type==INTERFACE_HUE ||
              m_interfaceInfo.type==INTERFACE_DMX ||
-             m_interfaceInfo.type==INTERFACE_SCREEN)
+             m_interfaceInfo.type==INTERFACE_SCREEN ||
+             m_interfaceInfo.type==INTERFACE_LAUNCH)
         m_interfaceInfo.input = false;
     else
         m_interfaceInfo.input = true;
@@ -252,6 +258,10 @@ void DigishowInterface::updateMetadata()
     case INTERFACE_PIPE:
         labelType = tr("Virtual Pipe");
         labelIdentity = m_interfaceOptions.value("comment").toString();
+        break;
+    case INTERFACE_LAUNCH:
+        labelType = tr("Preset Launch");
+        labelIdentity = "";
         break;
     }
     m_interfaceInfo.label = labelType + (!labelIdentity.isEmpty() ? " " + labelIdentity : "");
@@ -315,6 +325,9 @@ void DigishowInterface::updateMetadata()
             if      (typeName == "analog"     ) endpointInfo.type = ENDPOINT_PIPE_ANALOG;
             else if (typeName == "binary"     ) endpointInfo.type = ENDPOINT_PIPE_BINARY;
             else if (typeName == "note"       ) endpointInfo.type = ENDPOINT_PIPE_NOTE;
+            break;
+        case INTERFACE_LAUNCH:
+            if      (typeName == "preset"     ) endpointInfo.type = ENDPOINT_LAUNCH_PRESET;
             break;
         }
 
@@ -511,6 +524,12 @@ void DigishowInterface::updateMetadata()
             endpointInfo.range  = 127;
             endpointInfo.labelEPT = tr("Pipe");
             endpointInfo.labelEPI = tr("Note") + " " + QString::number(endpointInfo.channel);
+            break;
+        case ENDPOINT_LAUNCH_PRESET:
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.output = true;
+            endpointInfo.labelEPT = tr("Launch");
+            endpointInfo.labelEPI = tr("Preset") + " " + QString::number(endpointInfo.channel);
             break;
         }
 

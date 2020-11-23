@@ -25,10 +25,11 @@ SOURCES += \
         dgs_dmx_interface.cpp \
         dgs_midi_interface.cpp \
         dgs_modbus_interface.cpp \
-        dgs_pipe_interface.cpp \
         dgs_rioc_interface.cpp \
         dgs_hue_interface.cpp \
         dgs_screen_interface.cpp \
+        dgs_pipe_interface.cpp \
+        dgs_launch_interface.cpp \
         digishow.cpp \
         digishow_app.cpp \
         digishow_common.cpp \
@@ -54,10 +55,11 @@ HEADERS += \
     dgs_dmx_interface.h \
     dgs_midi_interface.h \
     dgs_modbus_interface.h \
-    dgs_pipe_interface.h \
     dgs_rioc_interface.h \
     dgs_hue_interface.h \
     dgs_screen_interface.h \
+    dgs_pipe_interface.h \
+    dgs_launch_interface.h \
     digishow.h \
     digishow_app.h \
     digishow_common.h \

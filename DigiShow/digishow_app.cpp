@@ -10,6 +10,7 @@
 #include "dgs_artnet_interface.h"
 #include "dgs_screen_interface.h"
 #include "dgs_pipe_interface.h"
+#include "dgs_launch_interface.h"
 
 DigishowApp::DigishowApp(QObject *parent) : QObject(parent)
 {
@@ -117,6 +118,7 @@ bool DigishowApp::loadFile(const QString & filepath)
         else if (interfaceType=="artnet") interface = new DgsArtnetInterface(this);
         else if (interfaceType=="screen") interface = new DgsScreenInterface(this);
         else if (interfaceType=="pipe")   interface = new DgsPipeInterface(this);
+        else if (interfaceType=="launch") interface = new DgsLaunchInterface(this);
         else                              interface = new DigishowInterface(this);
 
         interface->setInterfaceOptions(dataInterface);
@@ -358,6 +360,7 @@ void DigishowApp::newShow()
     clear();
 
     newInterface("pipe");
+    newInterface("launch");
     //newInterface("dmx");
     //newInterface("rioc");
 
@@ -410,6 +413,11 @@ int DigishowApp::newInterface(const QString &interfaceType)
     } else if (interfaceType=="pipe") {
 
         interface = new DgsPipeInterface(this);
+        interface->setInterfaceOption("mode", "local");
+
+    } else if (interfaceType=="launch") {
+
+        interface = new DgsLaunchInterface(this);
         interface->setInterfaceOption("mode", "local");
 
     } else if (interfaceType=="screen") {

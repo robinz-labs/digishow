@@ -93,6 +93,7 @@ Item {
                 itemHue   .visible = false
                 itemScreen.visible = false
                 itemPipe  .visible = false
+                itemLaunch.visible = false
 
                 moreOptions.resetOptions()
                 moreOptions.enableOptions({})
@@ -108,6 +109,7 @@ Item {
                     case DigishowEnvironment.InterfaceHue:    itemHue   .visible = true; itemHue   .refresh(); break
                     case DigishowEnvironment.InterfaceScreen: itemScreen.visible = true; itemScreen.refresh(); break
                     case DigishowEnvironment.InterfacePipe:   itemPipe  .visible = true; itemPipe  .refresh(); break
+                    case DigishowEnvironment.InterfaceLaunch: itemLaunch.visible = true; itemLaunch.refresh(); break
                     }
 
                     interfaceType = config["interfaceOptions"]["type"];
@@ -208,6 +210,16 @@ Item {
     MwEndpointSelectorPipe {
 
         id: itemPipe
+
+        anchors.left: buttonInterface.left
+        anchors.top: buttonInterface.bottom
+        anchors.topMargin: 10
+        visible: false
+    }
+
+    MwEndpointSelectorLaunch {
+
+        id: itemLaunch
 
         anchors.left: buttonInterface.left
         anchors.top: buttonInterface.bottom
@@ -317,6 +329,11 @@ Item {
 
                 newEndpointOptions["type"] = itemPipe.menuType.selectedItemTag
                 newEndpointOptions["channel"] = itemPipe.spinChannel.value
+
+            } else if (type === DigishowEnvironment.InterfaceLaunch) {
+
+                newEndpointOptions["type"] = "preset"
+                newEndpointOptions["channel"] = itemLaunch.menuChannel.selectedItemValue
             }
 
             // append more options
@@ -459,6 +476,10 @@ Item {
 
                 itemPipe.menuType.selectOption(endpointInfo["type"])
                 itemPipe.spinChannel.value = endpointInfo["channel"]
+
+            } else if (type === DigishowEnvironment.InterfaceLaunch) {
+
+                itemLaunch.menuChannel.selectOption(endpointInfo["channel"])
             }
 
             // set ui with more options
