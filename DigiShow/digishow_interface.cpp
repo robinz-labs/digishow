@@ -256,8 +256,13 @@ void DigishowInterface::updateMetadata()
         labelIdentity = m_interfaceOptions.value("screen").toString();
         break;
     case INTERFACE_PIPE:
-        labelType = tr("Virtual Pipe");
-        labelIdentity = m_interfaceOptions.value("comment").toString();
+        if (m_interfaceInfo.mode==INTERFACE_PIPE_REMOTE) {
+            labelType = tr("Remote Pipe");
+            labelIdentity = m_interfaceOptions.value("tcpHost").toString();
+        } else {
+            labelType = tr("Virtual Pipe");
+            labelIdentity = m_interfaceOptions.value("comment").toString();
+        }
         break;
     case INTERFACE_LAUNCH:
         labelType = tr("Preset Launch");
@@ -507,14 +512,14 @@ void DigishowInterface::updateMetadata()
             endpointInfo.output = true;
             endpointInfo.input  = true;
             endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 65535);
-            endpointInfo.labelEPT = tr("Pipe");
+            endpointInfo.labelEPT = (m_interfaceInfo.mode == INTERFACE_PIPE_REMOTE ? tr("Remote") : tr("Pipe"));
             endpointInfo.labelEPI = tr("Analog") + " " + QString::number(endpointInfo.channel);
             break;
         case ENDPOINT_PIPE_BINARY:
             endpointInfo.signal = DATA_SIGNAL_BINARY;
             endpointInfo.output = true;
             endpointInfo.input  = true;
-            endpointInfo.labelEPT = tr("Pipe");
+            endpointInfo.labelEPT = (m_interfaceInfo.mode == INTERFACE_PIPE_REMOTE ? tr("Remote") : tr("Pipe"));
             endpointInfo.labelEPI = tr("Binary") + " " + QString::number(endpointInfo.channel);
             break;
         case ENDPOINT_PIPE_NOTE:
@@ -522,7 +527,7 @@ void DigishowInterface::updateMetadata()
             endpointInfo.output = true;
             endpointInfo.input  = true;
             endpointInfo.range  = 127;
-            endpointInfo.labelEPT = tr("Pipe");
+            endpointInfo.labelEPT = (m_interfaceInfo.mode == INTERFACE_PIPE_REMOTE ? tr("Remote") : tr("Pipe"));
             endpointInfo.labelEPI = tr("Note") + " " + QString::number(endpointInfo.channel);
             break;
         case ENDPOINT_LAUNCH_PRESET:

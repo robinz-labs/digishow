@@ -296,7 +296,7 @@ Dialog {
                 anchors.topMargin: 40
                 wrapMode: Label.Wrap
                 lineHeight: 1.3
-                text: qsTr("DigiShow enables to set up virtual pipes to transfer and duplicate signals between the source and destination of separate slots.")
+                text: qsTr("DigiShow enables to set up virtual pipes to transfer and duplicate signals between the source and destination of separate slots. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.")
             }
 
             MwInterfaceListViewPipe {

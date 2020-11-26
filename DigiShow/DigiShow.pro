@@ -1,4 +1,4 @@
-QT += quick serialport webengine
+QT += quick serialport webengine websockets
 
 CONFIG += c++11
 

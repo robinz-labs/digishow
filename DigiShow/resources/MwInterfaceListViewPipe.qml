@@ -18,6 +18,9 @@ MwInterfaceListView {
            type: ""
            mode: ""
            comment: ""
+           acceptRemote: 0
+           tcpHost: ""
+           tcpPort: 0
        }
     }
 
@@ -33,13 +36,159 @@ MwInterfaceListView {
                 anchors.fill: parent
                 visible: model.name !== "_new"
 
-                CTextInputBox {
-                    id: textComment
+                COptionButton {
+                    id: buttonMode
+                    width: textTcpHost.width
                     anchors.left: parent.left
-                    anchors.right: parent.right
+                    anchors.bottom: textTcpHost.top
+                    anchors.margins: 20
+                    anchors.bottomMargin: 36
+                    text: menuMode.findOptionTextByTag(model.mode)
+
+                    onClicked: {
+                        menuMode.selectOptionWithTag(model.mode)
+                        menuMode.showOptions()
+                    }
+
+                    COptionMenu {
+                        id: menuMode
+
+                        optionItems: [
+                            { text: qsTr("Local Pipe"),  value: 0, tag: "local" },
+                            { text: qsTr("Remote Pipe"), value: 1, tag: "remote" }
+                        ]
+
+                        onOptionSelected: {
+                            var options = { mode: selectedItemTag }
+
+                            if (options["mode"] === "remote") {
+
+                                if (model.tcpPort === undefined ||
+                                    model.tcpPort === 0) options["tcpPort"] = 50000
+                            }
+
+                            updateInterface(model.index, options)
+                        }
+                    }
+
+                    Label {
+                        anchors.left: parent.left
+                        anchors.bottom: parent.top
+                        anchors.bottomMargin: 10
+                        font.pixelSize: 11
+                        text: qsTr("Mode")
+                    }
+                }
+
+                CTextInputBox {
+                    id: textTcpHost
+                    width: 135
+                    anchors.left: parent.left
                     anchors.bottom: parent.bottom
                     anchors.margins: 20
+                    text: model.tcpHost === undefined ? "" : model.tcpHost
+
+                    visible: model.mode === "remote"
+
+                    onEditingFinished: {
+                        var options = { tcpHost: text }
+                        updateInterface(model.index, options)
+                    }
+
+                    Label {
+                        anchors.left: parent.left
+                        anchors.bottom: parent.top
+                        anchors.bottomMargin: 10
+                        font.pixelSize: 11
+                        text: qsTr("Remote IP")
+                    }
+                }
+
+                CTextInputBox {
+                    id: textTcpPort
+                    anchors.left: textTcpHost.right
+                    anchors.right: parent.right
+                    anchors.verticalCenter: textTcpHost.verticalCenter
+                    anchors.margins: 20
+                    anchors.leftMargin: 10
+                    validator: IntValidator {
+                        bottom: 0
+                        top: 65535
+                    }
+                    text: model.tcpPort === undefined ? "" : model.tcpPort
+
+                    visible: model.mode === "remote" || (model.mode === "local" && model.acceptRemote)
+
+                    onEditingFinished: {
+                        var options = { tcpPort: parseInt(text) }
+                        updateInterface(model.index, options)
+                    }
+
+                    Label {
+                        anchors.left: parent.left
+                        anchors.bottom: parent.top
+                        anchors.bottomMargin: 10
+                        font.pixelSize: 11
+                        text: qsTr("TCP Port")
+                    }
+                }
+
+                COptionButton {
+                    id: buttonAcceptRemote
+                    width: textTcpHost.width
+                    anchors.left: parent.left
+                    anchors.bottom: parent.bottom
+                    anchors.margins: 20
+                    text: menuAcceptRemote.findOptionTextByValue(model.acceptRemote)
+
+                    visible: model.mode === "local"
+
+                    onClicked: {
+                        menuAcceptRemote.selectOptionWithTag(model.mode)
+                        menuAcceptRemote.showOptions()
+                    }
+
+                    COptionMenu {
+                        id: menuAcceptRemote
+
+                        optionItems: [
+                            { text: qsTr("Disabled"), value: 0 },
+                            { text: qsTr("Enabled" ), value: 1 }
+                        ]
+
+                        onOptionSelected: {
+                            var options = { acceptRemote: selectedItemValue }
+
+                            if (options["acceptRemote"] === 1) {
+
+                                if (model.tcpPort === undefined ||
+                                    model.tcpPort === 0) options["tcpPort"] = 50000
+                            }
+
+                            updateInterface(model.index, options)
+                        }
+                    }
+
+                    Label {
+                        anchors.left: parent.left
+                        anchors.bottom: parent.top
+                        anchors.bottomMargin: 10
+                        font.pixelSize: 11
+                        text: qsTr("Remote Link Service")
+                    }
+                }
+
+
+                CTextInputBox {
+                    id: textComment
+                    anchors.left: buttonMode.right
+                    anchors.right: parent.right
+                    anchors.verticalCenter: buttonMode.verticalCenter
+                    anchors.margins: 20
+                    anchors.leftMargin: 10
                     text: model.comment === undefined ? "" : model.comment
+
+                    visible: model.mode === "local"
 
                     onEditingFinished: {
                         var options = { comment: text }

@@ -254,13 +254,13 @@
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="247"/>
-        <location filename="../../digishow_interface.cpp" line="464"/>
+        <location filename="../../digishow_interface.cpp" line="469"/>
         <source>DMX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="251"/>
-        <location filename="../../digishow_interface.cpp" line="472"/>
+        <location filename="../../digishow_interface.cpp" line="477"/>
         <source>ArtNet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -270,136 +270,148 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="259"/>
-        <source>Virtual Pipe</source>
+        <location filename="../../digishow_interface.cpp" line="260"/>
+        <source>Remote Pipe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="263"/>
+        <source>Virtual Pipe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="268"/>
         <source>Preset Launch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="341"/>
+        <location filename="../../digishow_interface.cpp" line="346"/>
         <source>MIDI Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="349"/>
+        <location filename="../../digishow_interface.cpp" line="354"/>
         <source>MIDI CC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="357"/>
+        <location filename="../../digishow_interface.cpp" line="362"/>
         <source>MIDI Prgm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="363"/>
+        <location filename="../../digishow_interface.cpp" line="368"/>
         <source>Digital In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="369"/>
+        <location filename="../../digishow_interface.cpp" line="374"/>
         <source>Digital Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="376"/>
+        <location filename="../../digishow_interface.cpp" line="381"/>
         <source>Analog In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="383"/>
+        <location filename="../../digishow_interface.cpp" line="388"/>
         <source>Analog Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="390"/>
+        <location filename="../../digishow_interface.cpp" line="395"/>
         <source>PWM Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="397"/>
+        <location filename="../../digishow_interface.cpp" line="402"/>
         <source>PFM Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="404"/>
+        <location filename="../../digishow_interface.cpp" line="409"/>
         <source>Encoder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="411"/>
+        <location filename="../../digishow_interface.cpp" line="416"/>
         <source>Servo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="417"/>
+        <location filename="../../digishow_interface.cpp" line="422"/>
         <source>Discrete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="423"/>
-        <location filename="../../digishow_interface.cpp" line="429"/>
+        <location filename="../../digishow_interface.cpp" line="428"/>
+        <location filename="../../digishow_interface.cpp" line="434"/>
         <source>Coil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="436"/>
+        <location filename="../../digishow_interface.cpp" line="441"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="443"/>
-        <location filename="../../digishow_interface.cpp" line="450"/>
+        <location filename="../../digishow_interface.cpp" line="448"/>
+        <location filename="../../digishow_interface.cpp" line="455"/>
         <source>Holding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="457"/>
+        <location filename="../../digishow_interface.cpp" line="462"/>
         <source>Light</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="479"/>
+        <location filename="../../digishow_interface.cpp" line="484"/>
         <source>Backlight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="502"/>
+        <location filename="../../digishow_interface.cpp" line="507"/>
         <source>Media Clip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="510"/>
-        <location filename="../../digishow_interface.cpp" line="517"/>
-        <location filename="../../digishow_interface.cpp" line="525"/>
+        <location filename="../../digishow_interface.cpp" line="515"/>
+        <location filename="../../digishow_interface.cpp" line="522"/>
+        <location filename="../../digishow_interface.cpp" line="530"/>
         <source>Pipe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="511"/>
+        <location filename="../../digishow_interface.cpp" line="515"/>
+        <location filename="../../digishow_interface.cpp" line="522"/>
+        <location filename="../../digishow_interface.cpp" line="530"/>
+        <source>Remote</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="516"/>
         <source>Analog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="518"/>
+        <location filename="../../digishow_interface.cpp" line="523"/>
         <source>Binary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="526"/>
+        <location filename="../../digishow_interface.cpp" line="531"/>
         <source>Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="531"/>
+        <location filename="../../digishow_interface.cpp" line="536"/>
         <source>Launch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="532"/>
+        <location filename="../../digishow_interface.cpp" line="537"/>
         <source>Preset</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1344,7 +1356,47 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
 <context>
     <name>MwInterfaceListViewPipe</name>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="54"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="57"/>
+        <source>Local Pipe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewPipe.qml" line="58"/>
+        <source>Remote Pipe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewPipe.qml" line="79"/>
+        <source>Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewPipe.qml" line="103"/>
+        <source>Remote IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewPipe.qml" line="132"/>
+        <source>TCP Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewPipe.qml" line="155"/>
+        <source>Disabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewPipe.qml" line="156"/>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewPipe.qml" line="177"/>
+        <source>Remote Link Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewPipe.qml" line="203"/>
         <source>Comment</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1471,7 +1523,7 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="299"/>
-        <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between the source and destination of separate slots.</source>
+        <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between the source and destination of separate slots. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
