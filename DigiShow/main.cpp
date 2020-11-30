@@ -99,7 +99,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationVersion(g_version);
 
     MyApplication app(argc, argv);
-    app.setFont(QFont("Arial"));
     app.setQuitOnLastWindowClosed(false);
 
     QtWebEngine::initialize();
@@ -110,6 +109,13 @@ int main(int argc, char *argv[])
     if (!appLanguage.isEmpty())
         if (qtTranslator.load(":translations/language." + appLanguage + ".qm"))
             app.installTranslator(&qtTranslator);
+
+    // set app font
+    QString appFontName = "Arial";
+#ifdef Q_OS_WIN
+    if (appLanguage == "zh_CN") appFontName = "Microsoft YaHei Light";
+#endif
+    app.setFont(QFont(appFontName));
 
     // start main app
     g_app = new DigishowApp();

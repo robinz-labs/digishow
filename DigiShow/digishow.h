@@ -29,6 +29,11 @@
   v1.1.2 20201110
   beta release
 
+  v1.1.3 20201130
+  beta release
+  + allows preset launch in slot output
+  + added remote pipe support (websocket interface)
+
  */
 
 #ifndef DIGISHOW_H
