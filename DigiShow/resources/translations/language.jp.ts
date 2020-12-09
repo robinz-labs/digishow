@@ -1343,12 +1343,12 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewModbus.qml" line="249"/>
+        <location filename="../MwInterfaceListViewModbus.qml" line="253"/>
         <source>Device IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewModbus.qml" line="278"/>
+        <location filename="../MwInterfaceListViewModbus.qml" line="282"/>
         <source>TCP Port</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1366,37 +1366,37 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="79"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="85"/>
         <source>Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="103"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="113"/>
         <source>Remote IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="132"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="142"/>
         <source>TCP Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="155"/>
-        <source>Disabled</source>
+        <location filename="../MwInterfaceListViewPipe.qml" line="165"/>
+        <source>Disabled (default)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="156"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="166"/>
         <source>Enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="177"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="193"/>
         <source>Remote Link Service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="203"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="219"/>
         <source>Comment</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1683,37 +1683,37 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="813"/>
+        <location filename="../MwSlotListView.qml" line="815"/>
         <source>Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="814"/>
+        <location filename="../MwSlotListView.qml" line="816"/>
         <source>no input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="822"/>
+        <location filename="../MwSlotListView.qml" line="824"/>
         <source>no output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="821"/>
+        <location filename="../MwSlotListView.qml" line="823"/>
         <source>Destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="914"/>
+        <location filename="../MwSlotListView.qml" line="916"/>
         <source>Would you like to delete the selected slot ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="914"/>
+        <location filename="../MwSlotListView.qml" line="916"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="914"/>
+        <location filename="../MwSlotListView.qml" line="916"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>

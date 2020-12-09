@@ -4,6 +4,7 @@
 //#include <QtQuick/QQuickWindow>
 #include <QtWebEngine/qtwebengineglobal.h>
 #include <QFileOpenEvent>
+#include <QFontDatabase>
 #include <QFont>
 #include <QDebug>
 #include "digishow.h"
@@ -65,6 +66,16 @@ private:
     QObject *m_qmlRoot;
 };
 
+QString fontAvailable(const QStringList &fontNames)
+{
+    QFontDatabase fonts;
+    for (int n=0 ; n<fontNames.length() ; n++) {
+        QString fontName = fontNames[n];
+        if (fonts.families().contains(fontName)) return fontName;
+    }
+    return QString();
+}
+
 int main(int argc, char *argv[])
 {
 
@@ -103,18 +114,32 @@ int main(int argc, char *argv[])
 
     QtWebEngine::initialize();
 
-    // load translation
-    QString appLanguage = DigishowEnvironment().getAppOptions().value("language").toString();
+    // load app options
+    QVariantMap appOptions = DigishowEnvironment().getAppOptions();
+
+    // set translation
+    QString appLanguage = appOptions.value("language").toString();
     QTranslator qtTranslator;
     if (!appLanguage.isEmpty())
         if (qtTranslator.load(":translations/language." + appLanguage + ".qm"))
             app.installTranslator(&qtTranslator);
 
     // set app font
-    QString appFontName = "Arial";
+    QString appFontName = appOptions.value("font").toString();
+    if (appFontName.isEmpty()) {
+        appFontName = "Arial";
+        if (appLanguage == "zh_CN") {
+
 #ifdef Q_OS_WIN
-    if (appLanguage == "zh_CN") appFontName = "Microsoft YaHei Light";
+            QString fontName = fontAvailable({"Microsoft YaHei Light", "微软雅黑 Light", "Microsoft YaHei", "微软雅黑"});
+            if (!fontName.isEmpty()) appFontName = fontName;
 #endif
+#ifdef Q_OS_MAC
+            QString fontName = fontAvailable({"Yuanti SC"});
+            if (!fontName.isEmpty()) appFontName = fontName;
+#endif
+        }
+    }
     app.setFont(QFont(appFontName));
 
     // start main app

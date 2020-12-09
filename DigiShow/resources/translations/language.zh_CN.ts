@@ -297,7 +297,7 @@
     <message>
         <location filename="../../digishow_interface.cpp" line="362"/>
         <source>MIDI Prgm</source>
-        <translation>MIDI 程序</translation>
+        <translation>MIDI 音色</translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="368"/>
@@ -837,7 +837,7 @@
     <message>
         <location filename="../MwEndpointSelectorMidi.qml" line="99"/>
         <source>MIDI Program</source>
-        <translation>MIDI 程序</translation>
+        <translation>MIDI 音色</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorMidi.qml" line="110"/>
@@ -1344,12 +1344,12 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>波特率</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewModbus.qml" line="249"/>
+        <location filename="../MwInterfaceListViewModbus.qml" line="253"/>
         <source>Device IP</source>
         <translation>设备 IP</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewModbus.qml" line="278"/>
+        <location filename="../MwInterfaceListViewModbus.qml" line="282"/>
         <source>TCP Port</source>
         <translation>TCP 端口</translation>
     </message>
@@ -1367,37 +1367,37 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>远程管道</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="79"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="85"/>
         <source>Mode</source>
         <translation>模式</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="103"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="113"/>
         <source>Remote IP</source>
         <translation>远程 IP</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="132"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="142"/>
         <source>TCP Port</source>
         <translation>TCP 端口</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="155"/>
-        <source>Disabled</source>
-        <translation>停用</translation>
+        <location filename="../MwInterfaceListViewPipe.qml" line="165"/>
+        <source>Disabled (default)</source>
+        <translation>不启用 (默认)</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="156"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="166"/>
         <source>Enabled</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="177"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="193"/>
         <source>Remote Link Service</source>
         <translation>远程连接服务</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="203"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="219"/>
         <source>Comment</source>
         <translation>描述</translation>
     </message>
@@ -1687,37 +1687,37 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>未命名信号插槽</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="813"/>
+        <location filename="../MwSlotListView.qml" line="815"/>
         <source>Source</source>
         <translation>信号来源</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="814"/>
+        <location filename="../MwSlotListView.qml" line="816"/>
         <source>no input</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="822"/>
+        <location filename="../MwSlotListView.qml" line="824"/>
         <source>no output</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="821"/>
+        <location filename="../MwSlotListView.qml" line="823"/>
         <source>Destination</source>
         <translation>信号目标</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="914"/>
+        <location filename="../MwSlotListView.qml" line="916"/>
         <source>Would you like to delete the selected slot ?</source>
         <translation>您是否需要删除所选中的信号插槽 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="914"/>
+        <location filename="../MwSlotListView.qml" line="916"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="914"/>
+        <location filename="../MwSlotListView.qml" line="916"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>

@@ -359,8 +359,8 @@ void DigishowApp::newShow()
     stop();
     clear();
 
-    newInterface("pipe");
     newInterface("launch");
+    newInterface("pipe");
     //newInterface("dmx");
     //newInterface("rioc");
 

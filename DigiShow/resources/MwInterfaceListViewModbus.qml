@@ -236,6 +236,10 @@ MwInterfaceListView {
 
                     visible: model.mode !== "rtu"
 
+                    onVisibleChanged: {
+                        if (visible) input.forceActiveFocus()
+                    }
+
                     onEditingFinished: {
                         var options = { tcpHost: text }
                         updateInterface(model.index, options)

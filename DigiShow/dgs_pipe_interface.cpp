@@ -57,11 +57,15 @@ int DgsPipeInterface::sendData(int endpointIndex, dgsSignalData data)
     if ( r != ERR_NONE) return r;
 
     // send websocket message if remote link enabled
-    if (m_websocketServer != nullptr)
+    if (m_websocketServer != nullptr) {
         m_websocketServer->sendTextMessage(signalToMessage(data, m_endpointInfoList[endpointIndex].channel));
+        m_websocketServer->flush();
+    }
 
-    if (m_websocketClient != nullptr)
+    if (m_websocketClient != nullptr) {
         m_websocketClient->sendTextMessage(signalToMessage(data, m_endpointInfoList[endpointIndex].channel));
+        m_websocketClient->flush();
+    }
 
     // for local pipe
     emit dataReceived(endpointIndex, data);

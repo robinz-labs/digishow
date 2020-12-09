@@ -61,10 +61,16 @@ MwInterfaceListView {
                         onOptionSelected: {
                             var options = { mode: selectedItemTag }
 
-                            if (options["mode"] === "remote") {
+                            if (options["mode"] === "local") {
+
+                                options["outputInterval"] = (model.acceptRemote ? 20 : 0)
+
+                            } else if (options["mode"] === "remote") {
 
                                 if (model.tcpPort === undefined ||
                                     model.tcpPort === 0) options["tcpPort"] = 50000
+
+                                options["outputInterval"] = 20
                             }
 
                             updateInterface(model.index, options)
@@ -89,6 +95,10 @@ MwInterfaceListView {
                     text: model.tcpHost === undefined ? "" : model.tcpHost
 
                     visible: model.mode === "remote"
+
+                    onVisibleChanged: {
+                        if (visible) input.forceActiveFocus()
+                    }
 
                     onEditingFinished: {
                         var options = { tcpHost: text }
@@ -152,7 +162,7 @@ MwInterfaceListView {
                         id: menuAcceptRemote
 
                         optionItems: [
-                            { text: qsTr("Disabled"), value: 0 },
+                            { text: qsTr("Disabled (default)"), value: 0 },
                             { text: qsTr("Enabled" ), value: 1 }
                         ]
 
@@ -163,6 +173,12 @@ MwInterfaceListView {
 
                                 if (model.tcpPort === undefined ||
                                     model.tcpPort === 0) options["tcpPort"] = 50000
+
+                                options["outputInterval"] = 20
+
+                            } else {
+
+                                options["outputInterval"] = 0
                             }
 
                             updateInterface(model.index, options)
