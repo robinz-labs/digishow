@@ -282,7 +282,7 @@
     <message>
         <location filename="../../digishow_interface.cpp" line="268"/>
         <source>Preset Launch</source>
-        <translation>预案启动</translation>
+        <translation>启动预设</translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="346"/>
@@ -386,7 +386,7 @@
     <message>
         <location filename="../../digishow_interface.cpp" line="537"/>
         <source>Preset</source>
-        <translation>预案</translation>
+        <translation>预设</translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="515"/>
@@ -814,7 +814,7 @@
     <message>
         <location filename="../MwEndpointSelectorLaunch.qml" line="38"/>
         <source>Preset</source>
-        <translation>预案</translation>
+        <translation>预设</translation>
     </message>
 </context>
 <context>
@@ -1568,12 +1568,12 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <message>
         <location filename="../MwQuickLaunchView.qml" line="138"/>
         <source>Edit Preset</source>
-        <translation>编辑预案</translation>
+        <translation>编辑预设</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="138"/>
         <source>Create Preset</source>
-        <translation>创建预案</translation>
+        <translation>创建预设</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="145"/>
@@ -1593,7 +1593,7 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <message>
         <location filename="../MwQuickLaunchView.qml" line="266"/>
         <source>Create a preset to :</source>
-        <translation>创建预案，以用来：</translation>
+        <translation>创建预设，以用来：</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="272"/>
@@ -1613,13 +1613,13 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <message>
         <location filename="../MwQuickLaunchView.qml" line="310"/>
         <source>Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset.</source>
-        <translation>已将所有勾选项的当前内容保存到了预案中。
-现在，任何时候都可以通过点击此按钮来启动该预案。</translation>
+        <translation>已将所有勾选项的当前内容保存到了预设中。
+现在，任何时候都可以通过点击此按钮来启动该预设。</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="364"/>
         <source>Preset</source>
-        <translation>预案</translation>
+        <translation>预设</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="310"/>
