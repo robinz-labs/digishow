@@ -31,8 +31,11 @@ int DgsLaunchInterface::sendData(int endpointIndex, dgsSignalData data)
     int r = DigishowInterface::sendData(endpointIndex, data);
     if ( r != ERR_NONE) return r;
 
-    int channel = m_endpointInfoList[endpointIndex].channel;
-    g_app->startLaunch("launch" + QString::number(channel));
+    if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
+    if (data.bValue) {
+        int channel = m_endpointInfoList[endpointIndex].channel;
+        g_app->startLaunch("launch" + QString::number(channel));
+    }
 
     return ERR_NONE;
 }
