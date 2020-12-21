@@ -12,6 +12,7 @@ Item {
 
     property string editingLaunchName: "" // name of the launch item that is being edited
     property bool opened: height > 0
+    property alias dataModel: dataModel
 
     width: 710
     height: 300
@@ -69,7 +70,8 @@ Item {
                 label.font.pixelSize: 12
                 label.font.bold: model.assigned
                 //label.font.underline: isEditing
-                label.text: (model.startup ? "► " : "") + model.title
+                label.text: (model.startup ? "► " : "") +
+                            (model.title === "" ? qsTr("Preset") + " " + (model.index + 1) : model.title)
                 label.visible: !textLaunchTitle.visible
                 opacity: model.assigned || isEditing ? 1.0 : 0.25
                 supportLongPress: true
@@ -361,7 +363,7 @@ Item {
             case 3: color = CColor.Iris;     break
             case 4: color = CColor.HotPink;  break
             }
-            var title = qsTr("Preset") + " " + (n+1);
+            var title = "";
             var assigned = false
             var startup = false
 

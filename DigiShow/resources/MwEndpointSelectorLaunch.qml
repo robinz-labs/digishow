@@ -13,7 +13,7 @@ Item {
 
     COptionButton {
         id: buttonLaunchChannel
-        width: 100
+        width: 120
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
@@ -29,16 +29,15 @@ Item {
     function refresh() {
 
         // init launch channel option menu
-        var items
+        var items = []
         var n
-
-        if (menuLaunchChannel.count === 0) {
-            items = []
-            for (n=1 ; n<=50 ; n++)
-                items.push({ text: qsTr("Preset") + " " + n, value: n })
-            menuLaunchChannel.optionItems = items
-            menuLaunchChannel.selectedIndex = 0
+        var count = quickLaunchView.dataModel.count
+        for (n=1 ; n<=count ; n++) {
+            var title = quickLaunchView.dataModel.get(n-1).title
+            items.push({ text: (title === "" ? qsTr("Preset") + " " + n : title), value: n })
         }
+        menuLaunchChannel.optionItems = items
+        menuLaunchChannel.selectedIndex = 0
 
         // init more options
         refreshMoreOptions()
