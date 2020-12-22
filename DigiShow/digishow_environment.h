@@ -71,6 +71,7 @@ public:
         EndpointArtnetDimmer      = ENDPOINT_ARTNET_DIMMER,
         EndpointScreenLight       = ENDPOINT_SCREEN_LIGHT,
         EndpointScreenMedia       = ENDPOINT_SCREEN_MEDIA,
+        EndpointScreenCanvas      = ENDPOINT_SCREEN_CANVAS,
         EndpointPipeAnalog        = ENDPOINT_PIPE_ANALOG,
         EndpointPipeBinary        = ENDPOINT_PIPE_BINARY,
         EndpointPipeNote          = ENDPOINT_PIPE_NOTE,

@@ -46,8 +46,17 @@ QtObject {
             }
 
             Rectangle {
-                id: screenboard
-                anchors.fill: parent
+                id: canvas
+
+                property real xOffset: 0.5  // 0 ~ 1.0
+                property real yOffset: 0.5  // 0 ~ 1.0
+
+                width: parent.width
+                height: parent.height
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenterOffset: width * ( xOffset - 0.5 ) * 2
+                anchors.verticalCenterOffset: height * ( -yOffset + 0.5 ) * 2
                 color: "transparent"
             }
 
@@ -106,6 +115,11 @@ QtObject {
         playerWindow.close()
     }
 
+    function setCanvasProperty(propertyName, propertyValue) {
+
+        canvas[propertyName] = propertyValue
+    }
+
     function loadMedia(media) {
 
         var name = media["name"]
@@ -115,17 +129,17 @@ QtObject {
         var view = null
         if (type === "video") {
 
-            view = Qt.createQmlObject("SpVideoView {}", screenboard)
+            view = Qt.createQmlObject("SpVideoView {}", canvas)
             view.player.source = url
 
         } else if (type === "image") {
 
-            view = Qt.createQmlObject("SpImageView {}", screenboard)
+            view = Qt.createQmlObject("SpImageView {}", canvas)
             view.source = url
 
         } else if (type === "web") {
 
-            view = Qt.createQmlObject("SpWebView {}", screenboard)
+            view = Qt.createQmlObject("SpWebView {}", canvas)
             view.url = url
         }
 
@@ -156,16 +170,8 @@ QtObject {
     function setMediaProperty(mediaName, propertyName, propertyValue) {
 
         var view = getMediaViewByName(mediaName)
-
         if (view !== null) {
-
-
-            if (propertyName === "opacity") {
-
-                //console.log(mediaName, propertyName, propertyValue, new Date().getMilliseconds())
-
-                view.stopFadeIn()
-            }
+            if (propertyName === "opacity") view.stopFadeIn()
             view[propertyName] = propertyValue
         }
     }

@@ -325,6 +325,7 @@ void DigishowInterface::updateMetadata()
         case INTERFACE_SCREEN:
             if      (typeName == "light"      ) endpointInfo.type = ENDPOINT_SCREEN_LIGHT;
             else if (typeName == "media"      ) endpointInfo.type = ENDPOINT_SCREEN_MEDIA;
+            else if (typeName == "canvas"     ) endpointInfo.type = ENDPOINT_SCREEN_CANVAS;
             break;
         case INTERFACE_PIPE:
             if      (typeName == "analog"     ) endpointInfo.type = ENDPOINT_PIPE_ANALOG;
@@ -505,6 +506,24 @@ void DigishowInterface::updateMetadata()
                 break;
             }
             endpointInfo.labelEPT = tr("Media Clip");
+            endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control, true);
+            break;
+        case ENDPOINT_SCREEN_CANVAS:
+            endpointInfo.output = true;
+            switch (endpointInfo.control) {
+            case CONTROL_MEDIA_ROTATION:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.range  = 3600;
+                break;
+            case CONTROL_MEDIA_OPACITY:
+            case CONTROL_MEDIA_SCALE:
+            case CONTROL_MEDIA_XOFFSET:
+            case CONTROL_MEDIA_YOFFSET:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.range  = 10000;
+                break;
+            }
+            endpointInfo.labelEPT = tr("Canvas");
             endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control, true);
             break;
         case ENDPOINT_PIPE_ANALOG:

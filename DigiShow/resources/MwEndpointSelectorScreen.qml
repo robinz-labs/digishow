@@ -9,10 +9,11 @@ import "components"
 Item {
     id: itemScreen
 
-    property alias menuType:         menuScreenType
-    property alias menuLightControl: menuLightControl
-    property alias menuMediaControl: menuMediaControl
-    property alias textMediaUrl:     textMediaUrl
+    property alias menuType:          menuScreenType
+    property alias menuLightControl:  menuLightControl
+    property alias menuMediaControl:  menuMediaControl
+    property alias menuCanvasControl: menuCanvasControl
+    property alias textMediaUrl:      textMediaUrl
 
     COptionButton {
         id: buttonScreenType
@@ -43,6 +44,24 @@ Item {
 
         COptionMenu {
             id: menuLightControl
+
+            onOptionSelected: refreshMoreOptions()
+        }
+    }
+
+    COptionButton {
+        id: buttonCanvasControl
+        width: 100
+        height: 28
+        anchors.left: buttonScreenType.right
+        anchors.leftMargin: 10
+        anchors.top: parent.top
+        text: menuCanvasControl.selectedItemText
+        visible: menuScreenType.selectedItemValue === DigishowEnvironment.EndpointScreenCanvas
+        onClicked: menuCanvasControl.showOptions()
+
+        COptionMenu {
+            id: menuCanvasControl
 
             onOptionSelected: refreshMoreOptions()
         }
@@ -494,6 +513,7 @@ Item {
             items = []
             items.push({ text: qsTr("Backlight" ), value: DigishowEnvironment.EndpointScreenLight,  tag:"light" })
             items.push({ text: qsTr("Media Clip"), value: DigishowEnvironment.EndpointScreenMedia,  tag:"media" })
+            items.push({ text: qsTr("Canvas"    ), value: DigishowEnvironment.EndpointScreenCanvas, tag:"canvas" })
             menuScreenType.optionItems = items
             menuScreenType.selectedIndex = 0
         }
@@ -507,6 +527,20 @@ Item {
             v = DigishowEnvironment.ControlLightW; items.push({ text: digishow.getLightControlName(v), value: v })
             menuLightControl.optionItems = items
             menuLightControl.selectedIndex = 0
+        }
+
+        // init screen canvas option menu
+        if (menuCanvasControl.count === 0) {
+            items = []
+
+            v = DigishowEnvironment.ControlMediaOpacity;  items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaScale;    items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaRotation; items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaXOffset;  items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaYOffset;  items.push({ text: digishow.getMediaControlName(v), value: v })
+
+            menuCanvasControl.optionItems = items
+            menuCanvasControl.selectedIndex = 0
         }
 
         // init screen media control option menu

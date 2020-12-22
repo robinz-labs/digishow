@@ -34,6 +34,8 @@ private:
     QVariantList cleanMediaList();
 
     static QString getUniqueScreenName(int index);
+    static QString getPropertyName(int control);
+    static double  getPropertyValue(int control, dgsSignalData data);
 };
 
 #endif // DGSSCREENINTERFACE_H

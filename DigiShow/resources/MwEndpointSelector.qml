@@ -306,6 +306,9 @@ Item {
                 case DigishowEnvironment.EndpointScreenLight:
                     newEndpointOptions["control"] = itemScreen.menuLightControl.selectedItemValue
                     break
+                case DigishowEnvironment.EndpointScreenCanvas:
+                    newEndpointOptions["control"] = itemScreen.menuCanvasControl.selectedItemValue
+                    break
                 case DigishowEnvironment.EndpointScreenMedia:
                     newEndpointOptions["control"] = itemScreen.menuMediaControl.selectedItemValue
 
@@ -456,6 +459,10 @@ Item {
                 switch (endpointInfo["type"]) {
                 case DigishowEnvironment.EndpointScreenLight:
                     itemScreen.menuLightControl.selectOption(endpointInfo["control"])
+                    itemScreen.setMediaOptions({}) // clear media options
+                    break
+                case DigishowEnvironment.EndpointScreenCanvas:
+                    itemScreen.menuCanvasControl.selectOption(endpointInfo["control"])
                     itemScreen.setMediaOptions({}) // clear media options
                     break
                 case DigishowEnvironment.EndpointScreenMedia:

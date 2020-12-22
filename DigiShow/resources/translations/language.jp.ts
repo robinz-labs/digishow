@@ -254,13 +254,13 @@
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="247"/>
-        <location filename="../../digishow_interface.cpp" line="469"/>
+        <location filename="../../digishow_interface.cpp" line="470"/>
         <source>DMX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="251"/>
-        <location filename="../../digishow_interface.cpp" line="477"/>
+        <location filename="../../digishow_interface.cpp" line="478"/>
         <source>ArtNet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -285,133 +285,138 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="346"/>
+        <location filename="../../digishow_interface.cpp" line="347"/>
         <source>MIDI Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="354"/>
+        <location filename="../../digishow_interface.cpp" line="355"/>
         <source>MIDI CC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="362"/>
+        <location filename="../../digishow_interface.cpp" line="363"/>
         <source>MIDI Prgm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="368"/>
+        <location filename="../../digishow_interface.cpp" line="369"/>
         <source>Digital In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="374"/>
+        <location filename="../../digishow_interface.cpp" line="375"/>
         <source>Digital Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="381"/>
+        <location filename="../../digishow_interface.cpp" line="382"/>
         <source>Analog In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="388"/>
+        <location filename="../../digishow_interface.cpp" line="389"/>
         <source>Analog Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="395"/>
+        <location filename="../../digishow_interface.cpp" line="396"/>
         <source>PWM Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="402"/>
+        <location filename="../../digishow_interface.cpp" line="403"/>
         <source>PFM Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="409"/>
+        <location filename="../../digishow_interface.cpp" line="410"/>
         <source>Encoder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="416"/>
+        <location filename="../../digishow_interface.cpp" line="417"/>
         <source>Servo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="422"/>
+        <location filename="../../digishow_interface.cpp" line="423"/>
         <source>Discrete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="428"/>
-        <location filename="../../digishow_interface.cpp" line="434"/>
+        <location filename="../../digishow_interface.cpp" line="429"/>
+        <location filename="../../digishow_interface.cpp" line="435"/>
         <source>Coil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="441"/>
+        <location filename="../../digishow_interface.cpp" line="442"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="448"/>
-        <location filename="../../digishow_interface.cpp" line="455"/>
+        <location filename="../../digishow_interface.cpp" line="449"/>
+        <location filename="../../digishow_interface.cpp" line="456"/>
         <source>Holding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="462"/>
+        <location filename="../../digishow_interface.cpp" line="463"/>
         <source>Light</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="484"/>
+        <location filename="../../digishow_interface.cpp" line="485"/>
         <source>Backlight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="507"/>
+        <location filename="../../digishow_interface.cpp" line="508"/>
         <source>Media Clip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="515"/>
-        <location filename="../../digishow_interface.cpp" line="522"/>
-        <location filename="../../digishow_interface.cpp" line="530"/>
+        <location filename="../../digishow_interface.cpp" line="526"/>
+        <source>Canvas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="534"/>
+        <location filename="../../digishow_interface.cpp" line="541"/>
+        <location filename="../../digishow_interface.cpp" line="549"/>
         <source>Pipe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="515"/>
-        <location filename="../../digishow_interface.cpp" line="522"/>
-        <location filename="../../digishow_interface.cpp" line="530"/>
+        <location filename="../../digishow_interface.cpp" line="534"/>
+        <location filename="../../digishow_interface.cpp" line="541"/>
+        <location filename="../../digishow_interface.cpp" line="549"/>
         <source>Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="516"/>
+        <location filename="../../digishow_interface.cpp" line="535"/>
         <source>Analog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="523"/>
+        <location filename="../../digishow_interface.cpp" line="542"/>
         <source>Binary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="531"/>
+        <location filename="../../digishow_interface.cpp" line="550"/>
         <source>Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="536"/>
+        <location filename="../../digishow_interface.cpp" line="555"/>
         <source>Launch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="537"/>
+        <location filename="../../digishow_interface.cpp" line="556"/>
         <source>Preset</source>
         <translation type="unfinished"></translation>
     </message>
@@ -778,17 +783,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="322"/>
+        <location filename="../MwEndpointSelector.qml" line="325"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="322"/>
+        <location filename="../MwEndpointSelector.qml" line="325"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="395"/>
+        <location filename="../MwEndpointSelector.qml" line="398"/>
         <source>More ...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -812,7 +817,7 @@
 <context>
     <name>MwEndpointSelectorLaunch</name>
     <message>
-        <location filename="../MwEndpointSelectorLaunch.qml" line="38"/>
+        <location filename="../MwEndpointSelectorLaunch.qml" line="37"/>
         <source>Preset</source>
         <translation type="unfinished"></translation>
     </message>
@@ -964,134 +969,139 @@
 <context>
     <name>MwEndpointSelectorScreen</name>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="78"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="97"/>
         <source>File ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="94"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="113"/>
         <source>Opt ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="129"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="148"/>
         <source>?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="134"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="153"/>
         <source>Media Clip<byte value="xd"/>
 JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages can be presented dynamically on the screen. Please enter the url of your online media file, or click button &apos;File...&apos; to select a local media file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="135"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="154"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="141"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="160"/>
         <source>Select Media File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="144"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="163"/>
         <source>Video and picture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="145"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="164"/>
         <source>Web page file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="188"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="207"/>
         <source>Media Clip Display Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="208"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="227"/>
         <source>Show Alone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="232"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="251"/>
         <source>Fade In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="257"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="276"/>
         <source>Opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="281"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="300"/>
         <source>Scale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="305"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="324"/>
         <source>Rotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="329"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="348"/>
         <source>X Offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="353"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="372"/>
         <source>Y Offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="363"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="382"/>
         <source>Options for Video Clip Only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="383"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="402"/>
         <source>Repeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="407"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="426"/>
         <source>Volume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="421"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="440"/>
         <source>sec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="431"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="450"/>
         <source>Position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="441"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="460"/>
         <source>Options for Web Clip Only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="460"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="479"/>
         <source>Run Java Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="476"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="495"/>
         <source>Defaults</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="495"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="514"/>
         <source>Backlight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="496"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="515"/>
         <source>Media Clip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="516"/>
+        <source>Canvas</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1565,67 +1575,67 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
 <context>
     <name>MwQuickLaunchView</name>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="138"/>
+        <location filename="../MwQuickLaunchView.qml" line="140"/>
         <source>Edit Preset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="138"/>
+        <location filename="../MwQuickLaunchView.qml" line="140"/>
         <source>Create Preset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="145"/>
+        <location filename="../MwQuickLaunchView.qml" line="147"/>
         <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="152"/>
+        <location filename="../MwQuickLaunchView.qml" line="154"/>
         <source>Set Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="165"/>
+        <location filename="../MwQuickLaunchView.qml" line="167"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="266"/>
+        <location filename="../MwQuickLaunchView.qml" line="268"/>
         <source>Create a preset to :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="272"/>
+        <location filename="../MwQuickLaunchView.qml" line="274"/>
         <source>Remember Slot Link States</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="280"/>
+        <location filename="../MwQuickLaunchView.qml" line="282"/>
         <source>Remember Output Signals</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="298"/>
+        <location filename="../MwQuickLaunchView.qml" line="300"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="310"/>
+        <location filename="../MwQuickLaunchView.qml" line="312"/>
         <source>Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="364"/>
+        <location filename="../MwQuickLaunchView.qml" line="74"/>
         <source>Preset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="310"/>
+        <location filename="../MwQuickLaunchView.qml" line="312"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="323"/>
+        <location filename="../MwQuickLaunchView.qml" line="325"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>

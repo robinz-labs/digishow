@@ -34,6 +34,7 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointScreenLight       : return CColor.RobinEgg
             case DigishowEnvironment.EndpointScreenMedia       : return sig === DigishowEnvironment.SignalBinary ?
                                                                         CColor.HotPink : CColor.Iris
+            case DigishowEnvironment.EndpointScreenCanvas      : return CColor.Ocean
             case DigishowEnvironment.EndpointPipeAnalog        : return CColor.Aqua
             case DigishowEnvironment.EndpointPipeBinary        : return CColor.RosePink
             case DigishowEnvironment.EndpointPipeNote          : return CColor.Mint

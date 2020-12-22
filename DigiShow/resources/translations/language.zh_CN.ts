@@ -254,13 +254,13 @@
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="247"/>
-        <location filename="../../digishow_interface.cpp" line="469"/>
+        <location filename="../../digishow_interface.cpp" line="470"/>
         <source>DMX</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="251"/>
-        <location filename="../../digishow_interface.cpp" line="477"/>
+        <location filename="../../digishow_interface.cpp" line="478"/>
         <source>ArtNet</source>
         <translation></translation>
     </message>
@@ -285,133 +285,138 @@
         <translation>启动预设</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="346"/>
+        <location filename="../../digishow_interface.cpp" line="347"/>
         <source>MIDI Note</source>
         <translation>MIDI 音符</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="354"/>
+        <location filename="../../digishow_interface.cpp" line="355"/>
         <source>MIDI CC</source>
         <translation>MIDI 控制</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="362"/>
+        <location filename="../../digishow_interface.cpp" line="363"/>
         <source>MIDI Prgm</source>
         <translation>MIDI 音色</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="368"/>
+        <location filename="../../digishow_interface.cpp" line="369"/>
         <source>Digital In</source>
         <translation>数字输入</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="374"/>
+        <location filename="../../digishow_interface.cpp" line="375"/>
         <source>Digital Out</source>
         <translation>数字输出</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="381"/>
+        <location filename="../../digishow_interface.cpp" line="382"/>
         <source>Analog In</source>
         <translation>模拟输入</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="388"/>
+        <location filename="../../digishow_interface.cpp" line="389"/>
         <source>Analog Out</source>
         <translation>模拟输出</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="395"/>
+        <location filename="../../digishow_interface.cpp" line="396"/>
         <source>PWM Out</source>
         <translation>PWM 输出</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="402"/>
+        <location filename="../../digishow_interface.cpp" line="403"/>
         <source>PFM Out</source>
         <translation>PFM 输出</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="409"/>
+        <location filename="../../digishow_interface.cpp" line="410"/>
         <source>Encoder</source>
         <translation>编码器</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="422"/>
+        <location filename="../../digishow_interface.cpp" line="423"/>
         <source>Discrete</source>
         <translation>离散量</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="428"/>
-        <location filename="../../digishow_interface.cpp" line="434"/>
+        <location filename="../../digishow_interface.cpp" line="429"/>
+        <location filename="../../digishow_interface.cpp" line="435"/>
         <source>Coil</source>
         <translation>线圈</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="441"/>
+        <location filename="../../digishow_interface.cpp" line="442"/>
         <source>Input</source>
         <translation>输入寄存器</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="448"/>
-        <location filename="../../digishow_interface.cpp" line="455"/>
+        <location filename="../../digishow_interface.cpp" line="449"/>
+        <location filename="../../digishow_interface.cpp" line="456"/>
         <source>Holding</source>
         <translation>保持寄存器</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="462"/>
+        <location filename="../../digishow_interface.cpp" line="463"/>
         <source>Light</source>
         <translation>灯光</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="484"/>
+        <location filename="../../digishow_interface.cpp" line="485"/>
         <source>Backlight</source>
         <translation>背光灯</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="515"/>
-        <location filename="../../digishow_interface.cpp" line="522"/>
-        <location filename="../../digishow_interface.cpp" line="530"/>
+        <location filename="../../digishow_interface.cpp" line="526"/>
+        <source>Canvas</source>
+        <translation>画布</translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="534"/>
+        <location filename="../../digishow_interface.cpp" line="541"/>
+        <location filename="../../digishow_interface.cpp" line="549"/>
         <source>Remote</source>
         <translation>远程</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="516"/>
+        <location filename="../../digishow_interface.cpp" line="535"/>
         <source>Analog</source>
         <translation>模拟量</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="536"/>
+        <location filename="../../digishow_interface.cpp" line="555"/>
         <source>Launch</source>
         <translation>启动</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="537"/>
+        <location filename="../../digishow_interface.cpp" line="556"/>
         <source>Preset</source>
         <translation>预设</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="515"/>
-        <location filename="../../digishow_interface.cpp" line="522"/>
-        <location filename="../../digishow_interface.cpp" line="530"/>
+        <location filename="../../digishow_interface.cpp" line="534"/>
+        <location filename="../../digishow_interface.cpp" line="541"/>
+        <location filename="../../digishow_interface.cpp" line="549"/>
         <source>Pipe</source>
         <translation>管道</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="416"/>
+        <location filename="../../digishow_interface.cpp" line="417"/>
         <source>Servo</source>
         <translation>舵机</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="507"/>
+        <location filename="../../digishow_interface.cpp" line="508"/>
         <source>Media Clip</source>
         <translation>媒体素材</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="523"/>
+        <location filename="../../digishow_interface.cpp" line="542"/>
         <source>Binary</source>
         <translation>开关量</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="531"/>
+        <location filename="../../digishow_interface.cpp" line="550"/>
         <source>Note</source>
         <translation>音符</translation>
     </message>
@@ -778,17 +783,17 @@
         <translation>应用</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="322"/>
+        <location filename="../MwEndpointSelector.qml" line="325"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的媒体素材文件，或输入该媒体素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="322"/>
+        <location filename="../MwEndpointSelector.qml" line="325"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="395"/>
+        <location filename="../MwEndpointSelector.qml" line="398"/>
         <source>More ...</source>
         <translation>更多接口 ...</translation>
     </message>
@@ -812,7 +817,7 @@
 <context>
     <name>MwEndpointSelectorLaunch</name>
     <message>
-        <location filename="../MwEndpointSelectorLaunch.qml" line="38"/>
+        <location filename="../MwEndpointSelectorLaunch.qml" line="37"/>
         <source>Preset</source>
         <translation>预设</translation>
     </message>
@@ -964,136 +969,141 @@
 <context>
     <name>MwEndpointSelectorScreen</name>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="78"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="97"/>
         <source>File ...</source>
         <translation>文件 ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="94"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="113"/>
         <source>Opt ...</source>
         <translation>选项 ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="129"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="148"/>
         <source>?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="134"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="153"/>
         <source>Media Clip<byte value="xd"/>
 JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages can be presented dynamically on the screen. Please enter the url of your online media file, or click button &apos;File...&apos; to select a local media file.</source>
         <translation>媒体素材
 JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或本地网页都可以被动态展示在屏幕上。请输入你的在线媒体文件的 URL，或点击 “文件...” 按钮来选取一个本地媒体文件。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="135"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="154"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="141"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="160"/>
         <source>Select Media File</source>
         <translation>选择媒体文件</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="144"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="163"/>
         <source>Video and picture</source>
         <translation>视频和图片</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="145"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="164"/>
         <source>Web page file</source>
         <translation>网页文件</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="188"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="207"/>
         <source>Media Clip Display Options</source>
         <translation>媒体素材显示选项</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="208"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="227"/>
         <source>Show Alone</source>
         <translation>单独显示</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="232"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="251"/>
         <source>Fade In</source>
         <translation>淡入时长</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="257"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="276"/>
         <source>Opacity</source>
         <translation>半透明度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="281"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="300"/>
         <source>Scale</source>
         <translation>缩放比例</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="305"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="324"/>
         <source>Rotation</source>
         <translation>旋转角度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="329"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="348"/>
         <source>X Offset</source>
         <translation>X 位移</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="353"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="372"/>
         <source>Y Offset</source>
         <translation>Y 位移</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="363"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="382"/>
         <source>Options for Video Clip Only</source>
         <translation>仅用于视频素材的选项</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="383"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="402"/>
         <source>Repeat</source>
         <translation>循环播放</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="407"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="426"/>
         <source>Volume</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="421"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="440"/>
         <source>sec</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="431"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="450"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="441"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="460"/>
         <source>Options for Web Clip Only</source>
         <translation>仅用于网页素材的选项</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="460"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="479"/>
         <source>Run Java Script</source>
         <translation>运行 Java Script</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="476"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="495"/>
         <source>Defaults</source>
         <translation>恢复默认</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="495"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="514"/>
         <source>Backlight</source>
         <translation>背光灯</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="496"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="515"/>
         <source>Media Clip</source>
         <translation>媒体素材</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="516"/>
+        <source>Canvas</source>
+        <translation>画布</translation>
     </message>
 </context>
 <context>
@@ -1566,68 +1576,68 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
 <context>
     <name>MwQuickLaunchView</name>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="138"/>
+        <location filename="../MwQuickLaunchView.qml" line="140"/>
         <source>Edit Preset</source>
         <translation>编辑预设</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="138"/>
+        <location filename="../MwQuickLaunchView.qml" line="140"/>
         <source>Create Preset</source>
         <translation>创建预设</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="145"/>
+        <location filename="../MwQuickLaunchView.qml" line="147"/>
         <source>Rename</source>
         <translation>修改名称</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="152"/>
+        <location filename="../MwQuickLaunchView.qml" line="154"/>
         <source>Set Color</source>
         <translation>修改颜色</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="165"/>
+        <location filename="../MwQuickLaunchView.qml" line="167"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="266"/>
+        <location filename="../MwQuickLaunchView.qml" line="268"/>
         <source>Create a preset to :</source>
         <translation>创建预设，以用来：</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="272"/>
+        <location filename="../MwQuickLaunchView.qml" line="274"/>
         <source>Remember Slot Link States</source>
         <translation>记忆各信号插槽的链接状态</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="280"/>
+        <location filename="../MwQuickLaunchView.qml" line="282"/>
         <source>Remember Output Signals</source>
         <translation>记忆各信号插槽的输出信号</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="298"/>
+        <location filename="../MwQuickLaunchView.qml" line="300"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="310"/>
+        <location filename="../MwQuickLaunchView.qml" line="312"/>
         <source>Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset.</source>
         <translation>已将所有勾选项的当前内容保存到了预设中。
 现在，任何时候都可以通过点击此按钮来启动该预设。</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="364"/>
+        <location filename="../MwQuickLaunchView.qml" line="74"/>
         <source>Preset</source>
         <translation>预设</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="310"/>
+        <location filename="../MwQuickLaunchView.qml" line="312"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="323"/>
+        <location filename="../MwQuickLaunchView.qml" line="325"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>

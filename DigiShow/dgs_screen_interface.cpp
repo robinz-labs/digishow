@@ -134,6 +134,25 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
 
             m_player->setProperty(property, value);
 
+        } else if (m_endpointInfoList[endpointIndex].type == ENDPOINT_SCREEN_CANVAS) {
+
+            // control canvas display options (based on qml)
+
+            int control = m_endpointInfoList[endpointIndex].control;
+            QString property = getPropertyName(control);
+            if (property.isEmpty()) return ERR_INVALID_OPTION;
+
+            if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+            double value = getPropertyValue(control, data);
+
+            QVariant r;
+            QMetaObject::invokeMethod(
+                        m_player, "setCanvasProperty", Qt::DirectConnection,
+                        Q_RETURN_ARG(QVariant, r),
+                        Q_ARG(QVariant, property),
+                        Q_ARG(QVariant, value));
+
+
         } else if (m_endpointInfoList[endpointIndex].type == ENDPOINT_SCREEN_MEDIA) {
 
             // show or hide media clips on screen (based on qml)
@@ -182,27 +201,12 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
             }
 
             // control media clip display options (based on qml)
-            QString property;
-            switch (control) {
-                case CONTROL_MEDIA_OPACITY:  property = "opacity";  break;
-                case CONTROL_MEDIA_SCALE:    property = "scale";    break;
-                case CONTROL_MEDIA_ROTATION: property = "rotation"; break;
-                case CONTROL_MEDIA_XOFFSET:  property = "xOffset";  break;
-                case CONTROL_MEDIA_YOFFSET:  property = "yOffset";  break;
-                default: return ERR_INVALID_OPTION;
-            }
+
+            QString property = getPropertyName(control);
+            if (property.isEmpty()) return ERR_INVALID_OPTION;
 
             if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
-
-            double value;
-            if (control == CONTROL_MEDIA_ROTATION) {
-                value = 360 * static_cast<double>(data.aValue) / (data.aRange==0 ? 3600 : data.aRange);
-                if (value<0 || value>360) return ERR_INVALID_DATA;
-            } else {
-                value = static_cast<double>(data.aValue) / static_cast<double>(data.aRange==0 ? 10000 : data.aRange);
-                if (value<0 || value>1) return ERR_INVALID_DATA;
-                if (control == CONTROL_MEDIA_SCALE) value = value*2;
-            }
+            double value = getPropertyValue(control, data);
 
             QVariant r;
             QMetaObject::invokeMethod(
@@ -288,3 +292,30 @@ QString DgsScreenInterface::getUniqueScreenName(int index)
     return screenName;
 }
 
+QString DgsScreenInterface::getPropertyName(int control)
+{
+    QString property;
+    switch (control) {
+        case CONTROL_MEDIA_OPACITY:  property = "opacity";  break;
+        case CONTROL_MEDIA_SCALE:    property = "scale";    break;
+        case CONTROL_MEDIA_ROTATION: property = "rotation"; break;
+        case CONTROL_MEDIA_XOFFSET:  property = "xOffset";  break;
+        case CONTROL_MEDIA_YOFFSET:  property = "yOffset";  break;
+    }
+    return property;
+}
+
+double DgsScreenInterface::getPropertyValue(int control, dgsSignalData data)
+{
+    double value = 0;
+    if (control == CONTROL_MEDIA_ROTATION) {
+        value = 360 * static_cast<double>(data.aValue) / (data.aRange==0 ? 3600 : data.aRange);
+        if (value<0) value=0; else if (value>360) value=360;
+
+    } else {
+        value = static_cast<double>(data.aValue) / static_cast<double>(data.aRange==0 ? 10000 : data.aRange);
+        if (value<0) value=0; else if (value>1) value=1;
+        if (control == CONTROL_MEDIA_SCALE) value = value*2;
+    }
+    return value;
+}
