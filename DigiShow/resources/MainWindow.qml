@@ -230,13 +230,7 @@ ApplicationWindow {
                 icon.height: 24
                 icon.source: "qrc:///images/icon_add_white.png"
 
-                onClicked: {
-                    var newSlotIndex = app.newSlot()
-                    slotListView.refreshSlot(newSlotIndex)
-                    slotListView.currentIndex = newSlotIndex
-                    slotListView.selectedIndex = newSlotIndex
-                    isModified = true
-                }
+                onClicked: slotListView.newSlot()
             }
 
             CButton {

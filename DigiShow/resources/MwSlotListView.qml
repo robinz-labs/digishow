@@ -108,8 +108,12 @@ Item {
                             menuSlot.close()
                             var newSlotIndex = app.duplicateSlot(currentIndex)
                             slotListView.refreshSlot(newSlotIndex)
+                            visualModel.items.move(
+                                        getVisualItemIndex(newSlotIndex),
+                                        currentIndexVisual+1)
                             slotListView.currentIndex = newSlotIndex
-                            //slotListView.selectedIndex = newSlotIndex
+                            slotListView.selectedIndex = newSlotIndex
+
                             isModified = true
                         }
                     }
@@ -163,8 +167,8 @@ Item {
 
                         MouseArea {
                             anchors.fill: parent
-                            onDoubleClicked: { labelSlotTitle.showRename() }
-                            onPressAndHold: { labelSlotTitle.showRename() }
+                            //onDoubleClicked: { labelSlotTitle.showRename() }
+                            //onPressAndHold: { labelSlotTitle.showRename() }
                             onClicked: { labelSlotTitle.showRename() }
                         }
 
@@ -993,5 +997,18 @@ Item {
             list[n] = visualModel.items.get(n).model.index
         }
         return list
+    }
+
+    function newSlot() {
+        var newSlotIndex = app.newSlot()
+        slotListView.refreshSlot(newSlotIndex)
+        if (currentIndex !== -1) {
+            visualModel.items.move(
+                        getVisualItemIndex(newSlotIndex),
+                        currentIndexVisual+1)
+        }
+        slotListView.currentIndex = newSlotIndex
+        slotListView.selectedIndex = newSlotIndex
+        isModified = true
     }
 }
