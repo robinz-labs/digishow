@@ -69,7 +69,7 @@ Item {
     function refreshMoreOptions() {
 
         var enables = {}
-        enables["optInitialA"] = true
+        enables["optInitialDmx"] = true
 
         moreOptions.resetOptions()
         moreOptions.enableOptions(enables)

@@ -11,7 +11,7 @@ Popup {
 
     property bool isDefault: false
 
-    width: 280
+    width: 290
     height: columnMoreOptions.height + 40
     modal: true
     focus: true
@@ -44,7 +44,7 @@ Popup {
 
             height: 28
             anchors.left: parent.left
-            anchors.leftMargin: 110
+            anchors.leftMargin: 120
             padding: 0
             visible: enabled
 
@@ -54,6 +54,7 @@ Popup {
                     spinOptInitialA.value = 0
                     spinOptInitialB.value = 0
                     spinOptInitialMidi.value = 0
+                    spinOptInitialDmx.value = 0
                 }
                 isModified = true
             }
@@ -75,7 +76,7 @@ Popup {
 
             width: 120
             anchors.left: parent.left
-            anchors.leftMargin: 110
+            anchors.leftMargin: 120
             from: 0
             to: 100
             stepSize: 5
@@ -105,7 +106,7 @@ Popup {
 
             width: 120
             anchors.left: parent.left
-            anchors.leftMargin: 110
+            anchors.leftMargin: 120
             from: 0
             to: 1
             stepSize: 1
@@ -135,7 +136,7 @@ Popup {
 
             width: 120
             anchors.left: parent.left
-            anchors.leftMargin: 110
+            anchors.leftMargin: 120
             from: 0
             to: 127
             stepSize: 1
@@ -154,7 +155,37 @@ Popup {
                 anchors.verticalCenter: parent.verticalCenter
                 color: "#cccccc"
                 font.pixelSize: 12
-                text: qsTr("Initial Value")
+                text: qsTr("Initial Value") + " (0~127)"
+            }
+        }
+
+        CSpinBox {
+            id: spinOptInitialDmx
+
+            property int defaultValue: 0
+
+            width: 120
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            from: 0
+            to: 255
+            stepSize: 1
+            unit: ""
+            visible: enabled
+
+
+            onValueModified: {
+                checkOptInitialize.checked = true
+                isModified = true
+            }
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Initial Value") + " (0~255)"
             }
         }
 
@@ -165,7 +196,7 @@ Popup {
 
             width: 120
             anchors.left: parent.left
-            anchors.leftMargin: 110
+            anchors.leftMargin: 120
             from: 0
             to: 10000000
             stepSize: 100
@@ -192,7 +223,7 @@ Popup {
 
             width: 120
             anchors.left: parent.left
-            anchors.leftMargin: 110
+            anchors.leftMargin: 120
             from: 0
             to: 60000
             stepSize: 100
@@ -219,7 +250,7 @@ Popup {
 
             width: 120
             anchors.left: parent.left
-            anchors.leftMargin: 110
+            anchors.leftMargin: 120
             from: 0
             to: 255
             stepSize: 1
@@ -246,7 +277,7 @@ Popup {
 
             width: 120
             anchors.left: parent.left
-            anchors.leftMargin: 110
+            anchors.leftMargin: 120
             from: 0
             to: 60000
             stepSize: 100
@@ -271,7 +302,7 @@ Popup {
 
             width: 120
             anchors.left: parent.left
-            anchors.leftMargin: 110
+            anchors.leftMargin: 120
             visible: enabled
 
 
@@ -339,13 +370,17 @@ Popup {
         spinOptInitialA        .enabled = (enables["optInitialA"        ] === true)
         spinOptInitialB        .enabled = (enables["optInitialB"        ] === true)
         spinOptInitialMidi     .enabled = (enables["optInitialMidi"     ] === true)
+        spinOptInitialDmx      .enabled = (enables["optInitialDmx"      ] === true)
         spinOptRangeSteps      .enabled = (enables["optRangeSteps"      ] === true)
         spinOptRangeFrequency  .enabled = (enables["optRangeFrequency"  ] === true)
         spinOptFilterLevel     .enabled = (enables["optFilterLevel"     ] === true)
         spinOptSamplingInterval.enabled = (enables["optSamplingInterval"] === true)
         buttonOptModePuPd      .enabled = (enables["optModePuPd"        ] === true)
 
-        checkOptInitialize     .enabled = (spinOptInitialA.enabled || spinOptInitialB.enabled || spinOptInitialMidi.enabled)
+        checkOptInitialize     .enabled = (spinOptInitialA.enabled ||
+                                           spinOptInitialB.enabled ||
+                                           spinOptInitialMidi.enabled ||
+                                           spinOptInitialDmx.enabled)
     }
 
     function resetOptions() {
@@ -354,6 +389,7 @@ Popup {
         spinOptInitialA        .value   = spinOptInitialA        .defaultValue
         spinOptInitialB        .value   = spinOptInitialB        .defaultValue
         spinOptInitialMidi     .value   = spinOptInitialMidi     .defaultValue
+        spinOptInitialDmx      .value   = spinOptInitialDmx      .defaultValue
         spinOptRangeSteps      .value   = spinOptRangeSteps      .defaultValue
         spinOptRangeFrequency  .value   = spinOptRangeFrequency  .defaultValue
         spinOptFilterLevel     .value   = spinOptFilterLevel     .defaultValue
@@ -381,6 +417,8 @@ Popup {
             if (spinOptInitialB.enabled) spinOptInitialB.value = (initial > 0.5 ? 1 : 0)
             else
             if (spinOptInitialMidi.enabled) spinOptInitialMidi.value = Math.round(initial * 127)
+            else
+            if (spinOptInitialDmx.enabled) spinOptInitialDmx.value = Math.round(initial * 255)
 
             if (checkOptInitialize.checked !== checkOptInitialize.defaultValue) isDefault = false
         }
@@ -423,6 +461,8 @@ Popup {
             if (spinOptInitialB.enabled) options["initial"] = spinOptInitialB.value
             else
             if (spinOptInitialMidi.enabled) options["initial"] = parseFloat((spinOptInitialMidi.value / 127).toFixed(5))
+            else
+            if (spinOptInitialDmx.enabled) options["initial"] = parseFloat((spinOptInitialDmx.value / 255).toFixed(5))
         }
 
         if (spinOptRangeSteps.enabled) options["range"] = spinOptRangeSteps.value
