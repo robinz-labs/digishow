@@ -32,7 +32,7 @@ public:
     void setAsyncReceiver(bool isAsync);
 
     // asynchronize receiver
-    bool sendBytes(const char* buffer, int length);
+    bool sendBytes(const char* buffer, int length, bool flush = true);
     bool isBusySending() { return _serial->bytesToWrite()>0; }
 
     int numberOfReceivedBytes();

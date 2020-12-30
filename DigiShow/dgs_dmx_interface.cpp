@@ -51,7 +51,7 @@ int DgsDmxInterface::openInterface()
     m_timer = new QTimer();
     connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimerFired()));
     m_timer->setSingleShot(false);
-    m_timer->setInterval(20);
+    m_timer->setInterval(30);
     m_timer->start();
 
     if (!done) {
@@ -144,8 +144,8 @@ bool DgsDmxInterface::enttecDmxSendDmxFrame(unsigned char *data)
     // send frame
     bool done = true;
     if (!m_com->isBusySending()) {
-        done &= m_com->sendBytes((const char*)head, sizeof(head));
-        done &= m_com->sendBytes((const char*)data, length);
+        done &= m_com->sendBytes((const char*)head, sizeof(head), false);
+        done &= m_com->sendBytes((const char*)data, length, false);
         done &= m_com->sendBytes((const char*)tail, sizeof(tail));
     }
 

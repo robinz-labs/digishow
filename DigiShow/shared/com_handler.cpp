@@ -114,12 +114,12 @@ void ComHandler::setAsyncReceiver(bool isAsync)
 }
 
 
-bool ComHandler::sendBytes(const char* buffer, int length)
+bool ComHandler::sendBytes(const char* buffer, int length, bool flush)
 {
     if (_connected) {
 
         if (_serial->write(buffer, length) != -1) {
-            _serial->flush();
+            if (flush) _serial->flush();
 
             if (g_needLogCom) qDebug("SND: %s", QByteArray(buffer, length).toHex().constData());
             return true;

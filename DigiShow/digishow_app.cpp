@@ -402,7 +402,7 @@ int DigishowApp::newInterface(const QString &interfaceType)
 
         interface = new DgsDmxInterface(this);
         interface->setInterfaceOption("mode", "enttec");
-        interface->setInterfaceOption("outputInterval", 20);
+        //interface->setInterfaceOption("outputInterval", 20);
 
     } else if (interfaceType=="artnet") {
 
