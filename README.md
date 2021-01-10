@@ -22,12 +22,14 @@ Please visit http://robinz.org/labs/digishow to download the latest releases:
 - DigiShow LINK for windows (64bit)
 
 ## Install and run DigiShow LINK apps
+Download and unzip the latest release file.  
+
 macOS:  
-Unzip the downloaded file, copy app "DigiShow" to your Applications folder and run it. 
+Copy app "DigiShow" to your Applications folder and run it.  
 
 Windows:  
-Unzip the downloaded file, copy folder "DigiShow LINK" to your disk and run "DigiShow.exe" in the folder.  
-For some windows versions, also need to run vc_redist.x64.exe to install Visual C++ 2015 Redistributable to the system.  
+Run Extra\vc_redist.x64.exe to install Visual C++ 2015 Redistributable to your windows system.  
+Copy folder "DigiShow LINK" to your disk and run "DigiShow.exe" in the folder.  
 
 ## Extra downloads and resources
 [ Arduino ] sketch for Arduino remote IO controls  

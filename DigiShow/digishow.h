@@ -34,6 +34,10 @@
   + allows preset launch in slot output
   + added remote pipe support (websocket interface)
 
+  v1.1.5 20210110
+  beta release
+  + allows to transform screen canvas where presents media clips
+
  */
 
 #ifndef DIGISHOW_H
