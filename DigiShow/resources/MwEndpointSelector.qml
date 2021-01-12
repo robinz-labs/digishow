@@ -245,129 +245,10 @@ Item {
         visible: isModified
 
         onClicked: {
-
-            var slotIndex = slotDetailView.slotIndex
-            var newInterfaceIndex = menuInterface.selectedItemValue
-            var newEndpointOptions = {}
-            var needRestartInterface = false
-            var needStopApp = false
-
-            // fill endpoint options
-            var type = menuInterface.getSelectedInterfaceConfiguration()["interfaceInfo"]["type"]
-            if (type === DigishowEnvironment.InterfaceMidi) {
-
-                newEndpointOptions["channel"] = itemMidi.menuChannel.selectedItemValue
-                newEndpointOptions["type"] = itemMidi.menuType.selectedItemTag
-
-                switch (itemMidi.menuType.selectedItemValue) {
-                case DigishowEnvironment.EndpointMidiNote:
-                    newEndpointOptions["note"] = itemMidi.menuNote.selectedItemValue
-                    break
-                case DigishowEnvironment.EndpointMidiControl:
-                    newEndpointOptions["control"] = itemMidi.menuControl.selectedItemValue
-                    break
-                }
-
-            } else if (type === DigishowEnvironment.InterfaceDmx) {
-
-                newEndpointOptions["type"] = "dimmer"
-                //newEndpointOptions["channel"] = itemDmx.menuChannel.selectedItemValue
-                newEndpointOptions["channel"] = itemDmx.spinChannel.value - 1
-
-                needRestartInterface = true
-
-            } else if (type === DigishowEnvironment.InterfaceModbus) {
-
-                newEndpointOptions["unit"] = itemModbus.menuUnit.selectedItemValue
-                newEndpointOptions["type"] = itemModbus.menuType.selectedItemTag
-                newEndpointOptions["channel"] = itemModbus.spinChannel.value
-
-                needRestartInterface = true
-
-            } else if (type === DigishowEnvironment.InterfaceRioc) {
-
-                newEndpointOptions["unit"] = itemRioc.spinUnit.value
-                newEndpointOptions["type"] = itemRioc.menuType.selectedItemTag
-                newEndpointOptions["channel"] = itemRioc.menuChannel.selectedItemValue
-
-                needStopApp = true
-
-            } else if (type === DigishowEnvironment.InterfaceHue) {
-
-                newEndpointOptions["type"] = "light"
-                newEndpointOptions["channel"] = itemHue.spinChannel.value
-                newEndpointOptions["control"] = itemHue.menuControl.selectedItemValue
-
-            } else if (type === DigishowEnvironment.InterfaceScreen) {
-
-                newEndpointOptions["type"] = itemScreen.menuType.selectedItemTag
-
-                switch (itemScreen.menuType.selectedItemValue) {
-                case DigishowEnvironment.EndpointScreenLight:
-                    newEndpointOptions["control"] = itemScreen.menuLightControl.selectedItemValue
-                    break
-                case DigishowEnvironment.EndpointScreenCanvas:
-                    newEndpointOptions["control"] = itemScreen.menuCanvasControl.selectedItemValue
-                    break
-                case DigishowEnvironment.EndpointScreenMedia:
-                    newEndpointOptions["control"] = itemScreen.menuMediaControl.selectedItemValue
-
-                    if (itemScreen.textMediaUrl.visible) {
-                        var mediaUrl  = itemScreen.textMediaUrl.text
-                        var mediaType = digishow.getMediaType(mediaUrl)
-                        var mediaName = digishow.makeMedia(newInterfaceIndex, mediaUrl, mediaType)
-
-                        if (mediaName !== "") {
-                            newEndpointOptions["media"] = mediaName
-                            if (itemScreen.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaShow)
-                                newEndpointOptions = utilities.merge(newEndpointOptions, itemScreen.getMediaOptions())
-                        } else {
-                            messageBox.show(qsTr("Please select a media clip file exists on your computer disks or enter a valid url of the media clip."), qsTr("OK"))
-                        }
-                    }
-                    break
-                }
-
-            } else if (type === DigishowEnvironment.InterfacePipe) {
-
-                newEndpointOptions["type"] = itemPipe.menuType.selectedItemTag
-                newEndpointOptions["channel"] = itemPipe.spinChannel.value
-
-            } else if (type === DigishowEnvironment.InterfaceLaunch) {
-
-                newEndpointOptions["type"] = "preset"
-                newEndpointOptions["channel"] = itemLaunch.menuChannel.selectedItemValue
-            }
-
-            // append more options
-            newEndpointOptions = utilities.merge(newEndpointOptions, moreOptions.getOptions())
-            moreOptions.setOptions(newEndpointOptions) // here refresh ui
-
-            // save the updated endpoint
-            var newEndpointIndex = -1;
-            if (forInput && !forOutput)
-                newEndpointIndex = digishow.updateSourceEndpoint(slotIndex, newInterfaceIndex, newEndpointOptions)
-            else if (!forInput && forOutput)
-                newEndpointIndex = digishow.updateDestinationEndpoint(slotIndex, newInterfaceIndex, newEndpointOptions)
-
-            // update the endpoint selector
-            if (newEndpointIndex !== -1) {
-                isModified = false
-                interfaceIndex = newInterfaceIndex
-                endpointIndex = newEndpointIndex
-                endpointUpdated() // emit signal
-            }
-
-            // restart interface if necessary
-            if (app.isRunning && needRestartInterface) {
-                digishow.restartInterface(interfaceIndex)
-            }
-
-            // stop digishow app service if necessary
-            if (app.isRunning && needStopApp) {
-                app.stop()
-            }
-
+            if (menuInterface.selectedItemValue !== -1)
+                save()
+            else
+                clear()
         }
     }
 
@@ -382,6 +263,8 @@ Item {
 
         // init interface option menu
         items = []
+        items.push({ text: qsTr("None"), value: -1 })
+
         var interfaceCount = app.interfaceCount()
         for (n=0 ; n<interfaceCount ; n++) {
 
@@ -495,5 +378,145 @@ Item {
 
         // reset modified flag
         isModified = false
+    }
+
+    function save() {
+
+        var slotIndex = slotDetailView.slotIndex
+        var newInterfaceIndex = menuInterface.selectedItemValue
+        var newEndpointOptions = {}
+        var needRestartInterface = false
+        var needStopApp = false
+
+        // fill endpoint options
+        var type = menuInterface.getSelectedInterfaceConfiguration()["interfaceInfo"]["type"]
+        if (type === DigishowEnvironment.InterfaceMidi) {
+
+            newEndpointOptions["channel"] = itemMidi.menuChannel.selectedItemValue
+            newEndpointOptions["type"] = itemMidi.menuType.selectedItemTag
+
+            switch (itemMidi.menuType.selectedItemValue) {
+            case DigishowEnvironment.EndpointMidiNote:
+                newEndpointOptions["note"] = itemMidi.menuNote.selectedItemValue
+                break
+            case DigishowEnvironment.EndpointMidiControl:
+                newEndpointOptions["control"] = itemMidi.menuControl.selectedItemValue
+                break
+            }
+
+        } else if (type === DigishowEnvironment.InterfaceDmx) {
+
+            newEndpointOptions["type"] = "dimmer"
+            //newEndpointOptions["channel"] = itemDmx.menuChannel.selectedItemValue
+            newEndpointOptions["channel"] = itemDmx.spinChannel.value - 1
+
+            needRestartInterface = true
+
+        } else if (type === DigishowEnvironment.InterfaceModbus) {
+
+            newEndpointOptions["unit"] = itemModbus.menuUnit.selectedItemValue
+            newEndpointOptions["type"] = itemModbus.menuType.selectedItemTag
+            newEndpointOptions["channel"] = itemModbus.spinChannel.value
+
+            needRestartInterface = true
+
+        } else if (type === DigishowEnvironment.InterfaceRioc) {
+
+            newEndpointOptions["unit"] = itemRioc.spinUnit.value
+            newEndpointOptions["type"] = itemRioc.menuType.selectedItemTag
+            newEndpointOptions["channel"] = itemRioc.menuChannel.selectedItemValue
+
+            needStopApp = true
+
+        } else if (type === DigishowEnvironment.InterfaceHue) {
+
+            newEndpointOptions["type"] = "light"
+            newEndpointOptions["channel"] = itemHue.spinChannel.value
+            newEndpointOptions["control"] = itemHue.menuControl.selectedItemValue
+
+        } else if (type === DigishowEnvironment.InterfaceScreen) {
+
+            newEndpointOptions["type"] = itemScreen.menuType.selectedItemTag
+
+            switch (itemScreen.menuType.selectedItemValue) {
+            case DigishowEnvironment.EndpointScreenLight:
+                newEndpointOptions["control"] = itemScreen.menuLightControl.selectedItemValue
+                break
+            case DigishowEnvironment.EndpointScreenCanvas:
+                newEndpointOptions["control"] = itemScreen.menuCanvasControl.selectedItemValue
+                break
+            case DigishowEnvironment.EndpointScreenMedia:
+                newEndpointOptions["control"] = itemScreen.menuMediaControl.selectedItemValue
+
+                if (itemScreen.textMediaUrl.visible) {
+                    var mediaUrl  = itemScreen.textMediaUrl.text
+                    var mediaType = digishow.getMediaType(mediaUrl)
+                    var mediaName = digishow.makeMedia(newInterfaceIndex, mediaUrl, mediaType)
+
+                    if (mediaName !== "") {
+                        newEndpointOptions["media"] = mediaName
+                        if (itemScreen.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaShow)
+                            newEndpointOptions = utilities.merge(newEndpointOptions, itemScreen.getMediaOptions())
+                    } else {
+                        messageBox.show(qsTr("Please select a media clip file exists on your computer disks or enter a valid url of the media clip."), qsTr("OK"))
+                    }
+                }
+                break
+            }
+
+        } else if (type === DigishowEnvironment.InterfacePipe) {
+
+            newEndpointOptions["type"] = itemPipe.menuType.selectedItemTag
+            newEndpointOptions["channel"] = itemPipe.spinChannel.value
+
+        } else if (type === DigishowEnvironment.InterfaceLaunch) {
+
+            newEndpointOptions["type"] = "preset"
+            newEndpointOptions["channel"] = itemLaunch.menuChannel.selectedItemValue
+        }
+
+        // append more options
+        newEndpointOptions = utilities.merge(newEndpointOptions, moreOptions.getOptions())
+        moreOptions.setOptions(newEndpointOptions) // here refresh ui
+
+        // save the updated endpoint
+        var newEndpointIndex = -1;
+        if (forInput && !forOutput)
+            newEndpointIndex = digishow.updateSourceEndpoint(slotIndex, newInterfaceIndex, newEndpointOptions)
+        else if (!forInput && forOutput)
+            newEndpointIndex = digishow.updateDestinationEndpoint(slotIndex, newInterfaceIndex, newEndpointOptions)
+
+        // update the endpoint selector
+        if (newEndpointIndex !== -1) {
+            isModified = false
+            interfaceIndex = newInterfaceIndex
+            endpointIndex = newEndpointIndex
+            endpointUpdated() // emit signal
+        }
+
+        // restart interface if necessary
+        if (app.isRunning && needRestartInterface) {
+            digishow.restartInterface(interfaceIndex)
+        }
+
+        // stop digishow app service if necessary
+        if (app.isRunning && needStopApp) {
+            app.stop()
+        }
+    }
+
+    function clear() {
+
+        var slotIndex = slotDetailView.slotIndex
+
+        if (forInput && !forOutput)
+            digishow.clearSourceEndpoint(slotIndex)
+        else if (!forInput && forOutput)
+            digishow.clearDestinationEndpoint(slotIndex)
+
+        isModified = false
+        interfaceIndex = -1
+        endpointIndex = -1
+        endpointUpdated() // emit signal
     }
 }

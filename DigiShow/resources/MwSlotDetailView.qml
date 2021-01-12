@@ -127,7 +127,7 @@ Item {
         Text {
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
-            color: "#999999"
+            color: "#555555"
             text: slotListView.listItemCount > 0
                   ? qsTr("Please select a slot item in left list")
                   : qsTr("Please use Interface Manager to configurate \r\n your MIDI, DMX and more digital things for your show")

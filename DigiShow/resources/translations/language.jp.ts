@@ -4,223 +4,223 @@
 <context>
     <name>DigishowEnvironment</name>
     <message>
-        <location filename="../../digishow_environment.cpp" line="414"/>
+        <location filename="../../digishow_environment.cpp" line="431"/>
         <source>R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="414"/>
+        <location filename="../../digishow_environment.cpp" line="431"/>
         <source>Red</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="415"/>
+        <location filename="../../digishow_environment.cpp" line="432"/>
         <source>G</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="415"/>
+        <location filename="../../digishow_environment.cpp" line="432"/>
         <source>Green</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="416"/>
+        <location filename="../../digishow_environment.cpp" line="433"/>
         <source>B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="416"/>
+        <location filename="../../digishow_environment.cpp" line="433"/>
         <source>Blue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="417"/>
+        <location filename="../../digishow_environment.cpp" line="434"/>
         <source>W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="417"/>
+        <location filename="../../digishow_environment.cpp" line="434"/>
         <source>White</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="418"/>
+        <location filename="../../digishow_environment.cpp" line="435"/>
         <source>Hue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="419"/>
+        <location filename="../../digishow_environment.cpp" line="436"/>
         <source>Sat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="419"/>
+        <location filename="../../digishow_environment.cpp" line="436"/>
         <source>Saturation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="420"/>
+        <location filename="../../digishow_environment.cpp" line="437"/>
         <source>Bri</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="420"/>
+        <location filename="../../digishow_environment.cpp" line="437"/>
         <source>Brightness</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="421"/>
+        <location filename="../../digishow_environment.cpp" line="438"/>
         <source>CT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="421"/>
+        <location filename="../../digishow_environment.cpp" line="438"/>
         <source>C. Temp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="429"/>
+        <location filename="../../digishow_environment.cpp" line="446"/>
         <source>Opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="430"/>
+        <location filename="../../digishow_environment.cpp" line="447"/>
         <source>Scale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="431"/>
+        <location filename="../../digishow_environment.cpp" line="448"/>
         <source>Rotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="432"/>
+        <location filename="../../digishow_environment.cpp" line="449"/>
         <source>X Offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="433"/>
+        <location filename="../../digishow_environment.cpp" line="450"/>
         <source>Y Offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="435"/>
+        <location filename="../../digishow_environment.cpp" line="452"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="436"/>
+        <location filename="../../digishow_environment.cpp" line="453"/>
         <source>Hide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="437"/>
+        <location filename="../../digishow_environment.cpp" line="454"/>
         <source>Clear All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="439"/>
+        <location filename="../../digishow_environment.cpp" line="456"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="439"/>
+        <location filename="../../digishow_environment.cpp" line="456"/>
         <source>Video Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="440"/>
+        <location filename="../../digishow_environment.cpp" line="457"/>
         <source>Repeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="440"/>
+        <location filename="../../digishow_environment.cpp" line="457"/>
         <source>Video Repeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="441"/>
-        <location filename="../../digishow_environment.cpp" line="462"/>
+        <location filename="../../digishow_environment.cpp" line="458"/>
+        <location filename="../../digishow_environment.cpp" line="479"/>
         <source>Volume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="441"/>
+        <location filename="../../digishow_environment.cpp" line="458"/>
         <source>Video Volume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="442"/>
+        <location filename="../../digishow_environment.cpp" line="459"/>
         <source>Position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="442"/>
+        <location filename="../../digishow_environment.cpp" line="459"/>
         <source>Video Position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="458"/>
+        <location filename="../../digishow_environment.cpp" line="475"/>
         <source>Bank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="459"/>
+        <location filename="../../digishow_environment.cpp" line="476"/>
         <source>Modulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="460"/>
+        <location filename="../../digishow_environment.cpp" line="477"/>
         <source>Foot Pedal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="461"/>
+        <location filename="../../digishow_environment.cpp" line="478"/>
         <source>Data Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="464"/>
+        <location filename="../../digishow_environment.cpp" line="481"/>
         <source>Expression</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="465"/>
+        <location filename="../../digishow_environment.cpp" line="482"/>
         <source>Bank (LSB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="466"/>
+        <location filename="../../digishow_environment.cpp" line="483"/>
         <source>Sustain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="468"/>
+        <location filename="../../digishow_environment.cpp" line="485"/>
         <source>Resonance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="469"/>
+        <location filename="../../digishow_environment.cpp" line="486"/>
         <source>Cutoff</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="470"/>
+        <location filename="../../digishow_environment.cpp" line="487"/>
         <source>Reverb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="471"/>
+        <location filename="../../digishow_environment.cpp" line="488"/>
         <source>Chorus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="467"/>
+        <location filename="../../digishow_environment.cpp" line="484"/>
         <source>Portamento</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="463"/>
+        <location filename="../../digishow_environment.cpp" line="480"/>
         <source>Pan</source>
         <translation type="unfinished"></translation>
     </message>
@@ -429,36 +429,36 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="597"/>
+        <location filename="../MainWindow.qml" line="591"/>
         <source>Jam with All Things Digital</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="643"/>
+        <location filename="../MainWindow.qml" line="637"/>
         <source>© 2020 Robin Zhang &amp; Labs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="750"/>
+        <location filename="../MainWindow.qml" line="744"/>
         <source>Would you like to quit DigiShow app ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="750"/>
+        <location filename="../MainWindow.qml" line="744"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="150"/>
         <location filename="../MainWindow.qml" line="169"/>
-        <location filename="../MainWindow.qml" line="735"/>
-        <location filename="../MainWindow.qml" line="750"/>
-        <location filename="../MainWindow.qml" line="755"/>
+        <location filename="../MainWindow.qml" line="729"/>
+        <location filename="../MainWindow.qml" line="744"/>
+        <location filename="../MainWindow.qml" line="749"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="754"/>
+        <location filename="../MainWindow.qml" line="748"/>
         <source>Would you like to save all data to a file before close the app ?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -466,8 +466,8 @@
         <location filename="../MainWindow.qml" line="150"/>
         <location filename="../MainWindow.qml" line="169"/>
         <location filename="../MainWindow.qml" line="178"/>
-        <location filename="../MainWindow.qml" line="735"/>
-        <location filename="../MainWindow.qml" line="755"/>
+        <location filename="../MainWindow.qml" line="729"/>
+        <location filename="../MainWindow.qml" line="749"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
@@ -494,8 +494,8 @@
     <message>
         <location filename="../MainWindow.qml" line="150"/>
         <location filename="../MainWindow.qml" line="169"/>
-        <location filename="../MainWindow.qml" line="735"/>
-        <location filename="../MainWindow.qml" line="755"/>
+        <location filename="../MainWindow.qml" line="729"/>
+        <location filename="../MainWindow.qml" line="749"/>
         <source>Don&apos;t Save</source>
         <translation type="unfinished"></translation>
     </message>
@@ -540,104 +540,104 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="270"/>
+        <location filename="../MainWindow.qml" line="264"/>
         <source>PRESETS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="335"/>
+        <location filename="../MainWindow.qml" line="329"/>
         <source>Error occurred when open interface %1 .</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="335"/>
+        <location filename="../MainWindow.qml" line="329"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="390"/>
+        <location filename="../MainWindow.qml" line="384"/>
         <source>Interface Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="411"/>
+        <location filename="../MainWindow.qml" line="405"/>
         <source>MIDI ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="415"/>
+        <location filename="../MainWindow.qml" line="409"/>
         <source>DMX ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="419"/>
+        <location filename="../MainWindow.qml" line="413"/>
         <source>Modbus ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="423"/>
+        <location filename="../MainWindow.qml" line="417"/>
         <source>Arduino ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="427"/>
+        <location filename="../MainWindow.qml" line="421"/>
         <source>Hue ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="431"/>
+        <location filename="../MainWindow.qml" line="425"/>
         <source>Screen ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="435"/>
+        <location filename="../MainWindow.qml" line="429"/>
         <source>Virtual Pipe ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="578"/>
+        <location filename="../MainWindow.qml" line="572"/>
         <source>app version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="579"/>
+        <location filename="../MainWindow.qml" line="573"/>
         <source>app build date: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="580"/>
+        <location filename="../MainWindow.qml" line="574"/>
         <source>qt version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="581"/>
+        <location filename="../MainWindow.qml" line="575"/>
         <source>rtmidi version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="650"/>
+        <location filename="../MainWindow.qml" line="644"/>
         <source>Load File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="653"/>
-        <location filename="../MainWindow.qml" line="670"/>
+        <location filename="../MainWindow.qml" line="647"/>
+        <location filename="../MainWindow.qml" line="664"/>
         <source>DigiShow files (*.dgs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="653"/>
-        <location filename="../MainWindow.qml" line="670"/>
+        <location filename="../MainWindow.qml" line="647"/>
+        <location filename="../MainWindow.qml" line="664"/>
         <source>All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="667"/>
+        <location filename="../MainWindow.qml" line="661"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="733"/>
+        <location filename="../MainWindow.qml" line="727"/>
         <source>Would you like to save current data before open file %1 ?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -708,54 +708,55 @@
 <context>
     <name>MwEndpointMoreOptions</name>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="67"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="68"/>
         <source>Need to Initialize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="97"/>
-        <location filename="../MwEndpointMoreOptions.qml" line="127"/>
-        <location filename="../MwEndpointMoreOptions.qml" line="157"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="98"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="128"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="158"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="188"/>
         <source>Initial Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="184"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="215"/>
         <source>Value Range (steps)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="211"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="242"/>
         <source>Value Range (Freq.)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="238"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="269"/>
         <source>Smoothing Level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="265"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="296"/>
         <source>Sampling Interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="287"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="318"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="288"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="319"/>
         <source>Internal Pull-Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="289"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="320"/>
         <source>External PU/PD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="299"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="330"/>
         <source>PU/PD Resistor</source>
         <translation type="unfinished"></translation>
     </message>
@@ -783,17 +784,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="325"/>
+        <location filename="../MwEndpointSelector.qml" line="266"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelector.qml" line="461"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="325"/>
+        <location filename="../MwEndpointSelector.qml" line="461"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="398"/>
+        <location filename="../MwEndpointSelector.qml" line="281"/>
         <source>More ...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1683,47 +1689,47 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="117"/>
+        <location filename="../MwSlotListView.qml" line="121"/>
         <source>Delete Slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="155"/>
+        <location filename="../MwSlotListView.qml" line="159"/>
         <source>Untitled Slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="815"/>
+        <location filename="../MwSlotListView.qml" line="819"/>
         <source>Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="816"/>
+        <location filename="../MwSlotListView.qml" line="820"/>
         <source>no input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="824"/>
+        <location filename="../MwSlotListView.qml" line="828"/>
         <source>no output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="823"/>
+        <location filename="../MwSlotListView.qml" line="827"/>
         <source>Destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="916"/>
+        <location filename="../MwSlotListView.qml" line="920"/>
         <source>Would you like to delete the selected slot ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="916"/>
+        <location filename="../MwSlotListView.qml" line="920"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="916"/>
+        <location filename="../MwSlotListView.qml" line="920"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>

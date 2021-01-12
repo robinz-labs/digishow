@@ -28,7 +28,7 @@ Item {
         Text {
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
-            color: "#999999"
+            color: "#555555"
             text: qsTr("Please tap button + to add a new slot \r\n that enables signal link between your digital things")
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 14
@@ -159,7 +159,7 @@ Item {
                                   qsTr("Untitled Slot") + " " + (index+1) :
                                   model.slotTitle
                         font.pixelSize: 11
-                        font.bold: true
+                        font.bold: false
 
                         visible: !textSlotTitle.visible
 

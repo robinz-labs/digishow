@@ -202,6 +202,23 @@ bool DigishowEnvironment::restartInterface(int interfaceIndex)
     return (interface->openInterface() == ERR_NONE);
 }
 
+void DigishowEnvironment::clearSourceEndpoint(int slotIndex)
+{
+    DigishowSlot *slot = g_app->slotAt(slotIndex);
+    if (slot == nullptr) return;
+
+    slot->setSource(nullptr, -1);
+    slot->setSlotOption("source", "");
+}
+
+void DigishowEnvironment::clearDestinationEndpoint(int slotIndex)
+{
+    DigishowSlot *slot = g_app->slotAt(slotIndex);
+    if (slot == nullptr) return;
+
+    slot->setDestination(nullptr, -1);
+    slot->setSlotOption("destination", "");
+}
 
 int DigishowEnvironment::updateSourceEndpoint(int slotIndex, int interfaceIndex, QVariantMap endpointOptions)
 {

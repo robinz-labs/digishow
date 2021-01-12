@@ -146,6 +146,8 @@ public:
     Q_INVOKABLE int findInterfaceWithName(const QString &interfaceName);
     Q_INVOKABLE bool restartInterface(int interfaceIndex);
 
+    Q_INVOKABLE void clearSourceEndpoint(int slotIndex);
+    Q_INVOKABLE void clearDestinationEndpoint(int slotIndex);
     Q_INVOKABLE int updateSourceEndpoint(int slotIndex, int interfaceIndex, QVariantMap endpointOptions);
     Q_INVOKABLE int updateDestinationEndpoint(int slotIndex, int interfaceIndex, QVariantMap endpointOptions);
     Q_INVOKABLE int makeEndpoint(int interfaceIndex, QVariantMap endpointOptions);
