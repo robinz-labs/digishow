@@ -35,6 +35,13 @@ DigishowSlot::DigishowSlot(QObject *parent) : QObject(parent)
     m_envelopeTimer.setSingleShot(false);
     connect(&m_envelopeTimer, SIGNAL(timeout()), this, SLOT(onEnvelopeTimerFired()));
 
+    // get ready to run smoothing
+    m_smoothingTimer.stop();
+    m_smoothingTimeStart = 0;
+    m_smoothingTimer.setInterval(20);
+    m_smoothingTimer.setSingleShot(false);
+    connect(&m_smoothingTimer, SIGNAL(timeout()), this, SLOT(onSmoothingTimerFired()));
+
     // init input and output data
     m_lastDataIn = dgsSignalData();
     m_lastDataOut = dgsSignalData();
@@ -244,8 +251,9 @@ int DigishowSlot::setEnabled(bool enabled)
         return ERR_INVALID_OPTION;
     }
 
-    // finish the running envelope
+    // finish the running envelope and smoothing
     if (envelopeIsRunning()) envelopeCancel();
+    if (smoothingIsRunning()) smoothingCancel();
 
     m_dataOutTimer.stop();
     m_enabled = false;
@@ -272,6 +280,7 @@ void DigishowSlot::updateSlotInfoItem(const QString &name, const QVariant &value
     else if ( name == "envelopeDecay"  ) m_slotInfo.envelopeDecay   = MINMAX(value.toInt(), 0, 60000);
     else if ( name == "envelopeSustain") m_slotInfo.envelopeSustain = MINMAX(value.toDouble(), 0.0, 1.0);
     else if ( name == "envelopeRelease") m_slotInfo.envelopeRelease = MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "outputSmoothing") m_slotInfo.outputSmoothing = MINMAX(value.toInt(), 0, 60000);
     else if ( name == "outputInterval" ) m_slotInfo.outputInterval  = MINMAX(value.toInt(), 0, 60000);
 }
 
@@ -317,6 +326,12 @@ dgsSignalData DigishowSlot::processInputAnalog(dgsSignalData dataIn)
         dataOut.signal = DATA_SIGNAL_ANALOG;
         dataOut.aRange = m_destinationInterface->endpointInfoList()->at(m_destinationEndpointIndex).range;
         dataOut.aValue = static_cast<int>(round(outputRatio * dataOut.aRange));
+
+        if (m_slotInfo.outputSmoothing > 0) {
+            // smoothing output
+            smoothingStart(dataOut);
+            dataOut = dgsSignalData();
+        }
 
     } else if  (m_slotInfo.outputSignal == DATA_SIGNAL_BINARY) {
 
@@ -377,6 +392,12 @@ dgsSignalData DigishowSlot::processInputBinary(dgsSignalData dataIn)
         dataOut.signal = DATA_SIGNAL_ANALOG;
         dataOut.aRange = m_destinationInterface->endpointInfoList()->at(m_destinationEndpointIndex).range;
         dataOut.aValue = static_cast<int>(round(outputRatio * dataOut.aRange));
+
+        if (m_slotInfo.outputSmoothing > 0) {
+            // smoothing output
+            smoothingStart(dataOut);
+            dataOut = dgsSignalData();
+        }
 
     } else if  (m_slotInfo.outputSignal == DATA_SIGNAL_BINARY) {
 
@@ -615,6 +636,47 @@ dgsSignalData DigishowSlot::envelopeProcessOutputBinary()
     return dataOut;
 }
 
+void DigishowSlot::smoothingStart(dgsSignalData dataOut)
+{
+    if (!m_linked) return;
+
+    m_smoothingTimeStart = elapsed();
+    m_smoothingDataOutFrom = m_lastDataOut;
+    m_smoothingDataOutTo = dataOut;
+
+    m_smoothingTimer.start();
+    onSmoothingTimerFired();
+}
+
+void DigishowSlot::smoothingCancel()
+{
+    m_smoothingTimer.stop();
+}
+
+bool DigishowSlot::smoothingIsRunning()
+{
+    return m_smoothingTimer.isActive();
+}
+
+dgsSignalData DigishowSlot::smoothingProcessOutputAnalog()
+{
+    dgsSignalData dataOut = m_smoothingDataOutTo;
+
+    qint64 smoothingDuration = m_slotInfo.outputSmoothing;
+    qint64 smoothingElapsed = elapsed() - m_smoothingTimeStart;
+
+    double ratio = double(smoothingElapsed) / double(smoothingDuration);
+    if (ratio >= 0 && ratio<1) {
+        // ongoing
+        dataOut.aValue = round((m_smoothingDataOutTo.aValue - m_smoothingDataOutFrom.aValue)*ratio) + m_smoothingDataOutFrom.aValue;
+    } else {
+        // finished
+        m_smoothingTimer.stop();
+    }
+
+    return dataOut;
+}
+
 void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
 {
     // only process data packages received from the relevant endpoint
@@ -660,6 +722,15 @@ void DigishowSlot::onDataPrepared(int endpointIndex, dgsSignalData dataOut)
     sendDataOut(dataOut);
 }
 
+void DigishowSlot::onDataOutTimerFired()
+{
+    if (m_needSendDataOutLater) {
+        m_dataOutTimeLastSent = elapsed();
+        m_destinationInterface->sendData(m_destinationEndpointIndex, m_lastDataOut);
+        m_needSendDataOutLater = false;
+    }
+}
+
 void DigishowSlot::onEnvelopeTimerFired()
 {
     dgsSignalData dataOut;
@@ -675,11 +746,16 @@ void DigishowSlot::onEnvelopeTimerFired()
     }
 }
 
-void DigishowSlot::onDataOutTimerFired()
+void DigishowSlot::onSmoothingTimerFired()
 {
-    if (m_needSendDataOutLater) {
-        m_dataOutTimeLastSent = elapsed();
-        m_destinationInterface->sendData(m_destinationEndpointIndex, m_lastDataOut);
-        m_needSendDataOutLater = false;
+    dgsSignalData dataOut;
+    switch (m_slotInfo.outputSignal) {
+    case DATA_SIGNAL_ANALOG: dataOut = smoothingProcessOutputAnalog(); break;
+    }
+
+    // send data package to destination
+    if (dataOut.signal) {
+        if (g_needLogCtl) qDebug() << "smoothing_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
+        sendDataOut(dataOut);
     }
 }

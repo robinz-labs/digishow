@@ -54,6 +54,7 @@ public slots:
     void onDataPrepared(int endpointIndex, dgsSignalData dataOut); // outgoing data is pareared
     void onDataOutTimerFired();
     void onEnvelopeTimerFired();
+    void onSmoothingTimerFired();
 
 private:
 
@@ -96,7 +97,7 @@ private:
     QTimer m_dataOutTimer;
     bool m_needSendDataOutLater;
 
-    // envelope controls
+    // output envelope controls
     QTimer m_envelopeTimer;
     qint64 m_envelopeTimeOn;
     qint64 m_envelopeTimeOff;
@@ -109,6 +110,17 @@ private:
     bool envelopeIsRunning();
     dgsSignalData envelopeProcessOutputAnalog();
     dgsSignalData envelopeProcessOutputBinary();
+
+    // output smoothing controls
+    QTimer m_smoothingTimer;
+    qint64 m_smoothingTimeStart;
+    dgsSignalData m_smoothingDataOutFrom;
+    dgsSignalData m_smoothingDataOutTo;
+
+    void smoothingStart(dgsSignalData dataOut);
+    void smoothingCancel();
+    bool smoothingIsRunning();
+    dgsSignalData smoothingProcessOutputAnalog();
 };
 
 #endif // DIGISHOWSLOT_H

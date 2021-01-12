@@ -211,6 +211,9 @@ typedef struct dgsSlotInfo {
     double envelopeSustain; // ratio 0.0 ~ 1.0, default 1.0
     int    envelopeRelease; // in milliseconds, default 0
 
+    // output smoothing
+    int    outputSmoothing; // in milliseconds, default 0
+
     // traffic management
     int    outputInterval;  // in milliseconds, default 0
 
@@ -232,6 +235,7 @@ typedef struct dgsSlotInfo {
         envelopeDecay(0),
         envelopeSustain(1.0),
         envelopeRelease(0),
+        outputSmoothing(0),
         outputInterval(0)
     { }
 
