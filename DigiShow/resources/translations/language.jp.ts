@@ -1762,47 +1762,52 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="132"/>
+        <location filename="../MwSlotOptionsView.qml" line="128"/>
+        <source>Output Smoothing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="156"/>
         <source>Input-output Mapping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="180"/>
+        <location filename="../MwSlotOptionsView.qml" line="204"/>
         <source>Input Range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="222"/>
+        <location filename="../MwSlotOptionsView.qml" line="246"/>
         <source>Output Range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="243"/>
+        <location filename="../MwSlotOptionsView.qml" line="267"/>
         <source>Output Envelope</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="307"/>
+        <location filename="../MwSlotOptionsView.qml" line="331"/>
         <source>Attack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="330"/>
+        <location filename="../MwSlotOptionsView.qml" line="354"/>
         <source>Hold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="353"/>
+        <location filename="../MwSlotOptionsView.qml" line="377"/>
         <source>Decay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="377"/>
+        <location filename="../MwSlotOptionsView.qml" line="401"/>
         <source>Sustain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="400"/>
+        <location filename="../MwSlotOptionsView.qml" line="424"/>
         <source>Release</source>
         <translation type="unfinished"></translation>
     </message>

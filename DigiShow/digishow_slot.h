@@ -26,6 +26,7 @@ public:
     // slot options
     Q_INVOKABLE int setSlotOptions(const QVariantMap &options);
     Q_INVOKABLE int setSlotOption(const QString &name, const QVariant &value);
+    Q_INVOKABLE int clearSlotOption(const QString &name);
     Q_INVOKABLE QVariantMap getSlotOptions() { return m_slotOptions; }
     QVariantMap *slotOptions() { return &m_slotOptions; }
 

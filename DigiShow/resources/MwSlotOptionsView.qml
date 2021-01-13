@@ -105,6 +105,30 @@ Item {
             onClicked: setSlotOption("outputLowAsZero", checked)
         }
 
+        CSpinBox {
+            id: spinOutputSmoothing
+
+            width: 110
+            anchors.right: parent.right
+            anchors.rightMargin: 15
+            anchors.verticalCenter: checkOutputInverted.verticalCenter
+            from: 0
+            to: 60000
+            stepSize: 10
+            unit: "ms"
+
+            onValueModified: setSlotOption("outputSmoothing", value)
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Output Smoothing")
+            }
+        }
+
 
         Row {
             anchors.left: parent.left
@@ -440,6 +464,8 @@ Item {
         checkOutputInverted.visible = false
         checkOutputLowAsZero.visible = false
 
+        spinOutputSmoothing.visible = false
+
         itemMappingOptions.visible = false
         itemEnvelopeOptions.visible = false
 
@@ -449,6 +475,8 @@ Item {
             checkInputInverted.visible = true
             checkOutputInverted.visible = true
             checkOutputLowAsZero.visible = true
+
+            spinOutputSmoothing.visible = true
 
             itemMappingOptions.visible = true
             sliderMappingInputRange.visible = true
@@ -478,6 +506,8 @@ Item {
 
             checkInputInverted.visible = true
             checkOutputInverted.visible = true
+
+            spinOutputSmoothing.visible = true
 
             itemMappingOptions.visible = true
             sliderMappingInputRange.visible = false
@@ -530,37 +560,93 @@ Item {
             spinEnvelopeRelease.visible = true
         }
 
-        // reset unused options
-        if (!checkInputInverted.visible) setSlotOption("inputInverted", false)
-        if (!checkOutputInverted.visible) setSlotOption("outputInverted", false)
-        if (!checkOutputLowAsZero.visible) setSlotOption("outputLowAsZero", false)
-
         // refresh option values
-        checkInputInverted.checked = slotInfo["inputInverted"]
-        checkOutputInverted.checked = slotInfo["outputInverted"]
-        checkOutputLowAsZero.checked = slotInfo["outputLowAsZero"]
+        // or clear unused options
+        if (checkInputInverted.visible) {
+            checkInputInverted.checked = slotInfo["inputInverted"]
+        } else {
+            clearSlotOption("inputInverted")
+        }
 
-        sliderMappingInputRange.first.value = 0
-        sliderMappingInputRange.second.value = 1
-        sliderMappingOutputRange.first.value = 0
-        sliderMappingOutputRange.second.value = 1
+        if (checkOutputInverted.visible) {
+            checkOutputInverted.checked = slotInfo["outputInverted"]
+        } else {
+            clearSlotOption("outputInverted")
+        }
 
-        sliderMappingInputRange.first.value = slotInfo["inputLow"]
-        sliderMappingInputRange.second.value = slotInfo["inputHigh"]
-        sliderMappingOutputRange.first.value = slotInfo["outputLow"]
-        sliderMappingOutputRange.second.value = slotInfo["outputHigh"]
+        if (checkOutputLowAsZero.visible) {
+            checkOutputLowAsZero.checked = slotInfo["outputLowAsZero"]
+        } else {
+            clearSlotOption("outputLowAsZero")
+        }
 
-        spinEnvelopeAttack.value = slotInfo["envelopeAttack"]
-        spinEnvelopeHold.value = slotInfo["envelopeHold"]
-        spinEnvelopeDecay.value = slotInfo["envelopeDecay"]
-        spinEnvelopeSustain.value = Math.round(slotInfo["envelopeSustain"]*100)
-        spinEnvelopeRelease.value = slotInfo["envelopeRelease"]
+        if (spinOutputSmoothing.visible) {
+            spinOutputSmoothing.value = slotInfo["outputSmoothing"]
+        } else {
+            clearSlotOption("outputSmoothing")
+        }
+
+        if (sliderMappingInputRange.visible) {
+            sliderMappingInputRange.first.value = 0
+            sliderMappingInputRange.second.value = 1
+            sliderMappingInputRange.first.value = slotInfo["inputLow"]
+            sliderMappingInputRange.second.value = slotInfo["inputHigh"]
+        } else {
+            clearSlotOption("inputLow")
+            clearSlotOption("inputHigh")
+        }
+
+        if (sliderMappingOutputRange.visible) {
+            sliderMappingOutputRange.first.value = 0
+            sliderMappingOutputRange.second.value = 1
+            sliderMappingOutputRange.first.value = slotInfo["outputLow"]
+            sliderMappingOutputRange.second.value = slotInfo["outputHigh"]
+        } else {
+            clearSlotOption("outputLow")
+            clearSlotOption("outputHigh")
+        }
+
+        if (spinEnvelopeAttack.visible) {
+            spinEnvelopeAttack.value = slotInfo["envelopeAttack"]
+        } else {
+            clearSlotOption("envelopeAttack")
+        }
+
+        if (spinEnvelopeHold.visible) {
+            spinEnvelopeHold.value = slotInfo["envelopeHold"]
+        } else {
+            clearSlotOption("envelopeHold")
+        }
+
+        if (spinEnvelopeDecay.visible) {
+            spinEnvelopeDecay.value = slotInfo["envelopeDecay"]
+        } else {
+            clearSlotOption("envelopeDecay")
+        }
+
+        if (spinEnvelopeSustain.visible) {
+            spinEnvelopeSustain.value = Math.round(slotInfo["envelopeSustain"]*100)
+        } else {
+            clearSlotOption("envelopeSustain")
+        }
+
+        if (spinEnvelopeRelease.visible) {
+            spinEnvelopeRelease.value = slotInfo["envelopeRelease"]
+        } else {
+            clearSlotOption("envelopeRelease")
+        }
     }
 
     function setSlotOption(key, value) {
         if (slotIndex !== -1) {
             app.slotAt(slotIndex).setSlotOption(key, value)
             slotOptionUpdated(key, value) // emit signal
+        }
+    }
+
+    function clearSlotOption(key) {
+        if (slotIndex !== -1) {
+            app.slotAt(slotIndex).clearSlotOption(key)
         }
     }
 }

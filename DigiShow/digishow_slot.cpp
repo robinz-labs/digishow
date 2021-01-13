@@ -131,6 +131,15 @@ int DigishowSlot::setSlotOption(const QString &name, const QVariant &value)
     return ERR_NONE;
 }
 
+int DigishowSlot::clearSlotOption(const QString &name)
+{
+    m_slotOptions.remove(name);
+    updateSlotInfoItem(name, QVariant());
+
+    return ERR_NONE;
+}
+
+
 QVariantMap DigishowSlot::getSlotInfo()
 {
     QVariantMap info;
@@ -154,6 +163,7 @@ QVariantMap DigishowSlot::getSlotInfo()
     info["envelopeSustain"] = m_slotInfo.envelopeSustain;
     info["envelopeRelease"] = m_slotInfo.envelopeRelease;
 
+    info["outputSmoothing"] = m_slotInfo.outputSmoothing;
     info["outputInterval" ] = m_slotInfo.outputInterval;
 
     return info;
@@ -268,20 +278,22 @@ int DigishowSlot::setLinked(bool linked) {
 
 void DigishowSlot::updateSlotInfoItem(const QString &name, const QVariant &value)
 {
-    if      ( name == "inputLow"       ) m_slotInfo.inputLow        = MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "inputHigh"      ) m_slotInfo.inputHigh       = MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "outputLow"      ) m_slotInfo.outputLow       = MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "outputHigh"     ) m_slotInfo.outputHigh      = MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "inputInverted"  ) m_slotInfo.inputInverted   = value.toBool();
-    else if ( name == "outputInverted" ) m_slotInfo.outputInverted  = value.toBool();
-    else if ( name == "outputLowAsZero") m_slotInfo.outputLowAsZero = value.toBool();
-    else if ( name == "envelopeAttack" ) m_slotInfo.envelopeAttack  = MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "envelopeHold"   ) m_slotInfo.envelopeHold    = MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "envelopeDecay"  ) m_slotInfo.envelopeDecay   = MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "envelopeSustain") m_slotInfo.envelopeSustain = MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "envelopeRelease") m_slotInfo.envelopeRelease = MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "outputSmoothing") m_slotInfo.outputSmoothing = MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "outputInterval" ) m_slotInfo.outputInterval  = MINMAX(value.toInt(), 0, 60000);
+    static dgsSlotInfo newSlotInfo;
+
+    if      ( name == "inputLow"       ) m_slotInfo.inputLow        = value.isNull() ? newSlotInfo.inputLow        : MINMAX(value.toDouble(), 0.0, 1.0);
+    else if ( name == "inputHigh"      ) m_slotInfo.inputHigh       = value.isNull() ? newSlotInfo.inputHigh       : MINMAX(value.toDouble(), 0.0, 1.0);
+    else if ( name == "outputLow"      ) m_slotInfo.outputLow       = value.isNull() ? newSlotInfo.outputLow       : MINMAX(value.toDouble(), 0.0, 1.0);
+    else if ( name == "outputHigh"     ) m_slotInfo.outputHigh      = value.isNull() ? newSlotInfo.outputHigh      : MINMAX(value.toDouble(), 0.0, 1.0);
+    else if ( name == "inputInverted"  ) m_slotInfo.inputInverted   = value.isNull() ? newSlotInfo.inputInverted   : value.toBool();
+    else if ( name == "outputInverted" ) m_slotInfo.outputInverted  = value.isNull() ? newSlotInfo.outputInverted  : value.toBool();
+    else if ( name == "outputLowAsZero") m_slotInfo.outputLowAsZero = value.isNull() ? newSlotInfo.outputLowAsZero : value.toBool();
+    else if ( name == "envelopeAttack" ) m_slotInfo.envelopeAttack  = value.isNull() ? newSlotInfo.envelopeAttack  : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "envelopeHold"   ) m_slotInfo.envelopeHold    = value.isNull() ? newSlotInfo.envelopeHold    : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "envelopeDecay"  ) m_slotInfo.envelopeDecay   = value.isNull() ? newSlotInfo.envelopeDecay   : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "envelopeSustain") m_slotInfo.envelopeSustain = value.isNull() ? newSlotInfo.envelopeSustain : MINMAX(value.toDouble(), 0.0, 1.0);
+    else if ( name == "envelopeRelease") m_slotInfo.envelopeRelease = value.isNull() ? newSlotInfo.envelopeRelease : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "outputSmoothing") m_slotInfo.outputSmoothing = value.isNull() ? newSlotInfo.outputSmoothing : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "outputInterval" ) m_slotInfo.outputInterval  = value.isNull() ? newSlotInfo.outputInterval  : MINMAX(value.toInt(), 0, 60000);
 }
 
 void DigishowSlot::updateSlotOuputInterval()

@@ -1766,47 +1766,52 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>当达到输出下限时输出零值</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="132"/>
+        <location filename="../MwSlotOptionsView.qml" line="128"/>
+        <source>Output Smoothing</source>
+        <translation>平滑输出信号量</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="156"/>
         <source>Input-output Mapping</source>
         <translation>输入输出信号量映射</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="180"/>
+        <location filename="../MwSlotOptionsView.qml" line="204"/>
         <source>Input Range</source>
         <translation>输入信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="222"/>
+        <location filename="../MwSlotOptionsView.qml" line="246"/>
         <source>Output Range</source>
         <translation>输出信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="243"/>
+        <location filename="../MwSlotOptionsView.qml" line="267"/>
         <source>Output Envelope</source>
         <translation>输出信号包络</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="307"/>
+        <location filename="../MwSlotOptionsView.qml" line="331"/>
         <source>Attack</source>
         <translation>A 渐入时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="330"/>
+        <location filename="../MwSlotOptionsView.qml" line="354"/>
         <source>Hold</source>
         <translation>H 保持时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="353"/>
+        <location filename="../MwSlotOptionsView.qml" line="377"/>
         <source>Decay</source>
         <translation>D 衰减时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="377"/>
+        <location filename="../MwSlotOptionsView.qml" line="401"/>
         <source>Sustain</source>
         <translation>S 延续水平</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="400"/>
+        <location filename="../MwSlotOptionsView.qml" line="424"/>
         <source>Release</source>
         <translation>R 渐出时长</translation>
     </message>
