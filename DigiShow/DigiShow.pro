@@ -87,7 +87,8 @@ win32: {
     RC_ICONS = $$PWD/icons/icon.ico
 }
 unix:!macx {
-
+    INCLUDEPATH += $$PWD/../rtmidi/include
+    LIBS += -L$$PWD/../rtmidi/lib/linux -lrtmidi
 }
 macx: {
     INCLUDEPATH += $$PWD/../rtmidi/include
