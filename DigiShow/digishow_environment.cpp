@@ -302,8 +302,8 @@ int DigishowEnvironment::makeEndpoint(int interfaceIndex, QVariantMap endpointOp
     }
 
     // no matched endpoint found, now need make a new one
-    QString endpointType = endpointOptions["type"].toString();
-    QString endpointName = endpointOptions["name"].toString();
+    QString endpointType = endpointOptions.value("type").toString();
+    QString endpointName = endpointOptions.value("name").toString();
     if (endpointType.isEmpty()) return -1;
     if (endpointName.isEmpty()) {
 
@@ -341,7 +341,7 @@ QString DigishowEnvironment::makeMedia(int interfaceIndex, const QString &mediaU
     if (interface == nullptr) return mediaName;
 
     // confirm media url and type are valid
-    if (mediaUrl.isEmpty() || mediaType.isEmpty()) return mediaName;
+    if (mediaUrl.isEmpty() || mediaUrl == "file://" || mediaType.isEmpty()) return mediaName;
 
     // get media list
     QVariantList mediaList = interface->interfaceOptions()->value("media").toList();
@@ -382,9 +382,9 @@ QString DigishowEnvironment::makeMedia(int interfaceIndex, const QString &mediaU
         mediaList.append(mediaOptions);
         interface->setInterfaceOption("media", mediaList);
 
-        // add the new media view to screen
-        if (interface->interfaceInfo()->type == INTERFACE_SCREEN) {
-            static_cast<DgsScreenInterface*>(interface)->loadMedia(mediaOptions);
+        // load the new media into the interface object
+        if (interface->isInterfaceOpened()) {
+            interface->loadMedia(mediaOptions);
         }
     }
 
@@ -440,23 +440,18 @@ QString DigishowEnvironment::getLightControlName(int control, bool shortName)
     return "";
 }
 
-QString DigishowEnvironment::getMediaControlName(int control, bool shortName)
+QString DigishowEnvironment::getMediaControlName(int control, bool forScreen)
 {
     switch(control) {
+        case CONTROL_MEDIA_START:    return forScreen ? tr("Show")      : tr("Play");
+        case CONTROL_MEDIA_STOP:     return forScreen ? tr("Hide")      : tr("Stop");
+        case CONTROL_MEDIA_STOP_ALL: return forScreen ? tr("Clear All") : tr("Stop All");
+
         case CONTROL_MEDIA_OPACITY:  return tr("Opacity");
         case CONTROL_MEDIA_SCALE:    return tr("Scale");
         case CONTROL_MEDIA_ROTATION: return tr("Rotation");
         case CONTROL_MEDIA_XOFFSET:  return tr("X Offset");
         case CONTROL_MEDIA_YOFFSET:  return tr("Y Offset");
-
-        case CONTROL_MEDIA_SHOW:     return tr("Show");
-        case CONTROL_MEDIA_HIDE:     return tr("Hide");
-        case CONTROL_MEDIA_CLEAR:    return tr("Clear All");
-
-        case CONTROL_VIDEO_PLAY:     return shortName ? tr("Play")     : tr("Video Play");
-        case CONTROL_VIDEO_REPEAT:   return shortName ? tr("Repeat")   : tr("Video Repeat");
-        case CONTROL_VIDEO_VOLUME:   return shortName ? tr("Volume")   : tr("Video Volume");
-        case CONTROL_VIDEO_POSITION: return shortName ? tr("Position") : tr("Video Position");
     }
     return "";
 }

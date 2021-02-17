@@ -217,6 +217,16 @@ bool AppUtilities::fileExists(const QString & path)
     return QFile(path).exists();
 }
 
+void AppUtilities::showFileInShell(const QString & path)
+{
+#ifdef Q_OS_MAC
+    MacUtilities::showFileInFinder(path);
+#endif
+#ifdef Q_OS_WIN
+    QProcess::startDetached("explorer.exe", {"/select,", QDir::toNativeSeparators(path)});
+#endif
+}
+
 void AppUtilities::setMacWindowIsModified(QWindow *window, bool isModified)
 {
 #ifdef Q_OS_MAC

@@ -33,9 +33,35 @@ public:
     Q_INVOKABLE static bool makePath(const QString & path);
     Q_INVOKABLE static bool fileExists(const QString & path);
 
+    Q_INVOKABLE static void showFileInShell(const QString & path);
+
     Q_INVOKABLE static void setMacWindowIsModified(QWindow *window, bool isModified);
     Q_INVOKABLE static void setMacWindowTitleWithFile(QWindow *window, const QString &filepath);
     Q_INVOKABLE static void setMacWindowWithoutTitlebar(QWindow *window);
+
+    Q_INVOKABLE static bool isMac() {
+#ifdef Q_OS_MAC
+        return true;
+#else
+        return false;
+#endif
+    }
+
+    Q_INVOKABLE static bool isWindows() {
+#ifdef Q_OS_WIN
+        return true;
+#else
+        return false;
+#endif
+    }
+
+    Q_INVOKABLE static bool isLinux() {
+#ifdef Q_OS_LINUX
+        return true;
+#else
+        return false;
+#endif
+    }
 
 signals:
 

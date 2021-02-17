@@ -17,9 +17,10 @@ public:
     int closeInterface() override;
     int sendData(int endpointIndex, dgsSignalData data) override;
 
-    void loadMedia(const QVariantMap &mediaOptions);
+    int loadMedia(const QVariantMap &mediaOptions) override;
 
     static QVariantList listOnline();
+    static QString getUniqueScreenName(int index);
 
 signals:
 
@@ -31,9 +32,6 @@ private:
     QQmlComponent *m_qmlComponentPlayer;
     QObject* m_player;
 
-    QVariantList cleanMediaList();
-
-    static QString getUniqueScreenName(int index);
     static QString getPropertyName(int control);
     static double  getPropertyValue(int control, dgsSignalData data);
 };

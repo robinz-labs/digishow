@@ -137,6 +137,15 @@ int DigishowInterface::sendData(int endpointIndex, dgsSignalData data)
     return ERR_NONE;
 }
 
+int DigishowInterface::loadMedia(const QVariantMap &mediaOptions)
+{
+    Q_UNUSED(mediaOptions)
+
+    if (!m_isInterfaceOpened) return ERR_DEVICE_NOT_READY;
+
+    return ERR_NONE;
+}
+
 void DigishowInterface::updateMetadata()
 {
     // reset metadata first
@@ -152,6 +161,8 @@ void DigishowInterface::updateMetadata()
     else if (typeName == "dmx"   ) m_interfaceInfo.type = INTERFACE_DMX;
     else if (typeName == "artnet") m_interfaceInfo.type = INTERFACE_ARTNET;
     else if (typeName == "screen") m_interfaceInfo.type = INTERFACE_SCREEN;
+    else if (typeName == "aplay" ) m_interfaceInfo.type = INTERFACE_APLAY;
+    else if (typeName == "mplay" ) m_interfaceInfo.type = INTERFACE_MPLAY;
     else if (typeName == "pipe"  ) m_interfaceInfo.type = INTERFACE_PIPE;
     else if (typeName == "launch") m_interfaceInfo.type = INTERFACE_LAUNCH;
 
@@ -189,6 +200,14 @@ void DigishowInterface::updateMetadata()
         if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_SCREEN_LOCAL;
         else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_SCREEN_REMOTE;
         break;
+    case INTERFACE_APLAY:
+        if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_APLAY_LOCAL;
+        else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_APLAY_REMOTE;
+        break;
+    case INTERFACE_MPLAY:
+        if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_MPLAY_LOCAL;
+        else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_MPLAY_REMOTE;
+        break;
     case INTERFACE_PIPE:
         if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_PIPE_LOCAL;
         else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_PIPE_REMOTE;
@@ -207,6 +226,8 @@ void DigishowInterface::updateMetadata()
              m_interfaceInfo.type==INTERFACE_HUE ||
              m_interfaceInfo.type==INTERFACE_DMX ||
              m_interfaceInfo.type==INTERFACE_SCREEN ||
+             m_interfaceInfo.type==INTERFACE_APLAY ||
+             m_interfaceInfo.type==INTERFACE_MPLAY ||
              m_interfaceInfo.type==INTERFACE_LAUNCH)
         m_interfaceInfo.input = false;
     else
@@ -254,6 +275,14 @@ void DigishowInterface::updateMetadata()
     case INTERFACE_SCREEN:
         labelType = tr("Screen");
         labelIdentity = m_interfaceOptions.value("screen").toString();
+        break;
+    case INTERFACE_APLAY:
+        labelType = tr("Audio Player");
+        labelIdentity = m_interfaceOptions.value("port").toString();
+        break;
+    case INTERFACE_MPLAY:
+        labelType = tr("MIDI Player");
+        labelIdentity = m_interfaceOptions.value("port").toString();
         break;
     case INTERFACE_PIPE:
         if (m_interfaceInfo.mode==INTERFACE_PIPE_REMOTE) {
@@ -326,6 +355,12 @@ void DigishowInterface::updateMetadata()
             if      (typeName == "light"      ) endpointInfo.type = ENDPOINT_SCREEN_LIGHT;
             else if (typeName == "media"      ) endpointInfo.type = ENDPOINT_SCREEN_MEDIA;
             else if (typeName == "canvas"     ) endpointInfo.type = ENDPOINT_SCREEN_CANVAS;
+            break;
+        case INTERFACE_APLAY:
+            if      (typeName == "media"      ) endpointInfo.type = ENDPOINT_APLAY_MEDIA;
+            break;
+        case INTERFACE_MPLAY:
+            if      (typeName == "media"      ) endpointInfo.type = ENDPOINT_MPLAY_MEDIA;
             break;
         case INTERFACE_PIPE:
             if      (typeName == "analog"     ) endpointInfo.type = ENDPOINT_PIPE_ANALOG;
@@ -488,9 +523,9 @@ void DigishowInterface::updateMetadata()
         case ENDPOINT_SCREEN_MEDIA:
             endpointInfo.output = true;
             switch (endpointInfo.control) {
-            case CONTROL_MEDIA_SHOW:
-            case CONTROL_MEDIA_HIDE:
-            case CONTROL_MEDIA_CLEAR:
+            case CONTROL_MEDIA_START:
+            case CONTROL_MEDIA_STOP:
+            case CONTROL_MEDIA_STOP_ALL:
                 endpointInfo.signal = DATA_SIGNAL_BINARY;
                 break;
             case CONTROL_MEDIA_ROTATION:
@@ -525,6 +560,18 @@ void DigishowInterface::updateMetadata()
             }
             endpointInfo.labelEPT = tr("Canvas");
             endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control, true);
+            break;
+        case ENDPOINT_APLAY_MEDIA:
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.output = true;
+            endpointInfo.labelEPT = tr("Audio Clip");
+            endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control);
+            break;
+        case ENDPOINT_MPLAY_MEDIA:
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.output = true;
+            endpointInfo.labelEPT = tr("MIDI Clip");
+            endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control);
             break;
         case ENDPOINT_PIPE_ANALOG:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
@@ -589,5 +636,29 @@ int DigishowInterface::initEndpointValue(int endpointIndex)
 
     return ERR_NONE;
 }
+
+QVariantList DigishowInterface::cleanMediaList()
+{
+    // clean up media list (delete unused media)
+
+    QVariantList mediaList = m_interfaceOptions.value("media").toList();
+    int mediaCount = mediaList.length();
+    for (int n = mediaCount-1 ; n >= 0 ; n--) {
+        QString mediaName = mediaList[n].toMap().value("name").toString();
+        bool exists = false;
+        for (int i = 0 ; i < endpointCount() ; i++) {
+            if (m_endpointOptionsList[i].value("media").toString() == mediaName &&
+                m_endpointInfoList[i].enabled) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) mediaList.removeAt(n);
+    }
+    if (mediaList.length() < mediaCount) m_interfaceOptions["media"] = mediaList;
+
+    return mediaList;
+}
+
 
 

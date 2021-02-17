@@ -12,6 +12,11 @@
 #include "dgs_pipe_interface.h"
 #include "dgs_launch_interface.h"
 
+#ifdef DIGISHOW_EXPERIMENTAL
+#include "dgs_aplay_interface.h"
+#include "dgs_mplay_interface.h"
+#endif
+
 DigishowApp::DigishowApp(QObject *parent) : QObject(parent)
 {
     m_running = false;
@@ -88,14 +93,15 @@ bool DigishowApp::loadFile(const QString & filepath)
 
         // repair media list
         if (dataInterface.contains("media")) {
-            QVariantList dataMediaList = dataInterface["media"].toList();
+            QVariantList dataMediaList = dataInterface.value("media").toList();
             for (int i=0 ; i<dataMediaList.length() ; i++) {
                 QVariantMap dataMedia = dataMediaList[i].toMap();
-                QString url = dataMedia["url"].toString();
-                QString file = dataMedia["file"].toString();
-                if (QUrl(url).isLocalFile() &&
-                    validateFileUrl(url) == false && validateFilePath(file) == true) {
-                    dataMedia["url"] = convertFilePathToUrl(file);
+                QString url = dataMedia.value("url").toString();
+                QString file = dataMedia.value("file").toString();
+                if (validateFilePath(file)) {
+                    if (url.isEmpty() || (QUrl(url).isLocalFile() && !validateFileUrl(url))) {
+                        dataMedia["url"] = convertFilePathToUrl(file);
+                    }
                 }
                 dataMediaList[i] = dataMedia;
             }
@@ -118,7 +124,11 @@ bool DigishowApp::loadFile(const QString & filepath)
         else if (interfaceType=="artnet") interface = new DgsArtnetInterface(this);
         else if (interfaceType=="screen") interface = new DgsScreenInterface(this);
         else if (interfaceType=="pipe")   interface = new DgsPipeInterface(this);
-        else if (interfaceType=="launch") interface = new DgsLaunchInterface(this);
+        else if (interfaceType=="launch") interface = new DgsLaunchInterface(this);  
+#ifdef DIGISHOW_EXPERIMENTAL
+        else if (interfaceType=="aplay")  interface = new DgsAPlayInterface(this);
+        else if (interfaceType=="mplay")  interface = new DgsMPlayInterface(this);
+#endif
         else                              interface = new DigishowInterface(this);
 
         interface->setInterfaceOptions(dataInterface);
@@ -171,7 +181,7 @@ bool DigishowApp::loadFile(const QString & filepath)
     }
 
     // set up launches
-    if (data.contains("launches")) m_launches = data["launches"].toMap();
+    if (data.contains("launches")) m_launches = data.value("launches").toMap();
 
     emit filepathChanged();
     emit interfaceListChanged();
@@ -203,10 +213,10 @@ bool DigishowApp::saveFile(const QString & filepath, const QList<int> & slotList
 
         // repair media list
         if (dataInterface.contains("media")) {
-            QVariantList dataMediaList = dataInterface["media"].toList();
+            QVariantList dataMediaList = dataInterface.value("media").toList();
             for (int i=0 ; i<dataMediaList.length() ; i++) {
                 QVariantMap dataMedia = dataMediaList[i].toMap();
-                dataMedia["file"] = convertFileUrlToPath(dataMedia["url"].toString());
+                dataMedia["file"] = convertFileUrlToPath(dataMedia.value("url").toString());
                 dataMediaList[i] = dataMedia;
             }
             dataInterface["media"] = dataMediaList;
@@ -619,7 +629,7 @@ QVariantMap DigishowApp::getLaunchOptions(const QString &launchName)
 bool DigishowApp::setLaunchOption(const QString &launchName, const QString &optionName, const QVariant &optionValue)
 {
     QVariantMap launch;
-    if (m_launches.contains(launchName)) launch = m_launches[launchName].toMap();
+    if (m_launches.contains(launchName)) launch = m_launches.value(launchName).toMap();
     launch[optionName] = optionValue;
     m_launches[launchName] = launch;
 

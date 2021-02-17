@@ -113,7 +113,7 @@ Item {
         label.text: qsTr("Opt ...")
         box.radius: 3
         visible: textMediaUrl.visible &&
-                 menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaShow
+                 menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart
 
         onClicked: popupMediaOptions.open()
     }
@@ -130,7 +130,7 @@ Item {
         text: "file://"
         input.anchors.rightMargin: 30
         visible: menuScreenType.selectedItemValue === DigishowEnvironment.EndpointScreenMedia &&
-                 menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaClear
+                 menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll
 
         onTextEdited: isModified = true
         onEditingFinished: if (text === "") text = "file://"
@@ -173,7 +173,7 @@ Item {
         id: popupMediaOptions
 
         width: 280
-        height: 615
+        height: 655
         x: 60
         y: -height-10
         transformOrigin: Popup.BottomRight
@@ -208,7 +208,7 @@ Item {
             }
 
             CheckBox {
-                id: checkMediaShowAlone
+                id: checkMediaAlone
 
                 height: 28
                 anchors.left: parent.left
@@ -428,16 +428,40 @@ Item {
             }
 
             CSpinBox {
+                id: spinVideoSpeed
+
+                width: 120
+                anchors.left: parent.left
+                anchors.leftMargin: 105
+                from: 10
+                to: 400
+                value: 100
+                stepSize: 5
+                unit: qsTr("%")
+
+                onValueModified: isModified = true
+
+                Text {
+                    anchors.right: parent.left
+                    anchors.rightMargin: 15
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: "#cccccc"
+                    font.pixelSize: 12
+                    text: qsTr("Speed")
+                }
+            }
+
+            CSpinBox {
                 id: spinVideoPosition
 
                 width: 120
                 anchors.left: parent.left
                 anchors.leftMargin: 105
                 from: 0
-                to: 99999
+                to: 99999000
                 value: 0
-                stepSize: 1
-                unit: qsTr("sec")
+                stepSize: 1000
+                unit: qsTr("ms")
 
                 onValueModified: isModified = true
 
@@ -495,7 +519,10 @@ Item {
                 label.text: qsTr("Defaults")
                 box.radius: 3
 
-                onClicked: setMediaOptions({})
+                onClicked: {
+                    setMediaOptions({})
+                    isModified = true
+                }
             }
 
         }
@@ -547,9 +574,9 @@ Item {
         if (menuMediaControl.count === 0) {
             items = []
 
-            v = DigishowEnvironment.ControlMediaShow;     items.push({ text: digishow.getMediaControlName(v), value: v })
-            v = DigishowEnvironment.ControlMediaHide;     items.push({ text: digishow.getMediaControlName(v), value: v })
-            v = DigishowEnvironment.ControlMediaClear;    items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaStart;    items.push({ text: digishow.getMediaControlName(v, true), value: v })
+            v = DigishowEnvironment.ControlMediaStop;     items.push({ text: digishow.getMediaControlName(v, true), value: v })
+            v = DigishowEnvironment.ControlMediaStopAll;  items.push({ text: digishow.getMediaControlName(v, true), value: v })
 
             items.push({ text: "-", value: -1 })
 
@@ -558,11 +585,6 @@ Item {
             v = DigishowEnvironment.ControlMediaRotation; items.push({ text: digishow.getMediaControlName(v), value: v })
             v = DigishowEnvironment.ControlMediaXOffset;  items.push({ text: digishow.getMediaControlName(v), value: v })
             v = DigishowEnvironment.ControlMediaYOffset;  items.push({ text: digishow.getMediaControlName(v), value: v })
-
-            //v = DigishowEnvironment.ControlVideoPlay;     items.push({ text: digishow.getMediaControlName(v), value: v })
-            //v = DigishowEnvironment.ControlVideoRepeat;   items.push({ text: digishow.getMediaControlName(v), value: v })
-            //v = DigishowEnvironment.ControlVideoVolume;   items.push({ text: digishow.getMediaControlName(v), value: v })
-            //v = DigishowEnvironment.ControlVideoPosition; items.push({ text: digishow.getMediaControlName(v), value: v })
 
             menuMediaControl.optionItems = items
             menuMediaControl.selectedIndex = 0
@@ -575,33 +597,45 @@ Item {
     function setMediaOptions(options) {
 
         var v
-        v = options["mediaShowAlone"];     checkMediaShowAlone.checked = (v === undefined ? true : v )
-        v = options["mediaFadeIn"];        spinMediaFadeIn.value       = (v === undefined ? 300  : v )
-        v = options["mediaOpacity"];       spinMediaOpacity.value      = (v === undefined ? 100  : v / 100)
-        v = options["mediaScale"];         spinMediaScale.value        = (v === undefined ? 50   : v / 100)
-        v = options["mediaRotation"];      spinMediaRotation.value     = (v === undefined ? 0    : v / 10 )
-        v = options["mediaXOffset"];       spinMediaXOffset.value      = (v === undefined ? 50   : v / 100)
-        v = options["mediaYOffset"];       spinMediaYOffset.value      = (v === undefined ? 50   : v / 100)
-        v = options["mediaVideoRepeat"];   checkVideoRepeat.checked    = (v === undefined ? true : v )
-        v = options["mediaVideoVolume"];   spinVideoVolume.value       = (v === undefined ? 100  : v / 100)
-        v = options["mediaVideoPosition"]; spinVideoPosition.value     = (v === undefined ? 0    : v )
-        v = options["mediaWebJavascript"]; textWebJavascript.text      = (v === undefined ? ""   : v )
+        v = options["mediaFadeIn"];        spinMediaFadeIn.value    = (v === undefined ? 300  : v )
+        v = options["mediaOpacity"];       spinMediaOpacity.value   = (v === undefined ? 100  : v / 100)
+        v = options["mediaScale"];         spinMediaScale.value     = (v === undefined ? 50   : v / 100)
+        v = options["mediaRotation"];      spinMediaRotation.value  = (v === undefined ? 0    : v / 10 )
+        v = options["mediaXOffset"];       spinMediaXOffset.value   = (v === undefined ? 50   : v / 100)
+        v = options["mediaYOffset"];       spinMediaYOffset.value   = (v === undefined ? 50   : v / 100)
+
+        // deprecated !!!
+        v = options["mediaShowAlone"];     checkMediaAlone.checked  = (v === undefined ? true : v )
+        v = options["mediaVideoRepeat"];   checkVideoRepeat.checked = (v === undefined ? true : v )
+        v = options["mediaVideoVolume"];   spinVideoVolume.value    = (v === undefined ? 100  : v / 100)
+        v = options["mediaVideoSpeed"];    spinVideoSpeed.value     = (v === undefined ? 100  : v / 100)
+        v = options["mediaVideoPosition"]; spinVideoPosition.value  = (v === undefined ? 0    : v * 1000)
+        v = options["mediaWebJavascript"]; textWebJavascript.text   = (v === undefined ? ""   : v )
+
+        // replaced with
+        v = options["mediaAlone"];         if (v !== undefined) checkMediaAlone.checked =  v
+        v = options["mediaRepeat"];        if (v !== undefined) checkVideoRepeat.checked =  v
+        v = options["mediaVolume"];        if (v !== undefined) spinVideoVolume.value = v / 100
+        v = options["mediaSpeed"];         if (v !== undefined) spinVideoSpeed.value = v / 100
+        v = options["mediaPosition"];      if (v !== undefined) spinVideoPosition.value = v
+        v = options["mediaScript"];        if (v !== undefined) textWebJavascript.text =  v
     }
 
     function getMediaOptions() {
 
         var options = {
-            mediaShowAlone:     checkMediaShowAlone.checked,
-            mediaFadeIn:        spinMediaFadeIn.value,
-            mediaOpacity:       spinMediaOpacity.value * 100,
-            mediaScale:         spinMediaScale.value * 100,
-            mediaRotation:      spinMediaRotation.value * 10,
-            mediaXOffset:       spinMediaXOffset.value * 100,
-            mediaYOffset:       spinMediaYOffset.value * 100,
-            mediaVideoRepeat:   checkVideoRepeat.checked,
-            mediaVideoVolume:   spinVideoVolume.value * 100,
-            mediaVideoPosition: spinVideoPosition.value,
-            mediaWebJavascript: textWebJavascript.text
+            mediaAlone:     checkMediaAlone.checked,
+            mediaFadeIn:    spinMediaFadeIn.value,
+            mediaOpacity:   spinMediaOpacity.value * 100,
+            mediaScale:     spinMediaScale.value * 100,
+            mediaRotation:  spinMediaRotation.value * 10,
+            mediaXOffset:   spinMediaXOffset.value * 100,
+            mediaYOffset:   spinMediaYOffset.value * 100,
+            mediaRepeat:    checkVideoRepeat.checked,
+            mediaVolume:    spinVideoVolume.value * 100,
+            mediaSpeed:     spinVideoSpeed.value * 100,
+            mediaPosition:  spinVideoPosition.value,
+            mediaScript:    textWebJavascript.text
         }
 
         return options
@@ -620,11 +654,9 @@ Item {
 
         } else if (endpointType === DigishowEnvironment.EndpointScreenMedia) {
 
-            if (mediaControl === DigishowEnvironment.ControlMediaShow ||
-                mediaControl === DigishowEnvironment.ControlMediaHide ||
-                mediaControl === DigishowEnvironment.ControlMediaClear ||
-                mediaControl === DigishowEnvironment.ControlVideoPlay ||
-                mediaControl === DigishowEnvironment.ControlVideoRepeat) {
+            if (mediaControl === DigishowEnvironment.ControlMediaStart ||
+                mediaControl === DigishowEnvironment.ControlMediaStop ||
+                mediaControl === DigishowEnvironment.ControlMediaStopAll) {
 
                 enables["optInitialB"] = true
             } else {

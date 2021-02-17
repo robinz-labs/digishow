@@ -20,6 +20,7 @@ public:
     int sendData(int endpointIndex, dgsSignalData data) override;
 
     static QVariantList listOnline();
+    static QString getUniqueMidiPortName(RtMidi *midi, unsigned int index);
 
 signals:
 
@@ -36,7 +37,6 @@ private:
     int findEndpointWidthMidiControl(int channel, int control);
     int findEndpointWidthMidiProgram(int channel);
 
-    static QString getUniqueMidiPortName(RtMidi *midi, unsigned int index);
 };
 
 #endif // DGSMIDIINTERFACE_H

@@ -22,7 +22,7 @@ int DgsPipeInterface::openInterface()
 
     // start a websocket server for local pipe (accepted remote link)
     if (m_interfaceInfo.mode == INTERFACE_PIPE_LOCAL &&
-        m_interfaceOptions["acceptRemote"].toInt()) {
+        m_interfaceOptions.value("acceptRemote").toInt()) {
 
         bool done = startWebsocketServer();
         if (!done) return ERR_DEVICE_NOT_READY;
@@ -79,7 +79,7 @@ bool DgsPipeInterface::startWebsocketServer()
     m_server = new QWebSocketServer(QString("digishow"), QWebSocketServer::NonSecureMode);
     m_websocketServer = nullptr;
 
-    int websocketPort = m_interfaceOptions["tcpPort"].toInt();
+    int websocketPort = m_interfaceOptions.value("tcpPort").toInt();
     if (!m_server->listen(QHostAddress::Any, websocketPort)) return false;
 
     connect(m_server, SIGNAL(newConnection()), this, SLOT(onWebsocketServerNewConnection()));
@@ -112,8 +112,8 @@ bool DgsPipeInterface::startWebsocketClient()
     connect(websocket, SIGNAL(textMessageReceived(QString)), this, SLOT(onWebsocketClientMessageReceived(QString)));
 
     QString url = QString("ws://%1:%2")
-            .arg(m_interfaceOptions["tcpHost"].toString())
-            .arg(m_interfaceOptions["tcpPort"].toInt());
+            .arg(m_interfaceOptions.value("tcpHost").toString())
+            .arg(m_interfaceOptions.value("tcpPort").toInt());
 
     websocket->open(QUrl(url));
 

@@ -167,7 +167,7 @@ int DgsMidiInterface::sendData(int endpointIndex, dgsSignalData data)
 
         // call rtmidi to send midi message
         std::vector<unsigned char> message;
-        message.push_back(0xC0 +                                 // control change
+        message.push_back(0xC0 +                                 // program change
                           static_cast<unsigned char>(channel));  // channel number
         message.push_back(static_cast<unsigned char>(value));    // program value
 

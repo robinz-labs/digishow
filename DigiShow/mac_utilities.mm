@@ -6,6 +6,14 @@ MacUtilities::MacUtilities(QObject *parent) : QObject(parent)
 
 }
 
+void MacUtilities::showFileInFinder(const QString &filepath)
+{
+    NSString *strFilepath = [NSString stringWithUTF8String:filepath.toUtf8().constData()];
+    NSURL *fileURL = [NSURL fileURLWithPath:strFilepath];
+    NSArray *fileURLs = [NSArray arrayWithObjects:fileURL, nil];
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:fileURLs];
+}
+
 void MacUtilities::setWindowIsModified(QWindow *window, bool isModified)
 {
     NSWindow *win = [(NSView *)window->winId() window];
@@ -16,7 +24,8 @@ void MacUtilities::setWindowTitleWithFile(QWindow *window, const QString &filepa
 {
     NSString *strFilepath = [NSString stringWithUTF8String:filepath.toUtf8().constData()];
     NSWindow *win = [(NSView *)window->winId() window];
-    [win setRepresentedFilename:strFilepath];
+    [win setRepresentedFilename: strFilepath];
+    //[win setRepresentedURL: [NSURL fileURLWithPath:strFilepath]];
 }
 
 void MacUtilities::setWindowWithoutTitlebar(QWindow *window)

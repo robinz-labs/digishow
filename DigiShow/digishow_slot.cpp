@@ -26,8 +26,9 @@ DigishowSlot::DigishowSlot(QObject *parent) : QObject(parent)
     m_dataOutTimer.setSingleShot(true);
     connect(&m_dataOutTimer, SIGNAL(timeout()), this, SLOT(onDataOutTimerFired()));
 
-    // get ready to run envelope
     m_elapsedTimer.start();
+
+    // get ready to run envelope
     m_envelopeTimeOn = 0;
     m_envelopeTimeOff = 0;
     m_envelopeTimeLastUpdated = 0;
@@ -36,7 +37,6 @@ DigishowSlot::DigishowSlot(QObject *parent) : QObject(parent)
     connect(&m_envelopeTimer, SIGNAL(timeout()), this, SLOT(onEnvelopeTimerFired()));
 
     // get ready to run smoothing
-    m_smoothingTimer.stop();
     m_smoothingTimeStart = 0;
     m_smoothingTimer.setInterval(20);
     m_smoothingTimer.setSingleShot(false);

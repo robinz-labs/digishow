@@ -158,9 +158,9 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
             // show or hide media clips on screen (based on qml)
 
             int control = m_endpointInfoList[endpointIndex].control;
-            QString media = m_endpointOptionsList[endpointIndex]["media"].toString();
+            QString media = m_endpointOptionsList[endpointIndex].value("media").toString();
 
-            if (control == CONTROL_MEDIA_SHOW) {
+            if (control == CONTROL_MEDIA_START) {
 
                 if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
                 if (data.bValue) {
@@ -174,7 +174,7 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
 
                 return ERR_NONE;
 
-            } else if (control == CONTROL_MEDIA_HIDE) {
+            } else if (control == CONTROL_MEDIA_STOP) {
 
                 if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
                 if (data.bValue) {
@@ -187,7 +187,7 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
 
                 return ERR_NONE;
 
-            } else if (control == CONTROL_MEDIA_CLEAR) {
+            } else if (control == CONTROL_MEDIA_STOP_ALL) {
 
                 if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
                 if (data.bValue) {
@@ -225,12 +225,17 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
     return ERR_NONE;
 }
 
-void DgsScreenInterface::loadMedia(const QVariantMap &mediaOptions)
+int DgsScreenInterface::loadMedia(const QVariantMap &mediaOptions)
 {
-    QVariant r;
+    int r = DigishowInterface::loadMedia(mediaOptions);
+    if ( r != ERR_NONE) return r;
+
+    QVariant rr;
     QMetaObject::invokeMethod(
                 m_player, "loadMedia", Qt::DirectConnection,
-                Q_RETURN_ARG(QVariant, r), Q_ARG(QVariant, mediaOptions));
+                Q_RETURN_ARG(QVariant, rr), Q_ARG(QVariant, mediaOptions));
+
+    return ERR_NONE;
 }
 
 QVariantList DgsScreenInterface::listOnline()
@@ -249,29 +254,6 @@ QVariantList DgsScreenInterface::listOnline()
     }
 
     return list;
-}
-
-QVariantList DgsScreenInterface::cleanMediaList()
-{
-    // clean up media list (delete unused media)
-
-    QVariantList mediaList = m_interfaceOptions["media"].toList();
-    int mediaCount = mediaList.length();
-    for (int n = mediaCount-1 ; n >= 0 ; n--) {
-        QString mediaName = mediaList[n].toMap().value("name").toString();
-        bool exists = false;
-        for (int i = 0 ; i < endpointCount() ; i++) {
-            if (m_endpointOptionsList[i].value("media").toString() == mediaName &&
-                m_endpointInfoList[i].enabled) {
-                exists = true;
-                break;
-            }
-        }
-        if (!exists) mediaList.removeAt(n);
-    }
-    if (mediaList.length() < mediaCount) m_interfaceOptions["media"] = mediaList;
-
-    return mediaList;
 }
 
 QString DgsScreenInterface::getUniqueScreenName(int index)

@@ -43,6 +43,9 @@ public:
     virtual int init(); // called after slot service got ready
     virtual int sendData(int endpointIndex, dgsSignalData data);
 
+    // media
+    virtual int loadMedia(const QVariantMap &mediaOptions);
+
     Q_INVOKABLE bool isInterfaceOpened() { return m_isInterfaceOpened; }
 
 signals:
@@ -66,6 +69,10 @@ protected:
 
     // initialize endpoint signal
     int initEndpointValue(int endpointIndex);
+
+    // clean up media list (delete unused media)
+    // only for the interface that contains a media list
+    QVariantList cleanMediaList();
 };
 
 #endif // DIGISHOWINTERFACE_H

@@ -183,7 +183,10 @@ QtObject {
         var view = getMediaViewByName(mediaName)
         if (view !== null) {
 
-            var v = options["mediaShowAlone"]; mediaShowAlone = (v === undefined ? true : v )
+            mediaShowAlone = true
+            var v
+            v = options["mediaShowAlone"]; if (v !== undefined) mediaShowAlone = v // deprecated !!!
+            v = options["mediaAlone"];     if (v !== undefined) mediaShowAlone = v
             if (mediaShowAlone) pauseAllVideoViewsExcept(null)
 
             // set media display options
@@ -202,20 +205,31 @@ QtObject {
             // for video media clip only
             if (view.mediaType === "video") {
 
-                v = options["mediaVideoRepeat"];   var mediaVideoRepeat   = (v === undefined ? true : v )
-                v = options["mediaVideoVolume"];   var mediaVideoVolume   = (v === undefined ? 1.0  : v / 10000)
-                v = options["mediaVideoPosition"]; var mediaVideoPosition = (v === undefined ? 0    : v * 1000)
+                // deprecated !!!
+                v = options["mediaVideoRepeat"];   var mediaRepeat   = (v === undefined ? true : v )
+                v = options["mediaVideoVolume"];   var mediaVolume   = (v === undefined ? 1.0  : v / 10000)
+                v = options["mediaVideoSpeed"];    var mediaSpeed    = (v === undefined ? 1.0  : v / 10000)
+                v = options["mediaVideoPosition"]; var mediaPosition = (v === undefined ? 0    : v * 1000)
 
-                view.player.loops = (mediaVideoRepeat ? MediaPlayer.Infinite : 1)
-                view.player.volume = mediaVideoVolume
-                view.player.seek(mediaVideoPosition)
+                // replaced with
+                v = options["mediaRepeat"];        if (v !== undefined) mediaRepeat   = v
+                v = options["mediaVolume"];        if (v !== undefined) mediaVolume   = v / 10000
+                v = options["mediaSpeed"];         if (v !== undefined) mediaSpeed    = v / 10000
+                v = options["mediaPosition"];      if (v !== undefined) mediaPosition = v
+
+                view.player.loops = (mediaRepeat ? MediaPlayer.Infinite : 1)
+                view.player.volume = mediaVolume
+                view.player.playbackRate = mediaSpeed
+                view.player.seek(mediaPosition)
                 view.player.play()
             }
 
             // for web media clip only
             if (view.mediaType === "web") {
 
-                v = options["mediaWebJavascript"]; var mediaWebJavascript = (v === undefined ? "" : v )
+                var mediaWebJavascript = ""
+                v = options["mediaWebJavascript"]; if (v !== undefined) mediaWebJavascript = v // deprecated !!!
+                v = options["mediaScript"];        if (v !== undefined) mediaWebJavascript = v
 
                 if (mediaWebJavascript !== "") {
                     view.runJavaScript(mediaWebJavascript, function(result) {})

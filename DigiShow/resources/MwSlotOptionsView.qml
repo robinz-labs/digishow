@@ -92,7 +92,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 15
             anchors.bottom: checkOutputInverted.top
-            anchors.bottomMargin: -5
+            anchors.bottomMargin: -10
             font.pixelSize: 12
             text: qsTr("Zero Output While Reach Lower")
             enabled:

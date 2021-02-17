@@ -21,6 +21,8 @@ public:
         InterfaceDmx    = INTERFACE_DMX,
         InterfaceArtnet = INTERFACE_ARTNET,
         InterfaceScreen = INTERFACE_SCREEN,
+        InterfaceAPlay  = INTERFACE_APLAY,
+        InterfaceMPlay  = INTERFACE_MPLAY,
         InterfacePipe   = INTERFACE_PIPE,
         InterfaceLaunch = INTERFACE_LAUNCH
     };
@@ -41,6 +43,10 @@ public:
         InterfaceArtnetOutput     = INTERFACE_ARTNET_OUTPUT,
         InterfaceScreenLocal      = INTERFACE_SCREEN_LOCAL,
         InterfaceScreenRemote     = INTERFACE_SCREEN_REMOTE,
+        InterfaceAPlayLocal       = INTERFACE_APLAY_LOCAL,
+        InterfaceAPlayRemote      = INTERFACE_APLAY_REMOTE,
+        InterfaceMPlayLocal       = INTERFACE_MPLAY_LOCAL,
+        InterfaceMPlayRemote      = INTERFACE_MPLAY_REMOTE,
         InterfacePipeLocal        = INTERFACE_PIPE_LOCAL,
         InterfacePipeRemote       = INTERFACE_PIPE_REMOTE,
         InterfaceLaunchLocal      = INTERFACE_LAUNCH_LOCAL,
@@ -72,6 +78,8 @@ public:
         EndpointScreenLight       = ENDPOINT_SCREEN_LIGHT,
         EndpointScreenMedia       = ENDPOINT_SCREEN_MEDIA,
         EndpointScreenCanvas      = ENDPOINT_SCREEN_CANVAS,
+        EndpointAPlayMedia        = ENDPOINT_APLAY_MEDIA,
+        EndpointMPlayMedia        = ENDPOINT_MPLAY_MEDIA,
         EndpointPipeAnalog        = ENDPOINT_PIPE_ANALOG,
         EndpointPipeBinary        = ENDPOINT_PIPE_BINARY,
         EndpointPipeNote          = ENDPOINT_PIPE_NOTE,
@@ -99,20 +107,15 @@ public:
     Q_ENUM(LightControl)
 
     enum MediaControl {
-        ControlMediaShow     = CONTROL_MEDIA_SHOW,
-        ControlMediaHide     = CONTROL_MEDIA_HIDE,
-        ControlMediaClear    = CONTROL_MEDIA_CLEAR,
+        ControlMediaStart    = CONTROL_MEDIA_START,
+        ControlMediaStop     = CONTROL_MEDIA_STOP,
+        ControlMediaStopAll  = CONTROL_MEDIA_STOP_ALL,
 
         ControlMediaOpacity  = CONTROL_MEDIA_OPACITY,
         ControlMediaScale    = CONTROL_MEDIA_SCALE,
         ControlMediaRotation = CONTROL_MEDIA_ROTATION,
         ControlMediaXOffset  = CONTROL_MEDIA_XOFFSET,
-        ControlMediaYOffset  = CONTROL_MEDIA_YOFFSET,
-
-        ControlVideoPlay     = CONTROL_VIDEO_PLAY,
-        ControlVideoRepeat   = CONTROL_VIDEO_REPEAT,
-        ControlVideoVolume   = CONTROL_VIDEO_VOLUME,
-        ControlVideoPosition = CONTROL_VIDEO_POSITION
+        ControlMediaYOffset  = CONTROL_MEDIA_YOFFSET
     };
     Q_ENUM(MediaControl)
 
@@ -125,6 +128,14 @@ public:
     Q_INVOKABLE static QString appBuildDate() { return __DATE__; }
     Q_INVOKABLE static QString appQtVersion() { return QT_VERSION_STR; }
     Q_INVOKABLE static QString appRtMidiVersion() { return RTMIDI_VERSION; }
+
+    Q_INVOKABLE static bool appExperimental() {
+#ifdef DIGISHOW_EXPERIMENTAL
+        return true;   // this app is a version with experimental features
+#else
+        return false;  // this app is a standard version
+#endif
+    }
 
     Q_INVOKABLE DigishowApp *app() { return g_app; }
 
@@ -158,7 +169,7 @@ public:
     Q_INVOKABLE static QVariantMap listOnline();
 
     Q_INVOKABLE static QString getLightControlName(int control, bool shortName = false);
-    Q_INVOKABLE static QString getMediaControlName(int control, bool shortName = false);
+    Q_INVOKABLE static QString getMediaControlName(int control, bool forScreen = false);
     Q_INVOKABLE static QString getMidiControlName(int control);
     Q_INVOKABLE static QString getMidiNoteName(int noteNumber);
     Q_INVOKABLE static QString getRiocPinName(int mode, int pinNumber);

@@ -182,6 +182,11 @@ ApplicationWindow {
                         text: qsTr("Save As ...")
                         onTriggered: saveAs()
                     }
+                    MenuItem {
+                        enabled: app.filepath!==""
+                        text: qsTr("Show File")
+                        onTriggered: utilities.showFileInShell(app.filepath)
+                    }
                     MenuSeparator {
                         padding: 0
                         contentItem: Rectangle { implicitHeight: 1; color: "#333333" }
@@ -558,7 +563,7 @@ ApplicationWindow {
             color: Material.accent
             font.bold: false
             font.pixelSize: 18
-            text: digishow.appName()
+            text: digishow.appName() + (digishow.appExperimental() ? " +" : "" )
         }
 
         Text {
@@ -644,7 +649,7 @@ ApplicationWindow {
         title: qsTr("Load File")
         folder: shortcuts.home
         selectExisting: true
-        nameFilters: [ qsTr("DigiShow files (*.dgs)"), qsTr("All files (*)") ]
+        nameFilters: [ qsTr("DigiShow files (*.dgs)"), qsTr("JSON files (*.json)"), qsTr("All files (*)") ]
         onAccepted: {
             console.log("load file: " + dialogLoadFile.fileUrl)
 
@@ -720,6 +725,8 @@ ApplicationWindow {
     function fileOpen(filepath) {
 
         if (messageBox.visible) return
+
+        if (app.isRunning) app.stop();
 
         if (!isModified) {
             app.loadFile(filepath)
