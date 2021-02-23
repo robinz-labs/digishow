@@ -80,7 +80,12 @@ Item {
             if (forOutput) items.push({ text: qsTr("PWM Out"),        value: DigishowEnvironment.EndpointRiocPwmOut,     tag: "pwm_out"     })
             if (forOutput) items.push({ text: qsTr("PFM Out / Tone"), value: DigishowEnvironment.EndpointRiocPfmOut,     tag: "pfm_out"     })
             if (forOutput) items.push({ text: qsTr("Servo"),          value: DigishowEnvironment.EndpointRiocRudderOut,  tag: "rudder_out"  })
+
+            if (digishow.appExperimental()) {
+            if (forOutput) items.push({ text: qsTr("Stepper"),        value: DigishowEnvironment.EndpointRiocStepperOut, tag: "stepper_out" })
             if (forInput ) items.push({ text: qsTr("Encoder"),        value: DigishowEnvironment.EndpointRiocEncoderIn,  tag: "encoder_in"  })
+            }
+
             menuRiocType.optionItems = items
             menuRiocType.selectedIndex = 0
         }
@@ -130,7 +135,8 @@ Item {
                      endpointType===DigishowEnvironment.EndpointRiocDigitalOut ||
                      endpointType===DigishowEnvironment.EndpointRiocPwmOut ||
                      endpointType===DigishowEnvironment.EndpointRiocPfmOut ||
-                     endpointType===DigishowEnvironment.EndpointRiocRudderOut
+                     endpointType===DigishowEnvironment.EndpointRiocRudderOut ||
+                     endpointType===DigishowEnvironment.EndpointRiocStepperOut
                     )) ||
                     (name.startsWith("ADC") &&
                      endpointType===DigishowEnvironment.EndpointRiocAnalogIn
@@ -179,6 +185,13 @@ Item {
             endpointType === DigishowEnvironment.EndpointRiocAnalogIn ||
             endpointType === DigishowEnvironment.EndpointRiocEncoderIn) {
             enables["optSamplingInterval"] = true
+        }
+
+        if (endpointType === DigishowEnvironment.EndpointRiocStepperOut) {
+            enables["optRangeSteps"] = true
+            enables["optSpeed"] = true
+            enables["optPosition"] = true
+            enables["optModeStepper"] = true
         }
 
         moreOptions.resetOptions()

@@ -297,6 +297,96 @@ Popup {
             }
         }
 
+        CSpinBox {
+            id: spinOptSpeed
+
+            property int defaultValue: 0
+
+            width: 120
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            from: 0
+            to: 60000
+            stepSize: 100
+            unit: ""
+            visible: enabled
+
+
+            onValueModified: isModified = true
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Speed (steps/sec)")
+            }
+        }
+
+        CSpinBox {
+            id: spinOptPosition
+
+            property int defaultValue: 0
+
+            width: 120
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            from: 0
+            to: 16000000
+            stepSize: 100
+            unit: ""
+            visible: enabled
+
+
+            onValueModified: isModified = true
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Original Position")
+            }
+        }
+
+        COptionButton {
+            id: buttonOptModeStepper
+
+            width: 120
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            visible: enabled
+
+
+            text: menuOptModeStepper.selectedItemText
+            onClicked: {
+                menuOptModeStepper.showOptions()
+                isModified = true
+            }
+
+            COptionMenu {
+                id: menuOptModeStepper
+
+                property int defaultValue: 0
+
+                optionItems: [
+                                { text: qsTr("A+  A-  B+  B-"), value: 0 },
+                                { text: qsTr("PUL and DIR"), value: 1 }
+                             ]
+            }
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Drive Lines")
+            }
+        }
+
         COptionButton {
             id: buttonOptModePuPd
 
@@ -307,7 +397,10 @@ Popup {
 
 
             text: menuOptModePuPd.selectedItemText
-            onClicked: menuOptModePuPd.showOptions()
+            onClicked: {
+                menuOptModePuPd.showOptions()
+                isModified = true
+            }
 
             COptionMenu {
                 id: menuOptModePuPd
@@ -330,6 +423,7 @@ Popup {
                 text: qsTr("PU/PD Resistor")
             }
         }
+
     }
 
     function show() {
@@ -375,6 +469,9 @@ Popup {
         spinOptRangeFrequency  .enabled = (enables["optRangeFrequency"  ] === true)
         spinOptFilterLevel     .enabled = (enables["optFilterLevel"     ] === true)
         spinOptSamplingInterval.enabled = (enables["optSamplingInterval"] === true)
+        spinOptSpeed           .enabled = (enables["optSpeed"           ] === true)
+        spinOptPosition        .enabled = (enables["optPosition"        ] === true)
+        buttonOptModeStepper   .enabled = (enables["optModeStepper"     ] === true)
         buttonOptModePuPd      .enabled = (enables["optModePuPd"        ] === true)
 
         checkOptInitialize     .enabled = (spinOptInitialA.enabled ||
@@ -394,8 +491,10 @@ Popup {
         spinOptRangeFrequency  .value   = spinOptRangeFrequency  .defaultValue
         spinOptFilterLevel     .value   = spinOptFilterLevel     .defaultValue
         spinOptSamplingInterval.value   = spinOptSamplingInterval.defaultValue
-
-        menuOptModePuPd.selectOption(menuOptModePuPd.defaultValue)
+        spinOptSpeed           .value   = spinOptSpeed           .defaultValue
+        spinOptPosition        .value   = spinOptPosition        .defaultValue
+        menuOptModeStepper     .selectOption(menuOptModeStepper  .defaultValue)
+        menuOptModePuPd        .selectOption(menuOptModePuPd     .defaultValue)
 
         isDefault = true
     }
@@ -443,6 +542,21 @@ Popup {
             if (spinOptSamplingInterval.value !== spinOptSamplingInterval.defaultValue) isDefault = false
         }
 
+        if (spinOptSpeed.enabled) {
+            spinOptSpeed.value = getOptionValue("optSpeed", spinOptSpeed.defaultValue)
+            if (spinOptSpeed.value !== spinOptSpeed.defaultValue) isDefault = false
+        }
+
+        if (spinOptPosition.enabled) {
+            spinOptPosition.value = getOptionValue("optPosition", spinOptPosition.defaultValue)
+            if (spinOptPosition.value !== spinOptPosition.defaultValue) isDefault = false
+        }
+
+        if (buttonOptModeStepper.enabled) {
+            menuOptModeStepper.selectOption(getOptionValue("optMode", menuOptModeStepper.defaultValue))
+            if (menuOptModeStepper.selectedItemValue !== menuOptModeStepper.defaultValue) isDefault = false
+        }
+
         if (buttonOptModePuPd.enabled) {
             menuOptModePuPd.selectOption(getOptionValue("optMode", menuOptModePuPd.defaultValue))
             if (menuOptModePuPd.selectedItemValue !== menuOptModePuPd.defaultValue) isDefault = false
@@ -471,6 +585,11 @@ Popup {
 
         if (spinOptFilterLevel.enabled) options["optFilterLevel"] = spinOptFilterLevel.value
         if (spinOptSamplingInterval.enabled) options["optSamplingInterval"] = spinOptSamplingInterval.value
+
+        if (spinOptSpeed.enabled) options["optSpeed"] = spinOptSpeed.value
+        if (spinOptPosition.enabled) options["optPosition"] = spinOptPosition.value
+
+        if (buttonOptModeStepper.enabled) options["optMode"] = menuOptModeStepper.selectedItemValue
         if (buttonOptModePuPd.enabled) options["optMode"] = menuOptModePuPd.selectedItemValue
 
         return options

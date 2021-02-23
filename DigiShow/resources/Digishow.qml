@@ -22,6 +22,7 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointRiocPfmOut        : return CColor.Ocean
             case DigishowEnvironment.EndpointRiocEncoderIn     : return CColor.Ocean
             case DigishowEnvironment.EndpointRiocRudderOut     : return CColor.Ocean
+            case DigishowEnvironment.EndpointRiocStepperOut    : return CColor.Ocean
             case DigishowEnvironment.EndpointModbusDiscreteIn  : return CColor.Cherry
             case DigishowEnvironment.EndpointModbusCoilOut     : return CColor.Cherry
             case DigishowEnvironment.EndpointModbusCoilIn      : return CColor.Cherry

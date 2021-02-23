@@ -122,6 +122,15 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
         int value = 180 * data.aValue / (data.aRange==0 ? 180 : data.aRange);
         if (value<0 || value>180) return ERR_INVALID_DATA;
         m_rioc->rudderSetAngle(unit, channel, value);
+
+    } else if (type == ENDPOINT_RIOC_STEPPER_OUT) {
+
+        // write stepper out channel
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+        int range = m_endpointInfoList[endpointIndex].range;
+        int value = range * data.aValue / (data.aRange==0 ? range : data.aRange);
+        if (value<0 || value>range) return ERR_INVALID_DATA;
+        m_rioc->stepperGoto(unit, channel, value);
     }
 
     return ERR_NONE;
@@ -251,10 +260,48 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                 m_rioc->setupObject(unit, RO_MOTION_RUDDER, channel,
                                     static_cast<unsigned char>(mode));
                 done = m_rioc->rudderSetEnable(unit, channel, true);
+
+            } else if (type==ENDPOINT_RIOC_STEPPER_OUT) {
+
+                // set up stepper out channel
+                int mode = m_endpointOptionsList[n].value("optMode").toInt();
+
+                // mode 0: 4 pins (A+ A- B+ B-)
+                // mode 1: 2 pins (PUL and DIR)
+                int pins = (mode == 1 ? 2 : 4);
+                unsigned char pin[4] = {0,0,0,0};
+                if (m_interfaceInfo.mode == INTERFACE_RIOC_ALADDIN) {
+                    // aladdin pins
+                    for (int p=0 ; p<=(8-pins) ; p++) {
+                        if (PIN_UD_DO[p] == channel) {
+                            for (int i=0 ; i<pins ; i++) pin[i] = PIN_UD_DO[p+i];
+                            break;
+                        }
+                    }
+                } else {
+                    // common arduino pins
+                    for (int i=0 ; i<pins ; i++) pin[i] = channel+i;
+                }
+                done = m_rioc->setupObject(unit, RO_MOTION_STEPPER, pin[0], pin[1], pin[2], pin[3],
+                                           static_cast<unsigned char>(mode));
+
+                // set speed (optional)
+                int speed = m_endpointOptionsList[n].value("optSpeed").toInt();
+                if (speed > 0) {
+                    done = m_rioc->stepperSetSpeed(unit, channel, speed, true);
+                }
+
+                // set position (optional)
+                int position = m_endpointOptionsList[n].value("optPosition").toInt();
+                if (position > 0) {
+                    done = m_rioc->stepperSetPosition(unit, channel, position, true);
+                }
             }
 
             // set ready flag for this endpoint
-            m_endpointInfoList[n].ready = done;
+            m_endpointInfoList[n].ready =
+                    done ||
+                    m_interfaceOptions.value("ignoreSetupError").toBool();
 
             // set initial value for this endpoint
             initEndpointValue(n);

@@ -333,6 +333,7 @@ void DigishowInterface::updateMetadata()
             else if (typeName == "pfm_out"    ) endpointInfo.type = ENDPOINT_RIOC_PFM_OUT;
             else if (typeName == "encoder_in" ) endpointInfo.type = ENDPOINT_RIOC_ENCODER_IN;
             else if (typeName == "rudder_out" ) endpointInfo.type = ENDPOINT_RIOC_RUDDER_OUT;
+            else if (typeName == "stepper_out") endpointInfo.type = ENDPOINT_RIOC_STEPPER_OUT;
             break;
         case INTERFACE_MODBUS:
             if      (typeName == "discrete_in") endpointInfo.type = ENDPOINT_MODBUS_DISCRETE_IN;
@@ -450,6 +451,13 @@ void DigishowInterface::updateMetadata()
             endpointInfo.output = true;
             endpointInfo.range  = 180;
             endpointInfo.labelEPT = tr("Servo");
+            endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(DigishowEnvironment::getRiocPinName(m_interfaceInfo.mode, endpointInfo.channel));
+            break;
+        case ENDPOINT_RIOC_STEPPER_OUT:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = true;
+            endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
+            endpointInfo.labelEPT = tr("Stepper");
             endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(DigishowEnvironment::getRiocPinName(m_interfaceInfo.mode, endpointInfo.channel));
             break;
         case ENDPOINT_MODBUS_DISCRETE_IN:

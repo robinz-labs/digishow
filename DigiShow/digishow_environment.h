@@ -66,6 +66,7 @@ public:
         EndpointRiocPfmOut        = ENDPOINT_RIOC_PFM_OUT,
         EndpointRiocEncoderIn     = ENDPOINT_RIOC_ENCODER_IN,
         EndpointRiocRudderOut     = ENDPOINT_RIOC_RUDDER_OUT,
+        EndpointRiocStepperOut    = ENDPOINT_RIOC_STEPPER_OUT,
         EndpointModbusDiscreteIn  = ENDPOINT_MODBUS_DISCRETE_IN,
         EndpointModbusCoilOut     = ENDPOINT_MODBUS_COIL_OUT,
         EndpointModbusCoilIn      = ENDPOINT_MODBUS_COIL_IN,

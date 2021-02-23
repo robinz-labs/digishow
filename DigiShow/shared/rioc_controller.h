@@ -146,12 +146,12 @@ public:
     bool rudderSetEnable(unsigned char unit, unsigned char channel, bool enabled = true);
 
     // stepper
-    bool stepperStep(unsigned char unit, unsigned char channel, int steps);
-    bool stepperGoto(unsigned char unit, unsigned char channel, int position);
-    bool stepperStop(unsigned char unit, unsigned char channel);
-    bool stepperSetSpeed(unsigned char unit, unsigned char channel, unsigned int speed);
+    bool stepperStep(unsigned char unit, unsigned char channel, int steps, bool wait = false);
+    bool stepperGoto(unsigned char unit, unsigned char channel, int position, bool wait = false);
+    bool stepperStop(unsigned char unit, unsigned char channel, bool wait = false);
+    bool stepperSetSpeed(unsigned char unit, unsigned char channel, unsigned int speed, bool wait = false);
     bool stepperGetSpeed(unsigned char unit, unsigned char channel, unsigned int* pSpeed);
-    bool stepperSetPosition(unsigned char unit, unsigned char channel, int position);
+    bool stepperSetPosition(unsigned char unit, unsigned char channel, int position, bool wait = false);
     bool stepperGetPosition(unsigned char unit, unsigned char channel, int* pPosition);
 
     // motor controls (NTRobot protocols)

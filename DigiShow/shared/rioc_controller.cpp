@@ -463,7 +463,7 @@ bool RiocController::rudderSetEnable(unsigned char unit, unsigned char channel, 
     return false;
 }
 
-bool RiocController::stepperStep(unsigned char unit, unsigned char channel, int steps)
+bool RiocController::stepperStep(unsigned char unit, unsigned char channel, int steps, bool wait)
 {
     unsigned char dir = (steps<0 ? 1 : 0);
     unsigned int  steps_ = abs(steps);
@@ -480,6 +480,11 @@ bool RiocController::stepperStep(unsigned char unit, unsigned char channel, int 
         0, 0 };
 
     QByteArray cmd((const char*)bytes, 8);
+    if (!wait) {
+        _riocService->sendRiocMessage(0, unit, cmd);
+        return true;
+    }
+
     QByteArray rsp;
     if (_riocService->sendRiocMessageAndWaitResponse(0, unit, cmd, rsp)) {
         return true;
@@ -487,7 +492,7 @@ bool RiocController::stepperStep(unsigned char unit, unsigned char channel, int 
     return false;
 }
 
-bool RiocController::stepperGoto(unsigned char unit, unsigned char channel, int position)
+bool RiocController::stepperGoto(unsigned char unit, unsigned char channel, int position, bool wait)
 {
     unsigned char sign = (position<0 ? 1 : 0);
     unsigned int position_ = abs(position);
@@ -506,6 +511,11 @@ bool RiocController::stepperGoto(unsigned char unit, unsigned char channel, int 
         0 };
 
     QByteArray cmd((const char*)bytes, 8);
+    if (!wait) {
+        _riocService->sendRiocMessage(0, unit, cmd);
+        return true;
+    }
+
     QByteArray rsp;
     if (_riocService->sendRiocMessageAndWaitResponse(0, unit, cmd, rsp)) {
         return true;
@@ -513,7 +523,7 @@ bool RiocController::stepperGoto(unsigned char unit, unsigned char channel, int 
     return false;
 }
 
-bool RiocController::stepperStop(unsigned char unit, unsigned char channel)
+bool RiocController::stepperStop(unsigned char unit, unsigned char channel, bool wait)
 {
     unsigned char bytes[] = {
         RO_MOTION_STEPPER,
@@ -522,6 +532,11 @@ bool RiocController::stepperStop(unsigned char unit, unsigned char channel)
         0, 0, 0, 0, 0 };
 
     QByteArray cmd((const char*)bytes, 8);
+    if (!wait) {
+        _riocService->sendRiocMessage(0, unit, cmd);
+        return true;
+    }
+
     QByteArray rsp;
     if (_riocService->sendRiocMessageAndWaitResponse(0, unit, cmd, rsp)) {
         return true;
@@ -529,7 +544,7 @@ bool RiocController::stepperStop(unsigned char unit, unsigned char channel)
     return false;
 }
 
-bool RiocController::stepperSetSpeed(unsigned char unit, unsigned char channel, unsigned int speed)
+bool RiocController::stepperSetSpeed(unsigned char unit, unsigned char channel, unsigned int speed, bool wait)
 {
     unsigned char speedH = (speed >> 8) & 0xFF;
     unsigned char speedL = speed & 0xFF;
@@ -543,6 +558,11 @@ bool RiocController::stepperSetSpeed(unsigned char unit, unsigned char channel, 
         0, 0, 0 };
 
     QByteArray cmd((const char*)bytes, 8);
+    if (!wait) {
+        _riocService->sendRiocMessage(0, unit, cmd);
+        return true;
+    }
+
     QByteArray rsp;
     if (_riocService->sendRiocMessageAndWaitResponse(0, unit, cmd, rsp)) {
         return true;
@@ -571,7 +591,7 @@ bool RiocController::stepperGetSpeed(unsigned char unit, unsigned char channel, 
     return false;
 }
 
-bool RiocController::stepperSetPosition(unsigned char unit, unsigned char channel, int position)
+bool RiocController::stepperSetPosition(unsigned char unit, unsigned char channel, int position, bool wait)
 {
     unsigned char sign = (position<0 ? 1 : 0);
     unsigned char positionH = (position >> 16) & 0xFF;
@@ -589,6 +609,11 @@ bool RiocController::stepperSetPosition(unsigned char unit, unsigned char channe
         0 };
 
     QByteArray cmd((const char*)bytes, 8);
+    if (!wait) {
+        _riocService->sendRiocMessage(0, unit, cmd);
+        return true;
+    }
+
     QByteArray rsp;
     if (_riocService->sendRiocMessageAndWaitResponse(0, unit, cmd, rsp)) {
         return true;
