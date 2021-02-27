@@ -755,47 +755,47 @@
         <translation>采样间隔</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="318"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="411"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="319"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="412"/>
         <source>Internal Pull-Up</source>
         <translation>内置上拉电阻</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="320"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="413"/>
         <source>External PU/PD</source>
         <translation>外置上拉/下拉电阻</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="330"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="423"/>
         <source>PU/PD Resistor</source>
         <translation>上拉/下拉电阻</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="357"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="323"/>
         <source>Speed (steps/sec)</source>
         <translation>速度 (步/秒)</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="384"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="350"/>
         <source>Original Position</source>
         <translation>原点位置</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="406"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="375"/>
         <source>A+  A-  B+  B-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="407"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="376"/>
         <source>PUL and DIR</source>
         <translation>PUL 和 DIR</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="417"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="386"/>
         <source>Drive Lines</source>
         <translation>驱动接线</translation>
     </message>
@@ -1069,7 +1069,27 @@
         <translation>底鼓</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMidi.qml" line="123"/>
+        <location filename="../MwEndpointSelectorMidi.qml" line="114"/>
+        <source>Snare</source>
+        <translation>军鼓</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMidi.qml" line="116"/>
+        <source>Clap</source>
+        <translation>拍手</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMidi.qml" line="118"/>
+        <source>Hat Closed</source>
+        <translation>踩镲</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMidi.qml" line="120"/>
+        <source>Hat Open</source>
+        <translation>开镲</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMidi.qml" line="132"/>
         <source>CC</source>
         <translation></translation>
     </message>
@@ -1170,17 +1190,17 @@
         <translation>舵机</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="83"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="85"/>
         <source>Stepper</source>
         <translation>步进电机</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="84"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="86"/>
         <source>Encoder</source>
         <translation>编码器</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="108"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="112"/>
         <source>Pin</source>
         <translation>引脚</translation>
     </message>
