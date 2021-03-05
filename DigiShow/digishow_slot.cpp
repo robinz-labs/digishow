@@ -675,7 +675,7 @@ dgsSignalData DigishowSlot::smoothingProcessOutputAnalog()
     dgsSignalData dataOut = m_smoothingDataOutTo;
 
     qint64 smoothingDuration = m_slotInfo.outputSmoothing;
-    qint64 smoothingElapsed = elapsed() - m_smoothingTimeStart;
+    qint64 smoothingElapsed = elapsed() - m_smoothingTimeStart + m_smoothingTimer.interval();
 
     double ratio = double(smoothingElapsed) / double(smoothingDuration);
     if (ratio >= 0 && ratio<1) {
