@@ -101,6 +101,28 @@ ApplicationWindow {
         }
     }
 
+
+    Shortcut {
+        sequence: StandardKey.New
+        onActivated: createNew()
+    }
+    Shortcut {
+        sequence: StandardKey.Open
+        onActivated: open()
+    }
+    Shortcut {
+        sequence: StandardKey.Save
+        onActivated: save()
+    }
+    Shortcut {
+        sequence: StandardKey.SaveAs
+        onActivated: saveAs()
+    }
+    Shortcut {
+        sequence: StandardKey.Close
+        onActivated: close()
+    }
+
     Rectangle {
         id: rectRoot
         color: "#111111"
@@ -140,38 +162,16 @@ ApplicationWindow {
                     MenuItem {
                         text: qsTr("New")
                         onTriggered: {
-
                             menu.close()
-
-                            if (!isModified) {
-                                app.newShow()
-                            } else {
-                                var buttonIndex = messageBox.showAndWait(qsTr("Would you like to save all data to a file before create a new ?"),
-                                                                         qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
-                                switch (buttonIndex) {
-                                case 1: saveAndDo(app.newShow); break
-                                case 2: app.newShow(); break
-                                }
-                            }
+                            createNew()
                         }
 
                     }
                     MenuItem {
                         text: qsTr("Open ...")
                         onTriggered: {
-
                             menu.close()
-
-                            if (!isModified) {
-                                dialogLoadFile.open()
-                            } else {
-                                var buttonIndex = messageBox.showAndWait(qsTr("Would you like to save all data to a file before open another ?"),
-                                                                         qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
-                                switch (buttonIndex) {
-                                case 1: saveAndDo(dialogLoadFile.open); break
-                                case 2: dialogLoadFile.open(); break
-                                }
-                            }
+                            open()
                         }
                     }
                     MenuItem {
@@ -697,16 +697,29 @@ ApplicationWindow {
         id: messageBox
     }
 
-    function saveAndDo(callback) {
-
-        if (app.filepath !== "") {
-            // save data to the current file
-            app.saveFile("", slotListView.getVisualItemsIndexList())
-            if (callback !== null) callback()
+    function createNew() {
+        if (!isModified) {
+            app.newShow()
         } else {
-            // save data to a new file
-            dialogSaveFile.callbackAfterSaved = callback
-            dialogSaveFile.open()
+            var buttonIndex = messageBox.showAndWait(qsTr("Would you like to save all data to a file before create a new ?"),
+                                                     qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
+            switch (buttonIndex) {
+            case 1: saveAndDo(app.newShow); break
+            case 2: app.newShow(); break
+            }
+        }
+    }
+
+    function open() {
+        if (!isModified) {
+            dialogLoadFile.open()
+        } else {
+            var buttonIndex = messageBox.showAndWait(qsTr("Would you like to save all data to a file before open another ?"),
+                                                     qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
+            switch (buttonIndex) {
+            case 1: saveAndDo(dialogLoadFile.open); break
+            case 2: dialogLoadFile.open(); break
+            }
         }
     }
 
@@ -719,6 +732,18 @@ ApplicationWindow {
         dialogSaveFile.open()
     }
 
+    function saveAndDo(callback) {
+
+        if (app.filepath !== "") {
+            // save data to the current file
+            app.saveFile("", slotListView.getVisualItemsIndexList())
+            if (callback !== null) callback()
+        } else {
+            // save data to a new file
+            dialogSaveFile.callbackAfterSaved = callback
+            dialogSaveFile.open()
+        }
+    }
 
     // the function is prepared for calling by c++
     // when the app main program received a fileopen event
