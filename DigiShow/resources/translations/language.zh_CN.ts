@@ -433,35 +433,35 @@
         <translation>未命名</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="751"/>
+        <location filename="../MainWindow.qml" line="776"/>
         <source>Would you like to quit DigiShow app ?</source>
         <translation>您是否需要退出 DigiShow 程序 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="751"/>
+        <location filename="../MainWindow.qml" line="776"/>
         <source>Quit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="150"/>
-        <location filename="../MainWindow.qml" line="169"/>
-        <location filename="../MainWindow.qml" line="736"/>
-        <location filename="../MainWindow.qml" line="751"/>
-        <location filename="../MainWindow.qml" line="756"/>
+        <location filename="../MainWindow.qml" line="705"/>
+        <location filename="../MainWindow.qml" line="718"/>
+        <location filename="../MainWindow.qml" line="761"/>
+        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="141"/>
+        <location filename="../MainWindow.qml" line="163"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="150"/>
-        <location filename="../MainWindow.qml" line="169"/>
         <location filename="../MainWindow.qml" line="178"/>
-        <location filename="../MainWindow.qml" line="736"/>
-        <location filename="../MainWindow.qml" line="756"/>
+        <location filename="../MainWindow.qml" line="705"/>
+        <location filename="../MainWindow.qml" line="718"/>
+        <location filename="../MainWindow.qml" line="761"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -496,17 +496,17 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="160"/>
+        <location filename="../MainWindow.qml" line="171"/>
         <source>Open ...</source>
         <translation>打开 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="755"/>
+        <location filename="../MainWindow.qml" line="780"/>
         <source>Would you like to save all data to a file before close the app ?</source>
         <translation>在关闭应用程序前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="149"/>
+        <location filename="../MainWindow.qml" line="704"/>
         <source>Would you like to save all data to a file before create a new ?</source>
         <translation>在创建新项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
@@ -521,15 +521,15 @@
         <translation> ( 停止工作 )</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="150"/>
-        <location filename="../MainWindow.qml" line="169"/>
-        <location filename="../MainWindow.qml" line="736"/>
-        <location filename="../MainWindow.qml" line="756"/>
+        <location filename="../MainWindow.qml" line="705"/>
+        <location filename="../MainWindow.qml" line="718"/>
+        <location filename="../MainWindow.qml" line="761"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Don&apos;t Save</source>
         <translation>不保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="168"/>
+        <location filename="../MainWindow.qml" line="717"/>
         <source>Would you like to save all data to a file before open another ?</source>
         <translation>在打开另一个项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
@@ -619,7 +619,7 @@
         <translation>JSON 文件 (*.json)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="734"/>
+        <location filename="../MainWindow.qml" line="759"/>
         <source>Would you like to save current data before open file %1 ?</source>
         <translation>在打开文件 “ %1 ” 前是否需要保存当前数据 ?</translation>
     </message>
@@ -1984,77 +1984,92 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
 <context>
     <name>MwSlotOptionsView</name>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="31"/>
+        <location filename="../MwSlotOptionsView.qml" line="34"/>
         <source>Signal mapping and transform options</source>
         <translation>信号映射和变换参数</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="41"/>
+        <location filename="../MwSlotOptionsView.qml" line="44"/>
         <source>Please select signal endpoints of both source and destination</source>
         <translation>请先选择信号的来源和目标</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="70"/>
+        <location filename="../MwSlotOptionsView.qml" line="85"/>
+        <source>Revert</source>
+        <translation>恢复</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="91"/>
+        <source>Copy</source>
+        <translation>拷贝</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="97"/>
+        <source>Paste</source>
+        <translation>粘贴</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="124"/>
         <source>Invert Input Signal</source>
         <translation>反转输入信号量</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="83"/>
+        <location filename="../MwSlotOptionsView.qml" line="137"/>
         <source>Invert Output Signal</source>
         <translation>反转输出信号量</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="97"/>
+        <location filename="../MwSlotOptionsView.qml" line="151"/>
         <source>Zero Output While Reach Lower</source>
         <translation>当达到输出下限时输出零值</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="128"/>
+        <location filename="../MwSlotOptionsView.qml" line="182"/>
         <source>Output Smoothing</source>
         <translation>平滑输出信号量</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="156"/>
+        <location filename="../MwSlotOptionsView.qml" line="210"/>
         <source>Input-output Mapping</source>
         <translation>输入输出信号量映射</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="204"/>
+        <location filename="../MwSlotOptionsView.qml" line="258"/>
         <source>Input Range</source>
         <translation>输入信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="246"/>
+        <location filename="../MwSlotOptionsView.qml" line="300"/>
         <source>Output Range</source>
         <translation>输出信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="267"/>
+        <location filename="../MwSlotOptionsView.qml" line="321"/>
         <source>Output Envelope</source>
         <translation>输出信号包络</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="331"/>
+        <location filename="../MwSlotOptionsView.qml" line="385"/>
         <source>Attack</source>
         <translation>A 渐入时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="354"/>
+        <location filename="../MwSlotOptionsView.qml" line="408"/>
         <source>Hold</source>
         <translation>H 保持时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="377"/>
+        <location filename="../MwSlotOptionsView.qml" line="431"/>
         <source>Decay</source>
         <translation>D 衰减时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="401"/>
+        <location filename="../MwSlotOptionsView.qml" line="455"/>
         <source>Sustain</source>
         <translation>S 延续水平</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="424"/>
+        <location filename="../MwSlotOptionsView.qml" line="478"/>
         <source>Release</source>
         <translation>R 渐出时长</translation>
     </message>

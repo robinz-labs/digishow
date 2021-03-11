@@ -12,6 +12,9 @@ Item {
     property int inputFullRange: 0
     property int outputFullRange: 0
 
+    property var slotInfoBackup: ({})
+    property var slotInfoClipboard: ({})
+
     signal slotOptionUpdated(string key, var value)
 
     Item {
@@ -48,6 +51,57 @@ Item {
 
         anchors.fill: parent
         visible: false
+
+        CButton {
+            id: buttonSlotOptionsMenu
+            width: 28
+            height: 28
+            anchors.right: parent.right
+            anchors.rightMargin: 16
+            anchors.top: parent.top
+            anchors.topMargin: 16
+            colorNormal: "transparent"
+            icon.width: 14
+            icon.height: 14
+            icon.source: "qrc:///images/icon_arrow_down_white.png"
+            icon.anchors.verticalCenterOffset: 2
+            box.border.width: 1
+            box.radius: 3
+
+            onClicked: {
+                if (!menuSlotOptionsMenu.visible) menuSlotOptionsMenu.open()
+                else menuSlotOptionsMenu.close()
+            }
+
+            CMenu {
+                id: menuSlotOptionsMenu
+                x: parent.width - this.width
+                y: parent.height + 2
+                width: 80
+                transformOrigin: Menu.TopRight
+                closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+                CMenuItem {
+                    text: qsTr("Revert")
+                    onTriggered: {
+                        importSlotInfo(slotInfoBackup)
+                    }
+                }
+                CMenuItem {
+                    text: qsTr("Copy")
+                    onTriggered: {
+                        slotInfoClipboard = exportSlotInfo()
+                    }
+                }
+                CMenuItem {
+                    text: qsTr("Paste")
+                    onTriggered: {
+                        importSlotInfo(slotInfoClipboard)
+                    }
+                }
+            }
+        }
+
 
         Rectangle {
             id: lineSpliter
@@ -435,6 +489,8 @@ Item {
 
     function refresh() {
 
+        slotInfoBackup = {}
+
         // show information when slot or endpoint is not available
         itemInformation.visible = true
         itemSlotOptions.visible = false
@@ -448,6 +504,8 @@ Item {
         var config = digishow.getSlotConfiguration(slotIndex)
         var slotInfo = config["slotInfo"]
         if (slotInfo === undefined) return
+
+        slotInfoBackup = slotInfo
 
         // show slot options
         itemInformation.visible = false
@@ -635,6 +693,86 @@ Item {
         } else {
             clearSlotOption("envelopeRelease")
         }
+    }
+
+    function importSlotInfo(slotInfo) {
+
+        function importCheckItem(item, key) {
+            var checked = slotInfo[key]
+            if (item.visible && checked !== undefined) {
+                item.checked = checked
+                setSlotOption(key, checked)
+            }
+        }
+
+        function importValueItem(item, key, scale) {
+            var value = slotInfo[key]
+            if (item.visible && value !== undefined) {
+                item.value = (scale===undefined ? value : Math.round(value*scale))
+                setSlotOption(key, value)
+            }
+        }
+
+        function importRangeItem(item, key1, key2) {
+            var value1 = slotInfo[key1]
+            var value2 = slotInfo[key2]
+            if (item.visible && (value1 !== undefined || value2 !== undefined)) {
+                if (value1 === undefined) value1 = 0
+                if (value2 === undefined) value2 = 1
+                item.first.value = 0
+                item.second.value = 1
+                item.first.value = value1
+                item.second.value = value2
+                setSlotOption(key1, parseFloat(value1.toFixed(5)))
+                setSlotOption(key2, parseFloat(value2.toFixed(5)))
+            }
+        }
+
+        importCheckItem(checkInputInverted,       "inputInverted")
+        importCheckItem(checkOutputInverted,      "outputInverted")
+        importCheckItem(checkOutputLowAsZero,     "outputLowAsZero")
+        importValueItem(spinOutputSmoothing,      "outputSmoothing")
+        importRangeItem(sliderMappingInputRange,  "inputLow", "inputHigh")
+        importRangeItem(sliderMappingOutputRange, "outputLow", "outputHigh")
+        importValueItem(spinEnvelopeAttack,       "envelopeAttack")
+        importValueItem(spinEnvelopeHold,         "envelopeHold")
+        importValueItem(spinEnvelopeDecay,        "envelopeDecay")
+        importValueItem(spinEnvelopeSustain,      "envelopeSustain", 100)
+        importValueItem(spinEnvelopeRelease,      "envelopeRelease")
+    }
+
+    function exportSlotInfo() {
+
+        var slotInfo = {}
+
+        function exportCheckItem(item, key) {
+            if (item.visible) slotInfo[key] = item.checked
+        }
+
+        function exportValueItem(item, key, scale) {
+            if (item.visible) slotInfo[key] = (scale===undefined ? item.value : item.value            /scale)
+        }
+
+        function exportRangeItem(item, key1, key2) {
+            if (item.visible) {
+                slotInfo[key1] = item.first.value
+                slotInfo[key2] = item.second.value
+            }
+        }
+
+        exportCheckItem(checkInputInverted,       "inputInverted")
+        exportCheckItem(checkOutputInverted,      "outputInverted")
+        exportCheckItem(checkOutputLowAsZero,     "outputLowAsZero")
+        exportValueItem(spinOutputSmoothing,      "outputSmoothing")
+        exportRangeItem(sliderMappingInputRange,  "inputLow", "inputHigh")
+        exportRangeItem(sliderMappingOutputRange, "outputLow", "outputHigh")
+        exportValueItem(spinEnvelopeAttack,       "envelopeAttack")
+        exportValueItem(spinEnvelopeHold,         "envelopeHold")
+        exportValueItem(spinEnvelopeDecay,        "envelopeDecay")
+        exportValueItem(spinEnvelopeSustain,      "envelopeSustain", 100)
+        exportValueItem(spinEnvelopeRelease,      "envelopeRelease")
+
+        return slotInfo
     }
 
     function setSlotOption(key, value) {

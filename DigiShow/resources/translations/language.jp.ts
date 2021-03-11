@@ -443,35 +443,35 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="751"/>
+        <location filename="../MainWindow.qml" line="776"/>
         <source>Would you like to quit DigiShow app ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="751"/>
+        <location filename="../MainWindow.qml" line="776"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="150"/>
-        <location filename="../MainWindow.qml" line="169"/>
-        <location filename="../MainWindow.qml" line="736"/>
-        <location filename="../MainWindow.qml" line="751"/>
-        <location filename="../MainWindow.qml" line="756"/>
+        <location filename="../MainWindow.qml" line="705"/>
+        <location filename="../MainWindow.qml" line="718"/>
+        <location filename="../MainWindow.qml" line="761"/>
+        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="755"/>
+        <location filename="../MainWindow.qml" line="780"/>
         <source>Would you like to save all data to a file before close the app ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="150"/>
-        <location filename="../MainWindow.qml" line="169"/>
         <location filename="../MainWindow.qml" line="178"/>
-        <location filename="../MainWindow.qml" line="736"/>
-        <location filename="../MainWindow.qml" line="756"/>
+        <location filename="../MainWindow.qml" line="705"/>
+        <location filename="../MainWindow.qml" line="718"/>
+        <location filename="../MainWindow.qml" line="761"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
@@ -486,30 +486,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="141"/>
+        <location filename="../MainWindow.qml" line="163"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="149"/>
+        <location filename="../MainWindow.qml" line="704"/>
         <source>Would you like to save all data to a file before create a new ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="150"/>
-        <location filename="../MainWindow.qml" line="169"/>
-        <location filename="../MainWindow.qml" line="736"/>
-        <location filename="../MainWindow.qml" line="756"/>
+        <location filename="../MainWindow.qml" line="705"/>
+        <location filename="../MainWindow.qml" line="718"/>
+        <location filename="../MainWindow.qml" line="761"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Don&apos;t Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="160"/>
+        <location filename="../MainWindow.qml" line="171"/>
         <source>Open ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="168"/>
+        <location filename="../MainWindow.qml" line="717"/>
         <source>Would you like to save all data to a file before open another ?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -651,7 +651,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="734"/>
+        <location filename="../MainWindow.qml" line="759"/>
         <source>Would you like to save current data before open file %1 ?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1980,77 +1980,92 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
 <context>
     <name>MwSlotOptionsView</name>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="31"/>
+        <location filename="../MwSlotOptionsView.qml" line="34"/>
         <source>Signal mapping and transform options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="41"/>
+        <location filename="../MwSlotOptionsView.qml" line="44"/>
         <source>Please select signal endpoints of both source and destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="70"/>
-        <source>Invert Input Signal</source>
+        <location filename="../MwSlotOptionsView.qml" line="85"/>
+        <source>Revert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="83"/>
-        <source>Invert Output Signal</source>
+        <location filename="../MwSlotOptionsView.qml" line="91"/>
+        <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="97"/>
+        <source>Paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="124"/>
+        <source>Invert Input Signal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="137"/>
+        <source>Invert Output Signal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="151"/>
         <source>Zero Output While Reach Lower</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="128"/>
+        <location filename="../MwSlotOptionsView.qml" line="182"/>
         <source>Output Smoothing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="156"/>
+        <location filename="../MwSlotOptionsView.qml" line="210"/>
         <source>Input-output Mapping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="204"/>
+        <location filename="../MwSlotOptionsView.qml" line="258"/>
         <source>Input Range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="246"/>
+        <location filename="../MwSlotOptionsView.qml" line="300"/>
         <source>Output Range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="267"/>
+        <location filename="../MwSlotOptionsView.qml" line="321"/>
         <source>Output Envelope</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="331"/>
+        <location filename="../MwSlotOptionsView.qml" line="385"/>
         <source>Attack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="354"/>
+        <location filename="../MwSlotOptionsView.qml" line="408"/>
         <source>Hold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="377"/>
+        <location filename="../MwSlotOptionsView.qml" line="431"/>
         <source>Decay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="401"/>
+        <location filename="../MwSlotOptionsView.qml" line="455"/>
         <source>Sustain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="424"/>
+        <location filename="../MwSlotOptionsView.qml" line="478"/>
         <source>Release</source>
         <translation type="unfinished"></translation>
     </message>
