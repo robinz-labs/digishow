@@ -37,8 +37,9 @@ MwInterfaceListView {
                     id: buttonDmxComPort
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    anchors.bottom: parent.bottom
+                    anchors.bottom: buttonDmxMode.top
                     anchors.margins: 20
+                    anchors.bottomMargin: 36
                     text: {
                         if (model.comPort===undefined || model.comPort==="") return qsTr("Automatic")
                         return model.comPort
@@ -79,6 +80,45 @@ MwInterfaceListView {
                         anchors.bottomMargin: 10
                         font.pixelSize: 11
                         text: qsTr("USB Serial Port")
+
+                    }
+                }
+
+                COptionButton {
+                    id: buttonDmxMode
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    anchors.margins: 20
+                    text: menuDmxMode.findOptionTextByTag(model.mode)
+
+                    onClicked: {
+                        menuDmxMode.selectOptionWithTag(model.mode)
+                        menuDmxMode.showOptions()
+                    }
+
+                    COptionMenu {
+                        id: menuDmxMode
+
+                        optionItems: [
+                            { text:  qsTr("Enttec DMX USB Pro"), value: 0, tag: "enttec" },
+                            { text:  qsTr("Open DMX USB"      ), value: 1, tag: "opendmx" }
+                        ]
+
+                        onOptionSelected: {
+                            var options = {
+                                mode: selectedItemTag
+                            }
+                            updateInterface(model.index, options)
+                        }
+                    }
+
+                    Label {
+                        anchors.left: parent.left
+                        anchors.bottom: parent.top
+                        anchors.bottomMargin: 10
+                        font.pixelSize: 11
+                        text: qsTr("Model")
 
                     }
                 }

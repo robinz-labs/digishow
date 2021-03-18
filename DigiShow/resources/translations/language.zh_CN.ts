@@ -1414,15 +1414,30 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
 <context>
     <name>MwInterfaceListViewDmx</name>
     <message>
-        <location filename="../MwInterfaceListViewDmx.qml" line="43"/>
-        <location filename="../MwInterfaceListViewDmx.qml" line="57"/>
+        <location filename="../MwInterfaceListViewDmx.qml" line="44"/>
+        <location filename="../MwInterfaceListViewDmx.qml" line="58"/>
         <source>Automatic</source>
         <translation>自动</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewDmx.qml" line="81"/>
+        <location filename="../MwInterfaceListViewDmx.qml" line="82"/>
         <source>USB Serial Port</source>
         <translation>USB 串口</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewDmx.qml" line="104"/>
+        <source>Enttec DMX USB Pro</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewDmx.qml" line="105"/>
+        <source>Open DMX USB</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewDmx.qml" line="121"/>
+        <source>Model</source>
+        <translation>型号</translation>
     </message>
 </context>
 <context>

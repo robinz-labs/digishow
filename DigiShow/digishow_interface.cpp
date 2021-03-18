@@ -189,8 +189,8 @@ void DigishowInterface::updateMetadata()
                  modeName == "http"        ) m_interfaceInfo.mode = INTERFACE_HUE_HTTP;
         break;
     case INTERFACE_DMX:
-        if      (modeName == "" ||
-                 modeName == "enttec"      ) m_interfaceInfo.mode = INTERFACE_DMX_ENTTEC_USB;
+        if      (modeName == "enttec"      ) m_interfaceInfo.mode = INTERFACE_DMX_ENTTEC_PRO;
+        else if (modeName == "opendmx"     ) m_interfaceInfo.mode = INTERFACE_DMX_ENTTEC_OPEN;
         break;
     case INTERFACE_ARTNET:
         if      (modeName == "input"       ) m_interfaceInfo.mode = INTERFACE_ARTNET_INPUT;

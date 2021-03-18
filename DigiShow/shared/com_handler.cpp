@@ -74,6 +74,10 @@ bool ComHandler::open(const char* port, int baud, int setting)
             _serial->setParity(QSerialPort::OddParity);
             _serial->setStopBits(QSerialPort::OneStop);
             break;
+        case CH_SETTING_8N2:
+            _serial->setDataBits(QSerialPort::Data8);
+            _serial->setParity(QSerialPort::NoParity);
+            _serial->setStopBits(QSerialPort::TwoStop);
         }
 
         // clear buffer for receiving incoming bytes

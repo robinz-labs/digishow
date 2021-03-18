@@ -43,9 +43,7 @@ int DgsDmxInterface::openInterface()
     bool done = false;
     m_com = new ComHandler();
 
-    if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_USB) {
-        done = enttecDmxOpen(comPort, channels);
-    }
+    done = enttecDmxOpen(comPort, channels);
 
     // create a timer for sending dmx frames at a particular frequency
     m_timer = new QTimer();
@@ -112,7 +110,15 @@ bool DgsDmxInterface::enttecDmxOpen(const QString &port, int channels)
 {
     // open serial port of the dmx adapter
     m_com->setAsyncReceiver(true);
-    if (!m_com->open(port.toLocal8Bit(), 57600, CH_SETTING_8N1)) return false;
+
+    bool done = false;
+    if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_PRO) {
+        done = m_com->open(port.toLocal8Bit(), 57600, CH_SETTING_8N1);
+    } else
+    if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_OPEN) {
+        done = m_com->open(port.toLocal8Bit(), 250000, CH_SETTING_8N2);
+    }
+    if (!done) return false;
 
     // clear dmx data buffer
     //for (int n=0 ; n<512 ; n++) m_data[n]=0;
@@ -127,26 +133,48 @@ bool DgsDmxInterface::enttecDmxOpen(const QString &port, int channels)
 bool DgsDmxInterface::enttecDmxSendDmxFrame(unsigned char *data)
 {
     if (m_channels < 24 || m_channels > 512) return false;
-    int length = m_channels;
-
-    unsigned char head[] = {
-        0x7e, // 0  leading character
-        0x06, // 1  message type (6 = Output Only Send DMX Packet Request)
-        0x00, // 2  data length LSB
-        0x00, // 3  data length MSB
-        0x00  // 4  start code (always zero)
-    };
-    head[2] = static_cast<unsigned char>((length+1) & 0xff);
-    head[3] = static_cast<unsigned char>((length+1) >> 8);
-
-    unsigned char tail[] = { 0xe7 };
 
     // send frame
     bool done = true;
     if (!m_com->isBusySending()) {
-        done &= m_com->sendBytes((const char*)head, sizeof(head), false);
-        done &= m_com->sendBytes((const char*)data, length, false);
-        done &= m_com->sendBytes((const char*)tail, sizeof(tail));
+
+        if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_PRO) {
+
+            // send an enttec pro frame
+            int length = m_channels;
+
+            unsigned char head[] = {
+                0x7e, // 0  leading character
+                0x06, // 1  message type (6 = Output Only Send DMX Packet Request)
+                0x00, // 2  data length LSB
+                0x00, // 3  data length MSB
+                0x00  // 4  start code (always zero)
+            };
+            head[2] = static_cast<unsigned char>((length+1) & 0xff);
+            head[3] = static_cast<unsigned char>((length+1) >> 8);
+
+            unsigned char tail[] = { 0xe7 };
+
+            done &= m_com->sendBytes((const char*)head, sizeof(head), false);
+            done &= m_com->sendBytes((const char*)data, length, false);
+            done &= m_com->sendBytes((const char*)tail, sizeof(tail));
+
+        } else if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_OPEN) {
+
+            // send an enttec open dmx frame
+
+            m_com->serialPort()->setBreakEnabled(false);
+            m_com->serialPort()->setRequestToSend(true);
+
+            unsigned char head[] = { 0x00 };
+
+            done &= m_com->sendBytes((const char*)head, sizeof(head), false);
+            done &= m_com->sendBytes((const char*)data, 512);
+
+            m_com->serialPort()->setRequestToSend(false);
+            m_com->serialPort()->setBreakEnabled(true);
+        }
+
     }
 
     return done;

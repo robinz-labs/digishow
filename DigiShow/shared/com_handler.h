@@ -11,6 +11,7 @@
 #define CH_SETTING_8O1 2
 #define CH_SETTING_7E1 3
 #define CH_SETTING_7O1 4
+#define CH_SETTING_8N2 5
 
 #define COM_ERR_UNCONNECTED      1
 #define COM_ERR_SEND_FAILED      10
@@ -25,6 +26,8 @@ class ComHandler : public QObject
 public:
     explicit ComHandler(QObject *parent = 0);
     ~ComHandler();
+
+    QSerialPort* serialPort() { return _serial; }
 
     bool open(const char* port, int baud = 9600, int setting = CH_SETTING_8N1);
     void close();

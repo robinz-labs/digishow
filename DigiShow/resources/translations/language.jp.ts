@@ -1413,14 +1413,29 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
 <context>
     <name>MwInterfaceListViewDmx</name>
     <message>
-        <location filename="../MwInterfaceListViewDmx.qml" line="43"/>
-        <location filename="../MwInterfaceListViewDmx.qml" line="57"/>
+        <location filename="../MwInterfaceListViewDmx.qml" line="44"/>
+        <location filename="../MwInterfaceListViewDmx.qml" line="58"/>
         <source>Automatic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewDmx.qml" line="81"/>
+        <location filename="../MwInterfaceListViewDmx.qml" line="82"/>
         <source>USB Serial Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewDmx.qml" line="104"/>
+        <source>Enttec DMX USB Pro</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewDmx.qml" line="105"/>
+        <source>Open DMX USB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewDmx.qml" line="121"/>
+        <source>Model</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
