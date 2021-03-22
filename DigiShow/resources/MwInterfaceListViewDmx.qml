@@ -100,10 +100,14 @@ MwInterfaceListView {
                     COptionMenu {
                         id: menuDmxMode
 
-                        optionItems: [
-                            { text:  qsTr("Enttec DMX USB Pro"), value: 0, tag: "enttec" },
-                            { text:  qsTr("Open DMX USB"      ), value: 1, tag: "opendmx" }
-                        ]
+                        optionItems: {
+                            var modeEnttec  = { text: qsTr("Enttec DMX USB Pro"), value: 0, tag: "enttec" }
+                            var modeOpenDmx = { text: qsTr("Open DMX USB"      ), value: 1, tag: "opendmx" }
+
+                            var items = [ modeEnttec ]
+                            if (digishow.appExperimental()) items.push( modeOpenDmx )
+                            return items
+                        }
 
                         onOptionSelected: {
                             var options = {

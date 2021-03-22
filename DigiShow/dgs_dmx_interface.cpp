@@ -48,6 +48,7 @@ int DgsDmxInterface::openInterface()
     // create a timer for sending dmx frames at a particular frequency
     m_timer = new QTimer();
     connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimerFired()));
+    m_timer->setTimerType(Qt::PreciseTimer);
     m_timer->setSingleShot(false);
     m_timer->setInterval(30);
     m_timer->start();
@@ -161,18 +162,24 @@ bool DgsDmxInterface::enttecDmxSendDmxFrame(unsigned char *data)
 
         } else if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_OPEN) {
 
-            // send an enttec open dmx frame
+            // send an open dmx frame
 
+            // The start-of-packet procedure is a logic zero for more than 22 bit periods (>88usec),
+            // followed by a logic 1 for more than 2 bit periods (>8usec).
             m_com->serialPort()->setBreakEnabled(false);
-            m_com->serialPort()->setRequestToSend(true);
-
-            unsigned char head[] = { 0x00 };
-
-            done &= m_com->sendBytes((const char*)head, sizeof(head), false);
-            done &= m_com->sendBytes((const char*)data, 512);
-
-            m_com->serialPort()->setRequestToSend(false);
+            QThread::usleep(88);
             m_com->serialPort()->setBreakEnabled(true);
+            QThread::usleep(8);
+            m_com->serialPort()->setBreakEnabled(false);
+
+            m_com->serialPort()->setRequestToSend(true);
+            unsigned char head[] = { 0x00 };
+            done &= m_com->sendBytes((const char*)head, sizeof(head), false);
+            done &= m_com->sendBytes((const char*)data, 512, true);
+            m_com->serialPort()->setRequestToSend(false);
+
+            m_com->serialPort()->setBreakEnabled(true);
+
         }
 
     }
