@@ -433,45 +433,45 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="596"/>
+        <location filename="../MainWindow.qml" line="602"/>
         <source>Jam with All Things Digital</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="642"/>
+        <location filename="../MainWindow.qml" line="648"/>
         <source>© 2020 Robin Zhang &amp; Labs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="782"/>
         <source>Would you like to quit DigiShow app ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="782"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="705"/>
-        <location filename="../MainWindow.qml" line="718"/>
-        <location filename="../MainWindow.qml" line="761"/>
-        <location filename="../MainWindow.qml" line="776"/>
-        <location filename="../MainWindow.qml" line="781"/>
+        <location filename="../MainWindow.qml" line="711"/>
+        <location filename="../MainWindow.qml" line="724"/>
+        <location filename="../MainWindow.qml" line="767"/>
+        <location filename="../MainWindow.qml" line="782"/>
+        <location filename="../MainWindow.qml" line="787"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="780"/>
+        <location filename="../MainWindow.qml" line="786"/>
         <source>Would you like to save all data to a file before close the app ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="178"/>
-        <location filename="../MainWindow.qml" line="705"/>
-        <location filename="../MainWindow.qml" line="718"/>
-        <location filename="../MainWindow.qml" line="761"/>
-        <location filename="../MainWindow.qml" line="781"/>
+        <location filename="../MainWindow.qml" line="185"/>
+        <location filename="../MainWindow.qml" line="711"/>
+        <location filename="../MainWindow.qml" line="724"/>
+        <location filename="../MainWindow.qml" line="767"/>
+        <location filename="../MainWindow.qml" line="787"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
@@ -486,172 +486,177 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="163"/>
+        <location filename="../MainWindow.qml" line="171"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="704"/>
+        <location filename="../MainWindow.qml" line="710"/>
         <source>Would you like to save all data to a file before create a new ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="705"/>
-        <location filename="../MainWindow.qml" line="718"/>
-        <location filename="../MainWindow.qml" line="761"/>
-        <location filename="../MainWindow.qml" line="781"/>
+        <location filename="../MainWindow.qml" line="711"/>
+        <location filename="../MainWindow.qml" line="724"/>
+        <location filename="../MainWindow.qml" line="767"/>
+        <location filename="../MainWindow.qml" line="787"/>
         <source>Don&apos;t Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="171"/>
+        <location filename="../MainWindow.qml" line="178"/>
         <source>Open ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="717"/>
+        <location filename="../MainWindow.qml" line="723"/>
         <source>Would you like to save all data to a file before open another ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="182"/>
+        <location filename="../MainWindow.qml" line="189"/>
         <source>Save As ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="187"/>
+        <location filename="../MainWindow.qml" line="163"/>
+        <source>New Instance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="194"/>
         <source>Show File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="195"/>
+        <location filename="../MainWindow.qml" line="202"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="199"/>
+        <location filename="../MainWindow.qml" line="206"/>
         <source>Options ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="204"/>
+        <location filename="../MainWindow.qml" line="210"/>
         <source>Exit Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="204"/>
+        <location filename="../MainWindow.qml" line="210"/>
         <source>Enter Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="217"/>
+        <location filename="../MainWindow.qml" line="223"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="269"/>
+        <location filename="../MainWindow.qml" line="275"/>
         <source>PRESETS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="334"/>
+        <location filename="../MainWindow.qml" line="340"/>
         <source>Error occurred when open interface %1 .</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="334"/>
+        <location filename="../MainWindow.qml" line="340"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="389"/>
+        <location filename="../MainWindow.qml" line="395"/>
         <source>Interface Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="410"/>
+        <location filename="../MainWindow.qml" line="416"/>
         <source>MIDI ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="414"/>
+        <location filename="../MainWindow.qml" line="420"/>
         <source>DMX ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="418"/>
+        <location filename="../MainWindow.qml" line="424"/>
         <source>Modbus ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="422"/>
+        <location filename="../MainWindow.qml" line="428"/>
         <source>Arduino ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="426"/>
+        <location filename="../MainWindow.qml" line="432"/>
         <source>Hue ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="430"/>
+        <location filename="../MainWindow.qml" line="436"/>
         <source>Screen ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="434"/>
+        <location filename="../MainWindow.qml" line="440"/>
         <source>Virtual Pipe ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="577"/>
+        <location filename="../MainWindow.qml" line="583"/>
         <source>app version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="578"/>
+        <location filename="../MainWindow.qml" line="584"/>
         <source>app build date: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="579"/>
+        <location filename="../MainWindow.qml" line="585"/>
         <source>qt version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="580"/>
+        <location filename="../MainWindow.qml" line="586"/>
         <source>rtmidi version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="649"/>
+        <location filename="../MainWindow.qml" line="655"/>
         <source>Load File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="652"/>
-        <location filename="../MainWindow.qml" line="669"/>
+        <location filename="../MainWindow.qml" line="658"/>
+        <location filename="../MainWindow.qml" line="675"/>
         <source>DigiShow files (*.dgs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="652"/>
-        <location filename="../MainWindow.qml" line="669"/>
+        <location filename="../MainWindow.qml" line="658"/>
+        <location filename="../MainWindow.qml" line="675"/>
         <source>All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="652"/>
+        <location filename="../MainWindow.qml" line="658"/>
         <source>JSON files (*.json)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="666"/>
+        <location filename="../MainWindow.qml" line="672"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="759"/>
+        <location filename="../MainWindow.qml" line="765"/>
         <source>Would you like to save current data before open file %1 ?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1434,7 +1439,7 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewDmx.qml" line="121"/>
+        <location filename="../MwInterfaceListViewDmx.qml" line="125"/>
         <source>Model</source>
         <translation type="unfinished"></translation>
     </message>

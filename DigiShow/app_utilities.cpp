@@ -5,6 +5,8 @@
 #include <QTextStream>
 #include <QJsonDocument>
 #include <QtNetwork>
+#include <QClipboard>
+#include <QGuiApplication>
 
 #include "app_utilities.h"
 
@@ -62,6 +64,27 @@ bool AppUtilities::saveJsonToFile(const QVariantMap & data, const QString & file
     if (jsonDoc.isNull()) return false;
 
     return (saveStringToFile(jsonDoc.toJson(), filepath));
+}
+
+QVariantMap AppUtilities::pasteJson(const QString & mimeType)
+{
+    const QMimeData *mimeData = QGuiApplication::clipboard()->mimeData();
+    if (!mimeData->hasFormat(mimeType)) return QVariantMap();
+
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(mimeData->data(mimeType));
+    return jsonDoc.toVariant().toMap();
+}
+
+bool AppUtilities::copyJson(const QVariantMap & data, const QString & mimeType)
+{
+    QJsonDocument jsonDoc = QJsonDocument::fromVariant(data);
+    if (jsonDoc.isNull()) return false;
+
+    QMimeData mimeData;
+    mimeData.setData(mimeType, jsonDoc.toJson());
+
+    QGuiApplication::clipboard()->setMimeData(&mimeData);
+    return true;
 }
 
 /*
@@ -225,6 +248,12 @@ void AppUtilities::showFileInShell(const QString & path)
 #ifdef Q_OS_WIN
     QProcess::startDetached("explorer.exe", {"/select,", QDir::toNativeSeparators(path)});
 #endif
+}
+
+void AppUtilities::newAppInstance()
+{
+    QString exeFilePath = QCoreApplication::applicationFilePath();
+    QProcess::startDetached(exeFilePath);
 }
 
 void AppUtilities::setMacWindowIsModified(QWindow *window, bool isModified)

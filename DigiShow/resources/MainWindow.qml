@@ -160,12 +160,19 @@ ApplicationWindow {
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
                     MenuItem {
+                        text: qsTr("New Instance")
+                        onTriggered: utilities.newAppInstance()
+                    }
+                    MenuSeparator {
+                        padding: 0
+                        contentItem: Rectangle { implicitHeight: 1; color: "#333333" }
+                    }
+                    MenuItem {
                         text: qsTr("New")
                         onTriggered: {
                             menu.close()
                             createNew()
                         }
-
                     }
                     MenuItem {
                         text: qsTr("Open ...")
@@ -199,7 +206,6 @@ ApplicationWindow {
                         text: qsTr("Options ...")
                         onTriggered: dialogAppOptions.show()
                     }
-
                     MenuItem {
                         text: window.visibility==Window.FullScreen ? qsTr("Exit Full Screen") : qsTr("Enter Full Screen")
                         onTriggered: {

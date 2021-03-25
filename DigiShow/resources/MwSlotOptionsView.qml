@@ -13,7 +13,6 @@ Item {
     property int outputFullRange: 0
 
     property var slotInfoBackup: ({})
-    property var slotInfoClipboard: ({})
 
     signal slotOptionUpdated(string key, var value)
 
@@ -90,13 +89,13 @@ Item {
                 CMenuItem {
                     text: qsTr("Copy")
                     onTriggered: {
-                        slotInfoClipboard = exportSlotInfo()
+                        utilities.copyJson(exportSlotInfo(), "application/vnd.digishow.options")
                     }
                 }
                 CMenuItem {
                     text: qsTr("Paste")
                     onTriggered: {
-                        importSlotInfo(slotInfoClipboard)
+                        importSlotInfo(utilities.pasteJson("application/vnd.digishow.options"))
                     }
                 }
             }
