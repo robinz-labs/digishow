@@ -7,6 +7,8 @@
 #define FTDI_VID 1027
 #define FTDI_PID 24577
 
+#define DMX_OUT_FREQ 30
+
 DgsDmxInterface::DgsDmxInterface(QObject *parent) : DigishowInterface(parent)
 {
     m_interfaceOptions["type"] = "dmx";
@@ -46,11 +48,14 @@ int DgsDmxInterface::openInterface()
     done = enttecDmxOpen(comPort, channels);
 
     // create a timer for sending dmx frames at a particular frequency
+    int frequency = m_interfaceOptions.value("frequency").toInt();
+    if (frequency == 0) frequency = DMX_OUT_FREQ;
+
     m_timer = new QTimer();
     connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimerFired()));
     m_timer->setTimerType(Qt::PreciseTimer);
     m_timer->setSingleShot(false);
-    m_timer->setInterval(30);
+    m_timer->setInterval(1000 / frequency);
     m_timer->start();
 
     if (!done) {

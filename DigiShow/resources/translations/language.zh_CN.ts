@@ -823,39 +823,39 @@
         <translation>选择信号端</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="270"/>
+        <location filename="../MwEndpointSelector.qml" line="282"/>
         <source>Apply</source>
         <translation>应用</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="294"/>
+        <location filename="../MwEndpointSelector.qml" line="306"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="527"/>
+        <location filename="../MwEndpointSelector.qml" line="550"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的媒体素材文件，或输入该媒体素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="527"/>
         <location filename="../MwEndpointSelector.qml" line="550"/>
         <location filename="../MwEndpointSelector.qml" line="573"/>
+        <location filename="../MwEndpointSelector.qml" line="596"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="550"/>
+        <location filename="../MwEndpointSelector.qml" line="573"/>
         <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的音频素材文件，或输入该音频素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="573"/>
+        <location filename="../MwEndpointSelector.qml" line="596"/>
         <source>Please select a MIDI clip file exists on your computer disks or enter a valid url of the MIDI clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的 MIDI 素材文件，或输入该 MIDI 素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="309"/>
+        <location filename="../MwEndpointSelector.qml" line="321"/>
         <source>More ...</source>
         <translation>更多接口 ...</translation>
     </message>
@@ -942,6 +942,19 @@
         <location filename="../MwEndpointSelectorAPlay.qml" line="330"/>
         <source>Audio Clip</source>
         <translation>音频素材</translation>
+    </message>
+</context>
+<context>
+    <name>MwEndpointSelectorArtnet</name>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="20"/>
+        <source>Universe</source>
+        <translation>地址空间</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="35"/>
+        <source>Channel</source>
+        <translation>通道</translation>
     </message>
 </context>
 <context>
@@ -2004,92 +2017,92 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
 <context>
     <name>MwSlotOptionsView</name>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="34"/>
+        <location filename="../MwSlotOptionsView.qml" line="33"/>
         <source>Signal mapping and transform options</source>
         <translation>信号映射和变换参数</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="44"/>
+        <location filename="../MwSlotOptionsView.qml" line="43"/>
         <source>Please select signal endpoints of both source and destination</source>
         <translation>请先选择信号的来源和目标</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="85"/>
+        <location filename="../MwSlotOptionsView.qml" line="84"/>
         <source>Revert</source>
         <translation>恢复</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="91"/>
+        <location filename="../MwSlotOptionsView.qml" line="90"/>
         <source>Copy</source>
         <translation>拷贝</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="97"/>
+        <location filename="../MwSlotOptionsView.qml" line="96"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="124"/>
+        <location filename="../MwSlotOptionsView.qml" line="123"/>
         <source>Invert Input Signal</source>
         <translation>反转输入信号量</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="137"/>
+        <location filename="../MwSlotOptionsView.qml" line="136"/>
         <source>Invert Output Signal</source>
         <translation>反转输出信号量</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="151"/>
+        <location filename="../MwSlotOptionsView.qml" line="150"/>
         <source>Zero Output While Reach Lower</source>
         <translation>当达到输出下限时输出零值</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="182"/>
+        <location filename="../MwSlotOptionsView.qml" line="181"/>
         <source>Output Smoothing</source>
         <translation>平滑输出信号量</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="210"/>
+        <location filename="../MwSlotOptionsView.qml" line="209"/>
         <source>Input-output Mapping</source>
         <translation>输入输出信号量映射</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="258"/>
+        <location filename="../MwSlotOptionsView.qml" line="257"/>
         <source>Input Range</source>
         <translation>输入信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="300"/>
+        <location filename="../MwSlotOptionsView.qml" line="299"/>
         <source>Output Range</source>
         <translation>输出信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="321"/>
+        <location filename="../MwSlotOptionsView.qml" line="320"/>
         <source>Output Envelope</source>
         <translation>输出信号包络</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="385"/>
+        <location filename="../MwSlotOptionsView.qml" line="384"/>
         <source>Attack</source>
         <translation>A 渐入时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="408"/>
+        <location filename="../MwSlotOptionsView.qml" line="407"/>
         <source>Hold</source>
         <translation>H 保持时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="431"/>
+        <location filename="../MwSlotOptionsView.qml" line="430"/>
         <source>Decay</source>
         <translation>D 衰减时长</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="455"/>
+        <location filename="../MwSlotOptionsView.qml" line="454"/>
         <source>Sustain</source>
         <translation>S 延续水平</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="478"/>
+        <location filename="../MwSlotOptionsView.qml" line="477"/>
         <source>Release</source>
         <translation>R 渐出时长</translation>
     </message>

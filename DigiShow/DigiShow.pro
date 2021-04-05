@@ -12,7 +12,6 @@ SOURCES += \
         $$PWD/shared/rioc_service.cpp \
         $$PWD/shared/rioc_controller.cpp \
         app_utilities.cpp \
-        dgs_artnet_interface.cpp \
         dgs_dmx_interface.cpp \
         dgs_midi_interface.cpp \
         dgs_modbus_interface.cpp \
@@ -41,7 +40,6 @@ HEADERS += \
     $$PWD/shared/rioc_aladdin2560_def.h \
     app_common.h \
     app_utilities.h \
-    dgs_artnet_interface.h \
     dgs_dmx_interface.h \
     dgs_midi_interface.h \
     dgs_modbus_interface.h \

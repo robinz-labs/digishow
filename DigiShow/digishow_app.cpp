@@ -7,12 +7,12 @@
 #include "dgs_modbus_interface.h"
 #include "dgs_hue_interface.h"
 #include "dgs_dmx_interface.h"
-#include "dgs_artnet_interface.h"
 #include "dgs_screen_interface.h"
 #include "dgs_pipe_interface.h"
 #include "dgs_launch_interface.h"
 
 #ifdef DIGISHOW_EXPERIMENTAL
+#include "dgs_artnet_interface.h"
 #include "dgs_aplay_interface.h"
 #include "dgs_mplay_interface.h"
 #endif
@@ -121,11 +121,11 @@ bool DigishowApp::loadFile(const QString & filepath)
         else if (interfaceType=="modbus") interface = new DgsModbusInterface(this);
         else if (interfaceType=="hue")    interface = new DgsHueInterface(this);
         else if (interfaceType=="dmx")    interface = new DgsDmxInterface(this);
-        else if (interfaceType=="artnet") interface = new DgsArtnetInterface(this);
         else if (interfaceType=="screen") interface = new DgsScreenInterface(this);
         else if (interfaceType=="pipe")   interface = new DgsPipeInterface(this);
         else if (interfaceType=="launch") interface = new DgsLaunchInterface(this);  
 #ifdef DIGISHOW_EXPERIMENTAL
+        else if (interfaceType=="artnet") interface = new DgsArtnetInterface(this);
         else if (interfaceType=="aplay")  interface = new DgsAPlayInterface(this);
         else if (interfaceType=="mplay")  interface = new DgsMPlayInterface(this);
 #endif
@@ -414,12 +414,6 @@ int DigishowApp::newInterface(const QString &interfaceType)
         interface->setInterfaceOption("mode", "enttec");
         //interface->setInterfaceOption("outputInterval", 20);
 
-    } else if (interfaceType=="artnet") {
-
-        interface = new DgsArtnetInterface(this);
-        interface->setInterfaceOption("mode", "output");
-        interface->setInterfaceOption("outputInterval", 20);
-
     } else if (interfaceType=="pipe") {
 
         interface = new DgsPipeInterface(this);
@@ -440,6 +434,23 @@ int DigishowApp::newInterface(const QString &interfaceType)
         endpointOptions["type"] = "player";
         endpointOptions["name"] = "player1";
         interface->addEndpoint(endpointOptions);
+
+#ifdef DIGISHOW_EXPERIMENTAL
+    } else if (interfaceType=="artnet") {
+
+        interface = new DgsArtnetInterface(this);
+        interface->setInterfaceOption("mode", "output");
+
+    } else if (interfaceType=="aplay") {
+
+        interface = new DgsAPlayInterface(this);
+        interface->setInterfaceOption("mode", "local");
+
+    } else if (interfaceType=="mplay") {
+
+        interface = new DgsMPlayInterface(this);
+        interface->setInterfaceOption("mode", "local");
+#endif
 
     } else { interface = new DigishowInterface(this);  }
 

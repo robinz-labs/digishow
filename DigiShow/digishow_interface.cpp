@@ -517,9 +517,9 @@ void DigishowInterface::updateMetadata()
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
             endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_ARTNET_OUTPUT);
             endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_ARTNET_INPUT);
-            endpointInfo.range  = 65535;
+            endpointInfo.range  = 255;
             endpointInfo.labelEPT = tr("ArtNet");
-            endpointInfo.labelEPI = QString("Ch%1").arg(endpointInfo.channel + 1);
+            endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(endpointInfo.channel + 1);
             break;
         case ENDPOINT_SCREEN_LIGHT:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;

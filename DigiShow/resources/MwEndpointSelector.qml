@@ -88,6 +88,7 @@ Item {
             onOptionSelected: {
                 itemMidi  .visible = false
                 itemDmx   .visible = false
+                itemArtnet.visible = false
                 itemModbus.visible = false
                 itemRioc  .visible = false
                 itemHue   .visible = false
@@ -106,12 +107,13 @@ Item {
                     switch (config["interfaceInfo"]["type"]) {
                     case DigishowEnvironment.InterfaceMidi:   itemMidi  .visible = true; itemMidi  .refresh(); break
                     case DigishowEnvironment.InterfaceDmx:    itemDmx   .visible = true; itemDmx   .refresh(); break
+                    case DigishowEnvironment.InterfaceArtnet: itemArtnet.visible = true; itemArtnet.refresh(); break
                     case DigishowEnvironment.InterfaceModbus: itemModbus.visible = true; itemModbus.refresh(); break
                     case DigishowEnvironment.InterfaceRioc:   itemRioc  .visible = true; itemRioc  .refresh(); break
                     case DigishowEnvironment.InterfaceHue:    itemHue   .visible = true; itemHue   .refresh(); break
                     case DigishowEnvironment.InterfaceScreen: itemScreen.visible = true; itemScreen.refresh(); break
-                    case DigishowEnvironment.InterfaceAPlay:  itemAPlay.visible = true;  itemAPlay .refresh(); break
-                    case DigishowEnvironment.InterfaceMPlay:  itemMPlay.visible = true;  itemMPlay .refresh(); break
+                    case DigishowEnvironment.InterfaceAPlay:  itemAPlay .visible = true; itemAPlay .refresh(); break
+                    case DigishowEnvironment.InterfaceMPlay:  itemMPlay .visible = true; itemMPlay .refresh(); break
                     case DigishowEnvironment.InterfacePipe:   itemPipe  .visible = true; itemPipe  .refresh(); break
                     case DigishowEnvironment.InterfaceLaunch: itemLaunch.visible = true; itemLaunch.refresh(); break
                     }
@@ -162,6 +164,16 @@ Item {
     MwEndpointSelectorDmx {
 
         id: itemDmx
+
+        anchors.left: buttonInterface.left
+        anchors.top: buttonInterface.bottom
+        anchors.topMargin: 10
+        visible: false
+    }
+
+    MwEndpointSelectorArtnet {
+
+        id: itemArtnet
 
         anchors.left: buttonInterface.left
         anchors.top: buttonInterface.bottom
@@ -346,6 +358,11 @@ Item {
                 //itemDmx.menuChannel.selectOption(endpointInfo["channel"])
                 itemDmx.spinChannel.value = endpointInfo["channel"] + 1
 
+            } else if (type === DigishowEnvironment.InterfaceArtnet) {
+
+                itemArtnet.spinUnit.value = endpointInfo["unit"]
+                itemArtnet.spinChannel.value = endpointInfo["channel"] + 1
+
             } else if (type === DigishowEnvironment.InterfaceModbus) {
 
                 itemModbus.menuUnit.selectOption(endpointInfo["unit"])
@@ -477,6 +494,12 @@ Item {
             newEndpointOptions["channel"] = itemDmx.spinChannel.value - 1
 
             needRestartInterface = true
+
+        } else if (type === DigishowEnvironment.InterfaceArtnet) {
+
+            newEndpointOptions["type"] = "dimmer"
+            newEndpointOptions["unit"] = itemArtnet.spinUnit.value
+            newEndpointOptions["channel"] = itemArtnet.spinChannel.value - 1
 
         } else if (type === DigishowEnvironment.InterfaceModbus) {
 

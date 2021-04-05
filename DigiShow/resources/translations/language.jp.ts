@@ -823,39 +823,39 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="270"/>
+        <location filename="../MwEndpointSelector.qml" line="282"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="294"/>
+        <location filename="../MwEndpointSelector.qml" line="306"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="527"/>
+        <location filename="../MwEndpointSelector.qml" line="550"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="527"/>
         <location filename="../MwEndpointSelector.qml" line="550"/>
         <location filename="../MwEndpointSelector.qml" line="573"/>
+        <location filename="../MwEndpointSelector.qml" line="596"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="550"/>
+        <location filename="../MwEndpointSelector.qml" line="573"/>
         <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="573"/>
+        <location filename="../MwEndpointSelector.qml" line="596"/>
         <source>Please select a MIDI clip file exists on your computer disks or enter a valid url of the MIDI clip.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="309"/>
+        <location filename="../MwEndpointSelector.qml" line="321"/>
         <source>More ...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -941,6 +941,19 @@
     <message>
         <location filename="../MwEndpointSelectorAPlay.qml" line="330"/>
         <source>Audio Clip</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MwEndpointSelectorArtnet</name>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="20"/>
+        <source>Universe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="35"/>
+        <source>Channel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2000,92 +2013,92 @@ JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages 
 <context>
     <name>MwSlotOptionsView</name>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="34"/>
+        <location filename="../MwSlotOptionsView.qml" line="33"/>
         <source>Signal mapping and transform options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="44"/>
+        <location filename="../MwSlotOptionsView.qml" line="43"/>
         <source>Please select signal endpoints of both source and destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="85"/>
+        <location filename="../MwSlotOptionsView.qml" line="84"/>
         <source>Revert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="91"/>
+        <location filename="../MwSlotOptionsView.qml" line="90"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="97"/>
+        <location filename="../MwSlotOptionsView.qml" line="96"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="124"/>
+        <location filename="../MwSlotOptionsView.qml" line="123"/>
         <source>Invert Input Signal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="137"/>
+        <location filename="../MwSlotOptionsView.qml" line="136"/>
         <source>Invert Output Signal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="151"/>
+        <location filename="../MwSlotOptionsView.qml" line="150"/>
         <source>Zero Output While Reach Lower</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="182"/>
+        <location filename="../MwSlotOptionsView.qml" line="181"/>
         <source>Output Smoothing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="210"/>
+        <location filename="../MwSlotOptionsView.qml" line="209"/>
         <source>Input-output Mapping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="258"/>
+        <location filename="../MwSlotOptionsView.qml" line="257"/>
         <source>Input Range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="300"/>
+        <location filename="../MwSlotOptionsView.qml" line="299"/>
         <source>Output Range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="321"/>
+        <location filename="../MwSlotOptionsView.qml" line="320"/>
         <source>Output Envelope</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="385"/>
+        <location filename="../MwSlotOptionsView.qml" line="384"/>
         <source>Attack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="408"/>
+        <location filename="../MwSlotOptionsView.qml" line="407"/>
         <source>Hold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="431"/>
+        <location filename="../MwSlotOptionsView.qml" line="430"/>
         <source>Decay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="455"/>
+        <location filename="../MwSlotOptionsView.qml" line="454"/>
         <source>Sustain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="478"/>
+        <location filename="../MwSlotOptionsView.qml" line="477"/>
         <source>Release</source>
         <translation type="unfinished"></translation>
     </message>
