@@ -42,7 +42,32 @@ Item {
             font.bold: false
             text: qsTr("Please select signal endpoints of both source and destination")
         }
+    }
 
+    CheckBox {
+        id: checkInputInverted
+
+        anchors.left: parent.left
+        anchors.leftMargin: 15
+        anchors.top: parent.top
+        anchors.topMargin: 5
+        font.pixelSize: 12
+        text: qsTr("Invert Input Signal")
+
+        onClicked: setSlotOption("inputInverted", checked)
+    }
+
+    CheckBox {
+        id: checkOutputInverted
+
+        anchors.left: parent.left
+        anchors.leftMargin: 15
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 5
+        font.pixelSize: 12
+        text: qsTr("Invert Output Signal")
+
+        onClicked: setSlotOption("outputInverted", checked)
     }
 
     Item {
@@ -113,39 +138,12 @@ Item {
         }
 
         CheckBox {
-            id: checkInputInverted
-
-            anchors.left: parent.left
-            anchors.leftMargin: 15
-            anchors.top: parent.top
-            anchors.topMargin: 5
-            font.pixelSize: 12
-            text: qsTr("Invert Input Signal")
-
-            onClicked: setSlotOption("inputInverted", checked)
-        }
-
-        CheckBox {
-            id: checkOutputInverted
-
-            anchors.left: parent.left
-            anchors.leftMargin: 15
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
-            font.pixelSize: 12
-            text: qsTr("Invert Output Signal")
-
-            onClicked: setSlotOption("outputInverted", checked)
-        }
-
-
-        CheckBox {
             id: checkOutputLowAsZero
 
             anchors.left: parent.left
             anchors.leftMargin: 15
-            anchors.bottom: checkOutputInverted.top
-            anchors.bottomMargin: -10
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 45
             font.pixelSize: 12
             text: qsTr("Zero Output While Reach Lower")
             enabled:
@@ -164,7 +162,8 @@ Item {
             width: 110
             anchors.right: parent.right
             anchors.rightMargin: 15
-            anchors.verticalCenter: checkOutputInverted.verticalCenter
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 15
             from: 0
             to: 60000
             stepSize: 10
@@ -490,49 +489,52 @@ Item {
 
         slotInfoBackup = {}
 
-        // show information when slot or endpoint is not available
+        // show information and hide all options when slot is not ready
         itemInformation.visible = true
         itemSlotOptions.visible = false
-
-        // confirm both endpoints are already selected
-        if (slotIndex === -1 ||
-            digishow.getSourceEndpointIndex(slotIndex) === -1 ||
-            digishow.getDestinationEndpointIndex(slotIndex) === -1) return
-
-        // confirm slot configuration is avalible
-        var config = digishow.getSlotConfiguration(slotIndex)
-        var slotInfo = config["slotInfo"]
-        if (slotInfo === undefined) return
-
-        slotInfoBackup = slotInfo
-
-        // show slot options
-        itemInformation.visible = false
-        itemSlotOptions.visible = true
-
-        // show / hide options according to input-output signals
-        var inputSignal = slotInfo["inputSignal"]
-        var outputSignal = slotInfo["outputSignal"]
-
-        inputFullRange = slotInfo["inputRange"]
-        outputFullRange = slotInfo["outputRange"]
-
         checkInputInverted.visible = false
         checkOutputInverted.visible = false
+
+        // confirm and get slot configuration
+        if (slotIndex === -1) return
+
+        var config = digishow.getSlotConfiguration(slotIndex)
+        var slotInfo = config["slotInfo"]
+
+        if (slotInfo === undefined) return
+        slotInfoBackup = slotInfo
+
+        // show signal inversion options when source/destination endpoint is ready
+        var inputSignal  = (digishow.getSourceEndpointIndex     (slotIndex) === -1 ? 0 : slotInfo["inputSignal" ])
+        var outputSignal = (digishow.getDestinationEndpointIndex(slotIndex) === -1 ? 0 : slotInfo["outputSignal"])
+
+        if (inputSignal === DigishowEnvironment.SignalAnalog ||
+            inputSignal === DigishowEnvironment.SignalBinary)
+            checkInputInverted.visible = true
+
+        if (outputSignal === DigishowEnvironment.SignalAnalog ||
+            outputSignal === DigishowEnvironment.SignalBinary)
+            checkOutputInverted.visible = true
+
+        // confirm both endpoints are ready
+        // and show slot options
+        if (inputSignal !== 0 && outputSignal !==0) {
+            itemInformation.visible = false
+            itemSlotOptions.visible = true
+            inputFullRange = slotInfo["inputRange"]
+            outputFullRange = slotInfo["outputRange"]
+        }
+
+        // show / hide detailed options according to input-output signals
         checkOutputLowAsZero.visible = false
-
         spinOutputSmoothing.visible = false
-
         itemMappingOptions.visible = false
         itemEnvelopeOptions.visible = false
 
         if (inputSignal  === DigishowEnvironment.SignalAnalog &&
             outputSignal === DigishowEnvironment.SignalAnalog) {
 
-            checkInputInverted.visible = true
-            checkOutputInverted.visible = true
             checkOutputLowAsZero.visible = true
-
             spinOutputSmoothing.visible = true
 
             itemMappingOptions.visible = true
@@ -541,9 +543,6 @@ Item {
 
         } else if (inputSignal  === DigishowEnvironment.SignalAnalog &&
                    outputSignal === DigishowEnvironment.SignalBinary) {
-
-            checkInputInverted.visible = true
-            checkOutputInverted.visible = true
 
             itemMappingOptions.visible = true
             sliderMappingInputRange.visible = true
@@ -552,17 +551,12 @@ Item {
         } else if (inputSignal  === DigishowEnvironment.SignalAnalog &&
                    outputSignal === DigishowEnvironment.SignalNote) {
 
-            checkInputInverted.visible = true
-
             itemMappingOptions.visible = true
             sliderMappingInputRange.visible = true
             sliderMappingOutputRange.visible = true
 
         } else if (inputSignal  === DigishowEnvironment.SignalBinary &&
                    outputSignal === DigishowEnvironment.SignalAnalog) {
-
-            checkInputInverted.visible = true
-            checkOutputInverted.visible = true
 
             spinOutputSmoothing.visible = true
 
@@ -573,13 +567,8 @@ Item {
         } else if (inputSignal  === DigishowEnvironment.SignalBinary &&
                    outputSignal === DigishowEnvironment.SignalBinary) {
 
-            checkInputInverted.visible = true
-            checkOutputInverted.visible = true
-
         } else if (inputSignal  === DigishowEnvironment.SignalBinary &&
                    outputSignal === DigishowEnvironment.SignalNote) {
-
-            checkInputInverted.visible = true
 
             itemMappingOptions.visible = true
             sliderMappingInputRange.visible = false
@@ -588,7 +577,6 @@ Item {
         } else if (inputSignal  === DigishowEnvironment.SignalNote &&
                    outputSignal === DigishowEnvironment.SignalAnalog) {
 
-            checkOutputInverted.visible = true
             checkOutputLowAsZero.visible = true
 
             itemMappingOptions.visible = true
@@ -605,8 +593,6 @@ Item {
 
         } else if (inputSignal  === DigishowEnvironment.SignalNote &&
                    outputSignal === DigishowEnvironment.SignalBinary) {
-
-            checkOutputInverted.visible = true
 
             itemEnvelopeOptions.visible = true
             buttonEnvelopeHelp.visible = false

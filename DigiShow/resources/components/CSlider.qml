@@ -5,6 +5,7 @@ Slider {
     id: slider
 
     property color color: "#006699"
+    property bool inverted: false
 
     // customize control style
     background: Rectangle {
@@ -35,5 +36,18 @@ Slider {
         color: slider.color
         radius: 2
         opacity: 0.5
+        visible: !inverted
+    }
+
+    Rectangle {
+        height: 4
+        anchors.right: parent.right
+        anchors.left: slider.handle.right
+        anchors.leftMargin: -3
+        anchors.verticalCenter: parent.verticalCenter
+        color: slider.color
+        radius: 2
+        opacity: 0.5
+        visible: inverted
     }
 }

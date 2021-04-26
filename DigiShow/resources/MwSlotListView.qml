@@ -544,6 +544,7 @@ Item {
                             to: model.epOutRange
                             stepSize: 1
                             color: model.epOutColor
+                            inverted: model.slotOutInverted
 
                             Behavior on value { NumberAnimation { duration: (model.slotLinked && model.epOutFaderHold ? 300 : 0); easing.type: Easing.OutCubic } }
 
