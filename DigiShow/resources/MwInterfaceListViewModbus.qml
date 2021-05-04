@@ -63,21 +63,24 @@ MwInterfaceListView {
                             { text: qsTr("Modbus RTU over TCP"), value: 2, tag: "rtuovertcp" }
                         ]
 
-                        onOptionSelected: {
+                        onOptionClicked: {
                             var options = { mode: selectedItemTag }
 
                             if (options["mode"] === "rtu") {
 
-                                if (model.comBaud === undefined ||
-                                    model.comBaud === 0) options["comBaud"] = 9600
-
-                                if (model.comParity === undefined ||
-                                    model.comParity === "") options["comParity"] = "8N1"
+                                options["comPort"] = ""
+                                options["comBaud"] = 9600
+                                options["comParity"] = "8N1"
+                                options["tcpHost"] = undefined
+                                options["tcpPort"] = undefined
 
                             } else {
 
-                                if (model.tcpPort === undefined ||
-                                    model.tcpPort === 0) options["tcpPort"] = 502
+                                options["comPort"] = undefined
+                                options["comBaud"] = undefined
+                                options["comParity"] = undefined
+                                options["tcpHost"] = "127.0.0.1"
+                                options["tcpPort"] = 502
                             }
 
                             updateInterface(model.index, options)
@@ -241,8 +244,10 @@ MwInterfaceListView {
                     }
 
                     onEditingFinished: {
-                        var options = { tcpHost: text }
-                        updateInterface(model.index, options)
+                        if (visible) {
+                            var options = { tcpHost: text }
+                            updateInterface(model.index, options)
+                        }
                     }
 
                     Label {
@@ -270,8 +275,10 @@ MwInterfaceListView {
                     visible: model.mode !== "rtu"
 
                     onEditingFinished: {
-                        var options = { tcpPort: parseInt(text) }
-                        updateInterface(model.index, options)
+                        if (visible) {
+                            var options = { tcpPort: parseInt(text) }
+                            updateInterface(model.index, options)
+                        }
                     }
 
                     Label {

@@ -102,6 +102,7 @@
         <file>MwInterfaceListView.qml</file>
         <file>MwInterfaceListViewMidi.qml</file>
         <file>MwInterfaceListViewDmx.qml</file>
+        <file>MwInterfaceListViewArtnet.qml</file>
         <file>MwInterfaceListViewModbus.qml</file>
         <file>MwInterfaceListViewRioc.qml</file>
         <file>MwInterfaceListViewHue.qml</file>

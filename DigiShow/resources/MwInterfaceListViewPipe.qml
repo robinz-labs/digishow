@@ -58,18 +58,21 @@ MwInterfaceListView {
                             { text: qsTr("Remote Pipe"), value: 1, tag: "remote" }
                         ]
 
-                        onOptionSelected: {
+                        onOptionClicked: {
                             var options = { mode: selectedItemTag }
 
                             if (options["mode"] === "local") {
 
-                                options["outputInterval"] = (model.acceptRemote ? 20 : 0)
+                                options["acceptRemote"] = 0
+                                options["tcpHost"] = undefined
+                                options["tcpPort"] = undefined
+                                options["outputInterval"] = undefined
 
                             } else if (options["mode"] === "remote") {
 
-                                if (model.tcpPort === undefined ||
-                                    model.tcpPort === 0) options["tcpPort"] = 50000
-
+                                options["acceptRemote"] = undefined
+                                options["tcpHost"] = "127.0.0.1"
+                                options["tcpPort"] = 50000
                                 options["outputInterval"] = 20
                             }
 
@@ -101,8 +104,10 @@ MwInterfaceListView {
                     }
 
                     onEditingFinished: {
-                        var options = { tcpHost: text }
-                        updateInterface(model.index, options)
+                        if (visible) {
+                            var options = { tcpHost: text }
+                            updateInterface(model.index, options)
+                        }
                     }
 
                     Label {
@@ -130,8 +135,10 @@ MwInterfaceListView {
                     visible: model.mode === "remote" || (model.mode === "local" && model.acceptRemote)
 
                     onEditingFinished: {
-                        var options = { tcpPort: parseInt(text) }
-                        updateInterface(model.index, options)
+                        if (visible) {
+                            var options = { tcpPort: parseInt(text) }
+                            updateInterface(model.index, options)
+                        }
                     }
 
                     Label {
@@ -166,19 +173,18 @@ MwInterfaceListView {
                             { text: qsTr("Enabled" ), value: 1 }
                         ]
 
-                        onOptionSelected: {
+                        onOptionClicked: {
                             var options = { acceptRemote: selectedItemValue }
 
                             if (options["acceptRemote"] === 1) {
 
-                                if (model.tcpPort === undefined ||
-                                    model.tcpPort === 0) options["tcpPort"] = 50000
-
+                                options["tcpPort"] = 50000
                                 options["outputInterval"] = 20
 
                             } else {
 
-                                options["outputInterval"] = 0
+                                options["tcpPort"] = undefined
+                                options["outputInterval"] = undefined
                             }
 
                             updateInterface(model.index, options)
@@ -203,8 +209,6 @@ MwInterfaceListView {
                     anchors.margins: 20
                     anchors.leftMargin: 10
                     text: model.comment === undefined ? "" : model.comment
-
-                    visible: model.mode === "local"
 
                     onEditingFinished: {
                         var options = { comment: text }

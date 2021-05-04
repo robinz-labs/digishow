@@ -12,7 +12,8 @@ Menu {
     readonly property string selectedItemTag:   (selectedIndex === -1 || optionItems[selectedIndex].tag   === undefined) ? "" : optionItems[selectedIndex].tag
     readonly property string selectedItemText:  (selectedIndex === -1 || optionItems[selectedIndex].text  === undefined) ? "" : optionItems[selectedIndex].text
 
-    signal optionSelected(int value)
+    signal optionSelected(int value) // option item selection changed by code or mouse-clicking
+    signal optionClicked(int value)  // option item selection changed by mouse-clicking
 
     width: parent.width
     height: Math.min(28*count + 2, 28*15+2)
@@ -70,8 +71,13 @@ Menu {
                 menuItem.index = n
                 menuItem.text = optionItems[n].text
                 menuItem.itemSelected.connect(function(index) {
+
+                    if (selectedIndex === index) return
+
                     selectedIndex = index
-                    optionSelected(optionItems[selectedIndex].value) // emit signal
+                    var val = optionItems[selectedIndex].value
+                    optionSelected(val) // emit signal
+                    optionClicked(val)
 
                     common.setAncestorProperty(menu, "isModified", true)
                 })

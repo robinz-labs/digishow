@@ -421,24 +421,28 @@ ApplicationWindow {
                         onTriggered: dialogInterfaces.showTab(1)
                     }
                     MenuItem {
-                        text: qsTr("Modbus ...")
+                        text: qsTr("ArtNet ...")
                         onTriggered: dialogInterfaces.showTab(2)
                     }
                     MenuItem {
-                        text: qsTr("Arduino ...")
+                        text: qsTr("Modbus ...")
                         onTriggered: dialogInterfaces.showTab(3)
                     }
                     MenuItem {
-                        text: qsTr("Hue ...")
+                        text: qsTr("Arduino ...")
                         onTriggered: dialogInterfaces.showTab(4)
                     }
                     MenuItem {
-                        text: qsTr("Screen ...")
+                        text: qsTr("Hue ...")
                         onTriggered: dialogInterfaces.showTab(5)
                     }
                     MenuItem {
-                        text: qsTr("Virtual Pipe ...")
+                        text: qsTr("Screen ...")
                         onTriggered: dialogInterfaces.showTab(6)
+                    }
+                    MenuItem {
+                        text: qsTr("Virtual Pipe ...")
+                        onTriggered: dialogInterfaces.showTab(7)
                     }
 
                 }

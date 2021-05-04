@@ -83,7 +83,14 @@ Item {
             var key = keys[n]
             var val = options[key]
             app.interfaceAt(interfaceIndex).setInterfaceOption(key, val)
-            dataModel.setProperty(index, key, val)
+            if (val !== undefined) {
+                dataModel.setProperty(index, key, val)
+            } else {
+                var properties = dataModel.get(index)
+                delete properties[key]
+                dataModel.set(index, properties)
+            }
+
         }
         app.interfaceAt(interfaceIndex).updateMetadata()
     }

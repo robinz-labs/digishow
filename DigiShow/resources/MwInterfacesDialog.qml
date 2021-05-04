@@ -115,6 +115,46 @@ Dialog {
         }
 
         Rectangle {
+            id: rectArtnet
+            color: "transparent"
+
+            Label {
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                color: Material.accent
+                font.bold: true
+                font.pixelSize: 16
+                text: qsTr("ArtNet Interfaces")
+            }
+
+            Label {
+                id: labelArtnetInfo
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.right: parent.right
+                anchors.rightMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 40
+                wrapMode: Label.Wrap
+                lineHeight: 1.3
+                text: qsTr("ArtNet interface is typically for connecting your show lights, such as LED strips or matrices, through an IP network.")
+            }
+
+            MwInterfaceListViewArtnet {
+                id: interfaceListViewArtnet
+                anchors.top: labelArtnetInfo.bottom
+                anchors.topMargin: 20
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+            }
+
+        }
+
+        Rectangle {
             id: rectModbus
             color: "transparent"
 
@@ -339,6 +379,14 @@ Dialog {
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
+            text: qsTr("ArtNet")
+            font.capitalization: Font.MixedCase
+            icon.source: "qrc:///images/icon_interface_artnet_white.png"
+            icon.width: 48
+            icon.height: 48
+            display: AbstractButton.TextUnderIcon
+        }
+        TabButton {
             text: qsTr("Modbus")
             font.capitalization: Font.MixedCase
             icon.source: "qrc:///images/icon_interface_modbus_white.png"
@@ -406,6 +454,7 @@ Dialog {
 
         interfaceListViewMidi.refresh()
         interfaceListViewDmx.refresh()
+        interfaceListViewArtnet.refresh()
         interfaceListViewModbus.refresh()
         interfaceListViewRioc.refresh()
         interfaceListViewHue.refresh()
