@@ -1,7 +1,7 @@
 #include "digishow.h"
 
 QString g_appname = "DigiShow LINK";
-QString g_version = "1.1.5";
+QString g_version = "1.1.6";
 
 DigishowApp* g_app = nullptr;
 

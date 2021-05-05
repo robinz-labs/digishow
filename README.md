@@ -3,12 +3,13 @@ DigiShow is an easy-to-use software aims at controls for live performances and i
 
 With using DigiShow LINK app, there are some possible scenarios: A DJ can arrange cue actions in Ableton Live and control automations on the stage. A drummer can play dynamic show lightings following the drum beats. An experimental musician can make and play own DIY instruments. An artist can create new art works with more interactive media elements. Also, DigiShow is for everybody. With it plus a little creativity, you can inject your magical moments into the party time with your friends and family. 
 
-DigiShow LINK app enables signal transferring between MIDI and other digital device interfaces like DMX, Modbus, Arduino, Philips Hue, as well as controls for media presentation on screens. MIDI notes and MIDI control changes are mapped and transformed to the signals for light, servo, media and more controls. Also, some input signals from sensors can be converted to MIDI notes or CC that will be able to be processed by other digital music software. 
+DigiShow LINK app enables signal transferring between MIDI and other digital device interfaces like DMX, ArtNet, Modbus, Arduino, Philips Hue, as well as controls for media presentation on screens. MIDI notes and MIDI control changes are mapped and transformed to the signals for light, servo, media and more controls. Also, some input signals from sensors can be converted to MIDI notes or CC that will be able to be processed by other digital music software. 
 
 DigiShow LINK works well with other music software that supports MIDI input/output, like Ableton Live, Logic Pro, FL Studio, etc. We can arrange light, media and other actions on MIDI tracks with notes and CC automations. However, DigiShow is an independent app rather than a plugin. In order to communicate with MIDI messages between LINK and other software, users just need to setup a virtual MIDI bus on their computers. 
 
 - MIDI interface is typically for connecting your digital musical instruments, controllers, sequencers and digital music apps.
 - DMX interface is typically for connecting your lights and fixtures on the stage.
+- ArtNet interface is typically for connecting your show lights through an IP network.
 - Modbus interface is typically for connecting your industrial automations, robots and machines.
 - Arduino is an open source electronic controller for making homebrew instruments, lights or gadgets for your interactive shows.
 - Philips Hue is the popular smart home wireless-controlled lights.

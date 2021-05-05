@@ -162,10 +162,18 @@ int main(int argc, char *argv[])
     app.setQmlRoot(engine.rootObjects()[0]);
 
     // load data file
+    bool isFileLoaded = false;
     if (argc > 1) {
         QString filepath = argv[1];
-        if (g_app->loadFile(filepath)) g_app->start();
+        isFileLoaded = g_app->loadFile(filepath);
     }
+
+#ifdef DIGISHOW_EXPERIMENTAL
+    if (argc > 2) {
+        QString option = argv[2];
+        if ((option == "-r" || option == "--run") && isFileLoaded) g_app->start();
+    }
+#endif
 
     // start app runloop
     int r = app.exec();

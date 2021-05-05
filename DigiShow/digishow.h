@@ -38,6 +38,13 @@
   beta release
   + allows to transform screen canvas where presents media clips
 
+  v1.1.6 20210505
+  beta release
+  + artnet support
+  + smoothing analog output
+  + copy-paste slot options
+
+
  */
 
 #ifndef DIGISHOW_H
