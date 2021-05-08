@@ -8,6 +8,8 @@ AppUtilities {
         if (s.startsWith("file:///")) {
             var k = (s.charAt(9) === ':' ? 8 : 7);
             s = s.substring(k);
+        } else if (s.startsWith("file://")) {
+            s = s.substring(5);
         }
         return decodeURIComponent(s);
     }

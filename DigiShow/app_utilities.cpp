@@ -30,6 +30,7 @@ QString AppUtilities::loadStringFromFile(const QString & filepath)
     QFile file(filepath);
     if (file.open(QIODevice::ReadOnly)) {
         QTextStream stream(&file);
+        stream.setCodec("UTF-8");
         data = stream.readAll();
         file.close();
     }
@@ -42,6 +43,7 @@ bool AppUtilities::saveStringToFile(const QString & data, const QString & filepa
     QFile file(filepath);
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
+        stream.setCodec("UTF-8");
         stream << data;
         file.close();
         return true;

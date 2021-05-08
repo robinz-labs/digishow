@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
     // load data file
     bool isFileLoaded = false;
     if (argc > 1) {
-        QString filepath = argv[1];
+        QString filepath = QString::fromLocal8Bit(argv[1]);
         isFileLoaded = g_app->loadFile(filepath);
     }
 
