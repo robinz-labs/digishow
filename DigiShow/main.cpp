@@ -16,6 +16,10 @@
 #include <CoreMIDI/CoreMIDI.h>
 #endif
 
+#ifdef DIGISHOW_EXPERIMENTAL
+#include "digishow_experimental.h"
+#endif
+
 Q_DECLARE_METATYPE(dgsSignalData)
 
 class MyApplication : public QGuiApplication
@@ -169,10 +173,8 @@ int main(int argc, char *argv[])
     }
 
 #ifdef DIGISHOW_EXPERIMENTAL
-    if (argc > 2) {
-        QString option = argv[2];
-        if ((option == "-r" || option == "--run") && isFileLoaded) g_app->start();
-    }
+    DigishowExperimental ex(&app);
+    ex.initExperimentalApp(argc, argv);
 #endif
 
     // start app runloop

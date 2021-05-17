@@ -5,6 +5,7 @@ CONFIG += c++11
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
+        $$PWD/shared/md5.cpp \
         $$PWD/shared/tcp_handler.cpp \
         $$PWD/shared/com_handler.cpp \
         $$PWD/shared/modbus_rtu_handler.cpp \
@@ -58,6 +59,8 @@ HEADERS += \
     digishow_slot.h
 
 RESOURCES += $$PWD/resources/main.qrc
+
+INCLUDEPATH += $$PWD/shared/
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =

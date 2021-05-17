@@ -1,6 +1,6 @@
 #include "dgs_rioc_interface.h"
-#include "shared/rioc_controller.h"
-#include "shared/rioc_aladdin2560_def.h"
+#include "rioc_controller.h"
+#include "rioc_aladdin2560_def.h"
 
 #include <QSerialPortInfo>
 

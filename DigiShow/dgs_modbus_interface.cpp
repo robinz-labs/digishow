@@ -1,5 +1,5 @@
 #include "dgs_modbus_interface.h"
-#include "shared/modbus_handler.h"
+#include "modbus_handler.h"
 #include <QSerialPortInfo>
 
 DgsModbusInterface::DgsModbusInterface(QObject *parent) : DigishowInterface(parent)

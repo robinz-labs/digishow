@@ -6,7 +6,7 @@
 #include "dgs_modbus_interface.h"
 #include "dgs_dmx_interface.h"
 #include "dgs_screen_interface.h"
-#include "shared/rioc_aladdin2560_def.h"
+#include "rioc_aladdin2560_def.h"
 
 DigishowEnvironment::DigishowEnvironment(QObject *parent) : QObject(parent)
 {

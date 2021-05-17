@@ -1,5 +1,5 @@
 #include "dgs_dmx_interface.h"
-#include "shared/com_handler.h"
+#include "com_handler.h"
 
 #include <QSerialPortInfo>
 
