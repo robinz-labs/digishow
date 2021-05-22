@@ -6,7 +6,7 @@ Menu {
     id: menu
 
     width: 120
-    height: 28*count + 2
+    //height: 28*count + 2
 
     topPadding: 1
     bottomPadding: 1

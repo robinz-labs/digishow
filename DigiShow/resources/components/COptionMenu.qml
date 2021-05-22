@@ -62,7 +62,7 @@ Menu {
 
             if (optionItems[n].text === "-") {
 
-                var menuSeparator = Qt.createQmlObject("import QtQuick.Controls 2.12; MenuSeparator {}", this)
+                var menuSeparator = Qt.createQmlObject("import QtQuick.Controls 2.12; MenuSeparator { topPadding:13; bottomPadding:14 }", this)
                 addItem(menuSeparator)
 
             } else {

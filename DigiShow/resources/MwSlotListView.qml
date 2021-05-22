@@ -15,6 +15,8 @@ Item {
     property alias currentIndexVisual: listView.currentIndex // index to visual modal
     property alias listItemCount: dataModel.count
 
+    property bool  showSlotSelection: false
+
     onSelectedIndexChanged: currentIndex = selectedIndex
     onCurrentIndexChanged: currentIndexVisual = getVisualItemIndex(currentIndex)
     onCurrentIndexVisualChanged: currentIndex = getDataItemIndex(currentIndexVisual)
@@ -69,7 +71,7 @@ Item {
                 height: 70
                 anchors.left: parent.left
                 anchors.right: parent.right
-                anchors.leftMargin: 20
+                anchors.leftMargin: showSlotSelection ? 32 : 20
                 anchors.rightMargin: 20
 
                 drag.target: held ? content : undefined
@@ -124,6 +126,16 @@ Item {
                             deleteSlot(currentIndex)
                         }
                     }
+
+                    MenuSeparator {}
+
+                    CMenuItem {
+                        text: showSlotSelection ? qsTr("Deselect Slots") : qsTr("Select Slots")
+                        onTriggered: {
+                            showSlotSelection = !showSlotSelection
+                        }
+                    }
+
                 }
 
                 Rectangle {
@@ -580,6 +592,15 @@ Item {
                         onClicked: model.launchRememberOutput = checked
                     }
 
+                    CheckBox {
+                        id: checkSlotSelection
+                        anchors.right: rectEndpointIn.left
+                        anchors.rightMargin: 0
+                        anchors.verticalCenter: rectEndpointIn.verticalCenter
+                        visible: showSlotSelection
+                        checked: model.slotSelection
+                        onClicked: model.slotSelection = checked
+                    }
                 }
 
                 DropArea {
@@ -759,6 +780,115 @@ Item {
                 }
             }
         }
+
+        Item {
+            id: slotSelectionView
+            height: 46
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: showSlotSelection ? 0 : -height
+            clip: true
+
+            Behavior on anchors.bottomMargin { NumberAnimation { duration: 120 } }
+
+            Rectangle {
+                anchors.fill: parent
+                color: "black"
+                opacity: 0.5
+            }
+
+            CButton {
+                id: buttonSelectAll
+                width: 80
+                height: 26
+                anchors.left: parent.left
+                anchors.leftMargin: 36
+                anchors.verticalCenter: parent.verticalCenter
+                label.text: qsTr("Select All")
+                label.font.bold: false
+                label.font.pixelSize: 11
+                box.radius: 3
+                box.border.width: 1
+                colorNormal: "black"
+
+                onClicked: {
+                    for (var n=0 ; n<dataModel.count ; n++) dataModel.setProperty(n, "slotSelection",  true)
+                }
+            }
+
+            CButton {
+                id: buttonSelectNone
+                width: 80
+                height: 26
+                anchors.left: buttonSelectAll.right
+                anchors.leftMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                label.text: qsTr("Select None")
+                label.font.bold: false
+                label.font.pixelSize: 11
+                box.radius: 3
+                box.border.width: 1
+                colorNormal: "black"
+
+                onClicked: {
+                    for (var n=0 ; n<dataModel.count ; n++) dataModel.setProperty(n, "slotSelection",  false)
+                }
+            }
+
+            CButton {
+                id: buttonCopySelection
+                width: 80
+                height: 26
+                anchors.left: buttonSelectNone.right
+                anchors.leftMargin: 30
+                anchors.verticalCenter: parent.verticalCenter
+                label.text: qsTr("Copy")
+                label.font.bold: false
+                label.font.pixelSize: 11
+                box.radius: 3
+                box.border.width: 1
+                colorNormal: "black"
+
+                onClicked: {}
+            }
+
+            CButton {
+                id: buttonDeleteSelection
+                width: 80
+                height: 26
+                anchors.left: buttonCopySelection.right
+                anchors.leftMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                label.text: qsTr("Delete")
+                label.font.bold: false
+                label.font.pixelSize: 11
+                box.radius: 3
+                box.border.width: 1
+                colorNormal: "black"
+
+                onClicked: {}
+            }
+
+            CButton {
+                width: 26
+                height: 26
+                anchors.right: parent.right
+                anchors.rightMargin: 24
+                anchors.verticalCenter: parent.verticalCenter
+                icon.width: 24
+                icon.height: 24
+                icon.source: "qrc:///images/icon_delete_white.png"
+                box.radius: 14
+                box.border.width: 1
+                colorNormal: "black"
+
+                onClicked: {
+                    showSlotSelection = false
+                }
+            }
+
+        }
     }
 
     Timer {
@@ -905,7 +1035,9 @@ Item {
             epOutTap: false,
 
             launchRememberLink: true,
-            launchRememberOutput: true
+            launchRememberOutput: true,
+
+            slotSelection: false
         }
 
         dataModel.set(n, item)
