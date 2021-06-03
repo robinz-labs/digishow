@@ -67,7 +67,7 @@ Rectangle {
         anchors.margins: -4
         icon.width: 24
         icon.height: 24
-        icon.source: "qrc:///images/icon_delete_white.png"
+        icon.source: "qrc:///images/icon_close_white.png"
         box.radius: 12
         box.border.width: 0
         colorNormal: Material.accent

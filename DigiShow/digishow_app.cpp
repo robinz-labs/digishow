@@ -61,27 +61,16 @@ void DigishowApp::clear()
 
     m_launches.clear();
 
+    // notify ui data change
     emit filepathChanged();
     emit interfaceListChanged();
     emit slotListChanged();
+    emit launchListChanged();
+
 }
 
-bool DigishowApp::loadFile(const QString & filepath)
+void DigishowApp::importData(const QVariantMap & data)
 {
-    // confirm the system is not running
-    if (m_running) return false;
-
-    // confirm the file exists
-    if (!AppUtilities::fileExists(filepath)) return false;
-
-    // clear all in the app environment
-    clear();
-
-    // load data from the file
-    QVariantMap data = AppUtilities::loadJsonFromFile(filepath);
-    if (!data.contains("interfaces") || !data.contains("slots")) return false;
-    m_filepath = filepath;
-
     // set up interfaces
     QVariantList dataInterfaces = data.value("interfaces").toList();
     for (int n=0 ; n<dataInterfaces.length() ; n++) {
@@ -124,7 +113,7 @@ bool DigishowApp::loadFile(const QString & filepath)
         else if (interfaceType=="artnet") interface = new DgsArtnetInterface(this);
         else if (interfaceType=="screen") interface = new DgsScreenInterface(this);
         else if (interfaceType=="pipe")   interface = new DgsPipeInterface(this);
-        else if (interfaceType=="launch") interface = new DgsLaunchInterface(this);  
+        else if (interfaceType=="launch") interface = new DgsLaunchInterface(this);
 #ifdef DIGISHOW_EXPERIMENTAL
         else if (interfaceType=="aplay")  interface = new DgsAPlayInterface(this);
         else if (interfaceType=="mplay")  interface = new DgsMPlayInterface(this);
@@ -183,19 +172,14 @@ bool DigishowApp::loadFile(const QString & filepath)
     // set up launches
     if (data.contains("launches")) m_launches = data.value("launches").toMap();
 
-    emit filepathChanged();
+    // notify ui data change
     emit interfaceListChanged();
     emit slotListChanged();
-
-    return true;
+    emit launchListChanged();
 }
 
-bool DigishowApp::saveFile(const QString & filepath, const QList<int> & slotListOrder)
+QVariantMap DigishowApp::exportData(const QList<int> & slotListOrder, bool onlySelection)
 {
-    // confirm filepath is set
-    QString filepath1 = (filepath.isEmpty() ? m_filepath : filepath);
-    if (filepath1.isEmpty()) return false;
-
     // prepare data of interfaces
     QVariantList dataInterfaces;
     for (int n=0 ; n<m_interfaces.length() ; n++) {
@@ -235,21 +219,57 @@ bool DigishowApp::saveFile(const QString & filepath, const QList<int> & slotList
 
         dataSlot["linked"] = slot->isLinked(); // save linked flag
 
-        dataSlots.append(dataSlot);
+        if (!onlySelection || slot->isSelected())
+            dataSlots.append(dataSlot);
     }
 
-    // write data to file
+    // write data
     QVariantMap data;
     data["interfaces"] = dataInterfaces;
     data["slots"] = dataSlots;
     data["launches"] = m_launches;
 
-    if (AppUtilities::saveJsonToFile(data, filepath1)) {
-        m_filepath = filepath1;
-        emit filepathChanged();
-        return true;
-    }
-    return false;
+    return data;
+}
+
+bool DigishowApp::loadFile(const QString & filepath)
+{
+    // confirm the system is not running
+    if (m_running) return false;
+
+    // confirm the file exists
+    if (!AppUtilities::fileExists(filepath)) return false;
+
+    // load data from the file
+    QVariantMap data = AppUtilities::loadJsonFromFile(filepath);
+    if (!data.contains("interfaces") || !data.contains("slots")) return false;
+
+    // clear all in the app environment
+    clear();
+
+    // process the data
+    importData(data);
+
+    m_filepath = filepath;
+    emit filepathChanged();
+    return true;
+}
+
+bool DigishowApp::saveFile(const QString & filepath, const QList<int> & slotListOrder, bool onlySelection)
+{
+    // confirm filepath is set
+    QString filepath1 = (filepath.isEmpty() ? m_filepath : filepath);
+    if (filepath1.isEmpty()) return false;
+
+    // prepare the data
+    QVariantMap data = exportData(slotListOrder, onlySelection);
+
+    // save data to file
+    if (!AppUtilities::saveJsonToFile(data, filepath1)) return false;
+
+    m_filepath = filepath1;
+    emit filepathChanged();
+    return true;
 
 }
 

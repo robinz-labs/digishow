@@ -4,7 +4,8 @@
         <file>translations/language.jp.qm</file>
         <file>images/background_about.png</file>
         <file>images/icon_add_white.png</file>
-        <file>images/icon_delete_white.png</file>
+        <file>images/icon_close_white.png</file>
+        <file>images/icon_close_black.png</file>
         <file>images/icon_ep_in_white.png</file>
         <file>images/icon_ep_out_white.png</file>
         <file>images/icon_forward_white.png</file>

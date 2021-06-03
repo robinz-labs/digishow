@@ -437,7 +437,7 @@ Dialog {
         anchors.rightMargin: -20
         icon.width: 24
         icon.height: 24
-        icon.source: "qrc:///images/icon_delete_white.png"
+        icon.source: "qrc:///images/icon_close_white.png"
         box.radius: 14
         box.border.width: 2
         box.border.color: "#cccccc"
@@ -474,7 +474,7 @@ Dialog {
         tabBar.currentIndex = index
         dialog.open()
 
-        slotListView.selectedIndex = -1
+        slotListView.highlightedIndex = -1
         slotDetailView.refresh()
 
         window.isModified = true

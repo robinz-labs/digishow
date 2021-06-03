@@ -44,23 +44,8 @@ ApplicationWindow {
         // callback while file loaded
         app.filepathChanged.connect(function() {
             console.log("file loaded: " + app.filepath)
-
             utilities.setMacWindowTitleWithFile(window, app.filepath)
             isModified = false
-
-            quickLaunchView.refresh()
-            quickLaunchView.close()
-        })
-
-        // callback while slots data loaded
-        app.slotListChanged.connect(function() {
-
-            slotListView.currentIndex = -1
-            slotListView.selectedIndex = -1
-            slotListView.refresh()
-
-            slotDetailView.slotIndex = -1
-            slotDetailView.refresh()
         })
 
         // callback while interfaces data loaded
@@ -68,6 +53,25 @@ ApplicationWindow {
 
             dialogInterfaces.refresh()
         })
+
+        // callback while slots data loaded
+        app.slotListChanged.connect(function() {
+
+            slotListView.currentIndex = -1
+            slotListView.highlightedIndex = -1
+            slotListView.refresh()
+
+            slotDetailView.slotIndex = -1
+            slotDetailView.refresh()
+        })
+
+        // callback while launch list loaded
+        app.launchListChanged.connect(function() {
+
+            quickLaunchView.refresh()
+            quickLaunchView.close()
+        })
+
 
         app.newShow()
     }
@@ -474,10 +478,10 @@ ApplicationWindow {
             anchors.right: rectTopLeftBar.right
             anchors.bottom: parent.bottom
 
-            onSelectedIndexChanged: {
-                slotDetailView.slotIndex = slotListView.selectedIndex
+            onHighlightedIndexChanged: {
+                slotDetailView.slotIndex = slotListView.highlightedIndex
                 slotDetailView.refresh()
-                //console.log("onSelectedIndexChanged", slotListView.selectedIndex)
+                //console.log("onHighlightedIndexChanged", slotListView.highlightedIndex)
             }
         }
 

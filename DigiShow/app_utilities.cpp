@@ -84,6 +84,7 @@ bool AppUtilities::copyJson(const QVariantMap & data, const QString & mimeType)
 
     QMimeData mimeData;
     mimeData.setData(mimeType, jsonDoc.toJson());
+    mimeData.setText(QString::fromUtf8(jsonDoc.toJson()));
 
     QGuiApplication::clipboard()->setMimeData(&mimeData);
     return true;

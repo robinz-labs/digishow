@@ -19,6 +19,7 @@ DigishowSlot::DigishowSlot(QObject *parent) : QObject(parent)
     // get ready to run slot
     m_enabled = false;
     m_linked = true;
+    m_selected = false;
     m_outputInterval = 0;
     m_dataInTimeLastReceived = 0;
     m_dataOutTimeLastSent = 0;
@@ -273,6 +274,12 @@ int DigishowSlot::setEnabled(bool enabled)
 int DigishowSlot::setLinked(bool linked) {
 
     m_linked = linked;
+    return ERR_NONE;
+}
+
+int DigishowSlot::setSelected(bool selected) {
+
+    m_selected = selected;
     return ERR_NONE;
 }
 

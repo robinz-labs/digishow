@@ -24,8 +24,12 @@ public:
     ~DigishowApp();
 
     Q_INVOKABLE void clear();
+
+    Q_INVOKABLE void importData(const QVariantMap & data);
+    Q_INVOKABLE QVariantMap exportData(const QList<int> & slotListOrder = QList<int>(), bool onlySelection = false);
+
     Q_INVOKABLE bool loadFile(const QString & filepath);
-    Q_INVOKABLE bool saveFile(const QString & filepath = QString(), const QList<int> & slotListOrder = QList<int>());
+    Q_INVOKABLE bool saveFile(const QString & filepath = QString(), const QList<int> & slotListOrder = QList<int>(), bool onlySelection = false);
     Q_INVOKABLE bool start();
     Q_INVOKABLE void stop();
     Q_INVOKABLE void pause(bool paused);
@@ -66,6 +70,7 @@ signals:
 
     void interfaceListChanged();
     void slotListChanged();
+    void launchListChanged();
 
 public slots:
     void onTimerFired();

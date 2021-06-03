@@ -39,6 +39,8 @@ public:
     Q_INVOKABLE bool isEnabled() { return m_enabled; }
     Q_INVOKABLE int setLinked(bool linked);
     Q_INVOKABLE bool isLinked() { return m_linked; }
+    Q_INVOKABLE int setSelected(bool selected);
+    Q_INVOKABLE bool isSelected() { return m_selected; }
 
     Q_INVOKABLE int getEndpointInValue();
     Q_INVOKABLE int getEndpointOutValue();
@@ -78,6 +80,7 @@ private:
     // slot controls
     bool m_enabled;
     bool m_linked;
+    bool m_selected;
     dgsSignalData m_lastDataIn;
     dgsSignalData m_lastDataOut;
 

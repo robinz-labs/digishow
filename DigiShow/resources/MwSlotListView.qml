@@ -10,14 +10,14 @@ Item {
 
     id: slotListView
 
-    property int   selectedIndex: -1 // index to data modal
-    property int   currentIndex:  -1 // index to data modal
+    property int   highlightedIndex: -1 // index to data modal
+    property int   currentIndex: -1 // index to data modal
     property alias currentIndexVisual: listView.currentIndex // index to visual modal
     property alias listItemCount: dataModel.count
 
     property bool  showSlotSelection: false
 
-    onSelectedIndexChanged: currentIndex = selectedIndex
+    onHighlightedIndexChanged: currentIndex = highlightedIndex
     onCurrentIndexChanged: currentIndexVisual = getVisualItemIndex(currentIndex)
     onCurrentIndexVisualChanged: currentIndex = getDataItemIndex(currentIndexVisual)
 
@@ -78,11 +78,10 @@ Item {
                 drag.axis: Drag.YAxis
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-                //onPressAndHold: held = true
                 onPressed: held = true
                 onReleased: held = false
                 onClicked: {
-                    selectedIndex = index
+                    highlightedIndex = index
                     listView.forceActiveFocus()
 
                     if (mouse.button === Qt.RightButton) {
@@ -90,6 +89,14 @@ Item {
                         menuSlot.y = mouse.y
                         menuSlot.open()
                     }
+                }
+                onPressAndHold: {
+                    highlightedIndex = index
+                    listView.forceActiveFocus()
+
+                    menuSlot.x = mouse.x
+                    menuSlot.y = mouse.y
+                    menuSlot.open()
                 }
 
                 CMenu {
@@ -108,15 +115,7 @@ Item {
                         text: qsTr("Duplicate Slot")
                         onTriggered: {
                             menuSlot.close()
-                            var newSlotIndex = app.duplicateSlot(currentIndex)
-                            slotListView.refreshSlot(newSlotIndex)
-                            visualModel.items.move(
-                                        getVisualItemIndex(newSlotIndex),
-                                        currentIndexVisual+1)
-                            slotListView.currentIndex = newSlotIndex
-                            slotListView.selectedIndex = newSlotIndex
-
-                            isModified = true
+                            duplicateSlot(currentIndex)
                         }
                     }
                     CMenuItem {
@@ -142,7 +141,7 @@ Item {
                     id: content
                     anchors.fill: dragArea
                     border.width: 2
-                    border.color: selectedIndex===index ? "#cccccc" : currentIndex===index ? "#666666" : color
+                    border.color: highlightedIndex===index ? "#cccccc" : currentIndex===index ? "#666666" : color
                     color: "#222222"
                     radius: 4
 
@@ -166,7 +165,7 @@ Item {
                         anchors.topMargin: 8
                         horizontalAlignment: Text.AlignHCenter
 
-                        color: selectedIndex===index ? "#cccccc" : "#666666"
+                        color: highlightedIndex===index ? "#cccccc" : "#666666"
                         text: model.slotTitle === undefined || model.slotTitle === "" ?
                                   qsTr("Untitled Slot") + " " + (index+1) :
                                   model.slotTitle
@@ -356,7 +355,7 @@ Item {
                         box.border.width: mouseOver || !model.slotLinked ? 1 : 0
                         colorNormal: model.slotLinked ? "#666666" : "transparent"
                         onClicked: {
-                            model.slotLinked = !model.slotLinked;
+                            model.slotLinked = !model.slotLinked
                             app.slotAt(index).setLinked(model.slotLinked)
                         }
                     }
@@ -593,13 +592,16 @@ Item {
                     }
 
                     CheckBox {
-                        id: checkSlotSelection
+                        id: checkSlotSelected
                         anchors.right: rectEndpointIn.left
                         anchors.rightMargin: 0
                         anchors.verticalCenter: rectEndpointIn.verticalCenter
                         visible: showSlotSelection
-                        checked: model.slotSelection
-                        onClicked: model.slotSelection = checked
+                        checked: model.slotSelected
+                        onClicked: {
+                            model.slotSelected = checked
+                            app.slotAt(index).setSelected(model.slotSelected)
+                        }
                     }
                 }
 
@@ -656,15 +658,15 @@ Item {
 
             Keys.onReleased: {
                 // slot actions
-                if (selectedIndex !== -1) {
+                if (highlightedIndex !== -1) {
 
-                    var slot = app.slotAt(selectedIndex)
-                    var model = dataModel.get(selectedIndex)
+                    var slot = app.slotAt(highlightedIndex)
+                    var model = dataModel.get(highlightedIndex)
 
                     if (event.key === Qt.Key_T) {
 
                         // tap
-                        dataModel.setProperty(selectedIndex, "epOutTap", false)
+                        dataModel.setProperty(highlightedIndex, "epOutTap", false)
                         slot.setEndpointOutValue(model.slotOutInverted ? model.epOutRange : 0)
 
                         event.accepted = true
@@ -676,10 +678,10 @@ Item {
             Keys.onPressed: {
 
                 // slot actions
-                if (selectedIndex !== -1) {
+                if (highlightedIndex !== -1) {
 
-                    var slot = app.slotAt(selectedIndex)
-                    var model = dataModel.get(selectedIndex)
+                    var slot = app.slotAt(highlightedIndex)
+                    var model = dataModel.get(highlightedIndex)
 
                     if (event.key === Qt.Key_L) {
 
@@ -695,10 +697,10 @@ Item {
                         if (model.epOutFaderHold) {
                             slot.setEndpointOutValue(model.slotOutInverted ? model.epOutRange : 0)
                         } else {
-                            dataModel.setProperty(selectedIndex, "epOutValue", model.epOutFaderValue)
+                            dataModel.setProperty(highlightedIndex, "epOutValue", model.epOutFaderValue)
                             slot.setEndpointOutValue(model.epOutFaderValue)
                         }
-                        dataModel.setProperty(selectedIndex, "epOutFaderHold", !model.epOutFaderHold)
+                        dataModel.setProperty(highlightedIndex, "epOutFaderHold", !model.epOutFaderHold)
 
                         event.accepted = true
                         return
@@ -706,14 +708,14 @@ Item {
                     } else if (event.key === Qt.Key_T) {
 
                         // tap
-                        dataModel.setProperty(selectedIndex, "epOutFaderHold", false)
+                        dataModel.setProperty(highlightedIndex, "epOutFaderHold", false)
 
                         if (model.slotOutInverted === false && model.epOutFaderValue === 0)
-                            dataModel.setProperty(selectedIndex, "epOutFaderValue", model.epOutRange)
+                            dataModel.setProperty(highlightedIndex, "epOutFaderValue", model.epOutRange)
                         if (model.slotOutInverted === true && model.epOutFaderValue === model.epOutRange)
-                            dataModel.setProperty(selectedIndex, "epOutFaderValue", 0)
+                            dataModel.setProperty(highlightedIndex, "epOutFaderValue", 0)
 
-                        dataModel.setProperty(selectedIndex, "epOutTap", true)
+                        dataModel.setProperty(highlightedIndex, "epOutTap", true)
                         slot.setEndpointOutValue(model.epOutFaderValue)
 
                         event.accepted = true
@@ -728,7 +730,7 @@ Item {
                                                : model.epOutFaderValue + signal * Math.round(model.epOutRange * 0.1) )
                         epOutFaderValue = Math.min(epOutFaderValue, model.epOutRange)
                         epOutFaderValue = Math.max(epOutFaderValue, 0)
-                        dataModel.setProperty(selectedIndex, "epOutFaderValue", epOutFaderValue)
+                        dataModel.setProperty(highlightedIndex, "epOutFaderValue", epOutFaderValue)
                         if (model.epOutFaderHold) slot.setEndpointOutValue(epOutFaderValue)
 
                         event.accepted = true
@@ -761,16 +763,16 @@ Item {
                 }
 
 
-                // change selected slot item
+                // change highlighted slot item
                 if (event.key === Qt.Key_Space || event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
 
-                    selectedIndex = slotListView.currentIndex
+                    highlightedIndex = slotListView.currentIndex
 
                     event.accepted = true
                     return
                 }
 
-                // delete the selected slot
+                // delete the slot
                 if (event.key === Qt.Key_Delete) {
 
                     deleteSlot(slotListView.currentIndex)
@@ -813,7 +815,10 @@ Item {
                 colorNormal: "black"
 
                 onClicked: {
-                    for (var n=0 ; n<dataModel.count ; n++) dataModel.setProperty(n, "slotSelection",  true)
+                    for (var n=0 ; n<dataModel.count ; n++) {
+                        dataModel.setProperty(n, "slotSelected",  true)
+                        app.slotAt(n).setSelected(true)
+                    }
                 }
             }
 
@@ -832,7 +837,11 @@ Item {
                 colorNormal: "black"
 
                 onClicked: {
-                    for (var n=0 ; n<dataModel.count ; n++) dataModel.setProperty(n, "slotSelection",  false)
+                    for (var n=0 ; n<dataModel.count ; n++) {
+
+                        dataModel.setProperty(n, "slotSelected",  false)
+                        app.slotAt(n).setSelected(false)
+                    }
                 }
             }
 
@@ -850,14 +859,36 @@ Item {
                 box.border.width: 1
                 colorNormal: "black"
 
-                onClicked: {}
+                onClicked: {
+                    utilities.copyJson(app.exportData(getVisualItemsIndexList(), true),
+                                       "application/vnd.digishow.data")
+                }
+            }
+
+            CButton {
+                id: buttonDuplicateSelection
+                width: 80
+                height: 26
+                anchors.left: buttonCopySelection.right
+                anchors.leftMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                label.text: qsTr("Duplicate")
+                label.font.bold: false
+                label.font.pixelSize: 11
+                box.radius: 3
+                box.border.width: 1
+                colorNormal: "black"
+
+                onClicked: {
+                    duplicateSelection()
+                }
             }
 
             CButton {
                 id: buttonDeleteSelection
                 width: 80
                 height: 26
-                anchors.left: buttonCopySelection.right
+                anchors.left: buttonDuplicateSelection.right
                 anchors.leftMargin: 10
                 anchors.verticalCenter: parent.verticalCenter
                 label.text: qsTr("Delete")
@@ -867,21 +898,41 @@ Item {
                 box.border.width: 1
                 colorNormal: "black"
 
-                onClicked: {}
+                onClicked: {
+                    deleteSelection()
+                }
             }
 
             CButton {
-                width: 26
+                id: buttonMoveSelection
+                width: 80
                 height: 26
+                anchors.left: buttonDeleteSelection.right
+                anchors.leftMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                label.text: qsTr("Move")
+                label.font.bold: false
+                label.font.pixelSize: 11
+                box.radius: 3
+                box.border.width: 1
+                colorNormal: "black"
+
+                onClicked: {
+                    moveSelection()
+                }
+            }
+
+            CButton {
+                width: 20
+                height: 20
                 anchors.right: parent.right
                 anchors.rightMargin: 24
                 anchors.verticalCenter: parent.verticalCenter
-                icon.width: 24
-                icon.height: 24
-                icon.source: "qrc:///images/icon_delete_white.png"
-                box.radius: 14
-                box.border.width: 1
-                colorNormal: "black"
+                icon.width: 20
+                icon.height: 20
+                icon.source: "qrc:///images/icon_close_black.png"
+                box.radius: 10
+                colorNormal: "white"
 
                 onClicked: {
                     showSlotSelection = false
@@ -925,7 +976,7 @@ Item {
         for (var n=0 ; n<slotCount ; n++) refreshSlot(n)
 
         currentIndex = -1
-        selectedIndex = -1
+        highlightedIndex = -1
     }
 
     function refreshSlot(slotIndex) {
@@ -1004,6 +1055,7 @@ Item {
 
             slotEnabled: slotEnabled,
             slotLinked: slotLinked,
+            slotSelected: false,
 
             slotInInverted: slotInInverted,
             slotOutInverted: slotOutInverted,
@@ -1035,24 +1087,54 @@ Item {
             epOutTap: false,
 
             launchRememberLink: true,
-            launchRememberOutput: true,
-
-            slotSelection: false
+            launchRememberOutput: true
         }
 
         dataModel.set(n, item)
     }
 
-    function deleteSlot(slotIndex) {
+    function duplicateSlot(slotIndex) {
+
+        var newSlotIndex = app.duplicateSlot(slotIndex)
+        refreshSlot(newSlotIndex)
+        visualModel.items.move(
+                    getVisualItemIndex(newSlotIndex),
+                    currentIndexVisual+1)
+        currentIndex = newSlotIndex
+        highlightedIndex = newSlotIndex
+
+        isModified = true
+    }
+
+    function duplicateSelection() {
+
+        if (messageBox.showAndWait(qsTr("Would you like to duplicate all selected slots ?"), qsTr("Duplicate"), qsTr("Cancel")) !== 1) return
+
+        var numAll = visualModel.items.count
+        var n, i
+        for (n=0 ; n<numAll ; n++) {
+            i = getDataItemIndex(n)
+            if (dataModel.get(i).slotSelected === true) currentIndex = i
+        }
+        for (n=0 ; n<numAll ; n++) {
+            i = getDataItemIndex(n)
+            if (dataModel.get(i).slotSelected === true) duplicateSlot(i)
+        }
+    }
+
+    function deleteSlot(slotIndex, showMessageToConfirm) {
+
+        if (showMessageToConfirm === undefined) showMessageToConfirm = true
 
         var deletedIndex = slotIndex
         if (deletedIndex !== -1) {
 
-            selectedIndex = deletedIndex
+            highlightedIndex = deletedIndex
 
-            if (messageBox.showAndWait(qsTr("Would you like to delete the selected slot ?"), qsTr("Delete"), qsTr("Cancel")) === 1) {
+            if (!showMessageToConfirm ||
+                messageBox.showAndWait(qsTr("Would you like to delete the slot ?"), qsTr("Delete"), qsTr("Cancel")) === 1) {
 
-                selectedIndex = -1
+                highlightedIndex = -1
                 currentIndex = -1
 
                 var indexVisaul = getVisualItemIndex(deletedIndex)
@@ -1071,6 +1153,31 @@ Item {
 
             listView.forceActiveFocus()
         }
+    }
+
+    function deleteSelection() {
+
+        if (messageBox.showAndWait(qsTr("Would you like to delete all selected slots ?"), qsTr("Delete"), qsTr("Cancel")) !== 1) return
+
+        for (var n=dataModel.count-1 ; n>=0 ; n--)
+            if (dataModel.get(n).slotSelected === true) deleteSlot(n, false)
+    }
+
+    function moveSelection() {
+
+        if (currentIndexVisual === -1) return
+        if (messageBox.showAndWait(qsTr("Would you like to move all selected slots to the current cursor position ?"), qsTr("Move"), qsTr("Cancel")) !== 1) return
+
+        var numAll = visualModel.items.count
+        var numMoved = 0
+        for (var n=numAll-1 ; n>=0 ; n--) {
+            if (visualModel.items.get(n).model.slotSelected === true) {
+                numMoved++;
+                visualModel.items.move(n, numAll-numMoved)
+                if (n<=currentIndexVisual) currentIndexVisual--;
+            }
+        }
+        visualModel.items.move(numAll-numMoved, currentIndexVisual+1, numMoved)
     }
 
     function setSlotLaunchRememberAllLinks(value) {
@@ -1141,7 +1248,7 @@ Item {
                         currentIndexVisual+1)
         }
         slotListView.currentIndex = newSlotIndex
-        slotListView.selectedIndex = newSlotIndex
+        slotListView.highlightedIndex = newSlotIndex
         isModified = true
     }
 }
