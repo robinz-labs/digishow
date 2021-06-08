@@ -180,26 +180,6 @@ int DigishowEnvironment::getDestinationEndpointIndex(int slotIndex)
     return endpointIndex;
 }
 
-
-int DigishowEnvironment::findInterfaceWithName(const QString &interfaceName)
-{
-    for (int i=0 ; i<g_app->interfaceCount() ; i++) {
-        if (g_app->interfaceAt(i)->interfaceOptions()->value("name") == interfaceName) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-bool DigishowEnvironment::restartInterface(int interfaceIndex)
-{
-    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
-    if (interface == nullptr) return false;
-
-    interface->closeInterface();
-    return (interface->openInterface() == ERR_NONE);
-}
-
 void DigishowEnvironment::clearSourceEndpoint(int slotIndex)
 {
     DigishowSlot *slot = g_app->slotAt(slotIndex);
@@ -218,7 +198,7 @@ void DigishowEnvironment::clearDestinationEndpoint(int slotIndex)
     slot->setSlotOption("destination", "");
 }
 
-int DigishowEnvironment::updateSourceEndpoint(int slotIndex, int interfaceIndex, QVariantMap endpointOptions)
+int DigishowEnvironment::updateSourceEndpoint(int slotIndex, int interfaceIndex, const QVariantMap &endpointOptions)
 {
     DigishowSlot *slot = g_app->slotAt(slotIndex);
     if (slot == nullptr) return -1;
@@ -238,7 +218,7 @@ int DigishowEnvironment::updateSourceEndpoint(int slotIndex, int interfaceIndex,
     return endpointIndex;
 }
 
-int DigishowEnvironment::updateDestinationEndpoint(int slotIndex, int interfaceIndex, QVariantMap endpointOptions)
+int DigishowEnvironment::updateDestinationEndpoint(int slotIndex, int interfaceIndex, const QVariantMap &endpointOptions)
 {
     DigishowSlot *slot = g_app->slotAt(slotIndex);
     if (slot == nullptr) return -1;
@@ -258,7 +238,98 @@ int DigishowEnvironment::updateDestinationEndpoint(int slotIndex, int interfaceI
     return endpointIndex;
 }
 
-int DigishowEnvironment::makeEndpoint(int interfaceIndex, QVariantMap endpointOptions)
+bool DigishowEnvironment::restartInterface(int interfaceIndex)
+{
+    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
+    if (interface == nullptr) return false;
+
+    interface->closeInterface();
+    return (interface->openInterface() == ERR_NONE);
+}
+
+int DigishowEnvironment::makeInterface(const QVariantMap &interfaceOptions)
+{
+    QList<DigishowInterface*> interfaceList = g_app->interfaceList();
+
+    // look for the matched interface that already exists
+    int interfaceCount = g_app->interfaceCount();
+    for (int i=0 ; i<interfaceCount ; i++) {
+
+        // find interface
+        QStringList keys = interfaceOptions.keys();
+        bool matched = true;
+        for (int n=0 ; n<keys.length() ; n++) {
+            QString key = keys[n];
+            if (key != "name" && key != "outputInterval" && key != "frequency") // ignore these options
+            if (interfaceOptions[key] != interfaceList[i]->interfaceOptions()->value(key)) {
+                matched = false;
+                break;
+            }
+        }
+
+        // interface is found
+        if (matched) {
+
+            // update these options
+            for (int n=0 ; n<keys.length() ; n++) {
+                QString key = keys[n];
+                if (key == "outputInterval" || key == "frequency") {
+                    interfaceList[i]->setInterfaceOption(key, interfaceOptions[key]);
+                }
+            }
+
+            return i;
+        }
+    }
+
+    // no matched interface found, now need make a new one
+    QString interfaceType = interfaceOptions.value("type").toString();
+    if (interfaceType.isEmpty()) return -1;
+
+    int interfaceIndex = g_app->newInterface(interfaceType);
+    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
+
+    QString interfaceName = interface->interfaceOptions()->value("name").toString();
+    interface->setInterfaceOptions(interfaceOptions);
+    interface->setInterfaceOption("name", interfaceName);
+    interface->updateMetadata();
+
+    return interfaceIndex;
+}
+
+int DigishowEnvironment::findInterfaceWithName(const QString &interfaceName)
+{
+    for (int i=0 ; i<g_app->interfaceCount() ; i++) {
+        if (g_app->interfaceAt(i)->interfaceOptions()->value("name") == interfaceName) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+QString DigishowEnvironment::getInterfaceName(int interfaceIndex)
+{
+    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
+    if (interface == nullptr) return "";
+
+    return interface->interfaceOptions()->value("name").toString();
+}
+
+QVariantMap DigishowEnvironment::getInterfaceOptions(int interfaceIndex)
+{
+    QVariantMap interfaceOptions;
+
+    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
+    if (interface == nullptr) return interfaceOptions;
+
+    interfaceOptions = interface->getInterfaceOptions();
+    interfaceOptions.remove("endpoints");
+    interfaceOptions.remove("media");
+
+    return interfaceOptions;
+}
+
+int DigishowEnvironment::makeEndpoint(int interfaceIndex, const QVariantMap &endpointOptions)
 {
     DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
     if (interface == nullptr) return -1;
@@ -272,7 +343,7 @@ int DigishowEnvironment::makeEndpoint(int interfaceIndex, QVariantMap endpointOp
         bool matched = true;
         for (int n=0 ; n<keys.length() ; n++) {
             QString key = keys[n];
-            if (key != "initial" && key != "range" && !key.startsWith("opt")) // ignore these options
+            if (key != "name" && key != "initial" && key != "range" && !key.startsWith("opt")) // ignore these options
             if (endpointOptions[key] != interface->endpointOptionsList()->at(i).value(key)) {
 
                 matched = false;
@@ -301,45 +372,89 @@ int DigishowEnvironment::makeEndpoint(int interfaceIndex, QVariantMap endpointOp
 
     // no matched endpoint found, now need make a new one
     QString endpointType = endpointOptions.value("type").toString();
-    QString endpointName = endpointOptions.value("name").toString();
     if (endpointType.isEmpty()) return -1;
-    if (endpointName.isEmpty()) {
 
-        // assign a name to the new endpoint
-        for (int n=1 ; ; n++) {
-            QString name = endpointType + QString::number(n);
-            bool nameExisted = false;
-            for (int i=0 ; i<endpointCount ; i++) {
-                if (interface->endpointOptionsList()->at(i).value("name") == name) {
-                    nameExisted = true;
-                    break;
-                }
-            }
-            if (!nameExisted) {
-                endpointOptions["name"] = name;
+    // assign a name to the new endpoint
+    QString endpointName = "";
+    for (int n=1 ; ; n++) {
+        QString name = endpointType + QString::number(n);
+        bool nameExisted = false;
+        for (int i=0 ; i<endpointCount ; i++) {
+            if (interface->endpointOptionsList()->at(i).value("name") == name) {
+                nameExisted = true;
                 break;
             }
+        }
+        if (!nameExisted) {
+            endpointName = name;
+            break;
         }
     }
 
     int endpointIndex = -1;
-    endpointOptions["enabled"] = true;
     interface->addEndpoint(endpointOptions, &endpointIndex);
+    interface->setEndpointOption(endpointIndex, "name", endpointName);
+    interface->setEndpointOption(endpointIndex, "enabled", true);
     interface->updateMetadata();
 
     return endpointIndex;
 }
 
-QString DigishowEnvironment::makeMedia(int interfaceIndex, const QString &mediaUrl, const QString &mediaType)
+int DigishowEnvironment::findEndpointWithName(int interfaceIndex, const QString &endpointName)
 {
-    QString mediaName = "";
+    // confirm interface exists
+    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
+    if (interface == nullptr) return -1;
+
+    // get endpoint list
+    QList<QVariantMap> *endpointList = interface->endpointOptionsList();
+
+    // look for the name-matched endpoint item in the list
+    for (int n=0 ; n<endpointList->length() ; n++) {
+        QVariantMap endpoint = endpointList->at(n);
+        if (endpoint.value("name") == endpointName) {
+            return n;
+        }
+    }
+
+    return -1;
+}
+
+QString DigishowEnvironment::getEndpointName(int interfaceIndex, int endpointIndex)
+{
+    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
+    if (interface == nullptr) return "";
+
+    QList<QVariantMap> *endpointOptionsList = interface->endpointOptionsList();
+    if (endpointIndex<0 || endpointIndex>=endpointOptionsList->length()) return "";
+
+    return endpointOptionsList->at(endpointIndex).value("name").toString();
+}
+
+QVariantMap DigishowEnvironment::getEndpointOptions(int interfaceIndex, int endpointIndex)
+{
+    QVariantMap endpointOptions;
 
     // confirm interface exists
     DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
-    if (interface == nullptr) return mediaName;
+    if (interface == nullptr) return endpointOptions;
+
+    // get the specified endpoint item in the list
+    endpointOptions = interface->getEndpointOptionsAt(endpointIndex);
+
+    return endpointOptions;
+}
+
+int DigishowEnvironment::makeMedia(int interfaceIndex, const QString &mediaUrl, const QString &mediaType)
+{
+    int mediaIndex = -1;
+
+    // confirm interface exists
+    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
+    if (interface == nullptr) return -1;
 
     // confirm media url and type are valid
-    if (mediaUrl.isEmpty() || mediaUrl == "file://" || mediaType.isEmpty()) return mediaName;
+    if (mediaUrl.isEmpty() || mediaUrl == "file://" || mediaType.isEmpty()) return -1;
 
     // get media list
     QVariantList mediaList = interface->interfaceOptions()->value("media").toList();
@@ -348,13 +463,15 @@ QString DigishowEnvironment::makeMedia(int interfaceIndex, const QString &mediaU
     for (int n=0 ; n<mediaList.length() ; n++) {
         QVariantMap media = mediaList[n].toMap();
         if (media.value("url") == mediaUrl && media.value("type") == mediaType) {
-            mediaName = media.value("name").toString();
+            mediaIndex = n;
             break;
         }
     }
 
     // no matched media found, now need make a new one
-    if (mediaName.isEmpty()) {
+    if (mediaIndex == -1) {
+
+        QString mediaName = "";
 
         // assign a name to the new media
         for (int n=1 ; ; n++) {
@@ -378,6 +495,7 @@ QString DigishowEnvironment::makeMedia(int interfaceIndex, const QString &mediaU
         mediaOptions["url" ] = mediaUrl;
         mediaOptions["type"] = mediaType;
         mediaList.append(mediaOptions);
+        mediaIndex = mediaList.length() - 1;
         interface->setInterfaceOption("media", mediaList);
 
         // load the new media into the interface object
@@ -386,10 +504,41 @@ QString DigishowEnvironment::makeMedia(int interfaceIndex, const QString &mediaU
         }
     }
 
-    return mediaName;
+    return mediaIndex;
 }
 
-QVariantMap DigishowEnvironment::findMedia(int interfaceIndex, const QString &mediaName)
+int DigishowEnvironment::findMediaWithName(int interfaceIndex, const QString &mediaName)
+{
+    // confirm interface exists
+    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
+    if (interface == nullptr) return -1;
+
+    // get media list
+    QVariantList mediaList = interface->interfaceOptions()->value("media").toList();
+
+    // look for the name-matched media item in the list
+    for (int n=0 ; n<mediaList.length() ; n++) {
+        QVariantMap media = mediaList[n].toMap();
+        if (media.value("name") == mediaName) {
+            return n;
+        }
+    }
+
+    return -1;
+}
+
+QString DigishowEnvironment::getMediaName(int interfaceIndex, int mediaIndex)
+{
+    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
+    if (interface == nullptr) return "";
+
+    QVariantList mediaList = interface->interfaceOptions()->value("media").toList();
+    if (mediaIndex < 0 && mediaIndex >= mediaList.length()) return "";
+
+    return mediaList.at(mediaIndex).toMap().value("name").toString();
+}
+
+QVariantMap DigishowEnvironment::getMediaOptions(int interfaceIndex, int mediaIndex)
 {
     QVariantMap mediaOptions;
 
@@ -400,16 +549,59 @@ QVariantMap DigishowEnvironment::findMedia(int interfaceIndex, const QString &me
     // get media list
     QVariantList mediaList = interface->interfaceOptions()->value("media").toList();
 
-    // look for the name-matched media item in the list
-    for (int n=0 ; n<mediaList.length() ; n++) {
-        QVariantMap media = mediaList[n].toMap();
-        if (media.value("name") == mediaName) {
-            mediaOptions = media;
-            break;
-        }
+    // get the specified media item in the list
+    if (mediaIndex >= 0 && mediaIndex < mediaList.length()) {
+        mediaOptions = mediaList[mediaIndex].toMap();
     }
 
     return mediaOptions;
+}
+
+int DigishowEnvironment::makeSlot(const QVariantMap &slotOptions,
+                         const QVariantMap &sourceInterfaceOptions, const QVariantMap &sourceEndpointOptions,
+                         const QVariantMap &destinationInterfaceOptions, const QVariantMap &destinationEndpointOptions,
+                         const QString &mediaUrl, const QString &mediaType) {
+
+    // create a new slot
+    int newSlotIndex = g_app->newSlot();
+    DigishowSlot *slotNew = g_app->slotAt(newSlotIndex);
+    slotNew->setSlotOptions(slotOptions);
+
+    // make source interface and endpoint
+    if (!sourceInterfaceOptions.isEmpty() && !sourceEndpointOptions.isEmpty()) {
+        int sourceInterfaceIndex = makeInterface(sourceInterfaceOptions);
+        int sourceEndpointIndex = makeEndpoint(sourceInterfaceIndex, sourceEndpointOptions);
+        if (sourceEndpointIndex != -1) {
+            QString sourceInterfaceName = getInterfaceName(sourceInterfaceIndex);
+            QString sourceEndpointName = getEndpointName(sourceInterfaceIndex, sourceEndpointIndex);
+            slotNew->setSlotOption("source", sourceInterfaceName + "/" + sourceEndpointName);
+            slotNew->setSource(g_app->interfaceAt(sourceInterfaceIndex), sourceEndpointIndex);
+        }
+    }
+
+    // make destination interface and endpoint
+    if (!destinationInterfaceOptions.isEmpty() && !destinationEndpointOptions.isEmpty()) {
+        int destinationInterfaceIndex = makeInterface(destinationInterfaceOptions);
+        int destinationEndpointIndex = makeEndpoint(destinationInterfaceIndex, destinationEndpointOptions);
+        if (destinationEndpointIndex != -1) {
+            QString destinationInterfaceName = getInterfaceName(destinationInterfaceIndex);
+            QString destinationEndpointName = getEndpointName(destinationInterfaceIndex, destinationEndpointIndex);
+            slotNew->setSlotOption("destination", destinationInterfaceName + "/" + destinationEndpointName);
+            slotNew->setDestination(g_app->interfaceAt(destinationInterfaceIndex), destinationEndpointIndex);
+
+            // make media (optional)
+            if (!mediaUrl.isEmpty() && !mediaType.isEmpty()) {
+                int mediaIndex = makeMedia(destinationInterfaceIndex, mediaUrl, mediaType);
+                if (mediaIndex != -1) {
+                    QString mediaName = getMediaName(destinationInterfaceIndex, mediaIndex);
+                    DigishowInterface *interface = g_app->interfaceAt(destinationInterfaceIndex);
+                    interface->setEndpointOption(destinationEndpointIndex, "media", mediaName);
+                }
+            }
+        }
+    }
+
+    return newSlotIndex;
 }
 
 QVariantMap DigishowEnvironment::listOnline()
@@ -527,7 +719,7 @@ QString DigishowEnvironment::getRiocPinName(int mode, int pinNumber)
     return pinName;
 }
 
-QString DigishowEnvironment::getMediaType(const QString &mediaUrl)
+QString DigishowEnvironment::getScreenMediaType(const QString &mediaUrl)
 {
     if (!mediaUrl.startsWith("file://") &&
         !mediaUrl.startsWith("http://") &&

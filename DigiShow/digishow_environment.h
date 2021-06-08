@@ -156,17 +156,32 @@ public:
     Q_INVOKABLE int getDestinationInterfaceIndex(int slotIndex);
     Q_INVOKABLE int getDestinationEndpointIndex(int slotIndex);
 
-    Q_INVOKABLE int findInterfaceWithName(const QString &interfaceName);
-    Q_INVOKABLE bool restartInterface(int interfaceIndex);
-
     Q_INVOKABLE void clearSourceEndpoint(int slotIndex);
     Q_INVOKABLE void clearDestinationEndpoint(int slotIndex);
-    Q_INVOKABLE int updateSourceEndpoint(int slotIndex, int interfaceIndex, QVariantMap endpointOptions);
-    Q_INVOKABLE int updateDestinationEndpoint(int slotIndex, int interfaceIndex, QVariantMap endpointOptions);
-    Q_INVOKABLE int makeEndpoint(int interfaceIndex, QVariantMap endpointOptions);
+    Q_INVOKABLE int updateSourceEndpoint(int slotIndex, int interfaceIndex, const QVariantMap &endpointOptions);
+    Q_INVOKABLE int updateDestinationEndpoint(int slotIndex, int interfaceIndex, const QVariantMap &endpointOptions);
 
-    Q_INVOKABLE QString makeMedia(int interfaceIndex, const QString &mediaUrl, const QString &mediaType);
-    Q_INVOKABLE QVariantMap findMedia(int interfaceIndex, const QString &mediaName);
+    Q_INVOKABLE bool restartInterface(int interfaceIndex);
+
+    Q_INVOKABLE int makeInterface(const QVariantMap &interfaceOptions);
+    Q_INVOKABLE int findInterfaceWithName(const QString &interfaceName);
+    Q_INVOKABLE QString getInterfaceName(int interfaceIndex);
+    Q_INVOKABLE QVariantMap getInterfaceOptions(int interfaceIndex);
+
+    Q_INVOKABLE int makeEndpoint(int interfaceIndex, const QVariantMap &endpointOptions);
+    Q_INVOKABLE int findEndpointWithName(int interfaceIndex, const QString &endpointName);
+    Q_INVOKABLE QString getEndpointName(int interfaceIndex, int endpointIndex);
+    Q_INVOKABLE QVariantMap getEndpointOptions(int interfaceIndex, int endpointIndex);
+
+    Q_INVOKABLE int makeMedia(int interfaceIndex, const QString &mediaUrl, const QString &mediaType);
+    Q_INVOKABLE int findMediaWithName(int interfaceIndex, const QString &mediaName);
+    Q_INVOKABLE QString getMediaName(int interfaceIndex, int mediaIndex);
+    Q_INVOKABLE QVariantMap getMediaOptions(int interfaceIndex, int mediaIndex);
+
+    Q_INVOKABLE int makeSlot(const QVariantMap &slotOptions,
+                             const QVariantMap &sourceInterfaceOptions, const QVariantMap &sourceEndpointOptions,
+                             const QVariantMap &destinationInterfaceOptions, const QVariantMap &destinationEndpointOptions,
+                             const QString &mediaUrl = QString(), const QString &mediaType = QString());
 
     Q_INVOKABLE static QVariantMap listOnline();
 
@@ -176,7 +191,7 @@ public:
     Q_INVOKABLE static QString getMidiNoteName(int noteNumber);
     Q_INVOKABLE static QString getRiocPinName(int mode, int pinNumber);
 
-    Q_INVOKABLE static QString getMediaType(const QString &mediaUrl);
+    Q_INVOKABLE static QString getScreenMediaType(const QString &mediaUrl);
 
 signals:
     void appChanged();

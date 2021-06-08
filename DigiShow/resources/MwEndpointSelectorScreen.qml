@@ -520,7 +520,7 @@ Item {
                 box.radius: 3
 
                 onClicked: {
-                    setMediaOptions({})
+                    setEndpointMediaOptions({})
                     isModified = true
                 }
             }
@@ -594,7 +594,7 @@ Item {
         refreshMoreOptions()
     }
 
-    function setMediaOptions(options) {
+    function setEndpointMediaOptions(options) {
 
         var v
         v = options["mediaFadeIn"];        spinMediaFadeIn.value    = (v === undefined ? 300  : v )
@@ -621,7 +621,7 @@ Item {
         v = options["mediaScript"];        if (v !== undefined) textWebJavascript.text =  v
     }
 
-    function getMediaOptions() {
+    function getEndpointMediaOptions() {
 
         var options = {
             mediaAlone:     checkMediaAlone.checked,

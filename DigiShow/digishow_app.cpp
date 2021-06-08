@@ -71,6 +71,9 @@ void DigishowApp::clear()
 
 void DigishowApp::importData(const QVariantMap & data)
 {
+    // clear all in the app environment
+    clear();
+
     // set up interfaces
     QVariantList dataInterfaces = data.value("interfaces").toList();
     for (int n=0 ; n<dataInterfaces.length() ; n++) {
@@ -243,9 +246,6 @@ bool DigishowApp::loadFile(const QString & filepath)
     // load data from the file
     QVariantMap data = AppUtilities::loadJsonFromFile(filepath);
     if (!data.contains("interfaces") || !data.contains("slots")) return false;
-
-    // clear all in the app environment
-    clear();
 
     // process the data
     importData(data);

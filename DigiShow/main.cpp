@@ -11,6 +11,7 @@
 #include "digishow_environment.h"
 #include "digishow_interface.h"
 #include "digishow_slot.h"
+#include "digishow_data.h"
 
 #ifdef Q_OS_MAC
 #include <CoreMIDI/CoreMIDI.h>
@@ -104,6 +105,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<DigishowApp>("DigiShow", 1, 0, "DigishowApp");
     qmlRegisterType<DigishowInterface>("DigiShow", 1, 0, "DigishowInterface");
     qmlRegisterType<DigishowSlot>("DigiShow", 1, 0, "DigishowSlot");
+    qmlRegisterType<DigishowData>("DigiShow", 1, 0, "DigishowData");
 
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);

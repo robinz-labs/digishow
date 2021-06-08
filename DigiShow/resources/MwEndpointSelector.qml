@@ -387,22 +387,23 @@ Item {
                 switch (endpointInfo["type"]) {
                 case DigishowEnvironment.EndpointScreenLight:
                     itemScreen.menuLightControl.selectOption(endpointInfo["control"])
-                    itemScreen.setMediaOptions({}) // clear media options
+                    itemScreen.setEndpointMediaOptions({}) // clear media options
                     break
                 case DigishowEnvironment.EndpointScreenCanvas:
                     itemScreen.menuCanvasControl.selectOption(endpointInfo["control"])
-                    itemScreen.setMediaOptions({}) // clear media options
+                    itemScreen.setEndpointMediaOptions({}) // clear media options
                     break
                 case DigishowEnvironment.EndpointScreenMedia:
                     itemScreen.menuMediaControl.selectOption(endpointInfo["control"])
 
                     var mediaName = endpointOptions["media"]
-                    var mediaOptions = digishow.findMedia(interfaceIndex, mediaName)
+                    var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
+                    var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
                     var mediaUrl = "file://"
                     if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
                     itemScreen.textMediaUrl.text = mediaUrl
 
-                    itemScreen.setMediaOptions(endpointOptions)
+                    itemScreen.setEndpointMediaOptions(endpointOptions)
 
                     break
                 }
@@ -416,12 +417,13 @@ Item {
                     itemAPlay.menuMediaControl.selectOption(endpointInfo["control"])
 
                     var mediaName = endpointOptions["media"]
-                    var mediaOptions = digishow.findMedia(interfaceIndex, mediaName)
+                    var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
+                    var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
                     var mediaUrl = "file://"
                     if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
                     itemAPlay.textMediaUrl.text = mediaUrl
 
-                    itemAPlay.setMediaOptions(endpointOptions)
+                    itemAPlay.setEndpointMediaOptions(endpointOptions)
 
                     break
                 }
@@ -435,12 +437,13 @@ Item {
                     itemMPlay.menuMediaControl.selectOption(endpointInfo["control"])
 
                     var mediaName = endpointOptions["media"]
-                    var mediaOptions = digishow.findMedia(interfaceIndex, mediaName)
+                    var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
+                    var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
                     var mediaUrl = "file://"
                     if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
                     itemMPlay.textMediaUrl.text = mediaUrl
 
-                    itemMPlay.setMediaOptions(endpointOptions)
+                    itemMPlay.setEndpointMediaOptions(endpointOptions)
 
                     break
                 }
@@ -538,14 +541,14 @@ Item {
                 newEndpointOptions["control"] = itemScreen.menuMediaControl.selectedItemValue
 
                 if (itemScreen.textMediaUrl.visible) {
-                    var mediaUrl  = itemScreen.textMediaUrl.text
-                    var mediaType = digishow.getMediaType(mediaUrl)
-                    var mediaName = digishow.makeMedia(newInterfaceIndex, mediaUrl, mediaType)
+                    var mediaUrl = itemScreen.textMediaUrl.text
+                    var mediaType = digishow.getScreenMediaType(mediaUrl)
+                    var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, mediaType)
 
-                    if (mediaName !== "") {
-                        newEndpointOptions["media"] = mediaName
+                    if (mediaIndex !== -1) {
+                        newEndpointOptions["media"] = digishow.getMediaName(newInterfaceIndex, mediaIndex)
                         if (itemScreen.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
-                            newEndpointOptions = utilities.merge(newEndpointOptions, itemScreen.getMediaOptions())
+                            newEndpointOptions = utilities.merge(newEndpointOptions, itemScreen.getEndpointMediaOptions())
                     } else {
                         messageBox.show(qsTr("Please select a media clip file exists on your computer disks or enter a valid url of the media clip."), qsTr("OK"))
                     }
@@ -562,13 +565,13 @@ Item {
                 newEndpointOptions["control"] = itemAPlay.menuMediaControl.selectedItemValue
 
                 if (itemAPlay.textMediaUrl.visible) {
-                    var mediaUrl  = itemAPlay.textMediaUrl.text
-                    var mediaName = digishow.makeMedia(newInterfaceIndex, mediaUrl, "audio")
+                    var mediaUrl = itemAPlay.textMediaUrl.text
+                    var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, "audio")
 
-                    if (mediaName !== "") {
-                        newEndpointOptions["media"] = mediaName
+                    if (mediaIndex !== -1) {
+                        newEndpointOptions["media"] = digishow.getMediaName(newInterfaceIndex, mediaIndex)
                         if (itemAPlay.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
-                            newEndpointOptions = utilities.merge(newEndpointOptions, itemAPlay.getMediaOptions())
+                            newEndpointOptions = utilities.merge(newEndpointOptions, itemAPlay.getEndpointMediaOptions())
                     } else {
                         messageBox.show(qsTr("Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip."), qsTr("OK"))
                     }
@@ -585,13 +588,13 @@ Item {
                 newEndpointOptions["control"] = itemMPlay.menuMediaControl.selectedItemValue
 
                 if (itemMPlay.textMediaUrl.visible) {
-                    var mediaUrl  = itemMPlay.textMediaUrl.text
-                    var mediaName = digishow.makeMedia(newInterfaceIndex, mediaUrl, "midi")
+                    var mediaUrl = itemMPlay.textMediaUrl.text
+                    var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, "midi")
 
-                    if (mediaName !== "") {
-                        newEndpointOptions["media"] = mediaName
+                    if (mediaIndex !== -1) {
+                        newEndpointOptions["media"] = digishow.getMediaName(newInterfaceIndex, mediaIndex)
                         if (itemMPlay.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
-                            newEndpointOptions = utilities.merge(newEndpointOptions, itemMPlay.getMediaOptions())
+                            newEndpointOptions = utilities.merge(newEndpointOptions, itemMPlay.getEndpointMediaOptions())
                     } else {
                         messageBox.show(qsTr("Please select a MIDI clip file exists on your computer disks or enter a valid url of the MIDI clip."), qsTr("OK"))
                     }

@@ -135,6 +135,13 @@ Item {
                         }
                     }
 
+                    CMenuItem {
+                        text: qsTr("Paste")
+                        onTriggered: {
+                            menuSlot.close()
+                            pasteSlots()
+                        }
+                    }
                 }
 
                 Rectangle {
@@ -838,7 +845,6 @@ Item {
 
                 onClicked: {
                     for (var n=0 ; n<dataModel.count ; n++) {
-
                         dataModel.setProperty(n, "slotSelected",  false)
                         app.slotAt(n).setSelected(false)
                     }
@@ -860,8 +866,7 @@ Item {
                 colorNormal: "black"
 
                 onClicked: {
-                    utilities.copyJson(app.exportData(getVisualItemsIndexList(), true),
-                                       "application/vnd.digishow.data")
+                    copySlots()
                 }
             }
 
@@ -1172,12 +1177,81 @@ Item {
         var numMoved = 0
         for (var n=numAll-1 ; n>=0 ; n--) {
             if (visualModel.items.get(n).model.slotSelected === true) {
-                numMoved++;
+                numMoved++
                 visualModel.items.move(n, numAll-numMoved)
-                if (n<=currentIndexVisual) currentIndexVisual--;
+                if (n<=currentIndexVisual) currentIndexVisual--
             }
         }
         visualModel.items.move(numAll-numMoved, currentIndexVisual+1, numMoved)
+    }
+
+    function selectAll() {
+        showSlotSelection = true
+        buttonSelectAll.clicked()
+    }
+
+    function copySlots() {
+        if (!slotListView.showSlotSelection) return;
+        var data = app.exportData(getVisualItemsIndexList(), true)
+        utilities.copyJson(data, "application/vnd.digishow.data")
+    }
+
+    function pasteSlots() {
+        var data = utilities.pasteJson("application/vnd.digishow.data")
+        importData(data)
+    }
+
+    function importData(data) {
+
+        // must stop app running first
+        app.stop()
+
+        // extracte imported data
+        // to make slots with dependent interfaces and endpoints
+        extractor.setData(data)
+        var newSlotCount = extractor.slotCount();
+        for (var n=0 ; n<newSlotCount ; n++) {
+
+            var newSlotOptions = extractor.getSlotOptions(n)
+
+            var newSourceInterfaceOptions = {}
+            var newSourceEndpointOptions = {}
+            var newDestinationInterfaceOptions = {}
+            var newDestinationEndpointOptions = {}
+            var newMediaOptions = {}
+
+            if (newSlotOptions["source"] !== undefined) {
+                var newSource = newSlotOptions["source"].split("/")
+                newSourceInterfaceOptions = extractor.getInterfaceOptions(newSource[0])
+                newSourceEndpointOptions = extractor.getEndpointOptions(newSource[0], newSource[1])
+            }
+
+            if (newSlotOptions["destination"] !== undefined) {
+                var newDestination = newSlotOptions["destination"].split("/")
+                newDestinationInterfaceOptions = extractor.getInterfaceOptions(newDestination[0])
+                newDestinationEndpointOptions = extractor.getEndpointOptions(newDestination[0], newDestination[1])
+
+                var newMedia = newDestinationEndpointOptions["media"]
+                newMediaOptions = extractor.getMediaOptions(newDestination[0], newMedia)
+            }
+
+            var newSlotIndex = digishow.makeSlot(
+                        newSlotOptions,
+                        newSourceInterfaceOptions, newSourceEndpointOptions,
+                        newDestinationInterfaceOptions, newDestinationEndpointOptions,
+                        newMediaOptions["url"], newMediaOptions["type"])
+            refreshSlot(newSlotIndex)
+            visualModel.items.move(
+                        getVisualItemIndex(newSlotIndex),
+                        currentIndexVisual+1)
+            currentIndex = newSlotIndex
+            highlightedIndex = newSlotIndex
+
+            isModified = true
+        }
+
+        // refresh interface manager
+        dialogInterfaces.refresh()
     }
 
     function setSlotLaunchRememberAllLinks(value) {

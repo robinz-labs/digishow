@@ -25,6 +25,7 @@ SOURCES += \
         digishow.cpp \
         digishow_app.cpp \
         digishow_common.cpp \
+        digishow_data.cpp \
         digishow_environment.cpp \
         digishow_interface.cpp \
         digishow_slot.cpp \
@@ -54,6 +55,7 @@ HEADERS += \
     digishow.h \
     digishow_app.h \
     digishow_common.h \
+    digishow_data.h \
     digishow_environment.h \
     digishow_interface.h \
     digishow_slot.h

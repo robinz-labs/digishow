@@ -34,6 +34,7 @@ ApplicationWindow {
     Utilities { id: utilities }
     CCommon { id: common }
     Digishow { id: digishow }
+    DigishowData { id: extractor }
 
     Component.onCompleted: {
 
@@ -125,6 +126,19 @@ ApplicationWindow {
     Shortcut {
         sequence: StandardKey.Close
         onActivated: close()
+    }
+
+    Shortcut {
+        sequence: StandardKey.Copy
+        onActivated: slotListView.copySlots()
+    }
+    Shortcut {
+        sequence: StandardKey.Paste
+        onActivated: slotListView.pasteSlots()
+    }
+    Shortcut {
+        sequence: StandardKey.SelectAll
+        onActivated: slotListView.selectAll()
     }
 
     Rectangle {

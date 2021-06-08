@@ -309,7 +309,7 @@ Item {
                 box.radius: 3
 
                 onClicked: {
-                    setMediaOptions({})
+                    setEndpointMediaOptions({})
                     isModified = true
                 }
             }
@@ -348,7 +348,7 @@ Item {
         refreshMoreOptions()
     }
 
-    function setMediaOptions(options) {
+    function setEndpointMediaOptions(options) {
 
         var v
         v = options["mediaAlone"];    checkMediaAlone.checked     = (v === undefined ? true : v )
@@ -359,7 +359,7 @@ Item {
         v = options["mediaRepeat"];   checkMediaRepeat.checked    = (v === undefined ? false : v )
     }
 
-    function getMediaOptions() {
+    function getEndpointMediaOptions() {
 
         var options = {
             mediaAlone:    checkMediaAlone.checked,
