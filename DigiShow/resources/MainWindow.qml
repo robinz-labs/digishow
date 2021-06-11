@@ -674,7 +674,7 @@ ApplicationWindow {
 
     FileDialog {
         id: dialogLoadFile
-        title: qsTr("Load File")
+        title: qsTr("Open File")
         folder: shortcuts.home
         selectExisting: true
         nameFilters: [ qsTr("DigiShow files (*.dgs)"), qsTr("JSON files (*.json)"), qsTr("All files (*)") ]

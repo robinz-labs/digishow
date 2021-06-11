@@ -107,7 +107,7 @@ Item {
 
         var interfaceMode = menuInterface.getSelectedInterfaceConfiguration()["interfaceInfo"]["mode"]
         var endpointType = menuRiocType.selectedItemValue
-        if (interfaceMode === undefined || interfaceMode === DigishowEnvironment.InterfaceRiocGenernal) {
+        if (interfaceMode === undefined || interfaceMode === DigishowEnvironment.InterfaceRiocGeneral) {
             for (n=0 ; n<128 ; n++)
                 items.push({ text: qsTr("Pin") + " " + n, value: n })
         } else if (interfaceMode === DigishowEnvironment.InterfaceRiocArduinoUno) {

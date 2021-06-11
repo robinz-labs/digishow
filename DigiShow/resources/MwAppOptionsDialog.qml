@@ -51,13 +51,10 @@ Dialog {
         COptionMenu {
             id: menuOptionLanguage
             optionItems: [
-                { text: qsTr("English" ), value: 0, tag:"en" },
-                { text: qsTr("German"  ), value: 1, tag:"de" },
-                { text: qsTr("French"  ), value: 2, tag:"fr" },
-                { text: qsTr("Spanish" ), value: 3, tag:"es" },
-                { text: qsTr("Italian" ), value: 3, tag:"it" },
-                { text: qsTr("Japanese"), value: 4, tag:"jp" },
-                { text: qsTr("Chinese" ), value: 5, tag:"zh_CN" }]
+                { value: 0, tag:"en",    text: "English"  },
+                { value: 1, tag:"es",    text: "Español"  },
+                { value: 2, tag:"jp",    text: "日本語" },
+                { value: 3, tag:"zh_CN", text: "中文" }]
         }
     }
 

@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file>translations/language.zh_CN.qm</file>
         <file>translations/language.jp.qm</file>
+        <file>translations/language.es.qm</file>
         <file>images/background_about.png</file>
         <file>images/icon_add_white.png</file>
         <file>images/icon_close_white.png</file>

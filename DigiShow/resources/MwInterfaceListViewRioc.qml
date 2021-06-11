@@ -101,7 +101,7 @@ MwInterfaceListView {
                         id: menuRiocMode
 
                         optionItems: [
-                            { text:  qsTr("Genernal"),     value: 0, tag: "general" },
+                            { text:  qsTr("General"),      value: 0, tag: "general" },
                             { text:  qsTr("Arduino UNO"),  value: 1, tag: "arduino_uno" },
                             { text:  qsTr("Arduino MEGA"), value: 2, tag: "arduino_mega" },
                             { text:  qsTr("Aladdin"),      value: 3, tag: "aladdin" }

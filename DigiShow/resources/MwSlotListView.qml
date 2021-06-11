@@ -21,6 +21,8 @@ Item {
     onCurrentIndexChanged: currentIndexVisual = getVisualItemIndex(currentIndex)
     onCurrentIndexVisualChanged: currentIndex = getDataItemIndex(currentIndexVisual)
 
+    onShowSlotSelectionChanged: if (!showSlotSelection) selectNone()
+
     Rectangle {
 
         anchors.fill: parent
@@ -127,7 +129,6 @@ Item {
                     }
 
                     MenuSeparator {}
-
                     CMenuItem {
                         text: showSlotSelection ? qsTr("Deselect Slots") : qsTr("Select Slots")
                         onTriggered: {
@@ -135,6 +136,14 @@ Item {
                         }
                     }
 
+                    MenuSeparator {}
+                    CMenuItem {
+                        text: qsTr("Copy")
+                        onTriggered: {
+                            menuSlot.close()
+                            copySlots()
+                        }
+                    }
                     CMenuItem {
                         text: qsTr("Paste")
                         onTriggered: {
@@ -822,10 +831,7 @@ Item {
                 colorNormal: "black"
 
                 onClicked: {
-                    for (var n=0 ; n<dataModel.count ; n++) {
-                        dataModel.setProperty(n, "slotSelected",  true)
-                        app.slotAt(n).setSelected(true)
-                    }
+                    selectAll()
                 }
             }
 
@@ -844,10 +850,7 @@ Item {
                 colorNormal: "black"
 
                 onClicked: {
-                    for (var n=0 ; n<dataModel.count ; n++) {
-                        dataModel.setProperty(n, "slotSelected",  false)
-                        app.slotAt(n).setSelected(false)
-                    }
+                    selectNone()
                 }
             }
 
@@ -1186,14 +1189,39 @@ Item {
     }
 
     function selectAll() {
+
+        if (dataModel.count === 0) return
+
+        for (var n=0 ; n<dataModel.count ; n++) {
+            dataModel.setProperty(n, "slotSelected",  true)
+            app.slotAt(n).setSelected(true)
+        }
+
         showSlotSelection = true
-        buttonSelectAll.clicked()
+    }
+
+    function selectNone() {
+        for (var n=0 ; n<dataModel.count ; n++) {
+            dataModel.setProperty(n, "slotSelected",  false)
+            app.slotAt(n).setSelected(false)
+        }
     }
 
     function copySlots() {
-        if (!slotListView.showSlotSelection) return;
+
+        // no slot selection, instead select the current slot to copy
+        var needCopyCurrentSlot = (!slotListView.showSlotSelection && currentIndex !== -1)
+        if (needCopyCurrentSlot) {
+            selectNone()
+            showSlotSelection = true
+            dataModel.setProperty(currentIndex, "slotSelected", true)
+            app.slotAt(currentIndex).setSelected(true)
+        }
+
         var data = app.exportData(getVisualItemsIndexList(), true)
         utilities.copyJson(data, "application/vnd.digishow.data")
+
+        if (needCopyCurrentSlot) showSlotSelection = false
     }
 
     function pasteSlots() {

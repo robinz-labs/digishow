@@ -207,7 +207,7 @@ typedef struct dgsSlotInfo {
     double outputHigh;
     bool   inputInverted;   // signal inversion
     bool   outputInverted;
-    bool   outputLowAsZero; // zero output when reach lower limit
+    bool   outputLowAsZero; // zero output while reaching lower limit
 
     // output signal envelop
     int    envelopeAttack;  // in milliseconds, default 0

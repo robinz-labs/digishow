@@ -633,9 +633,9 @@ QString DigishowEnvironment::getLightControlName(int control, bool shortName)
 QString DigishowEnvironment::getMediaControlName(int control, bool forScreen)
 {
     switch(control) {
-        case CONTROL_MEDIA_START:    return forScreen ? tr("Show")      : tr("Play");
-        case CONTROL_MEDIA_STOP:     return forScreen ? tr("Hide")      : tr("Stop");
-        case CONTROL_MEDIA_STOP_ALL: return forScreen ? tr("Clear All") : tr("Stop All");
+        case CONTROL_MEDIA_START:    return forScreen ? tr("Show")     : tr("Play");
+        case CONTROL_MEDIA_STOP:     return forScreen ? tr("Hide")     : tr("Stop");
+        case CONTROL_MEDIA_STOP_ALL: return forScreen ? tr("Hide All") : tr("Stop All");
 
         case CONTROL_MEDIA_OPACITY:  return tr("Opacity");
         case CONTROL_MEDIA_SCALE:    return tr("Scale");

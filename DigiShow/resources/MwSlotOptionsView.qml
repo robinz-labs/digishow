@@ -145,7 +145,7 @@ Item {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 45
             font.pixelSize: 12
-            text: qsTr("Zero Output While Reach Lower")
+            text: qsTr("Zero Output While Reaching Lower")
             enabled:
                 sliderMappingInputRange.visible && sliderMappingOutputRange.visible &&
                 sliderMappingOutputRange.first.value > 0

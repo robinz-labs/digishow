@@ -299,7 +299,7 @@ Item {
             }
 
             CButton {
-                width: 90
+                width: 100
                 height: 28
                 anchors.left: parent.left
                 anchors.leftMargin: 105

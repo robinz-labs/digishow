@@ -106,7 +106,8 @@ macx: {
 
 TRANSLATIONS = \
     $$PWD/resources/translations/language.zh_CN.ts \
-    $$PWD/resources/translations/language.jp.ts
+    $$PWD/resources/translations/language.jp.ts \
+    $$PWD/resources/translations/language.es.ts
 
 # experimental code
 #include(digishow_experimental/experimental.pri)

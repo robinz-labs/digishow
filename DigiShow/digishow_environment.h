@@ -31,7 +31,7 @@ public:
     enum InterfaceMode {
         InterfaceMidiInput        = INTERFACE_MIDI_INPUT,
         InterfaceMidiOutput       = INTERFACE_MIDI_OUTPUT,
-        InterfaceRiocGenernal     = INTERFACE_RIOC_GENERAL,
+        InterfaceRiocGeneral      = INTERFACE_RIOC_GENERAL,
         InterfaceRiocArduinoUno   = INTERFACE_RIOC_ARDUINO_UNO,
         InterfaceRiocArduinoMega  = INTERFACE_RIOC_ARDUINO_MEGA,
         InterfaceRiocAladdin      = INTERFACE_RIOC_ALADDIN,
