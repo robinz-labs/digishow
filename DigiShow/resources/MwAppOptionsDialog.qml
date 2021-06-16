@@ -30,10 +30,10 @@ Dialog {
     COptionButton {
         id: buttonOptionLanguage
 
-        width: 150
+        width: 170
         height: 28
         anchors.left: parent.left
-        anchors.leftMargin: 120
+        anchors.leftMargin: 110
         anchors.top: parent.top
         anchors.topMargin: 30
         text: menuOptionLanguage.selectedItemText
@@ -60,10 +60,10 @@ Dialog {
 
     CButton {
         id: buttonOptionSave
-        width: 65
+        width: 75
         height: 32
         anchors.left: parent.left
-        anchors.leftMargin: 120
+        anchors.leftMargin: 110
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 20
         label.font.bold: true
@@ -82,7 +82,7 @@ Dialog {
 
     CButton {
         id: buttonOptionCancel
-        width: 65
+        width: 75
         height: 32
         anchors.left: buttonOptionSave.right
         anchors.leftMargin: 15

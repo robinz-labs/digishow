@@ -835,12 +835,12 @@
     <message>
         <location filename="../MwEndpointSelectorAPlay.qml" line="59"/>
         <source>File ...</source>
-        <translation>Archivo</translation>
+        <translation>Archivo ...</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorAPlay.qml" line="75"/>
-        <source>Opt ...</source>
-        <translation>Opc ...</translation>
+        <source>Options ...</source>
+        <translation>Opciones ...</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorAPlay.qml" line="103"/>
@@ -956,12 +956,12 @@
     <message>
         <location filename="../MwEndpointSelectorMPlay.qml" line="59"/>
         <source>File ...</source>
-        <translation>Archivo</translation>
+        <translation>Archivo ...</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorMPlay.qml" line="75"/>
-        <source>Opt ...</source>
-        <translation>Opc ...</translation>
+        <source>Options ...</source>
+        <translation>Opciones ...</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorMPlay.qml" line="103"/>
@@ -1198,12 +1198,12 @@
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="97"/>
         <source>File ...</source>
-        <translation>Archivo</translation>
+        <translation>Archivo ...</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="113"/>
-        <source>Opt ...</source>
-        <translation>Opc ...</translation>
+        <source>Options ...</source>
+        <translation>Opciones ...</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="148"/>
@@ -1539,6 +1539,16 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
         <location filename="../MwInterfaceListViewMidi.qml" line="85"/>
         <source>MIDI Port</source>
         <translation>Puerto MIDI</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewMidi.qml" line="98"/>
+        <source>Input</source>
+        <translation>Entrada</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewMidi.qml" line="99"/>
+        <source>Output</source>
+        <translation>Salida</translation>
     </message>
 </context>
 <context>
@@ -1913,7 +1923,7 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
     <message>
         <location filename="../MwQuickLaunchView.qml" line="274"/>
         <source>Remember Slot Link States</source>
-        <translation>Recuerde los estados LINK</translation>
+        <translation>Recuerde los estados de enlaces</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="282"/>
@@ -1976,120 +1986,120 @@ que establecerá un enlace de señal entre tus cosas digitales</translation>
         <translation>PASO 2</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="109"/>
+        <location filename="../MwSlotListView.qml" line="110"/>
         <source>Rename Slot</source>
         <translation>Renombrar ranura</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="117"/>
+        <location filename="../MwSlotListView.qml" line="118"/>
         <source>Duplicate Slot</source>
         <translation>Duplicar ranura</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="124"/>
+        <location filename="../MwSlotListView.qml" line="125"/>
         <source>Delete Slot</source>
         <translation>Eliminar ranura</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="133"/>
+        <location filename="../MwSlotListView.qml" line="134"/>
         <source>Deselect Slots</source>
         <translation>Deseleccionar ranuras</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="133"/>
+        <location filename="../MwSlotListView.qml" line="134"/>
         <source>Select Slots</source>
         <translation>Seleccionar ranuras</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="141"/>
-        <location filename="../MwSlotListView.qml" line="864"/>
+        <location filename="../MwSlotListView.qml" line="142"/>
+        <location filename="../MwSlotListView.qml" line="865"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="148"/>
+        <location filename="../MwSlotListView.qml" line="149"/>
         <source>Paste</source>
         <translation>Pegar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="186"/>
+        <location filename="../MwSlotListView.qml" line="187"/>
         <source>Untitled Slot</source>
         <translation>Ranura sin título</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="826"/>
+        <location filename="../MwSlotListView.qml" line="827"/>
         <source>Select All</source>
         <translation>Todos</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="845"/>
+        <location filename="../MwSlotListView.qml" line="846"/>
         <source>Select None</source>
         <translation>Ninguno</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="883"/>
-        <location filename="../MwSlotListView.qml" line="1119"/>
+        <location filename="../MwSlotListView.qml" line="884"/>
+        <location filename="../MwSlotListView.qml" line="1120"/>
         <source>Duplicate</source>
         <translation>Duplicar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="902"/>
-        <location filename="../MwSlotListView.qml" line="1143"/>
-        <location filename="../MwSlotListView.qml" line="1168"/>
+        <location filename="../MwSlotListView.qml" line="903"/>
+        <location filename="../MwSlotListView.qml" line="1144"/>
+        <location filename="../MwSlotListView.qml" line="1169"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="921"/>
-        <location filename="../MwSlotListView.qml" line="1177"/>
+        <location filename="../MwSlotListView.qml" line="922"/>
+        <location filename="../MwSlotListView.qml" line="1178"/>
         <source>Move</source>
         <translation>Mover</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1009"/>
+        <location filename="../MwSlotListView.qml" line="1010"/>
         <source>Source</source>
         <translation>Origen</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1010"/>
+        <location filename="../MwSlotListView.qml" line="1011"/>
         <source>no input</source>
         <translation>sin entrada</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1017"/>
+        <location filename="../MwSlotListView.qml" line="1018"/>
         <source>Destination</source>
         <translation>Destino</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1018"/>
+        <location filename="../MwSlotListView.qml" line="1019"/>
         <source>no output</source>
         <translation>sin salida</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1119"/>
+        <location filename="../MwSlotListView.qml" line="1120"/>
         <source>Would you like to duplicate all selected slots ?</source>
         <translation>¿ Le gustaría duplicar todas las ranuras seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1119"/>
-        <location filename="../MwSlotListView.qml" line="1143"/>
-        <location filename="../MwSlotListView.qml" line="1168"/>
-        <location filename="../MwSlotListView.qml" line="1177"/>
+        <location filename="../MwSlotListView.qml" line="1120"/>
+        <location filename="../MwSlotListView.qml" line="1144"/>
+        <location filename="../MwSlotListView.qml" line="1169"/>
+        <location filename="../MwSlotListView.qml" line="1178"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1143"/>
+        <location filename="../MwSlotListView.qml" line="1144"/>
         <source>Would you like to delete the slot ?</source>
         <translation>¿ Le gustaría eliminar la ranura ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1168"/>
+        <location filename="../MwSlotListView.qml" line="1169"/>
         <source>Would you like to delete all selected slots ?</source>
         <translation>¿ Le gustaría eliminar todas las ranuras seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1177"/>
+        <location filename="../MwSlotListView.qml" line="1178"/>
         <source>Would you like to move all selected slots to the current cursor position ?</source>
         <translation>¿ Le gustaría mover todas las ranuras seleccionadas a la posición actual del cursor ?</translation>
     </message>

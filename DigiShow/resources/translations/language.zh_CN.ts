@@ -839,7 +839,7 @@
     </message>
     <message>
         <location filename="../MwEndpointSelectorAPlay.qml" line="75"/>
-        <source>Opt ...</source>
+        <source>Options ...</source>
         <translation>选项 ...</translation>
     </message>
     <message>
@@ -960,7 +960,7 @@
     </message>
     <message>
         <location filename="../MwEndpointSelectorMPlay.qml" line="75"/>
-        <source>Opt ...</source>
+        <source>Options ...</source>
         <translation>选项 ...</translation>
     </message>
     <message>
@@ -1202,7 +1202,7 @@
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="113"/>
-        <source>Opt ...</source>
+        <source>Options ...</source>
         <translation>选项 ...</translation>
     </message>
     <message>
@@ -1539,6 +1539,16 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <location filename="../MwInterfaceListViewMidi.qml" line="85"/>
         <source>MIDI Port</source>
         <translation>MIDI 端口</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewMidi.qml" line="98"/>
+        <source>Input</source>
+        <translation>输入</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewMidi.qml" line="99"/>
+        <source>Output</source>
+        <translation>输出</translation>
     </message>
 </context>
 <context>
@@ -1977,120 +1987,120 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="109"/>
+        <location filename="../MwSlotListView.qml" line="110"/>
         <source>Rename Slot</source>
         <translation>修改信号插槽名称</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="117"/>
+        <location filename="../MwSlotListView.qml" line="118"/>
         <source>Duplicate Slot</source>
         <translation>复制信号插槽</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="124"/>
+        <location filename="../MwSlotListView.qml" line="125"/>
         <source>Delete Slot</source>
         <translation>删除信号插槽</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="133"/>
+        <location filename="../MwSlotListView.qml" line="134"/>
         <source>Deselect Slots</source>
         <translation>取消选择信号插槽</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="133"/>
+        <location filename="../MwSlotListView.qml" line="134"/>
         <source>Select Slots</source>
         <translation>选择信号插槽</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="148"/>
+        <location filename="../MwSlotListView.qml" line="149"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="186"/>
+        <location filename="../MwSlotListView.qml" line="187"/>
         <source>Untitled Slot</source>
         <translation>未命名信号插槽</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="826"/>
+        <location filename="../MwSlotListView.qml" line="827"/>
         <source>Select All</source>
         <translation>选择全部</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="845"/>
+        <location filename="../MwSlotListView.qml" line="846"/>
         <source>Select None</source>
         <translation>选择无</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="141"/>
-        <location filename="../MwSlotListView.qml" line="864"/>
+        <location filename="../MwSlotListView.qml" line="142"/>
+        <location filename="../MwSlotListView.qml" line="865"/>
         <source>Copy</source>
         <translation>拷贝</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="883"/>
-        <location filename="../MwSlotListView.qml" line="1119"/>
+        <location filename="../MwSlotListView.qml" line="884"/>
+        <location filename="../MwSlotListView.qml" line="1120"/>
         <source>Duplicate</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="921"/>
-        <location filename="../MwSlotListView.qml" line="1177"/>
+        <location filename="../MwSlotListView.qml" line="922"/>
+        <location filename="../MwSlotListView.qml" line="1178"/>
         <source>Move</source>
         <translation>移动</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1009"/>
+        <location filename="../MwSlotListView.qml" line="1010"/>
         <source>Source</source>
         <translation>信号来源</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1010"/>
+        <location filename="../MwSlotListView.qml" line="1011"/>
         <source>no input</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1018"/>
+        <location filename="../MwSlotListView.qml" line="1019"/>
         <source>no output</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1119"/>
+        <location filename="../MwSlotListView.qml" line="1120"/>
         <source>Would you like to duplicate all selected slots ?</source>
         <translation>您是否需要将所有选中的信号插槽再复制一份 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1143"/>
+        <location filename="../MwSlotListView.qml" line="1144"/>
         <source>Would you like to delete the slot ?</source>
         <translation>您是否需要删除此信号插槽 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1168"/>
+        <location filename="../MwSlotListView.qml" line="1169"/>
         <source>Would you like to delete all selected slots ?</source>
         <translation>您是否需要将所有选中的信号插槽都删除 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1177"/>
+        <location filename="../MwSlotListView.qml" line="1178"/>
         <source>Would you like to move all selected slots to the current cursor position ?</source>
         <translation>您是否需要将所有选中的信号插槽移动到当前光标位置 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1017"/>
+        <location filename="../MwSlotListView.qml" line="1018"/>
         <source>Destination</source>
         <translation>信号目标</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="902"/>
-        <location filename="../MwSlotListView.qml" line="1143"/>
-        <location filename="../MwSlotListView.qml" line="1168"/>
+        <location filename="../MwSlotListView.qml" line="903"/>
+        <location filename="../MwSlotListView.qml" line="1144"/>
+        <location filename="../MwSlotListView.qml" line="1169"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1119"/>
-        <location filename="../MwSlotListView.qml" line="1143"/>
-        <location filename="../MwSlotListView.qml" line="1168"/>
-        <location filename="../MwSlotListView.qml" line="1177"/>
+        <location filename="../MwSlotListView.qml" line="1120"/>
+        <location filename="../MwSlotListView.qml" line="1144"/>
+        <location filename="../MwSlotListView.qml" line="1169"/>
+        <location filename="../MwSlotListView.qml" line="1178"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>

@@ -133,7 +133,7 @@ Item {
 
                 CMenu {
                     id: menu
-                    width: 100
+                    width: 120
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
                     CMenuItem {
@@ -194,7 +194,7 @@ Item {
         Popup {
             id: popupOptions
 
-            width: 240
+            width: 260
             height: 180
             anchors.centerIn: parent
             modal: false
@@ -290,7 +290,7 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
 
                     CButton {
-                        width: 95
+                        width: 90
                         height: 28
 
                         anchors.bottom: parent.bottom
@@ -315,7 +315,7 @@ Item {
                     }
 
                     CButton {
-                        width: 95
+                        width: 90
                         height: 28
 
                         anchors.bottom: parent.bottom

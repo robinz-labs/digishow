@@ -49,7 +49,7 @@ Item {
 
     CButton {
         id: buttonMediaSelect
-        width: 50
+        width: 70
         height: 28
         anchors.left: buttonMediaControl.right
         anchors.leftMargin: 20
@@ -65,14 +65,14 @@ Item {
 
     CButton {
         id: buttonMediaOptions
-        width: 50
+        width: 70
         height: 28
         anchors.left: buttonMediaSelect.right
         anchors.leftMargin: 10
         anchors.top: parent.top
         label.font.bold: false
         label.font.pixelSize: 11
-        label.text: qsTr("Opt ...")
+        label.text: qsTr("Options ...")
         box.radius: 3
         visible: textMediaUrl.visible &&
                  menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart

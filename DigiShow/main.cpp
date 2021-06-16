@@ -144,6 +144,11 @@ int main(int argc, char *argv[])
             QString fontName = fontAvailable({"Yuanti SC"});
             if (!fontName.isEmpty()) appFontName = fontName;
 #endif
+        } else if (appLanguage == "jp") {
+#ifdef Q_OS_WIN
+            QString fontName = fontAvailable({"Yu Gothic UI", "MS UI Gothic", "MS Gothic"});
+            if (!fontName.isEmpty()) appFontName = fontName;
+#endif
         }
     }
     app.setFont(QFont(appFontName));

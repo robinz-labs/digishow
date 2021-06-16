@@ -103,6 +103,7 @@ Item {
 
                 CMenu {
                     id: menuSlot
+                    width: 140
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
                     CMenuItem {

@@ -41,7 +41,7 @@ MwInterfaceListView {
                     anchors.margins: 20
                     text: {
                         if (model.port === undefined || model.port === "") return ""
-                        return model.port + " (" + model.mode + ")"
+                        return model.port + " (" + getModeName(model.mode) + ")"
                     }
 
                     onClicked: {
@@ -57,7 +57,7 @@ MwInterfaceListView {
                             var options = [ { text: "", value: -1, tag: "" } ]
                             for (var n=0 ; n<items.length ; n++) {
                                 options[n] = {
-                                    text: items[n]["port"] + " (" + items[n]["mode"] + ")" ,
+                                    text: items[n]["port"] + " (" + getModeName(items[n]["mode"]) + ")" ,
                                     value: n,
                                     tag: items[n]["port"] + "\t" + items[n]["mode"]
                                 }
@@ -92,6 +92,12 @@ MwInterfaceListView {
 
     Component.onCompleted: {
 
+    }
+
+    function getModeName(mode) {
+        if      (mode === "input" ) return qsTr("Input")
+        else if (mode === "output") return qsTr("Output")
+        else return mode
     }
 }
 
