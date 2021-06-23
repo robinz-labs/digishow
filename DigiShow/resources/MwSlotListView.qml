@@ -152,6 +152,25 @@ Item {
                             pasteSlots()
                         }
                     }
+
+                    MenuSeparator {}
+                    CMenuItem {
+                        text: qsTr("Undo")
+                        enabled: undoManager.canUndo
+                        onTriggered: {
+                            menuSlot.close()
+                            undoManager.undo()
+                        }
+                    }
+                    CMenuItem {
+                        text: qsTr("Redo")
+                        enabled: undoManager.canRedo
+                        onTriggered: {
+                            menuSlot.close()
+                            undoManager.redo()
+                        }
+                    }
+
                 }
 
                 Rectangle {
@@ -1112,7 +1131,7 @@ Item {
         currentIndex = newSlotIndex
         highlightedIndex = newSlotIndex
 
-        isModified = true
+        window.isModified = true
     }
 
     function duplicateSelection() {
@@ -1157,7 +1176,7 @@ Item {
                     currentIndexVisual = indexVisaul
                 }
 
-                isModified = true
+                window.isModified = true
             }
 
             listView.forceActiveFocus()
@@ -1275,9 +1294,9 @@ Item {
                         currentIndexVisual+1)
             currentIndex = newSlotIndex
             highlightedIndex = newSlotIndex
-
-            isModified = true
         }
+
+        window.isModified = true
 
         // refresh interface manager
         dialogInterfaces.refresh()
@@ -1352,6 +1371,6 @@ Item {
         }
         slotListView.currentIndex = newSlotIndex
         slotListView.highlightedIndex = newSlotIndex
-        isModified = true
+        window.isModified = true
     }
 }

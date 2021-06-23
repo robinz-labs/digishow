@@ -35,6 +35,7 @@ ApplicationWindow {
     CCommon { id: common }
     Digishow { id: digishow }
     DigishowData { id: extractor }
+    MwUndoManager { id: undoManager }
 
     Component.onCompleted: {
 
@@ -46,7 +47,9 @@ ApplicationWindow {
         app.filepathChanged.connect(function() {
             console.log("file loaded: " + app.filepath)
             utilities.setMacWindowTitleWithFile(window, app.filepath)
-            isModified = false
+            window.isModified = false
+            undoManager.clear()
+            undoManager.archive()
         })
 
         // callback while interfaces data loaded
@@ -139,6 +142,15 @@ ApplicationWindow {
     Shortcut {
         sequence: StandardKey.SelectAll
         onActivated: slotListView.selectAll()
+    }
+
+    Shortcut {
+        sequence: StandardKey.Undo
+        onActivated: undoManager.undo()
+    }
+    Shortcut {
+        sequence: StandardKey.Redo
+        onActivated: undoManager.redo()
     }
 
     Rectangle {
@@ -509,7 +521,7 @@ ApplicationWindow {
 
             onSlotDetailUpdated: {
                 slotListView.refreshSlot(slotDetailView.slotIndex)
-                isModified = true
+                window.isModified = true
             }
         }
 

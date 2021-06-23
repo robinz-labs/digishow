@@ -51,22 +51,16 @@ DigishowApp::~DigishowApp()
 
 void DigishowApp::clear()
 {
-    m_filepath.clear();
+    m_launches.clear();
+    emit launchListChanged();
 
     for (int n=0 ; n<m_slots.length() ; n++) delete m_slots[n];
     m_slots.clear();
+    emit slotListChanged();
 
     for (int n=0 ; n<m_interfaces.length() ; n++) delete m_interfaces[n];
     m_interfaces.clear();
-
-    m_launches.clear();
-
-    // notify ui data change
-    emit filepathChanged();
     emit interfaceListChanged();
-    emit slotListChanged();
-    emit launchListChanged();
-
 }
 
 void DigishowApp::importData(const QVariantMap & data)
@@ -389,11 +383,11 @@ void DigishowApp::newShow()
     stop();
     clear();
 
+    m_filepath.clear();
+    emit filepathChanged();
+
     newInterface("launch");
     newInterface("pipe");
-    //newInterface("dmx");
-    //newInterface("rioc");
-
     emit interfaceListChanged();
 }
 
