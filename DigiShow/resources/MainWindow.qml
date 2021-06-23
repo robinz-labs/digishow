@@ -689,7 +689,7 @@ ApplicationWindow {
         title: qsTr("Open File")
         folder: shortcuts.home
         selectExisting: true
-        nameFilters: [ qsTr("DigiShow files (*.dgs)"), qsTr("JSON files (*.json)"), qsTr("All files (*)") ]
+        nameFilters: [ qsTr("DigiShow files") + " (*.dgs)", qsTr("JSON files")  + " (*.json)", qsTr("All files") + " (*)" ]
         onAccepted: {
             console.log("load file: " + dialogLoadFile.fileUrl)
 
@@ -706,7 +706,7 @@ ApplicationWindow {
         title: qsTr("Save File")
         folder: shortcuts.home
         selectExisting: false
-        nameFilters: [ qsTr("DigiShow files (*.dgs)"), qsTr("All files (*)") ]
+        nameFilters: [ qsTr("DigiShow files") + " (*.dgs)", qsTr("All files") + " (*)" ]
         onAccepted: {
             console.log("save file: " + dialogSaveFile.fileUrl)
             app.saveFile(utilities.urlToPath(dialogSaveFile.fileUrl),
