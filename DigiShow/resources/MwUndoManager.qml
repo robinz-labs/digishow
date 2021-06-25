@@ -22,6 +22,8 @@ QtObject {
             for (var n=historyLength-1 ; n>currentIndex ; n--) history.pop()
         }
 
+        if (history.length > 50) history.shift()
+
         var data = app.exportData(slotListView.getVisualItemsIndexList())
         history.push(data)
 

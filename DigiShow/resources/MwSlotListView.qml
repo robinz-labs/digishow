@@ -156,18 +156,18 @@ Item {
                     MenuSeparator {}
                     CMenuItem {
                         text: qsTr("Undo")
-                        enabled: undoManager.canUndo
+                        enabled: undoManager.canUndo || slotDetailView.isEdited
                         onTriggered: {
                             menuSlot.close()
-                            undoManager.undo()
+                            undo()
                         }
                     }
                     CMenuItem {
                         text: qsTr("Redo")
-                        enabled: undoManager.canRedo
+                        enabled: undoManager.canRedo && !slotDetailView.isEdited
                         onTriggered: {
                             menuSlot.close()
-                            undoManager.redo()
+                            redo()
                         }
                     }
 
@@ -232,6 +232,7 @@ Item {
                             app.slotAt(index).setSlotOption("title", slotTitle)
                             textSlotTitle.visible = false
                             window.isModified = true
+                            undoManager.archive()
                         }
                     }
 
@@ -1132,6 +1133,7 @@ Item {
         highlightedIndex = newSlotIndex
 
         window.isModified = true
+        undoManager.archive()
     }
 
     function duplicateSelection() {
@@ -1177,6 +1179,7 @@ Item {
                 }
 
                 window.isModified = true
+                undoManager.archive()
             }
 
             listView.forceActiveFocus()
@@ -1297,9 +1300,22 @@ Item {
         }
 
         window.isModified = true
+        undoManager.archive()
 
         // refresh interface manager
         dialogInterfaces.refresh()
+    }
+
+    function undo() {
+
+        if (slotDetailView.slotIndex !== -1 && slotDetailView.isEdited) undoManager.archive()
+        undoManager.undo()
+    }
+
+    function redo() {
+
+        if (slotDetailView.slotIndex !== -1 && slotDetailView.isEdited) return
+        undoManager.redo()
     }
 
     function setSlotLaunchRememberAllLinks(value) {
@@ -1372,5 +1388,6 @@ Item {
         slotListView.currentIndex = newSlotIndex
         slotListView.highlightedIndex = newSlotIndex
         window.isModified = true
+        undoManager.archive()
     }
 }

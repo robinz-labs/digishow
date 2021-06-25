@@ -11,8 +11,19 @@ Item {
     id: slotDetailView
 
     property int slotIndex: -1
+    property bool isEdited: false
 
     signal slotDetailUpdated
+
+    onSlotIndexChanged: {
+
+        //console.log("onSlotIndexChanged", slotIndex, isEdited)
+
+        if (isEdited) {
+            if (slotIndex !== -1) undoManager.archive()
+            isEdited = false
+        }
+    }
 
 
     Rectangle {
@@ -41,6 +52,8 @@ Item {
                 onEndpointUpdated: {
                     slotOptionsView.refresh()
                     slotDetailUpdated() // emit signal
+                    window.isModified = true
+                    isEdited = true
                 }
             }
         }
@@ -65,6 +78,8 @@ Item {
                 onEndpointUpdated: {
                     slotOptionsView.refresh()
                     slotDetailUpdated() // emit signal
+                    window.isModified = true
+                    isEdited = true
                 }
             }
         }
@@ -91,9 +106,9 @@ Item {
 
                     if (key === "inputInverted" || key === "outputInverted") {
                         slotDetailUpdated() // emit signal
-                    } else {
-                        window.isModified = true
                     }
+                    window.isModified = true
+                    isEdited = true
                 }
             }
         }

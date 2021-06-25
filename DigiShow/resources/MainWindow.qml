@@ -146,11 +146,11 @@ ApplicationWindow {
 
     Shortcut {
         sequence: StandardKey.Undo
-        onActivated: undoManager.undo()
+        onActivated: slotListView.undo()
     }
     Shortcut {
         sequence: StandardKey.Redo
-        onActivated: undoManager.redo()
+        onActivated: slotListView.redo()
     }
 
     Rectangle {
@@ -521,7 +521,6 @@ ApplicationWindow {
 
             onSlotDetailUpdated: {
                 slotListView.refreshSlot(slotDetailView.slotIndex)
-                window.isModified = true
             }
         }
 
