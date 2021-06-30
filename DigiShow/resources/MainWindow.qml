@@ -229,7 +229,7 @@ ApplicationWindow {
                         contentItem: Rectangle { implicitHeight: 1; color: "#333333" }
                     }
                     MenuItem {
-                        text: qsTr("About")
+                        text: qsTr("About DigiShow")
                         onTriggered: popupAbout.open()
                     }
                     MenuItem {
@@ -740,7 +740,7 @@ ApplicationWindow {
         if (!isModified) {
             app.newShow()
         } else {
-            var buttonIndex = messageBox.showAndWait(qsTr("Would you like to save all data to a file before create a new ?"),
+            var buttonIndex = messageBox.showAndWait(qsTr("Do you want to save all data to a file before create a new ?"),
                                                      qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
             switch (buttonIndex) {
             case 1: saveAndDo(app.newShow); break
@@ -753,7 +753,7 @@ ApplicationWindow {
         if (!isModified) {
             dialogLoadFile.open()
         } else {
-            var buttonIndex = messageBox.showAndWait(qsTr("Would you like to save all data to a file before open another ?"),
+            var buttonIndex = messageBox.showAndWait(qsTr("Do you want to save all data to a file before open another ?"),
                                                      qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
             switch (buttonIndex) {
             case 1: saveAndDo(dialogLoadFile.open); break
@@ -795,7 +795,7 @@ ApplicationWindow {
         if (!isModified) {
             app.loadFile(filepath)
         } else {
-            var buttonIndex = messageBox.showAndWait(qsTr("Would you like to save current data before open file %1 ?")
+            var buttonIndex = messageBox.showAndWait(qsTr("Do you want to save current data before open file %1 ?")
                                                         .arg(utilities.getFileName(filepath)),
                                                      qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
             switch (buttonIndex) {
@@ -812,11 +812,11 @@ ApplicationWindow {
         if (messageBox.visible) return
 
         if (!isModified) {
-            if (messageBox.showAndWait(qsTr("Would you like to quit DigiShow app ?"), qsTr("Quit"), qsTr("Cancel")) === 1) {
+            if (messageBox.showAndWait(qsTr("Are you sure you want to quit DigiShow app ?"), qsTr("Quit"), qsTr("Cancel")) === 1) {
                 Qt.quit()
             }
         } else {
-            var buttonIndex = messageBox.showAndWait(qsTr("Would you like to save all data to a file before close the app ?"),
+            var buttonIndex = messageBox.showAndWait(qsTr("Do you want to save all data to a file before close the app ?"),
                                                      qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
             switch (buttonIndex) {
             case 1: saveAndDo(Qt.quit); break

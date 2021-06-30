@@ -1138,7 +1138,7 @@ Item {
 
     function duplicateSelection() {
 
-        if (messageBox.showAndWait(qsTr("Would you like to duplicate all selected slots ?"), qsTr("Duplicate"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Do you want to duplicate all selected slots ?"), qsTr("Duplicate"), qsTr("Cancel")) !== 1) return
 
         var numAll = visualModel.items.count
         var n, i
@@ -1162,7 +1162,7 @@ Item {
             highlightedIndex = deletedIndex
 
             if (!showMessageToConfirm ||
-                messageBox.showAndWait(qsTr("Would you like to delete the slot ?"), qsTr("Delete"), qsTr("Cancel")) === 1) {
+                messageBox.showAndWait(qsTr("Do you want to delete the slot ?"), qsTr("Delete"), qsTr("Cancel")) === 1) {
 
                 highlightedIndex = -1
                 currentIndex = -1
@@ -1188,7 +1188,7 @@ Item {
 
     function deleteSelection() {
 
-        if (messageBox.showAndWait(qsTr("Would you like to delete all selected slots ?"), qsTr("Delete"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Do you want to delete all selected slots ?"), qsTr("Delete"), qsTr("Cancel")) !== 1) return
 
         for (var n=dataModel.count-1 ; n>=0 ; n--)
             if (dataModel.get(n).slotSelected === true) deleteSlot(n, false)
@@ -1197,7 +1197,7 @@ Item {
     function moveSelection() {
 
         if (currentIndexVisual === -1) return
-        if (messageBox.showAndWait(qsTr("Would you like to move all selected slots to the current cursor position ?"), qsTr("Move"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Do you want to move all selected slots to the current cursor position ?"), qsTr("Move"), qsTr("Cancel")) !== 1) return
 
         var numAll = visualModel.items.count
         var numMoved = 0

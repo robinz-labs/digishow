@@ -44,6 +44,11 @@
   + smoothing analog output
   + copy-paste slot options
 
+  v1.1.7 20210630
+  beta release
+  + copy-paste support
+  + undo-redo support
+  + japanese and spanish support
 
  */
 
