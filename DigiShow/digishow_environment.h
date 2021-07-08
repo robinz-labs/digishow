@@ -75,6 +75,7 @@ public:
         EndpointModbusHoldingOut  = ENDPOINT_MODBUS_HOLDING_OUT,
         EndpointModbusHoldingIn   = ENDPOINT_MODBUS_HOLDING_IN,
         EndpointHueLight          = ENDPOINT_HUE_LIGHT,
+        EndpointHueGroup          = ENDPOINT_HUE_GROUP,
         EndpointDmxDimmer         = ENDPOINT_DMX_DIMMER,
         EndpointArtnetDimmer      = ENDPOINT_ARTNET_DIMMER,
         EndpointScreenLight       = ENDPOINT_SCREEN_LIGHT,

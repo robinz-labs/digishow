@@ -8,16 +8,32 @@ import "components"
 Item {
     id: itemHue
 
+    property alias menuType: menuHueType
     property alias spinChannel: spinHueChannel
     property alias menuControl: menuHueControl
+
+    COptionButton {
+        id: buttonHueType
+        width: 100
+        height: 28
+        anchors.left: parent.left
+        anchors.top: parent.top
+        text: menuHueType.selectedItemText
+        onClicked: menuHueType.showOptions()
+
+        COptionMenu {
+            id: menuHueType
+        }
+    }
 
     COptionButton {
         id: buttonHueChannel
         width: 100
         height: 28
-        anchors.left: parent.left
+        anchors.left: buttonHueType.right
+        anchors.leftMargin: 10
         anchors.top: parent.top
-        text: qsTr("Light") + " " + spinHueChannel.value
+        text: qsTr("ID") + " " + spinHueChannel.value
         onClicked: spinHueChannel.visible = true
 
         COptionSpinBox {
@@ -45,15 +61,26 @@ Item {
 
     function refresh() {
 
+        var items
+        var v
+
+        // init hue type option menu
+        if (menuHueType.count === 0) {
+            items = []
+            items.push({ text: qsTr("Light"), value: DigishowEnvironment.EndpointHueLight,  tag:"light" })
+            items.push({ text: qsTr("Group"), value: DigishowEnvironment.EndpointHueGroup,  tag:"group" })
+            menuHueType.optionItems = items
+            menuHueType.selectedIndex = 0
+        }
+
         // init hue light channel option spinbox
         spinHueChannel.from = 1
         spinHueChannel.to = 50
         spinHueChannel.visible = false
 
-        // init screen control option menu
+        // init hue control option menu
         if (menuHueControl.count === 0) {
-            var items = []
-            var v
+            items = []
             v = DigishowEnvironment.ControlLightR;   items.push({ text: digishow.getLightControlName(v), value: v })
             v = DigishowEnvironment.ControlLightG;   items.push({ text: digishow.getLightControlName(v), value: v })
             v = DigishowEnvironment.ControlLightB;   items.push({ text: digishow.getLightControlName(v), value: v })

@@ -1,8 +1,12 @@
 #include "dgs_hue_interface.h"
 
+#define HUE_OUT_FREQ 8
+
 DgsHueInterface::DgsHueInterface(QObject *parent) : DigishowInterface(parent)
 {
     m_interfaceOptions["type"] = "hue";
+    m_needUpdate = false;
+    m_timer = nullptr;
 }
 
 DgsHueInterface::~DgsHueInterface()
@@ -27,11 +31,22 @@ int DgsHueInterface::openInterface()
 
     bool done = (!m_bridgeIp.isEmpty());
 
-    for (int n=0 ; n<512 ; n++) {
-        m_lightR[n] = 0;
-        m_lightG[n] = 0;
-        m_lightB[n] = 0;
-    }
+    // reset light status list
+    for (int n=0 ; n<HUE_MAX_LIGHT_NUMBER ; n++) m_lights[n] = hueLightInfo();
+    for (int n=0 ; n<HUE_MAX_GROUP_NUMBER ; n++) m_groups[n] = hueLightInfo();
+    m_needUpdate = false;
+
+    // create a timer for sending http requests to the hue bridge at a particular frequency
+    int frequency = m_interfaceOptions.value("frequency").toInt();
+    if (frequency == 0) frequency = HUE_OUT_FREQ;
+
+    m_timer = new QTimer();
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimerFired()));
+    m_timer->setTimerType(Qt::PreciseTimer);
+    m_timer->setSingleShot(false);
+    m_timer->setInterval(1000 / frequency);
+    m_timer->start();
+
 
     if (!done) {
         closeInterface();
@@ -44,9 +59,14 @@ int DgsHueInterface::openInterface()
 
 int DgsHueInterface::closeInterface()
 {
+    if (m_timer != nullptr) {
+        m_timer->stop();
+        delete m_timer;
+        m_timer = nullptr;
+    }
+
     m_isInterfaceOpened = false;
     return ERR_NONE;
-
 }
 
 int DgsHueInterface::sendData(int endpointIndex, dgsSignalData data)
@@ -54,13 +74,26 @@ int DgsHueInterface::sendData(int endpointIndex, dgsSignalData data)
     int r = DigishowInterface::sendData(endpointIndex, data);
     if ( r != ERR_NONE) return r;
 
-    // confirm it's a light endpoint
-    if (m_endpointInfoList[endpointIndex].type != ENDPOINT_HUE_LIGHT) return ERR_INVALID_OPTION;
-
     if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
 
+    int type    = m_endpointInfoList[endpointIndex].type;
     int channel = m_endpointInfoList[endpointIndex].channel;
     int control = m_endpointInfoList[endpointIndex].control;
+
+    int maxChannelNumber;
+    hueLightInfo* buffer;
+
+    if (type == ENDPOINT_HUE_LIGHT) {
+
+        maxChannelNumber = HUE_MAX_LIGHT_NUMBER;
+        buffer = m_lights;
+
+    } else if (type == ENDPOINT_HUE_GROUP) {
+
+        maxChannelNumber = HUE_MAX_GROUP_NUMBER;
+        buffer = m_groups;
+
+    } else return ERR_INVALID_OPTION;
 
     int range = (control == CONTROL_LIGHT_HUE || control == CONTROL_LIGHT_CT ? 65535 : 255);
     int value = range * data.aValue / (data.aRange==0 ? range : data.aRange);
@@ -69,68 +102,124 @@ int DgsHueInterface::sendData(int endpointIndex, dgsSignalData data)
     QVariantMap options;
     options["transitiontime"] = 2; // 200 milliseconds
 
+    if (channel < 1 || channel > maxChannelNumber) return ERR_INVALID_OPTION;
+    int i = channel-1;
+
     if (control == CONTROL_LIGHT_R || control == CONTROL_LIGHT_G || control == CONTROL_LIGHT_B) {
 
-        int i = channel-1;
         switch (control) {
-        case CONTROL_LIGHT_R: m_lightR[i] = uint8_t(value); break;
-        case CONTROL_LIGHT_G: m_lightG[i] = uint8_t(value); break;
-        case CONTROL_LIGHT_B: m_lightB[i] = uint8_t(value); break;
+        case CONTROL_LIGHT_R: buffer[i].colorR = value; break;
+        case CONTROL_LIGHT_G: buffer[i].colorG = value; break;
+        case CONTROL_LIGHT_B: buffer[i].colorB = value; break;
         }
 
         float x = 0, y = 0;
-        if (convertRgbToXy(m_lightR[i], m_lightG[i], m_lightB[i], &x, &y)) {
+        if (convertRgbToXy(buffer[i].colorR, buffer[i].colorG, buffer[i].colorB, &x, &y)) {
 
-            QVariantList xy = { x, y };
-            options["xy"] = xy;
-            options["bri"] = 254;
-            options["sat"] = 254;
-            options["on"] = true;
-            callHueLightApi(channel, options);
-
-        } else {
-
-            options["on"] = false;
-            callHueLightApi(channel, options);
+            buffer[i].colorXY = { x, y };
+            buffer[i].needUpdate = true;
+            m_needUpdate = true;
         }
 
     } else if (control == CONTROL_LIGHT_BRI) {
 
-        if (value > 0) {
-
-            options["bri"] = value;
-            options["on"] = true;
-            callHueLightApi(channel, options);
-
-        } else {
-
-            options["on"] = false;
-            callHueLightApi(channel, options);
-        }
+        buffer[i].brightness = value;
+        buffer[i].needUpdate = true;
+        m_needUpdate = true;
 
     } else if (control == CONTROL_LIGHT_SAT) {
 
-            options["sat"] = value;
-            options["on"] = true;
-            callHueLightApi(channel, options);
+        buffer[i].saturation = value;
+        buffer[i].needUpdate = true;
+        m_needUpdate = true;
 
     } else if (control == CONTROL_LIGHT_HUE) {
 
-            options["hue"] = value;
-            options["on"] = true;
-            callHueLightApi(channel, options);
+        buffer[i].hue = value;
+        buffer[i].needUpdate = true;
+        m_needUpdate = true;
 
     } else if (control == CONTROL_LIGHT_CT) {
 
-            options["ct"] = value;
-            options["on"] = true;
-            callHueLightApi(channel, options);
+        buffer[i].ct = value;
+        buffer[i].needUpdate = true;
+        m_needUpdate = true;
     }
 
     return ERR_NONE;
+}
+
+void DgsHueInterface::updateLights(int type) {
+
+    int maxChannelNumber;
+    hueLightInfo* buffer;
+
+    if (type == ENDPOINT_HUE_LIGHT) {
+
+        maxChannelNumber = HUE_MAX_LIGHT_NUMBER;
+        buffer = m_lights;
+
+    } else if (type == ENDPOINT_HUE_GROUP) {
+
+        maxChannelNumber = HUE_MAX_GROUP_NUMBER;
+        buffer = m_groups;
+
+    } else return;
+
+    for (int n=0 ; n<maxChannelNumber ; n++) {
+        if (buffer[n].needUpdate) {
+
+            QVariantMap options;
+
+            options["transitiontime"] = 2; // 200 milliseconds
+
+            options["on"] = true;
+            if (buffer[n].brightness == 0) {
+                options["on"] = false;
+            } else if (buffer[n].brightness > 0) {
+                options["on"] = true;
+            }
+
+            if (!buffer[n].colorXY.isEmpty()) {
+                options["xy"] = buffer[n].colorXY;
+                options["bri"] = 254;
+                options["sat"] = 254;
+            }
+
+            if (buffer[n].brightness >= 0) {
+                options["bri"] = buffer[n].brightness;
+            }
+
+            if (buffer[n].saturation >= 0) {
+                options["sat"] = buffer[n].saturation;
+            }
+
+            if (buffer[n].hue >= 0) {
+                options["hue"] = buffer[n].hue;
+            }
+
+            if (buffer[n].ct >= 0) {
+                options["ct"] = buffer[n].ct;
+            }
+
+            int channel = n+1;
+            callHueLightApi(type, channel, options);
+
+            buffer[n].needUpdate = false;
+        }
+    }
 
 }
 
+
+void DgsHueInterface::onTimerFired()
+{
+    if (m_needUpdate) {
+        updateLights(ENDPOINT_HUE_LIGHT);
+        updateLights(ENDPOINT_HUE_GROUP);
+        m_needUpdate = false;
+    }
+}
 
 QVariantList DgsHueInterface::listOnline()
 {
@@ -163,11 +252,12 @@ bool DgsHueInterface::convertRgbToXy(uint8_t r, uint8_t g, uint8_t b, float *px,
     return true;
 }
 
-void DgsHueInterface::callHueLightApi(int channel, const QVariantMap &options)
+void DgsHueInterface::callHueLightApi(int type, int channel, const QVariantMap &options)
 {
     HueLightWorker *worker = new HueLightWorker();
     worker->bridgeIp = m_bridgeIp;
     worker->username = m_username;
+    worker->type = type;
     worker->channel = channel;
     worker->options = options;
     worker->start();
@@ -177,8 +267,14 @@ void HueLightWorker::run()
 {
     connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
 
-    QString url  = QString("http://%1/api/%2/lights/%3/state").arg(this->bridgeIp).arg(this->username).arg(this->channel);
+    QString url;
+    if (this->type == ENDPOINT_HUE_LIGHT)
+        url = QString("http://%1/api/%2/lights/%3/state").arg(this->bridgeIp).arg(this->username).arg(this->channel);
+    else
+    if (this->type == ENDPOINT_HUE_GROUP)
+        url = QString("http://%1/api/%2/groups/%3/action").arg(this->bridgeIp).arg(this->username).arg(this->channel);
+
     QString json = QJsonDocument::fromVariant(this->options).toJson();
 
-    AppUtilities::httpRequest(url, "put", json, 120);
+    if (!url.isEmpty()) AppUtilities::httpRequest(url, "put", json, 120);
 }

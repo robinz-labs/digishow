@@ -345,6 +345,7 @@ void DigishowInterface::updateMetadata()
             break;
         case INTERFACE_HUE:
             if      (typeName == "light"      ) endpointInfo.type = ENDPOINT_HUE_LIGHT;
+            else if (typeName == "group"      ) endpointInfo.type = ENDPOINT_HUE_GROUP;
             break;
         case INTERFACE_DMX:
             if      (typeName == "dimmer"     ) endpointInfo.type = ENDPOINT_DMX_DIMMER;
@@ -500,10 +501,11 @@ void DigishowInterface::updateMetadata()
             endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(endpointInfo.channel);
             break;
         case ENDPOINT_HUE_LIGHT:
+        case ENDPOINT_HUE_GROUP:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
             endpointInfo.output = true;
             endpointInfo.range  = (endpointInfo.control==CONTROL_LIGHT_HUE || endpointInfo.control==CONTROL_LIGHT_CT ? 65535 : 255);
-            endpointInfo.labelEPT = tr("Light") + " " + QString::number(endpointInfo.channel);
+            endpointInfo.labelEPT = (endpointInfo.type==ENDPOINT_HUE_GROUP ? tr("Group") : tr("Light")) + " " + QString::number(endpointInfo.channel);
             endpointInfo.labelEPI = DigishowEnvironment::getLightControlName(endpointInfo.control);
             break;
         case ENDPOINT_DMX_DIMMER:

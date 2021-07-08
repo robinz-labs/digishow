@@ -420,7 +420,7 @@ int DigishowApp::newInterface(const QString &interfaceType)
 
         interface = new DgsHueInterface(this);
         interface->setInterfaceOption("mode", "http");
-        interface->setInterfaceOption("outputInterval", 150);
+        //interface->setInterfaceOption("outputInterval", 150);
 
     } else if (interfaceType=="dmx") {
 

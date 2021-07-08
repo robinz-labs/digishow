@@ -377,6 +377,7 @@ Item {
 
             } else if (type === DigishowEnvironment.InterfaceHue) {
 
+                itemHue.menuType.selectOption(endpointInfo["type"])
                 itemHue.spinChannel.value = endpointInfo["channel"]
                 itemHue.menuControl.selectOption(endpointInfo["control"])
 
@@ -522,7 +523,7 @@ Item {
 
         } else if (type === DigishowEnvironment.InterfaceHue) {
 
-            newEndpointOptions["type"] = "light"
+            newEndpointOptions["type"] = itemHue.menuType.selectedItemTag
             newEndpointOptions["channel"] = itemHue.spinChannel.value
             newEndpointOptions["control"] = itemHue.menuControl.selectedItemValue
 

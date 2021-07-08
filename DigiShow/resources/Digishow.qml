@@ -30,6 +30,7 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointModbusHoldingOut  : return CColor.RobinEgg
             case DigishowEnvironment.EndpointModbusHoldingIn   : return CColor.RobinEgg
             case DigishowEnvironment.EndpointHueLight          : return CColor.Aqua
+            case DigishowEnvironment.EndpointHueGroup          : return CColor.Ocean
             case DigishowEnvironment.EndpointDmxDimmer         : return CColor.Aqua
             case DigishowEnvironment.EndpointArtnetDimmer      : return CColor.Aqua
             case DigishowEnvironment.EndpointScreenLight       : return CColor.RobinEgg
