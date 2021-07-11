@@ -234,6 +234,12 @@ QtObject {
                 if (mediaWebJavascript !== "") {
                     view.runJavaScript(mediaWebJavascript, function(result) {})
                 }
+
+                var mediaWebZoom = null;
+                v = options["mediaZoom"]; if (v !== undefined) mediaWebZoom = v
+                if (mediaWebZoom !== null) {
+                    view.zoomFactor = mediaWebZoom
+                }
             }
 
             // show media with fading effects
