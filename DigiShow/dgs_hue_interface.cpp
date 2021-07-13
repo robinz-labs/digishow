@@ -1,11 +1,13 @@
 #include "dgs_hue_interface.h"
 
-#define HUE_OUT_FREQ 8
+#define HUE_OUT_FREQ 10
 
 DgsHueInterface::DgsHueInterface(QObject *parent) : DigishowInterface(parent)
 {
     m_interfaceOptions["type"] = "hue";
     m_needUpdate = false;
+    m_countUpdated = 0;
+    m_maxUpdateEachPeriod = 1;
     m_timer = nullptr;
 }
 
@@ -35,6 +37,7 @@ int DgsHueInterface::openInterface()
     for (int n=0 ; n<HUE_MAX_LIGHT_NUMBER ; n++) m_lights[n] = hueLightInfo();
     for (int n=0 ; n<HUE_MAX_GROUP_NUMBER ; n++) m_groups[n] = hueLightInfo();
     m_needUpdate = false;
+    m_countUpdated = 0;
 
     // create a timer for sending http requests to the hue bridge at a particular frequency
     int frequency = m_interfaceOptions.value("frequency").toInt();
@@ -47,6 +50,7 @@ int DgsHueInterface::openInterface()
     m_timer->setInterval(1000 / frequency);
     m_timer->start();
 
+    //m_maxUpdateEachPeriod = m_timer->interval() / 10;
 
     if (!done) {
         closeInterface();
@@ -167,10 +171,12 @@ void DgsHueInterface::updateLights(int type) {
     } else return;
 
     for (int n=0 ; n<maxChannelNumber ; n++) {
+
+        if (m_countUpdated >= m_maxUpdateEachPeriod) break; // due to too many updates, cancel the rest
+
         if (buffer[n].needUpdate) {
 
             QVariantMap options;
-
             options["transitiontime"] = 2; // 200 milliseconds
 
             options["on"] = true;
@@ -203,20 +209,31 @@ void DgsHueInterface::updateLights(int type) {
             }
 
             int channel = n+1;
-            callHueLightApi(type, channel, options);
+            int delay = m_countUpdated*5;
+            callHueLightApi(type, channel, options, delay);
 
             buffer[n].needUpdate = false;
+            m_countUpdated++;
         }
     }
 
+    return;
 }
-
 
 void DgsHueInterface::onTimerFired()
 {
     if (m_needUpdate) {
+
+        m_countUpdated = 0;
+
+        // update lights one by one with calling hue api
         updateLights(ENDPOINT_HUE_LIGHT);
         updateLights(ENDPOINT_HUE_GROUP);
+
+        // confirm all lights are updated
+        for (int n=0 ; n<HUE_MAX_LIGHT_NUMBER ; n++) if (m_lights[n].needUpdate) return;
+        for (int n=0 ; n<HUE_MAX_GROUP_NUMBER ; n++) if (m_groups[n].needUpdate) return;
+
         m_needUpdate = false;
     }
 }
@@ -252,7 +269,7 @@ bool DgsHueInterface::convertRgbToXy(uint8_t r, uint8_t g, uint8_t b, float *px,
     return true;
 }
 
-void DgsHueInterface::callHueLightApi(int type, int channel, const QVariantMap &options)
+void DgsHueInterface::callHueLightApi(int type, int channel, const QVariantMap &options, int delay)
 {
     HueLightWorker *worker = new HueLightWorker();
     worker->bridgeIp = m_bridgeIp;
@@ -260,6 +277,7 @@ void DgsHueInterface::callHueLightApi(int type, int channel, const QVariantMap &
     worker->type = type;
     worker->channel = channel;
     worker->options = options;
+    worker->delay = delay;
     worker->start();
 }
 
@@ -267,14 +285,20 @@ void HueLightWorker::run()
 {
     connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
 
+    // get ready for the http request
     QString url;
     if (this->type == ENDPOINT_HUE_LIGHT)
         url = QString("http://%1/api/%2/lights/%3/state").arg(this->bridgeIp).arg(this->username).arg(this->channel);
     else
     if (this->type == ENDPOINT_HUE_GROUP)
         url = QString("http://%1/api/%2/groups/%3/action").arg(this->bridgeIp).arg(this->username).arg(this->channel);
+    else return;
 
     QString json = QJsonDocument::fromVariant(this->options).toJson();
 
-    if (!url.isEmpty()) AppUtilities::httpRequest(url, "put", json, 120);
+    // delay for a while before sending
+    if (this->delay > 0) QThread::msleep(delay);
+
+    // send the http request
+    AppUtilities::httpRequest(url, "put", json, 120);
 }

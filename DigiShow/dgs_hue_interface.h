@@ -64,12 +64,17 @@ private:
 
     QTimer *m_timer;
 
+    bool m_needUpdate;          // to indicate whether need update lights
+    int  m_maxUpdateEachPeriod; // max light update times allowed for each period
+    int  m_countUpdated;        // light update times in the current period
+
+    // note: each light update corresponds to a hue api calling
+
     hueLightInfo m_lights[HUE_MAX_LIGHT_NUMBER];
     hueLightInfo m_groups[HUE_MAX_GROUP_NUMBER];
-    bool m_needUpdate;
 
     void updateLights(int type);
-    void callHueLightApi(int type, int channel, const QVariantMap &options);
+    void callHueLightApi(int type, int channel, const QVariantMap &options, int delay = 0);
     static bool convertRgbToXy(uint8_t r, uint8_t g, uint8_t b, float *px, float *py);
 };
 
@@ -85,6 +90,7 @@ public:
     int type;
     int channel;
     QVariantMap options;
+    int delay; // milliseconds
 };
 
 #endif // DGSHUEINTERFACE_H
