@@ -241,11 +241,12 @@ bool DigishowApp::loadFile(const QString & filepath)
     QVariantMap data = AppUtilities::loadJsonFromFile(filepath);
     if (!data.contains("interfaces") || !data.contains("slots")) return false;
 
+    m_filepath = filepath;
+    emit filepathChanged();
+
     // process the data
     importData(data);
 
-    m_filepath = filepath;
-    emit filepathChanged();
     return true;
 }
 

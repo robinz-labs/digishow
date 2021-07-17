@@ -53,6 +53,8 @@ public:
 
         } else if (event->type() == QEvent::Close) {
 
+            g_app->stop();
+
             event->ignore();
 
             // call function in qml root object

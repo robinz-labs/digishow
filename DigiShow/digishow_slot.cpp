@@ -477,13 +477,10 @@ dgsSignalData DigishowSlot::processInputNote(dgsSignalData dataIn)
 void DigishowSlot::sendDataOut(dgsSignalData dataOut)
 {
     // confirm output data is changed
-    if (dataOut.signal == m_lastDataOut.signal) {
-        if ((dataOut.signal == DATA_SIGNAL_ANALOG &&
-             dataOut.aRange == m_lastDataOut.aRange &&
-             dataOut.aValue == m_lastDataOut.aValue) ||
-            (dataOut.signal == DATA_SIGNAL_BINARY &&
-             dataOut.bValue == m_lastDataOut.bValue)) return;
-    }
+    if (dataOut.signal == m_lastDataOut.signal && (
+           (dataOut.signal == DATA_SIGNAL_ANALOG && dataOut.aRange == m_lastDataOut.aRange && dataOut.aValue == m_lastDataOut.aValue) ||
+           (dataOut.signal == DATA_SIGNAL_BINARY && dataOut.bValue == m_lastDataOut.bValue)) &&
+        isEndpointOutBusy()) return;
 
     m_lastDataOut = dataOut;
 

@@ -4,9 +4,8 @@
 #include <QObject>
 #include "digishow_interface.h"
 
-#define HUE_MAX_LIGHT_NUMBER 64
-#define HUE_MAX_GROUP_NUMBER 64
-
+#define HUE_MAX_LIGHT_NUMBER 50
+#define HUE_MAX_GROUP_NUMBER 50
 
 typedef struct hueLightInfo {
 
@@ -20,6 +19,8 @@ typedef struct hueLightInfo {
     int hue;
     int ct;
 
+    int transitiontime;
+
     bool needUpdate;
 
     // defaults
@@ -32,6 +33,7 @@ typedef struct hueLightInfo {
       saturation(-1),
       hue(-1),
       ct(-1),
+      transitiontime(2), // 200 milliseconds
       needUpdate(false)
     {}
 

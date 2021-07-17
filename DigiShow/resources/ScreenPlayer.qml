@@ -227,18 +227,18 @@ QtObject {
             // for web media clip only
             if (view.mediaType === "web") {
 
-                var mediaWebJavascript = ""
-                v = options["mediaWebJavascript"]; if (v !== undefined) mediaWebJavascript = v // deprecated !!!
-                v = options["mediaScript"];        if (v !== undefined) mediaWebJavascript = v
+                var mediaScript = ""
+                v = options["mediaWebJavascript"]; if (v !== undefined) mediaScript = v // deprecated !!!
+                v = options["mediaScript"];        if (v !== undefined) mediaScript = v
 
-                if (mediaWebJavascript !== "") {
-                    view.runJavaScript(mediaWebJavascript, function(result) {})
+                if (mediaScript !== "") {
+                    view.runJavaScript(mediaScript, function(result) {})
                 }
 
-                var mediaWebZoom = null;
-                v = options["mediaZoom"]; if (v !== undefined) mediaWebZoom = v
-                if (mediaWebZoom !== null) {
-                    view.zoomFactor = mediaWebZoom
+                var mediaWidth = 0;
+                v = options["mediaWidth"]; if (v !== undefined) mediaWidth = v
+                if (mediaWidth > 0) {
+                    view.contentsWidth = mediaWidth
                 }
             }
 

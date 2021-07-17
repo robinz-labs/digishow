@@ -39,6 +39,27 @@ int DgsHueInterface::openInterface()
     m_needUpdate = false;
     m_countUpdated = 0;
 
+    // set transitiontime for lights
+    for (int n=0 ; n<m_endpointOptionsList.length() ; n++) {
+
+        if (m_endpointOptionsList[n].contains("optTransitionTime")) {
+
+            int type = m_endpointInfoList[n].type;
+            int channel = m_endpointInfoList[n].channel;
+            int index = channel-1;
+
+            if (type == ENDPOINT_HUE_LIGHT && index >= 0 && index < HUE_MAX_LIGHT_NUMBER) {
+
+                m_lights[index].transitiontime = m_endpointOptionsList[n].value("optTransitionTime").toInt();
+
+            } else
+            if (type == ENDPOINT_HUE_GROUP && index >= 0 && index < HUE_MAX_GROUP_NUMBER) {
+
+                 m_groups[index].transitiontime = m_endpointOptionsList[n].value("optTransitionTime").toInt();
+            }
+        }
+    }
+
     // create a timer for sending http requests to the hue bridge at a particular frequency
     int frequency = m_interfaceOptions.value("frequency").toInt();
     if (frequency == 0) frequency = HUE_OUT_FREQ;
@@ -102,9 +123,6 @@ int DgsHueInterface::sendData(int endpointIndex, dgsSignalData data)
     int range = (control == CONTROL_LIGHT_HUE || control == CONTROL_LIGHT_CT ? 65535 : 255);
     int value = range * data.aValue / (data.aRange==0 ? range : data.aRange);
     if (value<0 || value>range) return ERR_INVALID_DATA;
-
-    QVariantMap options;
-    options["transitiontime"] = 2; // 200 milliseconds
 
     if (channel < 1 || channel > maxChannelNumber) return ERR_INVALID_OPTION;
     int i = channel-1;
@@ -177,14 +195,7 @@ void DgsHueInterface::updateLights(int type) {
         if (buffer[n].needUpdate) {
 
             QVariantMap options;
-            options["transitiontime"] = 2; // 200 milliseconds
-
-            options["on"] = true;
-            if (buffer[n].brightness == 0) {
-                options["on"] = false;
-            } else if (buffer[n].brightness > 0) {
-                options["on"] = true;
-            }
+            options["transitiontime"] = buffer[n].transitiontime;
 
             if (!buffer[n].colorXY.isEmpty()) {
                 options["xy"] = buffer[n].colorXY;
@@ -208,6 +219,13 @@ void DgsHueInterface::updateLights(int type) {
                 options["ct"] = buffer[n].ct;
             }
 
+            if (buffer[n].brightness == 0) {
+                options.clear();
+                options["on"] = false;
+            } else {
+                options["on"] = true;
+            }
+
             int channel = n+1;
             int delay = m_countUpdated*5;
             callHueLightApi(type, channel, options, delay);
@@ -227,12 +245,12 @@ void DgsHueInterface::onTimerFired()
         m_countUpdated = 0;
 
         // update lights one by one with calling hue api
-        updateLights(ENDPOINT_HUE_LIGHT);
         updateLights(ENDPOINT_HUE_GROUP);
+        updateLights(ENDPOINT_HUE_LIGHT);
 
         // confirm all lights are updated
-        for (int n=0 ; n<HUE_MAX_LIGHT_NUMBER ; n++) if (m_lights[n].needUpdate) return;
         for (int n=0 ; n<HUE_MAX_GROUP_NUMBER ; n++) if (m_groups[n].needUpdate) return;
+        for (int n=0 ; n<HUE_MAX_LIGHT_NUMBER ; n++) if (m_lights[n].needUpdate) return;
 
         m_needUpdate = false;
     }
