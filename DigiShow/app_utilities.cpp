@@ -82,11 +82,11 @@ bool AppUtilities::copyJson(const QVariantMap & data, const QString & mimeType)
     QJsonDocument jsonDoc = QJsonDocument::fromVariant(data);
     if (jsonDoc.isNull()) return false;
 
-    QMimeData mimeData;
-    mimeData.setData(mimeType, jsonDoc.toJson());
-    mimeData.setText(QString::fromUtf8(jsonDoc.toJson()));
+    QMimeData *mimeData = new QMimeData;
+    mimeData->setData(mimeType, jsonDoc.toJson());
+    mimeData->setText(QString::fromUtf8(jsonDoc.toJson()));
 
-    QGuiApplication::clipboard()->setMimeData(&mimeData);
+    QGuiApplication::clipboard()->setMimeData(mimeData);
     return true;
 }
 

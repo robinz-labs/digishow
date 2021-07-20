@@ -28,6 +28,10 @@ WebEngineView {
     settings.touchIconsEnabled: false
     settings.webRTCPublicInterfacesOnly: false
 
+    Component.onCompleted: {
+        profile.clearHttpCache()
+    }
+
     onWidthChanged: {
         resetZoomFactor()
     }

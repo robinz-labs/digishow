@@ -55,6 +55,10 @@ Required to enable DigiShow LINK to communicate with other MIDI apps running on 
 A utility that is helpful to understand MIDI Note, CC signals transferring between your MIDI devices and apps.  
 [learn](https://support.native-instruments.com/hc/en-us/articles/209544729-How-to-Monitor-the-Input-of-a-MIDI-Controller) 
  
+[ Screen ] K-Lite Codec Pack (for windows)  
+Required to enable DigiShow LINK to play MP4, MOV video files on your Windows computer.  
+[download](https://www.codecguide.com/download_kl.htm) 
+ 
 ## Developer resources
 DigiShow is open-source. If you would like to rebuild this software using the source code we contributed, please visit https://github.com/robinz-labs/ . 
 

@@ -242,10 +242,11 @@ bool DigishowApp::loadFile(const QString & filepath)
     if (!data.contains("interfaces") || !data.contains("slots")) return false;
 
     m_filepath = filepath;
-    emit filepathChanged();
 
     // process the data
     importData(data);
+
+    emit filepathChanged();
 
     return true;
 }
@@ -764,6 +765,12 @@ QString DigishowApp::convertFileUrlToPath(const QString &url)
     // get absolute path of the file
     if (!QUrl(url).isLocalFile()) return "";
     QString filePath = QUrl(url).path();
+
+#ifdef Q_OS_WIN
+    if (filePath.startsWith("/") && filePath.mid(2,1)==":") {
+        filePath = filePath.mid(1);
+    }
+#endif
 
     // get relative path of the file
     return baseDir.relativeFilePath(filePath);
