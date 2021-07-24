@@ -36,8 +36,30 @@ QtObject {
 
         MouseArea {
             id: mouseArea
+
+            property var lastMouseMovingTime: 0
+            property bool mouseIsMoving: lastMouseMovingTime > 0
+
             anchors.fill: parent
             hoverEnabled: true
+
+            onMouseXChanged: {
+                lastMouseMovingTime = new Date().getTime()
+            }
+
+            Timer {
+                interval: 1000
+                repeat: true
+                running: true
+                onTriggered: {
+                    if (mouseArea.lastMouseMovingTime > 0) {
+                        var now = new Date().getTime()
+                        if (now - mouseArea.lastMouseMovingTime > 3000) {
+                            mouseArea.lastMouseMovingTime = 0
+                        }
+                    }
+                }
+            }
 
             Rectangle {
                 id: light
@@ -74,7 +96,7 @@ QtObject {
                 icon.source: ( window.visibility==Window.FullScreen ?
                     "qrc:///images/icon_fullscreen_exit_white.png" :
                     "qrc:///images/icon_fullscreen_enter_white.png" )
-                visible: mouseArea.containsMouse
+                visible: mouseArea.containsMouse && mouseArea.mouseIsMoving
                 onClicked: {
                     if (window.visibility==Window.FullScreen)
                         window.showNormal()
@@ -82,9 +104,7 @@ QtObject {
                         window.showFullScreen()
                 }
             }
-
         }
-
     }
 
     function showInScreen(screenIndex) {

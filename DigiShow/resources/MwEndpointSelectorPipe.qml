@@ -59,7 +59,7 @@ Item {
 
         // init pipe channel option spinbox
         spinPipeChannel.from = 1
-        spinPipeChannel.to = 1000
+        spinPipeChannel.to = 9999
         spinPipeChannel.visible = false
 
         // init more options
