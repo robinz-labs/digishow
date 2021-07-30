@@ -319,6 +319,34 @@ ApplicationWindow {
             }
 
             CButton {
+                id: buttonGotoBookmark
+                width: 34
+                height: 27
+                anchors.left: buttonQuickLaunch.right
+                anchors.leftMargin: 5
+                anchors.verticalCenter: parent.verticalCenter
+                icon.width: 24
+                icon.height: 24
+                icon.source: "qrc:///images/icon_goto_white.png"
+                box.radius: 3
+                box.border.width: 1
+                colorNormal: "transparent"
+                visible: slotListView.hasBookmarks
+                onClicked: {
+                    menuGotoBookmark.optionItems = slotListView.getBookmarks()
+                    menuGotoBookmark.showOptions()
+                }
+
+                COptionMenu {
+                    id: menuGotoBookmark
+                    width: 160
+                    onOptionClicked: {
+                        slotListView.gotoBookmark(value)
+                    }
+                }
+            }
+
+            CButton {
                 id: buttonStop
                 height: 40
                 width: 40

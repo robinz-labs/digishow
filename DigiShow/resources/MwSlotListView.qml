@@ -16,6 +16,7 @@ Item {
     property alias listItemCount: dataModel.count
 
     property bool  showSlotSelection: false
+    property bool  hasBookmarks: false
 
     onHighlightedIndexChanged: currentIndex = highlightedIndex
     onCurrentIndexChanged: currentIndexVisual = getVisualItemIndex(currentIndex)
@@ -103,7 +104,7 @@ Item {
 
                 CMenu {
                     id: menuSlot
-                    width: 140
+                    width: 150
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
                     CMenuItem {
@@ -112,6 +113,12 @@ Item {
                             menuSlot.close()
                             labelSlotTitle.showRename()
                             labelSlotTitle.showRename() //?
+                        }
+                    }
+                    CMenuItem {
+                        text: !model.slotBookmarked ? qsTr("Bookmark Slot") : qsTr("Remove Bookmark")
+                        onTriggered: {
+                            bookmarkSlot(currentIndex, !model.slotBookmarked)
                         }
                     }
                     CMenuItem {
@@ -170,7 +177,6 @@ Item {
                             redo()
                         }
                     }
-
                 }
 
                 Rectangle {
@@ -191,6 +197,19 @@ Item {
                         ParentChange { target: content; parent: slotListView }
                     }
 
+                    Rectangle {
+                        id: bookmark
+                        width: 8
+                        height: 8
+                        anchors.right: parent.left
+                        anchors.rightMargin: showSlotSelection ? 12 : 5
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.verticalCenterOffset: showSlotSelection ? -24 : 0
+                        color: "red"
+                        radius: 4
+                        visible: model.slotBookmarked
+                    }
+
                     Text {
                         id: labelSlotTitle
 
@@ -207,7 +226,6 @@ Item {
                                   model.slotTitle
                         font.pixelSize: 11
                         font.bold: false
-
                         visible: !textSlotTitle.visible
 
                         Behavior on color { ColorAnimation { duration: 500 } }
@@ -684,7 +702,7 @@ Item {
 
             highlightFollowsCurrentItem: true
             highlightMoveVelocity: -1
-            highlightMoveDuration: 300
+            highlightMoveDuration: 200
 
             ScrollBar.vertical: ScrollBar {
                 width: 6
@@ -1018,6 +1036,10 @@ Item {
         var slotTitle = slotOptions["title"]
         if (slotTitle === undefined) slotTitle = ""
 
+        var slotBookmarked = slotOptions["bookmarked"]
+        if (slotBookmarked === undefined) slotBookmarked = false
+        if (slotBookmarked) hasBookmarks = true
+
         var slotInfo = config["slotInfo"]
         var slotInInverted = slotInfo["inputInverted"]
         var slotOutInverted = slotInfo["outputInverted"]
@@ -1082,6 +1104,7 @@ Item {
 
             slotTitle: slotTitle,
 
+            slotBookmarked: slotBookmarked,
             slotEnabled: slotEnabled,
             slotLinked: slotLinked,
             slotSelected: false,
@@ -1120,6 +1143,23 @@ Item {
         }
 
         dataModel.set(n, item)
+    }
+
+    function bookmarkSlot(slotIndex, bookmarked) {
+
+        dataModel.setProperty(slotIndex, "slotBookmarked", bookmarked)
+        app.slotAt(slotIndex).setSlotOption("bookmarked", bookmarked)
+
+        hasBookmarks = false
+        for (var n=0 ; n<dataModel.count ; n++) {
+            if (dataModel.get(n)["slotBookmarked"]) {
+                hasBookmarks = true
+                break
+            }
+        }
+
+        window.isModified = true
+        //undoManager.archive()
     }
 
     function duplicateSlot(slotIndex) {
@@ -1375,6 +1415,37 @@ Item {
             list[n] = visualModel.items.get(n).model.index
         }
         return list
+    }
+
+    function getBookmarks() {
+        var bookmarks = []
+        for (var n=0 ; n<visualModel.items.count ; n++) {
+            var model = visualModel.items.get(n).model
+            if (model.slotBookmarked) {
+                bookmarks.push({
+                    value: n,
+                    text:  model.slotTitle === undefined || model.slotTitle === "" ?
+                               qsTr("Untitled Slot") + " " + (model.index+1) :
+                               model.slotTitle
+                })
+            }
+        }
+        return bookmarks
+    }
+
+    function gotoBookmark(indexVisual) {
+
+        listView.highlightMoveDuration = 0
+
+        // goto the bottom of the page where places the bookmarked item
+        var indexVisual1 = indexVisual + Math.floor(listView.height / 100)
+        currentIndexVisual = Math.min(indexVisual1, visualModel.items.count-1)
+
+        // and goto the bookmarked item after a while
+        currentIndexVisual = indexVisual
+        highlightedIndex = currentIndex
+
+        listView.highlightMoveDuration = 200
     }
 
     function newSlot() {

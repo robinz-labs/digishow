@@ -464,10 +464,10 @@
     </message>
     <message>
         <location filename="../MainWindow.qml" line="215"/>
-        <location filename="../MainWindow.qml" line="744"/>
-        <location filename="../MainWindow.qml" line="757"/>
-        <location filename="../MainWindow.qml" line="800"/>
-        <location filename="../MainWindow.qml" line="820"/>
+        <location filename="../MainWindow.qml" line="772"/>
+        <location filename="../MainWindow.qml" line="785"/>
+        <location filename="../MainWindow.qml" line="828"/>
+        <location filename="../MainWindow.qml" line="848"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
@@ -512,161 +512,161 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="370"/>
+        <location filename="../MainWindow.qml" line="398"/>
         <source>Error occurred when open interface %1 .</source>
         <translation>Se produjo un error al abrir la interfaz %1 .</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="370"/>
+        <location filename="../MainWindow.qml" line="398"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="425"/>
+        <location filename="../MainWindow.qml" line="453"/>
         <source>Interface Manager</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="446"/>
+        <location filename="../MainWindow.qml" line="474"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="450"/>
+        <location filename="../MainWindow.qml" line="478"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="454"/>
+        <location filename="../MainWindow.qml" line="482"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="458"/>
+        <location filename="../MainWindow.qml" line="486"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="462"/>
+        <location filename="../MainWindow.qml" line="490"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="466"/>
+        <location filename="../MainWindow.qml" line="494"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="470"/>
+        <location filename="../MainWindow.qml" line="498"/>
         <source>Screen ...</source>
         <translation>Pantalla ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="474"/>
+        <location filename="../MainWindow.qml" line="502"/>
         <source>Virtual Pipe ...</source>
         <translation>Tubería virtual ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="616"/>
+        <location filename="../MainWindow.qml" line="644"/>
         <source>app version: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="617"/>
+        <location filename="../MainWindow.qml" line="645"/>
         <source>app build date: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="618"/>
+        <location filename="../MainWindow.qml" line="646"/>
         <source>qt version: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="619"/>
+        <location filename="../MainWindow.qml" line="647"/>
         <source>rtmidi version: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="635"/>
+        <location filename="../MainWindow.qml" line="663"/>
         <source>Jam with All Things Digital</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="681"/>
+        <location filename="../MainWindow.qml" line="709"/>
         <source>© 2020 Robin Zhang &amp; Labs</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="688"/>
+        <location filename="../MainWindow.qml" line="716"/>
         <source>Open File</source>
         <translation>Abrir archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="691"/>
-        <location filename="../MainWindow.qml" line="708"/>
+        <location filename="../MainWindow.qml" line="719"/>
+        <location filename="../MainWindow.qml" line="736"/>
         <source>DigiShow files</source>
         <translation>Archivos DigiShow</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="691"/>
+        <location filename="../MainWindow.qml" line="719"/>
         <source>JSON files</source>
         <translation>Archivos JSON</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="691"/>
-        <location filename="../MainWindow.qml" line="708"/>
+        <location filename="../MainWindow.qml" line="719"/>
+        <location filename="../MainWindow.qml" line="736"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="705"/>
+        <location filename="../MainWindow.qml" line="733"/>
         <source>Save File</source>
         <translation>Guardar archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="743"/>
+        <location filename="../MainWindow.qml" line="771"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de crear uno nuevo ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="744"/>
-        <location filename="../MainWindow.qml" line="757"/>
-        <location filename="../MainWindow.qml" line="800"/>
-        <location filename="../MainWindow.qml" line="820"/>
+        <location filename="../MainWindow.qml" line="772"/>
+        <location filename="../MainWindow.qml" line="785"/>
+        <location filename="../MainWindow.qml" line="828"/>
+        <location filename="../MainWindow.qml" line="848"/>
         <source>Don&apos;t Save</source>
         <translation>No guardar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="744"/>
-        <location filename="../MainWindow.qml" line="757"/>
-        <location filename="../MainWindow.qml" line="800"/>
-        <location filename="../MainWindow.qml" line="815"/>
-        <location filename="../MainWindow.qml" line="820"/>
+        <location filename="../MainWindow.qml" line="772"/>
+        <location filename="../MainWindow.qml" line="785"/>
+        <location filename="../MainWindow.qml" line="828"/>
+        <location filename="../MainWindow.qml" line="843"/>
+        <location filename="../MainWindow.qml" line="848"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="756"/>
+        <location filename="../MainWindow.qml" line="784"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de abrir otro ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="798"/>
+        <location filename="../MainWindow.qml" line="826"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>¿ Quieres guardar los datos actuales antes de abrir el archivo %1 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="815"/>
+        <location filename="../MainWindow.qml" line="843"/>
         <source>Are you sure you want to quit DigiShow app ?</source>
         <translation>¿ Seguro que quieres salir de la aplicación DigiShow ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="815"/>
+        <location filename="../MainWindow.qml" line="843"/>
         <source>Quit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="819"/>
+        <location filename="../MainWindow.qml" line="847"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de cerrar la aplicación ?</translation>
     </message>
@@ -1989,142 +1989,153 @@ su MIDI, DMX y más cosas digitales para su espectáculo</translation>
 <context>
     <name>MwSlotListView</name>
     <message>
-        <location filename="../MwSlotListView.qml" line="36"/>
+        <location filename="../MwSlotListView.qml" line="37"/>
         <source>Please tap button + to add a new slot <byte value="xd"/>
  that enables signal link between your digital things</source>
         <translation>Toque el botón + para agregar una nueva ranura
 que establecerá un enlace de señal entre tus cosas digitales</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="57"/>
+        <location filename="../MwSlotListView.qml" line="58"/>
         <source>STEP 2</source>
         <translation>PASO 2</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="110"/>
+        <location filename="../MwSlotListView.qml" line="111"/>
         <source>Rename Slot</source>
         <translation>Renombrar ranura</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="118"/>
+        <location filename="../MwSlotListView.qml" line="119"/>
+        <source>Bookmark Slot</source>
+        <translation>Marcar ranura</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotListView.qml" line="119"/>
+        <source>Remove Bookmark</source>
+        <translation>Eliminar marcador</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotListView.qml" line="125"/>
         <source>Duplicate Slot</source>
         <translation>Duplicar ranura</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="125"/>
+        <location filename="../MwSlotListView.qml" line="132"/>
         <source>Delete Slot</source>
         <translation>Eliminar ranura</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="134"/>
+        <location filename="../MwSlotListView.qml" line="141"/>
         <source>Deselect Slots</source>
         <translation>Deseleccionar ranuras</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="134"/>
+        <location filename="../MwSlotListView.qml" line="141"/>
         <source>Select Slots</source>
         <translation>Seleccionar ranuras</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="142"/>
-        <location filename="../MwSlotListView.qml" line="885"/>
+        <location filename="../MwSlotListView.qml" line="149"/>
+        <location filename="../MwSlotListView.qml" line="902"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="149"/>
+        <location filename="../MwSlotListView.qml" line="156"/>
         <source>Paste</source>
         <translation>Pegar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="158"/>
+        <location filename="../MwSlotListView.qml" line="165"/>
         <source>Undo</source>
         <translation>Deshacer</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="166"/>
+        <location filename="../MwSlotListView.qml" line="173"/>
         <source>Redo</source>
         <translation>Rehacer</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="206"/>
+        <location filename="../MwSlotListView.qml" line="224"/>
+        <location filename="../MwSlotListView.qml" line="1427"/>
         <source>Untitled Slot</source>
         <translation>Ranura sin título</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="847"/>
+        <location filename="../MwSlotListView.qml" line="864"/>
         <source>Select All</source>
         <translation>Todo</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="866"/>
+        <location filename="../MwSlotListView.qml" line="883"/>
         <source>Select None</source>
         <translation>Ninguno</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="904"/>
-        <location filename="../MwSlotListView.qml" line="1141"/>
+        <location filename="../MwSlotListView.qml" line="921"/>
+        <location filename="../MwSlotListView.qml" line="1180"/>
         <source>Duplicate</source>
         <translation>Duplicar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="923"/>
-        <location filename="../MwSlotListView.qml" line="1165"/>
-        <location filename="../MwSlotListView.qml" line="1191"/>
+        <location filename="../MwSlotListView.qml" line="940"/>
+        <location filename="../MwSlotListView.qml" line="1204"/>
+        <location filename="../MwSlotListView.qml" line="1230"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="942"/>
-        <location filename="../MwSlotListView.qml" line="1200"/>
+        <location filename="../MwSlotListView.qml" line="959"/>
+        <location filename="../MwSlotListView.qml" line="1239"/>
         <source>Move</source>
         <translation>Mover</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1030"/>
+        <location filename="../MwSlotListView.qml" line="1051"/>
         <source>Source</source>
         <translation>Origen</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1031"/>
+        <location filename="../MwSlotListView.qml" line="1052"/>
         <source>no input</source>
         <translation>sin entrada</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1038"/>
+        <location filename="../MwSlotListView.qml" line="1059"/>
         <source>Destination</source>
         <translation>Destino</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1039"/>
+        <location filename="../MwSlotListView.qml" line="1060"/>
         <source>no output</source>
         <translation>sin salida</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1141"/>
+        <location filename="../MwSlotListView.qml" line="1180"/>
         <source>Do you want to duplicate all selected slots ?</source>
         <translation>¿ Quieres duplicar todas las ranuras seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1141"/>
-        <location filename="../MwSlotListView.qml" line="1165"/>
-        <location filename="../MwSlotListView.qml" line="1191"/>
-        <location filename="../MwSlotListView.qml" line="1200"/>
+        <location filename="../MwSlotListView.qml" line="1180"/>
+        <location filename="../MwSlotListView.qml" line="1204"/>
+        <location filename="../MwSlotListView.qml" line="1230"/>
+        <location filename="../MwSlotListView.qml" line="1239"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1165"/>
+        <location filename="../MwSlotListView.qml" line="1204"/>
         <source>Do you want to delete the slot ?</source>
         <translation>¿ Quieres eliminar la ranura ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1191"/>
+        <location filename="../MwSlotListView.qml" line="1230"/>
         <source>Do you want to delete all selected slots ?</source>
         <translation>¿ Quieres eliminar todas las ranuras seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1200"/>
+        <location filename="../MwSlotListView.qml" line="1239"/>
         <source>Do you want to move all selected slots to the current cursor position ?</source>
         <translation>¿ Quieres mover todas las ranuras seleccionadas a la posición actual del cursor ?</translation>
     </message>
