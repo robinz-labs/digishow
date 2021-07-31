@@ -1854,8 +1854,8 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="339"/>
-        <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between the source and destination of separate slots. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.</source>
-        <translation>DigiShow puede configurar tuberías virtuales para transferir y duplicar señales entre el origen y el destino de ranuras separadas. La tubería remota se puede utilizar cuando se necesita transferir señales entre varias aplicaciones DigiShow LINK que se ejecutan en diferentes computadoras.</translation>
+        <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between separate links. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.</source>
+        <translation>DigiShow puede configurar tuberías virtuales para transferir y duplicar señales entre enlaces separados. La tubería remota se puede utilizar cuando se necesita transferir señales entre varias aplicaciones DigiShow LINK que se ejecutan en diferentes computadoras.</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="366"/>
@@ -1937,8 +1937,8 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="274"/>
-        <source>Remember Slot Link States</source>
-        <translation>Recuerde los estados de enlaces</translation>
+        <source>Remember LINK States</source>
+        <translation>Recuerde los estados de LINK</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="282"/>
@@ -1970,7 +1970,7 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
     <name>MwSlotDetailView</name>
     <message>
         <location filename="../MwSlotDetailView.qml" line="147"/>
-        <source>Please select a slot item in left list</source>
+        <source>Please select a link item in left list</source>
         <translation>Seleccione un elemento en la lista de la izquierda</translation>
     </message>
     <message>
@@ -1990,10 +1990,10 @@ su MIDI, DMX y más cosas digitales para su espectáculo</translation>
     <name>MwSlotListView</name>
     <message>
         <location filename="../MwSlotListView.qml" line="37"/>
-        <source>Please tap button + to add a new slot <byte value="xd"/>
- that enables signal link between your digital things</source>
-        <translation>Toque el botón + para agregar una nueva ranura
-que establecerá un enlace de señal entre tus cosas digitales</translation>
+        <source>Please tap button + to add a new <byte value="xd"/>
+ signal link between your digital things</source>
+        <translation>Toque el botón + para agregar
+un nuevo enlace de señal entre tus cosas digitales</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="58"/>
@@ -2002,13 +2002,13 @@ que establecerá un enlace de señal entre tus cosas digitales</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="111"/>
-        <source>Rename Slot</source>
-        <translation>Renombrar ranura</translation>
+        <source>Rename</source>
+        <translation>Renombrar</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="119"/>
-        <source>Bookmark Slot</source>
-        <translation>Marcar ranura</translation>
+        <source>Bookmark</source>
+        <translation>Marcar</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="119"/>
@@ -2017,27 +2017,32 @@ que establecerá un enlace de señal entre tus cosas digitales</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="125"/>
-        <source>Duplicate Slot</source>
-        <translation>Duplicar ranura</translation>
+        <location filename="../MwSlotListView.qml" line="922"/>
+        <location filename="../MwSlotListView.qml" line="1181"/>
+        <source>Duplicate</source>
+        <translation>Duplicar</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="132"/>
-        <source>Delete Slot</source>
-        <translation>Eliminar ranura</translation>
+        <location filename="../MwSlotListView.qml" line="941"/>
+        <location filename="../MwSlotListView.qml" line="1205"/>
+        <location filename="../MwSlotListView.qml" line="1231"/>
+        <source>Delete</source>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="141"/>
-        <source>Deselect Slots</source>
-        <translation>Deseleccionar ranuras</translation>
+        <source>Deselect Links</source>
+        <translation>Deseleccionar enlaces</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="141"/>
-        <source>Select Slots</source>
-        <translation>Seleccionar ranuras</translation>
+        <source>Select Links</source>
+        <translation>Seleccionar enlaces</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="149"/>
-        <location filename="../MwSlotListView.qml" line="902"/>
+        <location filename="../MwSlotListView.qml" line="903"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
@@ -2057,87 +2062,74 @@ que establecerá un enlace de señal entre tus cosas digitales</translation>
         <translation>Rehacer</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="224"/>
-        <location filename="../MwSlotListView.qml" line="1427"/>
-        <source>Untitled Slot</source>
-        <translation>Ranura sin título</translation>
+        <location filename="../MwSlotListView.qml" line="225"/>
+        <location filename="../MwSlotListView.qml" line="1428"/>
+        <source>Untitled Link</source>
+        <translation>Enlace sin título</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="864"/>
+        <location filename="../MwSlotListView.qml" line="865"/>
         <source>Select All</source>
         <translation>Todo</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="883"/>
+        <location filename="../MwSlotListView.qml" line="884"/>
         <source>Select None</source>
         <translation>Ninguno</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="921"/>
-        <location filename="../MwSlotListView.qml" line="1180"/>
-        <source>Duplicate</source>
-        <translation>Duplicar</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="940"/>
-        <location filename="../MwSlotListView.qml" line="1204"/>
-        <location filename="../MwSlotListView.qml" line="1230"/>
-        <source>Delete</source>
-        <translation>Eliminar</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="959"/>
-        <location filename="../MwSlotListView.qml" line="1239"/>
+        <location filename="../MwSlotListView.qml" line="960"/>
+        <location filename="../MwSlotListView.qml" line="1240"/>
         <source>Move</source>
         <translation>Mover</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1051"/>
+        <location filename="../MwSlotListView.qml" line="1052"/>
         <source>Source</source>
         <translation>Origen</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1052"/>
+        <location filename="../MwSlotListView.qml" line="1053"/>
         <source>no input</source>
         <translation>sin entrada</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1059"/>
+        <location filename="../MwSlotListView.qml" line="1060"/>
         <source>Destination</source>
         <translation>Destino</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1060"/>
+        <location filename="../MwSlotListView.qml" line="1061"/>
         <source>no output</source>
         <translation>sin salida</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1180"/>
-        <source>Do you want to duplicate all selected slots ?</source>
-        <translation>¿ Quieres duplicar todas las ranuras seleccionadas ?</translation>
+        <location filename="../MwSlotListView.qml" line="1181"/>
+        <source>Do you want to duplicate all selected links ?</source>
+        <translation>¿ Quieres duplicar todas los enlaces seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1180"/>
-        <location filename="../MwSlotListView.qml" line="1204"/>
-        <location filename="../MwSlotListView.qml" line="1230"/>
-        <location filename="../MwSlotListView.qml" line="1239"/>
+        <location filename="../MwSlotListView.qml" line="1181"/>
+        <location filename="../MwSlotListView.qml" line="1205"/>
+        <location filename="../MwSlotListView.qml" line="1231"/>
+        <location filename="../MwSlotListView.qml" line="1240"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1204"/>
-        <source>Do you want to delete the slot ?</source>
-        <translation>¿ Quieres eliminar la ranura ?</translation>
+        <location filename="../MwSlotListView.qml" line="1205"/>
+        <source>Do you want to delete the link ?</source>
+        <translation>¿ Quieres eliminar el enlace ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1230"/>
-        <source>Do you want to delete all selected slots ?</source>
-        <translation>¿ Quieres eliminar todas las ranuras seleccionadas ?</translation>
+        <location filename="../MwSlotListView.qml" line="1231"/>
+        <source>Do you want to delete all selected links ?</source>
+        <translation>¿ Quieres eliminar todas los enlaces seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1239"/>
-        <source>Do you want to move all selected slots to the current cursor position ?</source>
-        <translation>¿ Quieres mover todas las ranuras seleccionadas a la posición actual del cursor ?</translation>
+        <location filename="../MwSlotListView.qml" line="1240"/>
+        <source>Do you want to move all selected links to the current cursor position ?</source>
+        <translation>¿ Quieres mover todas los enlaces seleccionadas a la posición actual del cursor ?</translation>
     </message>
 </context>
 <context>

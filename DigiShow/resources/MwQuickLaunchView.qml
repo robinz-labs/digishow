@@ -271,7 +271,7 @@ Item {
                 CheckBox {
                     id: checkRememberLink
                     height: 28
-                    text: qsTr("Remember Slot Link States")
+                    text: qsTr("Remember LINK States")
                     checked: true
                     onClicked: slotListView.setSlotLaunchRememberAllLinks(checked)
                 }

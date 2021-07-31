@@ -1854,8 +1854,8 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="339"/>
-        <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between the source and destination of separate slots. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.</source>
-        <translation>DigiShow 可以通过建立虚拟管道，来在各个独立的信号插槽间传输和复制信号。当需要在不同电脑上运行的多个 DigiShow LINK 应用程序之间传输信号时，可以使用远程管道。</translation>
+        <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between separate links. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.</source>
+        <translation>DigiShow 可以通过建立虚拟管道，来在各个独立的信号链接间传输和复制信号。当需要在不同电脑上运行的多个 DigiShow LINK 应用程序之间传输信号时，可以使用远程管道。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="366"/>
@@ -1932,13 +1932,13 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="274"/>
-        <source>Remember Slot Link States</source>
-        <translation>记忆各信号插槽的链接状态</translation>
+        <source>Remember LINK States</source>
+        <translation>记忆各信号链接的 LINK 状态</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="282"/>
         <source>Remember Output Signals</source>
-        <translation>记忆各信号插槽的输出信号</translation>
+        <translation>记忆各信号链接的输出信号</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="300"/>
@@ -1971,8 +1971,8 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <name>MwSlotDetailView</name>
     <message>
         <location filename="../MwSlotDetailView.qml" line="147"/>
-        <source>Please select a slot item in left list</source>
-        <translation>请在左侧列表中选择信号插槽</translation>
+        <source>Please select a link item in left list</source>
+        <translation>请在左侧列表中选择信号链接</translation>
     </message>
     <message>
         <location filename="../MwSlotDetailView.qml" line="148"/>
@@ -1991,10 +1991,10 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <name>MwSlotListView</name>
     <message>
         <location filename="../MwSlotListView.qml" line="37"/>
-        <source>Please tap button + to add a new slot <byte value="xd"/>
- that enables signal link between your digital things</source>
-        <translation>请点击 + 按钮来创建新的信号插槽
-它将会在你的数码设备之间建立信号链接</translation>
+        <source>Please tap button + to add a new <byte value="xd"/>
+ signal link between your digital things</source>
+        <translation>请点击 + 按钮
+来在你的数码设备间创建新的信号链接</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="58"/>
@@ -2003,12 +2003,12 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="111"/>
-        <source>Rename Slot</source>
-        <translation>修改信号插槽名称</translation>
+        <source>Rename</source>
+        <translation>修改名称</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="119"/>
-        <source>Bookmark Slot</source>
+        <source>Bookmark</source>
         <translation>添加书签</translation>
     </message>
     <message>
@@ -2018,23 +2018,28 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="125"/>
-        <source>Duplicate Slot</source>
-        <translation>复制信号插槽</translation>
+        <location filename="../MwSlotListView.qml" line="922"/>
+        <location filename="../MwSlotListView.qml" line="1181"/>
+        <source>Duplicate</source>
+        <translation>复制</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="132"/>
-        <source>Delete Slot</source>
-        <translation>删除信号插槽</translation>
+        <location filename="../MwSlotListView.qml" line="941"/>
+        <location filename="../MwSlotListView.qml" line="1205"/>
+        <location filename="../MwSlotListView.qml" line="1231"/>
+        <source>Delete</source>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="141"/>
-        <source>Deselect Slots</source>
-        <translation>取消选择信号插槽</translation>
+        <source>Deselect Links</source>
+        <translation>取消选择多项</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="141"/>
-        <source>Select Slots</source>
-        <translation>选择信号插槽</translation>
+        <source>Select Links</source>
+        <translation>选择多项</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="156"/>
@@ -2052,91 +2057,78 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>重做</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="224"/>
-        <location filename="../MwSlotListView.qml" line="1427"/>
-        <source>Untitled Slot</source>
-        <translation>未命名信号插槽</translation>
+        <location filename="../MwSlotListView.qml" line="225"/>
+        <location filename="../MwSlotListView.qml" line="1428"/>
+        <source>Untitled Link</source>
+        <translation>未命名信号链接</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="864"/>
+        <location filename="../MwSlotListView.qml" line="865"/>
         <source>Select All</source>
         <translation>选择全部</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="883"/>
+        <location filename="../MwSlotListView.qml" line="884"/>
         <source>Select None</source>
         <translation>选择无</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="149"/>
-        <location filename="../MwSlotListView.qml" line="902"/>
+        <location filename="../MwSlotListView.qml" line="903"/>
         <source>Copy</source>
         <translation>拷贝</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="921"/>
-        <location filename="../MwSlotListView.qml" line="1180"/>
-        <source>Duplicate</source>
-        <translation>复制</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="959"/>
-        <location filename="../MwSlotListView.qml" line="1239"/>
+        <location filename="../MwSlotListView.qml" line="960"/>
+        <location filename="../MwSlotListView.qml" line="1240"/>
         <source>Move</source>
         <translation>移动</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1051"/>
+        <location filename="../MwSlotListView.qml" line="1052"/>
         <source>Source</source>
         <translation>信号来源</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1052"/>
+        <location filename="../MwSlotListView.qml" line="1053"/>
         <source>no input</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1060"/>
+        <location filename="../MwSlotListView.qml" line="1061"/>
         <source>no output</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1180"/>
-        <source>Do you want to duplicate all selected slots ?</source>
-        <translation>您是否需要将所有选中的信号插槽再复制一份 ?</translation>
+        <location filename="../MwSlotListView.qml" line="1181"/>
+        <source>Do you want to duplicate all selected links ?</source>
+        <translation>您是否需要将所有选中的信号链接再复制一份 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1204"/>
-        <source>Do you want to delete the slot ?</source>
-        <translation>您是否需要删除此信号插槽 ?</translation>
+        <location filename="../MwSlotListView.qml" line="1205"/>
+        <source>Do you want to delete the link ?</source>
+        <translation>您是否需要删除此信号链接 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1230"/>
-        <source>Do you want to delete all selected slots ?</source>
-        <translation>您是否需要将所有选中的信号插槽都删除 ?</translation>
+        <location filename="../MwSlotListView.qml" line="1231"/>
+        <source>Do you want to delete all selected links ?</source>
+        <translation>您是否需要将所有选中的信号链接都删除 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1239"/>
-        <source>Do you want to move all selected slots to the current cursor position ?</source>
-        <translation>您是否需要将所有选中的信号插槽移动到当前光标位置 ?</translation>
+        <location filename="../MwSlotListView.qml" line="1240"/>
+        <source>Do you want to move all selected links to the current cursor position ?</source>
+        <translation>您是否需要将所有选中的信号链接移动到当前光标位置 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1059"/>
+        <location filename="../MwSlotListView.qml" line="1060"/>
         <source>Destination</source>
         <translation>信号目标</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="940"/>
-        <location filename="../MwSlotListView.qml" line="1204"/>
-        <location filename="../MwSlotListView.qml" line="1230"/>
-        <source>Delete</source>
-        <translation>删除</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="1180"/>
-        <location filename="../MwSlotListView.qml" line="1204"/>
-        <location filename="../MwSlotListView.qml" line="1230"/>
-        <location filename="../MwSlotListView.qml" line="1239"/>
+        <location filename="../MwSlotListView.qml" line="1181"/>
+        <location filename="../MwSlotListView.qml" line="1205"/>
+        <location filename="../MwSlotListView.qml" line="1231"/>
+        <location filename="../MwSlotListView.qml" line="1240"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>

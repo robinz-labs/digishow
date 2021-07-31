@@ -34,7 +34,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             color: "#555555"
-            text: qsTr("Please tap button + to add a new slot \r\n that enables signal link between your digital things")
+            text: qsTr("Please tap button + to add a new \r\n signal link between your digital things")
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 14
             font.bold: true
@@ -108,7 +108,7 @@ Item {
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
                     CMenuItem {
-                        text: qsTr("Rename Slot")
+                        text: qsTr("Rename")
                         onTriggered: {
                             menuSlot.close()
                             labelSlotTitle.showRename()
@@ -116,20 +116,20 @@ Item {
                         }
                     }
                     CMenuItem {
-                        text: !model.slotBookmarked ? qsTr("Bookmark Slot") : qsTr("Remove Bookmark")
+                        text: !model.slotBookmarked ? qsTr("Bookmark") : qsTr("Remove Bookmark")
                         onTriggered: {
                             bookmarkSlot(currentIndex, !model.slotBookmarked)
                         }
                     }
                     CMenuItem {
-                        text: qsTr("Duplicate Slot")
+                        text: qsTr("Duplicate")
                         onTriggered: {
                             menuSlot.close()
                             duplicateSlot(currentIndex)
                         }
                     }
                     CMenuItem {
-                        text: qsTr("Delete Slot")
+                        text: qsTr("Delete")
                         onTriggered: {
                             menuSlot.close()
                             deleteSlot(currentIndex)
@@ -138,7 +138,7 @@ Item {
 
                     MenuSeparator {}
                     CMenuItem {
-                        text: showSlotSelection ? qsTr("Deselect Slots") : qsTr("Select Slots")
+                        text: showSlotSelection ? qsTr("Deselect Links") : qsTr("Select Links")
                         onTriggered: {
                             showSlotSelection = !showSlotSelection
                         }
@@ -222,7 +222,7 @@ Item {
 
                         color: highlightedIndex===index ? "#cccccc" : "#666666"
                         text: model.slotTitle === undefined || model.slotTitle === "" ?
-                                  qsTr("Untitled Slot") + " " + (index+1) :
+                                  qsTr("Untitled Link") + " " + (index+1) :
                                   model.slotTitle
                         font.pixelSize: 11
                         font.bold: false
@@ -1178,7 +1178,7 @@ Item {
 
     function duplicateSelection() {
 
-        if (messageBox.showAndWait(qsTr("Do you want to duplicate all selected slots ?"), qsTr("Duplicate"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Do you want to duplicate all selected links ?"), qsTr("Duplicate"), qsTr("Cancel")) !== 1) return
 
         var numAll = visualModel.items.count
         var n, i
@@ -1202,7 +1202,7 @@ Item {
             highlightedIndex = deletedIndex
 
             if (!showMessageToConfirm ||
-                messageBox.showAndWait(qsTr("Do you want to delete the slot ?"), qsTr("Delete"), qsTr("Cancel")) === 1) {
+                messageBox.showAndWait(qsTr("Do you want to delete the link ?"), qsTr("Delete"), qsTr("Cancel")) === 1) {
 
                 highlightedIndex = -1
                 currentIndex = -1
@@ -1228,7 +1228,7 @@ Item {
 
     function deleteSelection() {
 
-        if (messageBox.showAndWait(qsTr("Do you want to delete all selected slots ?"), qsTr("Delete"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Do you want to delete all selected links ?"), qsTr("Delete"), qsTr("Cancel")) !== 1) return
 
         for (var n=dataModel.count-1 ; n>=0 ; n--)
             if (dataModel.get(n).slotSelected === true) deleteSlot(n, false)
@@ -1237,7 +1237,7 @@ Item {
     function moveSelection() {
 
         if (currentIndexVisual === -1) return
-        if (messageBox.showAndWait(qsTr("Do you want to move all selected slots to the current cursor position ?"), qsTr("Move"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Do you want to move all selected links to the current cursor position ?"), qsTr("Move"), qsTr("Cancel")) !== 1) return
 
         var numAll = visualModel.items.count
         var numMoved = 0
@@ -1425,7 +1425,7 @@ Item {
                 bookmarks.push({
                     value: n,
                     text:  model.slotTitle === undefined || model.slotTitle === "" ?
-                               qsTr("Untitled Slot") + " " + (model.index+1) :
+                               qsTr("Untitled Link") + " " + (model.index+1) :
                                model.slotTitle
                 })
             }

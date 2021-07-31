@@ -1854,8 +1854,8 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="339"/>
-        <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between the source and destination of separate slots. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.</source>
-        <translation>DigiShowを使用すると、バーチャルパイプをセットアップして、別々のスロットの送信元と宛先の間で信号を転送および複製できます。 リモートパイプは、異なるコンピューターで実行されている複数のDigiShow LINKアプリ間で信号を転送するためのものです。</translation>
+        <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between separate links. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.</source>
+        <translation>DigiShowを使用すると、バーチャルパイプをセットアップして、別々のリンクの間で信号を転送および複製できます。 リモートパイプは、異なるコンピューターで実行されている複数のDigiShow LINKアプリ間で信号を転送するためのものです。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="366"/>
@@ -1932,8 +1932,8 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="274"/>
-        <source>Remember Slot Link States</source>
-        <translation>スロットリンクの状態を覚える</translation>
+        <source>Remember LINK States</source>
+        <translation>LINK 状態を覚える</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="282"/>
@@ -1970,8 +1970,8 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     <name>MwSlotDetailView</name>
     <message>
         <location filename="../MwSlotDetailView.qml" line="147"/>
-        <source>Please select a slot item in left list</source>
-        <translation>左のリストからスロットアイテムを選択してください</translation>
+        <source>Please select a link item in left list</source>
+        <translation>左のリストからリンクアイテムを選択してください</translation>
     </message>
     <message>
         <location filename="../MwSlotDetailView.qml" line="148"/>
@@ -1990,10 +1990,10 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     <name>MwSlotListView</name>
     <message>
         <location filename="../MwSlotListView.qml" line="37"/>
-        <source>Please tap button + to add a new slot <byte value="xd"/>
- that enables signal link between your digital things</source>
+        <source>Please tap button + to add a new <byte value="xd"/>
+ signal link between your digital things</source>
         <translation>「＋」ボタンをタップして
-デジタル設備間の信号リンクを創るために新しいスロットを追加してください</translation>
+デジタル設備間の新しい信号リンクを追加してください</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="58"/>
@@ -2002,13 +2002,13 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="111"/>
-        <source>Rename Slot</source>
-        <translation>スロットの名前を変更</translation>
+        <source>Rename</source>
+        <translation>名前を変更</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="119"/>
-        <source>Bookmark Slot</source>
-        <translation>スロットをブックマーク</translation>
+        <source>Bookmark</source>
+        <translation>ブックマークを追加</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="119"/>
@@ -2017,23 +2017,28 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="125"/>
-        <source>Duplicate Slot</source>
-        <translation>スロットを複製</translation>
+        <location filename="../MwSlotListView.qml" line="922"/>
+        <location filename="../MwSlotListView.qml" line="1181"/>
+        <source>Duplicate</source>
+        <translation>複製</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="132"/>
-        <source>Delete Slot</source>
-        <translation>スロットを削除</translation>
+        <location filename="../MwSlotListView.qml" line="941"/>
+        <location filename="../MwSlotListView.qml" line="1205"/>
+        <location filename="../MwSlotListView.qml" line="1231"/>
+        <source>Delete</source>
+        <translation>削除</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="141"/>
-        <source>Deselect Slots</source>
-        <translation>スロットの選択を解除</translation>
+        <source>Deselect Links</source>
+        <translation>複数の選択を解除</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="141"/>
-        <source>Select Slots</source>
-        <translation>スロットを選択</translation>
+        <source>Select Links</source>
+        <translation>複数選択</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="156"/>
@@ -2051,91 +2056,78 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
         <translation>やり直し</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="224"/>
-        <location filename="../MwSlotListView.qml" line="1427"/>
-        <source>Untitled Slot</source>
-        <translation>無題のスロット</translation>
+        <location filename="../MwSlotListView.qml" line="225"/>
+        <location filename="../MwSlotListView.qml" line="1428"/>
+        <source>Untitled Link</source>
+        <translation>無題のリンク</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="864"/>
+        <location filename="../MwSlotListView.qml" line="865"/>
         <source>Select All</source>
         <translation>すべてを選択</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="883"/>
+        <location filename="../MwSlotListView.qml" line="884"/>
         <source>Select None</source>
         <translation>なしを選択</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="149"/>
-        <location filename="../MwSlotListView.qml" line="902"/>
+        <location filename="../MwSlotListView.qml" line="903"/>
         <source>Copy</source>
         <translation>コビー</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="921"/>
-        <location filename="../MwSlotListView.qml" line="1180"/>
-        <source>Duplicate</source>
-        <translation>複製</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="959"/>
-        <location filename="../MwSlotListView.qml" line="1239"/>
+        <location filename="../MwSlotListView.qml" line="960"/>
+        <location filename="../MwSlotListView.qml" line="1240"/>
         <source>Move</source>
         <translation>移動</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1051"/>
+        <location filename="../MwSlotListView.qml" line="1052"/>
         <source>Source</source>
         <translation>送信元</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1052"/>
+        <location filename="../MwSlotListView.qml" line="1053"/>
         <source>no input</source>
         <translation>入力がない</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1060"/>
+        <location filename="../MwSlotListView.qml" line="1061"/>
         <source>no output</source>
         <translation>出力がない</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1180"/>
-        <source>Do you want to duplicate all selected slots ?</source>
-        <translation>選択したすべてのスロットを複製してもよろしいですか？</translation>
+        <location filename="../MwSlotListView.qml" line="1181"/>
+        <source>Do you want to duplicate all selected links ?</source>
+        <translation>選択したすべてのリンクを複製してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1204"/>
-        <source>Do you want to delete the slot ?</source>
-        <translation>このスロットを削除してもよろしいですか？</translation>
+        <location filename="../MwSlotListView.qml" line="1205"/>
+        <source>Do you want to delete the link ?</source>
+        <translation>このリンクを削除してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1230"/>
-        <source>Do you want to delete all selected slots ?</source>
-        <translation>選択したすべてのスロットを削除してもよろしいですか？</translation>
+        <location filename="../MwSlotListView.qml" line="1231"/>
+        <source>Do you want to delete all selected links ?</source>
+        <translation>選択したすべてのリンクを削除してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1239"/>
-        <source>Do you want to move all selected slots to the current cursor position ?</source>
-        <translation>選択したすべてのスロットを現在のカーソル位置に移動してもよろしいですか？</translation>
+        <location filename="../MwSlotListView.qml" line="1240"/>
+        <source>Do you want to move all selected links to the current cursor position ?</source>
+        <translation>選択したすべてのリンクを現在のカーソル位置に移動してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1059"/>
+        <location filename="../MwSlotListView.qml" line="1060"/>
         <source>Destination</source>
         <translation>宛先</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="940"/>
-        <location filename="../MwSlotListView.qml" line="1204"/>
-        <location filename="../MwSlotListView.qml" line="1230"/>
-        <source>Delete</source>
-        <translation>削除</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="1180"/>
-        <location filename="../MwSlotListView.qml" line="1204"/>
-        <location filename="../MwSlotListView.qml" line="1230"/>
-        <location filename="../MwSlotListView.qml" line="1239"/>
+        <location filename="../MwSlotListView.qml" line="1181"/>
+        <location filename="../MwSlotListView.qml" line="1205"/>
+        <location filename="../MwSlotListView.qml" line="1231"/>
+        <location filename="../MwSlotListView.qml" line="1240"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
