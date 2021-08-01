@@ -50,6 +50,11 @@
   + undo-redo support
   + japanese and spanish support
 
+  v1.1.8 20210801
+  beta release
+  + bookmark support
+  ! windows compatibility issue fixes
+
  */
 
 #ifndef DIGISHOW_H
