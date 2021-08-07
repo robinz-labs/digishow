@@ -1018,6 +1018,7 @@ Item {
     function refresh() {
 
         dataModel.clear()
+        hasBookmarks = false
 
         var slotCount = app.slotCount();
         for (var n=0 ; n<slotCount ; n++) refreshSlot(n)
