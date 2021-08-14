@@ -8,10 +8,12 @@ Popup {
     property int buttonCount: 3
     property int buttonClickedAt: -1
 
+    readonly property bool noButton: !button1.visible && !button2.visible && !button3.visible
+
     signal buttonClicked(int buttonID)
 
     width: 640
-    height: 320
+    height: (noButton ? 220 : 320)
     anchors.centerIn: parent
 
     modal: false
@@ -52,7 +54,7 @@ Popup {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.bottom: rowButtons.top
+            anchors.bottom: noButton ? parent.bottom : rowButtons.top
             anchors.margins: 40
             font.bold: true
             font.pixelSize: 18

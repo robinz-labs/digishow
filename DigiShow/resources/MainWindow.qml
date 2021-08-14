@@ -191,7 +191,13 @@ ApplicationWindow {
 
                     MenuItem {
                         text: qsTr("New Instance")
-                        onTriggered: utilities.newAppInstance()
+                        onTriggered: {
+                            messageBox.show(qsTr("Starting a new DigiShow LINK instance ..."))
+                            utilities.newAppInstance()
+                            common.setTimeout(function(){
+                                messageBox.close()
+                            }, 3000)
+                        }
                     }
                     MenuSeparator {
                         padding: 0
@@ -840,10 +846,11 @@ ApplicationWindow {
         if (messageBox.visible) return
 
         if (!isModified) {
-            if (messageBox.showAndWait(qsTr("Are you sure you want to quit DigiShow app ?"), qsTr("Quit"), qsTr("Cancel")) === 1) {
+            //if (messageBox.showAndWait(qsTr("Are you sure you want to quit DigiShow app ?"), qsTr("Quit"), qsTr("Cancel")) === 1) {
                 Qt.quit()
-            }
-        } else {
+            //}
+        } else { 
+            window.showNormal()
             var buttonIndex = messageBox.showAndWait(qsTr("Do you want to save all data to a file before close the app ?"),
                                                      qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
             switch (buttonIndex) {

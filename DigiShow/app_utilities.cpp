@@ -256,7 +256,7 @@ void AppUtilities::showFileInShell(const QString & path)
 void AppUtilities::newAppInstance()
 {
     QString exeFilePath = QCoreApplication::applicationFilePath();
-    QProcess::startDetached(exeFilePath);
+    QProcess::startDetached(QString("\"%1\"").arg(exeFilePath));
 }
 
 void AppUtilities::setMacWindowIsModified(QWindow *window, bool isModified)
