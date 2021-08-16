@@ -97,6 +97,14 @@ Item {
             items.push({ text: qsTr("MIDI Note"   ), value: DigishowEnvironment.EndpointMidiNote,    tag:"note"    })
             items.push({ text: qsTr("MIDI Control"), value: DigishowEnvironment.EndpointMidiControl, tag:"control" })
             items.push({ text: qsTr("MIDI Program"), value: DigishowEnvironment.EndpointMidiProgram, tag:"program" })
+
+            if (digishow.appExperimental()) {
+                items.push({
+                    text: qsTr("MIDI CC Pulse"),
+                    value: DigishowEnvironment.EndpointMidiCcPulse,
+                    tag:"cc_pulse" })
+            }
+
             menuMidiType.optionItems = items
             menuMidiType.selectedIndex = 0
         }

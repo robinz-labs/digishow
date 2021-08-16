@@ -323,6 +323,7 @@ void DigishowInterface::updateMetadata()
             if      (typeName == "note"       ) endpointInfo.type = ENDPOINT_MIDI_NOTE;
             else if (typeName == "control"    ) endpointInfo.type = ENDPOINT_MIDI_CONTROL;
             else if (typeName == "program"    ) endpointInfo.type = ENDPOINT_MIDI_PROGRAM;
+            else if (typeName == "cc_pulse"   ) endpointInfo.type = ENDPOINT_MIDI_CC_PULSE;
             break;
         case INTERFACE_RIOC:
             if      (typeName == "digital_in" ) endpointInfo.type = ENDPOINT_RIOC_DIGITAL_IN;
@@ -398,6 +399,13 @@ void DigishowInterface::updateMetadata()
             endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_MIDI_INPUT);
             endpointInfo.range  = 127;
             endpointInfo.labelEPT = tr("MIDI Prgm");
+            endpointInfo.labelEPI = QString("Ch%1").arg(endpointInfo.channel+1);
+            break;
+        case ENDPOINT_MIDI_CC_PULSE:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = true;
+            endpointInfo.range  = 127;
+            endpointInfo.labelEPT = tr("MIDI CC");
             endpointInfo.labelEPI = QString("Ch%1").arg(endpointInfo.channel+1);
             break;
         case ENDPOINT_RIOC_DIGITAL_IN:

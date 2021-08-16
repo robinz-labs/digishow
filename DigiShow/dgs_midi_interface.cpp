@@ -174,6 +174,31 @@ int DgsMidiInterface::sendData(int endpointIndex, dgsSignalData data)
         m_midiout->sendMessage(&message);
         //qDebug() << "midiout_program:" << message[0] << message[1];
 
+    } else if (type == ENDPOINT_MIDI_CC_PULSE) {
+
+        // send cc pulse messages
+        int value = 127 * data.aValue / (data.aRange==0 ? 127 : data.aRange);
+        if (value<0 || value>127) return ERR_INVALID_DATA;
+
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+
+        // call rtmidi to send midi message
+        std::vector<unsigned char> message;
+        message.push_back(0xB0 +                                 // control change
+                          static_cast<unsigned char>(channel));  // channel number
+        message.push_back(static_cast<unsigned char>(value));    // control number
+        message.push_back(127);
+        m_midiout->sendMessage(&message);
+        //qDebug() << "midiout_control:" << message[0] << message[1] << message[2];
+
+        message.clear();
+        message.push_back(0xB0 +                                 // control change
+                          static_cast<unsigned char>(channel));  // channel number
+        message.push_back(static_cast<unsigned char>(value));    // control number
+        message.push_back(0);
+        m_midiout->sendMessage(&message);
+        //qDebug() << "midiout_control:" << message[0] << message[1] << message[2];
+
     } else return ERR_INVALID_OPTION;
 
     return ERR_NONE;

@@ -13,7 +13,8 @@ DigishowEnvironment {
 
             case DigishowEnvironment.EndpointMidiNote          : return CColor.Lime
             case DigishowEnvironment.EndpointMidiControl       : return CColor.Aqua
-            case DigishowEnvironment.EndpointMidiProgram       : return CColor.Iris //Salmon
+            case DigishowEnvironment.EndpointMidiProgram       : return CColor.Iris
+            case DigishowEnvironment.EndpointMidiCcPulse       : return CColor.Salmon
             case DigishowEnvironment.EndpointRiocDigitalIn     : return CColor.HotPink
             case DigishowEnvironment.EndpointRiocDigitalOut    : return CColor.HotPink
             case DigishowEnvironment.EndpointRiocAnalogIn      : return CColor.Ocean
