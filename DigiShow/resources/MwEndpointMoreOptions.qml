@@ -190,6 +190,33 @@ Popup {
         }
 
         CSpinBox {
+            id: spinOptRange
+
+            property int defaultValue: 65535
+
+            width: 120
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            from: 1
+            to: 10000000
+            stepSize: 1
+            unit: ""
+            visible: enabled
+
+
+            onValueModified: isModified = true
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Value Range")
+            }
+        }
+
+        CSpinBox {
             id: spinOptRangeSteps
 
             property int defaultValue: 1000
@@ -197,7 +224,7 @@ Popup {
             width: 120
             anchors.left: parent.left
             anchors.leftMargin: 120
-            from: 0
+            from: 1
             to: 10000000
             stepSize: 100
             unit: ""
@@ -224,7 +251,7 @@ Popup {
             width: 120
             anchors.left: parent.left
             anchors.leftMargin: 120
-            from: 0
+            from: 1
             to: 60000
             stepSize: 100
             unit: "Hz"
@@ -465,6 +492,7 @@ Popup {
         spinOptInitialB        .enabled = (enables["optInitialB"        ] === true)
         spinOptInitialMidi     .enabled = (enables["optInitialMidi"     ] === true)
         spinOptInitialDmx      .enabled = (enables["optInitialDmx"      ] === true)
+        spinOptRange           .enabled = (enables["optRange"           ] === true)
         spinOptRangeSteps      .enabled = (enables["optRangeSteps"      ] === true)
         spinOptRangeFrequency  .enabled = (enables["optRangeFrequency"  ] === true)
         spinOptFilterLevel     .enabled = (enables["optFilterLevel"     ] === true)
@@ -487,6 +515,7 @@ Popup {
         spinOptInitialB        .value   = spinOptInitialB        .defaultValue
         spinOptInitialMidi     .value   = spinOptInitialMidi     .defaultValue
         spinOptInitialDmx      .value   = spinOptInitialDmx      .defaultValue
+        spinOptRange           .value   = spinOptRange           .defaultValue
         spinOptRangeSteps      .value   = spinOptRangeSteps      .defaultValue
         spinOptRangeFrequency  .value   = spinOptRangeFrequency  .defaultValue
         spinOptFilterLevel     .value   = spinOptFilterLevel     .defaultValue
@@ -520,6 +549,11 @@ Popup {
             if (spinOptInitialDmx.enabled) spinOptInitialDmx.value = Math.round(initial * 255)
 
             if (checkOptInitialize.checked !== checkOptInitialize.defaultValue) isDefault = false
+        }
+
+        if (spinOptRange.enabled) {
+            spinOptRange.value = getOptionValue("range", spinOptRange.defaultValue)
+            if (spinOptRange.value !== spinOptRange.defaultValue) isDefault = false
         }
 
         if (spinOptRangeSteps.enabled) {
@@ -579,6 +613,8 @@ Popup {
             if (spinOptInitialDmx.enabled) options["initial"] = parseFloat((spinOptInitialDmx.value / 255).toFixed(5))
         }
 
+        if (spinOptRange.enabled) options["range"] = spinOptRange.value
+        else
         if (spinOptRangeSteps.enabled) options["range"] = spinOptRangeSteps.value
         else
         if (spinOptRangeFrequency.enabled) options["range"] = spinOptRangeFrequency.value
