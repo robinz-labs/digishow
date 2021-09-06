@@ -138,7 +138,7 @@ Item {
 
                     MenuSeparator {}
                     CMenuItem {
-                        text: showSlotSelection ? qsTr("Deselect Links") : qsTr("Select Links")
+                        text: showSlotSelection ? qsTr("Deselect") : qsTr("Select ...")
                         onTriggered: {
                             showSlotSelection = !showSlotSelection
                         }
