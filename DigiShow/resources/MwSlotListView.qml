@@ -17,6 +17,7 @@ Item {
 
     property bool  showSlotSelection: false
     property bool  hasBookmarks: false
+    property bool  shiftKeyHeld: false
 
     onHighlightedIndexChanged: currentIndex = highlightedIndex
     onCurrentIndexChanged: currentIndexVisual = getVisualItemIndex(currentIndex)
@@ -654,8 +655,21 @@ Item {
                         visible: showSlotSelection
                         checked: model.slotSelected
                         onClicked: {
-                            model.slotSelected = checked
-                            app.slotAt(index).setSelected(model.slotSelected)
+                            if (!shiftKeyHeld || highlightedIndex === -1 || index === highlightedIndex) {
+                                // select one
+                                model.slotSelected = checked
+                                app.slotAt(index).setSelected(checked)
+                            } else {
+                                // select multiple
+                                var iv1 = getVisualItemIndex(highlightedIndex)
+                                var iv2 = getVisualItemIndex(index)
+                                if (iv1 > iv2) { var iv0 = iv1; iv1 = iv2; iv2 = iv0 }
+                                for (var iv = iv1 ; iv <= iv2 ; iv++) {
+                                    var i = getDataItemIndex(iv)
+                                    dataModel.setProperty(i, "slotSelected", checked)
+                                    app.slotAt(i).setSelected(checked)
+                                }
+                            }
                         }
                     }
                 }
@@ -712,6 +726,9 @@ Item {
             }
 
             Keys.onReleased: {
+
+                if (event.key === Qt.Key_Shift) shiftKeyHeld = false
+
                 // slot actions
                 if (highlightedIndex !== -1) {
 
@@ -731,6 +748,8 @@ Item {
             }
 
             Keys.onPressed: {
+
+                if (event.key === Qt.Key_Shift) shiftKeyHeld = true
 
                 // slot actions
                 if (highlightedIndex !== -1) {
