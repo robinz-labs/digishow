@@ -259,7 +259,7 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                 int mode = m_endpointOptionsList[n].value("optMode").toInt();
                 m_rioc->setupObject(unit, RO_MOTION_RUDDER, channel,
                                     static_cast<unsigned char>(mode));
-                done = m_rioc->rudderSetEnable(unit, channel, true);
+                done = m_rioc->rudderSetEnable(unit, channel, false); // keep the servo unlocked
 
             } else if (type==ENDPOINT_RIOC_STEPPER_OUT) {
 

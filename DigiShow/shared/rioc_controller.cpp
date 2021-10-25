@@ -20,10 +20,8 @@ RiocController::~RiocController()
 
 bool RiocController::connect(const QString &port)
 {
-    // if (g_license.isEmpty() || g_license != getLicenseKey()) return false;
-
-    // prefrered port mode:
-    // only open the prefrered serial port to connect the rioc unit
+    // preferred port mode:
+    // only open the preferred serial port to connect the rioc unit
     if (!port.isEmpty()) {
         return (_riocService->addSerialConnection(port, RIOC_BAUD));
     }
