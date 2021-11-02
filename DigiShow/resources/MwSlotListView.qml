@@ -31,39 +31,6 @@ Item {
         color: "#181818"
         clip: true
 
-        Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: "#555555"
-            text: qsTr("Please tap button + to add a new \r\n signal link between your digital things")
-            horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: 14
-            font.bold: true
-            lineHeight: 2.0
-            visible: dataModel.count===0
-
-            Rectangle {
-                width: 90
-                height: 30
-                anchors.top: parent.bottom
-                anchors.topMargin: 30
-                anchors.horizontalCenter: parent.horizontalCenter
-                radius: 15
-                color: "#333333"
-                opacity: 0.3
-
-                Text {
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    color: "#999999"
-                    text: qsTr("STEP 2")
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 10
-                    font.bold: true
-                }
-            }
-        }
-
         Component {
             id: dragDelegate
 
@@ -1005,6 +972,57 @@ Item {
                 }
             }
 
+        }
+    }
+
+    Rectangle {
+
+        anchors.fill: parent
+        color: "#111111"
+        visible: dataModel.count===0
+
+        Text {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: "#555555"
+            text: qsTr("Please tap button + to add a new \r\n signal link between your digital things")
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 14
+            font.bold: true
+            lineHeight: 2.0
+
+            Rectangle {
+                width: 90
+                height: 30
+                anchors.top: parent.bottom
+                anchors.topMargin: 30
+                anchors.horizontalCenter: parent.horizontalCenter
+                radius: 15
+                color: "#333333"
+                opacity: 0.5
+
+                MouseArea {
+                    anchors.fill: parent
+                    onPressed: {
+                        parent.color = Material.accent
+                        buttonNewSlot.colorNormal = Material.accent
+                    }
+                    onReleased: {
+                        parent.color = "#333333"
+                        buttonNewSlot.colorNormal = "#484848"
+                    }
+                }
+
+                Text {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    color: "#999999"
+                    text: qsTr("STEP 2")
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: 10
+                    font.bold: true
+                }
+            }
         }
     }
 

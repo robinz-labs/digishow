@@ -18,7 +18,6 @@ ApplicationWindow {
 
     property alias app: digishow.app
 
-
     visible: true
     width: 1280
     height: 800
@@ -38,6 +37,10 @@ ApplicationWindow {
     MwUndoManager { id: undoManager }
 
     Component.onCompleted: {
+
+        // force refresh window size
+        width = minimumWidth
+        height = minimumHeight
 
         // get info of online ports
         listOnline = digishow.listOnline()
@@ -76,8 +79,15 @@ ApplicationWindow {
             quickLaunchView.close()
         })
 
-
         app.newShow()
+
+        // determine whether the screen is too small to show main window properly
+        // show app options dialogbox in which user can set display scale or disable hi-dpi mode
+        if (screen.width < minimumWidth || screen.height < minimumHeight) {
+
+            window.showMaximized()
+            dialogAppOptions.show()
+        }
     }
 
     onIsModifiedChanged: {
@@ -236,7 +246,7 @@ ApplicationWindow {
                     }
                     MenuItem {
                         text: qsTr("About DigiShow")
-                        onTriggered: popupAbout.open()
+                        onTriggered: dialogAbout.open()
                     }
                     MenuItem {
                         text: qsTr("Options ...")
@@ -589,134 +599,6 @@ ApplicationWindow {
         running: false //window.isBusy
     }
 
-    Popup {
-        id: popupAbout
-
-        width: 640
-        height: 480
-        anchors.centerIn: parent
-        modal: false
-        dim: true
-        focus: true
-
-        onVisibleChanged: {
-            textSlogan.visible = false
-            textSlogan.reset()
-            timerSlogan.stop()
-        }
-
-        background: Image {
-            anchors.fill: parent
-            source: "qrc:///images/background_about.png"
-        }
-
-        // @disable-check M16
-        Overlay.modeless: Rectangle {
-            color: "#55000000"
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: popupAbout.close()
-            }
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                textSlogan.visible = true
-                timerSlogan.start()
-            }
-        }
-
-        Text {
-            anchors.top: parent.top
-            anchors.topMargin: 60
-            anchors.left: parent.left
-            anchors.leftMargin: 60
-            color: Material.accent
-            font.bold: false
-            font.pixelSize: 18
-            text: digishow.appName() + (digishow.appExperimental() ? " +" : "" )
-        }
-
-        Text {
-            anchors.top: parent.top
-            anchors.topMargin: 110
-            anchors.left: parent.left
-            anchors.leftMargin: 60
-            color: "#999999"
-            lineHeight: 1.5
-            font.pixelSize: 14
-            text: qsTr("app version: ") + digishow.appVersion() + "\r\n" +
-                  qsTr("app build date: ") + digishow.appBuildDate() + "\r\n\r\n" +
-                  qsTr("qt version: ") + digishow.appQtVersion() + "\r\n" +
-                  qsTr("rtmidi version: ") + digishow.appRtMidiVersion()
-        }
-
-        Text {
-            id: textSlogan
-            anchors.top: parent.top
-            anchors.topMargin: 300
-            anchors.left: parent.left
-            anchors.leftMargin: 60
-            color: "#666666"
-            lineHeight: 1.5
-            verticalAlignment: Text.AlignVCenter
-            font.bold: true
-            font.pixelSize: 14
-            scale: 1
-            rotation: 0
-            text: qsTr("Jam with All Things Digital")
-            visible: false
-
-            Behavior on color { ColorAnimation { duration: 600 } }
-            Behavior on scale { NumberAnimation { duration: 1500; easing.type: Easing.OutCubic } }
-            Behavior on rotation { NumberAnimation { duration: 1500; easing.type: Easing.OutCubic } }
-
-            Timer {
-                id: timerSlogan
-
-                property int tick: 0
-
-                interval: 1000
-                repeat: true
-                running: false
-
-                onRunningChanged: tick = 0
-
-                onTriggered: {
-
-                    if (tick < 8) {
-                        textSlogan.color = Qt.rgba(Math.random(), Math.random(), Math.random(), 0.8)
-                        textSlogan.scale = Math.random()*5 + 1.0
-                        textSlogan.rotation = Math.random()*90 - 45
-                        tick++
-                    } else {
-                        textSlogan.reset()
-                        stop()
-                    }
-                }
-            }
-
-            function reset() {
-                scale = 1
-                rotation = 0
-                color = "#666666"
-            }
-        }
-
-        Text {
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 30
-            anchors.left: parent.left
-            anchors.leftMargin: 60
-            color: "#999999"
-            font.pixelSize: 12
-            text: qsTr("© 2020 Robin Zhang & Labs")
-        }
-
-    }
-
     FileDialog {
         id: dialogLoadFile
         title: qsTr("Open File")
@@ -746,6 +628,10 @@ ApplicationWindow {
                          slotListView.getVisualItemsIndexList())
             if (callbackAfterSaved !== null) callbackAfterSaved()
         }
+    }
+
+    MwAboutDialog {
+        id: dialogAbout
     }
 
     MwColorPickerDialog {

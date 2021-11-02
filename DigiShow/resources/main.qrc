@@ -4,6 +4,7 @@
         <file>translations/language.jp.qm</file>
         <file>translations/language.es.qm</file>
         <file>images/background_about.png</file>
+        <file>images/icon_attention.png</file>
         <file>images/icon_add_white.png</file>
         <file>images/icon_close_white.png</file>
         <file>images/icon_close_black.png</file>
@@ -96,9 +97,11 @@
         <file>MwEndpointSelectorMPlay.qml</file>
         <file>MwEndpointSelectorPipe.qml</file>
         <file>MwEndpointSelectorLaunch.qml</file>
-        <file>MwSlotOptionsView.qml</file>
+        <file>MwAboutDialog.qml</file>
         <file>MwAppOptionsDialog.qml</file>
         <file>MwInterfacesDialog.qml</file>
+        <file>MwColorPickerDialog.qml</file>
+        <file>MwSlotOptionsView.qml</file>
         <file>MwQuickLaunchView.qml</file>
         <file>MwInterfaceListGrid.qml</file>
         <file>MwInterfaceListItem.qml</file>
@@ -112,7 +115,6 @@
         <file>MwInterfaceListViewScreen.qml</file>
         <file>MwInterfaceListViewPipe.qml</file>
         <file>MwEndpointMoreOptions.qml</file>
-        <file>MwColorPickerDialog.qml</file>
         <file>MwUndoManager.qml</file>
         <file>Splash.qml</file>
     </qresource>

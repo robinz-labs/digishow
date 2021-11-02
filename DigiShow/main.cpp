@@ -6,6 +6,7 @@
 #include <QFileOpenEvent>
 #include <QFontDatabase>
 #include <QFont>
+#include <QScreen>
 #include <QDebug>
 #include "digishow.h"
 #include "digishow_environment.h"
@@ -109,21 +110,28 @@ int main(int argc, char *argv[])
     qmlRegisterType<DigishowSlot>("DigiShow", 1, 0, "DigishowSlot");
     qmlRegisterType<DigishowData>("DigiShow", 1, 0, "DigishowData");
 
-    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
     QCoreApplication::setOrganizationName("robinz");
     QCoreApplication::setOrganizationDomain("robinz.org");
     QCoreApplication::setApplicationName(g_appname);
     QCoreApplication::setApplicationVersion(g_version);
 
+    // load app options
+    QVariantMap appOptions = DigishowEnvironment().getAppOptions();
+
+    // set app attributes
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+
+    bool hidpi = appOptions.value("hidpi", true).toBool();
+    if (hidpi) QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
+    float scale = appOptions.value("scale", 0).toFloat();
+    if (scale > 0) qputenv("QT_SCALE_FACTOR", QString::number(scale).toUtf8());
+
+    // create app
     MyApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
 
     QtWebEngine::initialize();
-
-    // load app options
-    QVariantMap appOptions = DigishowEnvironment().getAppOptions();
 
     // set translation
     QString appLanguage = appOptions.value("language").toString();

@@ -159,8 +159,20 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 radius: 15
                 color: "#333333"
-                opacity: 0.3
+                opacity: 0.5
                 visible: slotListView.listItemCount === 0
+
+                MouseArea {
+                    anchors.fill: parent
+                    onPressed: {
+                        parent.color = Material.accent
+                        buttonInterfaceSettings.colorNormal = Material.accent
+                    }
+                    onReleased: {
+                        parent.color = "#333333"
+                        buttonInterfaceSettings.colorNormal = "#484848"
+                    }
+                }
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
