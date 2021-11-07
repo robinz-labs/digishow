@@ -1,3 +1,20 @@
+/*
+    Copyright 2021 Robin Zhang & Labs
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+ */
+
 #include <ctype.h>
 #include <string.h>
 //#include <unistd.h>
@@ -183,7 +200,7 @@ bool ModbusTcpHandler::writeCoils(uint8_t device_address, uint16_t coil_address,
     cmd[2] = 0x00; // protocol id
     cmd[3] = 0x00;
     cmd[4] = 0x00; // length
-    cmd[5] = 0x08;
+    cmd[5] = uint8_t(lenCmd-6);
     cmd[6] = device_address;
     cmd[7] = 0x0f; // function 15 - Write Coils
     cmd[8] = coil_address >> 8;   // high byte of the register address
@@ -251,10 +268,13 @@ bool ModbusTcpHandler::writeSingleCoil(uint8_t device_address, uint16_t coil_add
 bool ModbusTcpHandler::readHoldingRegisters(uint8_t device_address, uint16_t register_address, uint8_t quantity, uint16_t* pdata)
 {
     // example:
-    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x06, 0x01, 0x03, 0x00, 0x02, 0x00, 0x01}; // command
-    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x05, 0x01, 0x03, 0x02, 0x00, 0x01};       // response
     //  0     1     2     3     4     5     6     7     8     9     10    11
-    //  trans       protocol    len         addr  fc
+
+    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x06, 0x01, 0x03, 0x00, 0x02, 0x00, 0x01}; // command
+    //  trans       protocol    len         unit  fc    address     quantity
+
+    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x05, 0x01, 0x03, 0x02, 0x00, 0x01};       // response
+    //  trans       protocol    len         unit  fc    bytes data
 
     uint8_t cmd[12];
     cmd[0] = 0x00; // transaction id
@@ -292,10 +312,13 @@ bool ModbusTcpHandler::readHoldingRegisters(uint8_t device_address, uint16_t reg
 bool ModbusTcpHandler::readInputRegisters(uint8_t device_address, uint16_t register_address, uint8_t quantity, uint16_t* pdata)
 {
     // example:
-    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x06, 0x01, 0x04, 0x00, 0x00, 0x00, 0x01}; // command
-    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x05, 0x01, 0x04, 0x02, 0x19, 0x00};       // response
     //  0     1     2     3     4     5     6     7     8     9     10    11
-    //  trans       protocol    len         addr  fc
+
+    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x06, 0x01, 0x04, 0x00, 0x00, 0x00, 0x01}; // command
+    //  trans       protocol    len         unit  fc    address     quantity
+
+    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x05, 0x01, 0x04, 0x02, 0x19, 0x00};       // response
+    //  trans       protocol    len         unit  fc    bytes data
 
     uint8_t cmd[12];
     cmd[0] = 0x00; // transaction id
@@ -333,10 +356,13 @@ bool ModbusTcpHandler::readInputRegisters(uint8_t device_address, uint16_t regis
 bool ModbusTcpHandler::writeSingleRegister(uint8_t device_address, uint16_t register_address, uint16_t data)
 {
     // example:
-    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x06, 0x01, 0x06, 0x00, 0x02, 0x00, 0x01}; // command
-    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x06, 0x01, 0x06, 0x00, 0x02, 0x00, 0x01}; // response
     //  0     1     2     3     4     5     6     7     8     9     10    11
-    //  trans       protocol    len         addr  fc
+
+    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x06, 0x01, 0x06, 0x00, 0x02, 0x00, 0x01}; // command
+    //  trans       protocol    len         unit  fc    address     data
+
+    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x06, 0x01, 0x06, 0x00, 0x02, 0x00, 0x01}; // response
+    //  trans       protocol    len         unit  fc    address     data
 
     uint8_t cmd[12];
     cmd[0] = 0x00; // transaction id
@@ -361,5 +387,56 @@ bool ModbusTcpHandler::writeSingleRegister(uint8_t device_address, uint16_t regi
     }
 
     return false;
+}
+
+bool ModbusTcpHandler::writeMultipleRegisters(uint8_t device_address, uint16_t register_address, uint8_t quantity, uint16_t* pdata)
+{
+    // example:
+    //  0     1     2     3     4     5     6     7     8     9     10    11    12    13
+
+    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x0B, 0x01, 0x10, 0x00, 0x01, 0x00, 0x02, 0x04, 0x00, 0x0A, 0x01, 0x02}; // command
+    //  trans       protocol    len         unit  fc    address     quantity    bytes data
+
+    // {0x12, 0x34, 0x00, 0x00, 0x00, 0x06, 0x01, 0x10, 0x00, 0x01, 0x00, 0x02}; // response
+    //  trans       protocol    len         unit  fc    address     quantity
+
+    int lenBytes = quantity*2;
+    int lenCmd = 13+lenBytes;
+    uint8_t *cmd = new uint8_t[lenCmd];
+    cmd[0] = 0x00; // transaction id
+    cmd[1] = 0x00;
+    cmd[2] = 0x00; // protocol id
+    cmd[3] = 0x00;
+    cmd[4] = (lenCmd-6) >> 8; // length
+    cmd[5] = (lenCmd-6) & 0xff;
+    cmd[6] = device_address;
+    cmd[7] = 0x10; // function 16 - Write Multiple Registers
+    cmd[8] = register_address >> 8;   // high byte of the register address
+    cmd[9] = register_address & 0xff; // low  byte of the register address
+    cmd[10]= 0x00;
+    cmd[11]= quantity; // quantity of registers
+    cmd[12]= lenBytes; // length of bytes
+
+    // dynamic data
+    int i = 12;
+    for (int n=0 ; n<quantity ; n++) {
+        i++; cmd[i] = pdata[n] >> 8;
+        i++; cmd[i] = pdata[n] & 0xff;
+    }
+
+    // send command and receive response
+    int lenRsp = 12;
+    uint8_t *rsp = new uint8_t[lenRsp];
+    bool done = false;
+    if (_tcp->sendAndReceiveBytes((const char*)cmd, lenCmd, (char*)rsp, lenRsp, NULL, 0.6, NULL) == lenRsp &&
+        memcmp(cmd+6,rsp+6,6)==0) {
+
+        done = true;
+    }
+
+    delete [] cmd;
+    delete [] rsp;
+    return done;
+
 }
 

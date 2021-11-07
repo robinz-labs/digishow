@@ -52,7 +52,7 @@ Dialog {
         anchors.top: parent.top
         anchors.topMargin: 60
         anchors.left: parent.left
-        anchors.leftMargin: 60
+        anchors.leftMargin: 45
         color: Material.accent
         font.bold: false
         font.pixelSize: 18
@@ -63,7 +63,7 @@ Dialog {
         anchors.top: parent.top
         anchors.topMargin: 110
         anchors.left: parent.left
-        anchors.leftMargin: 60
+        anchors.leftMargin: 45
         color: "#999999"
         lineHeight: 1.5
         font.pixelSize: 14
@@ -78,7 +78,7 @@ Dialog {
         anchors.top: parent.top
         anchors.topMargin: 300
         anchors.left: parent.left
-        anchors.leftMargin: 60
+        anchors.leftMargin: 45
         color: "#cccccc"
         lineHeight: 1.5
         verticalAlignment: Text.AlignVCenter
@@ -128,10 +128,10 @@ Dialog {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 30
         anchors.left: parent.left
-        anchors.leftMargin: 60
+        anchors.leftMargin: 45
         color: "#999999"
         font.pixelSize: 12
-        text: qsTr("© 2020 Robin Zhang & Labs")
+        text: qsTr("© 2020-2021 Robin Zhang & Labs")
     }
 
 }
