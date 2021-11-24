@@ -72,6 +72,13 @@
   + bookmark support
   ! windows compatibility issue fixes
 
+  v1.2 20211122
+  stable release
+  + allows new app instances for separate digishow project runtimes
+  + allows to select a block of link items using the shift key
+  ! fixed Arduino/RIOC servo initial positioning issue
+  + display scaling support
+
  */
 
 #ifndef DIGISHOW_H
