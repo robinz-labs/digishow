@@ -113,20 +113,7 @@ Item {
         if (menuMidiNote.count === 0) {
             items = []
             for (n=127 ; n>=0 ; n--) {
-                var noteName = digishow.getMidiNoteName(n)
-                if (noteName === "C3")
-                    noteName += "  ( " + qsTr("Mid C") + " )";
-                else if (noteName === "C1")
-                    noteName += "  ( " + qsTr("Kick") + " )";
-                else if (noteName === "D1")
-                    noteName += "  ( " + qsTr("Snare") + " )";
-                else if (noteName === "D#1")
-                    noteName += "  ( " + qsTr("Clap") + " )";
-                else if (noteName === "F#1")
-                    noteName += "  ( " + qsTr("Hat Closed") + " )";
-                else if (noteName === "A#1")
-                    noteName += "  ( " + qsTr("Hat Open") + " )";
-
+                var noteName = digishow.getMidiNoteName(n, true)
                 items.push({ text: noteName, value: n })
             }
             menuMidiNote.optionItems = items

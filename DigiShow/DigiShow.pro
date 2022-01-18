@@ -14,6 +14,7 @@ SOURCES += \
         $$PWD/shared/rioc_controller.cpp \
         app_utilities.cpp \
         dgs_artnet_interface.cpp \
+        dgs_osc_interface.cpp \
         dgs_dmx_interface.cpp \
         dgs_midi_interface.cpp \
         dgs_modbus_interface.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     app_common.h \
     app_utilities.h \
     dgs_artnet_interface.h \
+    dgs_osc_interface.h \
     dgs_dmx_interface.h \
     dgs_midi_interface.h \
     dgs_modbus_interface.h \
@@ -108,6 +110,9 @@ TRANSLATIONS = \
     $$PWD/resources/translations/language.zh_CN.ts \
     $$PWD/resources/translations/language.jp.ts \
     $$PWD/resources/translations/language.es.ts
+
+# OSC library
+include(osc/osc.pri)
 
 # experimental code
 #include(digishow_experimental/experimental.pri)

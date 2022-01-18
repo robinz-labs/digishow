@@ -25,6 +25,7 @@
 #include "dgs_hue_interface.h"
 #include "dgs_dmx_interface.h"
 #include "dgs_artnet_interface.h"
+#include "dgs_osc_interface.h"
 #include "dgs_screen_interface.h"
 #include "dgs_pipe_interface.h"
 #include "dgs_launch_interface.h"
@@ -125,6 +126,7 @@ void DigishowApp::importData(const QVariantMap & data)
         else if (interfaceType=="hue")    interface = new DgsHueInterface(this);
         else if (interfaceType=="dmx")    interface = new DgsDmxInterface(this);
         else if (interfaceType=="artnet") interface = new DgsArtnetInterface(this);
+        else if (interfaceType=="osc")    interface = new DgsOscInterface(this);
         else if (interfaceType=="screen") interface = new DgsScreenInterface(this);
         else if (interfaceType=="pipe")   interface = new DgsPipeInterface(this);
         else if (interfaceType=="launch") interface = new DgsLaunchInterface(this);
@@ -446,6 +448,12 @@ int DigishowApp::newInterface(const QString &interfaceType)
         interface = new DgsDmxInterface(this);
         interface->setInterfaceOption("mode", "enttec");
         //interface->setInterfaceOption("outputInterval", 20);
+
+    } else if (interfaceType=="osc") {
+
+        interface = new DgsOscInterface(this);
+        interface->setInterfaceOption("mode", "input");
+        interface->setInterfaceOption("udpPort", 10023);
 
     } else if (interfaceType=="artnet") {
 

@@ -114,6 +114,8 @@ QVariantMap DigishowInterface::getEndpointInfoAt(int index)
         info["ready"   ] = m_endpointInfoList[index].ready;
         info["initial" ] = m_endpointInfoList[index].initial;
 
+        info["address" ] = m_endpointInfoList[index].address;
+
         info["labelEPT"] = m_endpointInfoList[index].labelEPT;
         info["labelEPI"] = m_endpointInfoList[index].labelEPI;
     }
@@ -177,6 +179,7 @@ void DigishowInterface::updateMetadata()
     else if (typeName == "hue"   ) m_interfaceInfo.type = INTERFACE_HUE;
     else if (typeName == "dmx"   ) m_interfaceInfo.type = INTERFACE_DMX;
     else if (typeName == "artnet") m_interfaceInfo.type = INTERFACE_ARTNET;
+    else if (typeName == "osc"   ) m_interfaceInfo.type = INTERFACE_OSC;
     else if (typeName == "screen") m_interfaceInfo.type = INTERFACE_SCREEN;
     else if (typeName == "aplay" ) m_interfaceInfo.type = INTERFACE_APLAY;
     else if (typeName == "mplay" ) m_interfaceInfo.type = INTERFACE_MPLAY;
@@ -213,6 +216,10 @@ void DigishowInterface::updateMetadata()
         if      (modeName == "input"       ) m_interfaceInfo.mode = INTERFACE_ARTNET_INPUT;
         else if (modeName == "output"      ) m_interfaceInfo.mode = INTERFACE_ARTNET_OUTPUT;
         break;
+    case INTERFACE_OSC:
+        if      (modeName == "input"       ) m_interfaceInfo.mode = INTERFACE_OSC_INPUT;
+        else if (modeName == "output"      ) m_interfaceInfo.mode = INTERFACE_OSC_OUTPUT;
+        break;
     case INTERFACE_SCREEN:
         if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_SCREEN_LOCAL;
         else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_SCREEN_REMOTE;
@@ -240,6 +247,7 @@ void DigishowInterface::updateMetadata()
         m_interfaceInfo.input = false;
     else if (m_interfaceInfo.mode==INTERFACE_MIDI_OUTPUT ||
              m_interfaceInfo.mode==INTERFACE_ARTNET_OUTPUT ||
+             m_interfaceInfo.mode==INTERFACE_OSC_OUTPUT ||
              m_interfaceInfo.type==INTERFACE_HUE ||
              m_interfaceInfo.type==INTERFACE_DMX ||
              m_interfaceInfo.type==INTERFACE_SCREEN ||
@@ -254,7 +262,8 @@ void DigishowInterface::updateMetadata()
     if (m_interfaceInfo.mode==0)
         m_interfaceInfo.output = false;
     else if (m_interfaceInfo.mode==INTERFACE_MIDI_INPUT ||
-             m_interfaceInfo.mode==INTERFACE_ARTNET_INPUT)
+             m_interfaceInfo.mode==INTERFACE_ARTNET_INPUT ||
+             m_interfaceInfo.mode==INTERFACE_OSC_INPUT)
         m_interfaceInfo.output = false;
     else
         m_interfaceInfo.output = true;
@@ -287,6 +296,10 @@ void DigishowInterface::updateMetadata()
         break;
     case INTERFACE_ARTNET:
         labelType = tr("ArtNet");
+        labelIdentity = m_interfaceOptions.value("udpHost").toString();
+        break;
+    case INTERFACE_OSC:
+        labelType = tr("OSC");
         labelIdentity = m_interfaceOptions.value("udpHost").toString();
         break;
     case INTERFACE_SCREEN:
@@ -332,6 +345,7 @@ void DigishowInterface::updateMetadata()
         endpointInfo.input   = false;
         endpointInfo.range   = m_endpointOptionsList[n].value("range"  ).toInt();
         endpointInfo.initial = m_endpointOptionsList[n].value("initial", -1).toDouble();
+        endpointInfo.address = m_endpointOptionsList[n].value("address").toString();
 
         // set endpoint type
         typeName = m_endpointOptionsList[n].value("type").toString();
@@ -370,6 +384,11 @@ void DigishowInterface::updateMetadata()
             break;
         case INTERFACE_ARTNET:
             if      (typeName == "dimmer"     ) endpointInfo.type = ENDPOINT_ARTNET_DIMMER;
+            break;
+        case INTERFACE_OSC:
+            if      (typeName == "int"        ) endpointInfo.type = ENDPOINT_OSC_INT;
+            else if (typeName == "float"      ) endpointInfo.type = ENDPOINT_OSC_FLOAT;
+            else if (typeName == "bool"       ) endpointInfo.type = ENDPOINT_OSC_BOOL;
             break;
         case INTERFACE_SCREEN:
             if      (typeName == "light"      ) endpointInfo.type = ENDPOINT_SCREEN_LIGHT;
@@ -547,6 +566,29 @@ void DigishowInterface::updateMetadata()
             endpointInfo.range  = 255;
             endpointInfo.labelEPT = tr("ArtNet");
             endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(endpointInfo.channel + 1);
+            break;
+        case ENDPOINT_OSC_INT:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_OSC_OUTPUT);
+            endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_OSC_INPUT);
+            endpointInfo.range  = 0x7FFFFFFF;
+            endpointInfo.labelEPT = tr("OSC");
+            endpointInfo.labelEPI = tr("Integer") + QString(" %1").arg(endpointInfo.channel + 1);
+            break;
+        case ENDPOINT_OSC_FLOAT:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_OSC_OUTPUT);
+            endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_OSC_INPUT);
+            endpointInfo.range  = 1000000;
+            endpointInfo.labelEPT = tr("OSC");
+            endpointInfo.labelEPI = tr("Float") + QString(" %1").arg(endpointInfo.channel + 1);
+            break;
+        case ENDPOINT_OSC_BOOL:
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_OSC_OUTPUT);
+            endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_OSC_INPUT);
+            endpointInfo.labelEPT = tr("OSC");
+            endpointInfo.labelEPI = tr("Bool") + QString(" %1").arg(endpointInfo.channel + 1);
             break;
         case ENDPOINT_SCREEN_LIGHT:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;

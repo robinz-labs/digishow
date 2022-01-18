@@ -115,6 +115,46 @@ Dialog {
         }
 
         Rectangle {
+            id: rectOsc
+            color: "transparent"
+
+            Label {
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                color: Material.accent
+                font.bold: true
+                font.pixelSize: 16
+                text: qsTr("OSC Interfaces")
+            }
+
+            Label {
+                id: labelOscInfo
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.right: parent.right
+                anchors.rightMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 40
+                wrapMode: Label.Wrap
+                lineHeight: 1.3
+                text: qsTr("OSC interface is typically for connecting your show facilities, such as computers running VJ programs, through an IP network.")
+            }
+
+            MwInterfaceListViewOsc {
+                id: interfaceListViewOsc
+                anchors.top: labelOscInfo.bottom
+                anchors.topMargin: 20
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+            }
+
+        }
+
+        Rectangle {
             id: rectArtnet
             color: "transparent"
 
@@ -379,6 +419,14 @@ Dialog {
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
+            text: qsTr("OSC")
+            font.capitalization: Font.MixedCase
+            icon.source: "qrc:///images/icon_interface_osc_white.png"
+            icon.width: 48
+            icon.height: 48
+            display: AbstractButton.TextUnderIcon
+        }
+        TabButton {
             text: qsTr("ArtNet")
             font.capitalization: Font.MixedCase
             icon.source: "qrc:///images/icon_interface_artnet_white.png"
@@ -454,6 +502,7 @@ Dialog {
 
         interfaceListViewMidi.refresh()
         interfaceListViewDmx.refresh()
+        interfaceListViewOsc.refresh()
         interfaceListViewArtnet.refresh()
         interfaceListViewModbus.refresh()
         interfaceListViewRioc.refresh()

@@ -34,6 +34,9 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointHueGroup          : return CColor.Ocean
             case DigishowEnvironment.EndpointDmxDimmer         : return CColor.Aqua
             case DigishowEnvironment.EndpointArtnetDimmer      : return CColor.Aqua
+            case DigishowEnvironment.EndpointOscInt            : return CColor.Aqua
+            case DigishowEnvironment.EndpointOscFloat          : return CColor.Aqua
+            case DigishowEnvironment.EndpointOscBool           : return CColor.RosePink
             case DigishowEnvironment.EndpointScreenLight       : return CColor.RobinEgg
             case DigishowEnvironment.EndpointScreenMedia       : return sig === DigishowEnvironment.SignalBinary ?
                                                                         CColor.HotPink : CColor.Iris

@@ -36,6 +36,7 @@
         <file>images/icon_invert_white.png</file>
         <file>images/icon_goto_white.png</file>
         <file>images/icon_interface_dmx_white.png</file>
+        <file>images/icon_interface_osc_white.png</file>
         <file>images/icon_interface_artnet_white.png</file>
         <file>images/icon_interface_hue_white.png</file>
         <file>images/icon_interface_midi_white.png</file>
@@ -47,6 +48,7 @@
         <file>images/icon_interface_pipe_white.png</file>
         <file>images/icon_interface_launch_white.png</file>
         <file>images/icon_interface_dmx_white@2x.png</file>
+        <file>images/icon_interface_osc_white@2x.png</file>
         <file>images/icon_interface_artnet_white@2x.png</file>
         <file>images/icon_interface_hue_white@2x.png</file>
         <file>images/icon_interface_midi_white@2x.png</file>
@@ -88,6 +90,7 @@
         <file>MwEndpointSelector.qml</file>
         <file>MwEndpointSelectorMidi.qml</file>
         <file>MwEndpointSelectorDmx.qml</file>
+        <file>MwEndpointSelectorOsc.qml</file>
         <file>MwEndpointSelectorArtnet.qml</file>
         <file>MwEndpointSelectorModbus.qml</file>
         <file>MwEndpointSelectorRioc.qml</file>
@@ -108,6 +111,7 @@
         <file>MwInterfaceListView.qml</file>
         <file>MwInterfaceListViewMidi.qml</file>
         <file>MwInterfaceListViewDmx.qml</file>
+        <file>MwInterfaceListViewOsc.qml</file>
         <file>MwInterfaceListViewArtnet.qml</file>
         <file>MwInterfaceListViewModbus.qml</file>
         <file>MwInterfaceListViewRioc.qml</file>

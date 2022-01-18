@@ -88,6 +88,7 @@ Item {
             onOptionSelected: {
                 itemMidi  .visible = false
                 itemDmx   .visible = false
+                itemOsc   .visible = false
                 itemArtnet.visible = false
                 itemModbus.visible = false
                 itemRioc  .visible = false
@@ -107,6 +108,7 @@ Item {
                     switch (config["interfaceInfo"]["type"]) {
                     case DigishowEnvironment.InterfaceMidi:   itemMidi  .visible = true; itemMidi  .refresh(); break
                     case DigishowEnvironment.InterfaceDmx:    itemDmx   .visible = true; itemDmx   .refresh(); break
+                    case DigishowEnvironment.InterfaceOsc:    itemOsc   .visible = true; itemOsc   .refresh(); break
                     case DigishowEnvironment.InterfaceArtnet: itemArtnet.visible = true; itemArtnet.refresh(); break
                     case DigishowEnvironment.InterfaceModbus: itemModbus.visible = true; itemModbus.refresh(); break
                     case DigishowEnvironment.InterfaceRioc:   itemRioc  .visible = true; itemRioc  .refresh(); break
@@ -166,6 +168,18 @@ Item {
         id: itemDmx
 
         anchors.left: buttonInterface.left
+        anchors.top: buttonInterface.bottom
+        anchors.topMargin: 10
+        visible: false
+    }
+
+    MwEndpointSelectorOsc {
+
+        id: itemOsc
+
+        anchors.left: buttonInterface.left
+        anchors.right: parent.right
+        anchors.rightMargin: 16
         anchors.top: buttonInterface.bottom
         anchors.topMargin: 10
         visible: false
@@ -358,6 +372,15 @@ Item {
                 //itemDmx.menuChannel.selectOption(endpointInfo["channel"])
                 itemDmx.spinChannel.value = endpointInfo["channel"] + 1
 
+            } else if (type === DigishowEnvironment.InterfaceOsc) {
+
+                itemOsc.spinChannel.value = endpointInfo["channel"] + 1
+                itemOsc.menuType.selectOption(endpointInfo["type"])
+
+                var oscAddress = endpointInfo["address"]
+                if (oscAddress === undefined || oscAddress === "") oscAddress = "/osc/address"
+                itemOsc.textAddress.text = oscAddress
+
             } else if (type === DigishowEnvironment.InterfaceArtnet) {
 
                 itemArtnet.spinUnit.value = endpointInfo["unit"]
@@ -498,6 +521,12 @@ Item {
             newEndpointOptions["channel"] = itemDmx.spinChannel.value - 1
 
             needRestartInterface = true
+
+        } else if (type === DigishowEnvironment.InterfaceOsc) {
+
+            newEndpointOptions["channel"] = itemOsc.spinChannel.value - 1
+            newEndpointOptions["type"] = itemOsc.menuType.selectedItemTag
+            newEndpointOptions["address"] = itemOsc.textAddress.text.trim()
 
         } else if (type === DigishowEnvironment.InterfaceArtnet) {
 

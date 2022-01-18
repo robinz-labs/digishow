@@ -694,12 +694,37 @@ QString DigishowEnvironment::getMidiControlName(int control)
     return "-";
 }
 
-QString DigishowEnvironment::getMidiNoteName(int noteNumber)
+QString DigishowEnvironment::getMidiNoteName(int noteNumber, bool longName)
 {
     static QString notes[] = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
     int octave = noteNumber / 12;   // 0 ~
     int semitone = noteNumber % 12; // 0 ~ 11
-    return notes[semitone] + QString::number(octave-2);
+    QString note = notes[semitone] + QString::number(octave-2);
+
+    QString name;
+    if (longName) {
+        switch (noteNumber) {
+        case 60: name += tr("Mid C"       ); break;
+        case 36: name += tr("Kick"        ); break;
+        case 37: name += tr("Side Stick"  ); break;
+        case 38: name += tr("Snare 1"     ); break;
+        case 39: name += tr("Clap"        ); break;
+        case 40: name += tr("Snare 2"     ); break;
+        case 41: name += tr("Low Tom 2"   ); break;
+        case 42: name += tr("Closed Hat"  ); break;
+        case 43: name += tr("Low Tom 1"   ); break;
+        case 44: name += tr("Pedal Hat"   ); break;
+        case 45: name += tr("Mid Tom 2"   ); break;
+        case 46: name += tr("Open Hat"    ); break;
+        case 47: name += tr("Mid Tom 2"   ); break;
+        case 48: name += tr("High Tom 2"  ); break;
+        case 49: name += tr("Crash"       ); break;
+        case 50: name += tr("High Tom 1"  ); break;
+        case 51: name += tr("Ride"        ); break;
+        }
+    }
+
+    return note + (name.isEmpty() ? "" : " ( " + name +" )") ;
 }
 
 QString DigishowEnvironment::getRiocPinName(int mode, int pinNumber)

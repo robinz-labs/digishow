@@ -37,6 +37,7 @@
 #define INTERFACE_HUE          104
 #define INTERFACE_DMX          105
 #define INTERFACE_ARTNET       106
+#define INTERFACE_OSC          107
 #define INTERFACE_SCREEN       801
 #define INTERFACE_APLAY        802
 #define INTERFACE_MPLAY        803
@@ -58,6 +59,8 @@
 #define INTERFACE_DMX_ENTTEC_OPEN   1052
 #define INTERFACE_ARTNET_INPUT      1061
 #define INTERFACE_ARTNET_OUTPUT     1062
+#define INTERFACE_OSC_INPUT         1071
+#define INTERFACE_OSC_OUTPUT        1072
 #define INTERFACE_SCREEN_LOCAL      8011
 #define INTERFACE_SCREEN_REMOTE     8012
 #define INTERFACE_APLAY_LOCAL       8021
@@ -93,6 +96,9 @@
 #define ENDPOINT_HUE_GROUP          10402
 #define ENDPOINT_DMX_DIMMER         10501
 #define ENDPOINT_ARTNET_DIMMER      10601
+#define ENDPOINT_OSC_INT            10701
+#define ENDPOINT_OSC_FLOAT          10702
+#define ENDPOINT_OSC_BOOL           10703
 #define ENDPOINT_SCREEN_LIGHT       80101
 #define ENDPOINT_SCREEN_MEDIA       80102
 #define ENDPOINT_SCREEN_CANVAS      80103
@@ -184,6 +190,8 @@ typedef struct dgsEndpointInfo {
     bool ready;         // is ready to work with the endpoint (optional)
     double initial;     // initial singal value rate 0 ~ 1.0 (optional)
 
+    QString address;    // address string, like url or path
+
     QString labelEPT;   // a label describes the endpoint
     QString labelEPI;   // EPT is endpoint type, EPI is endpoint identity
 
@@ -203,6 +211,8 @@ typedef struct dgsEndpointInfo {
       range(0),
       ready(false),
       initial(-1),
+
+      address(""),
 
       labelEPT(""),
       labelEPI("")

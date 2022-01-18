@@ -37,6 +37,7 @@ public:
         InterfaceHue    = INTERFACE_HUE,
         InterfaceDmx    = INTERFACE_DMX,
         InterfaceArtnet = INTERFACE_ARTNET,
+        InterfaceOsc    = INTERFACE_OSC,
         InterfaceScreen = INTERFACE_SCREEN,
         InterfaceAPlay  = INTERFACE_APLAY,
         InterfaceMPlay  = INTERFACE_MPLAY,
@@ -59,6 +60,8 @@ public:
         InterfaceDmxEnttecOpen    = INTERFACE_DMX_ENTTEC_OPEN,
         InterfaceArtnetInput      = INTERFACE_ARTNET_INPUT,
         InterfaceArtnetOutput     = INTERFACE_ARTNET_OUTPUT,
+        InterfaceOscInput         = INTERFACE_OSC_INPUT,
+        InterfaceOscOutput        = INTERFACE_OSC_OUTPUT,
         InterfaceScreenLocal      = INTERFACE_SCREEN_LOCAL,
         InterfaceScreenRemote     = INTERFACE_SCREEN_REMOTE,
         InterfaceAPlayLocal       = INTERFACE_APLAY_LOCAL,
@@ -96,6 +99,9 @@ public:
         EndpointHueGroup          = ENDPOINT_HUE_GROUP,
         EndpointDmxDimmer         = ENDPOINT_DMX_DIMMER,
         EndpointArtnetDimmer      = ENDPOINT_ARTNET_DIMMER,
+        EndpointOscInt            = ENDPOINT_OSC_INT,
+        EndpointOscFloat          = ENDPOINT_OSC_FLOAT,
+        EndpointOscBool           = ENDPOINT_OSC_BOOL,
         EndpointScreenLight       = ENDPOINT_SCREEN_LIGHT,
         EndpointScreenMedia       = ENDPOINT_SCREEN_MEDIA,
         EndpointScreenCanvas      = ENDPOINT_SCREEN_CANVAS,
@@ -207,7 +213,7 @@ public:
     Q_INVOKABLE static QString getLightControlName(int control, bool shortName = false);
     Q_INVOKABLE static QString getMediaControlName(int control, bool forScreen = false);
     Q_INVOKABLE static QString getMidiControlName(int control);
-    Q_INVOKABLE static QString getMidiNoteName(int noteNumber);
+    Q_INVOKABLE static QString getMidiNoteName(int noteNumber, bool longName = false);
     Q_INVOKABLE static QString getRiocPinName(int mode, int pinNumber);
 
     Q_INVOKABLE static QString getScreenMediaType(const QString &mediaUrl);

@@ -67,6 +67,7 @@ DigiShow is open-source. If you would like to rebuild this software using the so
 Please use qmake tool or QtCreator app to build executables from the source code, and confirm these library dependencies are required: 
 - Qt 5.12 or higher http://www.qt.io
 - RtMidi 4.0.0 http://www.music.mcgill.ca/~gary/rtmidi/
+- OSC library for C++ using Qt https://github.com/MugenSAS/osc-cpp-qt
 
 The source code can be compiled for target platforms compatible with: 
 - macOS 10.13 or higher

@@ -358,7 +358,7 @@ Item {
                             anchors.right: parent.right
                             anchors.rightMargin: 4
                             color: "#dddddd"
-                            text: model.epInAvailable ? model.epInValue : "- -"
+                            text: model.epInAvailable ? model.epInValue.toString() : "- -"
                             font.pixelSize: 9
                             font.bold: false
                         }
@@ -506,7 +506,7 @@ Item {
                             anchors.right: parent.right
                             anchors.rightMargin: 4
                             color: "#dddddd"
-                            text: model.epOutAvailable ? model.epOutValue : "- -"
+                            text: model.epOutAvailable ? model.epOutValue.toString() : "- -"
                             font.pixelSize: 9
                             font.bold: false
                         }
