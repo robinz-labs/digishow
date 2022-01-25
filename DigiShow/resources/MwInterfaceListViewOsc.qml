@@ -62,12 +62,12 @@ MwInterfaceListView {
                             if (options["mode"] === "input") {
 
                                 options["udpHost"] = undefined
-                                options["udpPort"] = 10023
+                                options["udpPort"] = 8000
 
                             } else if (options["mode"] === "output") {
 
                                 options["udpHost"] = "127.0.0.1"
-                                options["udpPort"] = 10023
+                                options["udpPort"] = 9000
                             }
 
                             updateInterface(model.index, options)

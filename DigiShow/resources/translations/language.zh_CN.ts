@@ -2012,8 +2012,8 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="142"/>
-        <source>OSC interface is typically for connecting your show facilities, such as computers running VJ programs, through an IP network.</source>
-        <translation>OSC 接口通常用于通过 IP 网络连接你的演出设施，例如运行 VJ 程序的电脑。</translation>
+        <source>OSC interface is typically for connecting your multimedia hardware or software, such as some VJ / DJ apps, through an IP network.</source>
+        <translation>OSC 接口通常用于通过 IP 网络连接你的多媒体硬件或软件，例如一些 VJ / DJ 应用程序。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="339"/>

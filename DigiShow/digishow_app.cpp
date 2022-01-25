@@ -453,7 +453,7 @@ int DigishowApp::newInterface(const QString &interfaceType)
 
         interface = new DgsOscInterface(this);
         interface->setInterfaceOption("mode", "input");
-        interface->setInterfaceOption("udpPort", 10023);
+        interface->setInterfaceOption("udpPort", 8000);
 
     } else if (interfaceType=="artnet") {
 

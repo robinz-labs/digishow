@@ -1962,8 +1962,8 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="142"/>
-        <source>OSC interface is typically for connecting your show facilities, such as computers running VJ programs, through an IP network.</source>
-        <translation>OSCインターフェイスは通常、IPネットワークを介してVJプログラムを実行しているコンピューターなどのショー施設を接続するためのものです。</translation>
+        <source>OSC interface is typically for connecting your multimedia hardware or software, such as some VJ / DJ apps, through an IP network.</source>
+        <translation>OSCインターフェイスは通常、IPネットワークを介してマルチメディアハードウェアまたはソフトウェア（一部のVJ/DJアプリなど）を接続するためのものです。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="169"/>

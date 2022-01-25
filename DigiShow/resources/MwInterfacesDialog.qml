@@ -139,7 +139,7 @@ Dialog {
                 anchors.topMargin: 40
                 wrapMode: Label.Wrap
                 lineHeight: 1.3
-                text: qsTr("OSC interface is typically for connecting your show facilities, such as computers running VJ programs, through an IP network.")
+                text: qsTr("OSC interface is typically for connecting your multimedia hardware or software, such as some VJ / DJ apps, through an IP network.")
             }
 
             MwInterfaceListViewOsc {

@@ -21,7 +21,7 @@
 #include "osc/reader/OscReader.h"
 #include "osc/reader/OscMessage.h"
 
-#define OSC_UDP_PORT 10023
+#define OSC_UDP_PORT 8000
 #define OSC_OUT_FREQ 50
 
 DgsOscInterface::DgsOscInterface(QObject *parent) : DigishowInterface(parent)
