@@ -65,10 +65,15 @@ public:
 
     Q_INVOKABLE bool isInterfaceOpened() { return m_isInterfaceOpened; }
 
+    bool needReceiveRawData() { return m_needReceiveRawData; }
+    void setNeedReceiveRawData(bool needReceiveRawData) { m_needReceiveRawData = needReceiveRawData; }
+
 signals:
 
     void dataReceived(int endpointIndex, dgsSignalData dataIn);
     void dataPrepared(int endpointIndex, dgsSignalData dataOut);
+
+    void rawDataReceived(const QVariantMap &rawData);
 
 public slots:
 
@@ -83,6 +88,7 @@ protected:
     QList<dgsEndpointInfo> m_endpointInfoList;
 
     bool m_isInterfaceOpened;
+    bool m_needReceiveRawData;
 
     // initialize endpoint signal
     int initEndpointValue(int endpointIndex);

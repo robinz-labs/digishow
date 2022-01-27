@@ -14,6 +14,7 @@ Item {
     property bool forInput: true
     property bool forOutput: true
     property bool isModified: true
+    property bool isDetecting: false
 
     property string interfaceType: ""
 
@@ -22,6 +23,15 @@ Item {
     onInterfaceIndexChanged: {
         // reset interface type when clear interface index
         if (interfaceIndex === -1) interfaceType = ""
+    }
+
+    onIsDetectingChanged: {
+        if (!forInput) return
+        if (interfaceType === "midi") {
+            itemMidi.visible = !isDetecting
+        } else if (interfaceType === "osc") {
+            itemOsc.visible = !isDetecting
+        }
     }
 
     Image {
@@ -103,6 +113,8 @@ Item {
                 moreOptions.enableOptions({})
                 buttonMoreOptions.visible = false
 
+                interfaceType = ""
+
                 var config = getSelectedInterfaceConfiguration()
                 if (config !== undefined) {
                     switch (config["interfaceInfo"]["type"]) {
@@ -119,9 +131,10 @@ Item {
                     case DigishowEnvironment.InterfacePipe:   itemPipe  .visible = true; itemPipe  .refresh(); break
                     case DigishowEnvironment.InterfaceLaunch: itemLaunch.visible = true; itemLaunch.refresh(); break
                     }
-
                     interfaceType = config["interfaceOptions"]["type"];
                 }
+
+                if (forInput) stopDetection()
             }
 
             function getSelectedInterfaceConfiguration() {
@@ -129,6 +142,27 @@ Item {
                 if (interfaceIndex !== -1) return digishow.getInterfaceConfiguration(interfaceIndex)
                 return undefined
             }
+        }
+    }
+
+    CButton {
+        id: buttonDetect
+        width: 46
+        height: 20
+        anchors.right: buttonInterface.right
+        anchors.rightMargin: 16
+        anchors.verticalCenter: buttonInterface.verticalCenter
+        label.font.bold: false
+        label.font.pixelSize: 8
+        label.text: qsTr("DETECT")
+        box.radius: 3
+        colorNormal: isDetecting ? "#990000" : "transparent"
+        visible: app.isRunning && forInput && (interfaceType === "midi" || interfaceType === "osc")
+        onClicked: {
+            if (isDetecting)
+                stopDetection()
+            else
+                startDetection()
         }
     }
 
@@ -296,7 +330,7 @@ Item {
         label.text: qsTr("Apply")
         box.radius: 3
         colorNormal: Material.accent
-        visible: isModified
+        visible: isModified && !isDetecting
 
         onClicked: {
             if (menuInterface.selectedItemValue !== -1)
@@ -308,6 +342,7 @@ Item {
 
     Component.onCompleted: {
 
+        digishow.interfaceDataInputDetected.connect(onInterfaceDataInputDetected)
     }
 
     function refresh() {
@@ -686,5 +721,60 @@ Item {
         interfaceIndex = -1
         endpointIndex = -1
         endpointUpdated() // emit signal
+    }
+
+    function startDetection() {
+
+        var interfaceIndex = menuInterface.selectedItemValue
+        if (interfaceIndex !== -1) digishow.startInterfaceDataInputDetection(interfaceIndex)
+        isDetecting = true
+    }
+
+    function stopDetection() {
+
+        var interfaceIndex = menuInterface.selectedItemValue
+        if (interfaceIndex !== -1) digishow.stopInterfaceDataInputDetection(interfaceIndex)
+        isDetecting = false
+    }
+
+    function onInterfaceDataInputDetected(interfaceIndex, rawData) {
+
+        console.log("InterfaceDataInputDetected", interfaceIndex, JSON.stringify(rawData))
+
+        if (interfaceIndex === menuInterface.selectedItemValue) {
+
+            if (interfaceType === "midi") {
+
+                var event = rawData["event"]
+                if (event === "note_on" || event === "note_off") {
+
+                    itemMidi.menuType.selectOptionWithTag("note")
+                    itemMidi.menuNote.selectOption(rawData["note"])
+
+                } else if (event === "control_change") {
+
+                    itemMidi.menuType.selectOptionWithTag("control")
+                    itemMidi.menuControl.selectOption(rawData["control"])
+
+                } else if (event === "program_change") {
+
+                    itemMidi.menuType.selectOptionWithTag("program")
+
+                }
+                itemMidi.menuChannel.selectOption(rawData["channel"])
+
+            } else if (interfaceType === "osc") {
+
+                itemOsc.textAddress.text = rawData["address"]
+
+                var numValues = rawData["values"].length
+                if (numValues > 0) {
+                    itemOsc.spinChannel.value = numValues-1
+                    itemOsc.menuType.selectOptionWithTag(rawData["values"][numValues-1]["tag"])
+                }
+            }
+        }
+
+        stopDetection()
     }
 }

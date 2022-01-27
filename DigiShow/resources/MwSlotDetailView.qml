@@ -40,7 +40,7 @@ Item {
             anchors.right: parent.right
             anchors.margins: 20
             color: "#222222"
-            border.color: "#333333"
+            border.color: epInSelector.isDetecting ? "#aa0000" : "#333333"
             border.width: 1
             radius: 3
 

@@ -621,6 +621,47 @@ int DigishowEnvironment::makeSlot(const QVariantMap &slotOptions,
     return newSlotIndex;
 }
 
+bool DigishowEnvironment::startInterfaceDataInputDetection(int interfaceIndex)
+{
+    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
+    if (interface == nullptr) return false;
+    if (interface->needReceiveRawData()) return true;
+
+    //connect(interface, SIGNAL(rawDataReceived(QVaribleMap)), this, SLOT(onRawDataReceived(QVaribleMap)));
+    connect(interface, &DigishowInterface::rawDataReceived, this, &DigishowEnvironment::onRawDataReceived);
+    interface->setNeedReceiveRawData(true);
+    return true;
+}
+
+bool DigishowEnvironment::stopInterfaceDataInputDetection(int interfaceIndex)
+{
+    DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
+    if (interface == nullptr) return false;
+
+    interface->setNeedReceiveRawData(false);
+    //disconnect(interface, SIGNAL(rawDataReceived(QVaribleMap)), this, nullptr);
+    disconnect(interface, &DigishowInterface::rawDataReceived, this, nullptr);
+    return true;
+}
+
+void DigishowEnvironment::onRawDataReceived(const QVariantMap &rawData)
+{
+    QObject* obj = sender();
+    if (obj == nullptr) return;
+
+    DigishowInterface* interface = qobject_cast<DigishowInterface*>(obj);
+
+    for (int i=0 ; i<g_app->interfaceCount() ; i++) {
+        if (g_app->interfaceAt(i) == interface) {
+
+            //qDebug() << "interfaceDataInputDetected" << i << rawData;
+            emit interfaceDataInputDetected(i, rawData);
+            stopInterfaceDataInputDetection(i);
+            break;
+        }
+    }
+}
+
 QVariantMap DigishowEnvironment::listOnline()
 {
     QVariantMap info;
@@ -778,3 +819,4 @@ QString DigishowEnvironment::getScreenMediaType(const QString &mediaUrl)
     else
         return "web";
 }
+

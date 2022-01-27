@@ -21,6 +21,7 @@
 DigishowInterface::DigishowInterface(QObject *parent) : QObject(parent)
 {
     m_isInterfaceOpened = false;
+    m_needReceiveRawData = false;
     m_interfaceInfo = dgsInterfaceInfo();
 
 #ifdef QT_DEBUG
@@ -127,11 +128,13 @@ int DigishowInterface::openInterface()
 {
     if (m_isInterfaceOpened) return ERR_DEVICE_BUSY;
     updateMetadata();
+    m_needReceiveRawData = false;
     return ERR_NONE;
 }
 
 int DigishowInterface::closeInterface()
 {
+    m_needReceiveRawData = false;
     m_isInterfaceOpened = true;
     return ERR_NONE;
 }

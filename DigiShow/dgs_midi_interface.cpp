@@ -279,6 +279,15 @@ void DgsMidiInterface::callbackRtMidiIn(double deltatime, std::vector< unsigned 
         //qDebug() << "midiin_note:" << endpointIndex << data.signal << data.aValue << data.bValue;
         if (endpointIndex != -1) emit dataReceived(endpointIndex, data);
 
+        if (m_needReceiveRawData) {
+            QVariantMap rawData;
+            rawData["event"   ] = (msgtype == 0x90 ? "note_on" : "note_off");
+            rawData["channel" ] = channel;
+            rawData["note"    ] = note;
+            rawData["velocity"] = velocity;
+            emit rawDataReceived(rawData);
+        }
+
     } else if (msgtype == 0xB0) {
 
         // control change
@@ -297,6 +306,15 @@ void DgsMidiInterface::callbackRtMidiIn(double deltatime, std::vector< unsigned 
         //qDebug() << "midiin_control:" << endpointIndex << data.signal << data.aValue << data.bValue;
         if (endpointIndex != -1 && m_endpointInfoList[endpointIndex].enabled) emit dataReceived(endpointIndex, data);
 
+        if (m_needReceiveRawData) {
+            QVariantMap rawData;
+            rawData["event"  ] = "control_change";
+            rawData["channel"] = channel;
+            rawData["control"] = control;
+            rawData["value"  ] = value;
+            emit rawDataReceived(rawData);
+        }
+
     } else if (msgtype == 0xC0) {
 
         // program change
@@ -313,6 +331,14 @@ void DgsMidiInterface::callbackRtMidiIn(double deltatime, std::vector< unsigned 
 
         //qDebug() << "midiin_program:" << endpointIndex << data.signal << data.aValue << data.bValue;
         if (endpointIndex != -1) emit dataReceived(endpointIndex, data);
+
+        if (m_needReceiveRawData) {
+            QVariantMap rawData;
+            rawData["event"  ] = "program_change";
+            rawData["channel"] = channel;
+            rawData["value"  ] = value;
+            emit rawDataReceived(rawData);
+        }
     }
 }
 

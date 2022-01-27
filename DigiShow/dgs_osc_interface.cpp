@@ -174,6 +174,7 @@ void DgsOscInterface::onUdpDataReceived()
             // look for all address-matched endpoints
             for  (int n=0 ; n<m_endpointInfoList.length() ; n++) {
 
+                // confirm osc address and channel
                 if (m_endpointInfoList[n].address != address) continue;
 
                 int channel = m_endpointInfoList[n].channel;
@@ -181,16 +182,18 @@ void DgsOscInterface::onUdpDataReceived()
 
                 // osc value to dgs signal
                 OscValue* val = msg->getValue(channel);
+                char tag = val->getTag();
+
                 dgsSignalData data;
                 switch (m_endpointInfoList[n].type) {
                 case ENDPOINT_OSC_INT:
-                    if (val->getTag() == 'i') {
+                    if (tag == 'i') {
                         data.signal = DATA_SIGNAL_ANALOG;
                         data.aRange = 0x7FFFFFFF;
                         data.aValue = val->toInteger();
                     }
                 case ENDPOINT_OSC_FLOAT:
-                    if (val->getTag() == 'f') {
+                    if (tag == 'f') {
                         data.signal = DATA_SIGNAL_ANALOG;
                         data.aRange = 1000000;
                         float fv = val->toFloat();
@@ -198,11 +201,11 @@ void DgsOscInterface::onUdpDataReceived()
                         data.aValue = int(fv * data.aRange);
                     }
                 case ENDPOINT_OSC_BOOL:
-                    if (val->getTag() == 'T') {
+                    if (tag == 'T') {
                         data.signal = DATA_SIGNAL_BINARY;
                         data.bValue = true;
                     } else
-                    if (val->getTag() == 'F') {
+                    if (tag == 'F') {
                         data.signal = DATA_SIGNAL_BINARY;
                         data.bValue = false;
                     }
@@ -210,6 +213,36 @@ void DgsOscInterface::onUdpDataReceived()
 
                 // emit signal received event
                 if (data.signal != 0) emit dataReceived(n, data);
+            }
+
+            // emit raw data received event
+            if (m_needReceiveRawData) {
+
+                QVariantList rawDataValues;
+                int numValues = msg->getNumValues();
+
+                for (int n=0 ; n<numValues ; n++) {
+
+                    OscValue* val = msg->getValue(n);
+                    char tag = val->getTag();
+
+                    QVariant value;
+                    switch(tag) {
+                    case 'i': value = val->toInteger(); break;
+                    case 'f': value = val->toFloat(); break;
+                    case 'T': value = true; break;
+                    case 'F': value = false; break;
+                    }
+                    QVariantMap rawDataValue;
+                    rawDataValue["tag"  ] = QString(tag);
+                    rawDataValue["value"] = value;
+                    rawDataValues.append(rawDataValue);
+                }
+
+                QVariantMap rawData;
+                rawData["address"] = address;
+                rawData["values" ] = rawDataValues;
+                emit rawDataReceived(rawData);
             }
 
             delete msg;

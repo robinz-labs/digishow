@@ -4,283 +4,283 @@
 <context>
     <name>DigishowEnvironment</name>
     <message>
-        <location filename="../../digishow_environment.cpp" line="638"/>
+        <location filename="../../digishow_environment.cpp" line="679"/>
         <source>R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="638"/>
+        <location filename="../../digishow_environment.cpp" line="679"/>
         <source>Red</source>
         <translation>赤</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="639"/>
+        <location filename="../../digishow_environment.cpp" line="680"/>
         <source>G</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="639"/>
+        <location filename="../../digishow_environment.cpp" line="680"/>
         <source>Green</source>
         <translation>緑</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="640"/>
+        <location filename="../../digishow_environment.cpp" line="681"/>
         <source>B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="640"/>
+        <location filename="../../digishow_environment.cpp" line="681"/>
         <source>Blue</source>
         <translation>青</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="641"/>
+        <location filename="../../digishow_environment.cpp" line="682"/>
         <source>W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="641"/>
+        <location filename="../../digishow_environment.cpp" line="682"/>
         <source>White</source>
         <translation>白</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="642"/>
+        <location filename="../../digishow_environment.cpp" line="683"/>
         <source>Hue</source>
         <translation>色相</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="643"/>
+        <location filename="../../digishow_environment.cpp" line="684"/>
         <source>Sat</source>
         <translation>彩度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="643"/>
+        <location filename="../../digishow_environment.cpp" line="684"/>
         <source>Saturation</source>
         <translation>彩度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="644"/>
+        <location filename="../../digishow_environment.cpp" line="685"/>
         <source>Bri</source>
         <translation>明度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="644"/>
+        <location filename="../../digishow_environment.cpp" line="685"/>
         <source>Brightness</source>
         <translation>明度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="645"/>
+        <location filename="../../digishow_environment.cpp" line="686"/>
         <source>CT</source>
         <translation>色温度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="645"/>
+        <location filename="../../digishow_environment.cpp" line="686"/>
         <source>C. Temp</source>
         <translation>色温度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="655"/>
+        <location filename="../../digishow_environment.cpp" line="696"/>
         <source>Hide All</source>
         <translation>すべて隠す</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="657"/>
+        <location filename="../../digishow_environment.cpp" line="698"/>
         <source>Opacity</source>
         <translation>不透明さ</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="658"/>
+        <location filename="../../digishow_environment.cpp" line="699"/>
         <source>Scale</source>
         <translation>スケール</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="659"/>
+        <location filename="../../digishow_environment.cpp" line="700"/>
         <source>Rotation</source>
         <translation>ローテーション</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="660"/>
+        <location filename="../../digishow_environment.cpp" line="701"/>
         <source>X Offset</source>
         <translation>X オフセット</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="661"/>
+        <location filename="../../digishow_environment.cpp" line="702"/>
         <source>Y Offset</source>
         <translation>Y オフセット</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="707"/>
+        <location filename="../../digishow_environment.cpp" line="748"/>
         <source>Mid C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="708"/>
+        <location filename="../../digishow_environment.cpp" line="749"/>
         <source>Kick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="709"/>
+        <location filename="../../digishow_environment.cpp" line="750"/>
         <source>Side Stick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="710"/>
+        <location filename="../../digishow_environment.cpp" line="751"/>
         <source>Snare 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="720"/>
+        <location filename="../../digishow_environment.cpp" line="761"/>
         <source>High Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="721"/>
+        <location filename="../../digishow_environment.cpp" line="762"/>
         <source>Crash</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="722"/>
+        <location filename="../../digishow_environment.cpp" line="763"/>
         <source>High Tom 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="723"/>
+        <location filename="../../digishow_environment.cpp" line="764"/>
         <source>Ride</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="711"/>
+        <location filename="../../digishow_environment.cpp" line="752"/>
         <source>Clap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="712"/>
+        <location filename="../../digishow_environment.cpp" line="753"/>
         <source>Snare 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="713"/>
+        <location filename="../../digishow_environment.cpp" line="754"/>
         <source>Low Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="714"/>
+        <location filename="../../digishow_environment.cpp" line="755"/>
         <source>Closed Hat</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="715"/>
+        <location filename="../../digishow_environment.cpp" line="756"/>
         <source>Low Tom 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="716"/>
+        <location filename="../../digishow_environment.cpp" line="757"/>
         <source>Pedal Hat</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="717"/>
-        <location filename="../../digishow_environment.cpp" line="719"/>
+        <location filename="../../digishow_environment.cpp" line="758"/>
+        <location filename="../../digishow_environment.cpp" line="760"/>
         <source>Mid Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="718"/>
+        <location filename="../../digishow_environment.cpp" line="759"/>
         <source>Open Hat</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="653"/>
+        <location filename="../../digishow_environment.cpp" line="694"/>
         <source>Show</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="654"/>
+        <location filename="../../digishow_environment.cpp" line="695"/>
         <source>Hide</source>
         <translation>隠す</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="653"/>
+        <location filename="../../digishow_environment.cpp" line="694"/>
         <source>Play</source>
         <translation>再生</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="681"/>
+        <location filename="../../digishow_environment.cpp" line="722"/>
         <source>Volume</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="654"/>
+        <location filename="../../digishow_environment.cpp" line="695"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="655"/>
+        <location filename="../../digishow_environment.cpp" line="696"/>
         <source>Stop All</source>
         <translation>すべて停止</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="677"/>
+        <location filename="../../digishow_environment.cpp" line="718"/>
         <source>Bank</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="678"/>
+        <location filename="../../digishow_environment.cpp" line="719"/>
         <source>Modulation</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="679"/>
+        <location filename="../../digishow_environment.cpp" line="720"/>
         <source>Foot Pedal</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="680"/>
+        <location filename="../../digishow_environment.cpp" line="721"/>
         <source>Data Entry</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="683"/>
+        <location filename="../../digishow_environment.cpp" line="724"/>
         <source>Expression</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="684"/>
+        <location filename="../../digishow_environment.cpp" line="725"/>
         <source>Bank (LSB)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="685"/>
+        <location filename="../../digishow_environment.cpp" line="726"/>
         <source>Sustain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="687"/>
+        <location filename="../../digishow_environment.cpp" line="728"/>
         <source>Resonance</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="688"/>
+        <location filename="../../digishow_environment.cpp" line="729"/>
         <source>Cutoff</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="689"/>
+        <location filename="../../digishow_environment.cpp" line="730"/>
         <source>Reverb</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="690"/>
+        <location filename="../../digishow_environment.cpp" line="731"/>
         <source>Chorus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="686"/>
+        <location filename="../../digishow_environment.cpp" line="727"/>
         <source>Portamento</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="682"/>
+        <location filename="../../digishow_environment.cpp" line="723"/>
         <source>Pan</source>
         <translation></translation>
     </message>
@@ -288,249 +288,249 @@
 <context>
     <name>DigishowInterface</name>
     <message>
-        <location filename="../../digishow_interface.cpp" line="276"/>
+        <location filename="../../digishow_interface.cpp" line="279"/>
         <source>MIDI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="280"/>
+        <location filename="../../digishow_interface.cpp" line="283"/>
         <source>Aladdin</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="280"/>
+        <location filename="../../digishow_interface.cpp" line="283"/>
         <source>Arduino</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="284"/>
+        <location filename="../../digishow_interface.cpp" line="287"/>
         <source>Modbus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="290"/>
+        <location filename="../../digishow_interface.cpp" line="293"/>
         <source>Hue</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="294"/>
-        <location filename="../../digishow_interface.cpp" line="559"/>
+        <location filename="../../digishow_interface.cpp" line="297"/>
+        <location filename="../../digishow_interface.cpp" line="562"/>
         <source>DMX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="298"/>
-        <location filename="../../digishow_interface.cpp" line="567"/>
+        <location filename="../../digishow_interface.cpp" line="301"/>
+        <location filename="../../digishow_interface.cpp" line="570"/>
         <source>ArtNet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="302"/>
-        <location filename="../../digishow_interface.cpp" line="575"/>
-        <location filename="../../digishow_interface.cpp" line="583"/>
-        <location filename="../../digishow_interface.cpp" line="590"/>
+        <location filename="../../digishow_interface.cpp" line="305"/>
+        <location filename="../../digishow_interface.cpp" line="578"/>
+        <location filename="../../digishow_interface.cpp" line="586"/>
+        <location filename="../../digishow_interface.cpp" line="593"/>
         <source>OSC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="306"/>
+        <location filename="../../digishow_interface.cpp" line="309"/>
         <source>Screen</source>
         <translation>スクリーン</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="310"/>
+        <location filename="../../digishow_interface.cpp" line="313"/>
         <source>Audio Player</source>
         <translation>オーディオプレーヤー</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="314"/>
+        <location filename="../../digishow_interface.cpp" line="317"/>
         <source>MIDI Player</source>
         <translation>MIDI プレーヤー</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="319"/>
+        <location filename="../../digishow_interface.cpp" line="322"/>
         <source>Remote Pipe</source>
         <translation>リモートパイプ</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="322"/>
+        <location filename="../../digishow_interface.cpp" line="325"/>
         <source>Virtual Pipe</source>
         <translation>バーチャルパイプ</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="327"/>
+        <location filename="../../digishow_interface.cpp" line="330"/>
         <source>Preset Launch</source>
         <translation>プリセットローンチ</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="421"/>
+        <location filename="../../digishow_interface.cpp" line="424"/>
         <source>MIDI Note</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="429"/>
-        <location filename="../../digishow_interface.cpp" line="444"/>
+        <location filename="../../digishow_interface.cpp" line="432"/>
+        <location filename="../../digishow_interface.cpp" line="447"/>
         <source>MIDI CC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="437"/>
+        <location filename="../../digishow_interface.cpp" line="440"/>
         <source>MIDI Prgm</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="450"/>
+        <location filename="../../digishow_interface.cpp" line="453"/>
         <source>Digital In</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="456"/>
+        <location filename="../../digishow_interface.cpp" line="459"/>
         <source>Digital Out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="463"/>
+        <location filename="../../digishow_interface.cpp" line="466"/>
         <source>Analog In</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="470"/>
+        <location filename="../../digishow_interface.cpp" line="473"/>
         <source>Analog Out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="477"/>
+        <location filename="../../digishow_interface.cpp" line="480"/>
         <source>PWM Out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="484"/>
+        <location filename="../../digishow_interface.cpp" line="487"/>
         <source>PFM Out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="491"/>
+        <location filename="../../digishow_interface.cpp" line="494"/>
         <source>Encoder</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="498"/>
+        <location filename="../../digishow_interface.cpp" line="501"/>
         <source>Servo</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="505"/>
+        <location filename="../../digishow_interface.cpp" line="508"/>
         <source>Stepper</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="511"/>
+        <location filename="../../digishow_interface.cpp" line="514"/>
         <source>Discrete</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="517"/>
-        <location filename="../../digishow_interface.cpp" line="523"/>
+        <location filename="../../digishow_interface.cpp" line="520"/>
+        <location filename="../../digishow_interface.cpp" line="526"/>
         <source>Coil</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="530"/>
+        <location filename="../../digishow_interface.cpp" line="533"/>
         <source>Input</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="537"/>
-        <location filename="../../digishow_interface.cpp" line="544"/>
+        <location filename="../../digishow_interface.cpp" line="540"/>
+        <location filename="../../digishow_interface.cpp" line="547"/>
         <source>Holding</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="552"/>
+        <location filename="../../digishow_interface.cpp" line="555"/>
         <source>Light</source>
         <translation>明かり</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="552"/>
+        <location filename="../../digishow_interface.cpp" line="555"/>
         <source>Group</source>
         <translation>グループ</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="576"/>
+        <location filename="../../digishow_interface.cpp" line="579"/>
         <source>Integer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="584"/>
+        <location filename="../../digishow_interface.cpp" line="587"/>
         <source>Float</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="591"/>
+        <location filename="../../digishow_interface.cpp" line="594"/>
         <source>Bool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="597"/>
+        <location filename="../../digishow_interface.cpp" line="600"/>
         <source>Backlight</source>
         <translation>バックライト</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="620"/>
+        <location filename="../../digishow_interface.cpp" line="623"/>
         <source>Media Clip</source>
         <translation>メディア</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="638"/>
+        <location filename="../../digishow_interface.cpp" line="641"/>
         <source>Canvas</source>
         <translation>カンバス</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="644"/>
+        <location filename="../../digishow_interface.cpp" line="647"/>
         <source>Audio Clip</source>
         <translation>オーディオ</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="650"/>
+        <location filename="../../digishow_interface.cpp" line="653"/>
         <source>MIDI Clip</source>
         <translation>MIDI</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="658"/>
-        <location filename="../../digishow_interface.cpp" line="665"/>
-        <location filename="../../digishow_interface.cpp" line="673"/>
+        <location filename="../../digishow_interface.cpp" line="661"/>
+        <location filename="../../digishow_interface.cpp" line="668"/>
+        <location filename="../../digishow_interface.cpp" line="676"/>
         <source>Pipe</source>
         <translation>パイプ</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="658"/>
-        <location filename="../../digishow_interface.cpp" line="665"/>
-        <location filename="../../digishow_interface.cpp" line="673"/>
+        <location filename="../../digishow_interface.cpp" line="661"/>
+        <location filename="../../digishow_interface.cpp" line="668"/>
+        <location filename="../../digishow_interface.cpp" line="676"/>
         <source>Remote</source>
         <translation>リモート</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="659"/>
+        <location filename="../../digishow_interface.cpp" line="662"/>
         <source>Analog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="666"/>
+        <location filename="../../digishow_interface.cpp" line="669"/>
         <source>Binary</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="674"/>
+        <location filename="../../digishow_interface.cpp" line="677"/>
         <source>Note</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="679"/>
+        <location filename="../../digishow_interface.cpp" line="682"/>
         <source>Launch</source>
         <translation>ローンチ</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="680"/>
+        <location filename="../../digishow_interface.cpp" line="683"/>
         <source>Preset</source>
         <translation>プリセット</translation>
     </message>
@@ -910,54 +910,59 @@
 <context>
     <name>MwEndpointSelector</name>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="74"/>
+        <location filename="../MwEndpointSelector.qml" line="84"/>
         <source>Select Source</source>
         <translation>送信元を選択</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="76"/>
+        <location filename="../MwEndpointSelector.qml" line="86"/>
         <source>Select Destination</source>
         <translation>宛先を選択</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="78"/>
+        <location filename="../MwEndpointSelector.qml" line="88"/>
         <source>Select</source>
         <translation>選択</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="296"/>
+        <location filename="../MwEndpointSelector.qml" line="157"/>
+        <source>DETECT</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelector.qml" line="330"/>
         <source>Apply</source>
         <translation>適用</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="320"/>
+        <location filename="../MwEndpointSelector.qml" line="355"/>
         <source>None</source>
         <translation>なし</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="583"/>
+        <location filename="../MwEndpointSelector.qml" line="618"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation>コンピュータのディスクに存在するメディアクリップファイルを選択するか、メディアクリップの有効なURLを入力してください。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="583"/>
-        <location filename="../MwEndpointSelector.qml" line="606"/>
-        <location filename="../MwEndpointSelector.qml" line="629"/>
+        <location filename="../MwEndpointSelector.qml" line="618"/>
+        <location filename="../MwEndpointSelector.qml" line="641"/>
+        <location filename="../MwEndpointSelector.qml" line="664"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="606"/>
+        <location filename="../MwEndpointSelector.qml" line="641"/>
         <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
         <translation>コンピュータのディスクに存在するオーディオクリップファイルを選択するか、オーディオクリップの有効なURLを入力してください。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="629"/>
+        <location filename="../MwEndpointSelector.qml" line="664"/>
         <source>Please select a MIDI clip file exists on your computer disks or enter a valid url of the MIDI clip.</source>
         <translation>コンピュータのディスクに存在するMIDIクリップファイルを選択するか、MIDIクリップの有効なURLを入力してください。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="335"/>
+        <location filename="../MwEndpointSelector.qml" line="370"/>
         <source>More ...</source>
         <translation>もっと ...</translation>
     </message>
@@ -1963,7 +1968,7 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     <message>
         <location filename="../MwInterfacesDialog.qml" line="142"/>
         <source>OSC interface is typically for connecting your multimedia hardware or software, such as some VJ / DJ apps, through an IP network.</source>
-        <translation>OSCインターフェイスは通常、IPネットワークを介してマルチメディアハードウェアまたはソフトウェア（一部のVJ/DJアプリなど）を接続するためのものです。</translation>
+        <translation>OSCインターフェイスは通常、IPネットワークを介してマルチメディアハードウェアまたはソフトウェア（一部のVJ / DJアプリなど）を接続するためのものです。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="169"/>

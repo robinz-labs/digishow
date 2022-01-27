@@ -208,6 +208,9 @@ public:
                              const QVariantMap &destinationInterfaceOptions, const QVariantMap &destinationEndpointOptions,
                              const QString &mediaUrl = QString(), const QString &mediaType = QString());
 
+    Q_INVOKABLE bool startInterfaceDataInputDetection(int interfaceIndex);
+    Q_INVOKABLE bool stopInterfaceDataInputDetection(int interfaceIndex);
+
     Q_INVOKABLE static QVariantMap listOnline();
 
     Q_INVOKABLE static QString getLightControlName(int control, bool shortName = false);
@@ -222,7 +225,11 @@ signals:
     void appChanged();
     void needLogsChanged();
 
+    void interfaceDataInputDetected(int interfaceIndex, const QVariantMap &rawData);
+
 public slots:
+
+    void onRawDataReceived(const QVariantMap &rawData);
 };
 
 #endif // DIGISHOWENVIRONMENT_H
