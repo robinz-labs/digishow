@@ -84,6 +84,7 @@
         <file>SpAnimationFadeIn.qml</file>
         <file>Utilities.qml</file>
         <file>Digishow.qml</file>
+        <file>Splash.qml</file>
         <file>MainWindow.qml</file>
         <file>MwSlotListView.qml</file>
         <file>MwSlotDetailView.qml</file>
@@ -120,6 +121,8 @@
         <file>MwInterfaceListViewPipe.qml</file>
         <file>MwEndpointMoreOptions.qml</file>
         <file>MwUndoManager.qml</file>
-        <file>Splash.qml</file>
+        <file>MwRecentFilesManager.qml</file>
+        <file>MwRecentFileMenuItem.qml</file>
+        <file>MwMenuSeparator.qml</file>
     </qresource>
 </RCC>

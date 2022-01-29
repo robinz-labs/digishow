@@ -30,11 +30,12 @@ ApplicationWindow {
            (app.isRunning ? "" : qsTr(" ( stopped )") )
 
 
-    Utilities { id: utilities }
-    CCommon { id: common }
-    Digishow { id: digishow }
-    DigishowData { id: extractor }
-    MwUndoManager { id: undoManager }
+    Utilities            { id: utilities          }
+    CCommon              { id: common             }
+    Digishow             { id: digishow           }
+    DigishowData         { id: extractor          }
+    MwUndoManager        { id: undoManager        }
+    MwRecentFilesManager { id: recentFilesManager }
 
     Component.onCompleted: {
 
@@ -46,6 +47,29 @@ ApplicationWindow {
         listOnline = digishow.listOnline()
         utilities.saveJsonToFile(listOnline, digishow.appDataPath("online.json"))
 
+        // init recent files manager
+        recentFilesManager.recentFilesListUpdated.connect(function() {
+            var n
+            for (n=menuRecentFiles.count-2 ; n>=0 ; n--)
+                menuRecentFiles.removeItem(menuRecentFiles.itemAt(n))
+
+            var recentFiles = recentFilesManager.recentFilesList;
+            for (n=0 ; n<recentFiles.length ; n++) {
+                var filepath = recentFiles[n]
+                if (utilities.fileExists(filepath)) {
+                    var menuItem = Qt.createQmlObject("MwRecentFileMenuItem {}", menuRecentFiles)
+                    menuItem.text = utilities.getFileName(filepath)
+                    menuItem.filepath = filepath
+                    menuRecentFiles.insertItem(menuRecentFiles.count-1, menuItem)
+                }
+            }
+            if (menuRecentFiles.count>1) {
+                var menuSeparator = Qt.createQmlObject("MwMenuSeparator {}", menuRecentFiles)
+                menuRecentFiles.insertItem(menuRecentFiles.count-1, menuSeparator)
+            }
+        })
+        recentFilesManager.load()
+
         // callback while file loaded
         app.filepathChanged.connect(function() {
             console.log("file loaded: " + app.filepath)
@@ -53,6 +77,11 @@ ApplicationWindow {
             window.isModified = false
             undoManager.clear()
             undoManager.archive()
+
+            if (app.filepath !== "") {
+                recentFilesManager.add(app.filepath)
+                recentFilesManager.save()
+            }
         })
 
         // callback while interfaces data loaded
@@ -209,10 +238,7 @@ ApplicationWindow {
                             }, 3000)
                         }
                     }
-                    MenuSeparator {
-                        padding: 0
-                        contentItem: Rectangle { implicitHeight: 1; color: "#333333" }
-                    }
+                    MwMenuSeparator {}
                     MenuItem {
                         text: qsTr("New")
                         onTriggered: {
@@ -225,6 +251,20 @@ ApplicationWindow {
                         onTriggered: {
                             menu.close()
                             open()
+                        }
+                    }
+                    Menu {
+                        id: menuRecentFiles
+                        title: qsTr("Open Recent")
+                        MenuItem {
+                            text: qsTr("Clear Menu")
+                            enabled: menuRecentFiles.count > 1
+                            onTriggered: {
+                                for (var n=menuRecentFiles.count-2 ; n>=0 ; n--)
+                                    menuRecentFiles.removeItem(menuRecentFiles.itemAt(n))
+                                recentFilesManager.clear()
+                                recentFilesManager.save()
+                            }
                         }
                     }
                     MenuItem {
@@ -240,10 +280,7 @@ ApplicationWindow {
                         text: qsTr("Show File")
                         onTriggered: utilities.showFileInShell(app.filepath)
                     }
-                    MenuSeparator {
-                        padding: 0
-                        contentItem: Rectangle { implicitHeight: 1; color: "#333333" }
-                    }
+                    MwMenuSeparator {}
                     MenuItem {
                         text: qsTr("About DigiShow")
                         onTriggered: dialogAbout.open()
@@ -261,10 +298,7 @@ ApplicationWindow {
                                 window.showFullScreen()
                         }
                     }
-                    MenuSeparator {
-                        padding: 0
-                        contentItem: Rectangle { implicitHeight: 1; color: "#333333" }
-                    }
+                    MwMenuSeparator {}
                     MenuItem {
                         text: qsTr("Close")
                         onTriggered: {
@@ -714,7 +748,9 @@ ApplicationWindow {
 
         if (messageBox.visible) return
 
-        if (app.isRunning) app.stop();
+        if (app.isRunning) app.stop()
+
+        if (menu.visible) menu.close()
 
         if (!isModified) {
             app.loadFile(filepath)

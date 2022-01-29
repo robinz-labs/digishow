@@ -543,54 +543,54 @@
         <translation>未命名</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="668"/>
-        <location filename="../MainWindow.qml" line="681"/>
-        <location filename="../MainWindow.qml" line="724"/>
-        <location filename="../MainWindow.qml" line="745"/>
+        <location filename="../MainWindow.qml" line="707"/>
+        <location filename="../MainWindow.qml" line="720"/>
+        <location filename="../MainWindow.qml" line="765"/>
+        <location filename="../MainWindow.qml" line="786"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="217"/>
+        <location filename="../MainWindow.qml" line="242"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="231"/>
-        <location filename="../MainWindow.qml" line="668"/>
-        <location filename="../MainWindow.qml" line="681"/>
-        <location filename="../MainWindow.qml" line="724"/>
-        <location filename="../MainWindow.qml" line="745"/>
+        <location filename="../MainWindow.qml" line="270"/>
+        <location filename="../MainWindow.qml" line="707"/>
+        <location filename="../MainWindow.qml" line="720"/>
+        <location filename="../MainWindow.qml" line="765"/>
+        <location filename="../MainWindow.qml" line="786"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="248"/>
+        <location filename="../MainWindow.qml" line="287"/>
         <source>About DigiShow</source>
         <translation>关于 DigiShow</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="414"/>
+        <location filename="../MainWindow.qml" line="453"/>
         <source>Error occurred when open interface %1 .</source>
         <translation>在打开 %1 接口时发生故障。</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="414"/>
+        <location filename="../MainWindow.qml" line="453"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="224"/>
+        <location filename="../MainWindow.qml" line="249"/>
         <source>Open ...</source>
         <translation>打开 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="744"/>
+        <location filename="../MainWindow.qml" line="785"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>在关闭应用程序前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="667"/>
+        <location filename="../MainWindow.qml" line="706"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>在创建新项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
@@ -605,142 +605,152 @@
         <translation> ( 停止工作中 )</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="668"/>
-        <location filename="../MainWindow.qml" line="681"/>
-        <location filename="../MainWindow.qml" line="724"/>
-        <location filename="../MainWindow.qml" line="745"/>
+        <location filename="../MainWindow.qml" line="707"/>
+        <location filename="../MainWindow.qml" line="720"/>
+        <location filename="../MainWindow.qml" line="765"/>
+        <location filename="../MainWindow.qml" line="786"/>
         <source>Don&apos;t Save</source>
         <translation>不保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="680"/>
+        <location filename="../MainWindow.qml" line="719"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>在打开另一个项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="235"/>
+        <location filename="../MainWindow.qml" line="274"/>
         <source>Save As ...</source>
         <translation>另存为 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="203"/>
+        <location filename="../MainWindow.qml" line="228"/>
         <source>New Instance</source>
         <translation>新建实例</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="205"/>
+        <location filename="../MainWindow.qml" line="230"/>
         <source>Starting a new DigiShow LINK instance ...</source>
         <translation>正在启动新创建的 DigiShow LINK 实例 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="240"/>
+        <location filename="../MainWindow.qml" line="257"/>
+        <source>Open Recent</source>
+        <translation>打开最近使用</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="259"/>
+        <source>Clear Menu</source>
+        <translation>清除菜单</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="279"/>
         <source>Show File</source>
         <translation>查看文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="252"/>
+        <location filename="../MainWindow.qml" line="291"/>
         <source>Options ...</source>
         <translation>选项设置 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="256"/>
+        <location filename="../MainWindow.qml" line="295"/>
         <source>Exit Full Screen</source>
         <translation>退出全屏模式</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="256"/>
+        <location filename="../MainWindow.qml" line="295"/>
         <source>Enter Full Screen</source>
         <translation>进入全屏模式</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="269"/>
+        <location filename="../MainWindow.qml" line="308"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="321"/>
+        <location filename="../MainWindow.qml" line="360"/>
         <source>PRESETS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="469"/>
+        <location filename="../MainWindow.qml" line="508"/>
         <source>Interface Manager</source>
         <translation>接口管理器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="490"/>
+        <location filename="../MainWindow.qml" line="529"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="494"/>
+        <location filename="../MainWindow.qml" line="533"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="498"/>
+        <location filename="../MainWindow.qml" line="537"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="502"/>
+        <location filename="../MainWindow.qml" line="541"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="506"/>
+        <location filename="../MainWindow.qml" line="545"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="510"/>
+        <location filename="../MainWindow.qml" line="549"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="514"/>
+        <location filename="../MainWindow.qml" line="553"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="522"/>
+        <location filename="../MainWindow.qml" line="561"/>
         <source>Virtual Pipe ...</source>
         <translation>虚拟管道 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="608"/>
+        <location filename="../MainWindow.qml" line="647"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="611"/>
+        <location filename="../MainWindow.qml" line="650"/>
         <source>JSON files</source>
         <translation>JSON 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="722"/>
+        <location filename="../MainWindow.qml" line="763"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>在打开文件 “ %1 ” 前是否需要保存当前数据 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="518"/>
+        <location filename="../MainWindow.qml" line="557"/>
         <source>Screen ...</source>
         <translation>屏幕 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="611"/>
-        <location filename="../MainWindow.qml" line="628"/>
+        <location filename="../MainWindow.qml" line="650"/>
+        <location filename="../MainWindow.qml" line="667"/>
         <source>DigiShow files</source>
         <translation>DigiShow 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="611"/>
-        <location filename="../MainWindow.qml" line="628"/>
+        <location filename="../MainWindow.qml" line="650"/>
+        <location filename="../MainWindow.qml" line="667"/>
         <source>All files</source>
         <translation>所有文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="625"/>
+        <location filename="../MainWindow.qml" line="664"/>
         <source>Save File</source>
         <translation>保存文件</translation>
     </message>
