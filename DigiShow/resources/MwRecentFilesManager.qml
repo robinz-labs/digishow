@@ -19,7 +19,7 @@ QtObject {
         recentFilesList.unshift(filepath)
 
         // the list is full
-        if (recentFilesList > 10) recentFilesList.pop()
+        if (recentFilesList.length > 10) recentFilesList.pop()
 
         recentFilesListUpdated() // emit signal
     }
