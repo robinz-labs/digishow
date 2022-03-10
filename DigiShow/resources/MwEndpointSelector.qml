@@ -17,12 +17,16 @@ Item {
     property bool isDetecting: false
 
     property string interfaceType: ""
+    property string endpointIdentification: ""
 
     signal endpointUpdated()
 
     onInterfaceIndexChanged: {
         // reset interface type when clear interface index
-        if (interfaceIndex === -1) interfaceType = ""
+        if (interfaceIndex === -1) {
+            interfaceType = ""
+            endpointIdentification = ""
+        }
     }
 
     onIsDetectingChanged: {
@@ -68,6 +72,19 @@ Item {
         }
         opacity: 0.2
         visible: interfaceType !== ""
+
+        property bool mouseOver: false
+
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: iconInterfaceType.mouseOver = true
+            onExited: iconInterfaceType.mouseOver = false
+        }
+
+        ToolTip.delay: 300
+        ToolTip.visible: endpointIdentification !=="" && iconInterfaceType.mouseOver
+        ToolTip.text: qsTr("Endpoint ID: ") + endpointIdentification
     }
 
     COptionButton {
@@ -519,6 +536,8 @@ Item {
 
             // set ui with more options
             moreOptions.setOptions(endpointOptions)
+
+            endpointIdentification = getEndpointIdentification(endpointIndex)
         }
 
         // reset modified flag
@@ -691,10 +710,13 @@ Item {
 
         // update the endpoint selector
         if (newEndpointIndex !== -1) {
+
             isModified = false
             interfaceIndex = newInterfaceIndex
             endpointIndex = newEndpointIndex
             endpointUpdated() // emit signal
+
+            endpointIdentification = getEndpointIdentification(newEndpointIndex)
         }
 
         // restart interface if necessary
@@ -721,6 +743,20 @@ Item {
         interfaceIndex = -1
         endpointIndex = -1
         endpointUpdated() // emit signal
+    }
+
+    function getEndpointIdentification(endpointIndex) {
+
+        var config = menuInterface.getSelectedInterfaceConfiguration();
+        if (config === undefined) return ""
+
+        var interfaceOpt = config["interfaceOptions"]
+        if (interfaceOpt === undefined) return ""
+
+        var endpointOpt = config["epOptionsList"][endpointIndex]
+        if (endpointOpt === undefined) return ""
+
+        return interfaceOpt["name"] + "/" + endpointOpt["name"]
     }
 
     function startDetection() {
