@@ -805,10 +805,20 @@ Item {
 
                 var numValues = rawData["values"].length
                 if (numValues > 0) {
+
+                    var typeTag = rawData["values"][numValues-1]["tag"]
+                    var typeName
+                    if      (typeTag === "i") typeName = "int"
+                    else if (typeTag === "f") typeName = "float"
+                    else if (typeTag === "T" ||
+                             typeTag === "F") typeName = "bool"
+
                     itemOsc.spinChannel.value = numValues-1
-                    itemOsc.menuType.selectOptionWithTag(rawData["values"][numValues-1]["tag"])
+                    itemOsc.menuType.selectOptionWithTag(typeName)
                 }
             }
+
+            isModified = true
         }
 
         stopDetection()

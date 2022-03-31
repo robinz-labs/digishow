@@ -9,12 +9,28 @@ Item {
     property alias validator: input.validator
     property alias input: input
     property alias box: box
+    property alias toolTipText: toolTip.text
+    property bool mouseOver: false
 
     signal editingFinished()
     signal textEdited()
 
     width: 150
     height: 28
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        onEntered: inputBox.mouseOver = true
+        onExited: inputBox.mouseOver = false
+    }
+
+    ToolTip {
+        id: toolTip
+        delay: 300
+        visible: text !=="" && inputBox.mouseOver
+        text: ""
+    }
 
     Rectangle {
         id: box
