@@ -79,6 +79,11 @@
   ! fixed Arduino/RIOC servo initial positioning issue
   + display scaling support
 
+  v1.2.1 20220420
+  + osc interface support
+  + midi / osc input signal learning
+  + open recent files menu
+
  */
 
 #ifndef DIGISHOW_H

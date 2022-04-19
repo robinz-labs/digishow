@@ -73,7 +73,8 @@ ApplicationWindow {
         // callback while file loaded
         app.filepathChanged.connect(function() {
             console.log("file loaded: " + app.filepath)
-            utilities.setMacWindowTitleWithFile(window, app.filepath)
+            //utilities.setMacWindowTitleWithFile(window, app.filepath)
+
             window.isModified = false
             undoManager.clear()
             undoManager.archive()

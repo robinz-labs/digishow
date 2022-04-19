@@ -102,8 +102,9 @@ macx: {
     OBJECTIVE_SOURCES += mac_utilities.mm
     HEADERS += mac_utilities.h
 
-    ICON = $$PWD/icons/icon.icns
     QMAKE_INFO_PLIST = Info.plist
+    ICON = $$PWD/icons/app.icns
+    DISTFILES += $$PWD/icons/doc.icns
 }
 
 TRANSLATIONS = \

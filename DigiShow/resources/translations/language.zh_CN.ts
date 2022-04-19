@@ -543,54 +543,54 @@
         <translation>未命名</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="707"/>
-        <location filename="../MainWindow.qml" line="720"/>
-        <location filename="../MainWindow.qml" line="765"/>
-        <location filename="../MainWindow.qml" line="786"/>
+        <location filename="../MainWindow.qml" line="702"/>
+        <location filename="../MainWindow.qml" line="715"/>
+        <location filename="../MainWindow.qml" line="760"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="242"/>
+        <location filename="../MainWindow.qml" line="243"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="270"/>
-        <location filename="../MainWindow.qml" line="707"/>
-        <location filename="../MainWindow.qml" line="720"/>
-        <location filename="../MainWindow.qml" line="765"/>
-        <location filename="../MainWindow.qml" line="786"/>
+        <location filename="../MainWindow.qml" line="271"/>
+        <location filename="../MainWindow.qml" line="702"/>
+        <location filename="../MainWindow.qml" line="715"/>
+        <location filename="../MainWindow.qml" line="760"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="287"/>
+        <location filename="../MainWindow.qml" line="285"/>
         <source>About DigiShow</source>
         <translation>关于 DigiShow</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="453"/>
+        <location filename="../MainWindow.qml" line="448"/>
         <source>Error occurred when open interface %1 .</source>
         <translation>在打开 %1 接口时发生故障。</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="453"/>
+        <location filename="../MainWindow.qml" line="448"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="249"/>
+        <location filename="../MainWindow.qml" line="250"/>
         <source>Open ...</source>
         <translation>打开 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="785"/>
+        <location filename="../MainWindow.qml" line="780"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>在关闭应用程序前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="706"/>
+        <location filename="../MainWindow.qml" line="701"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>在创建新项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
@@ -605,152 +605,152 @@
         <translation> ( 停止工作中 )</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="707"/>
-        <location filename="../MainWindow.qml" line="720"/>
-        <location filename="../MainWindow.qml" line="765"/>
-        <location filename="../MainWindow.qml" line="786"/>
+        <location filename="../MainWindow.qml" line="702"/>
+        <location filename="../MainWindow.qml" line="715"/>
+        <location filename="../MainWindow.qml" line="760"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Don&apos;t Save</source>
         <translation>不保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="719"/>
+        <location filename="../MainWindow.qml" line="714"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>在打开另一个项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="274"/>
+        <location filename="../MainWindow.qml" line="275"/>
         <source>Save As ...</source>
         <translation>另存为 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="228"/>
+        <location filename="../MainWindow.qml" line="232"/>
         <source>New Instance</source>
         <translation>新建实例</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="230"/>
+        <location filename="../MainWindow.qml" line="234"/>
         <source>Starting a new DigiShow LINK instance ...</source>
         <translation>正在启动新创建的 DigiShow LINK 实例 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="257"/>
+        <location filename="../MainWindow.qml" line="258"/>
         <source>Open Recent</source>
         <translation>打开最近使用</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="259"/>
+        <location filename="../MainWindow.qml" line="260"/>
         <source>Clear Menu</source>
         <translation>清除菜单</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="279"/>
+        <location filename="../MainWindow.qml" line="280"/>
         <source>Show File</source>
         <translation>查看文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="291"/>
+        <location filename="../MainWindow.qml" line="289"/>
         <source>Options ...</source>
         <translation>选项设置 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="295"/>
+        <location filename="../MainWindow.qml" line="293"/>
         <source>Exit Full Screen</source>
         <translation>退出全屏模式</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="295"/>
+        <location filename="../MainWindow.qml" line="293"/>
         <source>Enter Full Screen</source>
         <translation>进入全屏模式</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="308"/>
+        <location filename="../MainWindow.qml" line="303"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="360"/>
+        <location filename="../MainWindow.qml" line="355"/>
         <source>PRESETS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="508"/>
+        <location filename="../MainWindow.qml" line="503"/>
         <source>Interface Manager</source>
         <translation>接口管理器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="529"/>
+        <location filename="../MainWindow.qml" line="524"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="533"/>
+        <location filename="../MainWindow.qml" line="528"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="537"/>
+        <location filename="../MainWindow.qml" line="532"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="541"/>
+        <location filename="../MainWindow.qml" line="536"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="545"/>
+        <location filename="../MainWindow.qml" line="540"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="549"/>
+        <location filename="../MainWindow.qml" line="544"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="553"/>
+        <location filename="../MainWindow.qml" line="548"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="561"/>
+        <location filename="../MainWindow.qml" line="556"/>
         <source>Virtual Pipe ...</source>
         <translation>虚拟管道 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="647"/>
+        <location filename="../MainWindow.qml" line="642"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="650"/>
+        <location filename="../MainWindow.qml" line="645"/>
         <source>JSON files</source>
         <translation>JSON 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="763"/>
+        <location filename="../MainWindow.qml" line="758"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>在打开文件 “ %1 ” 前是否需要保存当前数据 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="557"/>
+        <location filename="../MainWindow.qml" line="552"/>
         <source>Screen ...</source>
         <translation>屏幕 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="650"/>
-        <location filename="../MainWindow.qml" line="667"/>
+        <location filename="../MainWindow.qml" line="645"/>
+        <location filename="../MainWindow.qml" line="662"/>
         <source>DigiShow files</source>
         <translation>DigiShow 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="650"/>
-        <location filename="../MainWindow.qml" line="667"/>
+        <location filename="../MainWindow.qml" line="645"/>
+        <location filename="../MainWindow.qml" line="662"/>
         <source>All files</source>
         <translation>所有文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="664"/>
+        <location filename="../MainWindow.qml" line="659"/>
         <source>Save File</source>
         <translation>保存文件</translation>
     </message>
@@ -920,59 +920,64 @@
 <context>
     <name>MwEndpointSelector</name>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="84"/>
+        <location filename="../MwEndpointSelector.qml" line="87"/>
+        <source>Endpoint ID: </source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelector.qml" line="101"/>
         <source>Select Source</source>
         <translation>选择信号来源</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="86"/>
+        <location filename="../MwEndpointSelector.qml" line="103"/>
         <source>Select Destination</source>
         <translation>选择信号目标</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="88"/>
+        <location filename="../MwEndpointSelector.qml" line="105"/>
         <source>Select</source>
         <translation>选择信号端</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="157"/>
-        <source>DETECT</source>
-        <translation></translation>
+        <location filename="../MwEndpointSelector.qml" line="174"/>
+        <source>LEARN</source>
+        <translation type="unfinished">学习</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="330"/>
+        <location filename="../MwEndpointSelector.qml" line="347"/>
         <source>Apply</source>
         <translation>应用</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="355"/>
+        <location filename="../MwEndpointSelector.qml" line="372"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="618"/>
+        <location filename="../MwEndpointSelector.qml" line="637"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的媒体素材文件，或输入该媒体素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="618"/>
-        <location filename="../MwEndpointSelector.qml" line="641"/>
-        <location filename="../MwEndpointSelector.qml" line="664"/>
+        <location filename="../MwEndpointSelector.qml" line="637"/>
+        <location filename="../MwEndpointSelector.qml" line="660"/>
+        <location filename="../MwEndpointSelector.qml" line="683"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="641"/>
+        <location filename="../MwEndpointSelector.qml" line="660"/>
         <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的音频素材文件，或输入该音频素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="664"/>
+        <location filename="../MwEndpointSelector.qml" line="683"/>
         <source>Please select a MIDI clip file exists on your computer disks or enter a valid url of the MIDI clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的 MIDI 素材文件，或输入该 MIDI 素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="370"/>
+        <location filename="../MwEndpointSelector.qml" line="387"/>
         <source>More ...</source>
         <translation>更多接口 ...</translation>
     </message>
@@ -1971,6 +1976,11 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>OSC 接口</translation>
     </message>
     <message>
+        <location filename="../MwInterfacesDialog.qml" line="142"/>
+        <source>OSC interface is typically for connecting your interactive media control and creation applications, such as TouchOSC, TouchDesigner, etc.</source>
+        <translation>OSC 接口通常用于连接你的互动媒体控制和创作软件，例如 TouchOSC, TouchDesigner 等。</translation>
+    </message>
+    <message>
         <location filename="../MwInterfacesDialog.qml" line="169"/>
         <source>ArtNet Interfaces</source>
         <translation>ArtNet 接口</translation>
@@ -2024,11 +2034,6 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <location filename="../MwInterfacesDialog.qml" line="102"/>
         <source>DMX interface is typically for connecting your lights and fixtures on the stage. An Enttec DMX USB Pro adapter or compatible is required.</source>
         <translation>DMX 接口通常用于连接你的灯光和各种舞台设备。软件运行必须要使用 Enttec DMX USB Pro 或兼容型号的适配器。</translation>
-    </message>
-    <message>
-        <location filename="../MwInterfacesDialog.qml" line="142"/>
-        <source>OSC interface is typically for connecting your multimedia hardware or software, such as some VJ / DJ apps, through an IP network.</source>
-        <translation>OSC 接口通常用于通过 IP 网络连接你的多媒体硬件或软件，例如一些 VJ / DJ 应用程序。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="339"/>

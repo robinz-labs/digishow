@@ -13,7 +13,7 @@ DigiShow LINK works well with other music software that supports MIDI input/outp
 
 - MIDI interface is typically for connecting your digital musical instruments, controllers, sequencers and digital music apps.
 - DMX interface is typically for connecting your lights and fixtures on the stage.
-- OSC interface is typically for connecting your multimedia hardware or software through an IP network.
+- OSC interface is typically for connecting your interactive media control and creation applications.
 - ArtNet interface is typically for connecting your show lights through an IP network.
 - Modbus interface is typically for connecting your industrial automations, robots and machines.
 - Arduino is an open source electronic controller for making homebrew instruments, lights or gadgets for your interactive shows.

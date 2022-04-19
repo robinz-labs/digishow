@@ -60,12 +60,13 @@ Dialog {
     }
 
     Text {
+        id: textAppVersion
         anchors.top: parent.top
         anchors.topMargin: 110
         anchors.left: parent.left
         anchors.leftMargin: 45
         color: "#999999"
-        lineHeight: 1.5
+        lineHeight: 1.2
         font.pixelSize: 14
         text: qsTr("app version: ") + digishow.appVersion() + "\r\n" +
               qsTr("app build date: ") + digishow.appBuildDate() + "\r\n\r\n" +
@@ -75,8 +76,8 @@ Dialog {
 
     Text {
         id: textSlogan
-        anchors.top: parent.top
-        anchors.topMargin: 300
+        anchors.top: textAppVersion.bottom
+        anchors.bottom: textCopyright.top
         anchors.left: parent.left
         anchors.leftMargin: 45
         color: "#cccccc"
@@ -125,13 +126,15 @@ Dialog {
     }
 
     Text {
+        id: textCopyright
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 30
+        anchors.bottomMargin: 20
         anchors.left: parent.left
         anchors.leftMargin: 45
         color: "#999999"
+        lineHeight: 1.2
         font.pixelSize: 12
-        text: qsTr("© 2020-2021 Robin Zhang & Labs")
+        text: qsTr("© 2020-2021 Robin Zhang & Labs") + (!digishow.appExperimental() ? "\r\n\r\nThe software is provided on an 'AS IS' \r\nBASIS, WITHOUT WARRANTIES \r\nOR CONDITIONS OF ANY KIND, \r\neither express or implied." : "")
     }
 
 }

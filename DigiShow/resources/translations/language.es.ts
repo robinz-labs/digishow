@@ -553,204 +553,204 @@
         <translation> ( parado )</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="228"/>
+        <location filename="../MainWindow.qml" line="232"/>
         <source>New Instance</source>
         <translation>Nueva instancia</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="230"/>
+        <location filename="../MainWindow.qml" line="234"/>
         <source>Starting a new DigiShow LINK instance ...</source>
         <translation>Iniciando una nueva instancia de DigiShow LINK ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="242"/>
+        <location filename="../MainWindow.qml" line="243"/>
         <source>New</source>
         <translation>Nuevo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="249"/>
+        <location filename="../MainWindow.qml" line="250"/>
         <source>Open ...</source>
         <translation>Abrir ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="257"/>
+        <location filename="../MainWindow.qml" line="258"/>
         <source>Open Recent</source>
         <translation>Abrir recientes</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="259"/>
+        <location filename="../MainWindow.qml" line="260"/>
         <source>Clear Menu</source>
         <translation>Vaciar menú</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="270"/>
-        <location filename="../MainWindow.qml" line="707"/>
-        <location filename="../MainWindow.qml" line="720"/>
-        <location filename="../MainWindow.qml" line="765"/>
-        <location filename="../MainWindow.qml" line="786"/>
+        <location filename="../MainWindow.qml" line="271"/>
+        <location filename="../MainWindow.qml" line="702"/>
+        <location filename="../MainWindow.qml" line="715"/>
+        <location filename="../MainWindow.qml" line="760"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="274"/>
+        <location filename="../MainWindow.qml" line="275"/>
         <source>Save As ...</source>
         <translation>Guardar como ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="279"/>
+        <location filename="../MainWindow.qml" line="280"/>
         <source>Show File</source>
         <translation>Mostrar archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="287"/>
+        <location filename="../MainWindow.qml" line="285"/>
         <source>About DigiShow</source>
         <translation>Acerca de DigiShow</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="291"/>
+        <location filename="../MainWindow.qml" line="289"/>
         <source>Options ...</source>
         <translation>Preferencias ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="295"/>
+        <location filename="../MainWindow.qml" line="293"/>
         <source>Exit Full Screen</source>
         <translation>Salir de pantalla completa</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="295"/>
+        <location filename="../MainWindow.qml" line="293"/>
         <source>Enter Full Screen</source>
         <translation>Pasar a pantalla completa</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="308"/>
+        <location filename="../MainWindow.qml" line="303"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="360"/>
+        <location filename="../MainWindow.qml" line="355"/>
         <source>PRESETS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="453"/>
+        <location filename="../MainWindow.qml" line="448"/>
         <source>Error occurred when open interface %1 .</source>
         <translation>Se produjo un error al abrir la interfaz %1 .</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="453"/>
+        <location filename="../MainWindow.qml" line="448"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="508"/>
+        <location filename="../MainWindow.qml" line="503"/>
         <source>Interface Manager</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="529"/>
+        <location filename="../MainWindow.qml" line="524"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="533"/>
+        <location filename="../MainWindow.qml" line="528"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="537"/>
+        <location filename="../MainWindow.qml" line="532"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="541"/>
+        <location filename="../MainWindow.qml" line="536"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="545"/>
+        <location filename="../MainWindow.qml" line="540"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="549"/>
+        <location filename="../MainWindow.qml" line="544"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="553"/>
+        <location filename="../MainWindow.qml" line="548"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="557"/>
+        <location filename="../MainWindow.qml" line="552"/>
         <source>Screen ...</source>
         <translation>Pantalla ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="561"/>
+        <location filename="../MainWindow.qml" line="556"/>
         <source>Virtual Pipe ...</source>
         <translation>Tubería virtual ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="647"/>
+        <location filename="../MainWindow.qml" line="642"/>
         <source>Open File</source>
         <translation>Abrir archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="650"/>
-        <location filename="../MainWindow.qml" line="667"/>
+        <location filename="../MainWindow.qml" line="645"/>
+        <location filename="../MainWindow.qml" line="662"/>
         <source>DigiShow files</source>
         <translation>Archivos DigiShow</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="650"/>
+        <location filename="../MainWindow.qml" line="645"/>
         <source>JSON files</source>
         <translation>Archivos JSON</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="650"/>
-        <location filename="../MainWindow.qml" line="667"/>
+        <location filename="../MainWindow.qml" line="645"/>
+        <location filename="../MainWindow.qml" line="662"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="664"/>
+        <location filename="../MainWindow.qml" line="659"/>
         <source>Save File</source>
         <translation>Guardar archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="706"/>
+        <location filename="../MainWindow.qml" line="701"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de crear uno nuevo ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="707"/>
-        <location filename="../MainWindow.qml" line="720"/>
-        <location filename="../MainWindow.qml" line="765"/>
-        <location filename="../MainWindow.qml" line="786"/>
+        <location filename="../MainWindow.qml" line="702"/>
+        <location filename="../MainWindow.qml" line="715"/>
+        <location filename="../MainWindow.qml" line="760"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Don&apos;t Save</source>
         <translation>No guardar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="707"/>
-        <location filename="../MainWindow.qml" line="720"/>
-        <location filename="../MainWindow.qml" line="765"/>
-        <location filename="../MainWindow.qml" line="786"/>
+        <location filename="../MainWindow.qml" line="702"/>
+        <location filename="../MainWindow.qml" line="715"/>
+        <location filename="../MainWindow.qml" line="760"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="719"/>
+        <location filename="../MainWindow.qml" line="714"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de abrir otro ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="763"/>
+        <location filename="../MainWindow.qml" line="758"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>¿ Quieres guardar los datos actuales antes de abrir el archivo %1 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="785"/>
+        <location filename="../MainWindow.qml" line="780"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de cerrar la aplicación ?</translation>
     </message>
@@ -920,59 +920,64 @@
 <context>
     <name>MwEndpointSelector</name>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="84"/>
+        <location filename="../MwEndpointSelector.qml" line="87"/>
+        <source>Endpoint ID: </source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelector.qml" line="101"/>
         <source>Select Source</source>
         <translation>Seleccionar origen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="86"/>
+        <location filename="../MwEndpointSelector.qml" line="103"/>
         <source>Select Destination</source>
         <translation>Seleccionar destino</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="88"/>
+        <location filename="../MwEndpointSelector.qml" line="105"/>
         <source>Select</source>
         <translation>Seleccionar</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="157"/>
-        <source>DETECT</source>
-        <translation></translation>
+        <location filename="../MwEndpointSelector.qml" line="174"/>
+        <source>LEARN</source>
+        <translation>aprender</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="330"/>
+        <location filename="../MwEndpointSelector.qml" line="347"/>
         <source>Apply</source>
         <translation>Aplicar</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="355"/>
+        <location filename="../MwEndpointSelector.qml" line="372"/>
         <source>None</source>
         <translation>Ninguno</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="370"/>
+        <location filename="../MwEndpointSelector.qml" line="387"/>
         <source>More ...</source>
         <translation>Más ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="618"/>
+        <location filename="../MwEndpointSelector.qml" line="637"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation>Seleccione un archivo de clip multimedia que exista en los discos de su computadora o ingrese una URL válida del clip multimedia.</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="618"/>
-        <location filename="../MwEndpointSelector.qml" line="641"/>
-        <location filename="../MwEndpointSelector.qml" line="664"/>
+        <location filename="../MwEndpointSelector.qml" line="637"/>
+        <location filename="../MwEndpointSelector.qml" line="660"/>
+        <location filename="../MwEndpointSelector.qml" line="683"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="641"/>
+        <location filename="../MwEndpointSelector.qml" line="660"/>
         <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
         <translation>Seleccione un archivo de clip de audio que exista en los discos de su computadora o ingrese una URL válida del clip de audio.</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="664"/>
+        <location filename="../MwEndpointSelector.qml" line="683"/>
         <source>Please select a MIDI clip file exists on your computer disks or enter a valid url of the MIDI clip.</source>
         <translation>Seleccione un archivo de clip MIDI que exista en los discos de su computadora o ingrese una URL válida del clip MIDI.</translation>
     </message>
@@ -1977,8 +1982,8 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="142"/>
-        <source>OSC interface is typically for connecting your multimedia hardware or software, such as some VJ / DJ apps, through an IP network.</source>
-        <translation>La interfaz OSC suele ser para conectar su hardware o software multimedia, como algunas aplicaciones de VJ / DJ, a través de una red IP.</translation>
+        <source>OSC interface is typically for connecting your interactive media control and creation applications, such as TouchOSC, TouchDesigner, etc.</source>
+        <translation>La interfaz OSC suele ser para conectar sus aplicaciones de control y creación de medios interactivos, como TouchOSC, TouchDesigner, etc.</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="169"/>

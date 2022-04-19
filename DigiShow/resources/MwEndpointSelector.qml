@@ -164,14 +164,14 @@ Item {
 
     CButton {
         id: buttonDetect
-        width: 46
+        width: 48
         height: 20
         anchors.right: buttonInterface.right
         anchors.rightMargin: 16
         anchors.verticalCenter: buttonInterface.verticalCenter
         label.font.bold: false
-        label.font.pixelSize: 8
-        label.text: qsTr("DETECT")
+        label.font.pixelSize: 10
+        label.text: qsTr("LEARN")
         box.radius: 3
         colorNormal: isDetecting ? "#990000" : "transparent"
         visible: app.isRunning && forInput && (interfaceType === "midi" || interfaceType === "osc")
@@ -813,7 +813,7 @@ Item {
                     else if (typeTag === "T" ||
                              typeTag === "F") typeName = "bool"
 
-                    itemOsc.spinChannel.value = numValues-1
+                    itemOsc.spinChannel.value = numValues
                     itemOsc.menuType.selectOptionWithTag(typeName)
                 }
             }
