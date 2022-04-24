@@ -287,7 +287,8 @@ void DigishowInterface::updateMetadata()
         labelType = tr("Modbus");
         labelIdentity = (m_interfaceInfo.mode==INTERFACE_MODBUS_RTU ?
                          m_interfaceOptions.value("comPort").toString() :
-                         m_interfaceOptions.value("tcpHost").toString()) ;
+                         m_interfaceOptions.value("tcpHost").toString()) + ":" +
+                         m_interfaceOptions.value("tcpPort").toString();
         break;
     case INTERFACE_HUE:
         labelType = tr("Hue");
@@ -299,11 +300,13 @@ void DigishowInterface::updateMetadata()
         break;
     case INTERFACE_ARTNET:
         labelType = tr("ArtNet");
-        labelIdentity = m_interfaceOptions.value("udpHost").toString();
+        labelIdentity = m_interfaceOptions.value("udpHost").toString() + ":" +
+                        m_interfaceOptions.value("udpPort").toString();
         break;
     case INTERFACE_OSC:
         labelType = tr("OSC");
-        labelIdentity = m_interfaceOptions.value("udpHost").toString();
+        labelIdentity = m_interfaceOptions.value("udpHost").toString() + ":" +
+                        m_interfaceOptions.value("udpPort").toString();
         break;
     case INTERFACE_SCREEN:
         labelType = tr("Screen");
@@ -320,7 +323,8 @@ void DigishowInterface::updateMetadata()
     case INTERFACE_PIPE:
         if (m_interfaceInfo.mode==INTERFACE_PIPE_REMOTE) {
             labelType = tr("Remote Pipe");
-            labelIdentity = m_interfaceOptions.value("tcpHost").toString();
+            labelIdentity = m_interfaceOptions.value("tcpHost").toString() + ":" +
+                            m_interfaceOptions.value("tcpPort").toString();
         } else {
             labelType = tr("Virtual Pipe");
             labelIdentity = m_interfaceOptions.value("comment").toString();
