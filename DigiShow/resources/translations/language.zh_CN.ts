@@ -288,249 +288,259 @@
 <context>
     <name>DigishowInterface</name>
     <message>
-        <location filename="../../digishow_interface.cpp" line="279"/>
+        <location filename="../../digishow_interface.cpp" line="285"/>
         <source>MIDI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="283"/>
+        <location filename="../../digishow_interface.cpp" line="289"/>
         <source>Arduino</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="283"/>
+        <location filename="../../digishow_interface.cpp" line="289"/>
         <source>Aladdin</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="287"/>
+        <location filename="../../digishow_interface.cpp" line="293"/>
         <source>Modbus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="293"/>
+        <location filename="../../digishow_interface.cpp" line="300"/>
         <source>Hue</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="297"/>
-        <location filename="../../digishow_interface.cpp" line="562"/>
+        <location filename="../../digishow_interface.cpp" line="304"/>
+        <location filename="../../digishow_interface.cpp" line="579"/>
         <source>DMX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="301"/>
-        <location filename="../../digishow_interface.cpp" line="570"/>
+        <location filename="../../digishow_interface.cpp" line="308"/>
+        <location filename="../../digishow_interface.cpp" line="587"/>
         <source>ArtNet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="305"/>
-        <location filename="../../digishow_interface.cpp" line="578"/>
-        <location filename="../../digishow_interface.cpp" line="586"/>
-        <location filename="../../digishow_interface.cpp" line="593"/>
+        <location filename="../../digishow_interface.cpp" line="313"/>
+        <location filename="../../digishow_interface.cpp" line="595"/>
+        <location filename="../../digishow_interface.cpp" line="603"/>
+        <location filename="../../digishow_interface.cpp" line="610"/>
         <source>OSC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="309"/>
+        <location filename="../../digishow_interface.cpp" line="318"/>
         <source>Screen</source>
         <translation>屏幕</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="322"/>
+        <location filename="../../digishow_interface.cpp" line="331"/>
         <source>Remote Pipe</source>
         <translation>远程管道</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="325"/>
+        <location filename="../../digishow_interface.cpp" line="335"/>
         <source>Virtual Pipe</source>
         <translation>虚拟管道</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="330"/>
+        <location filename="../../digishow_interface.cpp" line="340"/>
         <source>Preset Launch</source>
         <translation>启动预设</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="424"/>
+        <location filename="../../digishow_interface.cpp" line="344"/>
+        <source>Hot Key</source>
+        <translation>全局热键</translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="441"/>
         <source>MIDI Note</source>
         <translation>MIDI 音符</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="432"/>
-        <location filename="../../digishow_interface.cpp" line="447"/>
+        <location filename="../../digishow_interface.cpp" line="449"/>
+        <location filename="../../digishow_interface.cpp" line="464"/>
         <source>MIDI CC</source>
         <translation>MIDI 控制</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="440"/>
+        <location filename="../../digishow_interface.cpp" line="457"/>
         <source>MIDI Prgm</source>
         <translation>MIDI 音色</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="453"/>
+        <location filename="../../digishow_interface.cpp" line="470"/>
         <source>Digital In</source>
         <translation>数字输入</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="459"/>
+        <location filename="../../digishow_interface.cpp" line="476"/>
         <source>Digital Out</source>
         <translation>数字输出</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="466"/>
+        <location filename="../../digishow_interface.cpp" line="483"/>
         <source>Analog In</source>
         <translation>模拟输入</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="473"/>
+        <location filename="../../digishow_interface.cpp" line="490"/>
         <source>Analog Out</source>
         <translation>模拟输出</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="480"/>
+        <location filename="../../digishow_interface.cpp" line="497"/>
         <source>PWM Out</source>
         <translation>PWM 输出</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="487"/>
+        <location filename="../../digishow_interface.cpp" line="504"/>
         <source>PFM Out</source>
         <translation>PFM 输出</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="494"/>
+        <location filename="../../digishow_interface.cpp" line="511"/>
         <source>Encoder</source>
         <translation>编码器</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="508"/>
+        <location filename="../../digishow_interface.cpp" line="525"/>
         <source>Stepper</source>
         <translation>步进电机</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="514"/>
+        <location filename="../../digishow_interface.cpp" line="531"/>
         <source>Discrete</source>
         <translation>离散量</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="520"/>
-        <location filename="../../digishow_interface.cpp" line="526"/>
+        <location filename="../../digishow_interface.cpp" line="537"/>
+        <location filename="../../digishow_interface.cpp" line="543"/>
         <source>Coil</source>
         <translation>线圈</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="533"/>
+        <location filename="../../digishow_interface.cpp" line="550"/>
         <source>Input</source>
         <translation>输入寄存器</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="540"/>
-        <location filename="../../digishow_interface.cpp" line="547"/>
+        <location filename="../../digishow_interface.cpp" line="557"/>
+        <location filename="../../digishow_interface.cpp" line="564"/>
         <source>Holding</source>
         <translation>保持寄存器</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="555"/>
+        <location filename="../../digishow_interface.cpp" line="572"/>
         <source>Light</source>
         <translation>灯光</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="555"/>
+        <location filename="../../digishow_interface.cpp" line="572"/>
         <source>Group</source>
         <translation>分组</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="587"/>
+        <location filename="../../digishow_interface.cpp" line="604"/>
         <source>Float</source>
         <translation>浮点数</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="594"/>
+        <location filename="../../digishow_interface.cpp" line="611"/>
         <source>Bool</source>
         <translation>布尔值</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="600"/>
+        <location filename="../../digishow_interface.cpp" line="617"/>
         <source>Backlight</source>
         <translation>背光灯</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="641"/>
+        <location filename="../../digishow_interface.cpp" line="658"/>
         <source>Canvas</source>
         <translation>画布</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="661"/>
-        <location filename="../../digishow_interface.cpp" line="668"/>
-        <location filename="../../digishow_interface.cpp" line="676"/>
+        <location filename="../../digishow_interface.cpp" line="678"/>
+        <location filename="../../digishow_interface.cpp" line="685"/>
+        <location filename="../../digishow_interface.cpp" line="693"/>
         <source>Remote</source>
         <translation>远程</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="662"/>
+        <location filename="../../digishow_interface.cpp" line="679"/>
         <source>Analog</source>
         <translation>模拟量</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="682"/>
+        <location filename="../../digishow_interface.cpp" line="699"/>
         <source>Launch</source>
         <translation>启动</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="683"/>
+        <location filename="../../digishow_interface.cpp" line="700"/>
         <source>Preset</source>
         <translation>预设</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="661"/>
-        <location filename="../../digishow_interface.cpp" line="668"/>
-        <location filename="../../digishow_interface.cpp" line="676"/>
+        <location filename="../../digishow_interface.cpp" line="708"/>
+        <source>Key</source>
+        <translation>按键</translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="678"/>
+        <location filename="../../digishow_interface.cpp" line="685"/>
+        <location filename="../../digishow_interface.cpp" line="693"/>
         <source>Pipe</source>
         <translation>管道</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="313"/>
+        <location filename="../../digishow_interface.cpp" line="322"/>
         <source>Audio Player</source>
         <translation>音频播放器</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="317"/>
+        <location filename="../../digishow_interface.cpp" line="326"/>
         <source>MIDI Player</source>
         <translation>MIDI 播放器</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="501"/>
+        <location filename="../../digishow_interface.cpp" line="518"/>
         <source>Servo</source>
         <translation>舵机</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="579"/>
+        <location filename="../../digishow_interface.cpp" line="596"/>
         <source>Integer</source>
         <translation>整数</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="623"/>
+        <location filename="../../digishow_interface.cpp" line="640"/>
         <source>Media Clip</source>
         <translation>媒体素材</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="647"/>
+        <location filename="../../digishow_interface.cpp" line="664"/>
         <source>Audio Clip</source>
         <translation>音频素材</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="653"/>
+        <location filename="../../digishow_interface.cpp" line="670"/>
         <source>MIDI Clip</source>
         <translation>MIDI 素材</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="669"/>
+        <location filename="../../digishow_interface.cpp" line="686"/>
         <source>Binary</source>
         <translation>开关量</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="677"/>
+        <location filename="../../digishow_interface.cpp" line="694"/>
         <source>Note</source>
         <translation>音符</translation>
     </message>
@@ -543,54 +553,54 @@
         <translation>未命名</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="702"/>
-        <location filename="../MainWindow.qml" line="715"/>
-        <location filename="../MainWindow.qml" line="760"/>
-        <location filename="../MainWindow.qml" line="781"/>
+        <location filename="../MainWindow.qml" line="703"/>
+        <location filename="../MainWindow.qml" line="716"/>
+        <location filename="../MainWindow.qml" line="761"/>
+        <location filename="../MainWindow.qml" line="782"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="243"/>
+        <location filename="../MainWindow.qml" line="244"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="271"/>
-        <location filename="../MainWindow.qml" line="702"/>
-        <location filename="../MainWindow.qml" line="715"/>
-        <location filename="../MainWindow.qml" line="760"/>
-        <location filename="../MainWindow.qml" line="781"/>
+        <location filename="../MainWindow.qml" line="272"/>
+        <location filename="../MainWindow.qml" line="703"/>
+        <location filename="../MainWindow.qml" line="716"/>
+        <location filename="../MainWindow.qml" line="761"/>
+        <location filename="../MainWindow.qml" line="782"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="285"/>
+        <location filename="../MainWindow.qml" line="286"/>
         <source>About DigiShow</source>
         <translation>关于 DigiShow</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="448"/>
+        <location filename="../MainWindow.qml" line="449"/>
         <source>Error occurred when open interface %1 .</source>
         <translation>在打开 %1 接口时发生故障。</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="448"/>
+        <location filename="../MainWindow.qml" line="449"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="250"/>
+        <location filename="../MainWindow.qml" line="251"/>
         <source>Open ...</source>
         <translation>打开 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="780"/>
+        <location filename="../MainWindow.qml" line="781"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>在关闭应用程序前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="701"/>
+        <location filename="../MainWindow.qml" line="702"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>在创建新项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
@@ -605,152 +615,152 @@
         <translation> ( 停止工作中 )</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="702"/>
-        <location filename="../MainWindow.qml" line="715"/>
-        <location filename="../MainWindow.qml" line="760"/>
-        <location filename="../MainWindow.qml" line="781"/>
+        <location filename="../MainWindow.qml" line="703"/>
+        <location filename="../MainWindow.qml" line="716"/>
+        <location filename="../MainWindow.qml" line="761"/>
+        <location filename="../MainWindow.qml" line="782"/>
         <source>Don&apos;t Save</source>
         <translation>不保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="714"/>
+        <location filename="../MainWindow.qml" line="715"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>在打开另一个项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="275"/>
+        <location filename="../MainWindow.qml" line="276"/>
         <source>Save As ...</source>
         <translation>另存为 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="232"/>
+        <location filename="../MainWindow.qml" line="233"/>
         <source>New Instance</source>
         <translation>新建实例</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="234"/>
+        <location filename="../MainWindow.qml" line="235"/>
         <source>Starting a new DigiShow LINK instance ...</source>
         <translation>正在启动新创建的 DigiShow LINK 实例 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="258"/>
+        <location filename="../MainWindow.qml" line="259"/>
         <source>Open Recent</source>
         <translation>打开最近使用</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="260"/>
+        <location filename="../MainWindow.qml" line="261"/>
         <source>Clear Menu</source>
         <translation>清除菜单</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="280"/>
+        <location filename="../MainWindow.qml" line="281"/>
         <source>Show File</source>
         <translation>查看文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="289"/>
+        <location filename="../MainWindow.qml" line="290"/>
         <source>Options ...</source>
         <translation>选项设置 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="293"/>
+        <location filename="../MainWindow.qml" line="294"/>
         <source>Exit Full Screen</source>
         <translation>退出全屏模式</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="293"/>
+        <location filename="../MainWindow.qml" line="294"/>
         <source>Enter Full Screen</source>
         <translation>进入全屏模式</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="303"/>
+        <location filename="../MainWindow.qml" line="304"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="355"/>
+        <location filename="../MainWindow.qml" line="356"/>
         <source>PRESETS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="503"/>
+        <location filename="../MainWindow.qml" line="504"/>
         <source>Interface Manager</source>
         <translation>接口管理器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="524"/>
+        <location filename="../MainWindow.qml" line="525"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="528"/>
+        <location filename="../MainWindow.qml" line="529"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="532"/>
+        <location filename="../MainWindow.qml" line="533"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="536"/>
+        <location filename="../MainWindow.qml" line="537"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="540"/>
+        <location filename="../MainWindow.qml" line="541"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="544"/>
+        <location filename="../MainWindow.qml" line="545"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="548"/>
+        <location filename="../MainWindow.qml" line="549"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="556"/>
+        <location filename="../MainWindow.qml" line="557"/>
         <source>Virtual Pipe ...</source>
         <translation>虚拟管道 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="642"/>
+        <location filename="../MainWindow.qml" line="643"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="645"/>
+        <location filename="../MainWindow.qml" line="646"/>
         <source>JSON files</source>
         <translation>JSON 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="758"/>
+        <location filename="../MainWindow.qml" line="759"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>在打开文件 “ %1 ” 前是否需要保存当前数据 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="552"/>
+        <location filename="../MainWindow.qml" line="553"/>
         <source>Screen ...</source>
         <translation>屏幕 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="645"/>
-        <location filename="../MainWindow.qml" line="662"/>
+        <location filename="../MainWindow.qml" line="646"/>
+        <location filename="../MainWindow.qml" line="663"/>
         <source>DigiShow files</source>
         <translation>DigiShow 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="645"/>
-        <location filename="../MainWindow.qml" line="662"/>
+        <location filename="../MainWindow.qml" line="646"/>
+        <location filename="../MainWindow.qml" line="663"/>
         <source>All files</source>
         <translation>所有文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="659"/>
+        <location filename="../MainWindow.qml" line="660"/>
         <source>Save File</source>
         <translation>保存文件</translation>
     </message>
@@ -758,32 +768,32 @@
 <context>
     <name>MwAboutDialog</name>
     <message>
-        <location filename="../MwAboutDialog.qml" line="70"/>
+        <location filename="../MwAboutDialog.qml" line="71"/>
         <source>app version: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwAboutDialog.qml" line="71"/>
+        <location filename="../MwAboutDialog.qml" line="72"/>
         <source>app build date: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwAboutDialog.qml" line="72"/>
+        <location filename="../MwAboutDialog.qml" line="73"/>
         <source>qt version: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwAboutDialog.qml" line="73"/>
+        <location filename="../MwAboutDialog.qml" line="74"/>
         <source>rtmidi version: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwAboutDialog.qml" line="89"/>
+        <location filename="../MwAboutDialog.qml" line="90"/>
         <source>Jam with All Things Digital</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwAboutDialog.qml" line="134"/>
+        <location filename="../MwAboutDialog.qml" line="137"/>
         <source>© 2020-2021 Robin Zhang &amp; Labs</source>
         <translation></translation>
     </message>
@@ -940,44 +950,44 @@
         <translation>选择信号端</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="174"/>
+        <location filename="../MwEndpointSelector.qml" line="176"/>
         <source>LEARN</source>
-        <translation type="unfinished">学习</translation>
+        <translation>学习</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="347"/>
+        <location filename="../MwEndpointSelector.qml" line="359"/>
         <source>Apply</source>
         <translation>应用</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="372"/>
+        <location filename="../MwEndpointSelector.qml" line="384"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="637"/>
+        <location filename="../MwEndpointSelector.qml" line="659"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的媒体素材文件，或输入该媒体素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="637"/>
-        <location filename="../MwEndpointSelector.qml" line="660"/>
-        <location filename="../MwEndpointSelector.qml" line="683"/>
+        <location filename="../MwEndpointSelector.qml" line="659"/>
+        <location filename="../MwEndpointSelector.qml" line="682"/>
+        <location filename="../MwEndpointSelector.qml" line="705"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="660"/>
+        <location filename="../MwEndpointSelector.qml" line="682"/>
         <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的音频素材文件，或输入该音频素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="683"/>
+        <location filename="../MwEndpointSelector.qml" line="705"/>
         <source>Please select a MIDI clip file exists on your computer disks or enter a valid url of the MIDI clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的 MIDI 素材文件，或输入该 MIDI 素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="387"/>
+        <location filename="../MwEndpointSelector.qml" line="399"/>
         <source>More ...</source>
         <translation>更多接口 ...</translation>
     </message>
@@ -1085,6 +1095,14 @@
         <location filename="../MwEndpointSelectorDmx.qml" line="35"/>
         <source>Channel</source>
         <translation>通道</translation>
+    </message>
+</context>
+<context>
+    <name>MwEndpointSelectorHotkey</name>
+    <message>
+        <location filename="../MwEndpointSelectorHotkey.qml" line="77"/>
+        <source>(none)</source>
+        <translation>( 无 )</translation>
     </message>
 </context>
 <context>
@@ -2417,6 +2435,19 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <location filename="../MwSlotOptionsView.qml" line="476"/>
         <source>Release</source>
         <translation>R 渐出时长</translation>
+    </message>
+</context>
+<context>
+    <name>QHotkey</name>
+    <message>
+        <location filename="../../modules/qhotkey/QHotkey/qhotkey.cpp" line="277"/>
+        <source>Failed to register %1. Error: %2</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../modules/qhotkey/QHotkey/qhotkey.cpp" line="297"/>
+        <source>Failed to unregister %1. Error: %2</source>
+        <translation></translation>
     </message>
 </context>
 </TS>

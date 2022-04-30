@@ -188,6 +188,7 @@ void DigishowInterface::updateMetadata()
     else if (typeName == "mplay" ) m_interfaceInfo.type = INTERFACE_MPLAY;
     else if (typeName == "pipe"  ) m_interfaceInfo.type = INTERFACE_PIPE;
     else if (typeName == "launch") m_interfaceInfo.type = INTERFACE_LAUNCH;
+    else if (typeName == "hotkey") m_interfaceInfo.type = INTERFACE_HOTKEY;
 
     // set interface mode
     QString modeName = m_interfaceOptions.value("mode").toString();
@@ -243,6 +244,10 @@ void DigishowInterface::updateMetadata()
         if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_LAUNCH_LOCAL;
         else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_LAUNCH_REMOTE;
         break;
+    case INTERFACE_HOTKEY:
+        if      (modeName == "" ||
+                 modeName == "input"       ) m_interfaceInfo.mode = INTERFACE_HOTKEY_INPUT;
+        break;
     }
 
     // set interface input flag
@@ -266,7 +271,8 @@ void DigishowInterface::updateMetadata()
         m_interfaceInfo.output = false;
     else if (m_interfaceInfo.mode==INTERFACE_MIDI_INPUT ||
              m_interfaceInfo.mode==INTERFACE_ARTNET_INPUT ||
-             m_interfaceInfo.mode==INTERFACE_OSC_INPUT)
+             m_interfaceInfo.mode==INTERFACE_OSC_INPUT ||
+             m_interfaceInfo.mode==INTERFACE_HOTKEY_INPUT)
         m_interfaceInfo.output = false;
     else
         m_interfaceInfo.output = true;
@@ -332,6 +338,10 @@ void DigishowInterface::updateMetadata()
         break;
     case INTERFACE_LAUNCH:
         labelType = tr("Preset Launch");
+        labelIdentity = "";
+        break;
+    case INTERFACE_HOTKEY:
+        labelType = tr("Hot Key");
         labelIdentity = "";
         break;
     }
@@ -415,6 +425,9 @@ void DigishowInterface::updateMetadata()
             break;
         case INTERFACE_LAUNCH:
             if      (typeName == "preset"     ) endpointInfo.type = ENDPOINT_LAUNCH_PRESET;
+            break;
+        case INTERFACE_HOTKEY:
+            if      (typeName == "press"      ) endpointInfo.type = ENDPOINT_HOTKEY_PRESS;
             break;
         }
 
@@ -685,6 +698,24 @@ void DigishowInterface::updateMetadata()
             endpointInfo.output = true;
             endpointInfo.labelEPT = tr("Launch");
             endpointInfo.labelEPI = tr("Preset") + " " + QString::number(endpointInfo.channel);
+            break;
+        case ENDPOINT_HOTKEY_PRESS:
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.input = true;
+
+            QStringList hotkey = endpointInfo.address.split("+");
+            switch (hotkey.length()) {
+            case 1: endpointInfo.labelEPT = tr("Key"); break;
+            case 2: endpointInfo.labelEPT = hotkey.first(); break;
+            case 3: endpointInfo.labelEPT = hotkey.at(0) + " + " + hotkey.at(1); break;
+            }
+            endpointInfo.labelEPI = hotkey.last();
+
+#ifdef Q_OS_MAC
+            endpointInfo.labelEPT.replace("Ctrl", "Cmd");
+            endpointInfo.labelEPT.replace("Alt" , "Opt" );
+            endpointInfo.labelEPT.replace("Meta", "Ctrl");
+#endif
             break;
         }
 

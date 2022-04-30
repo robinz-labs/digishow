@@ -47,6 +47,7 @@
         <file>images/icon_interface_mplay_white.png</file>
         <file>images/icon_interface_pipe_white.png</file>
         <file>images/icon_interface_launch_white.png</file>
+        <file>images/icon_interface_hotkey_white.png</file>
         <file>images/icon_interface_dmx_white@2x.png</file>
         <file>images/icon_interface_osc_white@2x.png</file>
         <file>images/icon_interface_artnet_white@2x.png</file>
@@ -59,6 +60,7 @@
         <file>images/icon_interface_mplay_white@2x.png</file>
         <file>images/icon_interface_pipe_white@2x.png</file>
         <file>images/icon_interface_launch_white@2x.png</file>
+        <file>images/icon_interface_hotkey_white@2x.png</file>
         <file>images/AHDSR.png</file>
         <file>images/logo.png</file>
         <file>components/CColor.js</file>
@@ -101,6 +103,7 @@
         <file>MwEndpointSelectorMPlay.qml</file>
         <file>MwEndpointSelectorPipe.qml</file>
         <file>MwEndpointSelectorLaunch.qml</file>
+        <file>MwEndpointSelectorHotkey.qml</file>
         <file>MwAboutDialog.qml</file>
         <file>MwAppOptionsDialog.qml</file>
         <file>MwInterfacesDialog.qml</file>

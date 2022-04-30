@@ -125,6 +125,7 @@ Item {
                 itemMPlay .visible = false
                 itemPipe  .visible = false
                 itemLaunch.visible = false
+                itemHotkey.visible = false
 
                 moreOptions.resetOptions()
                 moreOptions.enableOptions({})
@@ -147,6 +148,7 @@ Item {
                     case DigishowEnvironment.InterfaceMPlay:  itemMPlay .visible = true; itemMPlay .refresh(); break
                     case DigishowEnvironment.InterfacePipe:   itemPipe  .visible = true; itemPipe  .refresh(); break
                     case DigishowEnvironment.InterfaceLaunch: itemLaunch.visible = true; itemLaunch.refresh(); break
+                    case DigishowEnvironment.InterfaceHotkey: itemHotkey.visible = true; itemHotkey.refresh(); break
                     }
                     interfaceType = config["interfaceOptions"]["type"];
                 }
@@ -325,6 +327,16 @@ Item {
     MwEndpointSelectorLaunch {
 
         id: itemLaunch
+
+        anchors.left: buttonInterface.left
+        anchors.top: buttonInterface.bottom
+        anchors.topMargin: 10
+        visible: false
+    }
+
+    MwEndpointSelectorHotkey {
+
+        id: itemHotkey
 
         anchors.left: buttonInterface.left
         anchors.top: buttonInterface.bottom
@@ -532,6 +544,16 @@ Item {
             } else if (type === DigishowEnvironment.InterfaceLaunch) {
 
                 itemLaunch.menuChannel.selectOption(endpointInfo["channel"])
+
+            } else if (type === DigishowEnvironment.InterfaceHotkey) {
+
+                var hotkey = endpointInfo["address"].split("+")
+                itemHotkey.menuKey.selectedIndex = 0
+                itemHotkey.menuModifier1.selectedIndex = 0
+                itemHotkey.menuModifier2.selectedIndex = 0
+                if (hotkey.length > 0) itemHotkey.menuKey.selectOptionWithTag(hotkey.pop())
+                if (hotkey.length > 0) itemHotkey.menuModifier1.selectOptionWithTag(hotkey.shift())
+                if (hotkey.length > 0) itemHotkey.menuModifier2.selectOptionWithTag(hotkey.shift())
             }
 
             // set ui with more options
@@ -695,6 +717,17 @@ Item {
 
             newEndpointOptions["type"] = "preset"
             newEndpointOptions["channel"] = itemLaunch.menuChannel.selectedItemValue
+
+        } else if (type === DigishowEnvironment.InterfaceHotkey) {
+
+            newEndpointOptions["type"] = "press"
+            var hotkey = [];
+            if (itemHotkey.menuModifier1.selectedIndex > 0) hotkey.push(itemHotkey.menuModifier1.selectedItemTag)
+            if (itemHotkey.menuModifier2.selectedIndex > 0) hotkey.push(itemHotkey.menuModifier2.selectedItemTag)
+            hotkey.push(itemHotkey.menuKey.selectedItemTag)
+            newEndpointOptions["address"] = hotkey.join("+")
+
+            needRestartInterface = true
         }
 
         // append more options

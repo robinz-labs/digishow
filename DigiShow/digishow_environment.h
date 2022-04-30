@@ -42,7 +42,8 @@ public:
         InterfaceAPlay  = INTERFACE_APLAY,
         InterfaceMPlay  = INTERFACE_MPLAY,
         InterfacePipe   = INTERFACE_PIPE,
-        InterfaceLaunch = INTERFACE_LAUNCH
+        InterfaceLaunch = INTERFACE_LAUNCH,
+        InterfaceHotkey = INTERFACE_HOTKEY
     };
     Q_ENUM(InterfaceType)
 
@@ -71,7 +72,8 @@ public:
         InterfacePipeLocal        = INTERFACE_PIPE_LOCAL,
         InterfacePipeRemote       = INTERFACE_PIPE_REMOTE,
         InterfaceLaunchLocal      = INTERFACE_LAUNCH_LOCAL,
-        InterfaceLaunchRemote     = INTERFACE_LAUNCH_REMOTE
+        InterfaceLaunchRemote     = INTERFACE_LAUNCH_REMOTE,
+        InterfaceHotkeyInput      = INTERFACE_HOTKEY_INPUT
     };
     Q_ENUM(InterfaceMode)
 
@@ -110,7 +112,8 @@ public:
         EndpointPipeAnalog        = ENDPOINT_PIPE_ANALOG,
         EndpointPipeBinary        = ENDPOINT_PIPE_BINARY,
         EndpointPipeNote          = ENDPOINT_PIPE_NOTE,
-        EndpointLaunchPreset      = ENDPOINT_LAUNCH_PRESET
+        EndpointLaunchPreset      = ENDPOINT_LAUNCH_PRESET,
+        EndpointHotkeyPress       = ENDPOINT_HOTKEY_PRESS
     };
     Q_ENUM(EndpointType)
 

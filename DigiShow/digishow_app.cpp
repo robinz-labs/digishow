@@ -29,6 +29,7 @@
 #include "dgs_screen_interface.h"
 #include "dgs_pipe_interface.h"
 #include "dgs_launch_interface.h"
+#include "dgs_hotkey_interface.h"
 
 #ifdef DIGISHOW_EXPERIMENTAL
 #include "dgs_aplay_interface.h"
@@ -130,6 +131,7 @@ void DigishowApp::importData(const QVariantMap & data)
         else if (interfaceType=="screen") interface = new DgsScreenInterface(this);
         else if (interfaceType=="pipe")   interface = new DgsPipeInterface(this);
         else if (interfaceType=="launch") interface = new DgsLaunchInterface(this);
+        else if (interfaceType=="hotkey") interface = new DgsHotkeyInterface(this);
 #ifdef DIGISHOW_EXPERIMENTAL
         else if (interfaceType=="aplay")  interface = new DgsAPlayInterface(this);
         else if (interfaceType=="mplay")  interface = new DgsMPlayInterface(this);
@@ -407,6 +409,7 @@ void DigishowApp::newShow()
     m_filepath.clear();
     emit filepathChanged();
 
+    newInterface("hotkey");
     newInterface("launch");
     newInterface("pipe");
     emit interfaceListChanged();
@@ -470,6 +473,11 @@ int DigishowApp::newInterface(const QString &interfaceType)
 
         interface = new DgsLaunchInterface(this);
         interface->setInterfaceOption("mode", "local");
+
+    } else if (interfaceType=="hotkey") {
+
+        interface = new DgsHotkeyInterface(this);
+        interface->setInterfaceOption("mode", "input");
 
     } else if (interfaceType=="screen") {
 
