@@ -328,7 +328,7 @@ ApplicationWindow {
             CButton {
                 id: buttonLinkAll
                 width: 34
-                height: 27
+                height: 28
                 anchors.left: parent.left
                 anchors.leftMargin: 226
                 anchors.verticalCenter: parent.verticalCenter
@@ -344,19 +344,18 @@ ApplicationWindow {
 
             CButton {
                 id: buttonQuickLaunch
-                width: 90
-                height: 27
+                width: 34
+                height: 28
                 anchors.left: parent.right
                 anchors.leftMargin: -305
                 anchors.verticalCenter: parent.verticalCenter
+                toolTipText: qsTr("Presets")
+                toolTipVisible: !quickLaunchView.opened
                 icon.width: 24
                 icon.height: 24
+                icon.sourceSize.width: 48
+                icon.sourceSize.height: 48
                 icon.source: "qrc:///images/icon_pad_white.png"
-                icon.anchors.horizontalCenterOffset: -28
-                label.text: qsTr("PRESETS")
-                label.font.bold: false
-                label.font.pixelSize: 9
-                label.anchors.horizontalCenterOffset: 13
                 box.radius: 3
                 box.border.width: 1
                 colorNormal: quickLaunchView.opened ? "#666666" : "transparent"
@@ -370,19 +369,53 @@ ApplicationWindow {
             }
 
             CButton {
-                id: buttonGotoBookmark
+                id: buttonMetronome
                 width: 34
-                height: 27
+                height: 28
                 anchors.left: buttonQuickLaunch.right
-                anchors.leftMargin: 5
+                anchors.leftMargin: 10
                 anchors.verticalCenter: parent.verticalCenter
+                toolTipText: qsTr("Metronome")
+                toolTipVisible: !metronomeView.opened
                 icon.width: 24
                 icon.height: 24
+                icon.sourceSize.width: 48
+                icon.sourceSize.height: 48
+                icon.source: "qrc:///images/icon_metro_white.png"
+                box.radius: 3
+                box.border.width: 1
+                colorNormal: metronomeView.opened ? "#666666" : "transparent"
+                visible: slotListView.listItemCount > 0
+                onClicked: {
+
+                    if (metronomeView.opened)
+                        metronomeView.close()
+                    else
+                        metronomeView.open()
+                }
+            }
+
+            CButton {
+                id: buttonGotoBookmark
+                width: 34
+                height: 28
+                anchors.left: buttonMetronome.right
+                anchors.leftMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                toolTipText: qsTr("Bookmarks")
+                toolTipVisible: !menuGotoBookmark.visible
+                icon.width: 24
+                icon.height: 24
+                icon.sourceSize.width: 48
+                icon.sourceSize.height: 48
                 icon.source: "qrc:///images/icon_goto_white.png"
                 box.radius: 3
                 box.border.width: 1
-                colorNormal: "transparent"
+                colorNormal: blinkGotoBookmark.state ? "darkRed" : "transparent"
                 visible: slotListView.hasBookmarks
+                onVisibleChanged: {
+                    if (visible) blinkGotoBookmark.start()
+                }
                 onClicked: {
                     menuGotoBookmark.optionItems = slotListView.getBookmarks()
                     menuGotoBookmark.showOptions()
@@ -395,6 +428,26 @@ ApplicationWindow {
                         slotListView.gotoBookmark(value)
                     }
                 }
+
+                Timer {
+                    property bool state: false
+                    property int step: 0
+
+                    id: blinkGotoBookmark
+                    interval: 200
+                    repeat: true
+                    running: false
+                    onRunningChanged: {
+                        state = false
+                        step = 0
+                    }
+                    onTriggered: {
+                        state = !state
+                        step++
+                        if (step === 8) running = false
+                    }
+                }
+
             }
 
             CButton {
@@ -572,10 +625,18 @@ ApplicationWindow {
             anchors.horizontalCenterOffset: slotListView.listItemCount === 0 ? 0 : rectTopLeftBar.width / 2 + 175
         }
 
+        MwMetronomeView {
+            id: metronomeView
+            height: 0
+            anchors.top: rectTopLeftBar.bottom
+            anchors.left: rectTopLeftBar.left
+            anchors.right: rectTopLeftBar.right
+        }
+
         MwQuickLaunchView {
             id: quickLaunchView
             height: 0
-            anchors.top: rectTopLeftBar.bottom
+            anchors.top: metronomeView.bottom
             anchors.left: rectTopLeftBar.left
             anchors.right: rectTopLeftBar.right
         }

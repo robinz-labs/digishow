@@ -1,4 +1,5 @@
 import QtQuick 2.12
+import QtQuick.Controls 2.12
 
 Item {
 
@@ -17,6 +18,9 @@ Item {
     property alias iconChecked: buttonIconChecked
     property alias label: buttonLabel
     property alias labelChecked: buttonLabelChecked
+
+    property alias toolTipText: toolTip.text
+    property bool  toolTipVisible: true
 
     property bool mouseOver: false
     property bool mouseDown: false
@@ -140,5 +144,14 @@ Item {
                 button.longPressed() // emit signal
             }
         }
+    }
+
+    ToolTip {
+        id: toolTip
+        delay: 1000
+        visible: text !=="" && button.mouseOver && button.toolTipVisible
+        text: ""
+        enter: Transition {}
+        exit: Transition {}
     }
 }

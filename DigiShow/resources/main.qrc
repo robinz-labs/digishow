@@ -19,6 +19,8 @@
         <file>images/icon_rewind_white.png</file>
         <file>images/icon_stop_white.png</file>
         <file>images/icon_pad_white.png</file>
+        <file>images/icon_goto_white.png</file>
+        <file>images/icon_metro_white.png</file>
         <file>images/icon_links_white.png</file>
         <file>images/icon_port_white.png</file>
         <file>images/icon_signal_analog_white.png</file>
@@ -34,7 +36,6 @@
         <file>images/icon_fullscreen_enter_white.png</file>
         <file>images/icon_fullscreen_exit_white.png</file>
         <file>images/icon_invert_white.png</file>
-        <file>images/icon_goto_white.png</file>
         <file>images/icon_interface_dmx_white.png</file>
         <file>images/icon_interface_osc_white.png</file>
         <file>images/icon_interface_artnet_white.png</file>
@@ -110,6 +111,7 @@
         <file>MwColorPickerDialog.qml</file>
         <file>MwSlotOptionsView.qml</file>
         <file>MwQuickLaunchView.qml</file>
+        <file>MwMetronomeView.qml</file>
         <file>MwInterfaceListGrid.qml</file>
         <file>MwInterfaceListItem.qml</file>
         <file>MwInterfaceListView.qml</file>
