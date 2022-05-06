@@ -17,19 +17,20 @@
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-//#include <QtQml/QQmlComponent>
-//#include <QtQuick/QQuickWindow>
 #include <QtWebEngine/qtwebengineglobal.h>
 #include <QFileOpenEvent>
 #include <QFontDatabase>
 #include <QFont>
 #include <QScreen>
 #include <QDebug>
+//#include <QQmlComponent>
+//#include <QQuickWindow>
 #include "digishow.h"
 #include "digishow_environment.h"
 #include "digishow_interface.h"
 #include "digishow_slot.h"
 #include "digishow_data.h"
+#include "digishow_metronome.h"
 
 #ifdef Q_OS_MAC
 #include <CoreMIDI/CoreMIDI.h>
@@ -126,6 +127,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<DigishowInterface>("DigiShow", 1, 0, "DigishowInterface");
     qmlRegisterType<DigishowSlot>("DigiShow", 1, 0, "DigishowSlot");
     qmlRegisterType<DigishowData>("DigiShow", 1, 0, "DigishowData");
+    qmlRegisterType<DigishowMetronome>("DigiShow", 1, 0, "DigishowMetronome");
 
     QCoreApplication::setOrganizationName("robinz");
     QCoreApplication::setOrganizationDomain("robinz.org");

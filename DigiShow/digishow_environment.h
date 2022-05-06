@@ -26,6 +26,7 @@ class DigishowEnvironment : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(DigishowApp *app READ app NOTIFY appChanged)
+    Q_PROPERTY(DigishowMetronome *metronome READ metronome NOTIFY metronomeChanged)
     Q_PROPERTY(bool needLogs READ needLogs WRITE setNeedLogs NOTIFY needLogsChanged)
 
 public:
@@ -168,6 +169,7 @@ public:
     }
 
     Q_INVOKABLE DigishowApp *app() { return g_app; }
+    Q_INVOKABLE DigishowMetronome *metronome() { return g_app->metronome(); }
 
     Q_INVOKABLE void setAppOptions(const QVariantMap &options);
     Q_INVOKABLE QVariantMap getAppOptions();
@@ -226,6 +228,7 @@ public:
 
 signals:
     void appChanged();
+    void metronomeChanged();
     void needLogsChanged();
 
     void interfaceDataInputDetected(int interfaceIndex, const QVariantMap &rawData);

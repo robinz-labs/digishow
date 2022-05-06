@@ -1,4 +1,4 @@
-QT += quick serialport webengine websockets
+QT += quick serialport webengine websockets multimedia
 
 CONFIG += c++11
 
@@ -31,6 +31,7 @@ SOURCES += \
         digishow_environment.cpp \
         digishow_interface.cpp \
         digishow_slot.cpp \
+        digishow_metronome.cpp \
         main.cpp 
 
 HEADERS += \
@@ -62,7 +63,8 @@ HEADERS += \
     digishow_data.h \
     digishow_environment.h \
     digishow_interface.h \
-    digishow_slot.h
+    digishow_slot.h \
+    digishow_metronome.h
 
 RESOURCES += $$PWD/resources/main.qrc
 
@@ -119,6 +121,9 @@ include(modules/osc/osc.pri)
 
 # QHotKey library
 include(modules/qhotkey/qhotkey.pri)
+
+# Ableton Link library
+include(modules/ableton/link.pri)
 
 # experimental code
 #include(digishow_experimental/experimental.pri)

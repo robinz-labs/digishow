@@ -25,6 +25,7 @@
 
 class DigishowInterface;
 class DigishowSlot;
+class DigishowMetronome;
 
 class DigishowApp : public QObject
 {
@@ -80,6 +81,8 @@ public:
     Q_INVOKABLE QVariantList getSlotLaunchDetails(const QString &launchName);
     Q_INVOKABLE QVariantList getSlotLaunchOptions(const QString &launchName);
 
+    Q_INVOKABLE DigishowMetronome *metronome() { return m_metronome; }
+
 signals:
     void filepathChanged();
     void isRunningChanged();
@@ -105,6 +108,7 @@ private:
     bool m_paused;
 
     QTimer *m_timer;
+    DigishowMetronome *m_metronome;
 
     bool findInterfaceAndEndpoint(const QString &name, int *pInterfaceIndex = nullptr, int *pEndpointIndex = nullptr);
     bool confirmEndpointIsEmployed(int interfaceIndex, int endpointIndex);

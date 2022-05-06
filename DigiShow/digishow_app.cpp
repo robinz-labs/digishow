@@ -19,6 +19,7 @@
 #include "digishow_environment.h"
 #include "digishow_interface.h"
 #include "digishow_slot.h"
+#include "digishow_metronome.h"
 #include "dgs_midi_interface.h"
 #include "dgs_rioc_interface.h"
 #include "dgs_modbus_interface.h"
@@ -48,6 +49,10 @@ DigishowApp::DigishowApp(QObject *parent) : QObject(parent)
     m_timer->setInterval(1000);
     m_timer->start();
 
+    // create a metronome
+    m_metronome = new DigishowMetronome();
+    m_metronome->setLinkEnabled(true);
+
     // list all available online ports and write to file
     // AppUtilities::saveJsonToFile(
     //             DigishowEnvironment::listOnline(),
@@ -60,6 +65,8 @@ DigishowApp::DigishowApp(QObject *parent) : QObject(parent)
 
 DigishowApp::~DigishowApp()
 {
+    m_metronome->deleteLater();
+
     m_timer->stop();
     m_timer->deleteLater();
 
@@ -80,12 +87,18 @@ void DigishowApp::clear()
     for (int n=0 ; n<m_interfaces.length() ; n++) delete m_interfaces[n];
     m_interfaces.clear();
     emit interfaceListChanged();
+
+    // reset metronome parameters
+    m_metronome->reset();
 }
 
 void DigishowApp::importData(const QVariantMap & data)
 {
     // clear all in the app environment
     clear();
+
+    // set up metronome
+    m_metronome->setParameters(data.value("metronome").toMap());
 
     // set up interfaces
     QVariantList dataInterfaces = data.value("interfaces").toList();
@@ -246,6 +259,7 @@ QVariantMap DigishowApp::exportData(const QList<int> & slotListOrder, bool onlyS
     data["interfaces"] = dataInterfaces;
     data["slots"] = dataSlots;
     data["launches"] = m_launches;
+    data["metronome"] = m_metronome->getParameters();
 
     return data;
 }

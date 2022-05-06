@@ -49,6 +49,7 @@
         <file>images/icon_interface_pipe_white.png</file>
         <file>images/icon_interface_launch_white.png</file>
         <file>images/icon_interface_hotkey_white.png</file>
+        <file>images/icon_interface_metro_white.png</file>
         <file>images/icon_interface_dmx_white@2x.png</file>
         <file>images/icon_interface_osc_white@2x.png</file>
         <file>images/icon_interface_artnet_white@2x.png</file>
@@ -62,8 +63,11 @@
         <file>images/icon_interface_pipe_white@2x.png</file>
         <file>images/icon_interface_launch_white@2x.png</file>
         <file>images/icon_interface_hotkey_white@2x.png</file>
+        <file>images/icon_interface_metro_white@2x.png</file>
         <file>images/AHDSR.png</file>
         <file>images/logo.png</file>
+        <file>sounds/metro1.wav</file>
+        <file>sounds/metro2.wav</file>
         <file>components/CColor.js</file>
         <file>components/CCommon.qml</file>
         <file>components/CButton.qml</file>

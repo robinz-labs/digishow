@@ -17,6 +17,7 @@ ApplicationWindow {
     property var listOnline: ({})
 
     property alias app: digishow.app
+    property alias metronome: digishow.metronome
 
     visible: true
     width: 1280
@@ -83,6 +84,9 @@ ApplicationWindow {
                 recentFilesManager.add(app.filepath)
                 recentFilesManager.save()
             }
+
+            quickLaunchView.close()
+            metronomeView.close()
         })
 
         // callback while interfaces data loaded
@@ -106,7 +110,6 @@ ApplicationWindow {
         app.launchListChanged.connect(function() {
 
             quickLaunchView.refresh()
-            quickLaunchView.close()
         })
 
         app.newShow()

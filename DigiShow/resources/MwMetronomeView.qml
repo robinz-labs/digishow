@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
+//import QtAudioEngine 1.1
 import DigiShow 1.0
 
 import "components"
@@ -49,7 +50,11 @@ Item {
                 anchors.verticalCenter: textMetronome.verticalCenter
                 anchors.left: parent.left
                 anchors.leftMargin: 95
-                checked: false
+                checked: metronome.isRunning
+                onClicked: {
+                    metronome.isRunning = checked
+                    isModified = true
+                }
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -69,10 +74,14 @@ Item {
                 anchors.left: checkRun.right
                 anchors.leftMargin: 15
 
-                from: 1
-                to: 999
-                value: 120
+                from: 20
+                to: 600
                 stepSize: 1
+                value: Math.round(metronome.bpm)
+                onValueModified: {
+                    metronome.bpm = value
+                    isModified = true
+                }
 
                 Text {
                     anchors.left: parent.left
@@ -94,9 +103,13 @@ Item {
 
                 from: 1
                 to: 32
-                value: 4
                 stepSize: 1
-                onValueChanged: canvasBeats.requestPaint()
+                value: metronome.quantum
+                onValueModified: {
+                    metronome.quantum = value
+                    canvasBeats.requestPaint()
+                    isModified = true
+                }
 
                 Text {
                     anchors.left: parent.left
@@ -122,6 +135,26 @@ Item {
                 border.width: 1
                 radius: 3
 
+                Text {
+                    anchors.left: parent.left
+                    anchors.bottom: parent.top
+                    anchors.bottomMargin: 10
+                    color: "#cccccc"
+                    font.pixelSize: 12
+                    text: qsTr("Beats")
+                }
+
+                Text {
+                    anchors.right: parent.right
+                    anchors.bottom: parent.top
+                    anchors.bottomMargin: 10
+                    color: "#cccccc"
+                    font.pixelSize: 12
+                    text: !metronome.isRunning ? "" :
+                          (Math.floor(metronome.beat / metronome.quantum) + 1).toString() + " : " +
+                          (Math.floor(metronome.beat % metronome.quantum) + 1).toString()
+                }
+
                 Canvas {
                     id: canvasBeats
 
@@ -130,16 +163,23 @@ Item {
                     onPaint: {
                         var ctx = getContext('2d')
 
-                        //ctx.fillStyle = "#333333"
-                        //ctx.fillRect(0, 0, width, height)
-
                         ctx.clearRect(0, 0, width, height)
 
+                        // draw bar
+                        if (metronome.isRunning) {
+
+                            var w = width * (Math.floor(metronome.phase) + 1) / metronome.quantum
+
+                            ctx.fillStyle = Material.accent
+                            ctx.fillRect(3, 3, Math.max(0, w - 6), height - 6)
+                        }
+
+                        // draw grid
                         ctx.strokeStyle = "#333333"
                         ctx.lineWidth = 1
 
                         ctx.beginPath()
-                        var q = spinQuantum.value
+                        var q = metronome.quantum
                         for (var n=0 ; n<q-1 ; n++) {
                             var x = (n + 1) * width / q
                             ctx.moveTo(x, 0)
@@ -147,17 +187,45 @@ Item {
                         }
                         ctx.stroke()
                     }
-
                 }
 
+                /*
+                AudioEngine {
+                    id:audioengine
 
-                Text {
-                    anchors.left: parent.left
-                    anchors.bottom: parent.top
-                    anchors.bottomMargin: 10
-                    color: "#cccccc"
-                    font.pixelSize: 12
-                    text: qsTr("Beats")
+                    AudioSample {
+                        name:"metro1"
+                        source: "qrc:///sounds/metro1.wav"
+                    }
+                    AudioSample {
+                        name:"metro2"
+                        source: "qrc:///sounds/metro2.wav"
+                    }
+
+                    Sound {
+                        name:"metro1"
+                        PlayVariation {
+                            sample:"metro1"
+                        }
+                    }
+                    Sound {
+                        name:"metro2"
+                        PlayVariation {
+                            sample:"metro2"
+                        }
+                    }
+                }
+                */
+
+                Component.onCompleted: {
+                    metronome.phaseChanged.connect(function() {
+                        //if (metronome.isSoundEnabled) audioengine.sounds[ metronome.phase < 1 ? "metro1": "metro2" ].play();
+                        canvasBeats.requestPaint()
+                    })
+
+                    metronome.isRunningChanged.connect(function() {
+                        canvasBeats.requestPaint()
+                    })
                 }
             }
 
@@ -168,7 +236,11 @@ Item {
                 anchors.verticalCenter: textMetronome.verticalCenter
                 anchors.left: rectBeats.right
                 anchors.leftMargin: 15
-                checked: false
+                checked: metronome.isSoundEnabled
+                onClicked: {
+                    metronome.isSoundEnabled = checked
+                    isModified = true
+                }
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -187,7 +259,11 @@ Item {
                 anchors.verticalCenter: textMetronome.verticalCenter
                 anchors.left: checkSound.right
                 anchors.leftMargin: 10
-                checked: true
+                checked: metronome.isLinkEnabled
+                onClicked: {
+                    metronome.isLinkEnabled = checked
+                    isModified = true
+                }
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -210,7 +286,7 @@ Item {
 
                         onClicked: {
                             if (messageBox.showAndWait(
-                                    qsTr("Select the 'Link' checkbox to synchronize the beats with Ableton or other applications running on your computer."),
+                                    qsTr("Select the 'Link' checkbox to synchronize the beats with other applications running on your computer, such as Ableton Live."),
                                     qsTr("OK"), qsTr("More Info")) === 2) {
                                 Qt.openUrlExternally("https://www.ableton.com/en/link/")
                             }
