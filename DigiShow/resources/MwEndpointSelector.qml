@@ -113,19 +113,20 @@ Item {
             id: menuInterface
 
             onOptionSelected: {
-                itemMidi  .visible = false
-                itemDmx   .visible = false
-                itemOsc   .visible = false
-                itemArtnet.visible = false
-                itemModbus.visible = false
-                itemRioc  .visible = false
-                itemHue   .visible = false
-                itemScreen.visible = false
-                itemAPlay .visible = false
-                itemMPlay .visible = false
-                itemPipe  .visible = false
-                itemLaunch.visible = false
-                itemHotkey.visible = false
+                itemMidi     .visible = false
+                itemDmx      .visible = false
+                itemOsc      .visible = false
+                itemArtnet   .visible = false
+                itemModbus   .visible = false
+                itemRioc     .visible = false
+                itemHue      .visible = false
+                itemScreen   .visible = false
+                itemAPlay    .visible = false
+                itemMPlay    .visible = false
+                itemPipe     .visible = false
+                itemLaunch   .visible = false
+                itemHotkey   .visible = false
+                itemMetronome.visible = false
 
                 moreOptions.resetOptions()
                 moreOptions.enableOptions({})
@@ -136,19 +137,20 @@ Item {
                 var config = getSelectedInterfaceConfiguration()
                 if (config !== undefined) {
                     switch (config["interfaceInfo"]["type"]) {
-                    case DigishowEnvironment.InterfaceMidi:   itemMidi  .visible = true; itemMidi  .refresh(); break
-                    case DigishowEnvironment.InterfaceDmx:    itemDmx   .visible = true; itemDmx   .refresh(); break
-                    case DigishowEnvironment.InterfaceOsc:    itemOsc   .visible = true; itemOsc   .refresh(); break
-                    case DigishowEnvironment.InterfaceArtnet: itemArtnet.visible = true; itemArtnet.refresh(); break
-                    case DigishowEnvironment.InterfaceModbus: itemModbus.visible = true; itemModbus.refresh(); break
-                    case DigishowEnvironment.InterfaceRioc:   itemRioc  .visible = true; itemRioc  .refresh(); break
-                    case DigishowEnvironment.InterfaceHue:    itemHue   .visible = true; itemHue   .refresh(); break
-                    case DigishowEnvironment.InterfaceScreen: itemScreen.visible = true; itemScreen.refresh(); break
-                    case DigishowEnvironment.InterfaceAPlay:  itemAPlay .visible = true; itemAPlay .refresh(); break
-                    case DigishowEnvironment.InterfaceMPlay:  itemMPlay .visible = true; itemMPlay .refresh(); break
-                    case DigishowEnvironment.InterfacePipe:   itemPipe  .visible = true; itemPipe  .refresh(); break
-                    case DigishowEnvironment.InterfaceLaunch: itemLaunch.visible = true; itemLaunch.refresh(); break
-                    case DigishowEnvironment.InterfaceHotkey: itemHotkey.visible = true; itemHotkey.refresh(); break
+                    case DigishowEnvironment.InterfaceMidi:      itemMidi     .visible = true; itemMidi     .refresh(); break
+                    case DigishowEnvironment.InterfaceDmx:       itemDmx      .visible = true; itemDmx      .refresh(); break
+                    case DigishowEnvironment.InterfaceOsc:       itemOsc      .visible = true; itemOsc      .refresh(); break
+                    case DigishowEnvironment.InterfaceArtnet:    itemArtnet   .visible = true; itemArtnet   .refresh(); break
+                    case DigishowEnvironment.InterfaceModbus:    itemModbus   .visible = true; itemModbus   .refresh(); break
+                    case DigishowEnvironment.InterfaceRioc:      itemRioc     .visible = true; itemRioc     .refresh(); break
+                    case DigishowEnvironment.InterfaceHue:       itemHue      .visible = true; itemHue      .refresh(); break
+                    case DigishowEnvironment.InterfaceScreen:    itemScreen   .visible = true; itemScreen   .refresh(); break
+                    case DigishowEnvironment.InterfaceAPlay:     itemAPlay    .visible = true; itemAPlay    .refresh(); break
+                    case DigishowEnvironment.InterfaceMPlay:     itemMPlay    .visible = true; itemMPlay    .refresh(); break
+                    case DigishowEnvironment.InterfacePipe:      itemPipe     .visible = true; itemPipe     .refresh(); break
+                    case DigishowEnvironment.InterfaceLaunch:    itemLaunch   .visible = true; itemLaunch   .refresh(); break
+                    case DigishowEnvironment.InterfaceHotkey:    itemHotkey   .visible = true; itemHotkey   .refresh(); break
+                    case DigishowEnvironment.InterfaceMetronome: itemMetronome.visible = true; itemMetronome.refresh(); break
                     }
                     interfaceType = config["interfaceOptions"]["type"];
                 }
@@ -337,6 +339,16 @@ Item {
     MwEndpointSelectorHotkey {
 
         id: itemHotkey
+
+        anchors.left: buttonInterface.left
+        anchors.top: buttonInterface.bottom
+        anchors.topMargin: 10
+        visible: false
+    }
+
+    MwEndpointSelectorMetronome {
+
+        id: itemMetronome
 
         anchors.left: buttonInterface.left
         anchors.top: buttonInterface.bottom
@@ -554,6 +566,11 @@ Item {
                 if (hotkey.length > 0) itemHotkey.menuKey.selectOptionWithTag(hotkey.pop())
                 if (hotkey.length > 0) itemHotkey.menuModifier1.selectOptionWithTag(hotkey.shift())
                 if (hotkey.length > 0) itemHotkey.menuModifier2.selectOptionWithTag(hotkey.shift())
+
+            } else if (type === DigishowEnvironment.InterfaceMetronome) {
+
+                itemMetronome.spinBeat.value = endpointInfo["channel"]
+                itemMetronome.spinSustain.value = endpointInfo["control"]
             }
 
             // set ui with more options
@@ -726,6 +743,14 @@ Item {
             if (itemHotkey.menuModifier2.selectedIndex > 0) hotkey.push(itemHotkey.menuModifier2.selectedItemTag)
             hotkey.push(itemHotkey.menuKey.selectedItemTag)
             newEndpointOptions["address"] = hotkey.join("+")
+
+            needRestartInterface = true
+
+        } else if (type === DigishowEnvironment.InterfaceMetronome) {
+
+            newEndpointOptions["type"] = "beat"
+            newEndpointOptions["channel"] = itemMetronome.spinBeat.value
+            newEndpointOptions["control"] = itemMetronome.spinSustain.value
 
             needRestartInterface = true
         }

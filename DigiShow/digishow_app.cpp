@@ -31,6 +31,7 @@
 #include "dgs_pipe_interface.h"
 #include "dgs_launch_interface.h"
 #include "dgs_hotkey_interface.h"
+#include "dgs_metronome_interface.h"
 
 #ifdef DIGISHOW_EXPERIMENTAL
 #include "dgs_aplay_interface.h"
@@ -134,22 +135,23 @@ void DigishowApp::importData(const QVariantMap & data)
         // all interface objects created here must be set the parent for keeping the ownership
         // to avoid it released in qml accidently !!!
 
-        if      (interfaceType=="midi")   interface = new DgsMidiInterface(this);
-        else if (interfaceType=="rioc")   interface = new DgsRiocInterface(this);
-        else if (interfaceType=="modbus") interface = new DgsModbusInterface(this);
-        else if (interfaceType=="hue")    interface = new DgsHueInterface(this);
-        else if (interfaceType=="dmx")    interface = new DgsDmxInterface(this);
-        else if (interfaceType=="artnet") interface = new DgsArtnetInterface(this);
-        else if (interfaceType=="osc")    interface = new DgsOscInterface(this);
-        else if (interfaceType=="screen") interface = new DgsScreenInterface(this);
-        else if (interfaceType=="pipe")   interface = new DgsPipeInterface(this);
-        else if (interfaceType=="launch") interface = new DgsLaunchInterface(this);
-        else if (interfaceType=="hotkey") interface = new DgsHotkeyInterface(this);
+        if      (interfaceType=="midi"     ) interface = new DgsMidiInterface(this);
+        else if (interfaceType=="rioc"     ) interface = new DgsRiocInterface(this);
+        else if (interfaceType=="modbus"   ) interface = new DgsModbusInterface(this);
+        else if (interfaceType=="hue"      ) interface = new DgsHueInterface(this);
+        else if (interfaceType=="dmx"      ) interface = new DgsDmxInterface(this);
+        else if (interfaceType=="artnet"   ) interface = new DgsArtnetInterface(this);
+        else if (interfaceType=="osc"      ) interface = new DgsOscInterface(this);
+        else if (interfaceType=="screen"   ) interface = new DgsScreenInterface(this);
+        else if (interfaceType=="pipe"     ) interface = new DgsPipeInterface(this);
+        else if (interfaceType=="launch"   ) interface = new DgsLaunchInterface(this);
+        else if (interfaceType=="hotkey"   ) interface = new DgsHotkeyInterface(this);
+        else if (interfaceType=="metronome") interface = new DgsMetronomeInterface(this);
 #ifdef DIGISHOW_EXPERIMENTAL
-        else if (interfaceType=="aplay")  interface = new DgsAPlayInterface(this);
-        else if (interfaceType=="mplay")  interface = new DgsMPlayInterface(this);
+        else if (interfaceType=="aplay"    ) interface = new DgsAPlayInterface(this);
+        else if (interfaceType=="mplay"    ) interface = new DgsMPlayInterface(this);
 #endif
-        else                              interface = new DigishowInterface(this);
+        else                                 interface = new DigishowInterface(this);
 
         interface->setInterfaceOptions(dataInterface);
         for (int m=0 ; m<dataEndpoints.length() ; m++) {
@@ -423,6 +425,7 @@ void DigishowApp::newShow()
     m_filepath.clear();
     emit filepathChanged();
 
+    newInterface("metronome");
     newInterface("hotkey");
     newInterface("launch");
     newInterface("pipe");
@@ -491,6 +494,11 @@ int DigishowApp::newInterface(const QString &interfaceType)
     } else if (interfaceType=="hotkey") {
 
         interface = new DgsHotkeyInterface(this);
+        interface->setInterfaceOption("mode", "input");
+
+    } else if (interfaceType=="metronome") {
+
+        interface = new DgsMetronomeInterface(this);
         interface->setInterfaceOption("mode", "input");
 
     } else if (interfaceType=="screen") {

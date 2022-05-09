@@ -77,47 +77,63 @@ Item {
                 from: 20
                 to: 600
                 stepSize: 1
-                value: Math.round(metronome.bpm)
+                value: 120
                 onValueModified: {
                     metronome.bpm = value
                     isModified = true
                 }
 
                 Text {
-                    anchors.left: parent.left
+                    anchors.horizontalCenter: parent.horizontalCenter
                     anchors.bottom: parent.top
                     anchors.bottomMargin: 10
                     color: "#cccccc"
                     font.pixelSize: 12
-                    text: qsTr("Tempo / BPM")
+                    text: qsTr("BPM")
+                }
+
+                Component.onCompleted: {
+                    metronome.bpmChanged.connect(function() {
+                        spinBPM.value = Math.round(metronome.bpm)
+                    })
                 }
             }
 
-            CSpinBox {
-                id: spinQuantum
-
-                width: 90
-                anchors.verticalCenter: textMetronome.verticalCenter
+            CButton {
+                id: buttonTap
+                width: 45
+                height: 28
                 anchors.left: spinBPM.right
-                anchors.leftMargin: 20
+                anchors.leftMargin: 5
+                anchors.verticalCenter: textMetronome.verticalCenter
+                label.text: qsTr("Tap")
+                label.font.bold: false
+                label.font.pixelSize: 12
+                box.radius: 3
+                box.border.width: 1
+                colorNormal: "transparent"
+                colorActivated: "#383838"
 
-                from: 1
-                to: 32
-                stepSize: 1
-                value: metronome.quantum
-                onValueModified: {
-                    metronome.quantum = value
-                    canvasBeats.requestPaint()
-                    isModified = true
-                }
+                property var timestamps: ([])
 
-                Text {
-                    anchors.left: parent.left
-                    anchors.bottom: parent.top
-                    anchors.bottomMargin: 10
-                    color: "#cccccc"
-                    font.pixelSize: 12
-                    text: qsTr("Quantum")
+                onClicked: {
+
+                    var now = Date.now()
+
+                    if (timestamps.length > 0) {
+                        var lastTime = timestamps[timestamps.length-1]
+                        if (now - lastTime > 3000) timestamps = []
+                    }
+                    timestamps.push(now)
+
+                    if (timestamps.length > 2) {
+                        var firstTime = timestamps[0]
+                        var milliseconds = (now - firstTime) / (timestamps.length - 1)
+                        var bpm = 60000 / milliseconds
+
+                        metronome.bpm = Math.round(bpm)
+                        isModified = true
+                    }
                 }
             }
 
@@ -126,17 +142,17 @@ Item {
 
                 height: 28
                 anchors.verticalCenter: textMetronome.verticalCenter
-                anchors.left: spinQuantum.right
+                anchors.left: buttonTap.right
                 anchors.leftMargin: 20
                 anchors.right: parent.right
-                anchors.rightMargin: 140
+                anchors.rightMargin: 210
                 color: "transparent"
-                border.color: "#333333"
+                border.color: "#383838"
                 border.width: 1
                 radius: 3
 
                 Text {
-                    anchors.left: parent.left
+                    anchors.horizontalCenter: parent.horizontalCenter
                     anchors.bottom: parent.top
                     anchors.bottomMargin: 10
                     color: "#cccccc"
@@ -171,11 +187,11 @@ Item {
                             var w = width * (Math.floor(metronome.phase) + 1) / metronome.quantum
 
                             ctx.fillStyle = Material.accent
-                            ctx.fillRect(3, 3, Math.max(0, w - 6), height - 6)
+                            ctx.fillRect(3, 3, Math.min(Math.max(w - 3, 0), width - 6), height - 6)
                         }
 
                         // draw grid
-                        ctx.strokeStyle = "#333333"
+                        ctx.strokeStyle = "#383838"
                         ctx.lineWidth = 1
 
                         ctx.beginPath()
@@ -229,12 +245,37 @@ Item {
                 }
             }
 
+            CSpinBox {
+                id: spinQuantum
+
+                width: 65
+                anchors.verticalCenter: textMetronome.verticalCenter
+                anchors.left: rectBeats.right
+                anchors.leftMargin: 5
+
+                from: 1
+                to: 32
+                stepSize: 1
+                value: 4
+                onValueModified: {
+                    metronome.quantum = value
+                    canvasBeats.requestPaint()
+                    isModified = true
+                }
+
+                Component.onCompleted: {
+                    metronome.quantumChanged.connect(function() {
+                        spinQuantum.value = Math.round(metronome.quantum)
+                    })
+                }
+            }
+
             CheckBox {
                 id: checkSound
 
                 height: 28
                 anchors.verticalCenter: textMetronome.verticalCenter
-                anchors.left: rectBeats.right
+                anchors.left: spinQuantum.right
                 anchors.leftMargin: 15
                 checked: metronome.isSoundEnabled
                 onClicked: {
@@ -286,7 +327,7 @@ Item {
 
                         onClicked: {
                             if (messageBox.showAndWait(
-                                    qsTr("Select the 'Link' checkbox to synchronize the beats with other applications running on your computer, such as Ableton Live."),
+                                    qsTr("Select the 'Link' checkbox to synchronize the beats with Ableton or other music apps running on your computer."),
                                     qsTr("OK"), qsTr("More Info")) === 2) {
                                 Qt.openUrlExternally("https://www.ableton.com/en/link/")
                             }

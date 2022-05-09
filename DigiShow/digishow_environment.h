@@ -32,19 +32,20 @@ class DigishowEnvironment : public QObject
 public:
 
     enum InterfaceType {
-        InterfaceMidi   = INTERFACE_MIDI,
-        InterfaceRioc   = INTERFACE_RIOC,
-        InterfaceModbus = INTERFACE_MODBUS,
-        InterfaceHue    = INTERFACE_HUE,
-        InterfaceDmx    = INTERFACE_DMX,
-        InterfaceArtnet = INTERFACE_ARTNET,
-        InterfaceOsc    = INTERFACE_OSC,
-        InterfaceScreen = INTERFACE_SCREEN,
-        InterfaceAPlay  = INTERFACE_APLAY,
-        InterfaceMPlay  = INTERFACE_MPLAY,
-        InterfacePipe   = INTERFACE_PIPE,
-        InterfaceLaunch = INTERFACE_LAUNCH,
-        InterfaceHotkey = INTERFACE_HOTKEY
+        InterfaceMidi      = INTERFACE_MIDI,
+        InterfaceRioc      = INTERFACE_RIOC,
+        InterfaceModbus    = INTERFACE_MODBUS,
+        InterfaceHue       = INTERFACE_HUE,
+        InterfaceDmx       = INTERFACE_DMX,
+        InterfaceArtnet    = INTERFACE_ARTNET,
+        InterfaceOsc       = INTERFACE_OSC,
+        InterfaceScreen    = INTERFACE_SCREEN,
+        InterfaceAPlay     = INTERFACE_APLAY,
+        InterfaceMPlay     = INTERFACE_MPLAY,
+        InterfacePipe      = INTERFACE_PIPE,
+        InterfaceLaunch    = INTERFACE_LAUNCH,
+        InterfaceHotkey    = INTERFACE_HOTKEY,
+        InterfaceMetronome = INTERFACE_METRONOME
     };
     Q_ENUM(InterfaceType)
 
@@ -74,7 +75,8 @@ public:
         InterfacePipeRemote       = INTERFACE_PIPE_REMOTE,
         InterfaceLaunchLocal      = INTERFACE_LAUNCH_LOCAL,
         InterfaceLaunchRemote     = INTERFACE_LAUNCH_REMOTE,
-        InterfaceHotkeyInput      = INTERFACE_HOTKEY_INPUT
+        InterfaceHotkeyInput      = INTERFACE_HOTKEY_INPUT,
+        InterfaceMetronomeInput   = INTERFACE_METRONOME_INPUT
     };
     Q_ENUM(InterfaceMode)
 
@@ -114,7 +116,8 @@ public:
         EndpointPipeBinary        = ENDPOINT_PIPE_BINARY,
         EndpointPipeNote          = ENDPOINT_PIPE_NOTE,
         EndpointLaunchPreset      = ENDPOINT_LAUNCH_PRESET,
-        EndpointHotkeyPress       = ENDPOINT_HOTKEY_PRESS
+        EndpointHotkeyPress       = ENDPOINT_HOTKEY_PRESS,
+        EndpointMetronomeBeat     = ENDPOINT_METRONOME_BEAT
     };
     Q_ENUM(EndpointType)
 

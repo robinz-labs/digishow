@@ -176,19 +176,20 @@ void DigishowInterface::updateMetadata()
 
     // set interface type
     QString typeName = m_interfaceOptions.value("type").toString();
-    if      (typeName == "midi"  ) m_interfaceInfo.type = INTERFACE_MIDI;
-    else if (typeName == "rioc"  ) m_interfaceInfo.type = INTERFACE_RIOC;
-    else if (typeName == "modbus") m_interfaceInfo.type = INTERFACE_MODBUS;
-    else if (typeName == "hue"   ) m_interfaceInfo.type = INTERFACE_HUE;
-    else if (typeName == "dmx"   ) m_interfaceInfo.type = INTERFACE_DMX;
-    else if (typeName == "artnet") m_interfaceInfo.type = INTERFACE_ARTNET;
-    else if (typeName == "osc"   ) m_interfaceInfo.type = INTERFACE_OSC;
-    else if (typeName == "screen") m_interfaceInfo.type = INTERFACE_SCREEN;
-    else if (typeName == "aplay" ) m_interfaceInfo.type = INTERFACE_APLAY;
-    else if (typeName == "mplay" ) m_interfaceInfo.type = INTERFACE_MPLAY;
-    else if (typeName == "pipe"  ) m_interfaceInfo.type = INTERFACE_PIPE;
-    else if (typeName == "launch") m_interfaceInfo.type = INTERFACE_LAUNCH;
-    else if (typeName == "hotkey") m_interfaceInfo.type = INTERFACE_HOTKEY;
+    if      (typeName == "midi"     ) m_interfaceInfo.type = INTERFACE_MIDI;
+    else if (typeName == "rioc"     ) m_interfaceInfo.type = INTERFACE_RIOC;
+    else if (typeName == "modbus"   ) m_interfaceInfo.type = INTERFACE_MODBUS;
+    else if (typeName == "hue"      ) m_interfaceInfo.type = INTERFACE_HUE;
+    else if (typeName == "dmx"      ) m_interfaceInfo.type = INTERFACE_DMX;
+    else if (typeName == "artnet"   ) m_interfaceInfo.type = INTERFACE_ARTNET;
+    else if (typeName == "osc"      ) m_interfaceInfo.type = INTERFACE_OSC;
+    else if (typeName == "screen"   ) m_interfaceInfo.type = INTERFACE_SCREEN;
+    else if (typeName == "aplay"    ) m_interfaceInfo.type = INTERFACE_APLAY;
+    else if (typeName == "mplay"    ) m_interfaceInfo.type = INTERFACE_MPLAY;
+    else if (typeName == "pipe"     ) m_interfaceInfo.type = INTERFACE_PIPE;
+    else if (typeName == "launch"   ) m_interfaceInfo.type = INTERFACE_LAUNCH;
+    else if (typeName == "hotkey"   ) m_interfaceInfo.type = INTERFACE_HOTKEY;
+    else if (typeName == "metronome") m_interfaceInfo.type = INTERFACE_METRONOME;
 
     // set interface mode
     QString modeName = m_interfaceOptions.value("mode").toString();
@@ -248,6 +249,10 @@ void DigishowInterface::updateMetadata()
         if      (modeName == "" ||
                  modeName == "input"       ) m_interfaceInfo.mode = INTERFACE_HOTKEY_INPUT;
         break;
+    case INTERFACE_METRONOME:
+        if      (modeName == "" ||
+                 modeName == "input"       ) m_interfaceInfo.mode = INTERFACE_METRONOME_INPUT;
+        break;
     }
 
     // set interface input flag
@@ -272,7 +277,8 @@ void DigishowInterface::updateMetadata()
     else if (m_interfaceInfo.mode==INTERFACE_MIDI_INPUT ||
              m_interfaceInfo.mode==INTERFACE_ARTNET_INPUT ||
              m_interfaceInfo.mode==INTERFACE_OSC_INPUT ||
-             m_interfaceInfo.mode==INTERFACE_HOTKEY_INPUT)
+             m_interfaceInfo.mode==INTERFACE_HOTKEY_INPUT ||
+             m_interfaceInfo.mode==INTERFACE_METRONOME_INPUT)
         m_interfaceInfo.output = false;
     else
         m_interfaceInfo.output = true;
@@ -342,6 +348,10 @@ void DigishowInterface::updateMetadata()
         break;
     case INTERFACE_HOTKEY:
         labelType = tr("Hot Key");
+        labelIdentity = "";
+        break;
+    case INTERFACE_METRONOME:
+        labelType = tr("Metronome");
         labelIdentity = "";
         break;
     }
@@ -428,6 +438,9 @@ void DigishowInterface::updateMetadata()
             break;
         case INTERFACE_HOTKEY:
             if      (typeName == "press"      ) endpointInfo.type = ENDPOINT_HOTKEY_PRESS;
+            break;
+        case INTERFACE_METRONOME:
+            if      (typeName == "beat"       ) endpointInfo.type = ENDPOINT_METRONOME_BEAT;
             break;
         }
 
@@ -699,6 +712,13 @@ void DigishowInterface::updateMetadata()
             endpointInfo.labelEPT = tr("Launch");
             endpointInfo.labelEPI = tr("Preset") + " " + QString::number(endpointInfo.channel);
             break;
+        case ENDPOINT_METRONOME_BEAT:
+            endpointInfo.signal = DATA_SIGNAL_NOTE;
+            endpointInfo.input = true;
+            endpointInfo.range  = 127;
+            endpointInfo.labelEPT = tr("Metronome");
+            endpointInfo.labelEPI = tr("Beat %1").arg(endpointInfo.channel);
+            break;
         case ENDPOINT_HOTKEY_PRESS:
             endpointInfo.signal = DATA_SIGNAL_BINARY;
             endpointInfo.input = true;
@@ -712,7 +732,7 @@ void DigishowInterface::updateMetadata()
             endpointInfo.labelEPI = hotkey.last();
 
 #ifdef Q_OS_MAC
-            endpointInfo.labelEPT.replace("Ctrl", "Cmd");
+            endpointInfo.labelEPT.replace("Ctrl", "Cmd" );
             endpointInfo.labelEPT.replace("Alt" , "Opt" );
             endpointInfo.labelEPT.replace("Meta", "Ctrl");
 #endif

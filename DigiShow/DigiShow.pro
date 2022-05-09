@@ -24,6 +24,7 @@ SOURCES += \
         dgs_pipe_interface.cpp \
         dgs_launch_interface.cpp \
         dgs_hotkey_interface.cpp \
+        dgs_metronome_interface.cpp \
         digishow.cpp \
         digishow_app.cpp \
         digishow_common.cpp \
@@ -57,6 +58,7 @@ HEADERS += \
     dgs_pipe_interface.h \
     dgs_launch_interface.h \
     dgs_hotkey_interface.h \
+    dgs_metronome_interface.h \
     digishow.h \
     digishow_app.h \
     digishow_common.h \

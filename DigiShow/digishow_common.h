@@ -44,6 +44,7 @@
 #define INTERFACE_PIPE         901
 #define INTERFACE_LAUNCH       902
 #define INTERFACE_HOTKEY       903
+#define INTERFACE_METRONOME    904
 
 // controller interface mode id
 #define INTERFACE_MIDI_INPUT        1011
@@ -73,6 +74,7 @@
 #define INTERFACE_LAUNCH_LOCAL      9021
 #define INTERFACE_LAUNCH_REMOTE     9022
 #define INTERFACE_HOTKEY_INPUT      9031
+#define INTERFACE_METRONOME_INPUT   9041
 
 // controller endpoint type id
 #define ENDPOINT_MIDI_NOTE          10101
@@ -111,6 +113,7 @@
 #define ENDPOINT_PIPE_NOTE          90103
 #define ENDPOINT_LAUNCH_PRESET      90201
 #define ENDPOINT_HOTKEY_PRESS       90301
+#define ENDPOINT_METRONOME_BEAT     90401
 
 // signal data type
 #define DATA_SIGNAL_ANALOG  'A'  // analog signal

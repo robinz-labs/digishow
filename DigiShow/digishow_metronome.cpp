@@ -20,9 +20,12 @@ DigishowMetronome::DigishowMetronome(QObject *parent) : QObject(parent)
 
     m_thread = nullptr;
 
+    QMediaContent sound1(QUrl("qrc:///sounds/metro1.wav"));
+    QMediaContent sound2(QUrl("qrc:///sounds/metro2.wav"));
+
     m_soundList = new QMediaPlaylist(this);
-    m_soundList->addMedia(QUrl("qrc:///sounds/metro1.wav"));
-    m_soundList->addMedia(QUrl("qrc:///sounds/metro2.wav"));
+    m_soundList->addMedia(sound1);
+    m_soundList->addMedia(sound2);
     m_soundList->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
 
     m_soundPlayer = new QMediaPlayer(this, QMediaPlayer::LowLatency);
@@ -150,7 +153,7 @@ void DigishowMetronome::run()
         m_phase = phase;
         if (fired) {
             emit beatChanged();
-            emit phaseChanged();            
+            emit phaseChanged();
         }
         m_mutex.unlock();
 
@@ -161,11 +164,11 @@ void DigishowMetronome::run()
 void DigishowMetronome::onPhaseChanged()
 {
     // play metronome sound
-    if (m_soundEnabled) {
+    if (m_soundEnabled && m_bpm <= 300) {
         if (m_phase < 1) {
             m_soundList->setCurrentIndex(0);
             m_soundPlayer->play();
-        } else if (m_bpm <= 300) {
+        } else {
             m_soundList->setCurrentIndex(1);
             m_soundPlayer->play();
         }
