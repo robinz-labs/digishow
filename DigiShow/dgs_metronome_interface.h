@@ -46,7 +46,7 @@ signals:
 
 public slots:
 
-    void onPhaseChanged();
+    void onBeatChanged();
 
 private:
 

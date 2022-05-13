@@ -24,7 +24,7 @@ class DigishowMetronome : public QObject
     Q_PROPERTY(int quantum READ quantum WRITE setQuantum NOTIFY quantumChanged)
 
     Q_PROPERTY(double beat READ beat NOTIFY beatChanged)
-    Q_PROPERTY(double phase READ phase NOTIFY phaseChanged)
+    Q_PROPERTY(double phase READ phase NOTIFY beatChanged)
 
 public:
     explicit DigishowMetronome(QObject *parent = nullptr);
@@ -59,11 +59,12 @@ signals:
     void bpmChanged();
     void quantumChanged();
 
+    void beatChanging();
     void beatChanged();
-    void phaseChanged();
 
 public slots:
-    void onPhaseChanged();
+    void onBeatChanging();
+    void onBeatChanged();
 
 private:
 
@@ -79,6 +80,7 @@ private:
     // runtime data
     double m_beat;
     double m_phase;
+    double m_beatIsChanging;
 
     // workder thread
     DigishowMetronomeThread *m_thread;

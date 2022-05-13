@@ -60,7 +60,7 @@ int DgsMetronomeInterface::openInterface()
         }
     }
 
-    connect(m_metronome, SIGNAL(phaseChanged()), this, SLOT(onPhaseChanged()));
+    connect(m_metronome, SIGNAL(beatChanged()), this, SLOT(onBeatChanged()));
 
     m_isInterfaceOpened = true;
     return ERR_NONE;
@@ -84,7 +84,7 @@ int DgsMetronomeInterface::sendData(int endpointIndex, dgsSignalData data)
     return ERR_NONE;
 }
 
-void DgsMetronomeInterface::onPhaseChanged()
+void DgsMetronomeInterface::onBeatChanged()
 {
     int beatIndex = floor(m_metronome->phase());
 

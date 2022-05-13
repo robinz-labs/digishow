@@ -2,7 +2,7 @@
 #include "ableton/Link.hpp"
 
 DigishowMetronome::DigishowMetronome(QObject *parent) : QObject(parent)
-{    
+{
     m_running = false;
     m_soundEnabled = false;
     m_linkEnabled = false;
@@ -11,6 +11,7 @@ DigishowMetronome::DigishowMetronome(QObject *parent) : QObject(parent)
 
     m_beat = 0;
     m_phase = 0;
+    m_beatIsChanging = false;
 
     m_link = new ableton::Link(m_bpm);
     m_link->setTempoCallback([&](double bpm) {
@@ -31,7 +32,9 @@ DigishowMetronome::DigishowMetronome(QObject *parent) : QObject(parent)
     m_soundPlayer = new QMediaPlayer(this, QMediaPlayer::LowLatency);
     m_soundPlayer->setPlaylist(m_soundList);
 
-    connect(this, SIGNAL(phaseChanged()), this, SLOT(onPhaseChanged()));
+    connect(this, SIGNAL(beatChanging()), this, SLOT(onBeatChanging()));
+    connect(this, SIGNAL(beatChanged()), this, SLOT(onBeatChanged()));
+
 }
 
 
@@ -138,7 +141,6 @@ void DigishowMetronome::run()
     m_beat = 0;
     m_phase = 0;
     emit beatChanged();
-    emit phaseChanged();
     m_mutex.unlock();
 
     while (m_running) {
@@ -148,20 +150,25 @@ void DigishowMetronome::run()
         const auto time = m_link->clock().micros();
         double beat = sessionState.beatAtTime(time, m_quantum);
         double phase = sessionState.phaseAtTime(time, m_quantum);
-        bool fired = (int(beat) != int(m_beat));
+        bool isChanged = (int(beat) != int(m_beat));
+        bool isChanging = (int(beat+0.1) != int(m_beat));
         m_beat = beat;
         m_phase = phase;
-        if (fired) {
+        if (isChanged) {
             emit beatChanged();
-            emit phaseChanged();
+            m_beatIsChanging = false;
+        } else
+        if (isChanging) {
+            if (!m_beatIsChanging) emit beatChanging();
+            m_beatIsChanging = true;
         }
         m_mutex.unlock();
 
-        QThread::msleep(5);
+        QThread::msleep(1);
     }
 }
 
-void DigishowMetronome::onPhaseChanged()
+void DigishowMetronome::onBeatChanged()
 {
     // play metronome sound
     if (m_soundEnabled && m_bpm <= 300) {
@@ -173,4 +180,10 @@ void DigishowMetronome::onPhaseChanged()
             m_soundPlayer->play();
         }
     }
+}
+
+void DigishowMetronome::onBeatChanging()
+{
+    // stop metronome sound
+    if (m_soundEnabled) m_soundPlayer->stop();
 }

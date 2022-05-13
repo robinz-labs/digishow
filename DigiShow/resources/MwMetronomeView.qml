@@ -119,11 +119,6 @@ Item {
                 onClicked: {
 
                     var now = Date.now()
-
-                    if (timestamps.length > 0) {
-                        var lastTime = timestamps[timestamps.length-1]
-                        if (now - lastTime > 3000) timestamps = []
-                    }
                     timestamps.push(now)
 
                     if (timestamps.length > 2) {
@@ -133,6 +128,21 @@ Item {
 
                         metronome.bpm = Math.round(bpm)
                         isModified = true
+                    }
+
+                    colorActivated = "darkRed"
+                    label.text = timestamps.length.toString()
+                    timerTap.restart()
+                }
+
+                Timer {
+                    id: timerTap
+                    interval: 2500
+                    repeat: false
+                    onTriggered: {
+                        buttonTap.timestamps = []
+                        buttonTap.label.text = qsTr("Tap")
+                        buttonTap.colorActivated = "#383838"
                     }
                 }
             }
@@ -234,7 +244,7 @@ Item {
                 */
 
                 Component.onCompleted: {
-                    metronome.phaseChanged.connect(function() {
+                    metronome.beatChanged.connect(function() {
                         //if (metronome.isSoundEnabled) audioengine.sounds[ metronome.phase < 1 ? "metro1": "metro2" ].play();
                         canvasBeats.requestPaint()
                     })
