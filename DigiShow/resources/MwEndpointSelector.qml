@@ -569,8 +569,8 @@ Item {
 
             } else if (type === DigishowEnvironment.InterfaceMetronome) {
 
-                itemMetronome.spinBeat.value = endpointInfo["channel"]
-                itemMetronome.spinSustain.value = endpointInfo["control"]
+                itemMetronome.menuBeat.selectOption(endpointInfo["channel"])
+                itemMetronome.menuSustain.selectOption(endpointInfo["control"])
             }
 
             // set ui with more options
@@ -749,8 +749,8 @@ Item {
         } else if (type === DigishowEnvironment.InterfaceMetronome) {
 
             newEndpointOptions["type"] = "beat"
-            newEndpointOptions["channel"] = itemMetronome.spinBeat.value
-            newEndpointOptions["control"] = itemMetronome.spinSustain.value
+            newEndpointOptions["channel"] = itemMetronome.menuBeat.selectedItemValue
+            newEndpointOptions["control"] = itemMetronome.menuSustain.selectedItemValue
 
             needRestartInterface = true
         }

@@ -60,7 +60,7 @@ int DgsMetronomeInterface::openInterface()
         }
     }
 
-    connect(m_metronome, SIGNAL(beatChanged()), this, SLOT(onBeatChanged()));
+    connect(m_metronome, SIGNAL(quarterChanged()), this, SLOT(onQuarterChanged()));
 
     m_isInterfaceOpened = true;
     return ERR_NONE;
@@ -84,11 +84,11 @@ int DgsMetronomeInterface::sendData(int endpointIndex, dgsSignalData data)
     return ERR_NONE;
 }
 
-void DgsMetronomeInterface::onBeatChanged()
+void DgsMetronomeInterface::onQuarterChanged()
 {
-    int beatIndex = floor(m_metronome->phase());
+    int beatIndex = floor(m_metronome->phase() * 4);
 
-    processBeatAction(beatIndex + m_metronome->quantum());
+    processBeatAction(beatIndex + m_metronome->quantum() * 4);
     processBeatAction(beatIndex);
 }
 

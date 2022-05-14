@@ -59,12 +59,12 @@ signals:
     void bpmChanged();
     void quantumChanged();
 
-    void beatChanging();
-    void beatChanged();
+    void beatChanged();     // one beat progressed
+    void quarterChanged();  // 1/4 beat progressed
 
 public slots:
-    void onBeatChanging();
     void onBeatChanged();
+    void onQuarterChanged();
 
 private:
 
@@ -80,7 +80,6 @@ private:
     // runtime data
     double m_beat;
     double m_phase;
-    double m_beatIsChanging;
 
     // workder thread
     DigishowMetronomeThread *m_thread;

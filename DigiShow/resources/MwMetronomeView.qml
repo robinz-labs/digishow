@@ -1,7 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
-//import QtAudioEngine 1.1
 import DigiShow 1.0
 
 import "components"
@@ -193,10 +192,8 @@ Item {
 
                         // draw bar
                         if (metronome.isRunning) {
-
-                            var w = width * (Math.floor(metronome.phase) + 1) / metronome.quantum
-
                             ctx.fillStyle = Material.accent
+                            var w = width * (Math.floor(metronome.phase) + 1) / metronome.quantum
                             ctx.fillRect(3, 3, Math.min(Math.max(w - 3, 0), width - 6), height - 6)
                         }
 
@@ -215,37 +212,8 @@ Item {
                     }
                 }
 
-                /*
-                AudioEngine {
-                    id:audioengine
-
-                    AudioSample {
-                        name:"metro1"
-                        source: "qrc:///sounds/metro1.wav"
-                    }
-                    AudioSample {
-                        name:"metro2"
-                        source: "qrc:///sounds/metro2.wav"
-                    }
-
-                    Sound {
-                        name:"metro1"
-                        PlayVariation {
-                            sample:"metro1"
-                        }
-                    }
-                    Sound {
-                        name:"metro2"
-                        PlayVariation {
-                            sample:"metro2"
-                        }
-                    }
-                }
-                */
-
                 Component.onCompleted: {
                     metronome.beatChanged.connect(function() {
-                        //if (metronome.isSoundEnabled) audioengine.sounds[ metronome.phase < 1 ? "metro1": "metro2" ].play();
                         canvasBeats.requestPaint()
                     })
 
@@ -264,7 +232,7 @@ Item {
                 anchors.leftMargin: 5
 
                 from: 1
-                to: 32
+                to: 12
                 stepSize: 1
                 value: 4
                 onValueModified: {

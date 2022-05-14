@@ -717,7 +717,8 @@ void DigishowInterface::updateMetadata()
             endpointInfo.input = true;
             endpointInfo.range  = 127;
             endpointInfo.labelEPT = tr("Metronome");
-            endpointInfo.labelEPI = tr("Beat %1").arg(endpointInfo.channel);
+            endpointInfo.labelEPI = tr("Beat %1").arg((endpointInfo.channel-1) / 4 + 1);
+            if ((endpointInfo.channel-1) % 4 != 0) endpointInfo.labelEPI += QString(".%1").arg((endpointInfo.channel-1) % 4 + 1);
             break;
         case ENDPOINT_HOTKEY_PRESS:
             endpointInfo.signal = DATA_SIGNAL_BINARY;

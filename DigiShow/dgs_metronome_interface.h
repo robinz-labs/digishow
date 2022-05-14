@@ -46,7 +46,7 @@ signals:
 
 public slots:
 
-    void onBeatChanged();
+    void onQuarterChanged();
 
 private:
 

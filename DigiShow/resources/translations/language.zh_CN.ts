@@ -359,7 +359,7 @@
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="354"/>
-        <location filename="../../digishow_interface.cpp" line="718"/>
+        <location filename="../../digishow_interface.cpp" line="719"/>
         <source>Metronome</source>
         <translation>节拍器</translation>
     </message>
@@ -494,12 +494,12 @@
         <translation>预设</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="719"/>
+        <location filename="../../digishow_interface.cpp" line="720"/>
         <source>Beat %1</source>
         <translation>第 %1 拍</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="727"/>
+        <location filename="../../digishow_interface.cpp" line="728"/>
         <source>Key</source>
         <translation>按键</translation>
     </message>
@@ -1228,14 +1228,24 @@
 <context>
     <name>MwEndpointSelectorMetronome</name>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="20"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="54"/>
         <source>Beat %1</source>
-        <translation>第 %1 拍</translation>
+        <translation>节拍 %1</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="35"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="68"/>
+        <source>beat</source>
+        <translation>拍</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="68"/>
+        <source>beats</source>
+        <translation>拍</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="71"/>
         <source>Sustain %1</source>
-        <translation>延续 %1 拍</translation>
+        <translation>延续 %1</translation>
     </message>
 </context>
 <context>
@@ -2146,52 +2156,53 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
 <context>
     <name>MwMetronomeView</name>
     <message>
-        <location filename="../MwMetronomeView.qml" line="43"/>
+        <location filename="../MwMetronomeView.qml" line="42"/>
         <source>Metronome</source>
         <translation>节拍器</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="65"/>
+        <location filename="../MwMetronomeView.qml" line="64"/>
         <source>Run</source>
         <translation>运行</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="92"/>
+        <location filename="../MwMetronomeView.qml" line="91"/>
         <source>BPM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="103"/>
+        <location filename="../MwMetronomeView.qml" line="108"/>
+        <location filename="../MwMetronomeView.qml" line="143"/>
         <source>Tap</source>
         <translation>敲击</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="154"/>
+        <location filename="../MwMetronomeView.qml" line="169"/>
         <source>Beats</source>
         <translation>节拍</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="280"/>
+        <location filename="../MwMetronomeView.qml" line="270"/>
         <source>Sound</source>
         <translation>发声</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="303"/>
+        <location filename="../MwMetronomeView.qml" line="293"/>
         <source>Link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="318"/>
+        <location filename="../MwMetronomeView.qml" line="308"/>
         <source>Select the &apos;Link&apos; checkbox to synchronize the beats with Ableton or other music apps running on your computer.</source>
         <translation>选择 “Link” 复选框，就可以将节拍与 Ableton 或电脑上运行的其他音乐软件实现同步。</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="319"/>
+        <location filename="../MwMetronomeView.qml" line="309"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="319"/>
+        <location filename="../MwMetronomeView.qml" line="309"/>
         <source>More Info</source>
         <translation>更多信息</translation>
     </message>

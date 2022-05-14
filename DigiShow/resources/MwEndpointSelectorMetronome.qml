@@ -8,51 +8,71 @@ import "components"
 Item {
     id: itemMetronome
 
-    property alias spinBeat: spinMetronomeBeat
-    property alias spinSustain: spinMetronomeSustain
+    property alias menuBeat: menuMetronomeBeat
+    property alias menuSustain: menuMetronomeSustain
 
     COptionButton {
         id: buttonMetronomeBeat
-        width: 100
+        width: 85
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: qsTr("Beat %1").arg(spinMetronomeBeat.value)
-        onClicked: spinMetronomeBeat.visible = true
+        text: menuMetronomeBeat.selectedItemText
+        onClicked: menuMetronomeBeat.showOptions()
 
-        COptionSpinBox {
-            id: spinMetronomeBeat
+        COptionMenu {
+            id: menuMetronomeBeat
         }
     }
 
     COptionButton {
         id: buttonMetronomeSustain
-        width: 100
+        width: 115
         height: 28
         anchors.left: buttonMetronomeBeat.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: qsTr("Sustain %1").arg(spinMetronomeSustain.value)
-        onClicked: spinMetronomeSustain.visible = true
+        text: menuMetronomeSustain.selectedItemText
+        onClicked: menuMetronomeSustain.showOptions()
 
-        COptionSpinBox {
-            id: spinMetronomeSustain
+        COptionMenu {
+            id: menuMetronomeSustain
         }
     }
 
-
     function refresh() {
 
-        // init metronome beat option spinbox
-        spinMetronomeBeat.from = 1
-        spinMetronomeBeat.to = 32
-        spinMetronomeBeat.visible = false
+        var items
+        var n
 
-        // init metronome sustain option spinbox
-        spinMetronomeSustain.from = 0
-        spinMetronomeSustain.to = 32
-        spinMetronomeSustain.visible = false
-        spinMetronomeSustain.value = 1
+        // init metronome beat option menu
+        if (menuMetronomeBeat.count === 0) {
+            items = []
+            for (n=0 ; n<48 ; n++) {
+                var beatNumber = (Math.floor(n / 4) + 1).toString()
+                if (n % 4 !== 0) beatNumber += "." + (n % 4 + 1).toString()
+                items.push({ text: qsTr("Beat %1").arg(beatNumber) , value: n+1 })
+            }
+            menuMetronomeBeat.optionItems = items
+            menuMetronomeBeat.selectedIndex = 0
+        }
+
+        // init metronome sustain option menu
+        if (menuMetronomeSustain.count === 0) {
+            items = []
+            for (n=0 ; n<48 ; n++) {
+                var sb = Math.floor((n+1) / 4)
+                var sq = n % 4 + 1
+                var sustainNumber
+                if (sq === 4)
+                    sustainNumber = sb.toString() + " " + (sb === 1 ? qsTr("beat") : qsTr("beats"))
+                else
+                    sustainNumber = (sb === 0 ? "" : sb.toString() + " ") + sq.toString() + "/4"
+                items.push({ text: qsTr("Sustain %1").arg(sustainNumber) , value: n+1 })
+            }
+            menuMetronomeSustain.optionItems = items
+            menuMetronomeSustain.selectedIndex = 3
+        }
 
         // init more options
         refreshMoreOptions()

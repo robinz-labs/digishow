@@ -11,7 +11,6 @@ DigishowMetronome::DigishowMetronome(QObject *parent) : QObject(parent)
 
     m_beat = 0;
     m_phase = 0;
-    m_beatIsChanging = false;
 
     m_link = new ableton::Link(m_bpm);
     m_link->setTempoCallback([&](double bpm) {
@@ -32,9 +31,8 @@ DigishowMetronome::DigishowMetronome(QObject *parent) : QObject(parent)
     m_soundPlayer = new QMediaPlayer(this, QMediaPlayer::LowLatency);
     m_soundPlayer->setPlaylist(m_soundList);
 
-    connect(this, SIGNAL(beatChanging()), this, SLOT(onBeatChanging()));
     connect(this, SIGNAL(beatChanged()), this, SLOT(onBeatChanged()));
-
+    connect(this, SIGNAL(quarterChanged()), this, SLOT(onQuarterChanged()));
 }
 
 
@@ -140,6 +138,7 @@ void DigishowMetronome::run()
     m_link->commitAppSessionState(sessionState);
     m_beat = 0;
     m_phase = 0;
+    emit quarterChanged();
     emit beatChanged();
     m_mutex.unlock();
 
@@ -150,18 +149,12 @@ void DigishowMetronome::run()
         const auto time = m_link->clock().micros();
         double beat = sessionState.beatAtTime(time, m_quantum);
         double phase = sessionState.phaseAtTime(time, m_quantum);
-        bool isChanged = (int(beat) != int(m_beat));
-        bool isChanging = (int(beat+0.1) != int(m_beat));
+        bool quarterProgressed = (int(beat*4) != int(m_beat*4));
+        bool oneBeatProgressed = quarterProgressed && (int(beat) != int(m_beat));
         m_beat = beat;
         m_phase = phase;
-        if (isChanged) {
-            emit beatChanged();
-            m_beatIsChanging = false;
-        } else
-        if (isChanging) {
-            if (!m_beatIsChanging) emit beatChanging();
-            m_beatIsChanging = true;
-        }
+        if (quarterProgressed) emit quarterChanged();
+        if (oneBeatProgressed) emit beatChanged();
         m_mutex.unlock();
 
         QThread::msleep(1);
@@ -182,8 +175,8 @@ void DigishowMetronome::onBeatChanged()
     }
 }
 
-void DigishowMetronome::onBeatChanging()
+void DigishowMetronome::onQuarterChanged()
 {
     // stop metronome sound
-    if (m_soundEnabled) m_soundPlayer->stop();
+    if (m_soundEnabled && int(m_beat*4)%4 == 3) m_soundPlayer->stop();
 }
