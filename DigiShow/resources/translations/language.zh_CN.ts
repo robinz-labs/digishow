@@ -496,7 +496,7 @@
     <message>
         <location filename="../../digishow_interface.cpp" line="720"/>
         <source>Beat %1</source>
-        <translation>第 %1 拍</translation>
+        <translation>节拍 %1</translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="728"/>

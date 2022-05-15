@@ -49,6 +49,17 @@ public:
     Q_INVOKABLE double beat() { return m_beat; }
     Q_INVOKABLE double phase() { return m_phase; }
 
+    Q_INVOKABLE static bool soundSupported() {
+
+        // due to some known issues,
+        // sound support is only available in experimental version
+#ifdef DIGISHOW_EXPERIMENTAL
+        return true;
+#else
+        return false;
+#endif
+    }
+
     void run(); // called by the worker thread
 
 signals:

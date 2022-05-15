@@ -31,10 +31,11 @@ DigishowMetronome::DigishowMetronome(QObject *parent) : QObject(parent)
     m_soundPlayer = new QMediaPlayer(this, QMediaPlayer::LowLatency);
     m_soundPlayer->setPlaylist(m_soundList);
 
-    connect(this, SIGNAL(beatChanged()), this, SLOT(onBeatChanged()));
-    connect(this, SIGNAL(quarterChanged()), this, SLOT(onQuarterChanged()));
+    if (soundSupported()) {
+        connect(this, SIGNAL(beatChanged()), this, SLOT(onBeatChanged()));
+        connect(this, SIGNAL(quarterChanged()), this, SLOT(onQuarterChanged()));
+    }
 }
-
 
 DigishowMetronome::~DigishowMetronome()
 {
@@ -178,5 +179,5 @@ void DigishowMetronome::onBeatChanged()
 void DigishowMetronome::onQuarterChanged()
 {
     // stop metronome sound
-    if (m_soundEnabled && int(m_beat*4)%4 == 3) m_soundPlayer->stop();
+    if (m_soundEnabled && int(m_phase*4)%4 == 3) m_soundPlayer->stop();
 }

@@ -187,13 +187,16 @@ Item {
 
                     onPaint: {
                         var ctx = getContext('2d')
-
                         ctx.clearRect(0, 0, width, height)
 
                         // draw bar
                         if (metronome.isRunning) {
                             ctx.fillStyle = Material.accent
-                            var w = width * (Math.floor(metronome.phase) + 1) / metronome.quantum
+                            var w
+                            if (metronome.quantum > 1)
+                                w = width * (Math.floor(metronome.phase) + 1) / metronome.quantum
+                            else
+                                w = (Math.floor(metronome.beat) % 2 === 0 ? width : 0)
                             ctx.fillRect(3, 3, Math.min(Math.max(w - 3, 0), width - 6), height - 6)
                         }
 
@@ -250,6 +253,8 @@ Item {
 
             CheckBox {
                 id: checkSound
+
+                visible: metronome.soundSupported()
 
                 height: 28
                 anchors.verticalCenter: textMetronome.verticalCenter
