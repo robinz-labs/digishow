@@ -46,8 +46,8 @@ int DgsHotkeyInterface::openInterface()
             m_endpointInfoList[n].control = key[0];
 
             QHotkey *hotkey = new QHotkey(key, true);
-            QObject::connect(hotkey, SIGNAL(activated()), this, SLOT(onHotkeyPressed()));
-            QObject::connect(hotkey, SIGNAL(released()), this, SLOT(onHotkeyReleased()));
+            connect(hotkey, SIGNAL(activated()), this, SLOT(onHotkeyPressed()));
+            connect(hotkey, SIGNAL(released()), this, SLOT(onHotkeyReleased()));
             m_hotkeys.append(hotkey);
         }
     }
@@ -61,6 +61,7 @@ int DgsHotkeyInterface::closeInterface()
 {
     for (int n=0 ; n<m_hotkeys.length() ; n++) {
         m_hotkeys[n]->setRegistered(false);
+        disconnect(m_hotkeys[n], 0, this, 0);
         delete m_hotkeys[n];
     }
     m_hotkeys.clear();

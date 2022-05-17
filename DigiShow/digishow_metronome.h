@@ -5,14 +5,15 @@
 #include <QVariantMap>
 #include <QThread>
 #include <QMutex>
-#include <QMediaPlayer>
-#include <QMediaPlaylist>
+#include <QAudioOutput>
+#include <QScopedPointer>
 
 namespace ableton {
     class Link;
 }
 
 class DigishowMetronomeThread;
+class ToneGenerator;
 
 class DigishowMetronome : public QObject
 {
@@ -48,17 +49,6 @@ public:
 
     Q_INVOKABLE double beat() { return m_beat; }
     Q_INVOKABLE double phase() { return m_phase; }
-
-    Q_INVOKABLE static bool soundSupported() {
-
-        // due to some known issues,
-        // sound support is only available in experimental version
-#ifdef DIGISHOW_EXPERIMENTAL
-        return true;
-#else
-        return false;
-#endif
-    }
 
     void run(); // called by the worker thread
 
@@ -97,9 +87,11 @@ private:
     QMutex m_mutex;
 
     // sound player
-    QMediaPlayer *m_soundPlayer;
-    QMediaPlaylist *m_soundList;
+    QScopedPointer<ToneGenerator> m_soundGenerator;
+    QScopedPointer<QAudioOutput> m_soundOutput;
 
+    void startSoundOutput();
+    void stopSoundOutput();
 };
 
 class DigishowMetronomeThread : public QThread
@@ -119,5 +111,26 @@ private:
     }
 };
 
+class ToneGenerator : public QIODevice
+{
+    Q_OBJECT
+
+public:
+    ToneGenerator(const QAudioFormat &format, qint64 durationUs, int sampleRate);
+
+    void start();
+    void stop();
+
+    qint64 readData(char *data, qint64 maxlen) override;
+    qint64 writeData(const char *data, qint64 len) override;
+    qint64 bytesAvailable() const override;
+
+private:
+    void generateData(const QAudioFormat &format, qint64 durationUs, int sampleRate);
+
+private:
+    qint64 m_pos = 0;
+    QByteArray m_buffer;
+};
 
 #endif // DIGISHOWMETRONOME_H

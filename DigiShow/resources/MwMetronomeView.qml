@@ -254,8 +254,6 @@ Item {
             CheckBox {
                 id: checkSound
 
-                visible: metronome.soundSupported()
-
                 height: 28
                 anchors.verticalCenter: textMetronome.verticalCenter
                 anchors.left: spinQuantum.right
