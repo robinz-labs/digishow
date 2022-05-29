@@ -551,7 +551,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="728"/>
+        <location filename="../../digishow_interface.cpp" line="729"/>
         <source>Key</source>
         <translation>キー</translation>
     </message>
@@ -815,7 +815,7 @@
     </message>
     <message>
         <location filename="../MwAboutDialog.qml" line="137"/>
-        <source>© 2020-2021 Robin Zhang &amp; Labs</source>
+        <source>© 2020-2022 Robin Zhang &amp; Labs</source>
         <translation></translation>
     </message>
 </context>
@@ -2182,27 +2182,27 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
         <translation>ビート</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="270"/>
+        <location filename="../MwMetronomeView.qml" line="273"/>
         <source>Sound</source>
         <translation>サウンド</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="293"/>
+        <location filename="../MwMetronomeView.qml" line="296"/>
         <source>Link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="308"/>
+        <location filename="../MwMetronomeView.qml" line="311"/>
         <source>Select the &apos;Link&apos; checkbox to synchronize the beats with Ableton or other music apps running on your computer.</source>
         <translation>[Link]チェックボックスを選択して、コンピューターで実行されているAbletonまたは他の音楽アプリとビートを同期します。</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="309"/>
+        <location filename="../MwMetronomeView.qml" line="312"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="309"/>
+        <location filename="../MwMetronomeView.qml" line="312"/>
         <source>More Info</source>
         <translation>詳しくは</translation>
     </message>

@@ -40,8 +40,6 @@
 #include "digishow_experimental.h"
 #endif
 
-Q_DECLARE_METATYPE(dgsSignalData)
-
 class MyApplication : public QGuiApplication
 {
 public:

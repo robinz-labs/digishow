@@ -499,7 +499,7 @@
         <translation>节拍 %1</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="728"/>
+        <location filename="../../digishow_interface.cpp" line="729"/>
         <source>Key</source>
         <translation>按键</translation>
     </message>
@@ -815,7 +815,7 @@
     </message>
     <message>
         <location filename="../MwAboutDialog.qml" line="137"/>
-        <source>© 2020-2021 Robin Zhang &amp; Labs</source>
+        <source>© 2020-2022 Robin Zhang &amp; Labs</source>
         <translation></translation>
     </message>
 </context>
@@ -2182,27 +2182,27 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>节拍</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="270"/>
+        <location filename="../MwMetronomeView.qml" line="273"/>
         <source>Sound</source>
         <translation>发声</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="293"/>
+        <location filename="../MwMetronomeView.qml" line="296"/>
         <source>Link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="308"/>
+        <location filename="../MwMetronomeView.qml" line="311"/>
         <source>Select the &apos;Link&apos; checkbox to synchronize the beats with Ableton or other music apps running on your computer.</source>
         <translation>选择 “Link” 复选框，就可以将节拍与 Ableton 或电脑上运行的其他音乐软件实现同步。</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="309"/>
+        <location filename="../MwMetronomeView.qml" line="312"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="309"/>
+        <location filename="../MwMetronomeView.qml" line="312"/>
         <source>More Info</source>
         <translation>更多信息</translation>
     </message>
@@ -2330,7 +2330,7 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <location filename="../MwSlotListView.qml" line="908"/>
         <location filename="../MwSlotListView.qml" line="1219"/>
         <source>Duplicate</source>
-        <translation>复制</translation>
+        <translation>创建副本</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="100"/>

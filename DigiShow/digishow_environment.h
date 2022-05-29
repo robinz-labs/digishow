@@ -22,6 +22,11 @@
 #include "RtMidi.h"
 #include "digishow.h"
 
+Q_DECLARE_METATYPE(dgsSignalData)
+Q_DECLARE_METATYPE(dgsInterfaceInfo)
+Q_DECLARE_METATYPE(dgsEndpointInfo)
+Q_DECLARE_METATYPE(dgsSlotInfo)
+
 class DigishowEnvironment : public QObject
 {
     Q_OBJECT

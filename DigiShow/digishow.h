@@ -84,6 +84,10 @@
   + midi / osc input signal learning
   + open recent files menu
 
+  v1.2.2 20220528
+  + global hotkey input interface
+  + metronome and beat trigger interface
+
  */
 
 #ifndef DIGISHOW_H

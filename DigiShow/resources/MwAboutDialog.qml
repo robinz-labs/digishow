@@ -134,7 +134,7 @@ Dialog {
         color: "#999999"
         lineHeight: 1.2
         font.pixelSize: 12
-        text: qsTr("© 2020-2021 Robin Zhang & Labs") + (!digishow.appExperimental() ? "\r\n\r\nThe software is provided on an 'AS IS' \r\nBASIS, WITHOUT WARRANTIES \r\nOR CONDITIONS OF ANY KIND, \r\neither express or implied." : "")
+        text: qsTr("© 2020-2022 Robin Zhang & Labs") + (!digishow.appExperimental() ? "\r\n\r\nThe software is provided on an 'AS IS' \r\nBASIS, WITHOUT WARRANTIES \r\nOR CONDITIONS OF ANY KIND, \r\neither express or implied." : "")
     }
 
 }
