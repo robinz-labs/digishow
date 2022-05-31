@@ -387,7 +387,16 @@ ApplicationWindow {
                 icon.source: "qrc:///images/icon_metro_white.png"
                 box.radius: 3
                 box.border.width: 1
-                colorNormal: metronomeView.opened ? "#666666" : "transparent"
+                colorNormal: {
+                    if (metronomeView.opened)
+                        return "#666666"
+                    else if (!metronome.isRunning)
+                        return "transparent"
+                    else if (Math.floor(metronome.beat) % 2 === 0)
+                        return Material.accent
+                    else
+                        return "transparent"
+                }
                 visible: slotListView.listItemCount > 0
                 onClicked: {
 

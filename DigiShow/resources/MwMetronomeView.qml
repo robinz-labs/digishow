@@ -42,16 +42,23 @@ Item {
                 text: qsTr("Metronome")
             }
 
-            CheckBox {
-                id: checkRun
+            CButton {
+                id: buttonRun
 
+                width: 34
                 height: 28
                 anchors.verticalCenter: textMetronome.verticalCenter
                 anchors.left: parent.left
                 anchors.leftMargin: 95
-                checked: metronome.isRunning
+
+                label.text: metronome.isRunning ? "ON" : "OFF"
+                label.font.bold: true
+                label.font.pixelSize: 9
+                box.radius: 3
+                box.border.width: metronome.isRunning ? 0 : 1
+                colorNormal: metronome.isRunning ? Material.accent : "transparent"
                 onClicked: {
-                    metronome.isRunning = checked
+                    metronome.isRunning = !metronome.isRunning
                     isModified = true
                 }
 
@@ -70,7 +77,7 @@ Item {
 
                 width: 90
                 anchors.verticalCenter: textMetronome.verticalCenter
-                anchors.left: checkRun.right
+                anchors.left: buttonRun.right
                 anchors.leftMargin: 15
 
                 from: 20
