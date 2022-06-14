@@ -564,10 +564,10 @@
         <translation>未命名</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="767"/>
-        <location filename="../MainWindow.qml" line="780"/>
-        <location filename="../MainWindow.qml" line="825"/>
-        <location filename="../MainWindow.qml" line="846"/>
+        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="789"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
@@ -578,10 +578,10 @@
     </message>
     <message>
         <location filename="../MainWindow.qml" line="275"/>
-        <location filename="../MainWindow.qml" line="767"/>
-        <location filename="../MainWindow.qml" line="780"/>
-        <location filename="../MainWindow.qml" line="825"/>
-        <location filename="../MainWindow.qml" line="846"/>
+        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="789"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -601,17 +601,17 @@
         <translation>节拍器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="408"/>
+        <location filename="../MainWindow.qml" line="417"/>
         <source>Bookmarks</source>
         <translation>书签</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="505"/>
+        <location filename="../MainWindow.qml" line="514"/>
         <source>Error occurred when open interface %1 .</source>
         <translation>在打开 %1 接口时发生故障。</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="505"/>
+        <location filename="../MainWindow.qml" line="514"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
@@ -621,12 +621,12 @@
         <translation>打开 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="845"/>
+        <location filename="../MainWindow.qml" line="854"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>在关闭应用程序前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="766"/>
+        <location filename="../MainWindow.qml" line="775"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>在创建新项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
@@ -641,15 +641,15 @@
         <translation> ( 停止工作中 )</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="767"/>
-        <location filename="../MainWindow.qml" line="780"/>
-        <location filename="../MainWindow.qml" line="825"/>
-        <location filename="../MainWindow.qml" line="846"/>
+        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="789"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Don&apos;t Save</source>
         <translation>不保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="779"/>
+        <location filename="../MainWindow.qml" line="788"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>在打开另一个项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
@@ -704,84 +704,84 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="560"/>
+        <location filename="../MainWindow.qml" line="569"/>
         <source>Interface Manager</source>
         <translation>接口管理器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="581"/>
+        <location filename="../MainWindow.qml" line="590"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="585"/>
+        <location filename="../MainWindow.qml" line="594"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="589"/>
+        <location filename="../MainWindow.qml" line="598"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="593"/>
+        <location filename="../MainWindow.qml" line="602"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="597"/>
+        <location filename="../MainWindow.qml" line="606"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="601"/>
+        <location filename="../MainWindow.qml" line="610"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="605"/>
+        <location filename="../MainWindow.qml" line="614"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="613"/>
+        <location filename="../MainWindow.qml" line="622"/>
         <source>Virtual Pipe ...</source>
         <translation>虚拟管道 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="707"/>
+        <location filename="../MainWindow.qml" line="716"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="710"/>
+        <location filename="../MainWindow.qml" line="719"/>
         <source>JSON files</source>
         <translation>JSON 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="823"/>
+        <location filename="../MainWindow.qml" line="832"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>在打开文件 “ %1 ” 前是否需要保存当前数据 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="609"/>
+        <location filename="../MainWindow.qml" line="618"/>
         <source>Screen ...</source>
         <translation>屏幕 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="710"/>
-        <location filename="../MainWindow.qml" line="727"/>
+        <location filename="../MainWindow.qml" line="719"/>
+        <location filename="../MainWindow.qml" line="736"/>
         <source>DigiShow files</source>
         <translation>DigiShow 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="710"/>
-        <location filename="../MainWindow.qml" line="727"/>
+        <location filename="../MainWindow.qml" line="719"/>
+        <location filename="../MainWindow.qml" line="736"/>
         <source>All files</source>
         <translation>所有文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="724"/>
+        <location filename="../MainWindow.qml" line="733"/>
         <source>Save File</source>
         <translation>保存文件</translation>
     </message>
@@ -2156,53 +2156,53 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
 <context>
     <name>MwMetronomeView</name>
     <message>
-        <location filename="../MwMetronomeView.qml" line="42"/>
+        <location filename="../MwMetronomeView.qml" line="43"/>
         <source>Metronome</source>
         <translation>节拍器</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="64"/>
+        <location filename="../MwMetronomeView.qml" line="72"/>
         <source>Run</source>
         <translation>运行</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="91"/>
+        <location filename="../MwMetronomeView.qml" line="99"/>
         <source>BPM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="108"/>
-        <location filename="../MwMetronomeView.qml" line="143"/>
+        <location filename="../MwMetronomeView.qml" line="116"/>
+        <location filename="../MwMetronomeView.qml" line="151"/>
         <source>Tap</source>
         <translation>敲击</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="169"/>
+        <location filename="../MwMetronomeView.qml" line="177"/>
         <source>Beats</source>
         <translation>节拍</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="273"/>
+        <location filename="../MwMetronomeView.qml" line="287"/>
         <source>Sound</source>
         <translation>发声</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="296"/>
+        <location filename="../MwMetronomeView.qml" line="316"/>
         <source>Link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="311"/>
-        <source>Select the &apos;Link&apos; checkbox to synchronize the beats with Ableton or other music apps running on your computer.</source>
-        <translation>选择 “Link” 复选框，就可以将节拍与 Ableton 或电脑上运行的其他音乐软件实现同步。</translation>
+        <location filename="../MwMetronomeView.qml" line="331"/>
+        <source>Enable &apos;Link&apos; to use Ableton&apos;s technology for synchronizing beats with other music / DJ apps and devices.</source>
+        <translation>启用 Link 选项，以使用 Ableton 的技术来与其他音乐/DJ 软件和设备同步节拍。</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="312"/>
+        <location filename="../MwMetronomeView.qml" line="332"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="312"/>
+        <location filename="../MwMetronomeView.qml" line="332"/>
         <source>More Info</source>
         <translation>更多信息</translation>
     </message>

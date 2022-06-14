@@ -299,8 +299,8 @@ void DigishowInterface::updateMetadata()
         labelType = tr("Modbus");
         labelIdentity = (m_interfaceInfo.mode==INTERFACE_MODBUS_RTU ?
                          m_interfaceOptions.value("comPort").toString() :
-                         m_interfaceOptions.value("tcpHost").toString()) + ":" +
-                         m_interfaceOptions.value("tcpPort").toString();
+                         m_interfaceOptions.value("tcpHost").toString() + ":" +
+                         m_interfaceOptions.value("tcpPort").toString());
         break;
     case INTERFACE_HUE:
         labelType = tr("Hue");

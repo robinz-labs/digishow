@@ -484,8 +484,16 @@ dgsSignalData DigishowSlot::processInputNote(dgsSignalData dataIn)
 
     } else if (m_slotInfo.outputSignal == DATA_SIGNAL_NOTE) {
 
-        // N to N (pass through)
-        dataOut = dataIn;
+        // N to N
+        double inputRatio = static_cast<double>(dataIn.aValue) / static_cast<double>(dataIn.aRange);
+        double outputRatio;
+        outputRatio = MAP(inputRatio, m_slotInfo.inputLow, m_slotInfo.inputHigh, m_slotInfo.outputLow, m_slotInfo.outputHigh);
+        outputRatio = MINMAX(outputRatio, m_slotInfo.outputLow, m_slotInfo.outputHigh);
+
+        dataOut.signal = DATA_SIGNAL_NOTE;
+        dataOut.aRange = dataIn.aRange;
+        dataOut.aValue = static_cast<int>(round(outputRatio * dataOut.aRange));
+        dataOut.bValue = dataIn.bValue;
     }
 
     return dataOut;

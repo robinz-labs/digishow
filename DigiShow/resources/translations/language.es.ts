@@ -605,10 +605,10 @@
     </message>
     <message>
         <location filename="../MainWindow.qml" line="275"/>
-        <location filename="../MainWindow.qml" line="767"/>
-        <location filename="../MainWindow.qml" line="780"/>
-        <location filename="../MainWindow.qml" line="825"/>
-        <location filename="../MainWindow.qml" line="846"/>
+        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="789"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
@@ -658,130 +658,130 @@
         <translation>Metrónomo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="408"/>
+        <location filename="../MainWindow.qml" line="417"/>
         <source>Bookmarks</source>
         <translation>Marcadores</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="505"/>
+        <location filename="../MainWindow.qml" line="514"/>
         <source>Error occurred when open interface %1 .</source>
         <translation>Se produjo un error al abrir la interfaz %1 .</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="505"/>
+        <location filename="../MainWindow.qml" line="514"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="560"/>
+        <location filename="../MainWindow.qml" line="569"/>
         <source>Interface Manager</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="581"/>
+        <location filename="../MainWindow.qml" line="590"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="585"/>
+        <location filename="../MainWindow.qml" line="594"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="589"/>
+        <location filename="../MainWindow.qml" line="598"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="593"/>
+        <location filename="../MainWindow.qml" line="602"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="597"/>
+        <location filename="../MainWindow.qml" line="606"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="601"/>
+        <location filename="../MainWindow.qml" line="610"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="605"/>
+        <location filename="../MainWindow.qml" line="614"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="609"/>
+        <location filename="../MainWindow.qml" line="618"/>
         <source>Screen ...</source>
         <translation>Pantalla ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="613"/>
+        <location filename="../MainWindow.qml" line="622"/>
         <source>Virtual Pipe ...</source>
         <translation>Tubería virtual ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="707"/>
+        <location filename="../MainWindow.qml" line="716"/>
         <source>Open File</source>
         <translation>Abrir archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="710"/>
-        <location filename="../MainWindow.qml" line="727"/>
+        <location filename="../MainWindow.qml" line="719"/>
+        <location filename="../MainWindow.qml" line="736"/>
         <source>DigiShow files</source>
         <translation>Archivos DigiShow</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="710"/>
+        <location filename="../MainWindow.qml" line="719"/>
         <source>JSON files</source>
         <translation>Archivos JSON</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="710"/>
-        <location filename="../MainWindow.qml" line="727"/>
+        <location filename="../MainWindow.qml" line="719"/>
+        <location filename="../MainWindow.qml" line="736"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="724"/>
+        <location filename="../MainWindow.qml" line="733"/>
         <source>Save File</source>
         <translation>Guardar archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="766"/>
+        <location filename="../MainWindow.qml" line="775"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de crear uno nuevo ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="767"/>
-        <location filename="../MainWindow.qml" line="780"/>
-        <location filename="../MainWindow.qml" line="825"/>
-        <location filename="../MainWindow.qml" line="846"/>
+        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="789"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Don&apos;t Save</source>
         <translation>No guardar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="767"/>
-        <location filename="../MainWindow.qml" line="780"/>
-        <location filename="../MainWindow.qml" line="825"/>
-        <location filename="../MainWindow.qml" line="846"/>
+        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="789"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="779"/>
+        <location filename="../MainWindow.qml" line="788"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de abrir otro ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="823"/>
+        <location filename="../MainWindow.qml" line="832"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>¿ Quieres guardar los datos actuales antes de abrir el archivo %1 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="845"/>
+        <location filename="../MainWindow.qml" line="854"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de cerrar la aplicación ?</translation>
     </message>
@@ -2156,53 +2156,53 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
 <context>
     <name>MwMetronomeView</name>
     <message>
-        <location filename="../MwMetronomeView.qml" line="42"/>
+        <location filename="../MwMetronomeView.qml" line="43"/>
         <source>Metronome</source>
         <translation>Metrónomo</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="64"/>
+        <location filename="../MwMetronomeView.qml" line="72"/>
         <source>Run</source>
         <translation>Ejecutar</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="91"/>
+        <location filename="../MwMetronomeView.qml" line="99"/>
         <source>BPM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="108"/>
-        <location filename="../MwMetronomeView.qml" line="143"/>
+        <location filename="../MwMetronomeView.qml" line="116"/>
+        <location filename="../MwMetronomeView.qml" line="151"/>
         <source>Tap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="169"/>
+        <location filename="../MwMetronomeView.qml" line="177"/>
         <source>Beats</source>
         <translation>Latidos</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="273"/>
+        <location filename="../MwMetronomeView.qml" line="287"/>
         <source>Sound</source>
         <translation>Sonido</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="296"/>
+        <location filename="../MwMetronomeView.qml" line="316"/>
         <source>Link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="311"/>
-        <source>Select the &apos;Link&apos; checkbox to synchronize the beats with Ableton or other music apps running on your computer.</source>
-        <translation>Seleccione la casilla de verificación &apos;Link&apos; para sincronizar los latidos con Ableton u otras aplicaciones de música que se ejecutan en su computadora.</translation>
+        <location filename="../MwMetronomeView.qml" line="331"/>
+        <source>Enable &apos;Link&apos; to use Ableton&apos;s technology for synchronizing beats with other music / DJ apps and devices.</source>
+        <translation>Habilite &apos;Link&apos; para usar la tecnología de Ableton para sincronizar latidos con otras aplicaciones y dispositivos de música/DJ.</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="312"/>
+        <location filename="../MwMetronomeView.qml" line="332"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="312"/>
+        <location filename="../MwMetronomeView.qml" line="332"/>
         <source>More Info</source>
         <translation>Más info</translation>
     </message>

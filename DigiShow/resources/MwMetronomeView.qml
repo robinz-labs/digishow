@@ -35,7 +35,8 @@ Item {
                 anchors.top: parent.top
                 anchors.topMargin: 45
                 anchors.left: parent.left
-                anchors.leftMargin: 20
+                anchors.right: buttonRun.left
+                horizontalAlignment: Text.AlignHCenter
                 color: "#dddddd"
                 font.pixelSize: 12
                 font.bold: true
@@ -45,18 +46,19 @@ Item {
             CButton {
                 id: buttonRun
 
-                width: 34
+                width: 30
                 height: 28
                 anchors.verticalCenter: textMetronome.verticalCenter
                 anchors.left: parent.left
-                anchors.leftMargin: 95
+                anchors.leftMargin: 100
 
                 label.text: metronome.isRunning ? "ON" : "OFF"
                 label.font.bold: true
                 label.font.pixelSize: 9
                 box.radius: 3
-                box.border.width: metronome.isRunning ? 0 : 1
-                colorNormal: metronome.isRunning ? Material.accent : "transparent"
+                colorChecked: Material.accent
+                checkable: true
+                checked: metronome.isRunning
                 onClicked: {
                     metronome.isRunning = !metronome.isRunning
                     isModified = true
@@ -78,7 +80,7 @@ Item {
                 width: 90
                 anchors.verticalCenter: textMetronome.verticalCenter
                 anchors.left: buttonRun.right
-                anchors.leftMargin: 15
+                anchors.leftMargin: 20
 
                 from: 20
                 to: 600
@@ -161,7 +163,7 @@ Item {
                 anchors.left: buttonTap.right
                 anchors.leftMargin: 20
                 anchors.right: parent.right
-                anchors.rightMargin: 210
+                anchors.rightMargin: 207
                 color: "transparent"
                 border.color: "#383838"
                 border.width: 1
@@ -258,16 +260,23 @@ Item {
                 }
             }
 
-            CheckBox {
-                id: checkSound
+            CButton {
+                id: buttonSound
 
+                width: 30
                 height: 28
                 anchors.verticalCenter: textMetronome.verticalCenter
                 anchors.left: spinQuantum.right
-                anchors.leftMargin: 15
+                anchors.leftMargin: 20
+                label.text: metronome.isSoundEnabled ? "ON" : "OFF"
+                label.font.bold: true
+                label.font.pixelSize: 9
+                box.radius: 3
+                colorChecked: Material.accent
+                checkable: true
                 checked: metronome.isSoundEnabled
                 onClicked: {
-                    metronome.isSoundEnabled = checked
+                    metronome.isSoundEnabled = !metronome.isSoundEnabled
                     isModified = true
                 }
 
@@ -281,16 +290,23 @@ Item {
                 }
             }
 
-            CheckBox {
-                id: checkLink
+            CButton {
+                id: buttonLink
 
+                width: 30
                 height: 28
                 anchors.verticalCenter: textMetronome.verticalCenter
-                anchors.left: checkSound.right
-                anchors.leftMargin: 10
+                anchors.left: buttonSound.right
+                anchors.leftMargin: 20
+                label.text: metronome.isLinkEnabled ? "ON" : "OFF"
+                label.font.bold: true
+                label.font.pixelSize: 9
+                box.radius: 3
+                colorChecked: Material.accent
+                checkable: true
                 checked: metronome.isLinkEnabled
                 onClicked: {
-                    metronome.isLinkEnabled = checked
+                    metronome.isLinkEnabled = !metronome.isLinkEnabled
                     isModified = true
                 }
 
@@ -315,7 +331,7 @@ Item {
 
                         onClicked: {
                             if (messageBox.showAndWait(
-                                    qsTr("Select the 'Link' checkbox to synchronize the beats with Ableton or other music apps running on your computer."),
+                                    qsTr("Enable 'Link' to use Ableton's technology for synchronizing beats with other music / DJ apps and devices."),
                                     qsTr("OK"), qsTr("More Info")) === 2) {
                                 Qt.openUrlExternally("https://www.ableton.com/en/link/")
                             }

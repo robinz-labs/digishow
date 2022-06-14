@@ -564,24 +564,24 @@
         <translation>無題</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="767"/>
-        <location filename="../MainWindow.qml" line="780"/>
-        <location filename="../MainWindow.qml" line="825"/>
-        <location filename="../MainWindow.qml" line="846"/>
+        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="789"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="845"/>
+        <location filename="../MainWindow.qml" line="854"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>アプリを閉じる前にすべてのデータを保存してもよろしいですか？</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="275"/>
-        <location filename="../MainWindow.qml" line="767"/>
-        <location filename="../MainWindow.qml" line="780"/>
-        <location filename="../MainWindow.qml" line="825"/>
-        <location filename="../MainWindow.qml" line="846"/>
+        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="789"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -611,25 +611,25 @@
         <translation>メトロノーム</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="408"/>
+        <location filename="../MainWindow.qml" line="417"/>
         <source>Bookmarks</source>
         <translation>ブックマーク</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="707"/>
+        <location filename="../MainWindow.qml" line="716"/>
         <source>Open File</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="766"/>
+        <location filename="../MainWindow.qml" line="775"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>新規する前にすべてのデータを保存してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="767"/>
-        <location filename="../MainWindow.qml" line="780"/>
-        <location filename="../MainWindow.qml" line="825"/>
-        <location filename="../MainWindow.qml" line="846"/>
+        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="789"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Don&apos;t Save</source>
         <translation>保存しない</translation>
     </message>
@@ -639,7 +639,7 @@
         <translation>開く ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="779"/>
+        <location filename="../MainWindow.qml" line="788"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>他のファイルを開く前にすべてのデータを保存してもよろしいですか？</translation>
     </message>
@@ -699,89 +699,89 @@
         <translation>閉じる</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="505"/>
+        <location filename="../MainWindow.qml" line="514"/>
         <source>Error occurred when open interface %1 .</source>
         <translation>インターフェイス %1 を開くときにエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="505"/>
+        <location filename="../MainWindow.qml" line="514"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="560"/>
+        <location filename="../MainWindow.qml" line="569"/>
         <source>Interface Manager</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="581"/>
+        <location filename="../MainWindow.qml" line="590"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="585"/>
+        <location filename="../MainWindow.qml" line="594"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="589"/>
+        <location filename="../MainWindow.qml" line="598"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="593"/>
+        <location filename="../MainWindow.qml" line="602"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="597"/>
+        <location filename="../MainWindow.qml" line="606"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="601"/>
+        <location filename="../MainWindow.qml" line="610"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="605"/>
+        <location filename="../MainWindow.qml" line="614"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="609"/>
+        <location filename="../MainWindow.qml" line="618"/>
         <source>Screen ...</source>
         <translation>スクリーン ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="613"/>
+        <location filename="../MainWindow.qml" line="622"/>
         <source>Virtual Pipe ...</source>
         <translation>バーチャルパイプ ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="710"/>
-        <location filename="../MainWindow.qml" line="727"/>
+        <location filename="../MainWindow.qml" line="719"/>
+        <location filename="../MainWindow.qml" line="736"/>
         <source>DigiShow files</source>
         <translation>DigiShow ファイル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="710"/>
-        <location filename="../MainWindow.qml" line="727"/>
+        <location filename="../MainWindow.qml" line="719"/>
+        <location filename="../MainWindow.qml" line="736"/>
         <source>All files</source>
         <translation>すべてファイル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="710"/>
+        <location filename="../MainWindow.qml" line="719"/>
         <source>JSON files</source>
         <translation>JSON ファイル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="724"/>
+        <location filename="../MainWindow.qml" line="733"/>
         <source>Save File</source>
         <translation>ファイルを保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="823"/>
+        <location filename="../MainWindow.qml" line="832"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>ファイル %1 を開く前に現在のデータを保存してもよろしいですか？</translation>
     </message>
@@ -2156,53 +2156,53 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
 <context>
     <name>MwMetronomeView</name>
     <message>
-        <location filename="../MwMetronomeView.qml" line="42"/>
+        <location filename="../MwMetronomeView.qml" line="43"/>
         <source>Metronome</source>
         <translation>メトロノーム</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="64"/>
+        <location filename="../MwMetronomeView.qml" line="72"/>
         <source>Run</source>
         <translation>実行</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="91"/>
+        <location filename="../MwMetronomeView.qml" line="99"/>
         <source>BPM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="108"/>
-        <location filename="../MwMetronomeView.qml" line="143"/>
+        <location filename="../MwMetronomeView.qml" line="116"/>
+        <location filename="../MwMetronomeView.qml" line="151"/>
         <source>Tap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="169"/>
+        <location filename="../MwMetronomeView.qml" line="177"/>
         <source>Beats</source>
         <translation>ビート</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="273"/>
+        <location filename="../MwMetronomeView.qml" line="287"/>
         <source>Sound</source>
         <translation>サウンド</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="296"/>
+        <location filename="../MwMetronomeView.qml" line="316"/>
         <source>Link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="311"/>
-        <source>Select the &apos;Link&apos; checkbox to synchronize the beats with Ableton or other music apps running on your computer.</source>
-        <translation>[Link]チェックボックスを選択して、コンピューターで実行されているAbletonまたは他の音楽アプリとビートを同期します。</translation>
+        <location filename="../MwMetronomeView.qml" line="331"/>
+        <source>Enable &apos;Link&apos; to use Ableton&apos;s technology for synchronizing beats with other music / DJ apps and devices.</source>
+        <translation>「 Link 」を利用にして、他の音楽/DJアプリやデバイスとビートを同期するためのAbletonのテクノロジーを使用します。</translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="312"/>
+        <location filename="../MwMetronomeView.qml" line="332"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwMetronomeView.qml" line="312"/>
+        <location filename="../MwMetronomeView.qml" line="332"/>
         <source>More Info</source>
         <translation>詳しくは</translation>
     </message>

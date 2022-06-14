@@ -601,6 +601,13 @@ Item {
             spinEnvelopeDecay.visible = false
             spinEnvelopeSustain.visible = false
             spinEnvelopeRelease.visible = true
+
+        } else if (inputSignal  === DigishowEnvironment.SignalNote &&
+                   outputSignal === DigishowEnvironment.SignalNote) {
+
+            itemMappingOptions.visible = true
+            sliderMappingInputRange.visible = true
+            sliderMappingOutputRange.visible = true
         }
 
         // refresh option values
