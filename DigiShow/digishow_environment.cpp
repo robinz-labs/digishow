@@ -22,6 +22,7 @@
 #include "dgs_rioc_interface.h"
 #include "dgs_modbus_interface.h"
 #include "dgs_dmx_interface.h"
+#include "dgs_audioin_interface.h"
 #include "dgs_screen_interface.h"
 #include "rioc_aladdin2560_def.h"
 
@@ -665,11 +666,12 @@ void DigishowEnvironment::onRawDataReceived(const QVariantMap &rawData)
 QVariantMap DigishowEnvironment::listOnline()
 {
     QVariantMap info;
-    info["midi"  ] = DgsMidiInterface  ::listOnline();
-    info["dmx"   ] = DgsDmxInterface   ::listOnline();
-    info["rioc"  ] = DgsRiocInterface  ::listOnline();
-    info["modbus"] = DgsModbusInterface::listOnline();
-    info["screen"] = DgsScreenInterface::listOnline();
+    info["midi"   ] = DgsMidiInterface   ::listOnline();
+    info["dmx"    ] = DgsDmxInterface    ::listOnline();
+    info["rioc"   ] = DgsRiocInterface   ::listOnline();
+    info["modbus" ] = DgsModbusInterface ::listOnline();
+    info["audioin"] = DgsAudioinInterface::listOnline();
+    info["screen" ] = DgsScreenInterface ::listOnline();
     return info;
 }
 

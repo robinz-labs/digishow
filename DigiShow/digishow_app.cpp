@@ -27,6 +27,7 @@
 #include "dgs_dmx_interface.h"
 #include "dgs_artnet_interface.h"
 #include "dgs_osc_interface.h"
+#include "dgs_audioin_interface.h"
 #include "dgs_screen_interface.h"
 #include "dgs_pipe_interface.h"
 #include "dgs_launch_interface.h"
@@ -142,6 +143,7 @@ void DigishowApp::importData(const QVariantMap & data)
         else if (interfaceType=="dmx"      ) interface = new DgsDmxInterface(this);
         else if (interfaceType=="artnet"   ) interface = new DgsArtnetInterface(this);
         else if (interfaceType=="osc"      ) interface = new DgsOscInterface(this);
+        else if (interfaceType=="audioin"  ) interface = new DgsAudioinInterface(this);
         else if (interfaceType=="screen"   ) interface = new DgsScreenInterface(this);
         else if (interfaceType=="pipe"     ) interface = new DgsPipeInterface(this);
         else if (interfaceType=="launch"   ) interface = new DgsLaunchInterface(this);
@@ -460,7 +462,7 @@ int DigishowApp::newInterface(const QString &interfaceType)
     } else if (interfaceType=="hue") {
 
         interface = new DgsHueInterface(this);
-        interface->setInterfaceOption("mode", "http");
+        interface->setInterfaceOption("mode", "");
         //interface->setInterfaceOption("outputInterval", 150);
 
     } else if (interfaceType=="dmx") {
@@ -489,22 +491,27 @@ int DigishowApp::newInterface(const QString &interfaceType)
     } else if (interfaceType=="launch") {
 
         interface = new DgsLaunchInterface(this);
-        interface->setInterfaceOption("mode", "local");
+        interface->setInterfaceOption("mode", "");
 
     } else if (interfaceType=="hotkey") {
 
         interface = new DgsHotkeyInterface(this);
-        interface->setInterfaceOption("mode", "input");
+        interface->setInterfaceOption("mode", "");
 
     } else if (interfaceType=="metronome") {
 
         interface = new DgsMetronomeInterface(this);
-        interface->setInterfaceOption("mode", "input");
+        interface->setInterfaceOption("mode", "");
+
+    } else if (interfaceType=="audioin") {
+
+        interface = new DgsAudioinInterface(this);
+        interface->setInterfaceOption("mode", "");
 
     } else if (interfaceType=="screen") {
 
         interface = new DgsScreenInterface(this);
-        interface->setInterfaceOption("mode", "local");
+        interface->setInterfaceOption("mode", "");
 
         // each screen interface must have a player endpoint
         QVariantMap endpointOptions;
@@ -517,12 +524,12 @@ int DigishowApp::newInterface(const QString &interfaceType)
     } else if (interfaceType=="aplay") {
 
         interface = new DgsAPlayInterface(this);
-        interface->setInterfaceOption("mode", "local");
+        interface->setInterfaceOption("mode", "");
 
     } else if (interfaceType=="mplay") {
 
         interface = new DgsMPlayInterface(this);
-        interface->setInterfaceOption("mode", "local");
+        interface->setInterfaceOption("mode", "");
 #endif
 
     } else { interface = new DigishowInterface(this);  }

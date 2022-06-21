@@ -615,12 +615,16 @@ ApplicationWindow {
                         onTriggered: dialogInterfaces.showTab(6)
                     }
                     MenuItem {
-                        text: qsTr("Screen ...")
+                        text: qsTr("Audio In ...")
                         onTriggered: dialogInterfaces.showTab(7)
                     }
                     MenuItem {
-                        text: qsTr("Virtual Pipe ...")
+                        text: qsTr("Screen ...")
                         onTriggered: dialogInterfaces.showTab(8)
+                    }
+                    MenuItem {
+                        text: qsTr("Virtual Pipe ...")
+                        onTriggered: dialogInterfaces.showTab(9)
                     }
 
                 }

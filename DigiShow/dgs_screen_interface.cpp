@@ -47,7 +47,7 @@ int DgsScreenInterface::openInterface()
 
     updateMetadata();
 
-    if (m_interfaceInfo.mode==INTERFACE_SCREEN_LOCAL) {
+    if (m_interfaceInfo.mode==INTERFACE_SCREEN_DEFAULT) {
 
         // initialize local screen controls
 
@@ -85,11 +85,6 @@ int DgsScreenInterface::openInterface()
                         Q_RETURN_ARG(QVariant, r), Q_ARG(QVariant, mediaList));
         }
 
-    } else if (m_interfaceInfo.mode==INTERFACE_SCREEN_REMOTE) {
-
-        // initialize remote screen controls
-
-        // TODO:
     }
 
     m_isInterfaceOpened = true;
@@ -98,7 +93,7 @@ int DgsScreenInterface::openInterface()
 
 int DgsScreenInterface::closeInterface()
 {
-    if (m_interfaceInfo.mode==INTERFACE_SCREEN_LOCAL) {
+    if (m_interfaceInfo.mode==INTERFACE_SCREEN_DEFAULT) {
 
         // close player
         if (m_player != nullptr) {
@@ -112,9 +107,6 @@ int DgsScreenInterface::closeInterface()
             m_player = nullptr;
         }
 
-    } else if (m_interfaceInfo.mode==INTERFACE_SCREEN_REMOTE) {
-
-        // TODO:
     }
 
     m_isInterfaceOpened = false;
@@ -126,7 +118,7 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
     int r = DigishowInterface::sendData(endpointIndex, data);
     if ( r != ERR_NONE) return r;
 
-    if (m_interfaceInfo.mode==INTERFACE_SCREEN_LOCAL) {
+    if (m_interfaceInfo.mode==INTERFACE_SCREEN_DEFAULT) {
 
         if (m_player == nullptr) return ERR_DEVICE_NOT_READY;
 
@@ -234,9 +226,6 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
                         Q_ARG(QVariant, value));
         }
 
-    } else if (m_interfaceInfo.mode==INTERFACE_SCREEN_REMOTE) {
-
-        // TODO:
     }
 
     return ERR_NONE;

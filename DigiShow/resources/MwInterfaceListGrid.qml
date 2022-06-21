@@ -11,7 +11,7 @@ GridView {
     anchors.top: parent.top
     anchors.left: parent.left
     anchors.right: parent.right
-    cellWidth: 280
+    cellWidth: 300
     cellHeight: 210
     clip: true
     snapMode: ListView.SnapToItem

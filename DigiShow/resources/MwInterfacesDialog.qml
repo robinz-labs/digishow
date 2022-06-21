@@ -9,7 +9,7 @@ Dialog {
 
     id: dialog
 
-    width: 900
+    width: 960
     height: 660
     anchors.centerIn: parent
     modal: true
@@ -313,6 +313,45 @@ Dialog {
         }
 
         Rectangle {
+            id: rectAudioin
+            color: "transparent"
+
+            Label {
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                color: Material.accent
+                font.bold: true
+                font.pixelSize: 16
+                text: qsTr("Audio Input Interfaces")
+            }
+
+            Label {
+                id: labelAudioinInfo
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.right: parent.right
+                anchors.rightMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 40
+                wrapMode: Label.Wrap
+                text: qsTr("DigiShow enables to inspect the sound level of the audio signal from microphone or aux input.")
+            }
+
+            MwInterfaceListViewAudioin {
+                id: interfaceListViewAudioin
+                interfaceType: "audioin"
+                anchors.top: labelAudioinInfo.bottom
+                anchors.topMargin: 20
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+            }
+        }
+
+        Rectangle {
             id: rectScreen
             color: "transparent"
 
@@ -459,6 +498,14 @@ Dialog {
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
+            text: qsTr("Audio In")
+            font.capitalization: Font.MixedCase
+            icon.source: "qrc:///images/icon_interface_audioin_white.png"
+            icon.width: 48
+            icon.height: 48
+            display: AbstractButton.TextUnderIcon
+        }
+        TabButton {
             text: qsTr("Screen")
             font.capitalization: Font.MixedCase
             icon.source: "qrc:///images/icon_interface_screen_white.png"
@@ -507,6 +554,7 @@ Dialog {
         interfaceListViewModbus.refresh()
         interfaceListViewRioc.refresh()
         interfaceListViewHue.refresh()
+        interfaceListViewAudioin.refresh()
         interfaceListViewScreen.refresh()
         interfaceListViewPipe.refresh()
     }

@@ -5,35 +5,36 @@ CONFIG += c++11
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
-        $$PWD/shared/md5.cpp \
-        $$PWD/shared/tcp_handler.cpp \
-        $$PWD/shared/com_handler.cpp \
-        $$PWD/shared/modbus_rtu_handler.cpp \
-        $$PWD/shared/modbus_tcp_handler.cpp \
-        $$PWD/shared/rioc_service.cpp \
-        $$PWD/shared/rioc_controller.cpp \
-        app_utilities.cpp \
-        dgs_artnet_interface.cpp \
-        dgs_osc_interface.cpp \
-        dgs_dmx_interface.cpp \
-        dgs_midi_interface.cpp \
-        dgs_modbus_interface.cpp \
-        dgs_rioc_interface.cpp \
-        dgs_hue_interface.cpp \
-        dgs_screen_interface.cpp \
-        dgs_pipe_interface.cpp \
-        dgs_launch_interface.cpp \
-        dgs_hotkey_interface.cpp \
-        dgs_metronome_interface.cpp \
-        digishow.cpp \
-        digishow_app.cpp \
-        digishow_common.cpp \
-        digishow_data.cpp \
-        digishow_environment.cpp \
-        digishow_interface.cpp \
-        digishow_slot.cpp \
-        digishow_metronome.cpp \
-        main.cpp 
+    $$PWD/shared/md5.cpp \
+    $$PWD/shared/tcp_handler.cpp \
+    $$PWD/shared/com_handler.cpp \
+    $$PWD/shared/modbus_rtu_handler.cpp \
+    $$PWD/shared/modbus_tcp_handler.cpp \
+    $$PWD/shared/rioc_service.cpp \
+    $$PWD/shared/rioc_controller.cpp \
+    app_utilities.cpp \
+    dgs_midi_interface.cpp \
+    dgs_rioc_interface.cpp \
+    dgs_modbus_interface.cpp \
+    dgs_hue_interface.cpp \
+    dgs_dmx_interface.cpp \
+    dgs_artnet_interface.cpp \
+    dgs_osc_interface.cpp \
+    dgs_audioin_interface.cpp \
+    dgs_screen_interface.cpp \
+    dgs_pipe_interface.cpp \
+    dgs_launch_interface.cpp \
+    dgs_hotkey_interface.cpp \
+    dgs_metronome_interface.cpp \
+    digishow.cpp \
+    digishow_app.cpp \
+    digishow_common.cpp \
+    digishow_data.cpp \
+    digishow_environment.cpp \
+    digishow_interface.cpp \
+    digishow_slot.cpp \
+    digishow_metronome.cpp \
+    main.cpp
 
 HEADERS += \
     $$PWD/shared/md5.h \
@@ -47,13 +48,14 @@ HEADERS += \
     $$PWD/shared/rioc_aladdin2560_def.h \
     app_common.h \
     app_utilities.h \
+    dgs_midi_interface.h \
+    dgs_rioc_interface.h \
+    dgs_modbus_interface.h \
+    dgs_hue_interface.h \
+    dgs_dmx_interface.h \
     dgs_artnet_interface.h \
     dgs_osc_interface.h \
-    dgs_dmx_interface.h \
-    dgs_midi_interface.h \
-    dgs_modbus_interface.h \
-    dgs_rioc_interface.h \
-    dgs_hue_interface.h \
+    dgs_audioin_interface.h \
     dgs_screen_interface.h \
     dgs_pipe_interface.h \
     dgs_launch_interface.h \

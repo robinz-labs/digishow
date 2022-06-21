@@ -183,6 +183,7 @@ void DigishowInterface::updateMetadata()
     else if (typeName == "dmx"      ) m_interfaceInfo.type = INTERFACE_DMX;
     else if (typeName == "artnet"   ) m_interfaceInfo.type = INTERFACE_ARTNET;
     else if (typeName == "osc"      ) m_interfaceInfo.type = INTERFACE_OSC;
+    else if (typeName == "audioin"  ) m_interfaceInfo.type = INTERFACE_AUDIOIN;
     else if (typeName == "screen"   ) m_interfaceInfo.type = INTERFACE_SCREEN;
     else if (typeName == "aplay"    ) m_interfaceInfo.type = INTERFACE_APLAY;
     else if (typeName == "mplay"    ) m_interfaceInfo.type = INTERFACE_MPLAY;
@@ -209,9 +210,7 @@ void DigishowInterface::updateMetadata()
         else if (modeName == "tcp"         ) m_interfaceInfo.mode = INTERFACE_MODBUS_TCP;
         else if (modeName == "rtuovertcp"  ) m_interfaceInfo.mode = INTERFACE_MODBUS_RTUOVERTCP;
         break;
-    case INTERFACE_HUE:
-        if      (modeName == "" ||
-                 modeName == "http"        ) m_interfaceInfo.mode = INTERFACE_HUE_HTTP;
+    case INTERFACE_HUE:                      m_interfaceInfo.mode = INTERFACE_HUE_DEFAULT;
         break;
     case INTERFACE_DMX:
         if      (modeName == "enttec"      ) m_interfaceInfo.mode = INTERFACE_DMX_ENTTEC_PRO;
@@ -225,33 +224,23 @@ void DigishowInterface::updateMetadata()
         if      (modeName == "input"       ) m_interfaceInfo.mode = INTERFACE_OSC_INPUT;
         else if (modeName == "output"      ) m_interfaceInfo.mode = INTERFACE_OSC_OUTPUT;
         break;
-    case INTERFACE_SCREEN:
-        if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_SCREEN_LOCAL;
-        else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_SCREEN_REMOTE;
+    case INTERFACE_AUDIOIN:                  m_interfaceInfo.mode = INTERFACE_AUDIOIN_DEFAULT;
         break;
-    case INTERFACE_APLAY:
-        if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_APLAY_LOCAL;
-        else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_APLAY_REMOTE;
+    case INTERFACE_SCREEN:                   m_interfaceInfo.mode = INTERFACE_SCREEN_DEFAULT;
         break;
-    case INTERFACE_MPLAY:
-        if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_MPLAY_LOCAL;
-        else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_MPLAY_REMOTE;
+    case INTERFACE_APLAY:                    m_interfaceInfo.mode = INTERFACE_APLAY_DEFAULT;
+        break;
+    case INTERFACE_MPLAY:                    m_interfaceInfo.mode = INTERFACE_MPLAY_DEFAULT;
         break;
     case INTERFACE_PIPE:
         if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_PIPE_LOCAL;
         else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_PIPE_REMOTE;
         break;
-    case INTERFACE_LAUNCH:
-        if      (modeName == "local"       ) m_interfaceInfo.mode = INTERFACE_LAUNCH_LOCAL;
-        else if (modeName == "remote"      ) m_interfaceInfo.mode = INTERFACE_LAUNCH_REMOTE;
+    case INTERFACE_LAUNCH:                   m_interfaceInfo.mode = INTERFACE_LAUNCH_DEFAULT;
         break;
-    case INTERFACE_HOTKEY:
-        if      (modeName == "" ||
-                 modeName == "input"       ) m_interfaceInfo.mode = INTERFACE_HOTKEY_INPUT;
+    case INTERFACE_HOTKEY:                   m_interfaceInfo.mode = INTERFACE_HOTKEY_DEFAULT;
         break;
-    case INTERFACE_METRONOME:
-        if      (modeName == "" ||
-                 modeName == "input"       ) m_interfaceInfo.mode = INTERFACE_METRONOME_INPUT;
+    case INTERFACE_METRONOME:                m_interfaceInfo.mode = INTERFACE_METRONOME_DEFAULT;
         break;
     }
 
@@ -266,7 +255,7 @@ void DigishowInterface::updateMetadata()
              m_interfaceInfo.type==INTERFACE_SCREEN ||
              m_interfaceInfo.type==INTERFACE_APLAY ||
              m_interfaceInfo.type==INTERFACE_MPLAY ||
-             m_interfaceInfo.type==INTERFACE_LAUNCH)
+             m_interfaceInfo.type==INTERFACE_LAUNCH )
         m_interfaceInfo.input = false;
     else
         m_interfaceInfo.input = true;
@@ -277,8 +266,9 @@ void DigishowInterface::updateMetadata()
     else if (m_interfaceInfo.mode==INTERFACE_MIDI_INPUT ||
              m_interfaceInfo.mode==INTERFACE_ARTNET_INPUT ||
              m_interfaceInfo.mode==INTERFACE_OSC_INPUT ||
-             m_interfaceInfo.mode==INTERFACE_HOTKEY_INPUT ||
-             m_interfaceInfo.mode==INTERFACE_METRONOME_INPUT)
+             m_interfaceInfo.type==INTERFACE_AUDIOIN ||
+             m_interfaceInfo.type==INTERFACE_HOTKEY ||
+             m_interfaceInfo.type==INTERFACE_METRONOME )
         m_interfaceInfo.output = false;
     else
         m_interfaceInfo.output = true;
@@ -319,6 +309,10 @@ void DigishowInterface::updateMetadata()
         labelType = tr("OSC");
         labelIdentity = m_interfaceOptions.value("udpHost").toString() + ":" +
                         m_interfaceOptions.value("udpPort").toString();
+        break;
+    case INTERFACE_AUDIOIN:
+        labelType = tr("Audio In");
+        labelIdentity = m_interfaceOptions.value("port").toString();;
         break;
     case INTERFACE_SCREEN:
         labelType = tr("Screen");
@@ -416,6 +410,9 @@ void DigishowInterface::updateMetadata()
             if      (typeName == "int"        ) endpointInfo.type = ENDPOINT_OSC_INT;
             else if (typeName == "float"      ) endpointInfo.type = ENDPOINT_OSC_FLOAT;
             else if (typeName == "bool"       ) endpointInfo.type = ENDPOINT_OSC_BOOL;
+            break;
+        case INTERFACE_AUDIOIN:
+            if      (typeName == "soundlevel" ) endpointInfo.type = ENDPOINT_AUDIOIN_SOUNDLEVEL;
             break;
         case INTERFACE_SCREEN:
             if      (typeName == "light"      ) endpointInfo.type = ENDPOINT_SCREEN_LIGHT;
@@ -622,6 +619,13 @@ void DigishowInterface::updateMetadata()
             endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_OSC_INPUT);
             endpointInfo.labelEPT = tr("OSC");
             endpointInfo.labelEPI = tr("Bool") + QString(" %1").arg(endpointInfo.channel + 1);
+            break;
+        case ENDPOINT_AUDIOIN_SOUNDLEVEL:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.input = true;
+            endpointInfo.range  = 1000000;
+            endpointInfo.labelEPT = tr("Audio In");
+            endpointInfo.labelEPI = tr("Sound Level");
             break;
         case ENDPOINT_SCREEN_LIGHT:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;

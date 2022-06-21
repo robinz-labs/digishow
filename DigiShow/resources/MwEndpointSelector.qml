@@ -120,6 +120,7 @@ Item {
                 itemModbus   .visible = false
                 itemRioc     .visible = false
                 itemHue      .visible = false
+                itemAudioin  .visible = false
                 itemScreen   .visible = false
                 itemAPlay    .visible = false
                 itemMPlay    .visible = false
@@ -144,6 +145,7 @@ Item {
                     case DigishowEnvironment.InterfaceModbus:    itemModbus   .visible = true; itemModbus   .refresh(); break
                     case DigishowEnvironment.InterfaceRioc:      itemRioc     .visible = true; itemRioc     .refresh(); break
                     case DigishowEnvironment.InterfaceHue:       itemHue      .visible = true; itemHue      .refresh(); break
+                    case DigishowEnvironment.InterfaceAudioIn:   itemAudioin  .visible = true; itemAudioin  .refresh(); break
                     case DigishowEnvironment.InterfaceScreen:    itemScreen   .visible = true; itemScreen   .refresh(); break
                     case DigishowEnvironment.InterfaceAPlay:     itemAPlay    .visible = true; itemAPlay    .refresh(); break
                     case DigishowEnvironment.InterfaceMPlay:     itemMPlay    .visible = true; itemMPlay    .refresh(); break
@@ -273,6 +275,16 @@ Item {
     MwEndpointSelectorHue {
 
         id: itemHue
+
+        anchors.left: buttonInterface.left
+        anchors.top: buttonInterface.bottom
+        anchors.topMargin: 10
+        visible: false
+    }
+
+    MwEndpointSelectorAudioin {
+
+        id: itemAudioin
 
         anchors.left: buttonInterface.left
         anchors.top: buttonInterface.bottom
@@ -480,6 +492,10 @@ Item {
                 itemHue.spinChannel.value = endpointInfo["channel"]
                 itemHue.menuControl.selectOption(endpointInfo["control"])
 
+            } else if (type === DigishowEnvironment.InterfaceAudioIn) {
+
+                itemAudioin.menuType.selectOption(endpointInfo["type"])
+
             } else if (type === DigishowEnvironment.InterfaceScreen) {
 
                 itemScreen.menuType.selectOption(endpointInfo["type"])
@@ -648,6 +664,10 @@ Item {
             newEndpointOptions["type"] = itemHue.menuType.selectedItemTag
             newEndpointOptions["channel"] = itemHue.spinChannel.value
             newEndpointOptions["control"] = itemHue.menuControl.selectedItemValue
+
+        } else if (type === DigishowEnvironment.InterfaceAudioIn) {
+
+            newEndpointOptions["type"] = itemAudioin.menuType.selectedItemTag
 
         } else if (type === DigishowEnvironment.InterfaceScreen) {
 

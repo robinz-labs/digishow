@@ -36,13 +36,14 @@
         <file>images/icon_fullscreen_enter_white.png</file>
         <file>images/icon_fullscreen_exit_white.png</file>
         <file>images/icon_invert_white.png</file>
-        <file>images/icon_interface_dmx_white.png</file>
-        <file>images/icon_interface_osc_white.png</file>
-        <file>images/icon_interface_artnet_white.png</file>
-        <file>images/icon_interface_hue_white.png</file>
         <file>images/icon_interface_midi_white.png</file>
-        <file>images/icon_interface_modbus_white.png</file>
         <file>images/icon_interface_rioc_white.png</file>
+        <file>images/icon_interface_modbus_white.png</file>
+        <file>images/icon_interface_hue_white.png</file>
+        <file>images/icon_interface_dmx_white.png</file>
+        <file>images/icon_interface_artnet_white.png</file>
+        <file>images/icon_interface_osc_white.png</file>
+        <file>images/icon_interface_audioin_white.png</file>
         <file>images/icon_interface_screen_white.png</file>
         <file>images/icon_interface_aplay_white.png</file>
         <file>images/icon_interface_mplay_white.png</file>
@@ -50,13 +51,14 @@
         <file>images/icon_interface_launch_white.png</file>
         <file>images/icon_interface_hotkey_white.png</file>
         <file>images/icon_interface_metronome_white.png</file>
-        <file>images/icon_interface_dmx_white@2x.png</file>
-        <file>images/icon_interface_osc_white@2x.png</file>
-        <file>images/icon_interface_artnet_white@2x.png</file>
-        <file>images/icon_interface_hue_white@2x.png</file>
         <file>images/icon_interface_midi_white@2x.png</file>
-        <file>images/icon_interface_modbus_white@2x.png</file>
         <file>images/icon_interface_rioc_white@2x.png</file>
+        <file>images/icon_interface_modbus_white@2x.png</file>
+        <file>images/icon_interface_hue_white@2x.png</file>
+        <file>images/icon_interface_dmx_white@2x.png</file>
+        <file>images/icon_interface_artnet_white@2x.png</file>
+        <file>images/icon_interface_osc_white@2x.png</file>
+        <file>images/icon_interface_audioin_white@2x.png</file>
         <file>images/icon_interface_screen_white@2x.png</file>
         <file>images/icon_interface_aplay_white@2x.png</file>
         <file>images/icon_interface_mplay_white@2x.png</file>
@@ -84,11 +86,6 @@
         <file>components/CRangeSlider.qml</file>
         <file>components/CTextInputBox.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>ScreenPlayer.qml</file>
-        <file>SpVideoView.qml</file>
-        <file>SpImageView.qml</file>
-        <file>SpWebView.qml</file>
-        <file>SpAnimationFadeIn.qml</file>
         <file>Utilities.qml</file>
         <file>Digishow.qml</file>
         <file>Splash.qml</file>
@@ -103,6 +100,7 @@
         <file>MwEndpointSelectorModbus.qml</file>
         <file>MwEndpointSelectorRioc.qml</file>
         <file>MwEndpointSelectorHue.qml</file>
+        <file>MwEndpointSelectorAudioin.qml</file>
         <file>MwEndpointSelectorScreen.qml</file>
         <file>MwEndpointSelectorAPlay.qml</file>
         <file>MwEndpointSelectorMPlay.qml</file>
@@ -127,6 +125,7 @@
         <file>MwInterfaceListViewModbus.qml</file>
         <file>MwInterfaceListViewRioc.qml</file>
         <file>MwInterfaceListViewHue.qml</file>
+        <file>MwInterfaceListViewAudioin.qml</file>
         <file>MwInterfaceListViewScreen.qml</file>
         <file>MwInterfaceListViewPipe.qml</file>
         <file>MwEndpointMoreOptions.qml</file>
@@ -134,5 +133,10 @@
         <file>MwRecentFilesManager.qml</file>
         <file>MwRecentFileMenuItem.qml</file>
         <file>MwMenuSeparator.qml</file>
+        <file>ScreenPlayer.qml</file>
+        <file>SpVideoView.qml</file>
+        <file>SpImageView.qml</file>
+        <file>SpWebView.qml</file>
+        <file>SpAnimationFadeIn.qml</file>
     </qresource>
 </RCC>
