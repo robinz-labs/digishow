@@ -39,6 +39,8 @@
 			<string>Editor</string>
 		</dict>
 	</array>
+        <key>NSMicrophoneUsageDescription</key>
+        <string>The app requires microphone access to measure the audio input level.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSHighResolutionCapable</key>

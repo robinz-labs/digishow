@@ -294,7 +294,6 @@ void AppUtilities::setMacWindowTitleWithFile(QWindow *window, const QString &fil
     Q_UNUSED(window)
     Q_UNUSED(filepath)
 #endif
-
 }
 
 void AppUtilities::setMacWindowWithoutTitlebar(QWindow *window)
@@ -305,3 +304,40 @@ void AppUtilities::setMacWindowWithoutTitlebar(QWindow *window)
     Q_UNUSED(window)
 #endif
 }
+
+bool AppUtilities::canAccessCamera()
+{
+#ifdef Q_OS_MAC
+    return MacUtilities::canAccessCamera();
+#else
+    return true;
+#endif
+}
+
+bool AppUtilities::canAccessMicrophone()
+{
+#ifdef Q_OS_MAC
+    return MacUtilities::canAccessMicrophone();
+#else
+    return true;
+#endif
+}
+
+bool AppUtilities::requestAccessCamera()
+{
+#ifdef Q_OS_MAC
+    return MacUtilities::requestAccessCamera();
+#else
+    return false;
+#endif
+}
+
+bool AppUtilities::requestAccessMicrophone()
+{
+#ifdef Q_OS_MAC
+    return MacUtilities::requestAccessMicrophone();
+#else
+    return false;
+#endif
+}
+

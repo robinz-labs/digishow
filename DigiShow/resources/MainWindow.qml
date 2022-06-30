@@ -505,16 +505,21 @@ ApplicationWindow {
                     window.isBusy = true
                     common.runLater(function(){
 
-                        var done = app.start()
+                        var error = app.start()
                         window.isBusy = false
 
-                        if (!done) {
+                        if (error > 0) {
                             for (var n=0 ; n<app.interfaceCount() ; n++) {
                                if (app.interfaceAt(n).isInterfaceOpened() === false) {
                                    messageBox.show(qsTr("Error occurred when open interface %1 .").arg(app.interfaceAt(n).getInterfaceInfo()["label"]) , qsTr("OK"))
                                    break;
                                }
                             }
+                        } else if (error === -2) {
+                            messageBox.show(qsTr("Requesting access to your microphone ..."))
+                            common.setTimeout(function(){
+                                messageBox.close()
+                            }, 6000)
                         }
                     })
                 }

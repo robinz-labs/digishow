@@ -336,7 +336,7 @@ Dialog {
                 anchors.top: parent.top
                 anchors.topMargin: 40
                 wrapMode: Label.Wrap
-                text: qsTr("DigiShow enables to inspect the sound level of the audio signal from microphone or aux input.")
+                text: qsTr("DigiShow is able to measure the audio input level from microphone, instrument or line input.")
             }
 
             MwInterfaceListViewAudioin {
@@ -498,7 +498,7 @@ Dialog {
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
-            text: qsTr("Audio In")
+            text: qsTr("Audio")
             font.capitalization: Font.MixedCase
             icon.source: "qrc:///images/icon_interface_audioin_white.png"
             icon.width: 48
@@ -514,7 +514,7 @@ Dialog {
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
-            text: qsTr("Virtual Pipe")
+            text: qsTr("Pipe")
             font.capitalization: Font.MixedCase
             icon.source: "qrc:///images/icon_interface_pipe_white.png"
             icon.width: 48

@@ -34,7 +34,7 @@ Item {
         var items
         if (menuAudioinType.count === 0) {
             items = []
-            items.push({ text: qsTr("Sound Level"), value: DigishowEnvironment.EndpointAudioInSoundLevel, tag:"soundlevel" })
+            items.push({ text: qsTr("Level"), value: DigishowEnvironment.EndpointAudioInLevel, tag:"level" })
 
             menuAudioinType.optionItems = items
             menuAudioinType.selectedIndex = 0

@@ -33,6 +33,11 @@ public:
     Q_INVOKABLE static void setWindowTitleWithFile(QWindow *window, const QString &filepath);
     Q_INVOKABLE static void setWindowWithoutTitlebar(QWindow *window);
 
+    Q_INVOKABLE static bool canAccessCamera();
+    Q_INVOKABLE static bool canAccessMicrophone();
+    Q_INVOKABLE static bool requestAccessCamera();
+    Q_INVOKABLE static bool requestAccessMicrophone();
+
 signals:
 
 };

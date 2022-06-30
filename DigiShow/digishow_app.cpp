@@ -308,11 +308,18 @@ bool DigishowApp::saveFile(const QString & filepath, const QList<int> & slotList
 
 }
 
-bool DigishowApp::start()
+int DigishowApp::start()
 {
-    if (m_running) return false;
+    if (m_running) return -1;
 
-    bool hasError = false;
+    // request privacy access permission
+    for (int n=0 ; n<m_interfaces.length() ; n++) {
+        if (m_interfaces[n]->interfaceOptions()->value("type") == "audioin") {
+            if (AppUtilities::requestAccessMicrophone()) return -2;
+        }
+    }
+
+    int hasError = 0; // interface opening error count
 
     // open all interface    
     for (int n=0 ; n<m_interfaces.length() ; n++) {
@@ -344,7 +351,7 @@ bool DigishowApp::start()
             qWarning("interface #%d %s: error=%d", n,
                      m_interfaces[n]->interfaceOptions()->value("name").toString().toLocal8Bit().constData(),
                      err);
-            hasError = true;
+            hasError++;
         }
 
     }
@@ -384,7 +391,7 @@ bool DigishowApp::start()
         if (startup) startLaunch(launchName);
     }
 
-    return !hasError;
+    return hasError;
 }
 
 void DigishowApp::stop()

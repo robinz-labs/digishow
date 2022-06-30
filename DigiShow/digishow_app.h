@@ -48,7 +48,7 @@ public:
 
     Q_INVOKABLE bool loadFile(const QString & filepath);
     Q_INVOKABLE bool saveFile(const QString & filepath = QString(), const QList<int> & slotListOrder = QList<int>(), bool onlySelection = false);
-    Q_INVOKABLE bool start();
+    Q_INVOKABLE int  start();
     Q_INVOKABLE void stop();
     Q_INVOKABLE void pause(bool paused);
 

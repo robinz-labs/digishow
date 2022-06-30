@@ -93,13 +93,16 @@ macx: {
     INCLUDEPATH += $$PWD/../rtmidi/include
     LIBS += -L$$PWD/../rtmidi/lib/mac -lrtmidi
 
-    LIBS += -framework CoreMIDI \
-            -framework CoreFoundation
+    LIBS += -framework Foundation \
+            -framework Cocoa \
+            -framework CoreMIDI \
+            -framework CoreFoundation \
+            -framework AVFoundation
 
     INCLUDEPATH += /System/Library/Frameworks/AppKit.framework/Headers \
                    /System/Library/Frameworks/Cocoa.framework/Headers
-    LIBS += -framework Foundation \
-            -framework Cocoa
+
+    QMAKE_CXXFLAGS += -x objective-c++
 
     OBJECTIVE_SOURCES += mac_utilities.mm
     HEADERS += mac_utilities.h

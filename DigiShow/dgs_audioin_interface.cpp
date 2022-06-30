@@ -35,6 +35,9 @@ int DgsAudioinInterface::openInterface()
     if (m_isInterfaceOpened) return ERR_DEVICE_BUSY;
     updateMetadata();
 
+    // request privacy permission to access the microphone.
+    if (!AppUtilities::canAccessMicrophone()) return ERR_DEVICE_NOT_READY;
+
     // confirm the specified audio input device
     QString audioinName = m_interfaceOptions.value("port").toString();
     QAudioDeviceInfo device;
@@ -68,7 +71,7 @@ int DgsAudioinInterface::openInterface()
         // qDebug() << m_soundLevelMeter->level();
 
         for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
-            if (m_endpointInfoList[n].type == ENDPOINT_AUDIOIN_SOUNDLEVEL) {
+            if (m_endpointInfoList[n].type == ENDPOINT_AUDIOIN_LEVEL) {
                 dgsSignalData data;
                 data.signal = DATA_SIGNAL_ANALOG;
                 data.aRange = m_endpointInfoList[n].range;
@@ -89,9 +92,16 @@ int DgsAudioinInterface::openInterface()
 
 int DgsAudioinInterface::closeInterface()
 {
-    m_audioInput->stop();
-    m_soundLevelMeter->stop();
-    m_soundLevelMeter->disconnect();
+    if (!m_audioInput.isNull()) {
+        m_audioInput->stop();
+        m_audioInput.reset();
+    }
+
+    if (!m_soundLevelMeter.isNull()) {
+        m_soundLevelMeter->stop();
+        m_soundLevelMeter->disconnect();
+        m_soundLevelMeter.reset();
+    }
 
     m_isInterfaceOpened = false;
     return ERR_NONE;

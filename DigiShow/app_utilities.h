@@ -60,6 +60,11 @@ public:
     Q_INVOKABLE static void setMacWindowTitleWithFile(QWindow *window, const QString &filepath);
     Q_INVOKABLE static void setMacWindowWithoutTitlebar(QWindow *window);
 
+    Q_INVOKABLE static bool canAccessCamera();
+    Q_INVOKABLE static bool canAccessMicrophone();
+    Q_INVOKABLE static bool requestAccessCamera();
+    Q_INVOKABLE static bool requestAccessMicrophone();
+
     Q_INVOKABLE static bool isMac() {
 #ifdef Q_OS_MAC
         return true;

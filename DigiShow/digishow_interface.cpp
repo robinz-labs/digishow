@@ -412,7 +412,7 @@ void DigishowInterface::updateMetadata()
             else if (typeName == "bool"       ) endpointInfo.type = ENDPOINT_OSC_BOOL;
             break;
         case INTERFACE_AUDIOIN:
-            if      (typeName == "soundlevel" ) endpointInfo.type = ENDPOINT_AUDIOIN_SOUNDLEVEL;
+            if      (typeName == "level"      ) endpointInfo.type = ENDPOINT_AUDIOIN_LEVEL;
             break;
         case INTERFACE_SCREEN:
             if      (typeName == "light"      ) endpointInfo.type = ENDPOINT_SCREEN_LIGHT;
@@ -620,12 +620,12 @@ void DigishowInterface::updateMetadata()
             endpointInfo.labelEPT = tr("OSC");
             endpointInfo.labelEPI = tr("Bool") + QString(" %1").arg(endpointInfo.channel + 1);
             break;
-        case ENDPOINT_AUDIOIN_SOUNDLEVEL:
+        case ENDPOINT_AUDIOIN_LEVEL:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
             endpointInfo.input = true;
             endpointInfo.range  = 1000000;
-            endpointInfo.labelEPT = tr("Audio In");
-            endpointInfo.labelEPI = tr("Sound Level");
+            endpointInfo.labelEPT = tr("Audio");
+            endpointInfo.labelEPI = tr("Level");
             break;
         case ENDPOINT_SCREEN_LIGHT:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;

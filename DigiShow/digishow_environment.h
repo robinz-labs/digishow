@@ -111,7 +111,7 @@ public:
         EndpointOscInt            = ENDPOINT_OSC_INT,
         EndpointOscFloat          = ENDPOINT_OSC_FLOAT,
         EndpointOscBool           = ENDPOINT_OSC_BOOL,
-        EndpointAudioInSoundLevel = ENDPOINT_AUDIOIN_SOUNDLEVEL,
+        EndpointAudioInLevel      = ENDPOINT_AUDIOIN_LEVEL,
         EndpointScreenLight       = ENDPOINT_SCREEN_LIGHT,
         EndpointScreenMedia       = ENDPOINT_SCREEN_MEDIA,
         EndpointScreenCanvas      = ENDPOINT_SCREEN_CANVAS,

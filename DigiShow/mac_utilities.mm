@@ -17,6 +17,7 @@
 
 #include "mac_utilities.h"
 #import <Cocoa/Cocoa.h>
+#import <AVFoundation/AVFoundation.h>
 
 MacUtilities::MacUtilities(QObject *parent) : QObject(parent)
 {
@@ -64,4 +65,62 @@ void MacUtilities::setWindowWithoutTitlebar(QWindow *window)
         }
     }
     */
+}
+
+bool MacUtilities::canAccessCamera()
+{
+    if (@available(macOS 10.14, *)) {
+        switch ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo]) {
+        case AVAuthorizationStatusAuthorized:
+            return true;
+        case AVAuthorizationStatusDenied:
+        case AVAuthorizationStatusRestricted:
+        case AVAuthorizationStatusNotDetermined:
+            return false;
+        }
+    }
+    return true;
+}
+
+bool MacUtilities::canAccessMicrophone()
+{
+    if (@available(macOS 10.14, *)) {
+        switch ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio]) {
+        case AVAuthorizationStatusAuthorized:
+            return true;
+        case AVAuthorizationStatusDenied:
+        case AVAuthorizationStatusRestricted:
+        case AVAuthorizationStatusNotDetermined:
+            return false;
+        }
+    }
+    return true;
+}
+
+bool MacUtilities::requestAccessCamera()
+{
+    if (@available(macOS 10.14, *)) {
+        if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] ==
+            AVAuthorizationStatusNotDetermined ) {
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                NSLog(@"request access for camera, granted = %d", granted);
+            }];
+            return true;
+        }
+    }
+    return false;
+}
+
+bool MacUtilities::requestAccessMicrophone()
+{
+    if (@available(macOS 10.14, *)) {
+        if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] ==
+            AVAuthorizationStatusNotDetermined) {
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
+                NSLog(@"request access for microphone, granted = %d", granted);
+            }];
+            return true;
+        }
+    }
+    return false;
 }
