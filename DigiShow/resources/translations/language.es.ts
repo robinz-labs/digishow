@@ -2577,26 +2577,36 @@ un nuevo enlace de señal entre tus cosas digitales</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="383"/>
-        <source>Attack</source>
+        <source>On Delay</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="522"/>
+        <source>Off Delay</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="406"/>
-        <source>Hold</source>
+        <source>Attack</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="429"/>
+        <source>Hold</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="452"/>
         <source>Decay</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="453"/>
+        <location filename="../MwSlotOptionsView.qml" line="476"/>
         <source>Sustain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="476"/>
+        <location filename="../MwSlotOptionsView.qml" line="499"/>
         <source>Release</source>
         <translation></translation>
     </message>

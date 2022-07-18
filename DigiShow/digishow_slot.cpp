@@ -180,6 +180,8 @@ QVariantMap DigishowSlot::getSlotInfo()
     info["envelopeDecay"  ] = m_slotInfo.envelopeDecay;
     info["envelopeSustain"] = m_slotInfo.envelopeSustain;
     info["envelopeRelease"] = m_slotInfo.envelopeRelease;
+    info["envelopeInDelay"] = m_slotInfo.envelopeInDelay;
+    info["envelopeOutDelay"]= m_slotInfo.envelopeOutDelay;
 
     info["outputSmoothing"] = m_slotInfo.outputSmoothing;
     info["outputInterval" ] = m_slotInfo.outputInterval;
@@ -304,20 +306,22 @@ void DigishowSlot::updateSlotInfoItem(const QString &name, const QVariant &value
 {
     static dgsSlotInfo newSlotInfo;
 
-    if      ( name == "inputLow"       ) m_slotInfo.inputLow        = value.isNull() ? newSlotInfo.inputLow        : MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "inputHigh"      ) m_slotInfo.inputHigh       = value.isNull() ? newSlotInfo.inputHigh       : MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "outputLow"      ) m_slotInfo.outputLow       = value.isNull() ? newSlotInfo.outputLow       : MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "outputHigh"     ) m_slotInfo.outputHigh      = value.isNull() ? newSlotInfo.outputHigh      : MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "inputInverted"  ) m_slotInfo.inputInverted   = value.isNull() ? newSlotInfo.inputInverted   : value.toBool();
-    else if ( name == "outputInverted" ) m_slotInfo.outputInverted  = value.isNull() ? newSlotInfo.outputInverted  : value.toBool();
-    else if ( name == "outputLowAsZero") m_slotInfo.outputLowAsZero = value.isNull() ? newSlotInfo.outputLowAsZero : value.toBool();
-    else if ( name == "envelopeAttack" ) m_slotInfo.envelopeAttack  = value.isNull() ? newSlotInfo.envelopeAttack  : MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "envelopeHold"   ) m_slotInfo.envelopeHold    = value.isNull() ? newSlotInfo.envelopeHold    : MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "envelopeDecay"  ) m_slotInfo.envelopeDecay   = value.isNull() ? newSlotInfo.envelopeDecay   : MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "envelopeSustain") m_slotInfo.envelopeSustain = value.isNull() ? newSlotInfo.envelopeSustain : MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "envelopeRelease") m_slotInfo.envelopeRelease = value.isNull() ? newSlotInfo.envelopeRelease : MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "outputSmoothing") m_slotInfo.outputSmoothing = value.isNull() ? newSlotInfo.outputSmoothing : MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "outputInterval" ) m_slotInfo.outputInterval  = value.isNull() ? newSlotInfo.outputInterval  : MINMAX(value.toInt(), 0, 60000);
+    if      ( name == "inputLow"        ) m_slotInfo.inputLow         = value.isNull() ? newSlotInfo.inputLow         : MINMAX(value.toDouble(), 0.0, 1.0);
+    else if ( name == "inputHigh"       ) m_slotInfo.inputHigh        = value.isNull() ? newSlotInfo.inputHigh        : MINMAX(value.toDouble(), 0.0, 1.0);
+    else if ( name == "outputLow"       ) m_slotInfo.outputLow        = value.isNull() ? newSlotInfo.outputLow        : MINMAX(value.toDouble(), 0.0, 1.0);
+    else if ( name == "outputHigh"      ) m_slotInfo.outputHigh       = value.isNull() ? newSlotInfo.outputHigh       : MINMAX(value.toDouble(), 0.0, 1.0);
+    else if ( name == "inputInverted"   ) m_slotInfo.inputInverted    = value.isNull() ? newSlotInfo.inputInverted    : value.toBool();
+    else if ( name == "outputInverted"  ) m_slotInfo.outputInverted   = value.isNull() ? newSlotInfo.outputInverted   : value.toBool();
+    else if ( name == "outputLowAsZero" ) m_slotInfo.outputLowAsZero  = value.isNull() ? newSlotInfo.outputLowAsZero  : value.toBool();
+    else if ( name == "envelopeAttack"  ) m_slotInfo.envelopeAttack   = value.isNull() ? newSlotInfo.envelopeAttack   : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "envelopeHold"    ) m_slotInfo.envelopeHold     = value.isNull() ? newSlotInfo.envelopeHold     : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "envelopeDecay"   ) m_slotInfo.envelopeDecay    = value.isNull() ? newSlotInfo.envelopeDecay    : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "envelopeSustain" ) m_slotInfo.envelopeSustain  = value.isNull() ? newSlotInfo.envelopeSustain  : MINMAX(value.toDouble(), 0.0, 1.0);
+    else if ( name == "envelopeRelease" ) m_slotInfo.envelopeRelease  = value.isNull() ? newSlotInfo.envelopeRelease  : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "envelopeInDelay" ) m_slotInfo.envelopeInDelay  = value.isNull() ? newSlotInfo.envelopeInDelay  : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "envelopeOutDelay") m_slotInfo.envelopeOutDelay = value.isNull() ? newSlotInfo.envelopeOutDelay : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "outputSmoothing" ) m_slotInfo.outputSmoothing  = value.isNull() ? newSlotInfo.outputSmoothing  : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "outputInterval"  ) m_slotInfo.outputInterval   = value.isNull() ? newSlotInfo.outputInterval   : MINMAX(value.toInt(), 0, 60000);
 }
 
 void DigishowSlot::updateSlotOuputInterval()
@@ -561,23 +565,29 @@ dgsSignalData DigishowSlot::envelopeProcessOutputAnalog()
     qint64 now = elapsed();
 
     // make output value in the envelope
-    if (m_envelopeTimeOff == 0) {
-        if (now < m_envelopeTimeOn + m_slotInfo.envelopeAttack ) {
+    if (now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay ) {
+
+        // in-delay
+        return dgsSignalData();
+
+    } else if (m_envelopeTimeOff == 0 || now < m_envelopeTimeOff + m_slotInfo.envelopeOutDelay) {
+
+        if (now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeAttack ) {
 
             // attack
-            envelopeRatio = static_cast<double>(now-m_envelopeTimeOn) / static_cast<double>(m_slotInfo.envelopeAttack);
+            envelopeRatio = static_cast<double>(now-m_envelopeTimeOn-m_slotInfo.envelopeInDelay) / static_cast<double>(m_slotInfo.envelopeAttack);
 
-        } else if (now < m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopeHold) {
+        } else if (now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeAttack + m_slotInfo.envelopeHold) {
 
             // hold
             envelopeRatio = 1.0;
 
-        } else if (now < m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopeHold + m_slotInfo.envelopeDecay) {
+        } else if (now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeAttack + m_slotInfo.envelopeHold + m_slotInfo.envelopeDecay) {
 
             // decay
             envelopeRatio =
                     static_cast<double>(1.0-m_slotInfo.envelopeSustain) *
-                    static_cast<double>(m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopeHold + m_slotInfo.envelopeDecay - now) /
+                    static_cast<double>(m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeAttack + m_slotInfo.envelopeHold + m_slotInfo.envelopeDecay - now) /
                     static_cast<double>(m_slotInfo.envelopeDecay) + m_slotInfo.envelopeSustain;
         } else {
 
@@ -589,13 +599,13 @@ dgsSignalData DigishowSlot::envelopeProcessOutputAnalog()
 
     } else {
 
-        if (now < m_envelopeTimeOff + m_slotInfo.envelopeRelease) {
+        if (now < m_envelopeTimeOff + m_slotInfo.envelopeOutDelay + m_slotInfo.envelopeRelease) {
 
             // release
             envelopeRatio =
                     //m_slotInfo.envelopeSustain *
                     m_envelopeRatio *
-                    static_cast<double>(m_envelopeTimeOff + m_slotInfo.envelopeRelease - now) /
+                    static_cast<double>(m_envelopeTimeOff + m_slotInfo.envelopeOutDelay + m_slotInfo.envelopeRelease - now) /
                     static_cast<double>(m_slotInfo.envelopeRelease);
         } else {
 
@@ -640,9 +650,9 @@ dgsSignalData DigishowSlot::envelopeProcessOutputBinary()
     // make output value in the envelope
     if (m_slotInfo.envelopeHold > 0) {
 
-        // attack + hold
-        if (now > m_envelopeTimeOn + m_slotInfo.envelopeAttack) {
-            if (now < m_envelopeTimeOn + m_slotInfo.envelopeAttack + m_slotInfo.envelopeHold)
+        // in-delay + hold
+        if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay) {
+            if (now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeHold)
                 envelopeState = true;
             else
                 isEnvelopeFinished = true;
@@ -650,11 +660,11 @@ dgsSignalData DigishowSlot::envelopeProcessOutputBinary()
 
     } else {
 
-        // attack + release
+        // in-delay + out-delay
         if (m_envelopeTimeOff == 0) {
-            if (now > m_envelopeTimeOn + m_slotInfo.envelopeAttack) envelopeState = true;
+            if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay) envelopeState = true;
         } else {
-            if (now < m_envelopeTimeOff + m_slotInfo.envelopeRelease)
+            if (now < m_envelopeTimeOff + m_slotInfo.envelopeOutDelay)
                 envelopeState = true;
             else
                 isEnvelopeFinished = true;

@@ -359,14 +359,37 @@ Item {
                 Column {
                     anchors.top: labelEnvelope.bottom
                     anchors.topMargin: 30
-                    spacing: 20
+                    spacing: 10
+
+                    CSpinBox {
+                        id: spinEnvelopeInDelay
+
+                        width: 120
+                        anchors.left: parent.left
+                        anchors.leftMargin: 95
+                        from: 0
+                        to: 60000
+                        stepSize: 10
+                        unit: "ms"
+
+                        onValueModified: setSlotOption("envelopeInDelay", value)
+
+                        Text {
+                            anchors.right: parent.left
+                            anchors.rightMargin: 15
+                            anchors.verticalCenter: parent.verticalCenter
+                            color: "#cccccc"
+                            font.pixelSize: 12
+                            text: qsTr("On Delay")
+                        }
+                    }
 
                     CSpinBox {
                         id: spinEnvelopeAttack
 
                         width: 120
                         anchors.left: parent.left
-                        anchors.leftMargin: 80
+                        anchors.leftMargin: 95
                         from: 0
                         to: 60000
                         stepSize: 10
@@ -389,7 +412,7 @@ Item {
 
                         width: 120
                         anchors.left: parent.left
-                        anchors.leftMargin: 80
+                        anchors.leftMargin: 95
                         from: 0
                         to: 60000
                         stepSize: 10
@@ -412,7 +435,7 @@ Item {
 
                         width: 120
                         anchors.left: parent.left
-                        anchors.leftMargin: 80
+                        anchors.leftMargin: 95
                         from: 0
                         to: 60000
                         stepSize: 10
@@ -435,7 +458,7 @@ Item {
 
                         width: 120
                         anchors.left: parent.left
-                        anchors.leftMargin: 80
+                        anchors.leftMargin: 95
                         from: 0
                         to: 100
                         value: 100
@@ -459,7 +482,7 @@ Item {
 
                         width: 120
                         anchors.left: parent.left
-                        anchors.leftMargin: 80
+                        anchors.leftMargin: 95
                         from: 0
                         to: 60000
                         stepSize: 10
@@ -474,6 +497,29 @@ Item {
                             color: "#cccccc"
                             font.pixelSize: 12
                             text: qsTr("Release")
+                        }
+                    }
+
+                    CSpinBox {
+                        id: spinEnvelopeOutDelay
+
+                        width: 120
+                        anchors.left: parent.left
+                        anchors.leftMargin: 95
+                        from: 0
+                        to: 60000
+                        stepSize: 10
+                        unit: "ms"
+
+                        onValueModified: setSlotOption("envelopeOutDelay", value)
+
+                        Text {
+                            anchors.right: parent.left
+                            anchors.rightMargin: 15
+                            anchors.verticalCenter: parent.verticalCenter
+                            color: "#cccccc"
+                            font.pixelSize: 12
+                            text: qsTr("Off Delay")
                         }
                     }
 
@@ -590,17 +636,21 @@ Item {
             spinEnvelopeDecay.visible = true
             spinEnvelopeSustain.visible = true
             spinEnvelopeRelease.visible = true
+            spinEnvelopeInDelay.visible = true
+            spinEnvelopeOutDelay.visible = true
 
         } else if (inputSignal  === DigishowEnvironment.SignalNote &&
                    outputSignal === DigishowEnvironment.SignalBinary) {
 
             itemEnvelopeOptions.visible = true
             buttonEnvelopeHelp.visible = false
-            spinEnvelopeAttack.visible = true
+            spinEnvelopeAttack.visible = false
             spinEnvelopeHold.visible = true
             spinEnvelopeDecay.visible = false
             spinEnvelopeSustain.visible = false
-            spinEnvelopeRelease.visible = true
+            spinEnvelopeRelease.visible = false
+            spinEnvelopeInDelay.visible = true
+            spinEnvelopeOutDelay.visible = true
 
         } else if (inputSignal  === DigishowEnvironment.SignalNote &&
                    outputSignal === DigishowEnvironment.SignalNote) {
@@ -685,6 +735,18 @@ Item {
         } else {
             clearSlotOption("envelopeRelease")
         }
+
+        if (spinEnvelopeInDelay.visible) {
+            spinEnvelopeInDelay.value = slotInfo["envelopeInDelay"]
+        } else {
+            clearSlotOption("envelopeInDelay")
+        }
+
+        if (spinEnvelopeOutDelay.visible) {
+            spinEnvelopeOutDelay.value = slotInfo["envelopeOutDelay"]
+        } else {
+            clearSlotOption("envelopeOutDelay")
+        }
     }
 
     function importSlotInfo(slotInfo) {
@@ -731,6 +793,8 @@ Item {
         importValueItem(spinEnvelopeDecay,        "envelopeDecay")
         importValueItem(spinEnvelopeSustain,      "envelopeSustain", 100)
         importValueItem(spinEnvelopeRelease,      "envelopeRelease")
+        importValueItem(spinEnvelopeInDelay,      "envelopeInDelay")
+        importValueItem(spinEnvelopeOutDelay,     "envelopeOutDelay")
     }
 
     function exportSlotInfo() {
@@ -763,6 +827,8 @@ Item {
         exportValueItem(spinEnvelopeDecay,        "envelopeDecay")
         exportValueItem(spinEnvelopeSustain,      "envelopeSustain", 100)
         exportValueItem(spinEnvelopeRelease,      "envelopeRelease")
+        exportValueItem(spinEnvelopeInDelay,      "envelopeInDelay")
+        exportValueItem(spinEnvelopeOutDelay,     "envelopeOutDelay")
 
         return slotInfo
     }

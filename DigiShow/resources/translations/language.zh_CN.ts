@@ -2574,32 +2574,42 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <message>
         <location filename="../MwSlotOptionsView.qml" line="319"/>
         <source>Output Envelope</source>
-        <translation>输出信号包络</translation>
+        <translation>输出信号包络参数</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="383"/>
-        <source>Attack</source>
-        <translation>A 渐入时长</translation>
+        <source>On Delay</source>
+        <translation>On 延时</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="522"/>
+        <source>Off Delay</source>
+        <translation>Off 延时</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="406"/>
-        <source>Hold</source>
-        <translation>H 保持时长</translation>
+        <source>Attack</source>
+        <translation>Attack 渐入</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="429"/>
-        <source>Decay</source>
-        <translation>D 衰减时长</translation>
+        <source>Hold</source>
+        <translation>Hold 保持</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="453"/>
-        <source>Sustain</source>
-        <translation>S 延续水平</translation>
+        <location filename="../MwSlotOptionsView.qml" line="452"/>
+        <source>Decay</source>
+        <translation>Decay 衰减</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="476"/>
+        <source>Sustain</source>
+        <translation>Sustain 延持</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="499"/>
         <source>Release</source>
-        <translation>R 渐出时长</translation>
+        <translation>Release 渐出</translation>
     </message>
 </context>
 <context>
