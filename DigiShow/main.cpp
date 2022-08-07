@@ -199,6 +199,9 @@ int main(int argc, char *argv[])
     engine.load(url);
     app.setQmlRoot(engine.rootObjects()[0]);
 
+    // enable autostart
+    g_app->enableAutostart(appOptions.value("autostart", false).toBool());
+
     // load data file
     bool isFileLoaded = false;
     if (argc > 1) {

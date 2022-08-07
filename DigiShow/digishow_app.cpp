@@ -41,6 +41,8 @@
 
 DigishowApp::DigishowApp(QObject *parent) : QObject(parent)
 {
+    m_autostart = false;
+    m_starting = false;
     m_running = false;
     m_paused = false;
 
@@ -287,6 +289,9 @@ bool DigishowApp::loadFile(const QString & filepath)
 
     emit filepathChanged();
 
+    // auto start
+    if (m_autostart) start();
+
     return true;
 }
 
@@ -315,9 +320,16 @@ int DigishowApp::start()
     // request privacy access permission
     for (int n=0 ; n<m_interfaces.length() ; n++) {
         if (m_interfaces[n]->interfaceOptions()->value("type") == "audioin") {
-            if (AppUtilities::requestAccessMicrophone()) return -2;
+            if (AppUtilities::requestAccessMicrophone()) {
+                messageNotify(tr("Requesting access to your microphone ..."), MsgToast);
+                return -2;
+            }
         }
     }
+
+    // starting
+    m_starting = true;
+    emit isStartingChanged();
 
     int hasError = 0; // interface opening error count
 
@@ -351,9 +363,9 @@ int DigishowApp::start()
             qWarning("interface #%d %s: error=%d", n,
                      m_interfaces[n]->interfaceOptions()->value("name").toString().toLocal8Bit().constData(),
                      err);
+            messageNotify(tr("Error occurred when open interface %1 .").arg(m_interfaces[n]->interfaceInfo()->label));
             hasError++;
         }
-
     }
 
     // enable all slots
@@ -377,19 +389,15 @@ int DigishowApp::start()
          }
     }
 
+    // started
+    m_starting = false;
+    emit isStartingChanged();
+
     m_running = true;
     emit isRunningChanged();
 
     // initialize all interfaces
     for (int n=0 ; n<m_interfaces.length() ; n++) m_interfaces[n]->init();
-
-    // start launch items with startup flags
-    QStringList launchNames = m_launches.keys();
-    for (int n=0 ; n<launchNames.length() ; n++) {
-        QString launchName = launchNames[n];
-        bool startup = m_launches.value(launchName).toMap().value("startup").toBool();
-        if (startup) startLaunch(launchName);
-    }
 
     return hasError;
 }

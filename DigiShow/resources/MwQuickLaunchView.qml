@@ -33,7 +33,6 @@ Item {
             title: ""
             color: "#000000"
             assigned: false
-            startup: false
         }
     }
 
@@ -69,9 +68,7 @@ Item {
                 box.border.width: isEditing || mouseOver ? 1 : 0
                 label.font.pixelSize: 12
                 label.font.bold: model.assigned
-                //label.font.underline: isEditing
-                label.text: (model.startup ? "► " : "") +
-                            (model.title === "" ? qsTr("Preset") + " " + (model.index + 1) : model.title)
+                label.text: model.title === undefined || model.title === "" ? qsTr("Preset") + " " + (model.index + 1) : model.title
                 label.visible: !textLaunchTitle.visible
                 opacity: model.assigned || isEditing ? 1.0 : 0.25
                 supportLongPress: true
@@ -169,25 +166,11 @@ Item {
                         onTriggered: {
                             menu.close()
                             model.assigned = false
-                            model.startup = false
                             app.deleteLaunch(model.name)
                             window.isModified = true
                         }
                     }
-                    /*
-                    CMenuItem {
-                        text: (model.startup ? qsTr("No Launch on Startup") : qsTr("Launch on Startup"))
-                        enabled: model.assigned
-                        onTriggered: {
-                            menu.close()
-                            model.startup = !model.startup
-                            app.setLaunchOption(model.name, "startup", model.startup)
-                            window.isModified = true
-                        }
-                    }
-                    */
                 }
-
             }
         }
 
@@ -242,20 +225,6 @@ Item {
                 border.width: 1
                 border.color: "#999999"
             }
-
-            /*
-            Image {
-                width: 16
-                height: 16
-                anchors.right: parent.left
-                anchors.rightMargin: 7
-                anchors.top: parent.top
-                anchors.topMargin: 30
-                opacity: 0.6
-                source: "qrc:///images/icon_arrow_left_white.png"
-                visible: popupOptions.visible
-            }
-            */
 
             Column {
                 anchors.fill: parent
@@ -363,18 +332,16 @@ Item {
             case 3: color = CColor.Iris;     break
             case 4: color = CColor.HotPink;  break
             }
-            var title = "";
+            var title = ""
             var assigned = false
-            var startup = false
 
             // load user data
-            var launch = app.getLaunchOptions(name);
+            var launch = app.getLaunchOptions(name)
             if (Object.keys(launch).length > 0) {
 
-                if (launch["assigned"] !== undefined) assigned = launch["assigned"];
-                if (launch["startup"]  !== undefined) startup  = launch["startup"];
-                if (launch["title"]    !== undefined) title    = launch["title"];
-                if (launch["color"]    !== undefined) color    = launch["color"];
+                if (launch["assigned"] !== undefined) assigned = launch["assigned"]
+                if (launch["title"]    !== undefined) title    = launch["title"]
+                if (launch["color"]    !== undefined) color    = launch["color"]
             }
 
             // make data model for the grid view
@@ -382,11 +349,10 @@ Item {
                 name: name,
                 title: title,
                 color: color,
-                assigned: assigned,
-                startup: startup
+                assigned: assigned
             });
         }
 
-        editingLaunchName = "";
+        editingLaunchName = ""
     }
 }

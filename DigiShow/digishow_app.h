@@ -31,6 +31,7 @@ class DigishowApp : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString filepath READ filepath NOTIFY filepathChanged)
+    Q_PROPERTY(bool isStarting READ isStarting NOTIFY isStartingChanged)
     Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
     Q_PROPERTY(bool isPaused READ isPaused NOTIFY isPausedChanged)
 
@@ -38,6 +39,14 @@ class DigishowApp : public QObject
     Q_PROPERTY(QList<DigishowInterface*> interfaceList READ interfaceList NOTIFY interfaceListChanged)
 
 public:
+    enum MsgType {
+        MsgLog   = 0,
+        MsgAlert = 1,
+        MsgToast = 2,
+        MsgPopup = 3
+    };
+    Q_ENUM(MsgType)
+
     explicit DigishowApp(QObject *parent = nullptr);
     ~DigishowApp();
 
@@ -48,6 +57,9 @@ public:
 
     Q_INVOKABLE bool loadFile(const QString & filepath);
     Q_INVOKABLE bool saveFile(const QString & filepath = QString(), const QList<int> & slotListOrder = QList<int>(), bool onlySelection = false);
+
+    Q_INVOKABLE void enableAutostart(bool autostart = true) { m_autostart = autostart; }
+
     Q_INVOKABLE int  start();
     Q_INVOKABLE void stop();
     Q_INVOKABLE void pause(bool paused);
@@ -62,6 +74,7 @@ public:
     Q_INVOKABLE bool deleteSlot(int slotIndex);
 
     Q_INVOKABLE QString filepath() { return m_filepath; }
+    Q_INVOKABLE bool isStarting() { return m_starting; }
     Q_INVOKABLE bool isRunning() { return m_running; }
     Q_INVOKABLE bool isPaused() { return m_paused; }
 
@@ -83,14 +96,22 @@ public:
 
     Q_INVOKABLE DigishowMetronome *metronome() { return m_metronome; }
 
+    Q_INVOKABLE void messageNotify(const QString & msgText, int msgType = MsgAlert) {
+        emit messageNotified(msgText, msgType);
+    }
+
 signals:
     void filepathChanged();
+
+    void isStartingChanged();
     void isRunningChanged();
     void isPausedChanged();
 
     void interfaceListChanged();
     void slotListChanged();
     void launchListChanged();
+
+    void messageNotified(QString msgText, int msgType);
 
 public slots:
     void onTimerFired();
@@ -104,6 +125,8 @@ private:
 
     QVariantMap m_launches;
 
+    bool m_autostart;
+    bool m_starting;
     bool m_running;
     bool m_paused;
 

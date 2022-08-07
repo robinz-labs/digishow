@@ -12,7 +12,6 @@ ApplicationWindow {
     id: window
 
     property bool isModified: false
-    property bool isBusy: false
 
     property var listOnline: ({})
 
@@ -28,8 +27,7 @@ ApplicationWindow {
     title: qsTr("DigiShow LINK - ") +
            (app.filepath==="" ? qsTr("Untitled") : utilities.getFileName(app.filepath)) +
            (isModified ? "*" : "") +
-           (app.isRunning ? "" : qsTr(" ( stopped )") )
-
+           (app.isRunning || app.isStarting ? "" : qsTr(" ( stopped )") )
 
     Utilities            { id: utilities          }
     CCommon              { id: common             }
@@ -110,6 +108,26 @@ ApplicationWindow {
         app.launchListChanged.connect(function() {
 
             quickLaunchView.refresh()
+        })
+
+        // callback for message notifications
+        app.messageNotified.connect(function(msgText, msgType) {
+
+            switch (msgType) {
+            case DigishowApp.MsgLog:
+                console.log(msgText)
+                break
+            case DigishowApp.MsgAlert:
+                messageBox.show(msgText, qsTr("OK"))
+                break
+            case DigishowApp.MsgToast:
+                messageBox.show(msgText)
+                common.setTimeout(messageBox.close, 6000)
+                break
+            case DigishowApp.MsgPopup:
+                messageBox.show(msgText)
+                break
+            }
         })
 
         app.newShow()
@@ -500,29 +518,7 @@ ApplicationWindow {
                     }
                 }
 
-                onClicked: {
-
-                    window.isBusy = true
-                    common.runLater(function(){
-
-                        var error = app.start()
-                        window.isBusy = false
-
-                        if (error > 0) {
-                            for (var n=0 ; n<app.interfaceCount() ; n++) {
-                               if (app.interfaceAt(n).isInterfaceOpened() === false) {
-                                   messageBox.show(qsTr("Error occurred when open interface %1 .").arg(app.interfaceAt(n).getInterfaceInfo()["label"]) , qsTr("OK"))
-                                   break;
-                               }
-                            }
-                        } else if (error === -2) {
-                            messageBox.show(qsTr("Requesting access to your microphone ..."))
-                            common.setTimeout(function(){
-                                messageBox.close()
-                            }, 6000)
-                        }
-                    })
-                }
+                onClicked: app.start()
 
                 Behavior on colorNormal { ColorAnimation { duration: 200 } }
 
@@ -703,8 +699,8 @@ ApplicationWindow {
         id: busyOverlay
         anchors.fill: parent
         color: "#000000"
-        opacity: window.isBusy ? 0.5 : 0
-        visible: window.isBusy
+        opacity: app.isStarting ? 0.5 : 0
+        visible: app.isStarting
 
         Behavior on opacity { NumberAnimation { duration: 500 } }
 
@@ -712,12 +708,6 @@ ApplicationWindow {
             anchors.fill: parent
             cursorShape: Qt.BusyCursor
         }
-    }
-
-    BusyIndicator {
-        id: busyIndicator
-        anchors.centerIn: parent
-        running: false //window.isBusy
     }
 
     FileDialog {

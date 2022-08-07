@@ -9,7 +9,7 @@ Dialog {
     id: dialog
 
     width: 360
-    height: 280
+    height: 360
     anchors.centerIn: parent
     modal: true
     focus: true
@@ -104,7 +104,6 @@ Dialog {
             font.pixelSize: 12
             text: qsTr("HiDPI")
         }
-
     }
 
     Text {
@@ -131,6 +130,39 @@ Dialog {
         anchors.verticalCenter: checkOptionHiDPI.verticalCenter
         source: "qrc:///images/icon_attention.png"
         visible: textOptionHiDPI.visible
+    }
+
+    CheckBox {
+        id: checkOptionAutostart
+
+        height: 28
+        anchors.left: parent.left
+        anchors.leftMargin: 100
+        anchors.top: parent.top
+        anchors.topMargin: 170
+        leftPadding: -3
+        checked: false
+
+        Text {
+            anchors.right: parent.left
+            anchors.rightMargin: 15
+            anchors.verticalCenter: parent.verticalCenter
+            color: "#cccccc"
+            font.pixelSize: 12
+            text: qsTr("Auto Start")
+        }
+    }
+
+    Text {
+        anchors.left: buttonOptionSave.left
+        anchors.right: buttonOptionCancel.right
+        anchors.top: checkOptionAutostart.bottom
+        anchors.topMargin:10
+        color: Material.accent
+        wrapMode: Text.WordWrap
+        font.pixelSize: 11
+        text: qsTr("Start automatically when opened a DigiShow file.")
+        visible: checkOptionAutostart.checked
     }
 
 
@@ -191,6 +223,9 @@ Dialog {
 
         var hidpi = appOptions["hidpi"]
         if (hidpi !== undefined) checkOptionHiDPI.checked = hidpi
+
+        var autostart = appOptions["autostart"]
+        if (autostart !== undefined) checkOptionAutostart.checked = autostart
     }
 
     function saveAppOptions() {
@@ -199,6 +234,7 @@ Dialog {
         appOptions["language"] = menuOptionLanguage.selectedItemTag
         appOptions["scale"] = spinOptionScale.value * 0.01
         appOptions["hidpi"] = checkOptionHiDPI.checked
+        appOptions["autostart"] = checkOptionAutostart.checked
 
         digishow.setAppOptions(appOptions)
     }
