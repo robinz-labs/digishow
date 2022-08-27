@@ -2525,8 +2525,8 @@ un nuevo enlace de señal entre tus cosas digitales</translation>
     <name>MwSlotOptionsView</name>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="33"/>
-        <source>Signal mapping and transform options</source>
-        <translation>Opciones de transformación y mapeo de señales</translation>
+        <source>Signal mapping transformation options</source>
+        <translation>Opciones de transformación de mapeo de señales</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="43"/>

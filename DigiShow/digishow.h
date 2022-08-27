@@ -88,6 +88,11 @@
   + global hotkey input interface
   + metronome and beat trigger interface
 
+  v1.2.3 20220827
+  + level meter of audio-in interface
+  + in-delay / out-delay envelope parameters
+  + autostart option
+
  */
 
 #ifndef DIGISHOW_H

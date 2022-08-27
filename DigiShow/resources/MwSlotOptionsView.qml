@@ -30,7 +30,7 @@ Item {
             color: "#dddddd"
             font.pixelSize: 16
             font.bold: true
-            text: qsTr("Signal mapping and transform options")
+            text: qsTr("Signal mapping transformation options")
         }
 
         Text {

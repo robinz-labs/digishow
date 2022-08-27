@@ -368,7 +368,7 @@
     <message>
         <location filename="../../digishow_interface.cpp" line="340"/>
         <source>Preset Launch</source>
-        <translation>启动预设</translation>
+        <translation>启动预置</translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="344"/>
@@ -514,7 +514,7 @@
     <message>
         <location filename="../../digishow_interface.cpp" line="717"/>
         <source>Preset</source>
-        <translation>预设</translation>
+        <translation>预置</translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="724"/>
@@ -621,7 +621,7 @@
     <message>
         <location filename="../MainWindow.qml" line="373"/>
         <source>Presets</source>
-        <translation>预设</translation>
+        <translation>预置</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="399"/>
@@ -1195,7 +1195,7 @@
     <message>
         <location filename="../MwEndpointSelectorLaunch.qml" line="37"/>
         <source>Preset</source>
-        <translation>预设</translation>
+        <translation>预置</translation>
     </message>
 </context>
 <context>
@@ -2292,12 +2292,12 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <message>
         <location filename="../MwQuickLaunchView.qml" line="137"/>
         <source>Edit Preset</source>
-        <translation>编辑预设</translation>
+        <translation>编辑预置</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="137"/>
         <source>Create Preset</source>
-        <translation>创建预设</translation>
+        <translation>创建预置</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="144"/>
@@ -2317,7 +2317,7 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <message>
         <location filename="../MwQuickLaunchView.qml" line="237"/>
         <source>Create a preset to :</source>
-        <translation>创建预设，以用来：</translation>
+        <translation>创建预置，以用来：</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="243"/>
@@ -2337,13 +2337,13 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <message>
         <location filename="../MwQuickLaunchView.qml" line="281"/>
         <source>Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset.</source>
-        <translation>已将所有勾选项的当前内容保存到了预设中。
-现在，任何时候都可以通过点击此按钮来启动该预设。</translation>
+        <translation>已将所有勾选项的当前内容保存到了预置中。
+现在，任何时候都可以通过点击此按钮来启动该预置。</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="71"/>
         <source>Preset</source>
-        <translation>预设</translation>
+        <translation>预置</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="281"/>
@@ -2526,8 +2526,8 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <name>MwSlotOptionsView</name>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="33"/>
-        <source>Signal mapping and transform options</source>
-        <translation>信号映射和变换参数</translation>
+        <source>Signal mapping transformation options</source>
+        <translation>信号映射变换参数</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="43"/>

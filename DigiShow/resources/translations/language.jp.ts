@@ -2525,8 +2525,8 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     <name>MwSlotOptionsView</name>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="33"/>
-        <source>Signal mapping and transform options</source>
-        <translation>信号マッピングと変換設定</translation>
+        <source>Signal mapping transformation options</source>
+        <translation>信号マッピング変換設定</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="43"/>

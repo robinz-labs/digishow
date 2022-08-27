@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <meta charset="utf-8">
+      <script type="text/javascript">
+
+         var SERVER_IP = "127.0.0.1";
+         var SERVER_PORT = 50000;
+
+         var ws = null;
+         var msgId = 0;
+
+         function setup() {
+
+            if ("WebSocket" in window) {
+
+               var url = window.location.toString();
+               var query = url.split("?ip=");
+               if (query.length==2) SERVER_IP = query[1];
+
+               ws = new WebSocket("ws://" + SERVER_IP + ":" + SERVER_PORT);
+            
+               ws.onopen = function() {
+                  document.getElementById("div2").innerHTML = "DigiShow is conntected."; 
+               };
+            
+               ws.onmessage = function (evt) { 
+                  var msgIn = evt.data;
+                  document.getElementById("div1").innerHTML = msgIn;
+               };
+            
+               ws.onclose = function() { 
+                  document.getElementById("div2").innerHTML = "DigiShow is disconntected."; 
+               };
+            
+            };
+         }
+
+         function send(msgOut) {
+            ws.send(msgOut);
+         }
+      </script>
+      
+   </head>
+   
+   <body onload="setup()">
+   <p>
+      <b>remote virtual pipe demo</b>
+   </p>
+   <p>
+      please open and start file remote_pipe_demo.dgs in DigiShow LINK app,<br/>
+      and refresh this web page to demonstrate the comunication between the DigiShow app and your web app.
+   </p>
+
+   <tt>
+      <div>
+         [ <a href="javascript:send('dgss,1,65,0,65535,0')">Channel A1 - 0%</a> ]
+         [ <a href="javascript:send('dgss,1,65,32767,65535,0')">Channel A1 - 50%</a> ]
+         [ <a href="javascript:send('dgss,1,65,65535,65535,0')">Channel A1 - 100%</a> ]   
+      </div>
+      <div>
+         [ <a href="javascript:send('dgss,2,66,0,0,0')">Channel B2 - Off</a> ]
+         [ <a href="javascript:send('dgss,2,66,0,0,1')">Channel B2 - On</a> ]
+      </div>
+      <div>&nbsp;</div>
+      <div id="div1"></div>
+      <div id="div2"></div>
+   </tt>
+   </body>
+   
+</html>
