@@ -276,6 +276,7 @@ QString DgsScreenInterface::getUniqueScreenName(int index)
             if (screens[n]->name() == screenName) i++;
     }
 
+    if (screenName.isEmpty()) return "#" + QString::number(i+1);
     if (i>0) return screenName + " #" + QString::number(i+1);
     return screenName;
 }
