@@ -100,6 +100,10 @@ public:
         emit messageNotified(msgText, msgType);
     }
 
+    bool findInterfaceAndEndpoint(const QString &name, int *pInterfaceIndex = nullptr, int *pEndpointIndex = nullptr);
+    bool confirmEndpointIsEmployed(int interfaceIndex, int endpointIndex);
+    bool confirmEndpointIsEmployed(const QString &interfaceName, const QString &endpointName);
+
 signals:
     void filepathChanged();
 
@@ -132,9 +136,6 @@ private:
 
     QTimer *m_timer;
     DigishowMetronome *m_metronome;
-
-    bool findInterfaceAndEndpoint(const QString &name, int *pInterfaceIndex = nullptr, int *pEndpointIndex = nullptr);
-    bool confirmEndpointIsEmployed(int interfaceIndex, int endpointIndex);
 
     QString convertFileUrlToPath(const QString &url);
     QString convertFilePathToUrl(const QString &path);

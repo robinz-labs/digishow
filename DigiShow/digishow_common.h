@@ -97,7 +97,9 @@
 #define ENDPOINT_HUE_LIGHT          10401
 #define ENDPOINT_HUE_GROUP          10402
 #define ENDPOINT_DMX_DIMMER         10501
+#define ENDPOINT_DMX_MEDIA          10502
 #define ENDPOINT_ARTNET_DIMMER      10601
+#define ENDPOINT_ARTNET_MEDIA       10602
 #define ENDPOINT_OSC_INT            10701
 #define ENDPOINT_OSC_FLOAT          10702
 #define ENDPOINT_OSC_BOOL           10703

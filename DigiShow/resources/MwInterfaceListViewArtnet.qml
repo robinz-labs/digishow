@@ -66,7 +66,7 @@ MwInterfaceListView {
 
                             } else if (options["mode"] === "output") {
 
-                                options["udpHost"] = "255.255.255.255"
+                                options["udpHost"] = "2.0.0.255"
                                 options["udpPort"] = 6454
                             }
 

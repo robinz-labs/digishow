@@ -247,6 +247,8 @@ Item {
         id: itemArtnet
 
         anchors.left: buttonInterface.left
+        anchors.right: parent.right
+        anchors.rightMargin: 16
         anchors.top: buttonInterface.bottom
         anchors.topMargin: 10
         visible: false
@@ -471,8 +473,25 @@ Item {
 
             } else if (type === DigishowEnvironment.InterfaceArtnet) {
 
+                itemArtnet.menuType.selectOption(endpointInfo["type"])
                 itemArtnet.spinUnit.value = endpointInfo["unit"]
                 itemArtnet.spinChannel.value = endpointInfo["channel"] + 1
+
+                switch (endpointInfo["type"]) {
+                case DigishowEnvironment.EndpointArtnetMedia:
+                    itemArtnet.menuMediaControl.selectOption(endpointInfo["control"])
+
+                    var mediaName = endpointOptions["media"]
+                    var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
+                    var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
+                    var mediaUrl = "file://"
+                    if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
+                    itemArtnet.textMediaUrl.text = mediaUrl
+
+                    itemArtnet.setEndpointMediaOptions(endpointOptions)
+
+                    break
+                }
 
             } else if (type === DigishowEnvironment.InterfaceModbus) {
 
@@ -639,9 +658,30 @@ Item {
 
         } else if (type === DigishowEnvironment.InterfaceArtnet) {
 
-            newEndpointOptions["type"] = "dimmer"
+            newEndpointOptions["type"] = itemArtnet.menuType.selectedItemTag
             newEndpointOptions["unit"] = itemArtnet.spinUnit.value
             newEndpointOptions["channel"] = itemArtnet.spinChannel.value - 1
+
+            switch (itemArtnet.menuType.selectedItemValue) {
+            case DigishowEnvironment.EndpointArtnetMedia:
+                newEndpointOptions["control"] = itemArtnet.menuMediaControl.selectedItemValue
+
+                if (itemArtnet.textMediaUrl.visible) {
+                    var mediaUrl = itemArtnet.textMediaUrl.text
+                    var mediaType = digishow.getScreenMediaType(mediaUrl)
+                    var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, mediaType)
+
+                    if (mediaIndex !== -1) {
+                        newEndpointOptions["media"] = digishow.getMediaName(newInterfaceIndex, mediaIndex)
+                        if (itemArtnet.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
+                            newEndpointOptions = utilities.merge(newEndpointOptions, itemArtnet.getEndpointMediaOptions())
+                    } else {
+                        messageBox.show(qsTr("Please select a video clip file exists on your computer disks or enter a valid url of the video clip."), qsTr("OK"))
+                    }
+                }
+                break
+            }
+
 
         } else if (type === DigishowEnvironment.InterfaceModbus) {
 

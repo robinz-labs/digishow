@@ -823,6 +823,12 @@ bool DigishowApp::confirmEndpointIsEmployed(int interfaceIndex, int endpointInde
     if (endpointIndex<0 && endpointIndex>=interface->endpointCount()) return false;
     QString interfaceName = interface->interfaceOptions()->value("name").toString();
     QString endpointName = interface->endpointOptionsList()->at(endpointIndex).value("name").toString();
+
+    return confirmEndpointIsEmployed(interfaceName, endpointName);
+}
+
+bool DigishowApp::confirmEndpointIsEmployed(const QString &interfaceName, const QString &endpointName)
+{
     QString name = interfaceName + "/" + endpointName;
 
     for (int n=0 ; n<m_slots.length() ; n++) {

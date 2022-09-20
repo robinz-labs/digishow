@@ -816,7 +816,7 @@ QString DigishowEnvironment::getScreenMediaType(const QString &mediaUrl)
 
     if (mediaUrl1.endsWith(".mp4") || mediaUrl1.endsWith(".mov"))
         return "video";
-    else if (mediaUrl1.endsWith(".jpg") || mediaUrl1.endsWith(".png") || mediaUrl1.endsWith(".svg"))
+    else if (mediaUrl1.endsWith(".jpg") || mediaUrl1.endsWith(".png") || mediaUrl1.endsWith(".bmp") || mediaUrl1.endsWith(".svg"))
         return "image";
     else
         return "web";

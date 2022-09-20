@@ -117,7 +117,7 @@ Item {
 
         width: 280
         height: 360
-        x: 60
+        x: 100
         y: -height-10
         transformOrigin: Popup.BottomRight
         modal: true

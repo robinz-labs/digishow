@@ -17,6 +17,10 @@
 
 #include "dgs_artnet_interface.h"
 
+#ifdef ARTNET_PIXEL_PLAYER_ENABLED
+#include "digishow_pixel_player.h"
+#endif
+
 #define ARTNET_UDP_PORT 6454
 #define ARTNET_OUT_FREQ 30
 
@@ -94,6 +98,16 @@ int DgsArtnetInterface::openInterface()
         m_timer->setSingleShot(false);
         m_timer->setInterval(1000 / frequency);
         m_timer->start();
+
+#ifdef ARTNET_PIXEL_PLAYER_ENABLED
+
+        // load media and initialize players
+        m_players.clear();
+        QVariantList mediaList = cleanMediaList();
+        for (int n=0 ; n<mediaList.length() ; n++) initPlayer(mediaList[n].toMap());
+
+#endif
+
     }
 
     m_isInterfaceOpened = true;
@@ -102,6 +116,22 @@ int DgsArtnetInterface::openInterface()
 
 int DgsArtnetInterface::closeInterface()
 {
+
+#ifdef ARTNET_PIXEL_PLAYER_ENABLED
+
+    // release players
+    QStringList playerNames = m_players.keys();
+    int playerCount = playerNames.length();
+    for (int n=0 ; n<playerCount ; n++) {
+        QString key = playerNames[n];
+        DigishowPixelPlayer* player = m_players[key];
+        player->stop();
+        delete player;
+        m_players.remove(key);
+    }
+
+#endif
+
     if (m_timer != nullptr) {
         m_timer->stop();
         delete m_timer;
@@ -123,20 +153,170 @@ int DgsArtnetInterface::sendData(int endpointIndex, dgsSignalData data)
     int r = DigishowInterface::sendData(endpointIndex, data);
     if ( r != ERR_NONE) return r;
 
-    if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+    if (m_endpointInfoList[endpointIndex].type == ENDPOINT_ARTNET_DIMMER) {
 
-    int value = 255 * data.aValue / (data.aRange==0 ? 255 : data.aRange);
-    if (value<0 || value>255) return ERR_INVALID_DATA;
+        // dimmer control
 
-    int universe = m_endpointInfoList[endpointIndex].unit;
-    int channel = m_endpointInfoList[endpointIndex].channel;
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
 
-    // update dmx data buffer
-    if (!m_dataAll.contains(universe)) m_dataAll[universe] = QByteArray(512, 0x00);
-    m_dataAll[universe].data()[channel] = static_cast<unsigned char>(value);
+        int value = 255 * data.aValue / (data.aRange==0 ? 255 : data.aRange);
+        if (value<0 || value>255) return ERR_INVALID_DATA;
+
+        int universe = m_endpointInfoList[endpointIndex].unit;
+        int channel = m_endpointInfoList[endpointIndex].channel;
+
+        // update dmx data buffer
+        if (!m_dataAll.contains(universe)) m_dataAll[universe] = QByteArray(512, 0x00);
+        m_dataAll[universe].data()[channel] = static_cast<unsigned char>(value);
+
+
+#ifdef ARTNET_PIXEL_PLAYER_ENABLED
+
+    } else if (m_endpointInfoList[endpointIndex].type == ENDPOINT_ARTNET_MEDIA) {
+
+        // media playback control
+
+        int control = m_endpointInfoList[endpointIndex].control;
+        QVariantMap endpointOptions = m_endpointOptionsList[endpointIndex];
+        QString media = endpointOptions.value("media").toString();
+
+        if (control == CONTROL_MEDIA_START) {
+
+            DigishowPixelPlayer *player = m_players.value(media, nullptr);
+            if (player == nullptr) return ERR_DEVICE_NOT_READY;
+
+            if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
+            if (data.bValue) {
+
+                // set player pixel mapping
+                setupPlayerPixelMapping(player, media);
+
+                // set player playback attributes
+                player->setFadeIn(endpointOptions.value("mediaFadeIn").toInt());
+                player->setVolume(endpointOptions.value("mediaVolume", QVariant(10000)).toInt() / 10000.0);
+                player->setSpeed(endpointOptions.value("mediaSpeed", QVariant(10000)).toInt() / 10000.0);
+                player->setPosition(endpointOptions.value("mediaPosition").toInt());
+                player->setDuration(endpointOptions.value("mediaDuration").toInt());
+                player->setRepeat(endpointOptions.value("mediaRepeat").toBool());
+
+                if (endpointOptions.value("mediaAlone", QVariant(true)).toBool()) stopAll();
+                player->play();
+            }
+
+        } else if (control == CONTROL_MEDIA_STOP) {
+
+            DigishowPixelPlayer *player = m_players.value(media, nullptr);
+            if (player == nullptr) return ERR_DEVICE_NOT_READY;
+
+            if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
+            if (data.bValue) player->stop();
+
+        } else if (control == CONTROL_MEDIA_STOP_ALL) {
+
+            if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
+            if (data.bValue) stopAll();
+        }
+
+#endif
+
+    }
 
     return ERR_NONE;
 }
+
+#ifdef ARTNET_PIXEL_PLAYER_ENABLED
+
+int DgsArtnetInterface::loadMedia(const QVariantMap &mediaOptions)
+{
+    int r = DigishowInterface::loadMedia(mediaOptions);
+    if ( r != ERR_NONE) return r;
+
+    bool done = initPlayer(mediaOptions);
+    if (!done) return ERR_INVALID_DATA;
+
+    return ERR_NONE;
+}
+
+bool DgsArtnetInterface::initPlayer(const QVariantMap &mediaOptions)
+{
+    QString name = mediaOptions.value("name").toString();
+    QString type = mediaOptions.value("type").toString();
+    QString url  = mediaOptions.value("url" ).toString();
+
+    bool done = false;
+    if (!name.isEmpty() && !url.isEmpty()) {
+        DigishowPixelPlayer *player = new DigishowPixelPlayer();
+        if (player->load(url, (type=="image"))) {
+            m_players[name] = player;
+            connect(player, SIGNAL(frameUpdated()), this, SLOT(onPlayerFrameUpdated()));
+        } else {
+            delete player;
+        }
+    }
+
+    return done;
+}
+
+void DgsArtnetInterface::stopAll()
+{
+    QStringList playerNames = m_players.keys();
+    for (int n=0 ; n<playerNames.count() ; n++) {
+        QString key = playerNames[n];
+        DigishowPixelPlayer *player = m_players.value(key, nullptr);
+        if (player != nullptr) player->stop();
+    }
+}
+
+void DgsArtnetInterface::setupPlayerPixelMapping(DigishowPixelPlayer *player, const QString &mediaName)
+{
+    player->clearPixelMapping();
+
+    QString interfaceName = m_interfaceOptions.value("name").toString();
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        QVariantMap endpointOptions = m_endpointOptionsList[n];
+
+        // look for all endpoints with the specified media
+        if (endpointInfo.type != ENDPOINT_ARTNET_MEDIA ||
+            endpointInfo.control != CONTROL_MEDIA_START ||
+            endpointOptions.value("media") != mediaName) continue;
+
+        QString endpointName = endpointOptions.value("name").toString();
+        if (!g_app->confirmEndpointIsEmployed(interfaceName, endpointName)) continue;
+
+        int pixelMode = DigishowPixelPlayer::pixelMode(endpointOptions.value("mediaPixelMode").toString());
+        if (pixelMode == DigishowPixelPlayer::PixelUnknown) continue;
+        int bytesPerPixel = (pixelMode == DigishowPixelPlayer::PixelMono ? 1 : 3);
+
+        int pixelCountAll = endpointOptions.value("mediaPixelCount").toInt();
+
+        int universe = endpointInfo.unit;
+        int channel  = endpointInfo.channel;
+
+        // map all pixels into multiple universes
+        while (pixelCountAll > 0 && universe < 256) {
+
+            if (!m_dataAll.contains(universe)) m_dataAll[universe] = QByteArray(512, 0x00); // parepare dmx data buffer for the universe
+
+            int pixelCount = qMin(pixelCountAll, (512-channel)/bytesPerPixel); // the number of pixels need be mapped into one universe
+
+            dppPixelMapping mapping;
+            mapping.pixelMode = pixelMode;
+            mapping.pixelCount = pixelCount;
+            mapping.pixelOffset = endpointOptions.value("mediaPixelOffset").toInt();
+            mapping.pDataOut = (uint8_t*)m_dataAll[universe].data() + channel;
+            player->addPixelMapping(mapping);
+
+            // get ready for the next universe
+            pixelCountAll -= pixelCount;
+            universe += 1;
+            channel = 0;
+        }
+    }
+}
+
+#endif
 
 void DgsArtnetInterface::onUdpDataReceived()
 {
@@ -233,6 +413,15 @@ void DgsArtnetInterface::onTimerFired()
 
         m_udp->writeDatagram(datagram.constData(), datagram.size(),
                              m_udpHost, (quint16)m_udpPort);
-
     }
 }
+
+#ifdef ARTNET_PIXEL_PLAYER_ENABLED
+
+void DgsArtnetInterface::onPlayerFrameUpdated()
+{
+    DigishowPixelPlayer *player = qobject_cast<DigishowPixelPlayer*>(sender());
+    player->transferFrameAllMappedPixels();
+}
+
+#endif

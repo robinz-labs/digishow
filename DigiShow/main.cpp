@@ -199,6 +199,13 @@ int main(int argc, char *argv[])
     engine.load(url);
     app.setQmlRoot(engine.rootObjects()[0]);
 
+    // window mode
+    int windowMode = appOptions.value("window", 1).toInt();
+    switch (windowMode) {
+    case 0: app.allWindows().first()->showMinimized(); break;
+    case 2: app.allWindows().first()->showFullScreen(); break;
+    }
+
     // enable autostart
     g_app->enableAutostart(appOptions.value("autostart", false).toBool());
 
