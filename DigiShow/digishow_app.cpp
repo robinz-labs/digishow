@@ -304,6 +304,12 @@ bool DigishowApp::saveFile(const QString & filepath, const QList<int> & slotList
     // prepare the data
     QVariantMap data = exportData(slotListOrder, onlySelection);
 
+    // app version info
+    QVariantMap info;
+    info["appName"   ] = DigishowEnvironment::appName() + (DigishowEnvironment::appExperimental() ? " +" : "");
+    info["appVersion"] = DigishowEnvironment::appVersion();
+    data["appInfo"   ] = info;
+
     // save data to file
     if (!AppUtilities::saveJsonToFile(data, filepath1)) return false;
 
