@@ -121,9 +121,9 @@ void DigishowApp::importData(const QVariantMap & data)
                 QString url = dataMedia.value("url").toString();
                 QString file = dataMedia.value("file").toString();
                 if (validateFilePath(file)) {
-                    if (url.isEmpty() || (QUrl(url).isLocalFile() && !validateFileUrl(url))) {
+                    //if (url.isEmpty() || (QUrl(url).isLocalFile() && !validateFileUrl(url))) {
                         dataMedia["url"] = convertFilePathToUrl(file);
-                    }
+                    //}
                 }
                 dataMediaList[i] = dataMedia;
             }
@@ -883,6 +883,12 @@ bool DigishowApp::validateFileUrl(const QString &url)
     // get absolute path of the file
     if (!QUrl(url).isLocalFile()) return false;
     QString filePath = QUrl(url).path();
+
+#ifdef Q_OS_WIN
+    if (filePath.startsWith("/") && filePath.mid(2,1)==":") {
+        filePath = filePath.mid(1);
+    }
+#endif
 
     // confirm the file exists
     return QFile(filePath).exists();
