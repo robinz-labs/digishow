@@ -22,6 +22,7 @@
 #include <QTextStream>
 #include <QJsonDocument>
 #include <QtNetwork>
+#include <QUrl>
 #include <QClipboard>
 #include <QGuiApplication>
 
@@ -239,10 +240,25 @@ QString AppUtilities::httpRequest(const QString & strUrl, const QString & strMet
     return strReply;
 }
 
-
 QString AppUtilities::httpUrlEncode(const QString & str)
 {
     return QString::fromUtf8(QUrl::toPercentEncoding(str));
+}
+
+Q_INVOKABLE QString AppUtilities::fileUrlPath(const QString & strUrl)
+{
+    QUrl url(strUrl);
+    if (!url.isValid() || !url.isLocalFile()) return "";
+
+    QString filePath = url.path();
+
+#ifdef Q_OS_WIN
+    if (filePath.startsWith("/") && filePath.mid(2,1)==":") {
+        filePath = filePath.mid(1);
+    }
+#endif
+
+    return filePath;
 }
 
 QString AppUtilities::createUUID()

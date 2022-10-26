@@ -90,7 +90,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: 38
         text: "file://"
-        input.anchors.rightMargin: 30
+        //input.anchors.rightMargin: 30
         visible: menuAPlayType.selectedItemValue === DigishowEnvironment.EndpointAPlayMedia &&
                  menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll
 

@@ -234,7 +234,7 @@ public:
     Q_INVOKABLE static QString getMidiNoteName(int noteNumber, bool longName = false);
     Q_INVOKABLE static QString getRiocPinName(int mode, int pinNumber);
 
-    Q_INVOKABLE static QString getScreenMediaType(const QString &mediaUrl);
+    Q_INVOKABLE static QString getMediaType(const QString &mediaUrl);
 
 signals:
     void appChanged();

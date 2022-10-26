@@ -126,7 +126,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: 38
         text: "file://"
-        input.anchors.rightMargin: 30
+        //input.anchors.rightMargin: 30
         visible: forMedia &&
                  menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll
 
@@ -139,8 +139,9 @@ Item {
         title: qsTr("Select Video File")
         folder: shortcuts.home
         selectExisting: true
-        nameFilters: [ qsTr("Video files") + " (*.mp4 *.mov)",
+        nameFilters: [ qsTr("Video files") + " (*.avi *.mp4 *.mov)",
                        qsTr("Image files") + " (*.bmp *.png *.jpg)",
+                       qsTr("Image Sequence") + " (*.ini)",
                        qsTr("All files") + " (*)" ]
         onAccepted: {
             console.log("select video file: ", fileUrl)
@@ -202,6 +203,13 @@ Item {
 
                 COptionMenu {
                     id: menuMediaPixelMode
+
+                    onOptionClicked: {
+                        if (selectedItemTag === "mono" && spinMediaPixelCount.value === 170)
+                            spinMediaPixelCount.value = 512
+                        else if (selectedItemTag !== "mono" && spinMediaPixelCount.value === 512)
+                            spinMediaPixelCount.value = 170
+                    }
                 }
 
                 Text {
@@ -312,7 +320,7 @@ Item {
                 color: "#cccccc"
                 font.pixelSize: 12
                 font.bold: true
-                text: qsTr("Video Playback Options")
+                text: qsTr("Playback Options")
             }
 
             CheckBox {
@@ -535,7 +543,7 @@ Item {
         if (menuArtnetType.count === 0) {
             items = []
             items.push({ text: qsTr("Dimmer"), value: DigishowEnvironment.EndpointArtnetDimmer, tag: "dimmer" })
-            items.push({ text: qsTr("Video Clip"), value: DigishowEnvironment.EndpointArtnetMedia, tag: "media" })
+            items.push({ text: qsTr("Pixels"), value: DigishowEnvironment.EndpointArtnetMedia, tag: "media" })
 
             menuArtnetType.optionItems = items
             menuArtnetType.selectedIndex = 0

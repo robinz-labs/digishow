@@ -243,10 +243,15 @@ bool DgsArtnetInterface::initPlayer(const QVariantMap &mediaOptions)
     QString type = mediaOptions.value("type").toString();
     QString url  = mediaOptions.value("url" ).toString();
 
+    int mediaType = DigishowPixelPlayer::MediaUnknown;
+    if (type == "image") mediaType = DigishowPixelPlayer::MediaImage; else
+    if (type == "video") mediaType = DigishowPixelPlayer::MediaVideo; else
+    if (type == "ini"  ) mediaType = DigishowPixelPlayer::MediaImageSequence;
+
     bool done = false;
-    if (!name.isEmpty() && !url.isEmpty()) {
+    if (!name.isEmpty() && !url.isEmpty() && mediaType != DigishowPixelPlayer::MediaUnknown) {
         DigishowPixelPlayer *player = new DigishowPixelPlayer();
-        if (player->load(url, (type=="image"))) {
+        if (player->load(url, mediaType)) {
             m_players[name] = player;
             connect(player, SIGNAL(frameUpdated()), this, SLOT(onPlayerFrameUpdated()));
         } else {

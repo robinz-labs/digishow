@@ -852,14 +852,8 @@ QString DigishowApp::convertFileUrlToPath(const QString &url)
     QDir baseDir = QFileInfo(m_filepath).dir();
 
     // get absolute path of the file
-    if (!QUrl(url).isLocalFile()) return "";
-    QString filePath = QUrl(url).path();
-
-#ifdef Q_OS_WIN
-    if (filePath.startsWith("/") && filePath.mid(2,1)==":") {
-        filePath = filePath.mid(1);
-    }
-#endif
+    QString filePath = AppUtilities::fileUrlPath(url);
+    if (filePath.isEmpty()) return "";
 
     // get relative path of the file
     return baseDir.relativeFilePath(filePath);
@@ -881,14 +875,8 @@ QString DigishowApp::convertFilePathToUrl(const QString &path)
 bool DigishowApp::validateFileUrl(const QString &url)
 {
     // get absolute path of the file
-    if (!QUrl(url).isLocalFile()) return false;
-    QString filePath = QUrl(url).path();
-
-#ifdef Q_OS_WIN
-    if (filePath.startsWith("/") && filePath.mid(2,1)==":") {
-        filePath = filePath.mid(1);
-    }
-#endif
+    QString filePath = AppUtilities::fileUrlPath(url);
+    if (filePath.isEmpty()) return false;
 
     // confirm the file exists
     return QFile(filePath).exists();

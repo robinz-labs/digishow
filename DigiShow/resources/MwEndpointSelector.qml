@@ -668,7 +668,7 @@ Item {
 
                 if (itemArtnet.textMediaUrl.visible) {
                     var mediaUrl = itemArtnet.textMediaUrl.text
-                    var mediaType = digishow.getScreenMediaType(mediaUrl)
+                    var mediaType = digishow.getMediaType(mediaUrl)
                     var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, mediaType)
 
                     if (mediaIndex !== -1) {
@@ -725,7 +725,7 @@ Item {
 
                 if (itemScreen.textMediaUrl.visible) {
                     var mediaUrl = itemScreen.textMediaUrl.text
-                    var mediaType = digishow.getScreenMediaType(mediaUrl)
+                    var mediaType = digishow.getMediaType(mediaUrl)
                     var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, mediaType)
 
                     if (mediaIndex !== -1) {

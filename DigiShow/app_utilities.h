@@ -30,6 +30,7 @@ public:
     explicit AppUtilities(QObject *parent = nullptr);
     ~AppUtilities();
 
+
     Q_INVOKABLE static QString loadStringFromFile(const QString & filepath);
     Q_INVOKABLE static bool saveStringToFile(const QString & data, const QString & filepath);
 
@@ -47,6 +48,7 @@ public:
 
     Q_INVOKABLE static QString httpRequest(const QString & strUrl, const QString & strMethod = "get", const QString & strBody = "", int timeout = 3000);
     Q_INVOKABLE static QString httpUrlEncode(const QString & str);
+    Q_INVOKABLE static QString fileUrlPath(const QString & url);
 
     Q_INVOKABLE static QString createUUID();
 
