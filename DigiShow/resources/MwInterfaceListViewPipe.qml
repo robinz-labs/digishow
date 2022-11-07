@@ -170,13 +170,14 @@ MwInterfaceListView {
 
                         optionItems: [
                             { text: qsTr("Disabled (default)"), value: 0 },
-                            { text: qsTr("Enabled" ), value: 1 }
+                            { text: qsTr("Enabled" ), value: 1 },
+                            { text: qsTr("Enabled (multiple)" ), value: 2 }
                         ]
 
                         onOptionClicked: {
                             var options = { acceptRemote: selectedItemValue }
 
-                            if (options["acceptRemote"] === 1) {
+                            if (options["acceptRemote"] > 0) {
 
                                 options["tcpPort"] = 50000
                                 options["outputInterval"] = 20

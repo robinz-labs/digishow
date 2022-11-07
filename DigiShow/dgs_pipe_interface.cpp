@@ -21,9 +21,11 @@ DgsPipeInterface::DgsPipeInterface(QObject *parent) : DigishowInterface(parent)
 {
     m_interfaceOptions["type"] = "pipe";
 
-    m_server = nullptr;
     m_websocketServer = nullptr;
-    m_websocketClient = nullptr;
+    m_websocketServerConnections.clear();
+    m_websocketServerMultiple = false;
+
+    m_websocketClientConnection = nullptr;
 }
 
 DgsPipeInterface::~DgsPipeInterface()
@@ -38,9 +40,10 @@ int DgsPipeInterface::openInterface()
     updateMetadata();
 
     // start a websocket server for local pipe (accepted remote link)
-    if (m_interfaceInfo.mode == INTERFACE_PIPE_LOCAL &&
-        m_interfaceOptions.value("acceptRemote").toInt()) {
+    int acceptRemote = m_interfaceOptions.value("acceptRemote").toInt();
+    if (m_interfaceInfo.mode == INTERFACE_PIPE_LOCAL && acceptRemote) {
 
+        m_websocketServerMultiple = (acceptRemote==1 ? false : true);
         bool done = startWebsocketServer();
         if (!done) return ERR_DEVICE_NOT_READY;
     }
@@ -74,53 +77,46 @@ int DgsPipeInterface::sendData(int endpointIndex, dgsSignalData data)
     if ( r != ERR_NONE) return r;
 
     // send websocket message if remote link enabled
-    if (m_websocketServer != nullptr) {
-        m_websocketServer->sendTextMessage(signalToMessage(data, m_endpointInfoList[endpointIndex].channel));
-        m_websocketServer->flush();
-    }
-
-    if (m_websocketClient != nullptr) {
-        m_websocketClient->sendTextMessage(signalToMessage(data, m_endpointInfoList[endpointIndex].channel));
-        m_websocketClient->flush();
-    }
+    sendWebsocketMessage(signalToMessage(data, m_endpointInfoList[endpointIndex].channel));
 
     // for local pipe
     emit dataReceived(endpointIndex, data);
     return ERR_NONE;
 }
 
+
 bool DgsPipeInterface::startWebsocketServer()
 {
-    if (m_server != nullptr) return false;
+    if (m_websocketServer != nullptr) return false;
 
-    m_server = new QWebSocketServer(QString("digishow"), QWebSocketServer::NonSecureMode);
-    m_websocketServer = nullptr;
+    m_websocketServer = new QWebSocketServer(QString("digishow"), QWebSocketServer::NonSecureMode);
+    m_websocketServerConnections.clear();
 
     int websocketPort = m_interfaceOptions.value("tcpPort").toInt();
-    if (!m_server->listen(QHostAddress::Any, websocketPort)) return false;
+    if (!m_websocketServer->listen(QHostAddress::Any, websocketPort)) return false;
 
-    connect(m_server, SIGNAL(newConnection()), this, SLOT(onWebsocketServerNewConnection()));
+    connect(m_websocketServer, SIGNAL(newConnection()), this, SLOT(onWebsocketServerNewConnection()));
     return true;
 }
 
 void DgsPipeInterface::stopWebsocketServer()
 {
+    foreach (QWebSocket *websocket, m_websocketServerConnections) {
+        websocket->close();
+        delete websocket;
+    }
+    m_websocketServerConnections.clear();
+
     if (m_websocketServer != nullptr) {
         m_websocketServer->close();
         delete m_websocketServer;
         m_websocketServer = nullptr;
     }
-
-    if (m_server != nullptr) {
-        m_server->close();
-        delete m_server;
-        m_server = nullptr;
-    }
 }
 
 bool DgsPipeInterface::startWebsocketClient()
 {
-    if (m_websocketClient != nullptr) return false;
+    if (m_websocketClientConnection != nullptr) return false;
 
     QWebSocket *websocket = new QWebSocket();
 
@@ -139,7 +135,7 @@ bool DgsPipeInterface::startWebsocketClient()
     timer.start();
     while (!timer.hasExpired(3000)) {
         qApp->processEvents(QEventLoop::AllEvents);
-        if (m_websocketClient == websocket) return true;
+        if (m_websocketClientConnection == websocket) return true;
     }
 
     return false;
@@ -147,10 +143,25 @@ bool DgsPipeInterface::startWebsocketClient()
 
 void DgsPipeInterface::stopWebsocketClient()
 {
-    if (m_websocketClient != nullptr) {
-        m_websocketClient->close();
-        delete m_websocketClient;
-        m_websocketClient = nullptr;
+    if (m_websocketClientConnection != nullptr) {
+        m_websocketClientConnection->close();
+        delete m_websocketClientConnection;
+        m_websocketClientConnection = nullptr;
+    }
+}
+
+void DgsPipeInterface::sendWebsocketMessage(const QString &message)
+{
+    // for server mode
+    foreach (QWebSocket *websocket, m_websocketServerConnections) {
+        websocket->sendTextMessage(message);
+        websocket->flush();
+    }
+
+    // for client mode
+    if (m_websocketClientConnection != nullptr) {
+        m_websocketClientConnection->sendTextMessage(message);
+        m_websocketClientConnection->flush();
     }
 }
 
@@ -187,23 +198,27 @@ void DgsPipeInterface::processReceivedMessage(const QString &message)
 void DgsPipeInterface::onWebsocketServerNewConnection()
 {
     // disconnect old websocket session
-    if (m_websocketServer != nullptr) {
-        m_websocketServer->close();
-        delete m_websocketServer;
-        m_websocketServer = nullptr;
+    if (!m_websocketServerMultiple) {
+        foreach (QWebSocket *websocket, m_websocketServerConnections) {
+            websocket->close();
+            delete websocket;
+        }
+        m_websocketServerConnections.clear();
     }
 
     // accept new websocket session
-    QWebSocket *websocket = m_server->nextPendingConnection();
+    while (m_websocketServer->hasPendingConnections()) {
+        QWebSocket *websocket = m_websocketServer->nextPendingConnection();
 
-    connect(websocket, SIGNAL(textMessageReceived(QString)), this, SLOT(onWebsocketServerMessageReceived(QString)));
-    connect(websocket, SIGNAL(disconnected()), this, SLOT(onWebsocketServerDisconnected()));
+        connect(websocket, SIGNAL(textMessageReceived(QString)), this, SLOT(onWebsocketServerMessageReceived(QString)));
+        connect(websocket, SIGNAL(disconnected()), this, SLOT(onWebsocketServerDisconnected()));
 
-    qDebug("[server] websocket request %s is accepted.",
-           websocket->requestUrl().toDisplayString().toLocal8Bit().constData());
-    qDebug("[server] websocket %p is connected.", websocket);
+        qDebug("[server] websocket request %s is accepted.",
+               websocket->requestUrl().toDisplayString().toLocal8Bit().constData());
+        qDebug("[server] websocket %p is connected.", websocket);
 
-    m_websocketServer = websocket;
+        m_websocketServerConnections.append(websocket);
+    }
 }
 
 void DgsPipeInterface::onWebsocketServerDisconnected()
@@ -211,7 +226,7 @@ void DgsPipeInterface::onWebsocketServerDisconnected()
     QWebSocket *websocket = qobject_cast<QWebSocket *>(sender());
     qDebug("[server] websocket %p is disconnected.", websocket);
 
-    if (websocket == m_websocketServer) m_websocketServer = nullptr;
+    m_websocketServerConnections.removeAll(websocket);
     websocket->deleteLater();
 }
 
@@ -229,7 +244,7 @@ void DgsPipeInterface::onWebsocketClientConnected()
            websocket->requestUrl().toDisplayString().toLocal8Bit().constData());
     qDebug("[client] websocket %p is connected.", websocket);
 
-    m_websocketClient = websocket;
+    m_websocketClientConnection = websocket;
 }
 
 void DgsPipeInterface::onWebsocketClientDisconnected()
@@ -237,7 +252,7 @@ void DgsPipeInterface::onWebsocketClientDisconnected()
     QWebSocket *websocket = qobject_cast<QWebSocket *>(sender());
     qDebug("[client] websocket %p is disconnected.", websocket);
 
-    if (websocket == m_websocketClient) m_websocketClient = nullptr;
+    if (websocket == m_websocketClientConnection) m_websocketClientConnection = nullptr;
     websocket->deleteLater();
 }
 

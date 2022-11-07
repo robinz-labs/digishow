@@ -45,17 +45,22 @@ public slots:
 
 private:
 
-    QWebSocketServer *m_server;
-    QWebSocket *m_websocketServer;
-    QWebSocket *m_websocketClient;
+    // server mode
+    QWebSocketServer *m_websocketServer;
+    QList<QWebSocket*> m_websocketServerConnections;
+    bool m_websocketServerMultiple;
 
-    // local mode with a websocket server
     bool startWebsocketServer();
     void stopWebsocketServer();
 
-    // remote mode with a websocket client
+    // client mode
+    QWebSocket *m_websocketClientConnection;
+
     bool startWebsocketClient();
     void stopWebsocketClient();
+
+    // send websocket message
+    void sendWebsocketMessage(const QString &message);
 
     // process received websocket messages
     int findEndpoint(int type, int channel);

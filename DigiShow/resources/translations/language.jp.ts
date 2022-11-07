@@ -2191,12 +2191,17 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
         <translation>有効</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="199"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="174"/>
+        <source>Enabled (multiple)</source>
+        <translation>有効 (複数の接続)</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewPipe.qml" line="200"/>
         <source>Remote Link Service</source>
         <translation>リモートリンクサービス</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="223"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="224"/>
         <source>Comment</source>
         <translation>コメント</translation>
     </message>

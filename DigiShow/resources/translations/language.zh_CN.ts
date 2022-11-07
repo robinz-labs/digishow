@@ -2191,12 +2191,17 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="199"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="174"/>
+        <source>Enabled (multiple)</source>
+        <translation>启用 (多连接)</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewPipe.qml" line="200"/>
         <source>Remote Link Service</source>
         <translation>远程连接服务</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="223"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="224"/>
         <source>Comment</source>
         <translation>描述</translation>
     </message>

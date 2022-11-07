@@ -2191,12 +2191,17 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
         <translation>Habilitado</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="199"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="174"/>
+        <source>Enabled (multiple)</source>
+        <translation>Habilitado (múltiple)</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewPipe.qml" line="200"/>
         <source>Remote Link Service</source>
         <translation>Servicio de enlace remoto</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="223"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="224"/>
         <source>Comment</source>
         <translation>Comentario</translation>
     </message>
