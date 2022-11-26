@@ -163,7 +163,7 @@ ApplicationWindow {
                 if (fileUrl.startsWith("file://") && fileUrl.endsWith(".dgs")) {
                     drop.acceptProposedAction()
                     common.runLater(function() {
-                        fileOpen(utilities.urlToPath(fileUrl))
+                        fileOpen(utilities.fileUrlPath(fileUrl))
                     })
                 }
             }
@@ -710,7 +710,7 @@ ApplicationWindow {
         }
     }
 
-    FileDialog {
+    MwFileDialog {
         id: dialogLoadFile
         title: qsTr("Open File")
         folder: shortcuts.home
@@ -720,11 +720,11 @@ ApplicationWindow {
             console.log("load file: " + dialogLoadFile.fileUrl)
 
             if (app.isRunning) app.stop();
-            app.loadFile(utilities.urlToPath(dialogLoadFile.fileUrl))
+            app.loadFile(utilities.fileUrlPath(dialogLoadFile.fileUrl))
         }
     }
 
-    FileDialog {
+    MwFileDialog {
 
         property var callbackAfterSaved: null
 
@@ -735,7 +735,7 @@ ApplicationWindow {
         nameFilters: [ qsTr("DigiShow files") + " (*.dgs)", qsTr("All files") + " (*)" ]
         onAccepted: {
             console.log("save file: " + dialogSaveFile.fileUrl)
-            app.saveFile(utilities.urlToPath(dialogSaveFile.fileUrl),
+            app.saveFile(utilities.fileUrlPath(dialogSaveFile.fileUrl),
                          slotListView.getVisualItemsIndexList())
             if (callbackAfterSaved !== null) callbackAfterSaved()
         }
@@ -799,6 +799,7 @@ ApplicationWindow {
 
     function saveAs() {
         dialogSaveFile.callbackAfterSaved = null
+        dialogSaveFile.setDefaultFilePath(app.filepath)
         dialogSaveFile.open()
     }
 
@@ -858,5 +859,4 @@ ApplicationWindow {
             }
         }
     }
-
 }

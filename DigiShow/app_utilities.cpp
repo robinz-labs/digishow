@@ -247,18 +247,52 @@ QString AppUtilities::httpUrlEncode(const QString & str)
 
 Q_INVOKABLE QString AppUtilities::fileUrlPath(const QString & strUrl)
 {
+
+#ifdef Q_OS_WIN
+
+    // repair the url like file://host/folder/file ==> file:////host/folder/file
+
+    QUrl url;
+    if (strUrl.startsWith("file://") && strUrl[7] != '/' && strUrl[8] != ':') {
+       url = QUrl("file:////" + strUrl.mid(7));
+    } else {
+       url = QUrl(strUrl);
+    }
+
+#else
     QUrl url(strUrl);
+#endif
+
     if (!url.isValid() || !url.isLocalFile()) return "";
 
     QString filePath = url.path();
 
 #ifdef Q_OS_WIN
-    if (filePath.startsWith("/") && filePath.mid(2,1)==":") {
+
+    // repair the path like /C:/folder/file ==> C:/folder/file
+
+    if (filePath[0] == '/' && filePath[2] == ':') {
         filePath = filePath.mid(1);
     }
 #endif
-
     return filePath;
+}
+
+Q_INVOKABLE QString AppUtilities::filePathUrl(const QString & path)
+{
+    QString strUrl = QUrl::fromLocalFile(path).toString();
+
+#ifdef Q_OS_WIN
+
+    // repair the url like file://host/folder/file ==> file:////host/folder/file
+
+    if (strUrl.startsWith("file://") && strUrl[7] != '/' && strUrl[8] != ':') {
+       strUrl = "file:////" + strUrl.mid(7);
+    }
+
+#endif
+
+    return strUrl;
 }
 
 QString AppUtilities::createUUID()
@@ -274,6 +308,12 @@ bool AppUtilities::makePath(const QString & path)
 bool AppUtilities::fileExists(const QString & path)
 {
     return QFile(path).exists();
+}
+
+
+bool AppUtilities::dirExists(const QString & path)
+{
+    return QDir(path).exists();
 }
 
 void AppUtilities::showFileInShell(const QString & path)

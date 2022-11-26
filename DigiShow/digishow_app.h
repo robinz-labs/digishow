@@ -137,11 +137,11 @@ private:
     QTimer *m_timer;
     DigishowMetronome *m_metronome;
 
+    // conversion between the relative path and the absolute url
     QString convertFileUrlToPath(const QString &url);
     QString convertFilePathToUrl(const QString &path);
     bool validateFileUrl(const QString &url);
     bool validateFilePath(const QString &path);
-
 
 };
 

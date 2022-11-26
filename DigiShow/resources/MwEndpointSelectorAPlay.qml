@@ -60,7 +60,10 @@ Item {
         box.radius: 3
         visible: textMediaUrl.visible
 
-        onClicked: dialogSelectFile.open()
+        onClicked: {
+            dialogSelectFile.setDefaultFileUrl(textMediaUrl.text)
+            dialogSelectFile.open()
+        }
     }
 
     CButton {
@@ -98,7 +101,7 @@ Item {
         onEditingFinished: if (text === "") text = "file://"
     }
 
-    FileDialog {
+    MwFileDialog {
         id: dialogSelectFile
         title: qsTr("Select Audio File")
         folder: shortcuts.home

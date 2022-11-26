@@ -3,21 +3,12 @@ import DigiShow 1.0
 
 AppUtilities {
 
-    function urlToPath(url) {
-        var s = url.toString();
-        if (s.startsWith("file:///")) {
-            var k = (s.charAt(9) === ':' ? 8 : 7);
-            s = s.substring(k);
-        } else if (s.startsWith("file://")) {
-            s = s.substring(5);
-        }
-        return decodeURIComponent(s);
+    function getFileName(filepath) {
+        return filepath.replace(/^.*[\\\/]/, '');
     }
 
-    function getFileName(filepath) {
-
-        var parts = replaceAll(filepath, '\\', '/').split('/');
-        return parts[parts.length-1];
+    function getFileDir(filepath) {
+        return filepath.substr(0, Math.max(filepath.lastIndexOf("/"), filepath.lastIndexOf("\\")));
     }
 
     function replaceAll(str, search, replacement) {

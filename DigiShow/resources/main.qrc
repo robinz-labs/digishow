@@ -90,6 +90,7 @@
         <file>Digishow.qml</file>
         <file>Splash.qml</file>
         <file>MainWindow.qml</file>
+        <file>MwFileDialog.qml</file>
         <file>MwSlotListView.qml</file>
         <file>MwSlotDetailView.qml</file>
         <file>MwEndpointSelector.qml</file>

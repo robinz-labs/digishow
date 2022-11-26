@@ -49,11 +49,13 @@ public:
     Q_INVOKABLE static QString httpRequest(const QString & strUrl, const QString & strMethod = "get", const QString & strBody = "", int timeout = 3000);
     Q_INVOKABLE static QString httpUrlEncode(const QString & str);
     Q_INVOKABLE static QString fileUrlPath(const QString & url);
+    Q_INVOKABLE static QString filePathUrl(const QString & path);
 
     Q_INVOKABLE static QString createUUID();
 
     Q_INVOKABLE static bool makePath(const QString & path);
     Q_INVOKABLE static bool fileExists(const QString & path);
+    Q_INVOKABLE static bool dirExists(const QString & path);
 
     Q_INVOKABLE static void showFileInShell(const QString & path);
     Q_INVOKABLE static void newAppInstance();

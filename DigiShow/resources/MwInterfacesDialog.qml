@@ -560,7 +560,7 @@ Dialog {
     }
 
     function show() {
-        showTab(0)
+        showTab(-1)
     }
 
     function showTab(index) {
@@ -568,7 +568,7 @@ Dialog {
 
         listOnline = digishow.listOnline()
 
-        tabBar.currentIndex = index
+        if (index >= 0 && index < tabBar.count) tabBar.currentIndex = index
         dialog.open()
 
         slotListView.highlightedIndex = -1

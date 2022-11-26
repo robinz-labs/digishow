@@ -98,7 +98,10 @@ Item {
         box.radius: 3
         visible: textMediaUrl.visible
 
-        onClicked: dialogSelectFile.open()
+        onClicked: {
+            dialogSelectFile.setDefaultFileUrl(textMediaUrl.text)
+            dialogSelectFile.open()
+        }
     }
 
     CButton {
@@ -155,7 +158,7 @@ Item {
 
     }
 
-    FileDialog {
+    MwFileDialog {
         id: dialogSelectFile
         title: qsTr("Select Media File")
         folder: shortcuts.home

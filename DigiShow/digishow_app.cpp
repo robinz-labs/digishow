@@ -869,7 +869,7 @@ QString DigishowApp::convertFilePathToUrl(const QString &path)
     QString filePath = baseDir.absoluteFilePath(path);
 
     // get url of the file
-    return QUrl::fromLocalFile(filePath).toString();
+    return AppUtilities::filePathUrl(filePath);
 }
 
 bool DigishowApp::validateFileUrl(const QString &url)
@@ -884,6 +884,8 @@ bool DigishowApp::validateFileUrl(const QString &url)
 
 bool DigishowApp::validateFilePath(const QString &path)
 {
+    if (path.isEmpty()) return false;
+
     // get base dir of the current app file
     if (m_filepath.isEmpty()) return false;
     QDir baseDir = QFileInfo(m_filepath).dir();
