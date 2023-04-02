@@ -676,8 +676,14 @@ void DigishowInterface::updateMetadata()
             case CONTROL_MEDIA_SCALE:
             case CONTROL_MEDIA_XOFFSET:
             case CONTROL_MEDIA_YOFFSET:
+            case CONTROL_MEDIA_VOLUME:
+            case CONTROL_MEDIA_SPEED:
                 endpointInfo.signal = DATA_SIGNAL_ANALOG;
                 endpointInfo.range  = 10000;
+                break;
+            case CONTROL_MEDIA_POSITION:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 100000);
                 break;
             }
             endpointInfo.labelEPT = tr("Media Clip");

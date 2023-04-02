@@ -141,6 +141,9 @@
 #define CONTROL_MEDIA_ROTATION   13
 #define CONTROL_MEDIA_XOFFSET    14
 #define CONTROL_MEDIA_YOFFSET    15
+#define CONTROL_MEDIA_VOLUME     16
+#define CONTROL_MEDIA_SPEED      17
+#define CONTROL_MEDIA_POSITION   18
 
 // signal data package struct
 typedef struct dgsSignalData {

@@ -191,6 +191,12 @@ QtObject {
 
         var view = getMediaViewByName(mediaName)
         if (view !== null) {
+
+            if (propertyName === "volume" ||
+                propertyName === "speed" ||
+                propertyName === "position")
+                if (view.mediaType !== "video") return
+
             if (propertyName === "opacity") view.stopFadeIn()
             view[propertyName] = propertyValue
         }
@@ -237,9 +243,9 @@ QtObject {
                 v = options["mediaSpeed"];         if (v !== undefined) mediaSpeed    = v / 10000
                 v = options["mediaPosition"];      if (v !== undefined) mediaPosition = v
 
-                view.player.loops = (mediaRepeat ? MediaPlayer.Infinite : 1)
-                view.player.volume = mediaVolume
-                view.player.playbackRate = mediaSpeed
+                view.repeat = mediaRepeat
+                view.volume = mediaVolume
+                view.speed  = mediaSpeed
                 view.player.seek(mediaPosition)
                 view.player.play()
             }

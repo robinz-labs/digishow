@@ -702,6 +702,9 @@ QString DigishowEnvironment::getMediaControlName(int control, bool forScreen)
         case CONTROL_MEDIA_ROTATION: return tr("Rotation");
         case CONTROL_MEDIA_XOFFSET:  return tr("X Offset");
         case CONTROL_MEDIA_YOFFSET:  return tr("Y Offset");
+        case CONTROL_MEDIA_VOLUME:   return tr("Volume");
+        case CONTROL_MEDIA_SPEED:    return tr("Speed");
+        case CONTROL_MEDIA_POSITION: return tr("Position");
     }
     return "";
 }
@@ -721,7 +724,7 @@ QString DigishowEnvironment::getMidiControlName(int control)
         case 1:  return tr("Modulation");
         case 4:  return tr("Foot Pedal");
         case 6:  return tr("Data Entry");
-        case 7:  return tr("Volume");
+        case 7:  return tr("Volume ");
         case 10: return tr("Pan");
         case 11: return tr("Expression");
         case 32: return tr("Bank (LSB)");

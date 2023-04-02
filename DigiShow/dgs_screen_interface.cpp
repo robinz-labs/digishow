@@ -290,6 +290,9 @@ QString DgsScreenInterface::getPropertyName(int control)
         case CONTROL_MEDIA_ROTATION: property = "rotation"; break;
         case CONTROL_MEDIA_XOFFSET:  property = "xOffset";  break;
         case CONTROL_MEDIA_YOFFSET:  property = "yOffset";  break;
+        case CONTROL_MEDIA_VOLUME:   property = "volume";   break;
+        case CONTROL_MEDIA_SPEED:    property = "speed";    break;
+        case CONTROL_MEDIA_POSITION: property = "position"; break;
     }
     return property;
 }
@@ -301,10 +304,14 @@ double DgsScreenInterface::getPropertyValue(int control, dgsSignalData data)
         value = 360 * static_cast<double>(data.aValue) / (data.aRange==0 ? 3600 : data.aRange);
         if (value<0) value=0; else if (value>360) value=360;
 
+    } else if (control == CONTROL_MEDIA_POSITION) {
+        value = static_cast<double>(data.aValue);
+        if (value<0) value=0;
+
     } else {
         value = static_cast<double>(data.aValue) / static_cast<double>(data.aRange==0 ? 10000 : data.aRange);
         if (value<0) value=0; else if (value>1) value=1;
-        if (control == CONTROL_MEDIA_SCALE) value = value*2;
+        if (control == CONTROL_MEDIA_SCALE || control == CONTROL_MEDIA_SPEED) value = value*2;
     }
     return value;
 }

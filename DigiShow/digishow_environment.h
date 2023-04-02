@@ -156,7 +156,11 @@ public:
         ControlMediaScale    = CONTROL_MEDIA_SCALE,
         ControlMediaRotation = CONTROL_MEDIA_ROTATION,
         ControlMediaXOffset  = CONTROL_MEDIA_XOFFSET,
-        ControlMediaYOffset  = CONTROL_MEDIA_YOFFSET
+        ControlMediaYOffset  = CONTROL_MEDIA_YOFFSET,
+        ControlMediaVolume   = CONTROL_MEDIA_VOLUME,
+        ControlMediaSpeed    = CONTROL_MEDIA_SPEED,
+        ControlMediaPosition = CONTROL_MEDIA_POSITION
+
     };
     Q_ENUM(MediaControl)
 

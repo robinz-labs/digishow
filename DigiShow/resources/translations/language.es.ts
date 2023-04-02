@@ -147,153 +147,168 @@
         <translation>Y</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="720"/>
+        <location filename="../../digishow_environment.cpp" line="706"/>
+        <source>Speed</source>
+        <translation>Velocidad</translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="707"/>
+        <source>Position</source>
+        <translation>Posición</translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="723"/>
         <source>Bank</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="721"/>
+        <location filename="../../digishow_environment.cpp" line="724"/>
         <source>Modulation</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="722"/>
+        <location filename="../../digishow_environment.cpp" line="725"/>
         <source>Foot Pedal</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="723"/>
+        <location filename="../../digishow_environment.cpp" line="726"/>
         <source>Data Entry</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="724"/>
+        <location filename="../../digishow_environment.cpp" line="705"/>
         <source>Volume</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_environment.cpp" line="725"/>
-        <source>Pan</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_environment.cpp" line="726"/>
-        <source>Expression</source>
-        <translation></translation>
+        <translation>Volumen</translation>
     </message>
     <message>
         <location filename="../../digishow_environment.cpp" line="727"/>
-        <source>Bank (LSB)</source>
+        <source>Volume </source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../digishow_environment.cpp" line="728"/>
-        <source>Sustain</source>
+        <source>Pan</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../digishow_environment.cpp" line="729"/>
-        <source>Portamento</source>
+        <source>Expression</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../digishow_environment.cpp" line="730"/>
-        <source>Resonance</source>
+        <source>Bank (LSB)</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../digishow_environment.cpp" line="731"/>
-        <source>Cutoff</source>
+        <source>Sustain</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../digishow_environment.cpp" line="732"/>
-        <source>Reverb</source>
+        <source>Portamento</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../digishow_environment.cpp" line="733"/>
+        <source>Resonance</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="734"/>
+        <source>Cutoff</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="735"/>
+        <source>Reverb</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="736"/>
         <source>Chorus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="750"/>
+        <location filename="../../digishow_environment.cpp" line="753"/>
         <source>Mid C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="751"/>
+        <location filename="../../digishow_environment.cpp" line="754"/>
         <source>Kick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="752"/>
+        <location filename="../../digishow_environment.cpp" line="755"/>
         <source>Side Stick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="753"/>
+        <location filename="../../digishow_environment.cpp" line="756"/>
         <source>Snare 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="763"/>
+        <location filename="../../digishow_environment.cpp" line="766"/>
         <source>High Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="764"/>
+        <location filename="../../digishow_environment.cpp" line="767"/>
         <source>Crash</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="765"/>
+        <location filename="../../digishow_environment.cpp" line="768"/>
         <source>High Tom 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="766"/>
+        <location filename="../../digishow_environment.cpp" line="769"/>
         <source>Ride</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="754"/>
+        <location filename="../../digishow_environment.cpp" line="757"/>
         <source>Clap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="755"/>
+        <location filename="../../digishow_environment.cpp" line="758"/>
         <source>Snare 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="756"/>
+        <location filename="../../digishow_environment.cpp" line="759"/>
         <source>Low Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="757"/>
+        <location filename="../../digishow_environment.cpp" line="760"/>
         <source>Closed Hat</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="758"/>
+        <location filename="../../digishow_environment.cpp" line="761"/>
         <source>Low Tom 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="759"/>
+        <location filename="../../digishow_environment.cpp" line="762"/>
         <source>Pedal Hat</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="760"/>
-        <location filename="../../digishow_environment.cpp" line="762"/>
+        <location filename="../../digishow_environment.cpp" line="763"/>
+        <location filename="../../digishow_environment.cpp" line="765"/>
         <source>Mid Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="761"/>
+        <location filename="../../digishow_environment.cpp" line="764"/>
         <source>Open Hat</source>
         <translation></translation>
     </message>
@@ -389,7 +404,7 @@
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="348"/>
-        <location filename="../../digishow_interface.cpp" line="749"/>
+        <location filename="../../digishow_interface.cpp" line="755"/>
         <source>Metronome</source>
         <translation>Metrónomo</translation>
     </message>
@@ -517,71 +532,71 @@
         <translation>Fondo</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="683"/>
+        <location filename="../../digishow_interface.cpp" line="689"/>
         <source>Media Clip</source>
         <translation>Multimedia</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="701"/>
+        <location filename="../../digishow_interface.cpp" line="707"/>
         <source>Canvas</source>
         <translation>Lienzo</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="707"/>
+        <location filename="../../digishow_interface.cpp" line="713"/>
         <source>Audio Clip</source>
         <translation>Audio</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="713"/>
+        <location filename="../../digishow_interface.cpp" line="719"/>
         <source>MIDI Clip</source>
         <translation>MIDI</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="721"/>
-        <location filename="../../digishow_interface.cpp" line="728"/>
-        <location filename="../../digishow_interface.cpp" line="736"/>
+        <location filename="../../digishow_interface.cpp" line="727"/>
+        <location filename="../../digishow_interface.cpp" line="734"/>
+        <location filename="../../digishow_interface.cpp" line="742"/>
         <source>Remote</source>
         <translation>Remota</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="721"/>
-        <location filename="../../digishow_interface.cpp" line="728"/>
-        <location filename="../../digishow_interface.cpp" line="736"/>
+        <location filename="../../digishow_interface.cpp" line="727"/>
+        <location filename="../../digishow_interface.cpp" line="734"/>
+        <location filename="../../digishow_interface.cpp" line="742"/>
         <source>Pipe</source>
         <translation>Tubería</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="722"/>
+        <location filename="../../digishow_interface.cpp" line="728"/>
         <source>Analog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="729"/>
+        <location filename="../../digishow_interface.cpp" line="735"/>
         <source>Binary</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="737"/>
+        <location filename="../../digishow_interface.cpp" line="743"/>
         <source>Note</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="742"/>
+        <location filename="../../digishow_interface.cpp" line="748"/>
         <source>Launch</source>
         <translation>Lanzamiento</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="743"/>
+        <location filename="../../digishow_interface.cpp" line="749"/>
         <source>Preset</source>
         <translation>Preset</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="750"/>
+        <location filename="../../digishow_interface.cpp" line="756"/>
         <source>Beat %1</source>
         <translation>Latido %1</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="759"/>
+        <location filename="../../digishow_interface.cpp" line="765"/>
         <source>Key</source>
         <translation>Tecla</translation>
     </message>
@@ -637,8 +652,8 @@
         <location filename="../MainWindow.qml" line="293"/>
         <location filename="../MainWindow.qml" line="775"/>
         <location filename="../MainWindow.qml" line="788"/>
-        <location filename="../MainWindow.qml" line="833"/>
-        <location filename="../MainWindow.qml" line="854"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
@@ -787,16 +802,16 @@
     <message>
         <location filename="../MainWindow.qml" line="775"/>
         <location filename="../MainWindow.qml" line="788"/>
-        <location filename="../MainWindow.qml" line="833"/>
-        <location filename="../MainWindow.qml" line="854"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Don&apos;t Save</source>
         <translation>No guardar</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="775"/>
         <location filename="../MainWindow.qml" line="788"/>
-        <location filename="../MainWindow.qml" line="833"/>
-        <location filename="../MainWindow.qml" line="854"/>
+        <location filename="../MainWindow.qml" line="834"/>
+        <location filename="../MainWindow.qml" line="855"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -806,12 +821,12 @@
         <translation>¿ Quieres guardar todos los datos en un archivo antes de abrir otro ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="831"/>
+        <location filename="../MainWindow.qml" line="832"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>¿ Quieres guardar los datos actuales antes de abrir el archivo %1 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="853"/>
+        <location filename="../MainWindow.qml" line="854"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de cerrar la aplicación ?</translation>
     </message>
@@ -924,66 +939,71 @@
     </message>
     <message>
         <location filename="../MwEndpointMoreOptions.qml" line="242"/>
+        <source>Value Range (ms)</source>
+        <translation>Rango (ms)</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointMoreOptions.qml" line="269"/>
         <source>Value Range (steps)</source>
         <translation>Rango (pasos)</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="269"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="296"/>
         <source>Value Range (Freq.)</source>
         <translation>Rango (frecuencia)</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="296"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="323"/>
         <source>Smoothing Level</source>
         <translation>Nivel de suavizado</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="323"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="350"/>
         <source>Sampling Interval</source>
         <translation>Intervalo de muestreo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="350"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="377"/>
         <source>Speed (steps/sec)</source>
         <translation>Velocidad (pasos/seg)</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="377"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="404"/>
         <source>Original Position</source>
         <translation>Posición original</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="402"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="429"/>
         <source>A+  A-  B+  B-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="403"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="430"/>
         <source>PUL and DIR</source>
         <translation>PUL y DIR</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="413"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="440"/>
         <source>Drive Lines</source>
         <translation>Accionamiento</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="438"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="465"/>
         <source>Default</source>
         <translation>Por defecto</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="439"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="466"/>
         <source>Internal Pull-Up</source>
         <translation>Pull-Up interna</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="440"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="467"/>
         <source>External PU/PD</source>
         <translation>PU/PD externa</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="450"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="477"/>
         <source>PU/PD Resistor</source>
         <translation>Resistencia PU/PD</translation>
     </message>
@@ -1067,78 +1087,78 @@
         <translation>Archivo ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="75"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="78"/>
         <source>Options ...</source>
         <translation>Opciones ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="103"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="106"/>
         <source>Select Audio File</source>
         <translation>Seleccionar archivo de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="106"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="109"/>
         <source>Audio files</source>
         <translation>Archivos de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="107"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="110"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="150"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="153"/>
         <source>Audio Clip Playback Options</source>
         <translation>Opciones de reproducción de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="175"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="178"/>
         <source>Play Alone</source>
         <translation>Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="199"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="202"/>
         <source>Volume</source>
         <translation>Volumen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="213"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="216"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="223"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="226"/>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="237"/>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="261"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="240"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="264"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="247"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="250"/>
         <source>Position</source>
         <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="271"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="274"/>
         <source>Duration</source>
         <translation>Duración</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="292"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="295"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="308"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="311"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="330"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="333"/>
         <source>Audio Clip</source>
         <translation>Clip de audio</translation>
     </message>
@@ -1161,163 +1181,163 @@
         <translation>Archivo ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="111"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="114"/>
         <source>Options ...</source>
         <translation>Opciones ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="139"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="142"/>
         <source>Select Video File</source>
         <translation>Seleccionar archivo de video</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="142"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="145"/>
         <source>Video files</source>
         <translation>Archivos de video</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="143"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="146"/>
         <source>Image files</source>
         <translation>Archivos de imagen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="145"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="148"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="188"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="191"/>
         <source>Pixel Mapping</source>
         <translation>Mapeo de píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="221"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="224"/>
         <source>Pixel Mode</source>
         <translation>Modo de píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="244"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="247"/>
         <source>Pixel Count</source>
         <translation>Recuento de píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="267"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="270"/>
         <source>From Pixel</source>
         <translation>de píxel</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="290"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="293"/>
         <source>To Universe</source>
         <translation>a universo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="313"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="316"/>
         <source>To Channel</source>
         <translation>a canal</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="323"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="326"/>
         <source>Playback Options</source>
         <translation>Opciones de reproducción</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="546"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="549"/>
         <source>Pixels</source>
         <translation>Píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="343"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="346"/>
         <source>Play Alone</source>
         <translation>Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="144"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="147"/>
         <source>Image Sequence</source>
         <translation>Secuencia de imágenes</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="367"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="370"/>
         <source>Fade In</source>
         <translation>Fundido</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="391"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="394"/>
         <source>Volume</source>
         <translation>Volumen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="405"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="408"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="415"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="418"/>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="429"/>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="453"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="432"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="456"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="439"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="442"/>
         <source>Position</source>
         <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="463"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="466"/>
         <source>Duration</source>
         <translation>Duración</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="484"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="487"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="500"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="503"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="545"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="548"/>
         <source>Dimmer</source>
         <translation>Dimmer</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="568"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="571"/>
         <source>Mono</source>
         <translation>Mono</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="569"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="572"/>
         <source>RGB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="570"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="573"/>
         <source>RBG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="571"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="574"/>
         <source>GRB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="572"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="575"/>
         <source>GBR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="573"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="576"/>
         <source>BRG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="574"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="577"/>
         <source>BGR</source>
         <translation></translation>
     </message>
@@ -1380,67 +1400,67 @@
         <translation>Archivo ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="75"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="78"/>
         <source>Options ...</source>
         <translation>Opciones ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="103"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="106"/>
         <source>Select MIDI File</source>
         <translation>Seleccionar archivo MIDI</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="106"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="109"/>
         <source>MIDI files</source>
         <translation>Archivos MIDI</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="107"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="110"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="150"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="153"/>
         <source>MIDI Clip Playback Options</source>
         <translation>Opciones de reproducción MIDI</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="175"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="178"/>
         <source>Play Alone</source>
         <translation>Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="189"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="192"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="199"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="202"/>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="213"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="216"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="223"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="226"/>
         <source>Duration</source>
         <translation>Duración</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="244"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="247"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="260"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="263"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="282"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="285"/>
         <source>MIDI Clip</source>
         <translation>Clip MIDI</translation>
     </message>
@@ -1643,144 +1663,144 @@
         <translation>Archivo ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="113"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="116"/>
         <source>Options ...</source>
         <translation>Opciones ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="148"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="151"/>
         <source>?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="153"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="156"/>
         <source>Media Clip<byte value="xd"/>
 JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages can be presented dynamically on the screen. Please enter the url of your online media file, or click button &apos;File...&apos; to select a local media file.</source>
         <translation>Clip multimedia
 Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web local o en línea, se pueden presentar de forma dinámica en la pantalla. Ingrese la URL de su archivo multimedia en línea o haga clic en el botón &apos;Archivo ...&apos; para seleccionar un archivo multimedia local.</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="154"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="157"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="160"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="163"/>
         <source>Select Media File</source>
         <translation>Seleccionar archivo multimedia</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="163"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="166"/>
         <source>Video and picture</source>
         <translation>Video e imagen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="164"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="167"/>
         <source>Web page file</source>
         <translation>Archivo de página web</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="207"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="210"/>
         <source>Media Clip Display Options</source>
         <translation>Opciones de visualización</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="227"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="230"/>
         <source>Show Alone</source>
         <translation>Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="251"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="254"/>
         <source>Fade In</source>
         <translation>Fundido</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="276"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="279"/>
         <source>Opacity</source>
         <translation>Opacidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="300"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="303"/>
         <source>Scale</source>
         <translation>Escala</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="324"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="327"/>
         <source>Rotation</source>
         <translation>Rotación</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="348"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="351"/>
         <source>X Offset</source>
         <translation>X</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="372"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="375"/>
         <source>Y Offset</source>
         <translation>Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="382"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="385"/>
         <source>Options for Video Clip Only</source>
         <translation>Opciones para el videoclip</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="402"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="405"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="426"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="429"/>
         <source>Volume</source>
         <translation>Volumen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="440"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="443"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="450"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="453"/>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="464"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="467"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="474"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="477"/>
         <source>Position</source>
         <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="484"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="487"/>
         <source>Options for Web Clip Only</source>
         <translation>Opciones para el clip web</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="503"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="506"/>
         <source>Run Java Script</source>
         <translation>Java Script</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="519"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="522"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="541"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="544"/>
         <source>Backlight</source>
         <translation>Luz de fondo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="542"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="545"/>
         <source>Media Clip</source>
         <translation>Clip multimedia</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="543"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="546"/>
         <source>Canvas</source>
         <translation>Lienzo</translation>
     </message>

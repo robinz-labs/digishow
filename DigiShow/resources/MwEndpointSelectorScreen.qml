@@ -589,6 +589,11 @@ Item {
             v = DigishowEnvironment.ControlMediaXOffset;  items.push({ text: digishow.getMediaControlName(v), value: v })
             v = DigishowEnvironment.ControlMediaYOffset;  items.push({ text: digishow.getMediaControlName(v), value: v })
 
+            items.push({ text: "-", value: -1 })
+            v = DigishowEnvironment.ControlMediaVolume;   items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaSpeed;    items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaPosition; items.push({ text: digishow.getMediaControlName(v), value: v })
+
             menuMediaControl.optionItems = items
             menuMediaControl.selectedIndex = 0
         }
@@ -651,7 +656,8 @@ Item {
         var mediaControl = menuMediaControl.selectedItemValue
         var enables = {}
 
-        if (endpointType === DigishowEnvironment.EndpointScreenLight) {
+        if (endpointType === DigishowEnvironment.EndpointScreenLight ||
+            endpointType === DigishowEnvironment.EndpointScreenCanvas) {
 
             enables["optInitialA"] = true
 
@@ -662,7 +668,14 @@ Item {
                 mediaControl === DigishowEnvironment.ControlMediaStopAll) {
 
                 enables["optInitialB"] = true
+
+            } else if (mediaControl === DigishowEnvironment.ControlMediaPosition) {
+
+                enables["optInitialA"] = true
+                enables["optRangeMSec"] = true
+
             } else {
+
                 enables["optInitialA"] = true
             }
         }
