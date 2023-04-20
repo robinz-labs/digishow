@@ -243,9 +243,15 @@ QtObject {
                 v = options["mediaSpeed"];         if (v !== undefined) mediaSpeed    = v / 10000
                 v = options["mediaPosition"];      if (v !== undefined) mediaPosition = v
 
+                // a-b loop options
+                v = options["mediaPositionA"];     var mediaPositionA = (v === undefined ? 0 : v)
+                v = options["mediaPositionB"];     var mediaPositionB = (v === undefined ? 0 : v)
+
                 view.repeat = mediaRepeat
                 view.volume = mediaVolume
                 view.speed  = mediaSpeed
+                view.positionA = mediaPositionA
+                view.positionB = mediaPositionB
                 view.player.seek(mediaPosition)
                 view.player.play()
             }

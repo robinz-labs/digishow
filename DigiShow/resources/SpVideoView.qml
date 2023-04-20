@@ -15,7 +15,9 @@ Item {
     property bool repeat: false
     property real volume: 1.0
     property real speed: 1.0
-    property int  position: 0 // millisecond
+    property int  position : 0 // millisecond
+    property int  positionA: 0 // A-B loop
+    property int  positionB: 0
 
     onPositionChanged: videoPlayer.seek(videoView.position)
 
@@ -36,6 +38,13 @@ Item {
         loops: (videoView.repeat ? MediaPlayer.Infinite : 1)
         volume: videoView.volume
         playbackRate: videoView.speed
+
+        onPositionChanged: {
+            // A-B loop
+            if (videoView.positionB > 0 && videoPlayer.position >= videoView.positionB) {
+                seek(videoView.positionA)
+            }
+        }
     }
 
     VideoOutput {
