@@ -137,6 +137,11 @@ private:
     QTimer *m_timer;
     DigishowMetronome *m_metronome;
 
+    // add-on process
+    qint64 m_pidAddon;
+    bool startAddon();
+    void stopAddon();
+
     // conversion between the relative path and the absolute url
     QString convertFileUrlToPath(const QString &url);
     QString convertFilePathToUrl(const QString &path);

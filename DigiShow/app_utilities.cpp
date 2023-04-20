@@ -322,14 +322,16 @@ void AppUtilities::showFileInShell(const QString & path)
     MacUtilities::showFileInFinder(path);
 #endif
 #ifdef Q_OS_WIN
-    QProcess::startDetached("explorer.exe", {"/select,", QDir::toNativeSeparators(path)});
+    QStringList params;
+    params << "/select," << QDir::toNativeSeparators(path);
+    QProcess::startDetached("explorer.exe", params);
 #endif
 }
 
 void AppUtilities::newAppInstance()
 {
     QString exeFilePath = QCoreApplication::applicationFilePath();
-    QProcess::startDetached(QString("\"%1\"").arg(exeFilePath));
+    QProcess::startDetached(exeFilePath, QStringList());
 }
 
 void AppUtilities::setMacWindowIsModified(QWindow *window, bool isModified)

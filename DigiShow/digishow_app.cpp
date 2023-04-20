@@ -46,6 +46,8 @@ DigishowApp::DigishowApp(QObject *parent) : QObject(parent)
     m_running = false;
     m_paused = false;
 
+    m_pidAddon = 0;
+
     // start a timer to handle the periodic actions
     m_timer = new QTimer();
     connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimerFired()));
@@ -405,12 +407,22 @@ int DigishowApp::start()
     // initialize all interfaces
     for (int n=0 ; n<m_interfaces.length() ; n++) m_interfaces[n]->init();
 
+#ifdef DIGISHOW_EXPERIMENTAL
+    // start add-on process
+    startAddon();
+#endif
+
     return hasError;
 }
 
 void DigishowApp::stop()
 {
     if (!m_running) return;
+
+#ifdef DIGISHOW_EXPERIMENTAL
+    // stop add-on process
+    stopAddon();
+#endif
 
     // disable all slots
     for (int n=0 ; n<m_slots.length() ; n++) {
@@ -844,6 +856,53 @@ bool DigishowApp::confirmEndpointIsEmployed(const QString &interfaceName, const 
     }
     return false;
 }
+
+bool DigishowApp::startAddon()
+{
+    if (m_filepath.isEmpty()) return false;
+    if (m_pidAddon != 0) stopAddon();
+
+    QFileInfo fileinfo(m_filepath);
+    QDir dir = fileinfo.dir();
+    QString name = fileinfo.completeBaseName();
+
+#ifdef Q_OS_WIN
+    QString filepathAddon = dir.filePath(name + ".bat");
+    if (!QFile::exists(filepathAddon)) filepathAddon = dir.filePath(name + ".cmd");
+    if (!QFile::exists(filepathAddon)) filepathAddon = dir.filePath(name + ".exe");
+#else
+    QString filepathAddon = dir.filePath(name + ".sh");
+    if (!QFile::exists(filepathAddon)) filepathAddon = dir.filePath(name + ".py");
+#endif
+
+    if (!QFile::exists(filepathAddon)) return false;
+
+    m_pidAddon = 0;
+    if (!QProcess::startDetached(filepathAddon, QStringList(), dir.path(), &m_pidAddon)) return false;
+
+    qDebug() << "add-on process: " << m_pidAddon;
+
+    return true;
+}
+
+void DigishowApp::stopAddon()
+{
+    if (m_pidAddon == 0) return;
+
+    QProcess process;
+    QStringList params;
+#ifdef Q_OS_WIN
+    params << "/pid" << QString::number(m_pidAddon) << "/t" << "/f";
+    process.start("taskkill", params);
+#else
+    params << QString::number(m_pidAddon);
+    process.start("kill", params);
+#endif
+    process.waitForFinished(5000);
+
+    m_pidAddon = 0;
+}
+
 
 QString DigishowApp::convertFileUrlToPath(const QString &url)
 {
