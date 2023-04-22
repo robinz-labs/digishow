@@ -39,10 +39,13 @@ int DgsHueInterface::openInterface()
 
     updateMetadata();
 
-    // get hue bridge ip
+    // get hue bridge options
     QString serial = m_interfaceOptions.value("serial").toString();
     m_username = m_interfaceOptions.value("username").toString();
+    m_bridgeIp = m_interfaceOptions.value("tcpHost").toString();
 
+    // obtain hue bridge ip dynamically using upnp
+    if (m_bridgeIp.isEmpty())
     for (int n=0 ; n<3 ; n++) {
         m_bridgeIp = AppUtilities::upnpWaitResponse("hue-bridgeid: " + serial, 2000).split("\r\n").at(0);
         if (!m_bridgeIp.isEmpty()) break;
