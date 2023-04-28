@@ -172,45 +172,45 @@ ApplicationWindow {
 
 
     Shortcut {
-        sequence: StandardKey.New
+        sequences: [ StandardKey.New ]
         onActivated: createNew()
     }
     Shortcut {
-        sequence: StandardKey.Open
+        sequences: [ StandardKey.Open ]
         onActivated: open()
     }
     Shortcut {
-        sequence: StandardKey.Save
+        sequences: [ StandardKey.Save ]
         onActivated: save()
     }
     Shortcut {
-        sequence: StandardKey.SaveAs
+        sequences: [ StandardKey.SaveAs ]
         onActivated: saveAs()
     }
     Shortcut {
-        sequence: StandardKey.Close
+        sequences: [ StandardKey.Close ]
         onActivated: close()
     }
 
     Shortcut {
-        sequence: StandardKey.Copy
+        sequences: [ StandardKey.Copy ]
         onActivated: slotListView.copySlots()
     }
     Shortcut {
-        sequence: StandardKey.Paste
+        sequences: [ StandardKey.Paste ]
         onActivated: slotListView.pasteSlots()
     }
     Shortcut {
-        sequence: StandardKey.SelectAll
+        sequences: [ StandardKey.SelectAll ]
         onActivated: slotListView.selectAll()
     }
 
     Shortcut {
-        sequence: StandardKey.Undo
+        sequences: [ StandardKey.Undo ]
         onActivated: slotListView.undo()
     }
     Shortcut {
-        sequence: StandardKey.Redo
+        sequences: [ StandardKey.Redo ]
         onActivated: slotListView.redo()
     }
 

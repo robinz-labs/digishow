@@ -40,14 +40,17 @@ Item {
                 property bool held: false
 
                 height: 70
-                anchors.left: parent.left
-                anchors.right: parent.right
                 anchors.leftMargin: showSlotSelection ? 32 : 20
                 anchors.rightMargin: 20
 
                 drag.target: held ? content : undefined
                 drag.axis: Drag.YAxis
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                Component.onCompleted: {
+                    anchors.left = parent.left
+                    anchors.right = parent.right
+                }
 
                 onPressed: held = true
                 onReleased: held = false

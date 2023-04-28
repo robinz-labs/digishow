@@ -1,8 +1,11 @@
 QT += quick serialport webengine websockets multimedia
 
-CONFIG += c++11
+CONFIG += c++11 sdk_no_version_check
 
-DEFINES += QT_DEPRECATED_WARNINGS
+DEFINES -= QT_DEPRECATED_WARNINGS
+DEFINES += QT_NO_DEPRECATED_WARNINGS
+
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 12.0
 
 SOURCES += \
     $$PWD/shared/md5.cpp \

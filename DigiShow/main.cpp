@@ -144,11 +144,18 @@ int main(int argc, char *argv[])
     float scale = appOptions.value("scale", 0).toFloat();
     if (scale > 0) qputenv("QT_SCALE_FACTOR", QString::number(scale).toUtf8());
 
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
+    QtWebEngine::initialize();
+#endif
+
     // create app
     MyApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
 
+#if (QT_VERSION < QT_VERSION_CHECK(5,15,0))
     QtWebEngine::initialize();
+#endif
 
     // set translation
     QString appLanguage = appOptions.value("language").toString();
@@ -210,10 +217,9 @@ int main(int argc, char *argv[])
     g_app->enableAutostart(appOptions.value("autostart", false).toBool());
 
     // load data file
-    bool isFileLoaded = false;
     if (argc > 1) {
         QString filepath = QString::fromLocal8Bit(argv[1]);
-        isFileLoaded = g_app->loadFile(filepath);
+        g_app->loadFile(filepath);
     }
 
 #ifdef DIGISHOW_EXPERIMENTAL
