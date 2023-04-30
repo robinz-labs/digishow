@@ -19,7 +19,7 @@
 #define DIGISHOWENVIRONMENT_H
 
 #include <QObject>
-#include "RtMidi.h"
+#include "rtmidi/RtMidi.h"
 #include "digishow.h"
 
 Q_DECLARE_METATYPE(dgsSignalData)

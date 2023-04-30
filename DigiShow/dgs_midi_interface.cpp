@@ -16,7 +16,7 @@
  */
 
 #include "dgs_midi_interface.h"
-#include "RtMidi.h"
+#include "rtmidi/RtMidi.h"
 
 DgsMidiInterface::DgsMidiInterface(QObject *parent) : DigishowInterface(parent)
 {

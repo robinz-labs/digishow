@@ -5,8 +5,6 @@ CONFIG += c++11 sdk_no_version_check
 DEFINES -= QT_DEPRECATED_WARNINGS
 DEFINES += QT_NO_DEPRECATED_WARNINGS
 
-QMAKE_MACOSX_DEPLOYMENT_TARGET = 12.0
-
 SOURCES += \
     $$PWD/shared/md5.cpp \
     $$PWD/shared/tcp_handler.cpp \
@@ -83,27 +81,17 @@ win32-msvc*: {
 }
 
 win32: {
-    INCLUDEPATH += $$PWD/../rtmidi/include
-    LIBS += -L$$PWD/../rtmidi/lib/win -lrtmidi
-
     RC_ICONS = $$PWD/icons/icon.ico
 }
 unix:!macx {
-    INCLUDEPATH += $$PWD/../rtmidi/include
-    LIBS += -L$$PWD/../rtmidi/lib/linux -lrtmidi
+
 }
 macx: {
-    INCLUDEPATH += $$PWD/../rtmidi/include
-    LIBS += -L$$PWD/../rtmidi/lib/mac -lrtmidi
-
-    LIBS += -framework Foundation \
-            -framework Cocoa \
-            -framework CoreMIDI \
-            -framework CoreFoundation \
-            -framework AVFoundation
-
-    INCLUDEPATH += /System/Library/Frameworks/AppKit.framework/Headers \
-                   /System/Library/Frameworks/Cocoa.framework/Headers
+    LIBS += \
+        -framework Foundation \
+        -framework Cocoa \
+        -framework CoreFoundation \
+        -framework AVFoundation
 
     QMAKE_CXXFLAGS += -x objective-c++
 
@@ -113,12 +101,17 @@ macx: {
     QMAKE_INFO_PLIST = Info.plist
     ICON = $$PWD/icons/app.icns
     DISTFILES += $$PWD/icons/doc.icns
+
+    #QMAKE_MACOSX_DEPLOYMENT_TARGET = 12.0
 }
 
 TRANSLATIONS = \
     $$PWD/resources/translations/language.zh_CN.ts \
     $$PWD/resources/translations/language.jp.ts \
     $$PWD/resources/translations/language.es.ts
+
+# RtMidi library
+include(modules/rtmidi/rtmidi.pri)
 
 # OSC library
 include(modules/osc/osc.pri)
