@@ -20,6 +20,9 @@
 #include "osc/composer/OscMessageComposer.h"
 #include "osc/reader/OscReader.h"
 #include "osc/reader/OscMessage.h"
+#include "osc/reader/OscBundle.h"
+#include "osc/exceptions/GetMessageException.h"
+#include "osc/exceptions/GetBundleException.h"
 
 #define OSC_UDP_PORT 8000
 #define OSC_OUT_FREQ 50
@@ -165,92 +168,152 @@ void DgsOscInterface::onUdpDataReceived()
         //qDebug() << "osc udp received: " << datagram.toHex();
         //#endif
 
-        OscReader reader(&datagram);
-        OscMessage* msg = reader.getMessage();
+        OscReader* reader = nullptr;
+        try {
+            reader = new OscReader(&datagram);
+        } catch (...) {
+            #ifdef QT_DEBUG
+            qDebug() << "invalid osc message:" << datagram.toHex();
+            #endif
+        }
+        if (reader == nullptr) continue;
+
+        OscMessage* msg = nullptr;
+        try {
+            msg = reader->getMessage();
+        } catch (GetMessageException &e) {
+        }
         if (msg != nullptr) {
 
-            QString address = msg->getAddress(); // get osc address
-
-            // look for all address-matched endpoints
-            for  (int n=0 ; n<m_endpointInfoList.length() ; n++) {
-
-                // confirm osc address and channel
-                if (m_endpointInfoList[n].address != address) continue;
-
-                int channel = m_endpointInfoList[n].channel;
-                if (channel<0 || channel >= (int)msg->getNumValues()) continue;
-
-                // osc value to dgs signal
-                OscValue* val = msg->getValue(channel);
-                char tag = val->getTag();
-
-                dgsSignalData data;
-                switch (m_endpointInfoList[n].type) {
-                case ENDPOINT_OSC_INT:
-                    if (tag == 'i') {
-                        data.signal = DATA_SIGNAL_ANALOG;
-                        data.aRange = 0x7FFFFFFF;
-                        data.aValue = val->toInteger();
-                    }
-                case ENDPOINT_OSC_FLOAT:
-                    if (tag == 'f') {
-                        data.signal = DATA_SIGNAL_ANALOG;
-                        data.aRange = 1000000;
-                        float fv = val->toFloat();
-                        if (fv < 0) fv = 0; else if (fv > 1.0) fv = 1.0;
-                        data.aValue = int(fv * data.aRange);
-                    }
-                case ENDPOINT_OSC_BOOL:
-                    if (tag == 'T') {
-                        data.signal = DATA_SIGNAL_BINARY;
-                        data.bValue = true;
-                    } else
-                    if (tag == 'F') {
-                        data.signal = DATA_SIGNAL_BINARY;
-                        data.bValue = false;
-                    }
-                }
-
-                // emit signal received event
-                if (data.signal != 0) emit dataReceived(n, data);
-            }
-
-            // emit raw data received event
-            if (m_needReceiveRawData) {
-
-                QVariantList rawDataValues;
-                int numValues = msg->getNumValues();
-
-                for (int n=0 ; n<numValues ; n++) {
-
-                    OscValue* val = msg->getValue(n);
-                    char tag = val->getTag();
-
-                    QVariant value;
-                    switch(tag) {
-                    case 'i': value = val->toInteger(); break;
-                    case 'f': value = val->toFloat(); break;
-                    case 'T': value = true; break;
-                    case 'F': value = false; break;
-                    }
-                    QVariantMap rawDataValue;
-                    rawDataValue["tag"  ] = QString(tag);
-                    rawDataValue["value"] = value;
-                    rawDataValues.append(rawDataValue);
-                }
-
-                QVariantMap rawData;
-                rawData["address"] = address;
-                rawData["values" ] = rawDataValues;
-                emit rawDataReceived(rawData);
-            }
-
+            processOscMessage(msg);
             delete msg;
+
+        } else {
+
+            OscBundle* bundle = nullptr;
+            try {
+                bundle = reader->getBundle();
+            } catch (GetBundleException &e) {
+            }
+            if (bundle != nullptr) {
+                processOscBundle(bundle);
+            }
         }
+
+        delete reader;
 
 
     } while (m_udp->hasPendingDatagrams());
 
+}
+
+void DgsOscInterface::processOscBundle(OscBundle* bundle)
+{
+    int count = bundle->getNumEntries();
+    for (int i = 0; i < count ; i++) {
+
+        OscMessage* msg = nullptr;
+        try {
+            msg = bundle->getMessage(i);
+        } catch (GetMessageException &e) {
+        }
+        if (msg != nullptr) {
+
+            processOscMessage(msg);
+            delete msg;
+
+        } else {
+
+            OscBundle* bundle1 = nullptr;
+            try {
+                bundle1 = bundle->getBundle(i);
+            } catch (GetBundleException &e) {
+            }
+            if (bundle1 != nullptr) {
+                processOscBundle(bundle1);
+            }
+        }
+    }
+
+}
+
+void DgsOscInterface::processOscMessage(OscMessage* msg)
+{
+    QString address = msg->getAddress(); // get osc address
+
+    // look for all address-matched endpoints
+    for  (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        // confirm osc address and channel
+        if (m_endpointInfoList[n].address != address) continue;
+
+        int channel = m_endpointInfoList[n].channel;
+        if (channel<0 || channel >= (int)msg->getNumValues()) continue;
+
+        // osc value to dgs signal
+        OscValue* val = msg->getValue(channel);
+        char tag = val->getTag();
+
+        dgsSignalData data;
+        switch (m_endpointInfoList[n].type) {
+        case ENDPOINT_OSC_INT:
+            if (tag == 'i') {
+                data.signal = DATA_SIGNAL_ANALOG;
+                data.aRange = 0x7FFFFFFF;
+                data.aValue = val->toInteger();
+            }
+        case ENDPOINT_OSC_FLOAT:
+            if (tag == 'f') {
+                data.signal = DATA_SIGNAL_ANALOG;
+                data.aRange = 1000000;
+                float fv = val->toFloat();
+                if (fv < 0) fv = 0; else if (fv > 1.0) fv = 1.0;
+                data.aValue = int(fv * data.aRange);
+            }
+        case ENDPOINT_OSC_BOOL:
+            if (tag == 'T') {
+                data.signal = DATA_SIGNAL_BINARY;
+                data.bValue = true;
+            } else
+            if (tag == 'F') {
+                data.signal = DATA_SIGNAL_BINARY;
+                data.bValue = false;
+            }
+        }
+
+        // emit signal received event
+        if (data.signal != 0) emit dataReceived(n, data);
+    }
+
+    // emit raw data received event
+    if (m_needReceiveRawData) {
+
+        QVariantList rawDataValues;
+        int numValues = msg->getNumValues();
+
+        for (int n=0 ; n<numValues ; n++) {
+
+            OscValue* val = msg->getValue(n);
+            char tag = val->getTag();
+
+            QVariant value;
+            switch(tag) {
+            case 'i': value = val->toInteger(); break;
+            case 'f': value = val->toFloat(); break;
+            case 'T': value = true; break;
+            case 'F': value = false; break;
+            }
+            QVariantMap rawDataValue;
+            rawDataValue["tag"  ] = QString(tag);
+            rawDataValue["value"] = value;
+            rawDataValues.append(rawDataValue);
+        }
+
+        QVariantMap rawData;
+        rawData["address"] = address;
+        rawData["values" ] = rawDataValues;
+        emit rawDataReceived(rawData);
+    }
 }
 
 void DgsOscInterface::onTimerFired()

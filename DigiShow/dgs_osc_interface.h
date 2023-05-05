@@ -22,6 +22,9 @@
 #include <QUdpSocket>
 #include "digishow_interface.h"
 
+class OscBundle;
+class OscMessage;
+
 class DgsOscInterface : public DigishowInterface
 {
     Q_OBJECT
@@ -52,6 +55,9 @@ private:
     // data buffer of all addresses
     QVariantMap m_dataAll;
     QStringList m_dataUpdatedAddresses;
+
+    void processOscBundle(OscBundle* bundle);
+    void processOscMessage(OscMessage* msg);
 };
 
 #endif // DGSOSCINTERFACE_H
