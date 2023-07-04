@@ -113,8 +113,8 @@ TRANSLATIONS = \
 # RtMidi library
 include(modules/rtmidi/rtmidi.pri)
 
-# OSC library
-include(modules/osc/osc.pri)
+# TinyOSC library
+include(modules/tinyosc/tinyosc.pri)
 
 # QHotKey library
 include(modules/qhotkey/qhotkey.pri)

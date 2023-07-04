@@ -15,14 +15,21 @@
 
  */
 
+#include <string.h>
 #include "dgs_osc_interface.h"
 
-#include "osc/composer/OscMessageComposer.h"
-#include "osc/reader/OscReader.h"
-#include "osc/reader/OscMessage.h"
-#include "osc/reader/OscBundle.h"
-#include "osc/exceptions/GetMessageException.h"
-#include "osc/exceptions/GetBundleException.h"
+#if _WIN32
+#include <winsock2.h>
+#define tosc_strncpy(_dst, _src, _len) strncpy_s(_dst, _len, _src, _TRUNCATE)
+#else
+#include <netinet/in.h>
+#define tosc_strncpy(_dst, _src, _len) strncpy(_dst, _src, _len)
+#endif
+#if __unix__ && !__APPLE__
+#include <endian.h>
+#define htonll(x) htobe64(x)
+#define ntohll(x) be64toh(x)
+#endif
 
 #define OSC_UDP_PORT 8000
 #define OSC_OUT_FREQ 50
@@ -168,78 +175,117 @@ void DgsOscInterface::onUdpDataReceived()
         //qDebug() << "osc udp received: " << datagram.toHex();
         //#endif
 
-        OscReader* reader = nullptr;
-        try {
-            reader = new OscReader(&datagram);
-        } catch (...) {
+        char* buffer = datagram.data();
+        int len = datagram.length();
+
+        if (tosc_isBundle(buffer)) {
+            tosc_bundle bundle;
+            tosc_parseBundle(&bundle, buffer, len);
+
             #ifdef QT_DEBUG
-            qDebug() << "invalid osc message:" << datagram.toHex();
+            const uint64_t timetag = tosc_getTimetag(&bundle);
+            printf("osc bundle timetag: %lld\n", timetag);
             #endif
-        }
-        if (reader == nullptr) continue;
 
-        OscMessage* msg = nullptr;
-        try {
-            msg = reader->getMessage();
-        } catch (GetMessageException &e) {
-        }
-        if (msg != nullptr) {
-
-            processOscMessage(msg);
-            delete msg;
-
+            tosc_message osc;
+            while (tosc_getNextMessage(&bundle, &osc)) {
+                processOscMessageIn(&osc);
+            }
         } else {
-
-            OscBundle* bundle = nullptr;
-            try {
-                bundle = reader->getBundle();
-            } catch (GetBundleException &e) {
-            }
-            if (bundle != nullptr) {
-                processOscBundle(bundle);
+            tosc_message osc;
+            if (tosc_parseMessage(&osc, buffer, len) == 0) {
+                processOscMessageIn(&osc);
             }
         }
-
-        delete reader;
-
 
     } while (m_udp->hasPendingDatagrams());
 
 }
 
-void DgsOscInterface::processOscBundle(OscBundle* bundle)
+void DgsOscInterface::processOscMessageIn(tosc_message *osc)
 {
-    int count = bundle->getNumEntries();
-    for (int i = 0; i < count ; i++) {
+    // extract osc message values
+    const char* address = tosc_getAddress(osc);
+    const char* format = tosc_getFormat(osc);
 
-        OscMessage* msg = nullptr;
-        try {
-            msg = bundle->getMessage(i);
-        } catch (GetMessageException &e) {
+    #ifdef QT_DEBUG
+    printf("[%i bytes] %s %s \r\n",
+        osc->len, // the number of bytes in the OSC message
+        address,  // the OSC address string, e.g. "/button1"
+        format);  // the OSC format string, e.g. "f"
+    #endif
+
+    QVariantList values;
+    QVariant null;
+
+    int vcount = strlen(osc->format);
+
+    for (int i = 0; i < vcount; i++) {
+        switch (format[i]) {
+        case 'b': {
+            const char *blob = NULL;
+            int len = 0;
+            tosc_getNextBlob(osc, &blob, &len);
+            values.append(null); // blob is unsupported
+            break;
         }
-        if (msg != nullptr) {
-
-            processOscMessage(msg);
-            delete msg;
-
-        } else {
-
-            OscBundle* bundle1 = nullptr;
-            try {
-                bundle1 = bundle->getBundle(i);
-            } catch (GetBundleException &e) {
-            }
-            if (bundle1 != nullptr) {
-                processOscBundle(bundle1);
-            }
+        case 'm': {
+            tosc_getNextMidi(osc);
+            values.append(null); // midi is unsupported
+            break;
+        }
+        case 'f': {
+            double fval = tosc_getNextFloat(osc);
+            values.append(fval);
+            break;
+        }
+        case 'd': {
+            double dval = tosc_getNextDouble(osc);
+            values.append(dval);
+            break;
+        }
+        case 'i': {
+            int ival = tosc_getNextInt32(osc);
+            values.append(ival);
+            break;
+        }
+        case 'h': {
+            tosc_getNextInt64(osc);
+            values.append(null); // int64 is unsupported
+            break;
+        }
+        case 't': {
+            tosc_getNextTimetag(osc);
+            values.append(null); // timetag is unsupported
+            break;
+        }
+        case 's': {
+            tosc_getNextString(osc);
+            values.append(null); // string is unsupported
+            break;
+        }
+        case 'T': {
+            values.append(true);
+            break;
+        }
+        case 'F': {
+            values.append(false);
+            break;
+        }
+        case 'N': {
+            values.append(null);
+            break;
+        }
+        case 'I': {
+            values.append(null);
+            break;
+        }
+        default:
+            i = vcount; // unrecognized data field encountered, stop fetching more
         }
     }
 
-}
-
-void DgsOscInterface::processOscMessage(OscMessage* msg)
-{
-    QString address = msg->getAddress(); // get osc address
+    // generate digishow signals for the received osc messages
 
     // look for all address-matched endpoints
     for  (int n=0 ; n<m_endpointInfoList.length() ; n++) {
@@ -248,36 +294,31 @@ void DgsOscInterface::processOscMessage(OscMessage* msg)
         if (m_endpointInfoList[n].address != address) continue;
 
         int channel = m_endpointInfoList[n].channel;
-        if (channel<0 || channel >= (int)msg->getNumValues()) continue;
+        if (channel<0 || channel >= values.length()) continue;
 
         // osc value to dgs signal
-        OscValue* val = msg->getValue(channel);
-        char tag = val->getTag();
+        const QVariant &val = values.at(channel);
 
         dgsSignalData data;
         switch (m_endpointInfoList[n].type) {
         case ENDPOINT_OSC_INT:
-            if (tag == 'i') {
+            if (!val.isNull() && val.type() == QVariant::Int) {
                 data.signal = DATA_SIGNAL_ANALOG;
                 data.aRange = 0x7FFFFFFF;
-                data.aValue = val->toInteger();
+                data.aValue = val.toInt();
             }
         case ENDPOINT_OSC_FLOAT:
-            if (tag == 'f') {
+            if (!val.isNull() && val.type() == QVariant::Double) {
                 data.signal = DATA_SIGNAL_ANALOG;
                 data.aRange = 1000000;
-                float fv = val->toFloat();
+                float fv = val.toFloat();
                 if (fv < 0) fv = 0; else if (fv > 1.0) fv = 1.0;
                 data.aValue = int(fv * data.aRange);
             }
         case ENDPOINT_OSC_BOOL:
-            if (tag == 'T') {
+            if (!val.isNull() && val.type() == QVariant::Bool) {
                 data.signal = DATA_SIGNAL_BINARY;
-                data.bValue = true;
-            } else
-            if (tag == 'F') {
-                data.signal = DATA_SIGNAL_BINARY;
-                data.bValue = false;
+                data.bValue = val.toBool();
             }
         }
 
@@ -289,23 +330,21 @@ void DgsOscInterface::processOscMessage(OscMessage* msg)
     if (m_needReceiveRawData) {
 
         QVariantList rawDataValues;
-        int numValues = msg->getNumValues();
+        int numValues = values.length();
 
         for (int n=0 ; n<numValues ; n++) {
 
-            OscValue* val = msg->getValue(n);
-            char tag = val->getTag();
-
-            QVariant value;
-            switch(tag) {
-            case 'i': value = val->toInteger(); break;
-            case 'f': value = val->toFloat(); break;
-            case 'T': value = true; break;
-            case 'F': value = false; break;
+            const QVariant &val = values.at(n);
+            char tag;
+            switch(val.type()) {
+                case QVariant::Int:    tag = 'i'; break;
+                case QVariant::Double: tag = 'f'; break;
+                case QVariant::Bool:   tag = (val.toBool() ? 'T' : 'F'); break;
+                default: tag = 'N';
             }
             QVariantMap rawDataValue;
             rawDataValue["tag"  ] = QString(tag);
-            rawDataValue["value"] = value;
+            rawDataValue["value"] = val;
             rawDataValues.append(rawDataValue);
         }
 
@@ -314,10 +353,75 @@ void DgsOscInterface::processOscMessage(OscMessage* msg)
         rawData["values" ] = rawDataValues;
         emit rawDataReceived(rawData);
     }
+
 }
+
+
+int DgsOscInterface::prepareOscMessageOut(char *buffer, const int len, const char *address, const QVariantList &values)
+{
+    memset(buffer, 0, len); // clear the buffer
+    int i = strlen(address);
+    if (address == NULL || i >= len) return -1;
+    tosc_strncpy(buffer, address, len);
+    i = (i + 4) & ~0x3;
+    buffer[i++] = ',';
+
+    int s_len = values.length();
+    QByteArray formatBytes(s_len, 0);
+    for (int n=0 ; n<s_len; n++) {
+        QVariant val = values[n];
+        switch (val.type()) {
+        case QVariant::Bool:
+            formatBytes[n] = (val.toBool() ? 'T' : 'F');
+            break;
+        case QVariant::Int:
+            formatBytes[n] = 'i';
+            break;
+        case QVariant::Double:
+            formatBytes[n] = 'f';
+            break;
+        default:
+            formatBytes[n] = 'N';
+        }
+    }
+    const char* format = formatBytes.constData();
+
+    if (format == NULL || (i + s_len) >= len) return -2;
+    tosc_strncpy(buffer+i, format, len-i-s_len);
+    i = (i + 4 + s_len) & ~0x3;
+
+    for (int j = 0; j < s_len; ++j) {
+        switch (format[j]) {
+            case 'f': {
+                if (i + 4 > len) return -3;
+                const float f = values[j].toFloat();
+                *((uint32_t *) (buffer+i)) = htonl(*((uint32_t *) &f));
+                i += 4;
+                break;
+            }
+            case 'i': {
+                if (i + 4 > len) return -3;
+                const uint32_t k = values[j].toInt();
+                *((uint32_t *) (buffer+i)) = htonl(k);
+                i += 4;
+                break;
+            }
+            case 'T': // true
+            case 'F': // false
+            case 'N': // nil
+                break;
+            default: return -4; // unknown type
+        }
+    }
+
+    return i; // return the total number of bytes written
+}
+
 
 void DgsOscInterface::onTimerFired()
 {
+    static char bufOscMsg[20480];
+
     if (m_udp->bytesToWrite() > 0) return;
 
     foreach (const QString & address, m_dataUpdatedAddresses) {
@@ -326,29 +430,11 @@ void DgsOscInterface::onTimerFired()
         QVariantList frame = m_dataAll.value(address).toList();
         if (frame.isEmpty()) continue;
 
-        OscMessageComposer msg(address);
-        for (int n=0 ; n<frame.length() ; n++) {
-            QVariant val = frame[n];
-
-            switch (val.type()) {
-            case QVariant::Bool:
-                if (val.toBool()) msg.pushTrue(); else msg.pushFalse();
-                break;
-            case QVariant::Int:
-                msg.pushInt32(val.toInt());
-                break;
-            case QVariant::Double:
-                msg.pushFloat(val.toFloat());
-                break;
-            default:
-                msg.pushNil();
-            }
-        }
+        int len = prepareOscMessageOut(bufOscMsg, sizeof(bufOscMsg), address.toUtf8(), frame);
+        if (len < 1) continue;
 
         // send osc message
-        QByteArray* formattedMsg = msg.getBytes();
-        m_udp->writeDatagram(formattedMsg->constData(), formattedMsg->length(),
-                             m_udpHost, (quint16)m_udpPort);
+        m_udp->writeDatagram(bufOscMsg, len, m_udpHost, (quint16)m_udpPort);
     }
 
     // send osc data once or continuously

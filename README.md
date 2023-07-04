@@ -146,10 +146,11 @@ Please use qmake tool or QtCreator app to build executables from the source code
 - Qt 5.12 or higher http://www.qt.io
 - RtMidi 4.0.0 http://www.music.mcgill.ca/~gary/rtmidi/
 - OSC library for C++ using Qt https://github.com/MugenSAS/osc-cpp-qt
+- TinyOSC library https://github.com/mhroth/tinyosc
 - Ableton Link library https://ableton.github.io/link/
 - global hotkey library https://github.com/Skycoder42/QHotkey
 
 The source code can be compiled for target platforms compatible with: 
 - macOS 10.13 or higher
 - windows 7, windows 10 or higher ( 64-bit version recommended )
-- linux ( see Qt and RtMidi websites for compatibility details )
+- linux ( see the websites of Qt and other dependent libraries for compatibility details )
