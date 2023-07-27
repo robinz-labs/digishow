@@ -396,12 +396,12 @@ QVariantList DgsRiocInterface::listOnline()
             uint16_t pid = serialPortInfo.productIdentifier();
 
             QString mode = guessRiocMode(vid, pid);
-            if (!mode.isEmpty()) {
-                info.clear();
-                info["comPort"] = serialPortInfo.portName();
-                info["mode"   ] = mode;
-                list.append(info);
-            }
+            if (mode.isEmpty()) mode = "general";
+
+            info.clear();
+            info["comPort"] = serialPortInfo.portName();
+            info["mode"   ] = mode;
+            list.append(info);
         }
     }
 

@@ -46,6 +46,40 @@
 #define PIN_MEGA_A14 68
 #define PIN_MEGA_A15 69
 
+
+// pins on arduino plc
+
+#define PIN_PLC_X0 = 25;
+#define PIN_PLC_X1 = 26;
+#define PIN_PLC_X2 = 27;
+#define PIN_PLC_X3 = 28;
+#define PIN_PLC_X4 = 29;
+#define PIN_PLC_X5 = 39;
+#define PIN_PLC_X6 = 30;
+#define PIN_PLC_X7 = 31;
+#define PIN_PLC_X10 = 32;
+#define PIN_PLC_X11 = 33;
+#define PIN_PLC_X12 = 34;
+#define PIN_PLC_X13 = 35;
+#define PIN_PLC_X14 = 36;
+#define PIN_PLC_X15 = 37;
+#define PIN_PLC_X16 = 40;
+#define PIN_PLC_X17 = 41;
+
+#define PIN_PLC_Y0 = 4;
+#define PIN_PLC_Y1 = 5;
+#define PIN_PLC_Y2 = 2;
+#define PIN_PLC_Y3 = 3;
+#define PIN_PLC_Y4 = 6;
+#define PIN_PLC_Y5 = 7;
+#define PIN_PLC_Y6 = 8;
+#define PIN_PLC_Y7 = 9;
+#define PIN_PLC_Y10 = 10;
+#define PIN_PLC_Y11 = 11;
+#define PIN_PLC_Y12 = 12;
+#define PIN_PLC_Y13 = 47;
+
+
 // pins on aladdin 2560 board (2019)
 
 #define PIN_UD_RESET 41
