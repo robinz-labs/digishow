@@ -30,7 +30,7 @@ Dialog {
     SwipeView {
         id: swipeView
         anchors.fill: parent
-        currentIndex: tabBar.currentIndex
+        currentIndex: 0
         interactive: false
         orientation: Qt.Vertical
         clip: true
@@ -429,11 +429,92 @@ Dialog {
                 anchors.right: parent.right
             }
         }
+
+        Rectangle {
+            id: rectAPlay
+            color: "transparent"
+
+            Label {
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                color: Material.accent
+                font.bold: true
+                font.pixelSize: 16
+                text: qsTr("Audio Player")
+            }
+
+            Label {
+                id: labelAPlayInfo
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.right: parent.right
+                anchors.rightMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 40
+                wrapMode: Label.Wrap
+                lineHeight: 1.3
+                text: qsTr("")
+            }
+
+            MwInterfaceListViewAPlay {
+                id: interfaceListViewAPlay
+                anchors.top: labelAPlayInfo.bottom
+                anchors.topMargin: 20
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+            }
+        }
+
+        Rectangle {
+            id: rectMPlay
+            color: "transparent"
+
+            Label {
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                color: Material.accent
+                font.bold: true
+                font.pixelSize: 16
+                text: qsTr("MIDI Player")
+            }
+
+            Label {
+                id: labelMPlayInfo
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.right: parent.right
+                anchors.rightMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 40
+                wrapMode: Label.Wrap
+                lineHeight: 1.3
+                text: qsTr("")
+            }
+
+            MwInterfaceListViewMPlay {
+                id: interfaceListViewMPlay
+                anchors.top: labelMPlayInfo.bottom
+                anchors.topMargin: 20
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+            }
+        }
+
     }
 
     footer: TabBar {
         id: tabBar
-        currentIndex: swipeView.currentIndex
+        onCurrentIndexChanged: {
+            swipeView.currentIndex = tabBar.currentIndex
+        }
 
         background: Rectangle {
             anchors.fill: parent
@@ -557,10 +638,16 @@ Dialog {
         interfaceListViewAudioin.refresh()
         interfaceListViewScreen.refresh()
         interfaceListViewPipe.refresh()
+        interfaceListViewAPlay.refresh()
+        interfaceListViewMPlay.refresh()
     }
 
     function show() {
-        showTab(-1)
+        if (swipeView.currentIndex < tabBar.count) {
+            showTab(-1)
+        } else {
+            showTab(0)
+        }
     }
 
     function showTab(index) {
@@ -568,7 +655,16 @@ Dialog {
 
         listOnline = digishow.listOnline()
 
-        if (index >= 0 && index < tabBar.count) tabBar.currentIndex = index
+        if (index >= 0) {
+            if (index < tabBar.count) {
+                swipeView.currentIndex = index
+                tabBar.currentIndex = index
+                tabBar.visible = true
+            } else if (index < swipeView.count) {
+                swipeView.currentIndex = index
+                tabBar.visible = false
+            }
+        }
         dialog.open()
 
         slotListView.highlightedIndex = -1

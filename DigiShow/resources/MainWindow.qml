@@ -573,10 +573,20 @@ ApplicationWindow {
                 label.lineHeight: 1.15
                 label.horizontalAlignment: Text.AlignLeft
                 label.leftPadding: 50
+                supportLongPress: true
 
-                onClicked: {
-                    if (!menuInterfaceSettings.visible) menuInterfaceSettings.open()
-                    else menuInterfaceSettings.close()
+                onClicked:  {
+                    if (menuInterfaceSettings.visible) menuInterfaceSettings.close()
+                    dialogInterfaces.show()
+                }
+
+                onRightClicked: {
+                    if (menuInterfaceSettings.visible) menuInterfaceSettings.close()
+                    else menuInterfaceSettings.open()
+                }
+
+                onLongPressed: {
+                    menuInterfaceSettings.open()
                 }
 
                 Menu {
@@ -626,6 +636,20 @@ ApplicationWindow {
                     MenuItem {
                         text: qsTr("Virtual Pipe ...")
                         onTriggered: dialogInterfaces.showTab(9)
+                    }
+
+                    Menu {
+                        title: qsTr("More")
+                        enabled: digishow.appExperimental()
+
+                        MenuItem {
+                            text: qsTr("Audio Player ...")
+                            onTriggered: dialogInterfaces.showTab(10)
+                        }
+                        MenuItem {
+                            text: qsTr("MIDI Player ...")
+                            onTriggered: dialogInterfaces.showTab(11)
+                        }
                     }
 
                 }

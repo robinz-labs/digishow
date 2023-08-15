@@ -109,6 +109,8 @@
         <file>MwEndpointSelectorLaunch.qml</file>
         <file>MwEndpointSelectorHotkey.qml</file>
         <file>MwEndpointSelectorMetronome.qml</file>
+        <file>MwInterfaceListViewMPlay.qml</file>
+        <file>MwInterfaceListViewAPlay.qml</file>
         <file>MwAboutDialog.qml</file>
         <file>MwAppOptionsDialog.qml</file>
         <file>MwInterfacesDialog.qml</file>
