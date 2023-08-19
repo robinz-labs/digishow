@@ -671,6 +671,14 @@ DigishowSlot *DigishowApp::slotAt(int index)
     return nullptr;
 }
 
+DigishowSlot *DigishowApp::slotTitled(const QString &title)
+{
+    foreach (DigishowSlot *slot, m_slots) {
+        if (slot->slotOptions()->value("title") == title) return slot;
+    }
+    return nullptr;
+}
+
 bool DigishowApp::updateLaunch(const QString &launchName, const QVariantList &slotLaunchOptions)
 {
     // clear launch item details if it already exists

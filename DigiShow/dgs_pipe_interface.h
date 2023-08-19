@@ -70,6 +70,9 @@ private:
     static QString signalToMessage(dgsSignalData data, int channel);
     static bool messageToSignal(const QString &message, dgsSignalData *data, int *channel);
 
+    // other message conversion
+    static bool messageToSlotOption(const QString &message, QString &slotName, QString &optName, QString &optValue);
+    static bool messageToSlotLink(const QString &message, QString &slotName, bool *linked);
 };
 
 

@@ -16,6 +16,7 @@
  */
 
 #include "dgs_pipe_interface.h"
+#include "digishow_slot.h"
 
 DgsPipeInterface::DgsPipeInterface(QObject *parent) : DigishowInterface(parent)
 {
@@ -176,23 +177,42 @@ int DgsPipeInterface::findEndpoint(int type, int channel)
 
 void DgsPipeInterface::processReceivedMessage(const QString &message)
 {
-    dgsSignalData data;
-    int channel;
-    if (!messageToSignal(message, &data, &channel)) return;
+    // for receiving signal
+    static dgsSignalData data;
+    static int channel;
 
-    int type = -1;
-    switch (data.signal) {
-    case 'A': type = ENDPOINT_PIPE_ANALOG; break;
-    case 'B': type = ENDPOINT_PIPE_BINARY; break;
-    case 'N': type = ENDPOINT_PIPE_NOTE;   break;
+    // for receiving others
+    static QString slotName;
+    static QString optName;
+    static QString optValue;
+    static bool linked;
+
+    if (messageToSignal(message, &data, &channel)) {
+
+        int type = -1;
+        switch (data.signal) {
+        case 'A': type = ENDPOINT_PIPE_ANALOG; break;
+        case 'B': type = ENDPOINT_PIPE_BINARY; break;
+        case 'N': type = ENDPOINT_PIPE_NOTE;   break;
+        }
+        if (type==-1) return;
+
+        int endpointIndex = findEndpoint(type, channel);
+        if (endpointIndex==-1) return;
+
+        // for local pipe
+        emit dataReceived(endpointIndex, data);
+
+    } else if (messageToSlotOption(message, slotName, optName, optValue)) {
+
+        DigishowSlot *slot = g_app->slotTitled(slotName);
+        if (slot != nullptr) slot->setSlotOption(optName, optValue);
+
+    } else if (messageToSlotLink(message, slotName, &linked)) {
+
+        DigishowSlot *slot = g_app->slotTitled(slotName);
+        if (slot != nullptr) slot->setLinked(linked);
     }
-    if (type==-1) return;
-
-    int endpointIndex = findEndpoint(type, channel);
-    if (endpointIndex==-1) return;
-
-    // for local pipe
-    emit dataReceived(endpointIndex, data);
 }
 
 void DgsPipeInterface::onWebsocketServerNewConnection()
@@ -274,6 +294,12 @@ QString DgsPipeInterface::signalToMessage(dgsSignalData data, int channel)
 
 bool DgsPipeInterface::messageToSignal(const QString &message, dgsSignalData *data, int *channel)
 {
+    // signal message:
+    // dgss,<channel>,<signal_type>,<a_value>,<a_range>,<b_value>
+
+    // example:
+    // dgss,1,65,1024,65535,0
+
     QStringList items = message.split(',');
     if (items.length()==6 && items[0]=="dgss") {
         *channel = items[1].toInt();
@@ -286,4 +312,43 @@ bool DgsPipeInterface::messageToSignal(const QString &message, dgsSignalData *da
 
     return false;
 }
+
+bool DgsPipeInterface::messageToSlotOption(const QString &message, QString &slotName, QString &optName, QString &optValue)
+{
+    // slot option message:
+    // slot,<slot_name>,<opt_name>,<opt_value>
+
+    // example:
+    // slot,Dimmer,outputSmoothing,1000
+
+    QStringList items = message.split(',');
+    if (items.length()==4 && items[0]=="slot") {
+        slotName = items[1];
+        optName = items[2];
+        optValue = items[3];
+        return true;
+    }
+
+    return false;
+}
+
+bool DgsPipeInterface::messageToSlotLink(const QString &message, QString &slotName, bool *linked)
+{
+    // slot link message:
+    // link,<slot_name>,<linked>
+
+    // example:
+    // link,Dimmer,0
+
+    QStringList items = message.split(',');
+    if (items.length()==3 && items[0]=="link") {
+        slotName = items[1];
+        *linked = items[2].toInt();
+        return true;
+    }
+
+    return false;
+
+}
+
 
