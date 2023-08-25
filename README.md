@@ -61,10 +61,11 @@ The primary function designed in the app is a smart signal gateway that works wi
 ## Release Downloads
 
 Please visit https://github.com/robinz-labs/digishow/releases/latest to download the latest releases:  
-- DigiShow LINK for macOS (64bit)
-- DigiShow LINK for windows (64bit)
+- DigiShow LINK for windows (64bit / intel)
+- DigiShow LINK for macOS (64bit / intel)
+- DigiShow LINK for macOS (64bit / apple silicon)
 
-Go to the page, where choose digishow_mac_x.x.x.zip or digishow_win_x.x.x.zip in Assets list to download.  
+Go to the page, where choose digishow_win_x.x.x_x64.zip, digishow_mac_x.x.x_x64.zip or digishow_mac_x.x.x_arm64.zip in Assets list to download. 
 
 
 ## Install and Run
@@ -72,11 +73,12 @@ Go to the page, where choose digishow_mac_x.x.x.zip or digishow_win_x.x.x.zip in
 Download and unzip the latest release file.  
 
 macOS:  
-Copy app "DigiShow" to your Applications folder and run it.  
+Copy app "DigiShow" to your Applications folder and run it. 
+For some macOS versions, it is also necessary to run the command xattr -cr /Applications/DigiShow.app in Terminal.
 
 Windows:  
 Copy folder "DigiShow LINK" to your disk and run "DigiShow.exe" in the folder.  
-For some Windows version, also must run Extra\vc_redist.x64.exe to install Visual C++ 2015 Redistributable to your windows system.  
+For some Windows versions, it is also necessary to run Extra\vc_redist.x64.exe to install Visual C++ 2015 Redistributable to your windows system.
 
 
 ## Extra Downloads and Resources
@@ -103,11 +105,11 @@ Required to enable DigiShow LINK to play MP4, MOV video files on your Windows co
 
 1. Let's try to use DigiShow for the first time. Connect a MIDI keyboard and an ENTTEC DMX USB Pro adapter to the USB ports of your computer. ENTTEC adapter is used to connect DMX lights. 
 
-2. Open the DigiShow LINK app, and click the 'Interface Manager' button in the upper right corner of the window. 
+2. Open the DigiShow LINK app, and click 'Interface Manager' button in the upper right corner of the window. 
 
 ![interface_manager_button](images/screenshot_interface_manager_button.png)
 
-Select the MIDI item, click the + button to create a new interface section labeled 'MIDI 1', where select your MIDI keyboard model. 
+Interface Manager dialog box appears, select the MIDI tab item and click the + button to create a new interface section labeled 'MIDI 1', where select your MIDI keyboard model. 
 
 ![screenshot_interface_midi](images/screenshot_interface_midi.png)
 
@@ -143,14 +145,13 @@ Click the 'Select Destination' drop-down menu, select DMX in it, set the output 
 DigiShow is open-source. If you would like to rebuild this software using the source code we contributed, please visit https://github.com/robinz-labs/ . 
 
 Please use qmake tool or QtCreator app to build executables from the source code, and confirm these library dependencies are required: 
-- Qt 5.12 or higher http://www.qt.io
+- Qt 5.12 or 5.15 LTS http://www.qt.io
 - RtMidi 4.0.0 http://www.music.mcgill.ca/~gary/rtmidi/
-- OSC library for C++ using Qt https://github.com/MugenSAS/osc-cpp-qt
 - TinyOSC library https://github.com/mhroth/tinyosc
 - Ableton Link library https://ableton.github.io/link/
 - global hotkey library https://github.com/Skycoder42/QHotkey
 
 The source code can be compiled for target platforms compatible with: 
 - macOS 10.13 or higher
-- windows 7, windows 10 or higher ( 64-bit version recommended )
+- windows 10 or windows 11 ( 64-bit version )
 - linux ( see the websites of Qt and other dependent libraries for compatibility details )

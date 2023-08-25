@@ -1456,26 +1456,32 @@
     </message>
     <message>
         <location filename="../MwEndpointSelectorMPlay.qml" line="216"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="240"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorMPlay.qml" line="226"/>
+        <source>Position</source>
+        <translation>Posición</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="250"/>
         <source>Duration</source>
         <translation>Duración</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="247"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="271"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="263"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="287"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="285"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="309"/>
         <source>MIDI Clip</source>
         <translation>Clip MIDI</translation>
     </message>
