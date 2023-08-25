@@ -93,6 +93,16 @@
   + in-delay / out-delay envelope parameters
   + autostart option
 
+  v1.2.5 20230821
+  + pixel player support over artnet (experimental)
+  ! fixed windows filepath url issue
+  + multi-session remote pipe
+  ! fixed filepath url issue
+  + add-on process support (experimental)
+  ! code optimization for qt5.15
+  ! rewrite osc interface using tinyosc library
+  + remote pipe supports more messages
+
  */
 
 #ifndef DIGISHOW_H

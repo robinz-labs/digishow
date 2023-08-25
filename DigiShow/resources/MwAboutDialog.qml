@@ -70,8 +70,7 @@ Dialog {
         font.pixelSize: 14
         text: qsTr("app version: ") + digishow.appVersion() + "\r\n" +
               qsTr("app build date: ") + digishow.appBuildDate() + "\r\n\r\n" +
-              qsTr("qt version: ") + digishow.appQtVersion() + "\r\n" +
-              qsTr("rtmidi version: ") + digishow.appRtMidiVersion()
+              qsTr("qt version: ") + digishow.appQtVersion()
     }
 
     Text {
@@ -134,7 +133,7 @@ Dialog {
         color: "#999999"
         lineHeight: 1.2
         font.pixelSize: 12
-        text: qsTr("© 2020-2022 Robin Zhang & Labs") + (!digishow.appExperimental() ? "\r\n\r\nThe software is provided on an 'AS IS' \r\nBASIS, WITHOUT WARRANTIES \r\nOR CONDITIONS OF ANY KIND, \r\neither express or implied." : "")
+        text: qsTr("© 2020-2023 Robin Zhang & Labs") + (!digishow.appExperimental() ? "\r\n\r\nThe software is provided on an 'AS IS' \r\nBASIS, WITHOUT WARRANTIES \r\nOR CONDITIONS OF ANY KIND, \r\neither express or implied." : "")
     }
 
 }

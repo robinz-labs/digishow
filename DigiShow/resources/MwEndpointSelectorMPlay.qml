@@ -119,7 +119,7 @@ Item {
         id: popupMediaOptions
 
         width: 280
-        height: 285
+        height: 320
         x: 100
         y: -height-10
         transformOrigin: Popup.BottomRight
@@ -200,6 +200,30 @@ Item {
                     color: "#cccccc"
                     font.pixelSize: 12
                     text: qsTr("Speed")
+                }
+            }
+
+            CSpinBox {
+                id: spinMediaPosition
+
+                width: 120
+                anchors.left: parent.left
+                anchors.leftMargin: 105
+                from: 0
+                to: 99999000
+                value: 0
+                stepSize: 1000
+                unit: qsTr("ms")
+
+                onValueModified: isModified = true
+
+                Text {
+                    anchors.right: parent.left
+                    anchors.rightMargin: 15
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: "#cccccc"
+                    font.pixelSize: 12
+                    text: qsTr("Position")
                 }
             }
 
@@ -308,6 +332,7 @@ Item {
         var v
         v = options["mediaAlone"];    checkMediaAlone.checked     = (v === undefined ? true : v )
         v = options["mediaSpeed"];    spinMediaSpeed.value        = (v === undefined ? 100   : v / 100)
+        v = options["mediaPosition"]; spinMediaPosition.value     = (v === undefined ? 0     : v )
         v = options["mediaDuration"]; spinMediaDuration.value     = (v === undefined ? 0     : v )
         v = options["mediaRepeat"];   checkMediaRepeat.checked    = (v === undefined ? false : v )
     }
@@ -317,6 +342,7 @@ Item {
         var options = {
             mediaAlone:    checkMediaAlone.checked,
             mediaSpeed:    spinMediaSpeed.value * 100,
+            mediaPosition: spinMediaPosition.value,
             mediaDuration: spinMediaDuration.value,
             mediaRepeat:   checkMediaRepeat.checked,
         }
