@@ -1,4 +1,8 @@
 {
+    "appInfo": {
+        "appName": "DigiShow LINK",
+        "appVersion": "1.2.5"
+    },
     "interfaces": [
         {
             "endpoints": [
@@ -22,7 +26,7 @@
             "type": "launch"
         },
         {
-            "acceptRemote": 1,
+            "acceptRemote": 2,
             "endpoints": [
                 {
                     "channel": 1,
