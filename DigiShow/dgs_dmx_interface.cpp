@@ -136,7 +136,7 @@ bool DgsDmxInterface::enttecDmxOpen(const QString &port, int channels)
 
     bool done = false;
     if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_PRO) {
-        done = m_com->open(port.toLocal8Bit(), 57600, CH_SETTING_8N1);
+        done = m_com->open(port.toLocal8Bit(), 115200, CH_SETTING_8N1);
     } else
     if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_OPEN) {
         done = m_com->open(port.toLocal8Bit(), 250000, CH_SETTING_8N2);
@@ -220,14 +220,18 @@ QVariantList DgsDmxInterface::listOnline()
         if (serialPortInfo.portName().startsWith("cu.")) continue;
 #endif
 
+        info.clear();
+        info["comPort"] = serialPortInfo.portName();
+
         if (serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier() &&
             serialPortInfo.vendorIdentifier()==FTDI_VID && serialPortInfo.productIdentifier()==FTDI_PID) {
 
-            info.clear();
-            info["comPort"  ] = serialPortInfo.portName();
-            info["mode"     ] = "enttec";
-            list.append(info);
+            info["mode"] = "enttec";
+        } else {
+            info["mode"] = "general";
         }
+
+        list.append(info);
     }
 
     return list;
