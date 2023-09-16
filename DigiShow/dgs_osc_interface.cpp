@@ -304,16 +304,14 @@ void DgsOscInterface::processOscMessageIn(tosc_message *osc)
         case ENDPOINT_OSC_INT:
             if (!val.isNull() && val.type() == QVariant::Int) {
                 data.signal = DATA_SIGNAL_ANALOG;
-                data.aRange = 0x7FFFFFFF;
-                data.aValue = val.toInt();
+                data.aRange = m_endpointInfoList[n].range;
+                data.aValue = qBound(0, val.toInt(), data.aRange);
             }
         case ENDPOINT_OSC_FLOAT:
             if (!val.isNull() && val.type() == QVariant::Double) {
                 data.signal = DATA_SIGNAL_ANALOG;
                 data.aRange = 1000000;
-                float fv = val.toFloat();
-                if (fv < 0) fv = 0; else if (fv > 1.0) fv = 1.0;
-                data.aValue = int(fv * data.aRange);
+                data.aValue = int(qBound(0.0, val.toDouble(), 1.0) * data.aRange);
             }
         case ENDPOINT_OSC_BOOL:
             if (!val.isNull() && val.type() == QVariant::Bool) {

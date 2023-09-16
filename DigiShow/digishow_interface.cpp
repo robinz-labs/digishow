@@ -627,7 +627,7 @@ void DigishowInterface::updateMetadata()
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
             endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_OSC_OUTPUT);
             endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_OSC_INPUT);
-            endpointInfo.range  = 0x7FFFFFFF;
+            endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000000); // 0x7fffffff
             endpointInfo.labelEPT = tr("OSC");
             endpointInfo.labelEPI = tr("Integer") + QString(" %1").arg(endpointInfo.channel + 1);
             break;

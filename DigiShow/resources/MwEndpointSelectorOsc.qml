@@ -68,7 +68,7 @@ Item {
         // init osc type option menu
         if (menuOscType.count === 0) {
             items = []
-            items.push({ text: qsTr("Integer") + " ( 32-bit )",   value: DigishowEnvironment.EndpointOscInt,   tag:"int"  })
+            items.push({ text: qsTr("Integer"),                   value: DigishowEnvironment.EndpointOscInt,   tag:"int"  })
             items.push({ text: qsTr("Float") + " ( 0 ~ 1.0000 )", value: DigishowEnvironment.EndpointOscFloat, tag:"float"})
             items.push({ text: qsTr("Boolean"),                   value: DigishowEnvironment.EndpointOscBool,  tag:"bool" })
             menuOscType.optionItems = items
@@ -84,8 +84,12 @@ Item {
         var endpointType = menuOscType.selectedItemValue
         var enables = {}
 
-        if (endpointType === DigishowEnvironment.EndpointOscInt ||
-            endpointType === DigishowEnvironment.EndpointOscFloat) {
+        if (endpointType === DigishowEnvironment.EndpointOscInt) {
+
+            enables["optInitialA"] = true
+            enables["optRangeInt"] = true
+
+        } else if (endpointType === DigishowEnvironment.EndpointOscFloat) {
 
             enables["optInitialA"] = true
 

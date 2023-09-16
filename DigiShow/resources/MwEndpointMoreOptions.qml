@@ -217,6 +217,33 @@ Popup {
         }
 
         CSpinBox {
+            id: spinOptRangeInt
+
+            property int defaultValue: 1000000
+
+            width: 120
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            from: 1
+            to: 0x7fffffff
+            stepSize: 1
+            unit: ""
+            visible: enabled
+
+
+            onValueModified: isModified = true
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Value Range")
+            }
+        }
+
+        CSpinBox {
             id: spinOptRangeMSec
 
             property int defaultValue: 100000
@@ -520,6 +547,7 @@ Popup {
         spinOptInitialMidi     .enabled = (enables["optInitialMidi"     ] === true)
         spinOptInitialDmx      .enabled = (enables["optInitialDmx"      ] === true)
         spinOptRange           .enabled = (enables["optRange"           ] === true)
+        spinOptRangeInt        .enabled = (enables["optRangeInt"        ] === true)
         spinOptRangeMSec       .enabled = (enables["optRangeMSec"       ] === true)
         spinOptRangeSteps      .enabled = (enables["optRangeSteps"      ] === true)
         spinOptRangeFrequency  .enabled = (enables["optRangeFrequency"  ] === true)
@@ -544,6 +572,7 @@ Popup {
         spinOptInitialMidi     .value   = spinOptInitialMidi     .defaultValue
         spinOptInitialDmx      .value   = spinOptInitialDmx      .defaultValue
         spinOptRange           .value   = spinOptRange           .defaultValue
+        spinOptRangeInt        .value   = spinOptRangeInt        .defaultValue
         spinOptRangeMSec       .value   = spinOptRangeMSec       .defaultValue
         spinOptRangeSteps      .value   = spinOptRangeSteps      .defaultValue
         spinOptRangeFrequency  .value   = spinOptRangeFrequency  .defaultValue
@@ -583,6 +612,11 @@ Popup {
         if (spinOptRange.enabled) {
             spinOptRange.value = getOptionValue("range", spinOptRange.defaultValue)
             if (spinOptRange.value !== spinOptRange.defaultValue) isDefault = false
+        }
+
+        if (spinOptRangeInt.enabled) {
+            spinOptRangeInt.value = getOptionValue("range", spinOptRangeInt.defaultValue)
+            if (spinOptRangeInt.value !== spinOptRangeInt.defaultValue) isDefault = false
         }
 
         if (spinOptRangeMSec.enabled) {
@@ -649,6 +683,8 @@ Popup {
         }
 
         if (spinOptRange.enabled) options["range"] = spinOptRange.value
+        else
+        if (spinOptRangeInt.enabled) options["range"] = spinOptRangeInt.value
         else
         if (spinOptRangeMSec.enabled) options["range"] = spinOptRangeMSec.value
         else
