@@ -22,13 +22,7 @@
 #include <QUdpSocket>
 #include "digishow_interface.h"
 
-#ifdef DIGISHOW_EXPERIMENTAL
-#define ARTNET_PIXEL_PLAYER_ENABLED
-#endif
-
-#ifdef ARTNET_PIXEL_PLAYER_ENABLED
 class DigishowPixelPlayer;
-#endif
 
 class DgsArtnetInterface : public DigishowInterface
 {
@@ -41,9 +35,8 @@ public:
     int closeInterface() override;
     int sendData(int endpointIndex, dgsSignalData data) override;
 
-#ifdef ARTNET_PIXEL_PLAYER_ENABLED
+    // for pixel player
     int loadMedia(const QVariantMap &mediaOptions) override;
-#endif
 
 signals:
 
@@ -51,9 +44,7 @@ public slots:
     void onUdpDataReceived();    // for input
     void onTimerFired();         // for output
 
-#ifdef ARTNET_PIXEL_PLAYER_ENABLED
-    void onPlayerFrameUpdated();
-#endif
+    void onPlayerFrameUpdated(); // for pixel player
 
 private:
 
@@ -72,15 +63,11 @@ private:
     // sequence number for artnet dmx output ( 0x01 ~ 0xff )
     unsigned char m_sequence;
 
-#ifdef ARTNET_PIXEL_PLAYER_ENABLED
-
-    // players hold all media
+    // pixel players hold all media
     QMap<QString, DigishowPixelPlayer*> m_players;
     bool initPlayer(const QVariantMap &mediaOptions);
     void stopAll();
     void setupPlayerPixelMapping(DigishowPixelPlayer *player, const QString &mediaName);
-
-#endif
 
 };
 

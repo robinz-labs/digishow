@@ -16,10 +16,7 @@
  */
 
 #include "dgs_artnet_interface.h"
-
-#ifdef ARTNET_PIXEL_PLAYER_ENABLED
 #include "digishow_pixel_player.h"
-#endif
 
 #define ARTNET_UDP_PORT 6454
 #define ARTNET_OUT_FREQ 30
@@ -99,15 +96,10 @@ int DgsArtnetInterface::openInterface()
         m_timer->setInterval(1000 / frequency);
         m_timer->start();
 
-#ifdef ARTNET_PIXEL_PLAYER_ENABLED
-
-        // load media and initialize players
+        // load media and initialize pixel players
         m_players.clear();
         QVariantList mediaList = cleanMediaList();
         for (int n=0 ; n<mediaList.length() ; n++) initPlayer(mediaList[n].toMap());
-
-#endif
-
     }
 
     m_isInterfaceOpened = true;
@@ -116,10 +108,7 @@ int DgsArtnetInterface::openInterface()
 
 int DgsArtnetInterface::closeInterface()
 {
-
-#ifdef ARTNET_PIXEL_PLAYER_ENABLED
-
-    // release players
+    // release pixel players
     QStringList playerNames = m_players.keys();
     int playerCount = playerNames.length();
     for (int n=0 ; n<playerCount ; n++) {
@@ -129,8 +118,6 @@ int DgsArtnetInterface::closeInterface()
         delete player;
         m_players.remove(key);
     }
-
-#endif
 
     if (m_timer != nullptr) {
         m_timer->stop();
@@ -169,8 +156,6 @@ int DgsArtnetInterface::sendData(int endpointIndex, dgsSignalData data)
         if (!m_dataAll.contains(universe)) m_dataAll[universe] = QByteArray(512, 0x00);
         m_dataAll[universe].data()[channel] = static_cast<unsigned char>(value);
 
-
-#ifdef ARTNET_PIXEL_PLAYER_ENABLED
 
     } else if (m_endpointInfoList[endpointIndex].type == ENDPOINT_ARTNET_MEDIA) {
 
@@ -216,15 +201,10 @@ int DgsArtnetInterface::sendData(int endpointIndex, dgsSignalData data)
             if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
             if (data.bValue) stopAll();
         }
-
-#endif
-
     }
 
     return ERR_NONE;
 }
-
-#ifdef ARTNET_PIXEL_PLAYER_ENABLED
 
 int DgsArtnetInterface::loadMedia(const QVariantMap &mediaOptions)
 {
@@ -320,8 +300,6 @@ void DgsArtnetInterface::setupPlayerPixelMapping(DigishowPixelPlayer *player, co
         }
     }
 }
-
-#endif
 
 void DgsArtnetInterface::onUdpDataReceived()
 {
@@ -421,12 +399,8 @@ void DgsArtnetInterface::onTimerFired()
     }
 }
 
-#ifdef ARTNET_PIXEL_PLAYER_ENABLED
-
 void DgsArtnetInterface::onPlayerFrameUpdated()
 {
     DigishowPixelPlayer *player = qobject_cast<DigishowPixelPlayer*>(sender());
     player->transferFrameAllMappedPixels();
 }
-
-#endif

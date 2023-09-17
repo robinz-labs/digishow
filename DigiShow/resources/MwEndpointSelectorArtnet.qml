@@ -516,12 +516,7 @@ Item {
         }
 
         Component.onCompleted: {
-            if (!digishow.appExperimental()) {
-                buttonArtnetType.visible = false
-                buttonArtnetUnit.anchors.left = buttonArtnetType.left
-                buttonArtnetUnit.anchors.leftMargin = 0
-                forMedia = false
-            }
+
         }
     }
 

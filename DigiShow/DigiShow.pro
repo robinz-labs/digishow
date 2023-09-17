@@ -35,6 +35,7 @@ SOURCES += \
     digishow_interface.cpp \
     digishow_slot.cpp \
     digishow_metronome.cpp \
+    digishow_pixel_player.cpp \
     main.cpp
 
 HEADERS += \
@@ -69,7 +70,8 @@ HEADERS += \
     digishow_environment.h \
     digishow_interface.h \
     digishow_slot.h \
-    digishow_metronome.h
+    digishow_metronome.h \
+    digishow_pixel_player.h
 
 RESOURCES += $$PWD/resources/main.qrc
 

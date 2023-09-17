@@ -114,7 +114,10 @@
 #include "app_utilities.h"
 
 extern QString g_appname;
+extern QString g_fullname;
 extern QString g_version;
+extern QString g_copyright;
+extern QString g_serial;
 
 extern DigishowApp *g_app;
 

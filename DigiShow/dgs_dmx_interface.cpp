@@ -24,6 +24,10 @@
 #define FTDI_VID 1027
 #define FTDI_PID 24577
 
+// digishow compatible widget USB
+#define DGSW_VID 0xF000
+#define DGSW_PID 0x1000
+
 #define DMX_OUT_FREQ 30
 
 DgsDmxInterface::DgsDmxInterface(QObject *parent) : DigishowInterface(parent)
@@ -49,7 +53,8 @@ int DgsDmxInterface::openInterface()
 
     // get com port configuration
     QString comPort = m_interfaceOptions.value("comPort").toString();
-    if (comPort.isEmpty()) comPort = ComHandler::findPort(FTDI_VID, FTDI_PID); // use default port
+    if (comPort.isEmpty()) comPort = ComHandler::findPort(DGSW_VID, DGSW_PID); // use default port
+    if (comPort.isEmpty()) comPort = ComHandler::findPort(FTDI_VID, FTDI_PID);
     if (comPort.isEmpty()) return ERR_INVALID_OPTION;
 
     // get number of total dmx channels
@@ -223,8 +228,9 @@ QVariantList DgsDmxInterface::listOnline()
         info.clear();
         info["comPort"] = serialPortInfo.portName();
 
-        if (serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier() &&
-            serialPortInfo.vendorIdentifier()==FTDI_VID && serialPortInfo.productIdentifier()==FTDI_PID) {
+        if (serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier() && ((
+            serialPortInfo.vendorIdentifier()==FTDI_VID && serialPortInfo.productIdentifier()==FTDI_PID ) || (
+            serialPortInfo.vendorIdentifier()==DGSW_VID && serialPortInfo.productIdentifier()==DGSW_PID ))) {
 
             info["mode"] = "enttec";
         } else {

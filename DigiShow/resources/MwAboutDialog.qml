@@ -19,6 +19,27 @@ Dialog {
         textSlogan.visible = false
         textSlogan.reset()
         timerSlogan.stop()
+
+        if (visible) {
+
+            if (digishow.appFullName() !== "")
+                textAppName.text = digishow.appFullName()
+            else
+                textAppName.text = digishow.appName()
+
+            textAppVersion.text =
+                qsTr("app version: ") + digishow.appVersion() + "\r\n" +
+                qsTr("app build date: ") + digishow.appBuildDate() + "\r\n" +
+                qsTr("qt version: ") + digishow.appQtVersion()
+
+            if (digishow.appSerial() !== "")
+                textAppVersion.text += "\r\n" + qsTr("s/n: ") + digishow.appSerial();
+
+            if (digishow.appCopyright() !== "")
+                textCopyright.text = digishow.appCopyright()
+            else
+                textCopyright.text = qsTr("© 2020-2023 Robin Zhang & Labs") + "\r\n\r\n" + qsTr("The software is provided on an 'AS IS' \r\nBASIS, WITHOUT WARRANTIES \r\nOR CONDITIONS OF ANY KIND, \r\neither express or implied.")
+        }
     }
 
     background: Image {
@@ -49,6 +70,7 @@ Dialog {
     }
 
     Text {
+        id: textAppName
         anchors.top: parent.top
         anchors.topMargin: 60
         anchors.left: parent.left
@@ -56,7 +78,7 @@ Dialog {
         color: Material.accent
         font.bold: false
         font.pixelSize: 18
-        text: digishow.appName() + (digishow.appExperimental() ? " +" : "" )
+        text: "_APPNAME"
     }
 
     Text {
@@ -68,9 +90,7 @@ Dialog {
         color: "#999999"
         lineHeight: 1.2
         font.pixelSize: 14
-        text: qsTr("app version: ") + digishow.appVersion() + "\r\n" +
-              qsTr("app build date: ") + digishow.appBuildDate() + "\r\n\r\n" +
-              qsTr("qt version: ") + digishow.appQtVersion()
+        text: "_VERSION"
     }
 
     Text {
@@ -133,7 +153,7 @@ Dialog {
         color: "#999999"
         lineHeight: 1.2
         font.pixelSize: 12
-        text: qsTr("© 2020-2023 Robin Zhang & Labs") + (!digishow.appExperimental() ? "\r\n\r\nThe software is provided on an 'AS IS' \r\nBASIS, WITHOUT WARRANTIES \r\nOR CONDITIONS OF ANY KIND, \r\neither express or implied." : "")
+        text: "_COPYRIGHT"
     }
 
 }

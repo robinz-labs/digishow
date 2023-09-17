@@ -19,7 +19,6 @@
 #define DIGISHOWENVIRONMENT_H
 
 #include <QObject>
-#include "rtmidi/RtMidi.h"
 #include "digishow.h"
 
 Q_DECLARE_METATYPE(dgsSignalData)
@@ -166,13 +165,16 @@ public:
 
     explicit DigishowEnvironment(QObject *parent = nullptr);
 
-    Q_INVOKABLE static QString appName()    { return g_appname; }
-    Q_INVOKABLE static QString appVersion() { return g_version; }
+    Q_INVOKABLE static QString appName()      { return g_appname; }
+    Q_INVOKABLE static QString appFullName()  { return g_fullname; }
+    Q_INVOKABLE static QString appVersion()   { return g_version; }
+    Q_INVOKABLE static QString appCopyright() { return g_copyright; }
+    Q_INVOKABLE static QString appSerial()    { return g_serial; }
+
     Q_INVOKABLE static QString appDataPath(const QString &filename = QString());
 
     Q_INVOKABLE static QString appBuildDate() { return __DATE__; }
     Q_INVOKABLE static QString appQtVersion() { return QT_VERSION_STR; }
-    Q_INVOKABLE static QString appRtMidiVersion() { return RTMIDI_VERSION; }
 
     Q_INVOKABLE static bool appExperimental() {
 #ifdef DIGISHOW_EXPERIMENTAL

@@ -17,8 +17,11 @@
 
 #include "digishow.h"
 
-QString g_appname = "DigiShow LINK";
-QString g_version = "1.2.5";
+QString g_appname   = "DigiShow LINK";
+QString g_fullname  = "";
+QString g_version   = "1.2.5";
+QString g_copyright = "";
+QString g_serial    = "";
 
 DigishowApp* g_app = nullptr;
 
