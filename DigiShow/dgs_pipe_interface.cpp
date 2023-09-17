@@ -186,6 +186,7 @@ void DgsPipeInterface::processReceivedMessage(const QString &message)
     static QString optName;
     static QString optValue;
     static bool linked;
+    static int launchId;
 
     if (messageToSignal(message, &data, &channel)) {
 
@@ -200,6 +201,12 @@ void DgsPipeInterface::processReceivedMessage(const QString &message)
         int endpointIndex = findEndpoint(type, channel);
         if (endpointIndex==-1) return;
 
+        // fix the analog signal if the value range dosen't match
+        if (type == ENDPOINT_PIPE_ANALOG && data.aRange != m_endpointInfoList[endpointIndex].range) {
+            data.aRange = m_endpointInfoList[endpointIndex].range;
+            data.aValue = qMin(data.aValue, data.aRange);
+        }
+
         // for local pipe
         emit dataReceived(endpointIndex, data);
 
@@ -212,6 +219,10 @@ void DgsPipeInterface::processReceivedMessage(const QString &message)
 
         DigishowSlot *slot = g_app->slotTitled(slotName);
         if (slot != nullptr) slot->setLinked(linked);
+
+    } else if (messageToLaunch(message, &launchId)) {
+
+        if (launchId != 0) g_app->startLaunch("launch" + QString::number(launchId));
     }
 }
 
@@ -348,7 +359,22 @@ bool DgsPipeInterface::messageToSlotLink(const QString &message, QString &slotNa
     }
 
     return false;
-
 }
 
+bool DgsPipeInterface::messageToLaunch(const QString &message, int *launchId)
+{
+    // launch message:
+    // launch,<launch_id>
+
+    // example:
+    // launch,1
+
+    QStringList items = message.split(',');
+    if (items.length()==2 && items[0]=="launch") {
+        *launchId = items[1].toInt();
+        return true;
+    }
+
+    return false;
+}
 

@@ -78,8 +78,7 @@ Item {
         } else if (endpointType === DigishowEnvironment.EndpointPipeAnalog) {
 
             enables["optInitialA"] = true
-
-            if (digishow.appExperimental()) enables["optRange"] = true
+            enables["optRange"] = true
         }
 
         moreOptions.resetOptions()
