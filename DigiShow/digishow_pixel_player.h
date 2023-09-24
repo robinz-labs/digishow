@@ -139,7 +139,7 @@ private:
     QElapsedTimer *m_elapsed;
 
     // pixel frame buffer
-    QByteArray m_frameLatest;  // each pixel occupies 4 bytes BGRA (A is alphe, used as opacity mask, 0 = transparency, other value = opacity)
+    QByteArray m_frameLatest;  // each pixel occupies 4 bytes BGRA (A is alpha, used as opacity mask, 0 = transparency, other value = opacity)
     QByteArray m_frameBackup;  // each pixel occupies 4 bytes BGRX (X is the marker for backup, 0 = not backed up, 0xff = backed up)
 
     // pixel mapping

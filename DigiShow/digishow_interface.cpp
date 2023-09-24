@@ -402,10 +402,12 @@ void DigishowInterface::updateMetadata()
             break;
         case INTERFACE_DMX:
             if      (typeName == "dimmer"     ) endpointInfo.type = ENDPOINT_DMX_DIMMER;
+            else if (typeName == "dimmer2x"   ) endpointInfo.type = ENDPOINT_DMX_DIMMER2;
             else if (typeName == "media"      ) endpointInfo.type = ENDPOINT_DMX_MEDIA;
             break;
         case INTERFACE_ARTNET:
             if      (typeName == "dimmer"     ) endpointInfo.type = ENDPOINT_ARTNET_DIMMER;
+            else if (typeName == "dimmer2x"   ) endpointInfo.type = ENDPOINT_ARTNET_DIMMER2;
             else if (typeName == "media"      ) endpointInfo.type = ENDPOINT_ARTNET_MEDIA;
             break;
         case INTERFACE_OSC:
@@ -591,6 +593,13 @@ void DigishowInterface::updateMetadata()
             endpointInfo.labelEPT = tr("DMX");
             endpointInfo.labelEPI = QString("Ch%1").arg(endpointInfo.channel + 1);
             break;
+        case ENDPOINT_DMX_DIMMER2:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = true;
+            endpointInfo.range  = 65535;
+            endpointInfo.labelEPT = tr("DMX");
+            endpointInfo.labelEPI = QString("Ch%1 +").arg(endpointInfo.channel + 1);
+            break;
         case ENDPOINT_DMX_MEDIA:
             endpointInfo.output = true;
             switch (endpointInfo.control) {
@@ -610,6 +619,14 @@ void DigishowInterface::updateMetadata()
             endpointInfo.range  = 255;
             endpointInfo.labelEPT = tr("ArtNet");
             endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(endpointInfo.channel + 1);
+            break;
+        case ENDPOINT_ARTNET_DIMMER2:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_ARTNET_OUTPUT);
+            endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_ARTNET_INPUT);
+            endpointInfo.range  = 65535;
+            endpointInfo.labelEPT = tr("ArtNet");
+            endpointInfo.labelEPI = QString("%1 : %2 +").arg(endpointInfo.unit).arg(endpointInfo.channel + 1);
             break;
         case ENDPOINT_ARTNET_MEDIA:
             endpointInfo.output = true;

@@ -225,6 +225,8 @@ Item {
         id: itemDmx
 
         anchors.left: buttonInterface.left
+        anchors.right: parent.right
+        anchors.rightMargin: 16
         anchors.top: buttonInterface.bottom
         anchors.topMargin: 10
         visible: false
@@ -459,8 +461,24 @@ Item {
 
             } else if (type === DigishowEnvironment.InterfaceDmx) {
 
-                //itemDmx.menuChannel.selectOption(endpointInfo["channel"])
+                itemDmx.menuType.selectOption(endpointInfo["type"])
                 itemDmx.spinChannel.value = endpointInfo["channel"] + 1
+
+                switch (endpointInfo["type"]) {
+                case DigishowEnvironment.EndpointDmxMedia:
+                    itemDmx.menuMediaControl.selectOption(endpointInfo["control"])
+
+                    var mediaName = endpointOptions["media"]
+                    var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
+                    var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
+                    var mediaUrl = "file://"
+                    if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
+                    itemDmx.textMediaUrl.text = mediaUrl
+
+                    itemDmx.setEndpointMediaOptions(endpointOptions)
+
+                    break
+                }
 
             } else if (type === DigishowEnvironment.InterfaceOsc) {
 
@@ -644,9 +662,28 @@ Item {
 
         } else if (type === DigishowEnvironment.InterfaceDmx) {
 
-            newEndpointOptions["type"] = "dimmer"
-            //newEndpointOptions["channel"] = itemDmx.menuChannel.selectedItemValue
+            newEndpointOptions["type"] = itemDmx.menuType.selectedItemTag
             newEndpointOptions["channel"] = itemDmx.spinChannel.value - 1
+
+            switch (itemDmx.menuType.selectedItemValue) {
+            case DigishowEnvironment.EndpointDmxMedia:
+                newEndpointOptions["control"] = itemDmx.menuMediaControl.selectedItemValue
+
+                if (itemDmx.textMediaUrl.visible) {
+                    var mediaUrl = itemDmx.textMediaUrl.text
+                    var mediaType = digishow.getMediaType(mediaUrl)
+                    var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, mediaType)
+
+                    if (mediaIndex !== -1) {
+                        newEndpointOptions["media"] = digishow.getMediaName(newInterfaceIndex, mediaIndex)
+                        if (itemDmx.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
+                            newEndpointOptions = utilities.merge(newEndpointOptions, itemDmx.getEndpointMediaOptions())
+                    } else {
+                        messageBox.show(qsTr("Please select a video clip file exists on your computer disks or enter a valid url of the video clip."), qsTr("OK"))
+                    }
+                }
+                break
+            }
 
             needRestartInterface = true
 

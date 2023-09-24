@@ -156,6 +156,25 @@ int DgsArtnetInterface::sendData(int endpointIndex, dgsSignalData data)
         if (!m_dataAll.contains(universe)) m_dataAll[universe] = QByteArray(512, 0x00);
         m_dataAll[universe].data()[channel] = static_cast<unsigned char>(value);
 
+    } else if (m_endpointInfoList[endpointIndex].type == ENDPOINT_ARTNET_DIMMER2) {
+
+        // 16-bit dimmer control
+
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+
+        int value = int(65535 * uint32_t(data.aValue) / uint32_t(data.aRange==0 ? 65535 : data.aRange));
+        if (value<0 || value>65535) return ERR_INVALID_DATA;
+
+        int universe = m_endpointInfoList[endpointIndex].unit;
+        int channel = m_endpointInfoList[endpointIndex].channel;
+
+        // update dmx data buffer
+        if (!m_dataAll.contains(universe)) m_dataAll[universe] = QByteArray(512, 0x00);
+        m_dataAll[universe].data()[channel] = static_cast<unsigned char>(value >> 8);   // MSB
+
+        channel++;
+        if (channel < 512)
+        m_dataAll[universe].data()[channel] = static_cast<unsigned char>(value & 0xff); // LSB
 
     } else if (m_endpointInfoList[endpointIndex].type == ENDPOINT_ARTNET_MEDIA) {
 
@@ -338,8 +357,9 @@ void DgsArtnetInterface::onUdpDataReceived()
 
                 int unit    = m_endpointInfoList[n].unit;
                 int channel = m_endpointInfoList[n].channel;
+                int type    = m_endpointInfoList[n].type;
 
-                if (unit == universe && channel < length) {
+                if (type == ENDPOINT_ARTNET_DIMMER && unit == universe && channel < length) {
 
                     unsigned char value = packetBytes[channel+18];
                     bool changed = !m_dataAll.contains(universe) || m_dataAll[universe].data()[channel] != value;
@@ -352,7 +372,24 @@ void DgsArtnetInterface::onUdpDataReceived()
                         data.aValue = value;
                         data.bValue = 0;
 
-                        //qDebug() << "artnet_input:" << n << data.signal << data.aValue << data.bValue;
+                        emit dataReceived(n, data);
+                    }
+
+                } else if (type == ENDPOINT_ARTNET_DIMMER2 && unit == universe && channel < length-1) {
+
+                    unsigned char msb = packetBytes[channel+18];
+                    unsigned char lsb = packetBytes[channel+19];
+                    bool changed = !m_dataAll.contains(universe) || m_dataAll[universe].data()[channel] != msb || m_dataAll[universe].data()[channel+1] != lsb;
+
+                    // emit artnet input signal
+                    if (changed) {
+                        int value = (msb << 8) | lsb;
+                        dgsSignalData data;
+                        data.signal = DATA_SIGNAL_ANALOG;
+                        data.aRange = 65535;
+                        data.aValue = value;
+                        data.bValue = 0;
+
                         emit dataReceived(n, data);
                     }
                 }

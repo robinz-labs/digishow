@@ -512,11 +512,6 @@ Item {
                     isModified = true
                 }
             }
-
-        }
-
-        Component.onCompleted: {
-
         }
     }
 
@@ -540,8 +535,11 @@ Item {
         // init artnet type option menu
         if (menuArtnetType.count === 0) {
             items = []
-            items.push({ text: qsTr("Dimmer"), value: DigishowEnvironment.EndpointArtnetDimmer, tag: "dimmer" })
-            items.push({ text: qsTr("Pixels"), value: DigishowEnvironment.EndpointArtnetMedia, tag: "media" })
+            items.push({ text: qsTr("Dimmer"       ), value: DigishowEnvironment.EndpointArtnetDimmer,  tag: "dimmer"   })
+            items.push({ text: qsTr("Dimmer 16-bit"), value: DigishowEnvironment.EndpointArtnetDimmer2, tag: "dimmer2x" })
+
+            if (forOutput)
+            items.push({ text: qsTr("Pixels"       ), value: DigishowEnvironment.EndpointArtnetMedia,   tag: "media"    })
 
             menuArtnetType.optionItems = items
             menuArtnetType.selectedIndex = 0
@@ -622,6 +620,10 @@ Item {
         if (endpointType === DigishowEnvironment.EndpointArtnetDimmer) {
 
             enables["optInitialDmx"] = true
+
+        } else if (endpointType === DigishowEnvironment.EndpointArtnetDimmer2) {
+
+            enables["optInitialA"] = true
 
         } else if (endpointType === DigishowEnvironment.EndpointArtnetMedia) {
 

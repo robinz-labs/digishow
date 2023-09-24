@@ -17,6 +17,7 @@
 
 #include "dgs_dmx_interface.h"
 #include "com_handler.h"
+#include "digishow_pixel_player.h"
 
 #include <QSerialPortInfo>
 
@@ -60,8 +61,17 @@ int DgsDmxInterface::openInterface()
     // get number of total dmx channels
     int channels = 0;
     for (int n = 0 ; n<m_endpointInfoList.length() ; n++) {
-        if (m_endpointInfoList[n].channel+1 > channels) channels = m_endpointInfoList[n].channel+1;
+        int type = m_endpointInfoList[n].type;
+        if (type == ENDPOINT_DMX_DIMMER) {
+            if (m_endpointInfoList[n].channel+1 > channels) channels = m_endpointInfoList[n].channel+1;
+        } else if (type == ENDPOINT_DMX_DIMMER2) {
+            if (m_endpointInfoList[n].channel+2 > channels) channels = m_endpointInfoList[n].channel+2;
+        } else {
+            channels = 512;
+            break;
+        }
     }
+    channels = qMin(channels, 512);
 
     // create a com handler for the serial communication with the device
     bool done = false;
@@ -80,6 +90,11 @@ int DgsDmxInterface::openInterface()
     m_timer->setInterval(1000 / frequency);
     m_timer->start();
 
+    // load media and initialize pixel players
+    m_players.clear();
+    QVariantList mediaList = cleanMediaList();
+    for (int n=0 ; n<mediaList.length() ; n++) initPlayer(mediaList[n].toMap());
+
     if (!done) {
         closeInterface();
         return ERR_DEVICE_NOT_READY;
@@ -91,6 +106,17 @@ int DgsDmxInterface::openInterface()
 
 int DgsDmxInterface::closeInterface()
 {
+    // release pixel players
+    QStringList playerNames = m_players.keys();
+    int playerCount = playerNames.length();
+    for (int n=0 ; n<playerCount ; n++) {
+        QString key = playerNames[n];
+        DigishowPixelPlayer* player = m_players[key];
+        player->stop();
+        delete player;
+        m_players.remove(key);
+    }
+
     if (m_timer != nullptr) {
         m_timer->stop();
         delete m_timer;
@@ -113,25 +139,178 @@ int DgsDmxInterface::sendData(int endpointIndex, dgsSignalData data)
     int r = DigishowInterface::sendData(endpointIndex, data);
     if ( r != ERR_NONE) return r;
 
-    if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+    if (m_endpointInfoList[endpointIndex].type == ENDPOINT_DMX_DIMMER) {
 
-    int value = 255 * data.aValue / (data.aRange==0 ? 255 : data.aRange);
-    if (value<0 || value>255) return ERR_INVALID_DATA;
+        // dimmer control
 
-    // update dmx data buffer
-    int channel = m_endpointInfoList[endpointIndex].channel;
-    m_data[channel] = static_cast<unsigned char>(value);
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
 
-    // send dmx data frame
-    //enttecDmxSendDmxFrame(m_data);
+        int value = 255 * data.aValue / (data.aRange==0 ? 255 : data.aRange);
+        if (value<0 || value>255) return ERR_INVALID_DATA;
+
+        // update dmx data buffer
+        int channel = m_endpointInfoList[endpointIndex].channel;
+        m_data[channel] = static_cast<unsigned char>(value);
+
+
+    } else if (m_endpointInfoList[endpointIndex].type == ENDPOINT_DMX_DIMMER2) {
+
+        // 16-bit dimmer control
+
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+
+        int value = int(65535 * uint32_t(data.aValue) / uint32_t(data.aRange==0 ? 65535 : data.aRange));
+        if (value<0 || value>65535) return ERR_INVALID_DATA;
+
+        // update dmx data buffer
+        int channel = m_endpointInfoList[endpointIndex].channel;
+        m_data[channel] = static_cast<unsigned char>(value >> 8);   // MSB
+
+        channel++;
+        if (channel < 512)
+        m_data[channel] = static_cast<unsigned char>(value & 0xff); // LSB
+
+    } else if (m_endpointInfoList[endpointIndex].type == ENDPOINT_DMX_MEDIA) {
+
+        // media playback control
+
+        int control = m_endpointInfoList[endpointIndex].control;
+        QVariantMap endpointOptions = m_endpointOptionsList[endpointIndex];
+        QString media = endpointOptions.value("media").toString();
+
+        if (control == CONTROL_MEDIA_START) {
+
+            DigishowPixelPlayer *player = m_players.value(media, nullptr);
+            if (player == nullptr) return ERR_DEVICE_NOT_READY;
+
+            if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
+            if (data.bValue) {
+
+                // set player pixel mapping
+                setupPlayerPixelMapping(player, media);
+
+                // set player playback attributes
+                player->setFadeIn(endpointOptions.value("mediaFadeIn").toInt());
+                player->setVolume(endpointOptions.value("mediaVolume", QVariant(10000)).toInt() / 10000.0);
+                player->setSpeed(endpointOptions.value("mediaSpeed", QVariant(10000)).toInt() / 10000.0);
+                player->setPosition(endpointOptions.value("mediaPosition").toInt());
+                player->setDuration(endpointOptions.value("mediaDuration").toInt());
+                player->setRepeat(endpointOptions.value("mediaRepeat").toBool());
+
+                if (endpointOptions.value("mediaAlone", QVariant(true)).toBool()) stopAll();
+                player->play();
+            }
+
+        } else if (control == CONTROL_MEDIA_STOP) {
+
+            DigishowPixelPlayer *player = m_players.value(media, nullptr);
+            if (player == nullptr) return ERR_DEVICE_NOT_READY;
+
+            if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
+            if (data.bValue) player->stop();
+
+        } else if (control == CONTROL_MEDIA_STOP_ALL) {
+
+            if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
+            if (data.bValue) stopAll();
+        }
+
+    }
 
     return ERR_NONE;
+}
+
+int DgsDmxInterface::loadMedia(const QVariantMap &mediaOptions)
+{
+    int r = DigishowInterface::loadMedia(mediaOptions);
+    if ( r != ERR_NONE) return r;
+
+    bool done = initPlayer(mediaOptions);
+    if (!done) return ERR_INVALID_DATA;
+
+    return ERR_NONE;
+}
+
+bool DgsDmxInterface::initPlayer(const QVariantMap &mediaOptions)
+{
+    QString name = mediaOptions.value("name").toString();
+    QString type = mediaOptions.value("type").toString();
+    QString url  = mediaOptions.value("url" ).toString();
+
+    int mediaType = DigishowPixelPlayer::MediaUnknown;
+    if (type == "image") mediaType = DigishowPixelPlayer::MediaImage; else
+    if (type == "video") mediaType = DigishowPixelPlayer::MediaVideo; else
+    if (type == "ini"  ) mediaType = DigishowPixelPlayer::MediaImageSequence;
+
+    bool done = false;
+    if (!name.isEmpty() && !url.isEmpty() && mediaType != DigishowPixelPlayer::MediaUnknown) {
+        DigishowPixelPlayer *player = new DigishowPixelPlayer();
+        if (player->load(url, mediaType)) {
+            m_players[name] = player;
+            connect(player, SIGNAL(frameUpdated()), this, SLOT(onPlayerFrameUpdated()));
+        } else {
+            delete player;
+        }
+    }
+
+    return done;
+}
+
+void DgsDmxInterface::stopAll()
+{
+    QStringList playerNames = m_players.keys();
+    for (int n=0 ; n<playerNames.count() ; n++) {
+        QString key = playerNames[n];
+        DigishowPixelPlayer *player = m_players.value(key, nullptr);
+        if (player != nullptr) player->stop();
+    }
+}
+
+void DgsDmxInterface::setupPlayerPixelMapping(DigishowPixelPlayer *player, const QString &mediaName)
+{
+    player->clearPixelMapping();
+
+    QString interfaceName = m_interfaceOptions.value("name").toString();
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        QVariantMap endpointOptions = m_endpointOptionsList[n];
+
+        // look for all endpoints with the specified media
+        if (endpointInfo.type != ENDPOINT_DMX_MEDIA ||
+            endpointInfo.control != CONTROL_MEDIA_START ||
+            endpointOptions.value("media") != mediaName) continue;
+
+        QString endpointName = endpointOptions.value("name").toString();
+        if (!g_app->confirmEndpointIsEmployed(interfaceName, endpointName)) continue;
+
+        int pixelMode = DigishowPixelPlayer::pixelMode(endpointOptions.value("mediaPixelMode").toString());
+        if (pixelMode == DigishowPixelPlayer::PixelUnknown) continue;
+        int bytesPerPixel = (pixelMode == DigishowPixelPlayer::PixelMono ? 1 : 3);
+
+        int channel  = endpointInfo.channel;
+        int pixelCount = endpointOptions.value("mediaPixelCount").toInt();
+        pixelCount = qMin(pixelCount, (512-channel)/bytesPerPixel);
+
+        dppPixelMapping mapping;
+        mapping.pixelMode = pixelMode;
+        mapping.pixelCount = pixelCount;
+        mapping.pixelOffset = endpointOptions.value("mediaPixelOffset").toInt();
+        mapping.pDataOut = (uint8_t*)m_data + channel;
+        player->addPixelMapping(mapping);
+    }
 }
 
 void DgsDmxInterface::onTimerFired()
 {
     // send dmx data frame
     enttecDmxSendDmxFrame(m_data);
+}
+
+void DgsDmxInterface::onPlayerFrameUpdated()
+{
+    DigishowPixelPlayer *player = qobject_cast<DigishowPixelPlayer*>(sender());
+    player->transferFrameAllMappedPixels();
 }
 
 bool DgsDmxInterface::enttecDmxOpen(const QString &port, int channels)
@@ -144,6 +323,10 @@ bool DgsDmxInterface::enttecDmxOpen(const QString &port, int channels)
         done = m_com->open(port.toLocal8Bit(), 115200, CH_SETTING_8N1);
     } else
     if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_OPEN) {
+
+        // !!! experimental only !!!
+        // Need to use libFTDI/FTD2XX to replace QSerialPort for synchronous serial communication with Open DMX USB
+
         done = m_com->open(port.toLocal8Bit(), 250000, CH_SETTING_8N2);
     }
     if (!done) return false;
@@ -189,6 +372,9 @@ bool DgsDmxInterface::enttecDmxSendDmxFrame(unsigned char *data)
 
         } else if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_OPEN) {
 
+            // !!! experimental only !!!
+            // Need to use libFTDI/FTD2XX to replace QSerialPort for synchronous serial communication with Open DMX USB
+
             // send an open dmx frame
 
             // The start-of-packet procedure is a logic zero for more than 22 bit periods (>88usec),
@@ -206,7 +392,6 @@ bool DgsDmxInterface::enttecDmxSendDmxFrame(unsigned char *data)
             m_com->serialPort()->setRequestToSend(false);
 
             m_com->serialPort()->setBreakEnabled(true);
-
         }
 
     }

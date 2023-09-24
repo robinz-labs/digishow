@@ -22,6 +22,7 @@
 #include "digishow_interface.h"
 
 class ComHandler;
+class DigishowPixelPlayer;
 
 class DgsDmxInterface : public DigishowInterface
 {
@@ -34,12 +35,16 @@ public:
     int closeInterface() override;
     int sendData(int endpointIndex, dgsSignalData data) override;
 
+    // for pixel player
+    int loadMedia(const QVariantMap &mediaOptions) override;
+
     static QVariantList listOnline();
 
 signals:
 
 public slots:
-    void onTimerFired();
+    void onTimerFired();         // for dmx output
+    void onPlayerFrameUpdated(); // for pixel player
 
 private:
     ComHandler *m_com;
@@ -50,6 +55,13 @@ private:
 
     bool enttecDmxOpen(const QString &port, int channels = 512);
     bool enttecDmxSendDmxFrame(unsigned char *data);
+
+    // pixel players hold all media
+    QMap<QString, DigishowPixelPlayer*> m_players;
+    bool initPlayer(const QVariantMap &mediaOptions);
+    void stopAll();
+    void setupPlayerPixelMapping(DigishowPixelPlayer *player, const QString &mediaName);
+
 };
 
 #endif // DGSDMXINTERFACE_H
