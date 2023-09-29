@@ -331,12 +331,20 @@ bool DgsDmxInterface::enttecDmxOpen(const QString &port, int channels)
     }
     if (!done) return false;
 
+    // set DTR on
+     m_com->serialPort()->setDataTerminalReady(true);
+
     // clear dmx data buffer
     //for (int n=0 ; n<512 ; n++) m_data[n]=0;
 
     // set number of channels
     m_channels = (channels+7) / 8 * 8;
-    if (m_channels<24) m_channels = 24; else if (m_channels>512) m_channels = 512;
+    m_channels = qBound(24, m_channels, 512);
+
+    int vid, pid;
+    if (getUsbVidPid(&vid, &pid) && vid == DGSW_VID && pid == DGSW_PID) {
+        m_channels = qMin(m_channels, 360);
+    }
 
     return true;
 }
@@ -346,14 +354,14 @@ bool DgsDmxInterface::enttecDmxSendDmxFrame(unsigned char *data)
     if (m_channels < 24 || m_channels > 512) return false;
 
     // send frame
-    bool done = true;
     if (!m_com->isBusySending()) {
 
         if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_PRO) {
 
             // send an enttec pro frame
-            int length = m_channels;
+            bool done = true;
 
+            int length = m_channels;
             unsigned char head[] = {
                 0x7e, // 0  leading character
                 0x06, // 1  message type (6 = Output Only Send DMX Packet Request)
@@ -370,12 +378,15 @@ bool DgsDmxInterface::enttecDmxSendDmxFrame(unsigned char *data)
             done &= m_com->sendBytes((const char*)data, length, false);
             done &= m_com->sendBytes((const char*)tail, sizeof(tail));
 
+            return done;
+
         } else if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_OPEN) {
 
             // !!! experimental only !!!
             // Need to use libFTDI/FTD2XX to replace QSerialPort for synchronous serial communication with Open DMX USB
 
             // send an open dmx frame
+            bool done = true;
 
             // The start-of-packet procedure is a logic zero for more than 22 bit periods (>88usec),
             // followed by a logic 1 for more than 2 bit periods (>8usec).
@@ -392,12 +403,28 @@ bool DgsDmxInterface::enttecDmxSendDmxFrame(unsigned char *data)
             m_com->serialPort()->setRequestToSend(false);
 
             m_com->serialPort()->setBreakEnabled(true);
+
+            return done;
         }
 
     }
 
-    return done;
+    return false;
 }
+
+bool DgsDmxInterface::getUsbVidPid(int *vid, int *pid)
+{
+    QString portName = m_com->serialPort()->portName();
+    foreach (const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()) {
+        if (serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier() && serialPortInfo.portName() == portName) {
+            *vid = serialPortInfo.vendorIdentifier();
+            *pid = serialPortInfo.productIdentifier();
+            return true;
+        }
+    }
+    return false;
+}
+
 
 QVariantList DgsDmxInterface::listOnline()
 {

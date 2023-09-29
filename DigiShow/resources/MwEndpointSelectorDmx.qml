@@ -8,42 +8,37 @@ import "components"
 Item {
     id: itemDmx
 
-    property alias spinChannel: spinDmxChannel
-    property alias menuType: menuDmxType
-    property alias menuMediaControl: menuMediaControl
-    property alias textMediaUrl: textMediaUrl
-
-    property bool forMedia: menuDmxType.selectedItemValue === DigishowEnvironment.EndpointDmxMedia
+    property bool forMedia: menuType.selectedItemValue === DigishowEnvironment.EndpointDmxMedia
 
     COptionButton {
-        id: buttonDmxType
+        id: buttonType
         width: 100
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: menuDmxType.selectedItemText
-        onClicked: menuDmxType.showOptions()
+        text: menuType.selectedItemText
+        onClicked: menuType.showOptions()
 
         COptionMenu {
-            id: menuDmxType
+            id: menuType
 
             onOptionSelected: refreshMoreOptions()
         }
     }
 
     COptionButton {
-        id: buttonDmxChannel
+        id: buttonChannel
         width: 100
         height: 28
-        anchors.left: buttonDmxType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: qsTr("Channel") + " " + spinDmxChannel.value
+        text: qsTr("Channel") + " " + spinChannel.value
         visible: !forMedia
-        onClicked: spinDmxChannel.visible = true
+        onClicked: spinChannel.visible = true
 
         COptionSpinBox {
-            id: spinDmxChannel
+            id: spinChannel
         }
     }
 
@@ -51,7 +46,7 @@ Item {
         id: buttonMediaControl
         width: 100
         height: 28
-        anchors.left: buttonDmxType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
         text: menuMediaControl.selectedItemText
@@ -259,12 +254,12 @@ Item {
                 width: 120
                 anchors.left: parent.left
                 anchors.leftMargin: 105
-                from: spinDmxChannel.from
-                to: spinDmxChannel.to
-                value: spinDmxChannel.value
-                stepSize: spinDmxChannel.stepSize
+                from: spinChannel.from
+                to: spinChannel.to
+                value: spinChannel.value
+                stepSize: spinChannel.stepSize
 
-                onValueModified: spinDmxChannel.value = spinMediaChannel.value
+                onValueModified: spinChannel.value = spinMediaChannel.value
 
                 Text {
                     anchors.right: parent.left
@@ -464,7 +459,7 @@ Item {
 
                 onClicked: {
 
-                    spinDmxChannel.value = 1
+                    spinChannel.value = 1
 
                     setEndpointMediaOptions({})
                     isModified = true
@@ -480,19 +475,19 @@ Item {
         var v
 
         // init dmx channel option spinbox
-        spinDmxChannel.from = 1
-        spinDmxChannel.to = 512
-        spinDmxChannel.visible = false
+        spinChannel.from = 1
+        spinChannel.to = 512
+        spinChannel.visible = false
 
         // init dmx type option menu
-        if (menuDmxType.count === 0) {
+        if (menuType.count === 0) {
             items = []
             items.push({ text: qsTr("Dimmer"       ), value: DigishowEnvironment.EndpointDmxDimmer,  tag: "dimmer"   })
             items.push({ text: qsTr("Dimmer 16-bit"), value: DigishowEnvironment.EndpointDmxDimmer2, tag: "dimmer2x" })
             items.push({ text: qsTr("Pixels"       ), value: DigishowEnvironment.EndpointDmxMedia,   tag: "media"    })
 
-            menuDmxType.optionItems = items
-            menuDmxType.selectedIndex = 0
+            menuType.optionItems = items
+            menuType.selectedIndex = 0
         }
 
         // init media control option menu
@@ -525,6 +520,29 @@ Item {
 
         // init more options
         refreshMoreOptions()
+    }
+
+    function refreshMoreOptions() {
+
+        var endpointType = menuType.selectedItemValue
+        var enables = {}
+
+        if (endpointType === DigishowEnvironment.EndpointDmxDimmer) {
+
+            enables["optInitialDmx"] = true
+
+        } else if (endpointType === DigishowEnvironment.EndpointDmxDimmer2) {
+
+            enables["optInitialA"] = true
+
+        } else if (endpointType === DigishowEnvironment.EndpointDmxMedia) {
+
+            enables["optInitialB"] = true
+        }
+
+        moreOptions.resetOptions()
+        moreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 
     function setEndpointMediaOptions(options) {
@@ -562,27 +580,56 @@ Item {
         return options
     }
 
-    function refreshMoreOptions() {
+    function setEndpointOptions(endpointInfo, endpointOptions) {
 
-        var endpointType = menuDmxType.selectedItemValue
-        var enables = {}
+        menuType.selectOption(endpointInfo["type"])
+        spinChannel.value = endpointInfo["channel"] + 1
 
-        if (endpointType === DigishowEnvironment.EndpointDmxDimmer) {
+        switch (endpointInfo["type"]) {
+        case DigishowEnvironment.EndpointDmxMedia:
+            menuMediaControl.selectOption(endpointInfo["control"])
 
-            enables["optInitialDmx"] = true
+            var mediaName = endpointOptions["media"]
+            var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
+            var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
+            var mediaUrl = "file://"
+            if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
+            textMediaUrl.text = mediaUrl
 
-        } else if (endpointType === DigishowEnvironment.EndpointDmxDimmer2) {
+            setEndpointMediaOptions(endpointOptions)
 
-            enables["optInitialA"] = true
+            break
+        }
+    }
 
-        } else if (endpointType === DigishowEnvironment.EndpointDmxMedia) {
+    function getEndpointOptions() {
 
-            enables["optInitialB"] = true
+        var options = {}
+        options["type"] = menuType.selectedItemTag
+        options["channel"] = spinChannel.value - 1
+
+        switch (menuType.selectedItemValue) {
+        case DigishowEnvironment.EndpointDmxMedia:
+            options["control"] = menuMediaControl.selectedItemValue
+
+            if (textMediaUrl.visible) {
+                var interfaceIndex = menuInterface.selectedItemValue
+                var mediaUrl = textMediaUrl.text
+                var mediaType = digishow.getMediaType(mediaUrl)
+                var mediaIndex = digishow.makeMedia(interfaceIndex, mediaUrl, mediaType)
+
+                if (mediaIndex !== -1) {
+                    options["media"] = digishow.getMediaName(interfaceIndex, mediaIndex)
+                    if (menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
+                        options = utilities.merge(options, getEndpointMediaOptions())
+                } else {
+                    messageBox.show(qsTr("Please select a video clip file exists on your computer disks or enter a valid url of the video clip."), qsTr("OK"))
+                }
+            }
+            break
         }
 
-        moreOptions.resetOptions()
-        moreOptions.enableOptions(enables)
-        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
+        return options
     }
 
 }

@@ -9,13 +9,7 @@ import "components"
 Item {
     id: itemArtnet
 
-    property alias spinUnit: spinArtnetUnit
-    property alias spinChannel: spinArtnetChannel
-    property alias menuType: menuArtnetType
-    property alias menuMediaControl: menuMediaControl
-    property alias textMediaUrl: textMediaUrl
-
-    property bool forMedia: menuArtnetType.selectedItemValue === DigishowEnvironment.EndpointArtnetMedia
+    property bool forMedia: menuType.selectedItemValue === DigishowEnvironment.EndpointArtnetMedia
 
     COptionButton {
         id: buttonArtnetType
@@ -23,45 +17,45 @@ Item {
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: menuArtnetType.selectedItemText
-        onClicked: menuArtnetType.showOptions()
+        text: menuType.selectedItemText
+        onClicked: menuType.showOptions()
 
         COptionMenu {
-            id: menuArtnetType
+            id: menuType
 
             onOptionSelected: refreshMoreOptions()
         }
     }
 
     COptionButton {
-        id: buttonArtnetUnit
+        id: buttonUnit
         width: 100
         height: 28
         anchors.left: buttonArtnetType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: qsTr("Universe") + " " + spinArtnetUnit.value
+        text: qsTr("Universe") + " " + spinUnit.value
         visible: !forMedia
-        onClicked: spinArtnetUnit.visible = true
+        onClicked: spinUnit.visible = true
 
         COptionSpinBox {
-            id: spinArtnetUnit
+            id: spinUnit
         }
     }
 
     COptionButton {
-        id: buttonArtnetChannel
+        id: buttonChannel
         width: 100
         height: 28
-        anchors.left: buttonArtnetUnit.right
+        anchors.left: buttonUnit.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: qsTr("Channel") + " " + spinArtnetChannel.value
+        text: qsTr("Channel") + " " + spinChannel.value
         visible: !forMedia
-        onClicked: spinArtnetChannel.visible = true
+        onClicked: spinChannel.visible = true
 
         COptionSpinBox {
-            id: spinArtnetChannel
+            id: spinChannel
         }
     }
 
@@ -277,12 +271,12 @@ Item {
                 width: 120
                 anchors.left: parent.left
                 anchors.leftMargin: 105
-                from: spinArtnetUnit.from
-                to: spinArtnetUnit.to
-                value: spinArtnetUnit.value
-                stepSize: spinArtnetUnit.stepSize
+                from: spinUnit.from
+                to: spinUnit.to
+                value: spinUnit.value
+                stepSize: spinUnit.stepSize
 
-                onValueModified: spinArtnetUnit.value = spinMediaUnit.value
+                onValueModified: spinUnit.value = spinMediaUnit.value
 
                 Text {
                     anchors.right: parent.left
@@ -300,12 +294,12 @@ Item {
                 width: 120
                 anchors.left: parent.left
                 anchors.leftMargin: 105
-                from: spinArtnetChannel.from
-                to: spinArtnetChannel.to
-                value: spinArtnetChannel.value
-                stepSize: spinArtnetChannel.stepSize
+                from: spinChannel.from
+                to: spinChannel.to
+                value: spinChannel.value
+                stepSize: spinChannel.stepSize
 
-                onValueModified: spinArtnetChannel.value = spinMediaChannel.value
+                onValueModified: spinChannel.value = spinMediaChannel.value
 
                 Text {
                     anchors.right: parent.left
@@ -505,8 +499,8 @@ Item {
 
                 onClicked: {
 
-                    spinArtnetUnit.value = 0
-                    spinArtnetChannel.value = 1
+                    spinUnit.value = 0
+                    spinChannel.value = 1
 
                     setEndpointMediaOptions({})
                     isModified = true
@@ -523,17 +517,17 @@ Item {
         var v
 
         // init artnet universe option spinbox
-        spinArtnetUnit.from = 0
-        spinArtnetUnit.to = 32767
-        spinArtnetUnit.visible = false
+        spinUnit.from = 0
+        spinUnit.to = 32767
+        spinUnit.visible = false
 
         // init artnet channel option spinbox
-        spinArtnetChannel.from = 1
-        spinArtnetChannel.to = 512
-        spinArtnetChannel.visible = false
+        spinChannel.from = 1
+        spinChannel.to = 512
+        spinChannel.visible = false
 
         // init artnet type option menu
-        if (menuArtnetType.count === 0) {
+        if (menuType.count === 0) {
             items = []
             items.push({ text: qsTr("Dimmer"       ), value: DigishowEnvironment.EndpointArtnetDimmer,  tag: "dimmer"   })
             items.push({ text: qsTr("Dimmer 16-bit"), value: DigishowEnvironment.EndpointArtnetDimmer2, tag: "dimmer2x" })
@@ -541,8 +535,8 @@ Item {
             if (forOutput)
             items.push({ text: qsTr("Pixels"       ), value: DigishowEnvironment.EndpointArtnetMedia,   tag: "media"    })
 
-            menuArtnetType.optionItems = items
-            menuArtnetType.selectedIndex = 0
+            menuType.optionItems = items
+            menuType.selectedIndex = 0
         }
 
         // init media control option menu
@@ -575,6 +569,29 @@ Item {
 
         // init more options
         refreshMoreOptions()
+    }
+
+    function refreshMoreOptions() {
+
+        var endpointType = menuType.selectedItemValue
+        var enables = {}
+
+        if (endpointType === DigishowEnvironment.EndpointArtnetDimmer) {
+
+            enables["optInitialDmx"] = true
+
+        } else if (endpointType === DigishowEnvironment.EndpointArtnetDimmer2) {
+
+            enables["optInitialA"] = true
+
+        } else if (endpointType === DigishowEnvironment.EndpointArtnetMedia) {
+
+            enables["optInitialB"] = true
+        }
+
+        moreOptions.resetOptions()
+        moreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 
     function setEndpointMediaOptions(options) {
@@ -612,28 +629,58 @@ Item {
         return options
     }
 
-    function refreshMoreOptions() {
+    function setEndpointOptions(endpointInfo, endpointOptions) {
 
-        var endpointType = menuArtnetType.selectedItemValue
-        var enables = {}
+        menuType.selectOption(endpointInfo["type"])
+        spinUnit.value = endpointInfo["unit"]
+        spinChannel.value = endpointInfo["channel"] + 1
 
-        if (endpointType === DigishowEnvironment.EndpointArtnetDimmer) {
+        switch (endpointInfo["type"]) {
+        case DigishowEnvironment.EndpointArtnetMedia:
+            menuMediaControl.selectOption(endpointInfo["control"])
 
-            enables["optInitialDmx"] = true
+            var mediaName = endpointOptions["media"]
+            var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
+            var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
+            var mediaUrl = "file://"
+            if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
+            textMediaUrl.text = mediaUrl
 
-        } else if (endpointType === DigishowEnvironment.EndpointArtnetDimmer2) {
+            setEndpointMediaOptions(endpointOptions)
 
-            enables["optInitialA"] = true
-
-        } else if (endpointType === DigishowEnvironment.EndpointArtnetMedia) {
-
-            enables["optInitialB"] = true
+            break
         }
-
-        moreOptions.resetOptions()
-        moreOptions.enableOptions(enables)
-        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 
+    function getEndpointOptions() {
+
+        var options = {}
+        options["type"] = menuType.selectedItemTag
+        options["unit"] = spinUnit.value
+        options["channel"] = spinChannel.value - 1
+
+        switch (menuType.selectedItemValue) {
+        case DigishowEnvironment.EndpointArtnetMedia:
+            options["control"] = menuMediaControl.selectedItemValue
+
+            if (textMediaUrl.visible) {
+                var interfaceIndex = menuInterface.selectedItemValue
+                var mediaUrl = textMediaUrl.text
+                var mediaType = digishow.getMediaType(mediaUrl)
+                var mediaIndex = digishow.makeMedia(interfaceIndex, mediaUrl, mediaType)
+
+                if (mediaIndex !== -1) {
+                    options["media"] = digishow.getMediaName(interfaceIndex, mediaIndex)
+                    if (menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
+                        options = utilities.merge(options, getEndpointMediaOptions())
+                } else {
+                    messageBox.show(qsTr("Please select a video clip file exists on your computer disks or enter a valid url of the video clip."), qsTr("OK"))
+                }
+            }
+            break
+        }
+
+        return options
+    }
 }
 

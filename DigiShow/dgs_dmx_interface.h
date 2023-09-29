@@ -55,6 +55,8 @@ private:
 
     bool enttecDmxOpen(const QString &port, int channels = 512);
     bool enttecDmxSendDmxFrame(unsigned char *data);
+    bool getUsbVidPid(int *vid, int *pid);
+
 
     // pixel players hold all media
     QMap<QString, DigishowPixelPlayer*> m_players;

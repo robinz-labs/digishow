@@ -1076,309 +1076,299 @@ either express or implied.</source>
         <source>More ...</source>
         <translation>Más ...</translation>
     </message>
-    <message>
-        <location filename="../MwEndpointSelector.qml" line="682"/>
-        <location filename="../MwEndpointSelector.qml" line="716"/>
-        <source>Please select a video clip file exists on your computer disks or enter a valid url of the video clip.</source>
-        <translation>Seleccione un archivo de clip de video que exista en los discos de su computadora o ingrese una URL válida del clip de video.</translation>
-    </message>
-    <message>
-        <location filename="../MwEndpointSelector.qml" line="773"/>
-        <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
-        <translation>Seleccione un archivo de clip multimedia que exista en los discos de su computadora o ingrese una URL válida del clip multimedia.</translation>
-    </message>
-    <message>
-        <location filename="../MwEndpointSelector.qml" line="682"/>
-        <location filename="../MwEndpointSelector.qml" line="716"/>
-        <location filename="../MwEndpointSelector.qml" line="773"/>
-        <location filename="../MwEndpointSelector.qml" line="796"/>
-        <location filename="../MwEndpointSelector.qml" line="819"/>
-        <source>OK</source>
-        <translation>Aceptar</translation>
-    </message>
-    <message>
-        <location filename="../MwEndpointSelector.qml" line="796"/>
-        <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
-        <translation>Seleccione un archivo de clip de audio que exista en los discos de su computadora o ingrese una URL válida del clip de audio.</translation>
-    </message>
-    <message>
-        <location filename="../MwEndpointSelector.qml" line="819"/>
-        <source>Please select a MIDI clip file exists on your computer disks or enter a valid url of the MIDI clip.</source>
-        <translation>Seleccione un archivo de clip MIDI que exista en los discos de su computadora o ingrese una URL válida del clip MIDI.</translation>
-    </message>
 </context>
 <context>
     <name>MwEndpointSelectorAPlay</name>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="59"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="55"/>
         <source>File ...</source>
         <translation>Archivo ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="78"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="74"/>
         <source>Options ...</source>
         <translation>Opciones ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="106"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="102"/>
         <source>Select Audio File</source>
         <translation>Seleccionar archivo de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="109"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="105"/>
         <source>Audio files</source>
         <translation>Archivos de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="110"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="106"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="153"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="149"/>
         <source>Audio Clip Playback Options</source>
         <translation>Opciones de reproducción de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="178"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="174"/>
         <source>Play Alone</source>
         <translation>Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="202"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="198"/>
         <source>Volume</source>
         <translation>Volumen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="216"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="212"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="226"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="222"/>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="240"/>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="264"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="236"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="260"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="250"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="246"/>
         <source>Position</source>
         <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="274"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="270"/>
         <source>Duration</source>
         <translation>Duración</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="295"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="291"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="311"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="307"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="333"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="329"/>
         <source>Audio Clip</source>
         <translation>Clip de audio</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="435"/>
+        <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
+        <translation>Seleccione un archivo de clip de audio que exista en los discos de su computadora o ingrese una URL válida del clip de audio.</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="435"/>
+        <source>OK</source>
+        <translation>Aceptar</translation>
     </message>
 </context>
 <context>
     <name>MwEndpointSelectorArtnet</name>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="43"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="37"/>
         <source>Universe</source>
         <translation>Universo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="59"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="53"/>
         <source>Channel</source>
         <translation>Canal</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="95"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="89"/>
         <source>File ...</source>
         <translation>Archivo ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="114"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="108"/>
         <source>Options ...</source>
         <translation>Opciones ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="142"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="136"/>
         <source>Select Video File</source>
         <translation>Seleccionar archivo de video</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="145"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="139"/>
         <source>Video files</source>
         <translation>Archivos de video</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="146"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="140"/>
         <source>Image files</source>
         <translation>Archivos de imagen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="148"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="142"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="191"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="185"/>
         <source>Pixel Mapping</source>
         <translation>Mapeo de píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="224"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="218"/>
         <source>Pixel Mode</source>
         <translation>Modo de píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="247"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="241"/>
         <source>Pixel Count</source>
         <translation>Recuento de píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="270"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="264"/>
         <source>From Pixel</source>
         <translation>de píxel</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="293"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="287"/>
         <source>To Universe</source>
         <translation>a universo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="316"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="310"/>
         <source>To Channel</source>
         <translation>a canal</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="326"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="320"/>
         <source>Playback Options</source>
         <translation>Opciones de reproducción</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="539"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="533"/>
         <source>Dimmer 16-bit</source>
         <translation>Dimmer 16-bit</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="542"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="536"/>
         <source>Pixels</source>
         <translation>Píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="346"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="340"/>
         <source>Play Alone</source>
         <translation>Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="147"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="141"/>
         <source>Image Sequence</source>
         <translation>Secuencia de imágenes</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="370"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="364"/>
         <source>Fade In</source>
         <translation>Fundido</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="394"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="388"/>
         <source>Volume</source>
         <translation>Volumen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="408"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="402"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="418"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="412"/>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="432"/>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="456"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="426"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="450"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="442"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="436"/>
         <source>Position</source>
         <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="466"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="460"/>
         <source>Duration</source>
         <translation>Duración</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="487"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="481"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="503"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="497"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="538"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="532"/>
         <source>Dimmer</source>
         <translation>Dimmer</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="564"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="558"/>
         <source>Mono</source>
         <translation>Mono</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="565"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="559"/>
         <source>RGB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="566"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="560"/>
         <source>RBG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="567"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="561"/>
         <source>GRB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="568"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="562"/>
         <source>GBR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="569"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="563"/>
         <source>BRG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="570"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="564"/>
         <source>BGR</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="677"/>
+        <source>Please select a video clip file exists on your computer disks or enter a valid url of the video clip.</source>
+        <translation>Seleccione un archivo de clip de video que exista en los discos de su computadora o ingrese una URL válida del clip de video.</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="677"/>
+        <source>OK</source>
+        <translation>Aceptar</translation>
     </message>
 </context>
 <context>
     <name>MwEndpointSelectorAudioin</name>
     <message>
-        <location filename="../MwEndpointSelectorAudioin.qml" line="37"/>
+        <location filename="../MwEndpointSelectorAudioin.qml" line="35"/>
         <source>Level</source>
         <translation>Nivel</translation>
     </message>
@@ -1386,181 +1376,191 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorDmx</name>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="41"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="36"/>
         <source>Channel</source>
         <translation>Canal</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="77"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="72"/>
         <source>File ...</source>
         <translation>Archivo ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="96"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="91"/>
         <source>Options ...</source>
         <translation>Opciones ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="124"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="119"/>
         <source>Select Video File</source>
         <translation>Seleccionar archivo de video</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="127"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="122"/>
         <source>Video files</source>
         <translation>Archivos de video</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="128"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="123"/>
         <source>Image files</source>
         <translation>Archivos de imagen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="129"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="124"/>
         <source>Image Sequence</source>
         <translation>Secuencia de imágenes</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="130"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="125"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="173"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="168"/>
         <source>Pixel Mapping</source>
         <translation>Mapeo de píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="206"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="201"/>
         <source>Pixel Mode</source>
         <translation>Modo de píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="229"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="224"/>
         <source>Pixel Count</source>
         <translation>Recuento de píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="252"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="247"/>
         <source>From Pixel</source>
         <translation>de píxel</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="275"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="270"/>
         <source>To Channel</source>
         <translation>a canal</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="285"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="280"/>
         <source>Playback Options</source>
         <translation>Opciones de reproducción</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="305"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="300"/>
         <source>Play Alone</source>
         <translation>Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="329"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="324"/>
         <source>Fade In</source>
         <translation>Fundido</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="353"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="348"/>
         <source>Volume</source>
         <translation>Volumen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="367"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="362"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="377"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="372"/>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="391"/>
-        <location filename="../MwEndpointSelectorDmx.qml" line="415"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="386"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="410"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="401"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="396"/>
         <source>Position</source>
         <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="425"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="420"/>
         <source>Duration</source>
         <translation>Duración</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="446"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="441"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="462"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="457"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="490"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="485"/>
         <source>Dimmer</source>
         <translation>Dimmer</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="491"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="486"/>
         <source>Dimmer 16-bit</source>
         <translation>Dimmer 16-bit</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="492"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="487"/>
         <source>Pixels</source>
         <translation>Píxeles</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="514"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="509"/>
         <source>Mono</source>
         <translation>Mono</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="515"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="510"/>
         <source>RGB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="516"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="511"/>
         <source>RBG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="517"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="512"/>
         <source>GRB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="518"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="513"/>
         <source>GBR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="519"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="514"/>
         <source>BRG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="520"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="515"/>
         <source>BGR</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorDmx.qml" line="626"/>
+        <source>Please select a video clip file exists on your computer disks or enter a valid url of the video clip.</source>
+        <translation>Seleccione un archivo de clip de video que exista en los discos de su computadora o ingrese una URL válida del clip de video.</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorDmx.qml" line="626"/>
+        <source>OK</source>
+        <translation>Aceptar</translation>
     </message>
 </context>
 <context>
     <name>MwEndpointSelectorHotkey</name>
     <message>
-        <location filename="../MwEndpointSelectorHotkey.qml" line="77"/>
+        <location filename="../MwEndpointSelectorHotkey.qml" line="73"/>
         <source>(none)</source>
         <translation>(ninguno)</translation>
     </message>
@@ -1568,17 +1568,17 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorHue</name>
     <message>
-        <location filename="../MwEndpointSelectorHue.qml" line="36"/>
+        <location filename="../MwEndpointSelectorHue.qml" line="32"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorHue.qml" line="70"/>
+        <location filename="../MwEndpointSelectorHue.qml" line="66"/>
         <source>Light</source>
         <translation>Luz</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorHue.qml" line="71"/>
+        <location filename="../MwEndpointSelectorHue.qml" line="67"/>
         <source>Group</source>
         <translation>Grupo</translation>
     </message>
@@ -1586,7 +1586,7 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorLaunch</name>
     <message>
-        <location filename="../MwEndpointSelectorLaunch.qml" line="37"/>
+        <location filename="../MwEndpointSelectorLaunch.qml" line="34"/>
         <source>Preset</source>
         <translation></translation>
     </message>
@@ -1594,101 +1594,111 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorMPlay</name>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="59"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="55"/>
         <source>File ...</source>
         <translation>Archivo ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="78"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="74"/>
         <source>Options ...</source>
         <translation>Opciones ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="106"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="102"/>
         <source>Select MIDI File</source>
         <translation>Seleccionar archivo MIDI</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="109"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="105"/>
         <source>MIDI files</source>
         <translation>Archivos MIDI</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="110"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="106"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="153"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="149"/>
         <source>MIDI Clip Playback Options</source>
         <translation>Opciones de reproducción MIDI</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="178"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="174"/>
         <source>Play Alone</source>
         <translation>Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="192"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="188"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="202"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="198"/>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="216"/>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="240"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="212"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="236"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="226"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="222"/>
         <source>Position</source>
         <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="250"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="246"/>
         <source>Duration</source>
         <translation>Duración</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="271"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="267"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="287"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="283"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMPlay.qml" line="309"/>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="305"/>
         <source>MIDI Clip</source>
         <translation>Clip MIDI</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="409"/>
+        <source>Please select a MIDI clip file exists on your computer disks or enter a valid url of the MIDI clip.</source>
+        <translation>Seleccione un archivo de clip MIDI que exista en los discos de su computadora o ingrese una URL válida del clip MIDI.</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMPlay.qml" line="409"/>
+        <source>OK</source>
+        <translation>Aceptar</translation>
     </message>
 </context>
 <context>
     <name>MwEndpointSelectorMetronome</name>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="54"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="51"/>
         <source>Beat %1</source>
         <translation>Latido %1</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="68"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="65"/>
         <source>beat</source>
         <translation>latido</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="68"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="65"/>
         <source>beats</source>
         <translation>latidos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="71"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="68"/>
         <source>Sustain %1</source>
         <translation>Sostener %1</translation>
     </message>
@@ -1696,32 +1706,32 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorMidi</name>
     <message>
-        <location filename="../MwEndpointSelectorMidi.qml" line="89"/>
+        <location filename="../MwEndpointSelectorMidi.qml" line="84"/>
         <source>Channel</source>
         <translation>Canal</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMidi.qml" line="97"/>
+        <location filename="../MwEndpointSelectorMidi.qml" line="92"/>
         <source>MIDI Note</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMidi.qml" line="98"/>
+        <location filename="../MwEndpointSelectorMidi.qml" line="93"/>
         <source>MIDI Control</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMidi.qml" line="99"/>
+        <location filename="../MwEndpointSelectorMidi.qml" line="94"/>
         <source>MIDI Program</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMidi.qml" line="103"/>
+        <location filename="../MwEndpointSelectorMidi.qml" line="98"/>
         <source>MIDI CC Pulse</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMidi.qml" line="127"/>
+        <location filename="../MwEndpointSelectorMidi.qml" line="122"/>
         <source>CC</source>
         <translation></translation>
     </message>
@@ -1729,34 +1739,34 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorModbus</name>
     <message>
-        <location filename="../MwEndpointSelectorModbus.qml" line="53"/>
+        <location filename="../MwEndpointSelectorModbus.qml" line="49"/>
         <source>Address</source>
         <translation>Dirección</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorModbus.qml" line="69"/>
+        <location filename="../MwEndpointSelectorModbus.qml" line="65"/>
         <source>Station</source>
         <translation>Estación</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorModbus.qml" line="77"/>
+        <location filename="../MwEndpointSelectorModbus.qml" line="73"/>
         <source>Discrete Input</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorModbus.qml" line="78"/>
-        <location filename="../MwEndpointSelectorModbus.qml" line="79"/>
+        <location filename="../MwEndpointSelectorModbus.qml" line="74"/>
+        <location filename="../MwEndpointSelectorModbus.qml" line="75"/>
         <source>Coil</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorModbus.qml" line="80"/>
+        <location filename="../MwEndpointSelectorModbus.qml" line="76"/>
         <source>Input Register</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorModbus.qml" line="81"/>
-        <location filename="../MwEndpointSelectorModbus.qml" line="82"/>
+        <location filename="../MwEndpointSelectorModbus.qml" line="77"/>
+        <location filename="../MwEndpointSelectorModbus.qml" line="78"/>
         <source>Holding Register</source>
         <translation></translation>
     </message>
@@ -1764,22 +1774,22 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorOsc</name>
     <message>
-        <location filename="../MwEndpointSelectorOsc.qml" line="34"/>
+        <location filename="../MwEndpointSelectorOsc.qml" line="30"/>
         <source>Value</source>
         <translation>Valor</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorOsc.qml" line="71"/>
+        <location filename="../MwEndpointSelectorOsc.qml" line="67"/>
         <source>Integer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorOsc.qml" line="72"/>
+        <location filename="../MwEndpointSelectorOsc.qml" line="68"/>
         <source>Float</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorOsc.qml" line="73"/>
+        <location filename="../MwEndpointSelectorOsc.qml" line="69"/>
         <source>Boolean</source>
         <translation></translation>
     </message>
@@ -1787,22 +1797,22 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorPipe</name>
     <message>
-        <location filename="../MwEndpointSelectorPipe.qml" line="37"/>
+        <location filename="../MwEndpointSelectorPipe.qml" line="34"/>
         <source>Channel</source>
         <translation>Canal</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorPipe.qml" line="53"/>
+        <location filename="../MwEndpointSelectorPipe.qml" line="50"/>
         <source>Analog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorPipe.qml" line="54"/>
+        <location filename="../MwEndpointSelectorPipe.qml" line="51"/>
         <source>Binary</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorPipe.qml" line="55"/>
+        <location filename="../MwEndpointSelectorPipe.qml" line="52"/>
         <source>Note</source>
         <translation></translation>
     </message>
@@ -1810,52 +1820,52 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorRioc</name>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="21"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="17"/>
         <source>Unit</source>
         <translation>Unidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="76"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="72"/>
         <source>Digital In</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="77"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="73"/>
         <source>Digital Out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="78"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="74"/>
         <source>Analog In</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="80"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="76"/>
         <source>PWM Out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="81"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="77"/>
         <source>PFM Out / Tone</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="82"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="78"/>
         <source>Servo</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="85"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="81"/>
         <source>Stepper</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="86"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="82"/>
         <source>Encoder</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="112"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="108"/>
         <source>Pin</source>
         <translation></translation>
     </message>
@@ -1863,151 +1873,157 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorScreen</name>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="97"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="91"/>
         <source>File ...</source>
         <translation>Archivo ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="116"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="110"/>
         <source>Options ...</source>
         <translation>Opciones ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="151"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="145"/>
         <source>?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="156"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="150"/>
         <source>Media Clip<byte value="xd"/>
 JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages can be presented dynamically on the screen. Please enter the url of your online media file, or click button &apos;File...&apos; to select a local media file.</source>
         <translation>Clip multimedia
 Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web local o en línea, se pueden presentar de forma dinámica en la pantalla. Ingrese la URL de su archivo multimedia en línea o haga clic en el botón &apos;Archivo ...&apos; para seleccionar un archivo multimedia local.</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="157"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="151"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="739"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="163"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="157"/>
         <source>Select Media File</source>
         <translation>Seleccionar archivo multimedia</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="166"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="160"/>
         <source>Video and picture</source>
         <translation>Video e imagen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="167"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="161"/>
         <source>Web page file</source>
         <translation>Archivo de página web</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="210"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="204"/>
         <source>Media Clip Display Options</source>
         <translation>Opciones de visualización</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="230"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="224"/>
         <source>Show Alone</source>
         <translation>Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="254"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="248"/>
         <source>Fade In</source>
         <translation>Fundido</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="279"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="273"/>
         <source>Opacity</source>
         <translation>Opacidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="303"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="297"/>
         <source>Scale</source>
         <translation>Escala</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="327"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="321"/>
         <source>Rotation</source>
         <translation>Rotación</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="351"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="345"/>
         <source>X Offset</source>
         <translation>X</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="375"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="369"/>
         <source>Y Offset</source>
         <translation>Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="385"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="379"/>
         <source>Options for Video Clip Only</source>
         <translation>Opciones para el videoclip</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="405"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="399"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="429"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="423"/>
         <source>Volume</source>
         <translation>Volumen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="443"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="437"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="453"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="447"/>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="467"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="461"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="477"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="471"/>
         <source>Position</source>
         <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="487"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="481"/>
         <source>Options for Web Clip Only</source>
         <translation>Opciones para el clip web</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="506"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="500"/>
         <source>Run Java Script</source>
         <translation>Java Script</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="522"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="516"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="544"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="538"/>
         <source>Backlight</source>
         <translation>Luz de fondo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="545"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="539"/>
         <source>Media Clip</source>
         <translation>Clip multimedia</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="546"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="540"/>
         <source>Canvas</source>
         <translation>Lienzo</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="739"/>
+        <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
+        <translation>Seleccione un archivo de clip multimedia que exista en los discos de su computadora o ingrese una URL válida del clip multimedia.</translation>
     </message>
 </context>
 <context>

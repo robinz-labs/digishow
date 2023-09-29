@@ -8,36 +8,32 @@ import "components"
 Item {
     id: itemRioc
 
-    property alias spinUnit:    spinRiocUnit
-    property alias menuType:    menuRiocType
-    property alias menuChannel: menuRiocChannel
-
     COptionButton {
-        id: buttonRiocUnit
+        id: buttonUnit
         width: 80
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: qsTr("Unit") + " " + spinRiocUnit.value
-        onClicked: spinRiocUnit.visible = true
+        text: qsTr("Unit") + " " + spinUnit.value
+        onClicked: spinUnit.visible = true
 
         COptionSpinBox {
-            id: spinRiocUnit
+            id: spinUnit
         }
     }
 
     COptionButton {
-        id: buttonRiocType
+        id: buttonType
         width: 120
         height: 28
-        anchors.left: buttonRiocUnit.right
+        anchors.left: buttonUnit.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: menuRiocType.selectedItemText
-        onClicked: menuRiocType.showOptions()
+        text: menuType.selectedItemText
+        onClicked: menuType.showOptions()
 
         COptionMenu {
-            id: menuRiocType
+            id: menuType
 
             onOptionSelected: {
                 refreshMenuChannel()
@@ -47,17 +43,17 @@ Item {
     }
 
     COptionButton {
-        id: buttonRiocChannel
+        id: buttonChannel
         width: 80
         height: 28
-        anchors.left: buttonRiocType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: menuRiocChannel.selectedItemText
-        onClicked: menuRiocChannel.showOptions()
+        text: menuChannel.selectedItemText
+        onClicked: menuChannel.showOptions()
 
         COptionMenu {
-            id: menuRiocChannel
+            id: menuChannel
         }
     }
 
@@ -66,12 +62,12 @@ Item {
         var n
 
         // init rioc unit option spinbox
-        spinRiocUnit.from = 1
-        spinRiocUnit.to = 255
-        spinRiocUnit.visible = false
+        spinUnit.from = 1
+        spinUnit.to = 255
+        spinUnit.visible = false
 
         // init rioc type option menu
-        if (menuRiocType.count === 0) {
+        if (menuType.count === 0) {
             items = []
             if (forInput ) items.push({ text: qsTr("Digital In"),     value: DigishowEnvironment.EndpointRiocDigitalIn,  tag: "digital_in"  })
             if (forOutput) items.push({ text: qsTr("Digital Out"),    value: DigishowEnvironment.EndpointRiocDigitalOut, tag: "digital_out" })
@@ -86,12 +82,12 @@ Item {
             if (forInput ) items.push({ text: qsTr("Encoder"),        value: DigishowEnvironment.EndpointRiocEncoderIn,  tag: "encoder_in"  })
             }
 
-            menuRiocType.optionItems = items
-            menuRiocType.selectedIndex = 0
+            menuType.optionItems = items
+            menuType.selectedIndex = 0
         }
 
         // init rioc channel option menu
-        if (menuRiocChannel.count === 0) {
+        if (menuChannel.count === 0) {
             refreshMenuChannel()
         }
 
@@ -106,7 +102,7 @@ Item {
         var name
 
         var interfaceMode = menuInterface.getSelectedInterfaceConfiguration()["interfaceInfo"]["mode"]
-        var endpointType = menuRiocType.selectedItemValue
+        var endpointType = menuType.selectedItemValue
         if (interfaceMode === undefined || interfaceMode === DigishowEnvironment.InterfaceRiocGeneral) {
             for (n=0 ; n<128 ; n++)
                 items.push({ text: qsTr("Pin") + " " + n, value: n })
@@ -144,14 +140,14 @@ Item {
                 ) items.push({ text: name, value: n })
             }
         }
-        menuRiocChannel.optionItems = items
-        menuRiocChannel.selectedIndex = 0
+        menuChannel.optionItems = items
+        menuChannel.selectedIndex = 0
 
     }
 
     function refreshMoreOptions() {
 
-        var endpointType = menuRiocType.selectedItemValue
+        var endpointType = menuType.selectedItemValue
         var enables = {}
 
         if (endpointType !== DigishowEnvironment.EndpointRiocDigitalIn &&
@@ -198,4 +194,22 @@ Item {
         moreOptions.enableOptions(enables)
         buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
+
+    function setEndpointOptions(endpointInfo, endpointOptions) {
+
+        spinUnit.value = endpointInfo["unit"]
+        menuType.selectOption(endpointInfo["type"])
+        menuChannel.selectOption(endpointInfo["channel"])
+    }
+
+    function getEndpointOptions() {
+
+        var options = {}
+        options["unit"] = spinUnit.value
+        options["type"] = menuType.selectedItemTag
+        options["channel"] = menuChannel.selectedItemValue
+
+        return options
+    }
+
 }

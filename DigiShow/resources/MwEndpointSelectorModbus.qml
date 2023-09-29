@@ -8,53 +8,49 @@ import "components"
 Item {
     id: itemModbus
 
-    property alias menuUnit:    menuModbusUnit
-    property alias menuType:    menuModbusType
-    property alias spinChannel: spinModbusChannel
-
     COptionButton {
-        id: buttonModbusUnit
+        id: buttonUnit
         width: 85
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: menuModbusUnit.selectedItemText
-        onClicked: menuModbusUnit.showOptions()
+        text: menuUnit.selectedItemText
+        onClicked: menuUnit.showOptions()
 
         COptionMenu {
-            id: menuModbusUnit
+            id: menuUnit
         }
     }
 
     COptionButton {
-        id: buttonModbusType
+        id: buttonType
         width: 115
         height: 28
-        anchors.left: buttonModbusUnit.right
+        anchors.left: buttonUnit.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: menuModbusType.selectedItemText
-        onClicked: menuModbusType.showOptions()
+        text: menuType.selectedItemText
+        onClicked: menuType.showOptions()
 
         COptionMenu {
-            id: menuModbusType
+            id: menuType
 
             onOptionSelected: refreshMoreOptions()
         }
     }
 
     COptionButton {
-        id: buttonModbusChannel
+        id: buttonChannel
         width: 120
         height: 28
-        anchors.left: buttonModbusType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: qsTr("Address") + " " + spinModbusChannel.value
-        onClicked: spinModbusChannel.visible = true
+        text: qsTr("Address") + " " + spinChannel.value
+        onClicked: spinChannel.visible = true
 
         COptionSpinBox {
-            id: spinModbusChannel
+            id: spinChannel
         }
     }
 
@@ -63,16 +59,16 @@ Item {
         var n
 
         // init modbus unit option menu
-        if (menuModbusUnit.count === 0) {
+        if (menuUnit.count === 0) {
             items = []
             for (n=0 ; n<256 ; n++)
                 items.push({ text: qsTr("Station") + " " + n, value: n })
-            menuModbusUnit.optionItems = items
-            menuModbusUnit.selectedIndex = 1
+            menuUnit.optionItems = items
+            menuUnit.selectedIndex = 1
         }
 
         // init modbus type option menu
-        if (menuModbusType.count === 0) {
+        if (menuType.count === 0) {
             items = []
             if (forInput ) items.push({ text: qsTr("Discrete Input"  ), value: DigishowEnvironment.EndpointModbusDiscreteIn, tag: "discrete_in" })
             if (forOutput) items.push({ text: qsTr("Coil"            ), value: DigishowEnvironment.EndpointModbusCoilOut,    tag: "coil_out"    })
@@ -81,14 +77,14 @@ Item {
             if (forOutput) items.push({ text: qsTr("Holding Register"), value: DigishowEnvironment.EndpointModbusHoldingOut, tag: "holding_out" })
             if (forInput ) items.push({ text: qsTr("Holding Register"), value: DigishowEnvironment.EndpointModbusHoldingIn,  tag: "holding_in"  })
 
-            menuModbusType.optionItems = items
-            menuModbusType.selectedIndex = 0
+            menuType.optionItems = items
+            menuType.selectedIndex = 0
         }
 
         // init modbus channel option spinbox
-        spinModbusChannel.from = 0
-        spinModbusChannel.to = 65535
-        spinModbusChannel.visible = false
+        spinChannel.from = 0
+        spinChannel.to = 65535
+        spinChannel.visible = false
 
         // init more options
         refreshMoreOptions()
@@ -96,7 +92,7 @@ Item {
 
     function refreshMoreOptions() {
 
-        var endpointType = menuModbusType.selectedItemValue
+        var endpointType = menuType.selectedItemValue
         var enables = {}
 
         if (endpointType === DigishowEnvironment.EndpointModbusCoilOut) {
@@ -106,7 +102,6 @@ Item {
         } else if (endpointType === DigishowEnvironment.EndpointModbusHoldingOut) {
 
             enables["optInitialA"] = true
-
         }
 
         moreOptions.resetOptions()
@@ -114,5 +109,21 @@ Item {
         buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 
+    function setEndpointOptions(endpointInfo, endpointOptions) {
+
+        menuUnit.selectOption(endpointInfo["unit"])
+        menuType.selectOption(endpointInfo["type"])
+        spinChannel.value = endpointInfo["channel"]
+    }
+
+    function getEndpointOptions() {
+
+        var options = {}
+        options["unit"] = menuUnit.selectedItemValue
+        options["type"] = menuType.selectedItemTag
+        options["channel"] = spinChannel.value
+
+        return options
+    }
 }
 

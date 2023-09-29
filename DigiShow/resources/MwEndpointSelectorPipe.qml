@@ -8,37 +8,34 @@ import "components"
 Item {
     id: itemPipe
 
-    property alias menuType:    menuPipeType
-    property alias spinChannel: spinPipeChannel
-
     COptionButton {
-        id: buttonPipeType
+        id: buttonType
         width: 100
         height: 28
         anchors.left: parent.right
         anchors.top: parent.top
-        text: menuPipeType.selectedItemText
-        onClicked: menuPipeType.showOptions()
+        text: menuType.selectedItemText
+        onClicked: menuType.showOptions()
 
         COptionMenu {
-            id: menuPipeType
+            id: menuType
 
             onOptionSelected: refreshMoreOptions()
         }
     }
 
     COptionButton {
-        id: buttonPipeChannel
+        id: buttonChannel
         width: 100
         height: 28
-        anchors.left: buttonPipeType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: qsTr("Channel") + " " + spinPipeChannel.value
-        onClicked: spinPipeChannel.visible = true
+        text: qsTr("Channel") + " " + spinChannel.value
+        onClicked: spinChannel.visible = true
 
         COptionSpinBox {
-            id: spinPipeChannel
+            id: spinChannel
         }
     }
 
@@ -48,19 +45,19 @@ Item {
         var n
 
         // init pipe type option menu
-        if (menuPipeType.count === 0) {
+        if (menuType.count === 0) {
             items = []
             items.push({ text: qsTr("Analog"), value: DigishowEnvironment.EndpointPipeAnalog, tag:"analog" })
             items.push({ text: qsTr("Binary"), value: DigishowEnvironment.EndpointPipeBinary, tag:"binary" })
             items.push({ text: qsTr("Note"  ), value: DigishowEnvironment.EndpointPipeNote,   tag:"note"   })
-            menuPipeType.optionItems = items
-            menuPipeType.selectedIndex = 0
+            menuType.optionItems = items
+            menuType.selectedIndex = 0
         }
 
         // init pipe channel option spinbox
-        spinPipeChannel.from = 1
-        spinPipeChannel.to = 9999
-        spinPipeChannel.visible = false
+        spinChannel.from = 1
+        spinChannel.to = 9999
+        spinChannel.visible = false
 
         // init more options
         refreshMoreOptions()
@@ -68,7 +65,7 @@ Item {
 
     function refreshMoreOptions() {
 
-        var endpointType = menuPipeType.selectedItemValue
+        var endpointType = menuType.selectedItemValue
         var enables = {}
 
         if (endpointType === DigishowEnvironment.EndpointPipeBinary) {
@@ -84,5 +81,19 @@ Item {
         moreOptions.resetOptions()
         moreOptions.enableOptions(enables)
         buttonMoreOptions.visible = (Object.keys(enables).length > 0)
+    }
+
+    function setEndpointOptions(endpointInfo, endpointOptions) {
+
+        menuType.selectOption(endpointInfo["type"])
+        spinChannel.value = endpointInfo["channel"]
+    }
+
+    function getEndpointOptions() {
+
+        var options = {}
+        options["type"] = menuType.selectedItemTag
+        options["channel"] = spinChannel.value
+        return options
     }
 }

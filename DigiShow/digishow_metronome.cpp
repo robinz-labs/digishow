@@ -194,9 +194,9 @@ void DigishowMetronome::onBeatChanged()
     // play metronome sound
     if (m_soundEnabled) {
         if (m_phase < 1) {
-            m_soundOutput->setVolume(0.7);
+            m_soundOutput->setVolume(0.8);
         } else {
-            m_soundOutput->setVolume(0.3);
+            m_soundOutput->setVolume(0.2);
         }
     }
 }

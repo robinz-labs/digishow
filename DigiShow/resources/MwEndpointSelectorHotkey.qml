@@ -8,57 +8,53 @@ import "components"
 Item {
     id: itemHotkey
 
-    property alias menuModifier1: menuHotkeyModifier1
-    property alias menuModifier2: menuHotkeyModifier2
-    property alias menuKey:       menuHotkeyKey
-
     COptionButton {
-        id: buttonHotkeyModifier1
+        id: buttonModifier1
         width: 100
         height: 28
         anchors.left: parent.right
         anchors.top: parent.top
-        text: menuHotkeyModifier1.selectedItemText
-        onClicked: menuHotkeyModifier1.showOptions()
+        text: menuModifier1.selectedItemText
+        onClicked: menuModifier1.showOptions()
 
         COptionMenu {
-            id: menuHotkeyModifier1
+            id: menuModifier1
 
-            onOptionSelected: if (menuHotkeyModifier2.selectedItemValue === value && value !== 0)
-                                  menuHotkeyModifier2.selectOption(0)
+            onOptionSelected: if (menuModifier2.selectedItemValue === value && value !== 0)
+                                  menuModifier2.selectOption(0)
         }
     }
 
     COptionButton {
-        id: buttonHotkeyModifier2
+        id: buttonModifier2
         width: 100
         height: 28
-        anchors.left: buttonHotkeyModifier1.right
+        anchors.left: buttonModifier1.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: menuHotkeyModifier2.selectedItemText
-        onClicked: menuHotkeyModifier2.showOptions()
+        text: menuModifier2.selectedItemText
+        onClicked: menuModifier2.showOptions()
 
         COptionMenu {
-            id: menuHotkeyModifier2
+            id: menuModifier2
 
-            onOptionSelected: if (menuHotkeyModifier1.selectedItemValue === value && value !== 0)
-                                  menuHotkeyModifier1.selectOption(0)
+            onOptionSelected: if (menuModifier1.selectedItemValue === value && value !== 0)
+                                  menuModifier1.selectOption(0)
         }
     }
 
     COptionButton {
-        id: buttonHotkeyKey
+        id: buttonKey
         width: 100
         height: 28
-        anchors.left: buttonHotkeyModifier2.right
+        anchors.left: buttonModifier2.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: menuHotkeyKey.selectedItemText
-        onClicked: menuHotkeyKey.showOptions()
+        text: menuKey.selectedItemText
+        onClicked: menuKey.showOptions()
 
         COptionMenu {
-            id: menuHotkeyKey
+            id: menuKey
 
             onOptionSelected: {}
         }
@@ -70,8 +66,8 @@ Item {
         var n
 
         // init modifier keys option menu
-        if (menuHotkeyModifier1.count === 0 ||
-            menuHotkeyModifier2.count === 0) {
+        if (menuModifier1.count === 0 ||
+            menuModifier2.count === 0) {
 
             items = []
             items.push({ text: qsTr("(none)")                         , value: 0             , tag:"" })
@@ -80,14 +76,14 @@ Item {
             items.push({ text: utilities.isMac() ? "Option"  : "Alt"  , value: Qt.Key_Alt    , tag:"Alt"   })
             items.push({ text: utilities.isMac() ? "Control" : "Meta" , value: Qt.Key_Meta   , tag:"Meta"  })
 
-            menuHotkeyModifier1.optionItems = items
-            menuHotkeyModifier2.optionItems = items
+            menuModifier1.optionItems = items
+            menuModifier2.optionItems = items
 
-            menuHotkeyModifier1.selectedIndex = 1
-            menuHotkeyModifier2.selectedIndex = 2
+            menuModifier1.selectedIndex = 1
+            menuModifier2.selectedIndex = 2
         }
 
-        if (menuHotkeyKey.count === 0) {
+        if (menuKey.count === 0) {
 
             items = []
             items.push({ text: "Space"    , value: Qt.Key_Space    , tag:"Space"    })
@@ -156,8 +152,8 @@ Item {
             items.push({ text: "9"        , value: Qt.Key_9        , tag:"9"        })
             items.push({ text: "0"        , value: Qt.Key_0        , tag:"0"        })
 
-            menuHotkeyKey.optionItems = items
-            menuHotkeyKey.selectOption(Qt.Key_A)
+            menuKey.optionItems = items
+            menuKey.selectOption(Qt.Key_A)
         }
 
         // init more options
@@ -172,4 +168,29 @@ Item {
         moreOptions.enableOptions(enables)
         buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
+
+    function setEndpointOptions(endpointInfo, endpointOptions) {
+
+        var hotkey = endpointInfo["address"].split("+")
+        menuKey.selectedIndex = 0
+        menuModifier1.selectedIndex = 0
+        menuModifier2.selectedIndex = 0
+        if (hotkey.length > 0) menuKey.selectOptionWithTag(hotkey.pop())
+        if (hotkey.length > 0) menuModifier1.selectOptionWithTag(hotkey.shift())
+        if (hotkey.length > 0) menuModifier2.selectOptionWithTag(hotkey.shift())
+    }
+
+    function getEndpointOptions() {
+
+        var options = {}
+        options["type"] = "press"
+        var hotkey = [];
+        if (menuModifier1.selectedIndex > 0) hotkey.push(menuModifier1.selectedItemTag)
+        if (menuModifier2.selectedIndex > 0) hotkey.push(menuModifier2.selectedItemTag)
+        hotkey.push(menuKey.selectedItemTag)
+        options["address"] = hotkey.join("+")
+
+        return options
+    }
+
 }

@@ -8,20 +8,17 @@ import "components"
 Item {
     id: itemLaunch
 
-    property alias menuChannel: menuLaunchChannel
-
-
     COptionButton {
-        id: buttonLaunchChannel
+        id: buttonChannel
         width: 120
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: menuLaunchChannel.selectedItemText
-        onClicked: menuLaunchChannel.showOptions()
+        text: menuChannel.selectedItemText
+        onClicked: menuChannel.showOptions()
 
         COptionMenu {
-            id: menuLaunchChannel
+            id: menuChannel
         }
     }
 
@@ -36,8 +33,8 @@ Item {
             var title = quickLaunchView.dataModel.get(n-1).title
             items.push({ text: (title === "" ? qsTr("Preset") + " " + n : title), value: n })
         }
-        menuLaunchChannel.optionItems = items
-        menuLaunchChannel.selectedIndex = 0
+        menuChannel.optionItems = items
+        menuChannel.selectedIndex = 0
 
         // init more options
         refreshMoreOptions()
@@ -53,5 +50,18 @@ Item {
         buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 
+    function setEndpointOptions(endpointInfo, endpointOptions) {
+
+        menuChannel.selectOption(endpointInfo["channel"])
+    }
+
+    function getEndpointOptions() {
+
+        var options = {}
+        options["type"] = "preset"
+        options["channel"] = menuChannel.selectedItemValue
+
+        return options
+    }
 }
 

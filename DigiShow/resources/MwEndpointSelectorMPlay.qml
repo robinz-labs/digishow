@@ -9,21 +9,17 @@ import "components"
 Item {
     id: itemMPlay
 
-    property alias menuType:          menuMPlayType
-    property alias menuMediaControl:  menuMediaControl
-    property alias textMediaUrl:      textMediaUrl
-
     COptionButton {
-        id: buttonMPlayType
+        id: buttonType
         width: 100
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: menuMPlayType.selectedItemText
-        onClicked: menuMPlayType.showOptions()
+        text: menuType.selectedItemText
+        onClicked: menuType.showOptions()
 
         COptionMenu {
-            id: menuMPlayType
+            id: menuType
 
             onOptionSelected: refreshMoreOptions()
         }
@@ -33,11 +29,11 @@ Item {
         id: buttonMediaControl
         width: 100
         height: 28
-        anchors.left: buttonMPlayType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
         text: menuMediaControl.selectedItemText
-        visible: menuMPlayType.selectedItemValue === DigishowEnvironment.EndpointMPlayMedia
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointMPlayMedia
         onClicked: menuMediaControl.showOptions()
 
         COptionMenu {
@@ -94,7 +90,7 @@ Item {
         anchors.rightMargin: 38
         text: "file://"
         //input.anchors.rightMargin: 30
-        visible: menuMPlayType.selectedItemValue === DigishowEnvironment.EndpointMPlayMedia &&
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointMPlayMedia &&
                  menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll
 
         onTextEdited: isModified = true
@@ -304,11 +300,11 @@ Item {
         var v
 
         // init type option menu
-        if (menuMPlayType.count === 0) {
+        if (menuType.count === 0) {
             items = []
             items.push({ text: qsTr("MIDI Clip"), value: DigishowEnvironment.EndpointMPlayMedia,  tag:"media" })
-            menuMPlayType.optionItems = items
-            menuMPlayType.selectedIndex = 0
+            menuType.optionItems = items
+            menuType.selectedIndex = 0
         }
 
         // init media control option menu
@@ -327,10 +323,30 @@ Item {
         refreshMoreOptions()
     }
 
+    function refreshMoreOptions() {
+
+        var endpointType = menuType.selectedItemValue
+        var mediaControl = menuMediaControl.selectedItemValue
+        var enables = {}
+
+        if (endpointType === DigishowEnvironment.EndpointMPlayMedia) {
+            if (mediaControl === DigishowEnvironment.ControlMediaStart ||
+                mediaControl === DigishowEnvironment.ControlMediaStop ||
+                mediaControl === DigishowEnvironment.ControlMediaStopAll) {
+
+                enables["optInitialB"] = true
+            }
+        }
+
+        moreOptions.resetOptions()
+        moreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
+    }
+
     function setEndpointMediaOptions(options) {
 
         var v
-        v = options["mediaAlone"];    checkMediaAlone.checked     = (v === undefined ? true : v )
+        v = options["mediaAlone"];    checkMediaAlone.checked     = (v === undefined ? true  : v )
         v = options["mediaSpeed"];    spinMediaSpeed.value        = (v === undefined ? 100   : v / 100)
         v = options["mediaPosition"]; spinMediaPosition.value     = (v === undefined ? 0     : v )
         v = options["mediaDuration"]; spinMediaDuration.value     = (v === undefined ? 0     : v )
@@ -350,24 +366,53 @@ Item {
         return options
     }
 
-    function refreshMoreOptions() {
+    function setEndpointOptions(endpointInfo, endpointOptions) {
 
-        var endpointType = menuMPlayType.selectedItemValue
-        var mediaControl = menuMediaControl.selectedItemValue
-        var enables = {}
+        menuType.selectOption(endpointInfo["type"])
 
-        if (endpointType === DigishowEnvironment.EndpointMPlayMedia) {
-            if (mediaControl === DigishowEnvironment.ControlMediaStart ||
-                mediaControl === DigishowEnvironment.ControlMediaStop ||
-                mediaControl === DigishowEnvironment.ControlMediaStopAll) {
+        switch (endpointInfo["type"]) {
+        case DigishowEnvironment.EndpointMPlayMedia:
+            menuMediaControl.selectOption(endpointInfo["control"])
 
-                enables["optInitialB"] = true
+            var mediaName = endpointOptions["media"]
+            var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
+            var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
+            var mediaUrl = "file://"
+            if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
+            textMediaUrl.text = mediaUrl
+
+            setEndpointMediaOptions(endpointOptions)
+
+            break
+        }
+    }
+
+    function getEndpointOptions() {
+
+        var options = {}
+        options["type"] = menuType.selectedItemTag
+
+        switch (menuType.selectedItemValue) {
+        case DigishowEnvironment.EndpointMPlayMedia:
+            options["control"] = menuMediaControl.selectedItemValue
+
+            if (textMediaUrl.visible) {
+                var interfaceIndex = menuInterface.selectedItemValue
+                var mediaUrl = textMediaUrl.text
+                var mediaIndex = digishow.makeMedia(interfaceIndex, mediaUrl, "midi")
+
+                if (mediaIndex !== -1) {
+                    options["media"] = digishow.getMediaName(interfaceIndex, mediaIndex)
+                    if (menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
+                        options = utilities.merge(options, getEndpointMediaOptions())
+                } else {
+                    messageBox.show(qsTr("Please select a MIDI clip file exists on your computer disks or enter a valid url of the MIDI clip."), qsTr("OK"))
+                }
             }
+            break
         }
 
-        moreOptions.resetOptions()
-        moreOptions.enableOptions(enables)
-        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
+        return options
     }
 
 }

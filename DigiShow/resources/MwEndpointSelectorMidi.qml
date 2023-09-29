@@ -8,37 +8,32 @@ import "components"
 Item {
     id: itemMidi
 
-    property alias menuChannel: menuMidiChannel
-    property alias menuType:    menuMidiType
-    property alias menuNote:    menuMidiNote
-    property alias menuControl: menuMidiControl
-
     COptionButton {
-        id: buttonMidiChannel
+        id: buttonChannel
         width: 100
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: menuMidiChannel.selectedItemText
-        onClicked: menuMidiChannel.showOptions()
+        text: menuChannel.selectedItemText
+        onClicked: menuChannel.showOptions()
 
         COptionMenu {
-            id: menuMidiChannel
+            id: menuChannel
         }
     }
 
     COptionButton {
-        id: buttonMidiType
+        id: buttonType
         width: 100
         height: 28
-        anchors.left: buttonMidiChannel.right
+        anchors.left: buttonChannel.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: menuMidiType.selectedItemText
-        onClicked: menuMidiType.showOptions()
+        text: menuType.selectedItemText
+        onClicked: menuType.showOptions()
 
         COptionMenu {
-            id: menuMidiType
+            id: menuType
 
             onOptionSelected: refreshMoreOptions()
         }
@@ -46,34 +41,34 @@ Item {
     }
 
     COptionButton {
-        id: buttonMidiNote
+        id: buttonNote
         width: 120
         height: 28
-        anchors.left: buttonMidiType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: menuMidiNote.selectedItemText
-        visible: menuMidiType.selectedItemValue === DigishowEnvironment.EndpointMidiNote
-        onClicked: menuMidiNote.showOptions()
+        text: menuNote.selectedItemText
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointMidiNote
+        onClicked: menuNote.showOptions()
 
         COptionMenu {
-            id: menuMidiNote
+            id: menuNote
         }
     }
 
     COptionButton {
-        id: buttonMidiControl
+        id: buttonControl
         width: 130
         height: 28
-        anchors.left: buttonMidiType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: menuMidiControl.selectedItemText
-        visible: menuMidiType.selectedItemValue === DigishowEnvironment.EndpointMidiControl
-        onClicked: menuMidiControl.showOptions()
+        text: menuControl.selectedItemText
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointMidiControl
+        onClicked: menuControl.showOptions()
 
         COptionMenu {
-            id: menuMidiControl
+            id: menuControl
         }
     }
 
@@ -83,16 +78,16 @@ Item {
         var n
 
         // init midi channel option menu
-        if (menuMidiChannel.count === 0) {
+        if (menuChannel.count === 0) {
             items = []
             for (n=0 ; n<16 ; n++)
                 items.push({ text: qsTr("Channel") + " " + (n+1), value: n })
-            menuMidiChannel.optionItems = items
-            menuMidiChannel.selectedIndex = 0
+            menuChannel.optionItems = items
+            menuChannel.selectedIndex = 0
         }
 
         // init midi type option menu
-        if (menuMidiType.count === 0) {
+        if (menuType.count === 0) {
             items = []
             items.push({ text: qsTr("MIDI Note"   ), value: DigishowEnvironment.EndpointMidiNote,    tag:"note"    })
             items.push({ text: qsTr("MIDI Control"), value: DigishowEnvironment.EndpointMidiControl, tag:"control" })
@@ -105,28 +100,28 @@ Item {
                     tag:"cc_pulse" })
             }
 
-            menuMidiType.optionItems = items
-            menuMidiType.selectedIndex = 0
+            menuType.optionItems = items
+            menuType.selectedIndex = 0
         }
 
         // init midi note option menu
-        if (menuMidiNote.count === 0) {
+        if (menuNote.count === 0) {
             items = []
             for (n=127 ; n>=0 ; n--) {
                 var noteName = digishow.getMidiNoteName(n, true)
                 items.push({ text: noteName, value: n })
             }
-            menuMidiNote.optionItems = items
-            menuMidiNote.selectedIndex = 91 // C1
+            menuNote.optionItems = items
+            menuNote.selectedIndex = 91 // C1
         }
 
         // init midi cc option menu
-        if (menuMidiControl.count === 0) {
+        if (menuControl.count === 0) {
             items = []
             for (n=0 ; n<128 ; n++)
                 items[n] = { text: qsTr("CC") + " " + n + "  " + digishow.getMidiControlName(n), value: n }
-            menuMidiControl.optionItems = items
-            menuMidiControl.selectedIndex = 0
+            menuControl.optionItems = items
+            menuControl.selectedIndex = 0
         }
 
         // init more options
@@ -135,7 +130,7 @@ Item {
 
     function refreshMoreOptions() {
 
-        var endpointType = menuMidiType.selectedItemValue
+        var endpointType = menuType.selectedItemValue
         var enables = {}
 
         if (endpointType === DigishowEnvironment.EndpointMidiControl ||
@@ -147,6 +142,61 @@ Item {
         moreOptions.resetOptions()
         moreOptions.enableOptions(enables)
         buttonMoreOptions.visible = (Object.keys(enables).length > 0)
+    }
+
+    function setEndpointOptions(endpointInfo, endpointOptions) {
+
+        menuChannel.selectOption(endpointInfo["channel"])
+        menuType.selectOption(endpointInfo["type"])
+
+        switch (endpointInfo["type"]) {
+        case DigishowEnvironment.EndpointMidiNote:
+            menuNote.selectOption(endpointInfo["note"])
+            break
+        case DigishowEnvironment.EndpointMidiControl:
+            menuControl.selectOption(endpointInfo["control"])
+            break
+        }
+    }
+
+    function getEndpointOptions() {
+
+        var options = {}
+        options["channel"] = menuChannel.selectedItemValue
+        options["type"] = menuType.selectedItemTag
+
+        switch (menuType.selectedItemValue) {
+        case DigishowEnvironment.EndpointMidiNote:
+            options["note"] = menuNote.selectedItemValue
+            break
+        case DigishowEnvironment.EndpointMidiControl:
+            options["control"] = menuControl.selectedItemValue
+            break
+        }
+
+        return options
+    }
+
+    function learn(rawData) {
+
+        var event = rawData["event"]
+        if (event === "note_on" || event === "note_off") {
+
+            menuType.selectOptionWithTag("note")
+            menuNote.selectOption(rawData["note"])
+
+        } else if (event === "control_change") {
+
+            menuType.selectOptionWithTag("control")
+            menuControl.selectOption(rawData["control"])
+
+        } else if (event === "program_change") {
+
+            menuType.selectOptionWithTag("program")
+
+        }
+        menuChannel.selectOption(rawData["channel"])
+
     }
 
 }

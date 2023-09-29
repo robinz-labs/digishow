@@ -445,186 +445,26 @@ Item {
             var endpointInfo = menuInterface.getSelectedInterfaceConfiguration()["epInfoList"][endpointIndex]
             var endpointOptions = menuInterface.getSelectedInterfaceConfiguration()["epOptionsList"][endpointIndex]
 
-            if (type === DigishowEnvironment.InterfaceMidi) {
-
-                itemMidi.menuChannel.selectOption(endpointInfo["channel"])
-                itemMidi.menuType.selectOption(endpointInfo["type"])
-
-                switch (endpointInfo["type"]) {
-                case DigishowEnvironment.EndpointMidiNote:
-                    itemMidi.menuNote.selectOption(endpointInfo["note"])
-                    break
-                case DigishowEnvironment.EndpointMidiControl:
-                    itemMidi.menuControl.selectOption(endpointInfo["control"])
-                    break
-                }
-
-            } else if (type === DigishowEnvironment.InterfaceDmx) {
-
-                itemDmx.menuType.selectOption(endpointInfo["type"])
-                itemDmx.spinChannel.value = endpointInfo["channel"] + 1
-
-                switch (endpointInfo["type"]) {
-                case DigishowEnvironment.EndpointDmxMedia:
-                    itemDmx.menuMediaControl.selectOption(endpointInfo["control"])
-
-                    var mediaName = endpointOptions["media"]
-                    var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
-                    var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
-                    var mediaUrl = "file://"
-                    if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
-                    itemDmx.textMediaUrl.text = mediaUrl
-
-                    itemDmx.setEndpointMediaOptions(endpointOptions)
-
-                    break
-                }
-
-            } else if (type === DigishowEnvironment.InterfaceOsc) {
-
-                itemOsc.spinChannel.value = endpointInfo["channel"] + 1
-                itemOsc.menuType.selectOption(endpointInfo["type"])
-
-                var oscAddress = endpointInfo["address"]
-                if (oscAddress === undefined || oscAddress === "") oscAddress = "/osc/address"
-                itemOsc.textAddress.text = oscAddress
-
-            } else if (type === DigishowEnvironment.InterfaceArtnet) {
-
-                itemArtnet.menuType.selectOption(endpointInfo["type"])
-                itemArtnet.spinUnit.value = endpointInfo["unit"]
-                itemArtnet.spinChannel.value = endpointInfo["channel"] + 1
-
-                switch (endpointInfo["type"]) {
-                case DigishowEnvironment.EndpointArtnetMedia:
-                    itemArtnet.menuMediaControl.selectOption(endpointInfo["control"])
-
-                    var mediaName = endpointOptions["media"]
-                    var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
-                    var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
-                    var mediaUrl = "file://"
-                    if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
-                    itemArtnet.textMediaUrl.text = mediaUrl
-
-                    itemArtnet.setEndpointMediaOptions(endpointOptions)
-
-                    break
-                }
-
-            } else if (type === DigishowEnvironment.InterfaceModbus) {
-
-                itemModbus.menuUnit.selectOption(endpointInfo["unit"])
-                itemModbus.menuType.selectOption(endpointInfo["type"])
-                itemModbus.spinChannel.value = endpointInfo["channel"]
-
-            } else if (type === DigishowEnvironment.InterfaceRioc) {
-
-                itemRioc.spinUnit.value = endpointInfo["unit"]
-                itemRioc.menuType.selectOption(endpointInfo["type"])
-                itemRioc.menuChannel.selectOption(endpointInfo["channel"])
-
-            } else if (type === DigishowEnvironment.InterfaceHue) {
-
-                itemHue.menuType.selectOption(endpointInfo["type"])
-                itemHue.spinChannel.value = endpointInfo["channel"]
-                itemHue.menuControl.selectOption(endpointInfo["control"])
-
-            } else if (type === DigishowEnvironment.InterfaceAudioIn) {
-
-                itemAudioin.menuType.selectOption(endpointInfo["type"])
-
-            } else if (type === DigishowEnvironment.InterfaceScreen) {
-
-                itemScreen.menuType.selectOption(endpointInfo["type"])
-
-                switch (endpointInfo["type"]) {
-                case DigishowEnvironment.EndpointScreenLight:
-                    itemScreen.menuLightControl.selectOption(endpointInfo["control"])
-                    itemScreen.setEndpointMediaOptions({}) // clear media options
-                    break
-                case DigishowEnvironment.EndpointScreenCanvas:
-                    itemScreen.menuCanvasControl.selectOption(endpointInfo["control"])
-                    itemScreen.setEndpointMediaOptions({}) // clear media options
-                    break
-                case DigishowEnvironment.EndpointScreenMedia:
-                    itemScreen.menuMediaControl.selectOption(endpointInfo["control"])
-
-                    var mediaName = endpointOptions["media"]
-                    var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
-                    var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
-                    var mediaUrl = "file://"
-                    if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
-                    itemScreen.textMediaUrl.text = mediaUrl
-
-                    itemScreen.setEndpointMediaOptions(endpointOptions)
-
-                    break
-                }
-
-            } else if (type === DigishowEnvironment.InterfaceAPlay) {
-
-                itemAPlay.menuType.selectOption(endpointInfo["type"])
-
-                switch (endpointInfo["type"]) {
-                case DigishowEnvironment.EndpointAPlayMedia:
-                    itemAPlay.menuMediaControl.selectOption(endpointInfo["control"])
-
-                    var mediaName = endpointOptions["media"]
-                    var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
-                    var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
-                    var mediaUrl = "file://"
-                    if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
-                    itemAPlay.textMediaUrl.text = mediaUrl
-
-                    itemAPlay.setEndpointMediaOptions(endpointOptions)
-
-                    break
-                }
-
-            } else if (type === DigishowEnvironment.InterfaceMPlay) {
-
-                itemMPlay.menuType.selectOption(endpointInfo["type"])
-
-                switch (endpointInfo["type"]) {
-                case DigishowEnvironment.EndpointMPlayMedia:
-                    itemMPlay.menuMediaControl.selectOption(endpointInfo["control"])
-
-                    var mediaName = endpointOptions["media"]
-                    var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
-                    var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
-                    var mediaUrl = "file://"
-                    if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
-                    itemMPlay.textMediaUrl.text = mediaUrl
-
-                    itemMPlay.setEndpointMediaOptions(endpointOptions)
-
-                    break
-                }
-
-            } else if (type === DigishowEnvironment.InterfacePipe) {
-
-                itemPipe.menuType.selectOption(endpointInfo["type"])
-                itemPipe.spinChannel.value = endpointInfo["channel"]
-
-            } else if (type === DigishowEnvironment.InterfaceLaunch) {
-
-                itemLaunch.menuChannel.selectOption(endpointInfo["channel"])
-
-            } else if (type === DigishowEnvironment.InterfaceHotkey) {
-
-                var hotkey = endpointInfo["address"].split("+")
-                itemHotkey.menuKey.selectedIndex = 0
-                itemHotkey.menuModifier1.selectedIndex = 0
-                itemHotkey.menuModifier2.selectedIndex = 0
-                if (hotkey.length > 0) itemHotkey.menuKey.selectOptionWithTag(hotkey.pop())
-                if (hotkey.length > 0) itemHotkey.menuModifier1.selectOptionWithTag(hotkey.shift())
-                if (hotkey.length > 0) itemHotkey.menuModifier2.selectOptionWithTag(hotkey.shift())
-
-            } else if (type === DigishowEnvironment.InterfaceMetronome) {
-
-                itemMetronome.menuBeat.selectOption(endpointInfo["channel"])
-                itemMetronome.menuSustain.selectOption(endpointInfo["control"])
+            var itemEndpoint = null
+            switch(type) {
+            case DigishowEnvironment.InterfaceMidi:      itemEndpoint = itemMidi;      break
+            case DigishowEnvironment.InterfaceDmx:       itemEndpoint = itemDmx;       break
+            case DigishowEnvironment.InterfaceOsc:       itemEndpoint = itemOsc;       break
+            case DigishowEnvironment.InterfaceArtnet:    itemEndpoint = itemArtnet;    break
+            case DigishowEnvironment.InterfaceModbus:    itemEndpoint = itemModbus;    break
+            case DigishowEnvironment.InterfaceRioc:      itemEndpoint = itemRioc;      break
+            case DigishowEnvironment.InterfaceHue:       itemEndpoint = itemHue;       break
+            case DigishowEnvironment.InterfaceAudioIn:   itemEndpoint = itemAudioin;   break
+            case DigishowEnvironment.InterfaceScreen:    itemEndpoint = itemScreen;    break
+            case DigishowEnvironment.InterfaceAPlay:     itemEndpoint = itemAPlay;     break
+            case DigishowEnvironment.InterfaceMPlay:     itemEndpoint = itemMPlay;     break
+            case DigishowEnvironment.InterfacePipe:      itemEndpoint = itemPipe;      break
+            case DigishowEnvironment.InterfaceLaunch:    itemEndpoint = itemLaunch;    break
+            case DigishowEnvironment.InterfaceHotkey:    itemEndpoint = itemHotkey;    break
+            case DigishowEnvironment.InterfaceMetronome: itemEndpoint = itemMetronome; break
             }
+            if (itemEndpoint !== null)
+                itemEndpoint.setEndpointOptions(endpointInfo, endpointOptions)
 
             // set ui with more options
             moreOptions.setOptions(endpointOptions)
@@ -646,211 +486,27 @@ Item {
 
         // fill endpoint options
         var type = menuInterface.getSelectedInterfaceConfiguration()["interfaceInfo"]["type"]
-        if (type === DigishowEnvironment.InterfaceMidi) {
 
-            newEndpointOptions["channel"] = itemMidi.menuChannel.selectedItemValue
-            newEndpointOptions["type"] = itemMidi.menuType.selectedItemTag
-
-            switch (itemMidi.menuType.selectedItemValue) {
-            case DigishowEnvironment.EndpointMidiNote:
-                newEndpointOptions["note"] = itemMidi.menuNote.selectedItemValue
-                break
-            case DigishowEnvironment.EndpointMidiControl:
-                newEndpointOptions["control"] = itemMidi.menuControl.selectedItemValue
-                break
-            }
-
-        } else if (type === DigishowEnvironment.InterfaceDmx) {
-
-            newEndpointOptions["type"] = itemDmx.menuType.selectedItemTag
-            newEndpointOptions["channel"] = itemDmx.spinChannel.value - 1
-
-            switch (itemDmx.menuType.selectedItemValue) {
-            case DigishowEnvironment.EndpointDmxMedia:
-                newEndpointOptions["control"] = itemDmx.menuMediaControl.selectedItemValue
-
-                if (itemDmx.textMediaUrl.visible) {
-                    var mediaUrl = itemDmx.textMediaUrl.text
-                    var mediaType = digishow.getMediaType(mediaUrl)
-                    var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, mediaType)
-
-                    if (mediaIndex !== -1) {
-                        newEndpointOptions["media"] = digishow.getMediaName(newInterfaceIndex, mediaIndex)
-                        if (itemDmx.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
-                            newEndpointOptions = utilities.merge(newEndpointOptions, itemDmx.getEndpointMediaOptions())
-                    } else {
-                        messageBox.show(qsTr("Please select a video clip file exists on your computer disks or enter a valid url of the video clip."), qsTr("OK"))
-                    }
-                }
-                break
-            }
-
-            needRestartInterface = true
-
-        } else if (type === DigishowEnvironment.InterfaceOsc) {
-
-            newEndpointOptions["channel"] = itemOsc.spinChannel.value - 1
-            newEndpointOptions["type"] = itemOsc.menuType.selectedItemTag
-            newEndpointOptions["address"] = itemOsc.textAddress.text.trim()
-
-        } else if (type === DigishowEnvironment.InterfaceArtnet) {
-
-            newEndpointOptions["type"] = itemArtnet.menuType.selectedItemTag
-            newEndpointOptions["unit"] = itemArtnet.spinUnit.value
-            newEndpointOptions["channel"] = itemArtnet.spinChannel.value - 1
-
-            switch (itemArtnet.menuType.selectedItemValue) {
-            case DigishowEnvironment.EndpointArtnetMedia:
-                newEndpointOptions["control"] = itemArtnet.menuMediaControl.selectedItemValue
-
-                if (itemArtnet.textMediaUrl.visible) {
-                    var mediaUrl = itemArtnet.textMediaUrl.text
-                    var mediaType = digishow.getMediaType(mediaUrl)
-                    var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, mediaType)
-
-                    if (mediaIndex !== -1) {
-                        newEndpointOptions["media"] = digishow.getMediaName(newInterfaceIndex, mediaIndex)
-                        if (itemArtnet.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
-                            newEndpointOptions = utilities.merge(newEndpointOptions, itemArtnet.getEndpointMediaOptions())
-                    } else {
-                        messageBox.show(qsTr("Please select a video clip file exists on your computer disks or enter a valid url of the video clip."), qsTr("OK"))
-                    }
-                }
-                break
-            }
-
-
-        } else if (type === DigishowEnvironment.InterfaceModbus) {
-
-            newEndpointOptions["unit"] = itemModbus.menuUnit.selectedItemValue
-            newEndpointOptions["type"] = itemModbus.menuType.selectedItemTag
-            newEndpointOptions["channel"] = itemModbus.spinChannel.value
-
-            needRestartInterface = true
-
-        } else if (type === DigishowEnvironment.InterfaceRioc) {
-
-            newEndpointOptions["unit"] = itemRioc.spinUnit.value
-            newEndpointOptions["type"] = itemRioc.menuType.selectedItemTag
-            newEndpointOptions["channel"] = itemRioc.menuChannel.selectedItemValue
-
-            needStopApp = true
-
-        } else if (type === DigishowEnvironment.InterfaceHue) {
-
-            newEndpointOptions["type"] = itemHue.menuType.selectedItemTag
-            newEndpointOptions["channel"] = itemHue.spinChannel.value
-            newEndpointOptions["control"] = itemHue.menuControl.selectedItemValue
-
-        } else if (type === DigishowEnvironment.InterfaceAudioIn) {
-
-            newEndpointOptions["type"] = itemAudioin.menuType.selectedItemTag
-
-        } else if (type === DigishowEnvironment.InterfaceScreen) {
-
-            newEndpointOptions["type"] = itemScreen.menuType.selectedItemTag
-
-            switch (itemScreen.menuType.selectedItemValue) {
-            case DigishowEnvironment.EndpointScreenLight:
-                newEndpointOptions["control"] = itemScreen.menuLightControl.selectedItemValue
-                break
-            case DigishowEnvironment.EndpointScreenCanvas:
-                newEndpointOptions["control"] = itemScreen.menuCanvasControl.selectedItemValue
-                break
-            case DigishowEnvironment.EndpointScreenMedia:
-                newEndpointOptions["control"] = itemScreen.menuMediaControl.selectedItemValue
-
-                if (itemScreen.textMediaUrl.visible) {
-                    var mediaUrl = itemScreen.textMediaUrl.text
-                    var mediaType = digishow.getMediaType(mediaUrl)
-                    var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, mediaType)
-
-                    if (mediaIndex !== -1) {
-                        newEndpointOptions["media"] = digishow.getMediaName(newInterfaceIndex, mediaIndex)
-                        if (itemScreen.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
-                            newEndpointOptions = utilities.merge(newEndpointOptions, itemScreen.getEndpointMediaOptions())
-                    } else {
-                        messageBox.show(qsTr("Please select a media clip file exists on your computer disks or enter a valid url of the media clip."), qsTr("OK"))
-                    }
-                }
-                break
-            }
-
-        } else if (type === DigishowEnvironment.InterfaceAPlay) {
-
-            newEndpointOptions["type"] = itemAPlay.menuType.selectedItemTag
-
-            switch (itemAPlay.menuType.selectedItemValue) {
-            case DigishowEnvironment.EndpointAPlayMedia:
-                newEndpointOptions["control"] = itemAPlay.menuMediaControl.selectedItemValue
-
-                if (itemAPlay.textMediaUrl.visible) {
-                    var mediaUrl = itemAPlay.textMediaUrl.text
-                    var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, "audio")
-
-                    if (mediaIndex !== -1) {
-                        newEndpointOptions["media"] = digishow.getMediaName(newInterfaceIndex, mediaIndex)
-                        if (itemAPlay.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
-                            newEndpointOptions = utilities.merge(newEndpointOptions, itemAPlay.getEndpointMediaOptions())
-                    } else {
-                        messageBox.show(qsTr("Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip."), qsTr("OK"))
-                    }
-                }
-                break
-            }
-
-        } else if (type === DigishowEnvironment.InterfaceMPlay) {
-
-            newEndpointOptions["type"] = itemMPlay.menuType.selectedItemTag
-
-            switch (itemMPlay.menuType.selectedItemValue) {
-            case DigishowEnvironment.EndpointMPlayMedia:
-                newEndpointOptions["control"] = itemMPlay.menuMediaControl.selectedItemValue
-
-                if (itemMPlay.textMediaUrl.visible) {
-                    var mediaUrl = itemMPlay.textMediaUrl.text
-                    var mediaIndex = digishow.makeMedia(newInterfaceIndex, mediaUrl, "midi")
-
-                    if (mediaIndex !== -1) {
-                        newEndpointOptions["media"] = digishow.getMediaName(newInterfaceIndex, mediaIndex)
-                        if (itemMPlay.menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
-                            newEndpointOptions = utilities.merge(newEndpointOptions, itemMPlay.getEndpointMediaOptions())
-                    } else {
-                        messageBox.show(qsTr("Please select a MIDI clip file exists on your computer disks or enter a valid url of the MIDI clip."), qsTr("OK"))
-                    }
-                }
-                break
-            }
-
-        } else if (type === DigishowEnvironment.InterfacePipe) {
-
-            newEndpointOptions["type"] = itemPipe.menuType.selectedItemTag
-            newEndpointOptions["channel"] = itemPipe.spinChannel.value
-
-        } else if (type === DigishowEnvironment.InterfaceLaunch) {
-
-            newEndpointOptions["type"] = "preset"
-            newEndpointOptions["channel"] = itemLaunch.menuChannel.selectedItemValue
-
-        } else if (type === DigishowEnvironment.InterfaceHotkey) {
-
-            newEndpointOptions["type"] = "press"
-            var hotkey = [];
-            if (itemHotkey.menuModifier1.selectedIndex > 0) hotkey.push(itemHotkey.menuModifier1.selectedItemTag)
-            if (itemHotkey.menuModifier2.selectedIndex > 0) hotkey.push(itemHotkey.menuModifier2.selectedItemTag)
-            hotkey.push(itemHotkey.menuKey.selectedItemTag)
-            newEndpointOptions["address"] = hotkey.join("+")
-
-            needRestartInterface = true
-
-        } else if (type === DigishowEnvironment.InterfaceMetronome) {
-
-            newEndpointOptions["type"] = "beat"
-            newEndpointOptions["channel"] = itemMetronome.menuBeat.selectedItemValue
-            newEndpointOptions["control"] = itemMetronome.menuSustain.selectedItemValue
-
-            needRestartInterface = true
+        var itemEndpoint = null
+        switch(type) {
+        case DigishowEnvironment.InterfaceMidi:      itemEndpoint = itemMidi;      break
+        case DigishowEnvironment.InterfaceDmx:       itemEndpoint = itemDmx;       needRestartInterface = true; break
+        case DigishowEnvironment.InterfaceOsc:       itemEndpoint = itemOsc;       break
+        case DigishowEnvironment.InterfaceArtnet:    itemEndpoint = itemArtnet;    break
+        case DigishowEnvironment.InterfaceModbus:    itemEndpoint = itemModbus;    needRestartInterface = true; break
+        case DigishowEnvironment.InterfaceRioc:      itemEndpoint = itemRioc;      needStopApp = true; break
+        case DigishowEnvironment.InterfaceHue:       itemEndpoint = itemHue;       break
+        case DigishowEnvironment.InterfaceAudioIn:   itemEndpoint = itemAudioin;   break
+        case DigishowEnvironment.InterfaceScreen:    itemEndpoint = itemScreen;    break
+        case DigishowEnvironment.InterfaceAPlay:     itemEndpoint = itemAPlay;     break
+        case DigishowEnvironment.InterfaceMPlay:     itemEndpoint = itemMPlay;     break
+        case DigishowEnvironment.InterfacePipe:      itemEndpoint = itemPipe;      break
+        case DigishowEnvironment.InterfaceLaunch:    itemEndpoint = itemLaunch;    break
+        case DigishowEnvironment.InterfaceHotkey:    itemEndpoint = itemHotkey;    needRestartInterface = true; break
+        case DigishowEnvironment.InterfaceMetronome: itemEndpoint = itemMetronome; needRestartInterface = true; break
         }
+        if (itemEndpoint !== null)
+            newEndpointOptions = itemEndpoint.getEndpointOptions()
 
         // append more options
         newEndpointOptions = utilities.merge(newEndpointOptions, moreOptions.getOptions())
@@ -936,41 +592,11 @@ Item {
 
             if (interfaceType === "midi") {
 
-                var event = rawData["event"]
-                if (event === "note_on" || event === "note_off") {
-
-                    itemMidi.menuType.selectOptionWithTag("note")
-                    itemMidi.menuNote.selectOption(rawData["note"])
-
-                } else if (event === "control_change") {
-
-                    itemMidi.menuType.selectOptionWithTag("control")
-                    itemMidi.menuControl.selectOption(rawData["control"])
-
-                } else if (event === "program_change") {
-
-                    itemMidi.menuType.selectOptionWithTag("program")
-
-                }
-                itemMidi.menuChannel.selectOption(rawData["channel"])
+                itemMidi.learn(rawData)
 
             } else if (interfaceType === "osc") {
 
-                itemOsc.textAddress.text = rawData["address"]
-
-                var numValues = rawData["values"].length
-                if (numValues > 0) {
-
-                    var typeTag = rawData["values"][numValues-1]["tag"]
-                    var typeName
-                    if      (typeTag === "i") typeName = "int"
-                    else if (typeTag === "f") typeName = "float"
-                    else if (typeTag === "T" ||
-                             typeTag === "F") typeName = "bool"
-
-                    itemOsc.spinChannel.value = numValues
-                    itemOsc.menuType.selectOptionWithTag(typeName)
-                }
+                itemOsc.learn(rawData)
             }
 
             isModified = true

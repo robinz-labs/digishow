@@ -9,23 +9,17 @@ import "components"
 Item {
     id: itemScreen
 
-    property alias menuType:          menuScreenType
-    property alias menuLightControl:  menuLightControl
-    property alias menuMediaControl:  menuMediaControl
-    property alias menuCanvasControl: menuCanvasControl
-    property alias textMediaUrl:      textMediaUrl
-
     COptionButton {
-        id: buttonScreenType
+        id: buttonType
         width: 100
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: menuScreenType.selectedItemText
-        onClicked: menuScreenType.showOptions()
+        text: menuType.selectedItemText
+        onClicked: menuType.showOptions()
 
         COptionMenu {
-            id: menuScreenType
+            id: menuType
 
             onOptionSelected: refreshMoreOptions()
         }
@@ -35,11 +29,11 @@ Item {
         id: buttonLightControl
         width: 100
         height: 28
-        anchors.left: buttonScreenType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
         text: menuLightControl.selectedItemText
-        visible: menuScreenType.selectedItemValue === DigishowEnvironment.EndpointScreenLight
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointScreenLight
         onClicked: menuLightControl.showOptions()
 
         COptionMenu {
@@ -53,11 +47,11 @@ Item {
         id: buttonCanvasControl
         width: 100
         height: 28
-        anchors.left: buttonScreenType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
         text: menuCanvasControl.selectedItemText
-        visible: menuScreenType.selectedItemValue === DigishowEnvironment.EndpointScreenCanvas
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointScreenCanvas
         onClicked: menuCanvasControl.showOptions()
 
         COptionMenu {
@@ -71,11 +65,11 @@ Item {
         id: buttonMediaControl
         width: 100
         height: 28
-        anchors.left: buttonScreenType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
         text: menuMediaControl.selectedItemText
-        visible: menuScreenType.selectedItemValue === DigishowEnvironment.EndpointScreenMedia
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointScreenMedia
         onClicked: menuMediaControl.showOptions()
 
         COptionMenu {
@@ -132,7 +126,7 @@ Item {
         anchors.rightMargin: 38
         text: "file://"
         input.anchors.rightMargin: 30
-        visible: menuScreenType.selectedItemValue === DigishowEnvironment.EndpointScreenMedia &&
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointScreenMedia &&
                  menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll
 
         onTextEdited: isModified = true
@@ -539,13 +533,13 @@ Item {
         var v
 
         // init screen type option menu
-        if (menuScreenType.count === 0) {
+        if (menuType.count === 0) {
             items = []
             items.push({ text: qsTr("Backlight" ), value: DigishowEnvironment.EndpointScreenLight,  tag:"light" })
             items.push({ text: qsTr("Media Clip"), value: DigishowEnvironment.EndpointScreenMedia,  tag:"media" })
             items.push({ text: qsTr("Canvas"    ), value: DigishowEnvironment.EndpointScreenCanvas, tag:"canvas" })
-            menuScreenType.optionItems = items
-            menuScreenType.selectedIndex = 0
+            menuType.optionItems = items
+            menuType.selectedIndex = 0
         }
 
         // init screen light control option menu
@@ -604,6 +598,42 @@ Item {
         refreshMoreOptions()
     }
 
+    function refreshMoreOptions() {
+
+        var endpointType = menuType.selectedItemValue
+        var lightControl = menuLightControl.selectedItemValue
+        var mediaControl = menuMediaControl.selectedItemValue
+        var enables = {}
+
+        if (endpointType === DigishowEnvironment.EndpointScreenLight ||
+            endpointType === DigishowEnvironment.EndpointScreenCanvas) {
+
+            enables["optInitialA"] = true
+
+        } else if (endpointType === DigishowEnvironment.EndpointScreenMedia) {
+
+            if (mediaControl === DigishowEnvironment.ControlMediaStart ||
+                mediaControl === DigishowEnvironment.ControlMediaStop ||
+                mediaControl === DigishowEnvironment.ControlMediaStopAll) {
+
+                enables["optInitialB"] = true
+
+            } else if (mediaControl === DigishowEnvironment.ControlMediaPosition) {
+
+                enables["optInitialA"] = true
+                enables["optRangeMSec"] = true
+
+            } else {
+
+                enables["optInitialA"] = true
+            }
+        }
+
+        moreOptions.resetOptions()
+        moreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
+    }
+
     function setEndpointMediaOptions(options) {
 
         var v
@@ -651,41 +681,68 @@ Item {
         return options
     }    
 
-    function refreshMoreOptions() {
+    function setEndpointOptions(endpointInfo, endpointOptions) {
 
-        var endpointType = menuScreenType.selectedItemValue
-        var lightControl = menuLightControl.selectedItemValue
-        var mediaControl = menuMediaControl.selectedItemValue
-        var enables = {}
+        menuType.selectOption(endpointInfo["type"])
 
-        if (endpointType === DigishowEnvironment.EndpointScreenLight ||
-            endpointType === DigishowEnvironment.EndpointScreenCanvas) {
+        switch (endpointInfo["type"]) {
+        case DigishowEnvironment.EndpointScreenLight:
+            menuLightControl.selectOption(endpointInfo["control"])
+            setEndpointMediaOptions({}) // clear media options
+            break
+        case DigishowEnvironment.EndpointScreenCanvas:
+            menuCanvasControl.selectOption(endpointInfo["control"])
+            setEndpointMediaOptions({}) // clear media options
+            break
+        case DigishowEnvironment.EndpointScreenMedia:
+            menuMediaControl.selectOption(endpointInfo["control"])
 
-            enables["optInitialA"] = true
+            var mediaName = endpointOptions["media"]
+            var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
+            var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
+            var mediaUrl = "file://"
+            if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
+            textMediaUrl.text = mediaUrl
 
-        } else if (endpointType === DigishowEnvironment.EndpointScreenMedia) {
+            setEndpointMediaOptions(endpointOptions)
 
-            if (mediaControl === DigishowEnvironment.ControlMediaStart ||
-                mediaControl === DigishowEnvironment.ControlMediaStop ||
-                mediaControl === DigishowEnvironment.ControlMediaStopAll) {
-
-                enables["optInitialB"] = true
-
-            } else if (mediaControl === DigishowEnvironment.ControlMediaPosition) {
-
-                enables["optInitialA"] = true
-                enables["optRangeMSec"] = true
-
-            } else {
-
-                enables["optInitialA"] = true
-            }
+            break
         }
-
-        moreOptions.resetOptions()
-        moreOptions.enableOptions(enables)
-        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 
+    function getEndpointOptions() {
+
+        var options = {}
+        options["type"] = menuType.selectedItemTag
+
+        switch (menuType.selectedItemValue) {
+        case DigishowEnvironment.EndpointScreenLight:
+            options["control"] = menuLightControl.selectedItemValue
+            break
+        case DigishowEnvironment.EndpointScreenCanvas:
+            options["control"] = menuCanvasControl.selectedItemValue
+            break
+        case DigishowEnvironment.EndpointScreenMedia:
+            options["control"] = menuMediaControl.selectedItemValue
+
+            if (textMediaUrl.visible) {
+                var interfaceIndex = menuInterface.selectedItemValue
+                var mediaUrl = textMediaUrl.text
+                var mediaType = digishow.getMediaType(mediaUrl)
+                var mediaIndex = digishow.makeMedia(interfaceIndex, mediaUrl, mediaType)
+
+                if (mediaIndex !== -1) {
+                    options["media"] = digishow.getMediaName(interfaceIndex, mediaIndex)
+                    if (menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
+                        options = utilities.merge(options, getEndpointMediaOptions())
+                } else {
+                    messageBox.show(qsTr("Please select a media clip file exists on your computer disks or enter a valid url of the media clip."), qsTr("OK"))
+                }
+            }
+            break
+        }
+
+        return options
+    }
 }
 

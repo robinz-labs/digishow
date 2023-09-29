@@ -8,51 +8,47 @@ import "components"
 Item {
     id: itemHue
 
-    property alias menuType: menuHueType
-    property alias spinChannel: spinHueChannel
-    property alias menuControl: menuHueControl
-
     COptionButton {
-        id: buttonHueType
+        id: buttonType
         width: 100
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: menuHueType.selectedItemText
-        onClicked: menuHueType.showOptions()
+        text: menuType.selectedItemText
+        onClicked: menuType.showOptions()
 
         COptionMenu {
-            id: menuHueType
+            id: menuType
         }
     }
 
     COptionButton {
-        id: buttonHueChannel
+        id: buttonChannel
         width: 100
         height: 28
-        anchors.left: buttonHueType.right
+        anchors.left: buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: qsTr("ID") + " " + spinHueChannel.value
-        onClicked: spinHueChannel.visible = true
+        text: qsTr("ID") + " " + spinChannel.value
+        onClicked: spinChannel.visible = true
 
         COptionSpinBox {
-            id: spinHueChannel
+            id: spinChannel
         }
     }
 
     COptionButton {
-        id: buttonHueControl
+        id: buttonControl
         width: 100
         height: 28
-        anchors.left: buttonHueChannel.right
+        anchors.left: buttonChannel.right
         anchors.leftMargin: 10
         anchors.top: parent.top
-        text: menuHueControl.selectedItemText
-        onClicked: menuHueControl.showOptions()
+        text: menuControl.selectedItemText
+        onClicked: menuControl.showOptions()
 
         COptionMenu {
-            id: menuHueControl
+            id: menuControl
 
             onOptionSelected: refreshMoreOptions()
         }
@@ -65,21 +61,21 @@ Item {
         var v
 
         // init hue type option menu
-        if (menuHueType.count === 0) {
+        if (menuType.count === 0) {
             items = []
             items.push({ text: qsTr("Light"), value: DigishowEnvironment.EndpointHueLight,  tag:"light" })
             items.push({ text: qsTr("Group"), value: DigishowEnvironment.EndpointHueGroup,  tag:"group" })
-            menuHueType.optionItems = items
-            menuHueType.selectedIndex = 0
+            menuType.optionItems = items
+            menuType.selectedIndex = 0
         }
 
         // init hue light channel option spinbox
-        spinHueChannel.from = 1
-        spinHueChannel.to = 50
-        spinHueChannel.visible = false
+        spinChannel.from = 1
+        spinChannel.to = 50
+        spinChannel.visible = false
 
         // init hue control option menu
-        if (menuHueControl.count === 0) {
+        if (menuControl.count === 0) {
             items = []
             v = DigishowEnvironment.ControlLightR;   items.push({ text: digishow.getLightControlName(v), value: v })
             v = DigishowEnvironment.ControlLightG;   items.push({ text: digishow.getLightControlName(v), value: v })
@@ -88,8 +84,8 @@ Item {
             v = DigishowEnvironment.ControlLightBri; items.push({ text: digishow.getLightControlName(v), value: v })
             //v = DigishowEnvironment.ControlLightHue; items.push({ text: digishow.getLightControlName(v), value: v })
             //v = DigishowEnvironment.ControlLightCt;  items.push({ text: digishow.getLightControlName(v), value: v })
-            menuHueControl.optionItems = items
-            menuHueControl.selectedIndex = 4 // default is brightness
+            menuControl.optionItems = items
+            menuControl.selectedIndex = 4 // default is brightness
         }
 
         // init more options
@@ -98,7 +94,7 @@ Item {
 
     function refreshMoreOptions() {
 
-        var control = menuHueControl.selectedItemValue
+        var control = menuControl.selectedItemValue
         var enables = {}
 
         if (control === DigishowEnvironment.ControlLightBri) {
@@ -111,5 +107,21 @@ Item {
         buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 
+    function setEndpointOptions(endpointInfo, endpointOptions) {
+
+        menuType.selectOption(endpointInfo["type"])
+        spinChannel.value = endpointInfo["channel"]
+        menuControl.selectOption(endpointInfo["control"])
+    }
+
+    function getEndpointOptions() {
+
+        var options = {}
+        options["type"] = menuType.selectedItemTag
+        options["channel"] = spinChannel.value
+        options["control"] = menuControl.selectedItemValue
+
+        return options
+    }
 }
 

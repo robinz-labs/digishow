@@ -9,19 +9,17 @@ import "components"
 Item {
     id: itemAudioin
 
-    property alias menuType: menuAudioinType
-
     COptionButton {
-        id: buttonAudioinType
+        id: buttonType
         width: 120
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
-        text: menuAudioinType.selectedItemText
-        onClicked: menuAudioinType.showOptions()
+        text: menuType.selectedItemText
+        onClicked: menuType.showOptions()
 
         COptionMenu {
-            id: menuAudioinType
+            id: menuType
 
             onOptionSelected: refreshMoreOptions()
         }
@@ -32,12 +30,12 @@ Item {
     function refresh() {
 
         var items
-        if (menuAudioinType.count === 0) {
+        if (menuType.count === 0) {
             items = []
             items.push({ text: qsTr("Level"), value: DigishowEnvironment.EndpointAudioInLevel, tag:"level" })
 
-            menuAudioinType.optionItems = items
-            menuAudioinType.selectedIndex = 0
+            menuType.optionItems = items
+            menuType.selectedIndex = 0
         }
 
         // init more options
@@ -49,6 +47,19 @@ Item {
         moreOptions.resetOptions()
         moreOptions.enableOptions({})
         buttonMoreOptions.visible = false
+    }
+
+    function setEndpointOptions(endpointInfo, endpointOptions) {
+
+        menuType.selectOption(endpointInfo["type"])
+    }
+
+    function getEndpointOptions() {
+
+        var options = {}
+        options["type"] = menuType.selectedItemTag
+
+        return options
     }
 }
 
