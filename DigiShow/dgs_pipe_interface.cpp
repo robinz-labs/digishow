@@ -18,6 +18,12 @@
 #include "dgs_pipe_interface.h"
 #include "digishow_slot.h"
 
+#ifdef DIGISHOW_CLOUD
+#include "digishow_cloud.h"
+#else
+#include "digishow_cloud_dummy.h"
+#endif
+
 DgsPipeInterface::DgsPipeInterface(QObject *parent) : DigishowInterface(parent)
 {
     m_interfaceOptions["type"] = "pipe";
@@ -50,7 +56,8 @@ int DgsPipeInterface::openInterface()
     }
 
     // start a websocket client for remote pipe
-    if (m_interfaceInfo.mode == INTERFACE_PIPE_REMOTE) {
+    if (m_interfaceInfo.mode == INTERFACE_PIPE_REMOTE ||
+        m_interfaceInfo.mode == INTERFACE_PIPE_CLOUD ) {
 
         bool done = startWebsocketClient();
         if (!done) return ERR_DEVICE_NOT_READY;
@@ -119,15 +126,26 @@ bool DgsPipeInterface::startWebsocketClient()
 {
     if (m_websocketClientConnection != nullptr) return false;
 
+    QString url;
+    if (m_interfaceInfo.mode == INTERFACE_PIPE_REMOTE) {
+
+        url = QString("ws://%1:%2")
+              .arg(m_interfaceOptions.value("tcpHost").toString())
+              .arg(m_interfaceOptions.value("tcpPort").toInt());
+
+    } else if (m_interfaceInfo.mode == INTERFACE_PIPE_CLOUD) {
+
+        DigishowCloud cloud;
+        QString pipeId = m_interfaceOptions.value("pipeId").toString();
+        url = cloud.getCloudPipeUrl(pipeId);
+    }
+    if (url.isEmpty()) return false;
+
     QWebSocket *websocket = new QWebSocket();
 
     connect(websocket, SIGNAL(connected()), this, SLOT(onWebsocketClientConnected()));
     connect(websocket, SIGNAL(disconnected()), this, SLOT(onWebsocketClientDisconnected()));
     connect(websocket, SIGNAL(textMessageReceived(QString)), this, SLOT(onWebsocketClientMessageReceived(QString)));
-
-    QString url = QString("ws://%1:%2")
-            .arg(m_interfaceOptions.value("tcpHost").toString())
-            .arg(m_interfaceOptions.value("tcpPort").toInt());
 
     websocket->open(QUrl(url));
 

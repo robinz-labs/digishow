@@ -29,6 +29,7 @@ SOURCES += \
     dgs_metronome_interface.cpp \
     digishow.cpp \
     digishow_app.cpp \
+    digishow_cloud_dummy.cpp \
     digishow_common.cpp \
     digishow_data.cpp \
     digishow_environment.cpp \
@@ -65,6 +66,7 @@ HEADERS += \
     dgs_metronome_interface.h \
     digishow.h \
     digishow_app.h \
+    digishow_cloud_dummy.h \
     digishow_common.h \
     digishow_data.h \
     digishow_environment.h \
@@ -123,6 +125,12 @@ include(modules/qhotkey/qhotkey.pri)
 
 # Ableton Link library
 include(modules/ableton/link.pri)
+
+# Qt QR Code library
+include(modules/qt-qrcode/qt-qrcode.pri)
+
+# cloud implementation
+#include(digishow_cloud/cloud.pri)
 
 # experimental code
 #include(digishow_experimental/experimental.pri)

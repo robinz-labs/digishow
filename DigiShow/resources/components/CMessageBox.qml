@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import DigiShow 1.0
 
 Popup {
 
@@ -8,12 +9,14 @@ Popup {
     property int buttonCount: 3
     property int buttonClickedAt: -1
 
-    readonly property bool noButton: !button1.visible && !button2.visible && !button3.visible
+    readonly property bool hasButton: button1.visible || button2.visible || button3.visible
+    readonly property bool hasQrCode: qrCode.data != ""
 
     signal buttonClicked(int buttonID)
 
     width: 640
-    height: (noButton ? 220 : 320)
+    height: 220 + (hasQrCode ? 240 : 0) +  (hasButton ? 100 : 0)
+
     anchors.centerIn: parent
 
     modal: false
@@ -54,8 +57,9 @@ Popup {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.bottom: noButton ? parent.bottom : rowButtons.top
+            anchors.bottom: hasButton ? rowButtons.top : parent.bottom
             anchors.margins: 40
+            anchors.bottomMargin: hasQrCode ? 320 : 40
             font.bold: true
             font.pixelSize: 18
             lineHeight: 1.5
@@ -63,6 +67,25 @@ Popup {
             wrapMode: Text.WordWrap
             horizontalAlignment: Label.AlignHCenter
             verticalAlignment: Label.AlignVCenter
+        }
+
+        Rectangle {
+            id: rectQrCode
+            anchors.top: labelMessage.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.topMargin: 40
+            color: "white"
+            width: 200
+            height: 200
+            visible: hasQrCode
+
+            QrCode {
+                id: qrCode
+                anchors.fill: parent
+                anchors.margins: 10
+                background: "transparent"
+                data: ""
+            }
         }
 
         Row {
@@ -126,6 +149,11 @@ Popup {
 
     function show(message, buttonText1, buttonText2, buttonText3) {
 
+        showQr("", message, buttonText1, buttonText2, buttonText3)
+    }
+
+    function showQr(qrcode, message, buttonText1, buttonText2, buttonText3) {
+
         messageBox.buttonCount = 0
 
         if (buttonText1 !== undefined) {
@@ -158,6 +186,7 @@ Popup {
             rowButtons.anchors.bottomMargin = 0
         }
 
+        qrCode.data = qrcode
         labelMessage.text = message
 
         messageBox.buttonClickedAt = -1
@@ -168,13 +197,23 @@ Popup {
 
     function showAndWait(message, buttonText1, buttonText2, buttonText3) {
 
-        show(message, buttonText1, buttonText2, buttonText3)
+        return showQrAndWait("", message, buttonText1, buttonText2, buttonText3)
+    }
+
+    function showQrAndWait(qrcode, message, buttonText1, buttonText2, buttonText3) {
+
+        showQr(qrcode, message, buttonText1, buttonText2, buttonText3)
 
         while (messageBox.buttonClickedAt == -1) {
             utilities.doEvents()
         }
 
         return messageBox.buttonClickedAt
+    }
 
+    function stopWaiting(code) {
+
+        messageBox.buttonClickedAt = (code === undefined ? 0 : code)
+        messageBox.close()
     }
 }

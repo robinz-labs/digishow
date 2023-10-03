@@ -77,6 +77,7 @@ public:
         InterfaceMPlayDefault     = INTERFACE_MPLAY_DEFAULT,
         InterfacePipeLocal        = INTERFACE_PIPE_LOCAL,
         InterfacePipeRemote       = INTERFACE_PIPE_REMOTE,
+        InterfacePipeCloud        = INTERFACE_PIPE_CLOUD,
         InterfaceLaunchDefault    = INTERFACE_LAUNCH_DEFAULT,
         InterfaceHotkeyDefault    = INTERFACE_HOTKEY_DEFAULT,
         InterfaceMetronomeDefault = INTERFACE_METRONOME_DEFAULT
@@ -241,8 +242,10 @@ public:
     Q_INVOKABLE static QString getMidiControlName(int control);
     Q_INVOKABLE static QString getMidiNoteName(int noteNumber, bool longName = false);
     Q_INVOKABLE static QString getRiocPinName(int mode, int pinNumber);
-
+    Q_INVOKABLE static QString getPipeModeName(int mode);
     Q_INVOKABLE static QString getMediaType(const QString &mediaUrl);
+
+
 
 signals:
     void appChanged();

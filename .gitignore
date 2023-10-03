@@ -59,6 +59,5 @@ compile_commands.json
 /tools
 /backup
 
-digishow_controller*
-digishow_experimental*
-
+digishow_experimental
+digishow_cloud

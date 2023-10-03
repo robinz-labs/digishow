@@ -297,7 +297,7 @@ Q_INVOKABLE QString AppUtilities::filePathUrl(const QString & path)
 
 QString AppUtilities::createUUID()
 {
-    return QUuid::createUuid().toString();
+    return QUuid::createUuid().toString(QUuid::WithoutBraces);
 }
 
 bool AppUtilities::makePath(const QString & path)

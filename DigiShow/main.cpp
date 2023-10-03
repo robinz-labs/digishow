@@ -25,6 +25,9 @@
 #include <QDebug>
 //#include <QQmlComponent>
 //#include <QQuickWindow>
+
+#include "QtQrCodeQuickItem.hpp"
+
 #include "digishow.h"
 #include "digishow_environment.h"
 #include "digishow_interface.h"
@@ -34,6 +37,12 @@
 
 #ifdef Q_OS_MAC
 #include <CoreMIDI/CoreMIDI.h>
+#endif
+
+#ifdef DIGISHOW_CLOUD
+#include "digishow_cloud.h"
+#else
+#include "digishow_cloud_dummy.h"
 #endif
 
 #ifdef DIGISHOW_EXPERIMENTAL
@@ -119,13 +128,15 @@ int main(int argc, char *argv[])
 
     qRegisterMetaType<dgsSignalData>();
 
-    qmlRegisterType<AppUtilities>("DigiShow", 1, 0, "AppUtilities");
+    qmlRegisterType<AppUtilities>       ("DigiShow", 1, 0, "AppUtilities");
     qmlRegisterType<DigishowEnvironment>("DigiShow", 1, 0, "DigishowEnvironment");
-    qmlRegisterType<DigishowApp>("DigiShow", 1, 0, "DigishowApp");
-    qmlRegisterType<DigishowInterface>("DigiShow", 1, 0, "DigishowInterface");
-    qmlRegisterType<DigishowSlot>("DigiShow", 1, 0, "DigishowSlot");
-    qmlRegisterType<DigishowData>("DigiShow", 1, 0, "DigishowData");
-    qmlRegisterType<DigishowMetronome>("DigiShow", 1, 0, "DigishowMetronome");
+    qmlRegisterType<DigishowApp>        ("DigiShow", 1, 0, "DigishowApp");
+    qmlRegisterType<DigishowInterface>  ("DigiShow", 1, 0, "DigishowInterface");
+    qmlRegisterType<DigishowSlot>       ("DigiShow", 1, 0, "DigishowSlot");
+    qmlRegisterType<DigishowData>       ("DigiShow", 1, 0, "DigishowData");
+    qmlRegisterType<DigishowMetronome>  ("DigiShow", 1, 0, "DigishowMetronome");
+    qmlRegisterType<DigishowCloud>      ("DigiShow", 1, 0, "DigishowCloud");
+    qmlRegisterType<QtQrCodeQuickItem>  ("DigiShow", 1, 0, "QrCode");
 
     QCoreApplication::setOrganizationName("robinz");
     QCoreApplication::setOrganizationDomain("robinz.org");

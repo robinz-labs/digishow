@@ -807,6 +807,15 @@ QString DigishowEnvironment::getRiocPinName(int mode, int pinNumber)
     return pinName;
 }
 
+QString DigishowEnvironment::getPipeModeName(int mode)
+{
+    switch (mode) {
+    case INTERFACE_PIPE_REMOTE: return tr("Remote");
+    case INTERFACE_PIPE_CLOUD:  return tr("Cloud");
+    default:                    return tr("Pipe");
+    }
+}
+
 QString DigishowEnvironment::getMediaType(const QString &mediaUrl)
 {
     if (!mediaUrl.startsWith("file://") &&
@@ -826,4 +835,5 @@ QString DigishowEnvironment::getMediaType(const QString &mediaUrl)
     else
         return "web";
 }
+
 
