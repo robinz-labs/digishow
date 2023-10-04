@@ -143,16 +143,18 @@ int DgsOscInterface::sendData(int endpointIndex, dgsSignalData data)
 
     // update data frame of the specified address
     QVariantList frame = m_dataAll.value(address).toList();
-
     for (int n=frame.length() ; n<=channel ; n++) frame.append(QVariant());
-    if (type == ENDPOINT_OSC_INT   && data.signal == DATA_SIGNAL_ANALOG) {
+
+    switch (type) {
+    case ENDPOINT_OSC_INT:
         frame[channel] = data.aValue;
-    } else
-    if (type == ENDPOINT_OSC_FLOAT && data.signal == DATA_SIGNAL_ANALOG) {
+        break;
+    case ENDPOINT_OSC_FLOAT:
         frame[channel] = double(data.aValue) / (data.aRange > 0 ? data.aRange : 1000000);
-    } else
-    if (type == ENDPOINT_OSC_BOOL  && data.signal == DATA_SIGNAL_BINARY) {
+        break;
+    case ENDPOINT_OSC_BOOL:
         frame[channel] = data.bValue;
+        break;
     }
 
     m_dataAll[address] = frame;

@@ -268,8 +268,7 @@ void DigishowInterface::updateMetadata()
              m_interfaceInfo.mode==INTERFACE_ARTNET_INPUT ||
              m_interfaceInfo.mode==INTERFACE_OSC_INPUT ||
              m_interfaceInfo.type==INTERFACE_AUDIOIN ||
-             m_interfaceInfo.type==INTERFACE_HOTKEY ||
-             m_interfaceInfo.type==INTERFACE_METRONOME )
+             m_interfaceInfo.type==INTERFACE_HOTKEY )
         m_interfaceInfo.output = false;
     else
         m_interfaceInfo.output = true;
@@ -446,6 +445,10 @@ void DigishowInterface::updateMetadata()
             break;
         case INTERFACE_METRONOME:
             if      (typeName == "beat"       ) endpointInfo.type = ENDPOINT_METRONOME_BEAT;
+            else if (typeName == "bpm"        ) endpointInfo.type = ENDPOINT_METRONOME_BPM;
+            else if (typeName == "quantum"    ) endpointInfo.type = ENDPOINT_METRONOME_QUANTUM;
+            else if (typeName == "run"        ) endpointInfo.type = ENDPOINT_METRONOME_RUN;
+            else if (typeName == "link"       ) endpointInfo.type = ENDPOINT_METRONOME_LINK;
             break;
         }
 
@@ -776,6 +779,32 @@ void DigishowInterface::updateMetadata()
             endpointInfo.labelEPT = tr("Metronome");
             endpointInfo.labelEPI = tr("Beat %1").arg((endpointInfo.channel-1) / 4 + 1);
             if ((endpointInfo.channel-1) % 4 != 0) endpointInfo.labelEPI += QString(".%1").arg((endpointInfo.channel-1) % 4 + 1);
+            break;
+        case ENDPOINT_METRONOME_BPM:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = true;
+            endpointInfo.range  = 600;
+            endpointInfo.labelEPT = tr("Metronome");
+            endpointInfo.labelEPI = tr("BPM");
+            break;
+        case ENDPOINT_METRONOME_QUANTUM:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = true;
+            endpointInfo.range  = 12;
+            endpointInfo.labelEPT = tr("Metronome");
+            endpointInfo.labelEPI = tr("Quantum");
+            break;
+        case ENDPOINT_METRONOME_RUN:
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.output = true;
+            endpointInfo.labelEPT = tr("Metronome");
+            endpointInfo.labelEPI = tr("Run");
+            break;
+        case ENDPOINT_METRONOME_LINK:
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.output = true;
+            endpointInfo.labelEPT = tr("Metronome");
+            endpointInfo.labelEPI = tr("Link");
             break;
         case ENDPOINT_HOTKEY_PRESS:
             endpointInfo.signal = DATA_SIGNAL_BINARY;

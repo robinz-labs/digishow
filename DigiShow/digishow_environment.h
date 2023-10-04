@@ -126,7 +126,11 @@ public:
         EndpointPipeNote          = ENDPOINT_PIPE_NOTE,
         EndpointLaunchPreset      = ENDPOINT_LAUNCH_PRESET,
         EndpointHotkeyPress       = ENDPOINT_HOTKEY_PRESS,
-        EndpointMetronomeBeat     = ENDPOINT_METRONOME_BEAT
+        EndpointMetronomeBeat     = ENDPOINT_METRONOME_BEAT,
+        EndpointMetronomeBPM      = ENDPOINT_METRONOME_BPM,
+        EndpointMetronomeQuantum  = ENDPOINT_METRONOME_QUANTUM,
+        EndpointMetronomeRun      = ENDPOINT_METRONOME_RUN,
+        EndpointMetronomeLink     = ENDPOINT_METRONOME_LINK
     };
     Q_ENUM(EndpointType)
 

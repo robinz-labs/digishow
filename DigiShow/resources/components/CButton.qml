@@ -41,8 +41,12 @@ Item {
 
     Rectangle {
         id: buttonBox
-        color: !button.checkable && button.mouseDown ? colorActivated :
-               button.checked ? colorChecked : colorNormal
+        color: {
+            if (button.checkable)
+                return button.checked ? colorChecked : colorNormal
+            else
+                return button.mouseDown ? colorActivated : colorNormal
+        }
         radius: 6
         border.color: colorActivated
         border.width: button.mouseOver ? 1 : 0

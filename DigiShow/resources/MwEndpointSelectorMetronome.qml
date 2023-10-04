@@ -9,6 +9,22 @@ Item {
     id: itemMetronome
 
     COptionButton {
+        id: buttonType
+        width: 85
+        height: 28
+        anchors.left: parent.left
+        anchors.top: parent.top
+        text: menuType.selectedItemText
+        onClicked: menuType.showOptions()
+
+        visible: forOutput
+
+        COptionMenu {
+            id: menuType
+        }
+    }
+
+    COptionButton {
         id: buttonBeat
         width: 85
         height: 28
@@ -16,6 +32,8 @@ Item {
         anchors.top: parent.top
         text: menuBeat.selectedItemText
         onClicked: menuBeat.showOptions()
+
+        visible: forInput
 
         COptionMenu {
             id: menuBeat
@@ -32,6 +50,8 @@ Item {
         text: menuSustain.selectedItemText
         onClicked: menuSustain.showOptions()
 
+        visible: forInput
+
         COptionMenu {
             id: menuSustain
         }
@@ -41,6 +61,18 @@ Item {
 
         var items
         var n
+
+        // init metronome type menu (for control output)
+        if (menuType.count === 0) {
+            items = []
+            items.push({ text: qsTr("BPM"    ), value: DigishowEnvironment.EndpointMetronomeBPM,     tag: "bpm" })
+            items.push({ text: qsTr("Quantum"), value: DigishowEnvironment.EndpointMetronomeQuantum, tag: "quantum" })
+            items.push({ text: qsTr("Run"    ), value: DigishowEnvironment.EndpointMetronomeRun,     tag: "run" })
+            items.push({ text: qsTr("Link"   ), value: DigishowEnvironment.EndpointMetronomeLink,    tag: "link" })
+
+            menuType.optionItems = items
+            menuType.selectedIndex = 0
+        }
 
         // init metronome beat option menu
         if (menuBeat.count === 0) {
@@ -84,16 +116,29 @@ Item {
 
     function setEndpointOptions(endpointInfo, endpointOptions) {
 
-        menuBeat.selectOption(endpointInfo["channel"])
-        menuSustain.selectOption(endpointInfo["control"])
+        if (forInput) {
+            menuBeat.selectOption(endpointInfo["channel"])
+            menuSustain.selectOption(endpointInfo["control"])
+        }
+
+        if (forOutput) {
+            menuType.selectOption(endpointInfo["type"])
+        }
     }
 
     function getEndpointOptions() {
 
         var options = {}
-        options["type"] = "beat"
-        options["channel"] = menuBeat.selectedItemValue
-        options["control"] = menuSustain.selectedItemValue
+
+        if (forInput) {
+            options["type"] = "beat"
+            options["channel"] = menuBeat.selectedItemValue
+            options["control"] = menuSustain.selectedItemValue
+        }
+
+        if (forOutput) {
+            options["type"] = menuType.selectedItemTag
+        }
 
         return options
     }

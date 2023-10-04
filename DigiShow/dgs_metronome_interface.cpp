@@ -79,7 +79,27 @@ int DgsMetronomeInterface::sendData(int endpointIndex, dgsSignalData data)
     int r = DigishowInterface::sendData(endpointIndex, data);
     if ( r != ERR_NONE) return r;
 
-    // TODO:
+    int type = m_endpointInfoList[endpointIndex].type;
+
+    if ((type == ENDPOINT_METRONOME_BPM     && data.signal != DATA_SIGNAL_ANALOG) ||
+        (type == ENDPOINT_METRONOME_QUANTUM && data.signal != DATA_SIGNAL_ANALOG) ||
+        (type == ENDPOINT_METRONOME_RUN     && data.signal != DATA_SIGNAL_BINARY) ||
+        (type == ENDPOINT_METRONOME_LINK    && data.signal != DATA_SIGNAL_BINARY)) return ERR_INVALID_DATA;
+
+    switch (type) {
+    case ENDPOINT_METRONOME_BPM:
+        g_app->metronome()->setBpm(qBound(20, data.aValue, 600));
+        break;
+    case ENDPOINT_METRONOME_QUANTUM:
+        g_app->metronome()->setQuantum(qBound(1, data.aValue, 12));
+        break;
+    case ENDPOINT_METRONOME_RUN:
+        g_app->metronome()->setRunning(data.bValue);
+        break;
+    case ENDPOINT_METRONOME_LINK:
+        g_app->metronome()->setLinkEnabled(data.bValue);
+        break;
+    }
 
     return ERR_NONE;
 }

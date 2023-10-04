@@ -54,6 +54,10 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointLaunchPreset      : return CColor.Cherry
             case DigishowEnvironment.EndpointHotkeyPress       : return CColor.HotPink
             case DigishowEnvironment.EndpointMetronomeBeat     : return CColor.Mint
+            case DigishowEnvironment.EndpointMetronomeBPM      : return CColor.Ocean
+            case DigishowEnvironment.EndpointMetronomeQuantum  : return CColor.Ocean
+            case DigishowEnvironment.EndpointMetronomeRun      : return CColor.Cherry
+            case DigishowEnvironment.EndpointMetronomeLink     : return CColor.Cherry
         }
 
         return "#666666";

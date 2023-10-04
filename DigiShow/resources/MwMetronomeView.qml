@@ -56,9 +56,7 @@ Item {
                 label.font.bold: true
                 label.font.pixelSize: 9
                 box.radius: 3
-                colorChecked: Material.accent
-                checkable: true
-                checked: metronome.isRunning
+                colorNormal: metronome.isRunning ? Material.accent : "#666666"
                 onClicked: {
                     metronome.isRunning = !metronome.isRunning
                     isModified = true
@@ -256,6 +254,7 @@ Item {
                 Component.onCompleted: {
                     metronome.quantumChanged.connect(function() {
                         spinQuantum.value = Math.round(metronome.quantum)
+                        canvasBeats.requestPaint()
                     })
                 }
             }
@@ -272,9 +271,7 @@ Item {
                 label.font.bold: true
                 label.font.pixelSize: 9
                 box.radius: 3
-                colorChecked: Material.accent
-                checkable: true
-                checked: metronome.isSoundEnabled
+                colorNormal: metronome.isSoundEnabled ? Material.accent : "#666666"
                 onClicked: {
                     metronome.isSoundEnabled = !metronome.isSoundEnabled
                     isModified = true
@@ -302,9 +299,7 @@ Item {
                 label.font.bold: true
                 label.font.pixelSize: 9
                 box.radius: 3
-                colorChecked: Material.accent
-                checkable: true
-                checked: metronome.isLinkEnabled
+                colorNormal: metronome.isLinkEnabled ? Material.accent : "#666666"
                 onClicked: {
                     metronome.isLinkEnabled = !metronome.isLinkEnabled
                     isModified = true
