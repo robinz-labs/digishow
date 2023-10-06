@@ -61,6 +61,7 @@ private:
 
     // send websocket message
     void sendWebsocketMessage(const QString &message);
+    void sendWebsocketHelloMessages(QWebSocket *websocket);
 
     // process received websocket messages
     int findEndpoint(int type, int channel);

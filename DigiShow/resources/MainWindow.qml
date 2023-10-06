@@ -308,7 +308,7 @@ ApplicationWindow {
                         onTriggered: dialogAbout.open()
                     }
                     MenuItem {
-                        text: qsTr("Options ...")
+                        text: qsTr("Preferences ...")
                         onTriggered: dialogAppOptions.show()
                     }
                     MenuItem {
@@ -370,7 +370,7 @@ ApplicationWindow {
                 anchors.left: parent.right
                 anchors.leftMargin: -305
                 anchors.verticalCenter: parent.verticalCenter
-                toolTipText: qsTr("Presets")
+                toolTipText: qsTr("Preset Launcher")
                 toolTipVisible: !quickLaunchView.opened
                 icon.width: 24
                 icon.height: 24
@@ -396,7 +396,7 @@ ApplicationWindow {
                 anchors.left: buttonQuickLaunch.right
                 anchors.leftMargin: 10
                 anchors.verticalCenter: parent.verticalCenter
-                toolTipText: qsTr("Metronome")
+                toolTipText: qsTr("Beat Maker")
                 toolTipVisible: !metronomeView.opened
                 icon.width: 24
                 icon.height: 24

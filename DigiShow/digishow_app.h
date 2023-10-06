@@ -90,6 +90,7 @@ public:
     Q_INVOKABLE bool updateLaunch(const QString &launchName, const QVariantList &slotLaunchOptions);
     Q_INVOKABLE bool deleteLaunch(const QString &launchName);
     Q_INVOKABLE bool startLaunch(const QString &launchName);
+    Q_INVOKABLE QVariantMap getAllLaunchOptions();
     Q_INVOKABLE QVariantMap getLaunchOptions(const QString &launchName);
     Q_INVOKABLE bool setLaunchOption(const QString &launchName, const QString &optionName, const QVariant &optionValue);
     Q_INVOKABLE QVariantList getSlotLaunchDetails(const QString &launchName);

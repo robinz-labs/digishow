@@ -368,7 +368,8 @@ MwInterfaceListView {
             // the client has already signed in
 
             if (messageBox.showAndWait(
-                    qsTr("The computer has signed in to DigiShow Outlet cloud service.\r\n\r\nConnected to: %1").arg(sessionInfo["clientName"]),
+                    qsTr("The computer has signed in to DigiShow Outlet cloud service.\r\n\r\nUser: %1\r\nConnection: %2")
+                        .arg(sessionInfo["userName"]).arg(sessionInfo["clientName"]),
                     qsTr("Sign Out"),
                     qsTr("Cancel")) === 1) {
 

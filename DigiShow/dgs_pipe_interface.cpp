@@ -184,6 +184,24 @@ void DgsPipeInterface::sendWebsocketMessage(const QString &message)
     }
 }
 
+void DgsPipeInterface::sendWebsocketHelloMessages(QWebSocket *websocket)
+{
+    // send the app info to the remote side
+    qint64 timestamp = QDateTime::currentDateTime().toSecsSinceEpoch();
+    websocket->sendTextMessage(
+                QString("appinfo,0,%1,%2,%3,%4")
+                .arg(g_appname, g_version, g_serial, QString::number(timestamp)));
+
+    // send the preset launcher data to the remote side
+    QVariantMap data;
+    data["launches"] = g_app->getAllLaunchOptions();
+
+    websocket->sendTextMessage(
+                "appdata,0," +
+                QJsonDocument::fromVariant(data).toJson(QJsonDocument::Compact).toBase64());
+}
+
+
 int DgsPipeInterface::findEndpoint(int type, int channel)
 {
     for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
@@ -267,6 +285,9 @@ void DgsPipeInterface::onWebsocketServerNewConnection()
         qDebug("[server] websocket %p is connected.", websocket);
 
         m_websocketServerConnections.append(websocket);
+
+        // send hello messages after connected
+        sendWebsocketHelloMessages(websocket);
     }
 }
 
@@ -294,6 +315,9 @@ void DgsPipeInterface::onWebsocketClientConnected()
     qDebug("[client] websocket %p is connected.", websocket);
 
     m_websocketClientConnection = websocket;
+
+    // send hello messages after connected
+    sendWebsocketHelloMessages(websocket);
 }
 
 void DgsPipeInterface::onWebsocketClientDisconnected()

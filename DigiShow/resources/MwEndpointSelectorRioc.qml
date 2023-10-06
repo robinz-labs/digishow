@@ -74,7 +74,7 @@ Item {
             if (forInput ) items.push({ text: qsTr("Analog In"),      value: DigishowEnvironment.EndpointRiocAnalogIn,   tag: "analog_in"   })
           //if (forOutput) items.push({ text: qsTr("Analog Out"),     value: DigishowEnvironment.EndpointRiocAnalogOut,  tag: "analog_out"  })
             if (forOutput) items.push({ text: qsTr("PWM Out"),        value: DigishowEnvironment.EndpointRiocPwmOut,     tag: "pwm_out"     })
-            if (forOutput) items.push({ text: qsTr("PFM Out / Tone"), value: DigishowEnvironment.EndpointRiocPfmOut,     tag: "pfm_out"     })
+            if (forOutput) items.push({ text: qsTr("Frequency Out"),  value: DigishowEnvironment.EndpointRiocPfmOut,     tag: "pfm_out"     })
             if (forOutput) items.push({ text: qsTr("Servo"),          value: DigishowEnvironment.EndpointRiocRudderOut,  tag: "rudder_out"  })
 
             if (digishow.appExperimental()) {
@@ -190,8 +190,8 @@ Item {
             enables["optModeStepper"] = true
         }
 
-        moreOptions.resetOptions()
-        moreOptions.enableOptions(enables)
+        popupMoreOptions.resetOptions()
+        popupMoreOptions.enableOptions(enables)
         buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 

@@ -44,8 +44,8 @@ Item {
 
     function refreshMoreOptions() {
 
-        moreOptions.resetOptions()
-        moreOptions.enableOptions({})
+        popupMoreOptions.resetOptions()
+        popupMoreOptions.enableOptions({})
         buttonMoreOptions.visible = false
     }
 

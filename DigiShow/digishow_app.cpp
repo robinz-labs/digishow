@@ -292,7 +292,11 @@ bool DigishowApp::loadFile(const QString & filepath)
     emit filepathChanged();
 
     // auto start
-    if (m_autostart) start();
+    if (m_autostart) {
+        QTimer::singleShot(1, this, [this](){
+            start();
+        });
+    }
 
     return true;
 }
@@ -751,6 +755,11 @@ bool DigishowApp::startLaunch(const QString &launchName)
     }
 
     return true;
+}
+
+QVariantMap DigishowApp::getAllLaunchOptions()
+{
+    return m_launches;
 }
 
 QVariantMap DigishowApp::getLaunchOptions(const QString &launchName)

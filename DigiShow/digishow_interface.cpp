@@ -340,7 +340,7 @@ void DigishowInterface::updateMetadata()
         }
         break;
     case INTERFACE_LAUNCH:
-        labelType = tr("Preset Launch");
+        labelType = tr("Preset Launcher");
         labelIdentity = "";
         break;
     case INTERFACE_HOTKEY:
@@ -348,7 +348,7 @@ void DigishowInterface::updateMetadata()
         labelIdentity = "";
         break;
     case INTERFACE_METRONOME:
-        labelType = tr("Metronome");
+        labelType = tr("Beat Maker");
         labelIdentity = "";
         break;
     }
@@ -449,6 +449,7 @@ void DigishowInterface::updateMetadata()
             else if (typeName == "quantum"    ) endpointInfo.type = ENDPOINT_METRONOME_QUANTUM;
             else if (typeName == "run"        ) endpointInfo.type = ENDPOINT_METRONOME_RUN;
             else if (typeName == "link"       ) endpointInfo.type = ENDPOINT_METRONOME_LINK;
+            else if (typeName == "tap"        ) endpointInfo.type = ENDPOINT_METRONOME_TAP;
             break;
         }
 
@@ -769,14 +770,14 @@ void DigishowInterface::updateMetadata()
         case ENDPOINT_LAUNCH_PRESET:
             endpointInfo.signal = DATA_SIGNAL_BINARY;
             endpointInfo.output = true;
-            endpointInfo.labelEPT = tr("Launch");
+            endpointInfo.labelEPT = tr("Launcher");
             endpointInfo.labelEPI = tr("Preset") + " " + QString::number(endpointInfo.channel);
             break;
         case ENDPOINT_METRONOME_BEAT:
             endpointInfo.signal = DATA_SIGNAL_NOTE;
             endpointInfo.input = true;
             endpointInfo.range  = 127;
-            endpointInfo.labelEPT = tr("Metronome");
+            endpointInfo.labelEPT = tr("Beat Maker");
             endpointInfo.labelEPI = tr("Beat %1").arg((endpointInfo.channel-1) / 4 + 1);
             if ((endpointInfo.channel-1) % 4 != 0) endpointInfo.labelEPI += QString(".%1").arg((endpointInfo.channel-1) % 4 + 1);
             break;
@@ -784,27 +785,33 @@ void DigishowInterface::updateMetadata()
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
             endpointInfo.output = true;
             endpointInfo.range  = 600;
-            endpointInfo.labelEPT = tr("Metronome");
+            endpointInfo.labelEPT = tr("Beat Maker");
             endpointInfo.labelEPI = tr("BPM");
             break;
         case ENDPOINT_METRONOME_QUANTUM:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
             endpointInfo.output = true;
             endpointInfo.range  = 12;
-            endpointInfo.labelEPT = tr("Metronome");
+            endpointInfo.labelEPT = tr("Beat Maker");
             endpointInfo.labelEPI = tr("Quantum");
             break;
         case ENDPOINT_METRONOME_RUN:
             endpointInfo.signal = DATA_SIGNAL_BINARY;
             endpointInfo.output = true;
-            endpointInfo.labelEPT = tr("Metronome");
+            endpointInfo.labelEPT = tr("Beat Maker");
             endpointInfo.labelEPI = tr("Run");
             break;
         case ENDPOINT_METRONOME_LINK:
             endpointInfo.signal = DATA_SIGNAL_BINARY;
             endpointInfo.output = true;
-            endpointInfo.labelEPT = tr("Metronome");
+            endpointInfo.labelEPT = tr("Beat Maker");
             endpointInfo.labelEPI = tr("Link");
+            break;
+        case ENDPOINT_METRONOME_TAP:
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.output = true;
+            endpointInfo.labelEPT = tr("Beat Maker");
+            endpointInfo.labelEPI = tr("Tap");
             break;
         case ENDPOINT_HOTKEY_PRESS:
             endpointInfo.signal = DATA_SIGNAL_BINARY;

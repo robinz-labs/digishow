@@ -42,6 +42,12 @@ DigishowMetronome::DigishowMetronome(QObject *parent) : QObject(parent)
     connect(this, SIGNAL(beatChanged()), this, SLOT(onBeatChanged()));
     connect(this, SIGNAL(quarterChanged()), this, SLOT(onQuarterChanged()));
 
+    // tap to bpm
+    m_tapCount = 0;
+    m_tapTimeoutTimer.setSingleShot(true);
+    m_tapTimeoutTimer.setInterval(2500);
+    connect(&m_tapTimeoutTimer, SIGNAL(timeout()), this, SLOT(onTapTimeout()));
+
 }
 
 DigishowMetronome::~DigishowMetronome()
@@ -144,6 +150,35 @@ void DigishowMetronome::setQuantum(int quantum)
     m_mutex.unlock();
 }
 
+void DigishowMetronome::tap()
+{
+    m_tapCount++;
+    if (m_tapCount == 1) {
+
+        // first tap
+        m_tapElapsedTimer.start();
+
+    } else if (m_tapCount > 2) {
+
+        // following taps
+        qint64 milliseconds = m_tapElapsedTimer.elapsed() / (m_tapCount - 1);
+        setBpm(60000 / milliseconds);
+    }
+    emit tapCountChanged();
+
+
+    // stop when too many taps
+    if (m_tapCount == 12) {
+        m_tapCount = 0;
+        m_tapElapsedTimer.invalidate();
+        emit tapCountChanged();
+    }
+
+    // stop when no more tap
+    m_tapTimeoutTimer.stop();
+    if (m_tapCount > 0) m_tapTimeoutTimer.start();
+}
+
 void DigishowMetronome::startSoundOutput()
 {
     m_soundGenerator->start();
@@ -205,6 +240,14 @@ void DigishowMetronome::onQuarterChanged()
 {
     // mute metronome sound
     if (m_soundEnabled && int(m_phase*4)%4 == 1) m_soundOutput->setVolume(0);
+}
+
+void DigishowMetronome::onTapTimeout()
+{
+    // stop when no more tap
+    m_tapCount = 0;
+    m_tapElapsedTimer.invalidate();
+    emit tapCountChanged();
 }
 
 ToneGenerator::ToneGenerator(const QAudioFormat &format

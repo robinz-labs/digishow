@@ -122,6 +122,8 @@
 #define ENDPOINT_METRONOME_QUANTUM  90403
 #define ENDPOINT_METRONOME_RUN      90404
 #define ENDPOINT_METRONOME_LINK     90405
+#define ENDPOINT_METRONOME_TAP      90406
+
 
 // signal data type
 #define DATA_SIGNAL_ANALOG  'A'  // analog signal

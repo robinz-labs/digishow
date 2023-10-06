@@ -68,15 +68,20 @@ Item {
                 box.border.width: isEditing || mouseOver ? 1 : 0
                 label.font.pixelSize: 12
                 label.font.bold: model.assigned
-                label.text: model.title === undefined || model.title === "" ? qsTr("Preset") + " " + (model.index + 1) : model.title
+                label.text: model.title
                 label.visible: !textLaunchTitle.visible
                 opacity: model.assigned || isEditing ? 1.0 : 0.25
                 supportLongPress: true
 
                 onLongPressed: {
 
+                    //gridView.currentIndex = model.index
+                    //popupOptions.open()
+
                     gridView.currentIndex = model.index
-                    popupOptions.open()
+                    menu.x = mouseX
+                    menu.y = mouseY
+                    menu.open()
                 }
 
                 onRightClicked: {
@@ -177,8 +182,8 @@ Item {
         Popup {
             id: popupOptions
 
-            width: 260
-            height: 180
+            width: 320
+            height: 200
             anchors.centerIn: parent
             modal: false
             focus: true
@@ -196,6 +201,7 @@ Item {
                     var slotLaunchOptions = app.getSlotLaunchOptions(model.name)
                     slotListView.setSlotLaunchOptions(slotLaunchOptions)
 
+                    /*
                     if (slotLaunchOptions.length > 0) {
                         var rememberLink = false
                         var rememberOutput = false
@@ -204,10 +210,10 @@ Item {
                             if (options["rememberLink"]) rememberLink = true
                             if (options["rememberOutput"]) rememberOutput = true
                         }
-                        checkRememberLink.checked = rememberLink
-                        checkRememberOutput.checked = rememberOutput
+                        //checkRememberLink.checked = rememberLink
+                        //checkRememberOutput.checked = rememberOutput
                     }
-
+                    */
 
                 } else {
 
@@ -231,31 +237,99 @@ Item {
                 spacing: 10
 
                 Label {
-                    topPadding: 5
+                    topPadding: 10
                     leftPadding: 10
+                    bottomPadding: 5
                     font.bold: true
-                    text: qsTr("Create a preset to :")
+                    font.pixelSize: 12
+                    text: qsTr("Create a preset to remember:")
                 }
 
-                CheckBox {
-                    id: checkRememberLink
+                Label {
+                    id: labelRememberOutput
                     height: 28
-                    text: qsTr("Remember LINK States")
-                    checked: true
-                    onClicked: slotListView.setSlotLaunchRememberAllLinks(checked)
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    leftPadding: 10
+                    verticalAlignment: Text.AlignVCenter
+                    font.pixelSize: 12
+                    text: qsTr("Checked output signals")
+
+                    CButton {
+                        id: buttonRememberOutputNone
+
+                        width: 50
+                        height: 22
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        anchors.rightMargin: 10
+                        colorNormal: "black"
+                        box.radius: 3
+                        label.text: qsTr("None")
+                        label.font.pixelSize: 10
+                        onClicked: slotListView.setSlotLaunchRememberAllOutputs(false)
+                    }
+
+                    CButton {
+                        id: buttonRememberOutputAll
+
+                        width: 50
+                        height: 22
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: buttonRememberOutputNone.left
+                        anchors.rightMargin: 10
+                        colorNormal: Material.accent
+                        box.radius: 3
+                        label.text: qsTr("All")
+                        label.font.pixelSize: 10
+                        onClicked: slotListView.setSlotLaunchRememberAllOutputs(true)
+                    }
                 }
 
-                CheckBox {
-                    id: checkRememberOutput
+                Label {
+                    id: labelRememberLink
                     height: 28
-                    text: qsTr("Remember Output Signals")
-                    checked: true
-                    onClicked: slotListView.setSlotLaunchRememberAllOutputs(checked)
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    leftPadding: 10
+                    verticalAlignment: Text.AlignVCenter
+                    font.pixelSize: 12
+                    text: qsTr("Checked LINK states")
+
+                    CButton {
+                        id: buttonRememberLinkNone
+
+                        width: 50
+                        height: 22
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        anchors.rightMargin: 10
+                        colorNormal: "black"
+                        box.radius: 3
+                        label.text: qsTr("None")
+                        label.font.pixelSize: 10
+                        onClicked: slotListView.setSlotLaunchRememberAllLinks(false)
+                    }
+
+                    CButton {
+                        id: buttonRememberLinkAll
+
+                        width: 50
+                        height: 22
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: buttonRememberLinkNone.left
+                        anchors.rightMargin: 10
+                        colorNormal: Material.accent
+                        box.radius: 3
+                        label.text: qsTr("All")
+                        label.font.pixelSize: 10
+                        onClicked: slotListView.setSlotLaunchRememberAllLinks(true)
+                    }
                 }
 
                 Item {
                     width: 200
-                    height: 40
+                    height: 45
                     anchors.horizontalCenter: parent.horizontalCenter
 
                     CButton {
@@ -277,6 +351,8 @@ Item {
                             var model = dataModel.get(gridView.currentIndex)
                             model.assigned = true
                             app.updateLaunch(model.name, slotListView.getSlotLaunchOptions())
+                            app.setLaunchOption(model.name, "title", model.title)
+                            app.setLaunchOption(model.name, "color", model.color)
 
                             messageBox.show(qsTr("Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset."), qsTr("OK"))
                             window.isModified = true
@@ -332,7 +408,7 @@ Item {
             case 3: color = CColor.Iris;     break
             case 4: color = CColor.HotPink;  break
             }
-            var title = ""
+            var title = qsTr("Preset") + " " + (n + 1)
             var assigned = false
 
             // load user data

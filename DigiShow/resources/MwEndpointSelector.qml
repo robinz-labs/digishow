@@ -129,8 +129,8 @@ Item {
                 itemHotkey   .visible = false
                 itemMetronome.visible = false
 
-                moreOptions.resetOptions()
-                moreOptions.enableOptions({})
+                popupMoreOptions.resetOptions()
+                popupMoreOptions.enableOptions({})
                 buttonMoreOptions.visible = false
 
                 interfaceType = ""
@@ -196,16 +196,16 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: 16
         anchors.top: buttonInterface.top
-        colorNormal: moreOptions.isDefault ? "transparent" : "#666666"
+        colorNormal: popupMoreOptions.isDefault ? "transparent" : "#666666"
         icon.width: 16
         icon.height: 16
         icon.source: "qrc:///images/icon_settings_white.png"
         box.border.width: 1
         box.radius: 3
-        onClicked: moreOptions.show()
+        onClicked: popupMoreOptions.show()
 
         MwEndpointMoreOptions {
-            id: moreOptions
+            id: popupMoreOptions
         }
     }
 
@@ -467,7 +467,7 @@ Item {
                 itemEndpoint.setEndpointOptions(endpointInfo, endpointOptions)
 
             // set ui with more options
-            moreOptions.setOptions(endpointOptions)
+            popupMoreOptions.setOptions(endpointOptions)
 
             endpointIdentification = getEndpointIdentification(endpointIndex)
         }
@@ -509,8 +509,8 @@ Item {
             newEndpointOptions = itemEndpoint.getEndpointOptions()
 
         // append more options
-        newEndpointOptions = utilities.merge(newEndpointOptions, moreOptions.getOptions())
-        moreOptions.setOptions(newEndpointOptions) // here refresh ui
+        newEndpointOptions = utilities.merge(newEndpointOptions, popupMoreOptions.getOptions())
+        popupMoreOptions.setOptions(newEndpointOptions) // here refresh ui
 
         // save the updated endpoint
         var newEndpointIndex = -1;

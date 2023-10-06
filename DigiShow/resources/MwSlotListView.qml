@@ -96,14 +96,14 @@ Item {
                         text: qsTr("Duplicate")
                         onTriggered: {
                             menuSlot.close()
-                            duplicateSlot(currentIndex)
+                            duplicateSlots()
                         }
                     }
                     CMenuItem {
                         text: qsTr("Delete")
                         onTriggered: {
                             menuSlot.close()
-                            deleteSlot(currentIndex)
+                            deleteSlots()
                         }
                     }
 
@@ -819,7 +819,7 @@ Item {
                 // delete the slot
                 if (event.key === Qt.Key_Delete) {
 
-                    deleteSlot(slotListView.currentIndex)
+                    deleteSlots()
 
                     event.accepted = true
                     return
@@ -1179,8 +1179,8 @@ Item {
             epOutFaderHold: true,
             epOutTap: false,
 
-            launchRememberLink: true,
-            launchRememberOutput: true
+            launchRememberLink: false,
+            launchRememberOutput: false
         }
 
         dataModel.set(n, item)
@@ -1201,6 +1201,14 @@ Item {
 
         window.isModified = true
         //undoManager.archive()
+    }
+
+    function duplicateSlots() {
+
+        if (slotListView.showSlotSelection)
+            duplicateSelection()
+        else
+            duplicateSlot(slotListView.currentIndex)
     }
 
     function duplicateSlot(slotIndex) {
@@ -1231,6 +1239,14 @@ Item {
             i = getDataItemIndex(n)
             if (dataModel.get(i).slotSelected === true) duplicateSlot(i)
         }
+    }
+
+    function deleteSlots() {
+
+        if (slotListView.showSlotSelection)
+            deleteSelection()
+        else
+            deleteSlot(slotListView.currentIndex)
     }
 
     function deleteSlot(slotIndex, showMessageToConfirm) {

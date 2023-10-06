@@ -589,8 +589,8 @@ Item {
             enables["optInitialB"] = true
         }
 
-        moreOptions.resetOptions()
-        moreOptions.enableOptions(enables)
+        popupMoreOptions.resetOptions()
+        popupMoreOptions.enableOptions(enables)
         buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 

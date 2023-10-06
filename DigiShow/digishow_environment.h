@@ -130,7 +130,8 @@ public:
         EndpointMetronomeBPM      = ENDPOINT_METRONOME_BPM,
         EndpointMetronomeQuantum  = ENDPOINT_METRONOME_QUANTUM,
         EndpointMetronomeRun      = ENDPOINT_METRONOME_RUN,
-        EndpointMetronomeLink     = ENDPOINT_METRONOME_LINK
+        EndpointMetronomeLink     = ENDPOINT_METRONOME_LINK,
+        EndpointMetronomeTap      = ENDPOINT_METRONOME_TAP
     };
     Q_ENUM(EndpointType)
 

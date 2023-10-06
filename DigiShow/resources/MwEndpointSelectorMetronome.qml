@@ -10,7 +10,7 @@ Item {
 
     COptionButton {
         id: buttonType
-        width: 85
+        width: 130
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
@@ -65,10 +65,11 @@ Item {
         // init metronome type menu (for control output)
         if (menuType.count === 0) {
             items = []
-            items.push({ text: qsTr("BPM"    ), value: DigishowEnvironment.EndpointMetronomeBPM,     tag: "bpm" })
-            items.push({ text: qsTr("Quantum"), value: DigishowEnvironment.EndpointMetronomeQuantum, tag: "quantum" })
-            items.push({ text: qsTr("Run"    ), value: DigishowEnvironment.EndpointMetronomeRun,     tag: "run" })
-            items.push({ text: qsTr("Link"   ), value: DigishowEnvironment.EndpointMetronomeLink,    tag: "link" })
+            items.push({ text: qsTr("BPM Change"    ), value: DigishowEnvironment.EndpointMetronomeBPM,     tag: "bpm" })
+            items.push({ text: qsTr("Quantum Change"), value: DigishowEnvironment.EndpointMetronomeQuantum, tag: "quantum" })
+            items.push({ text: qsTr("Run ON"        ), value: DigishowEnvironment.EndpointMetronomeRun,     tag: "run" })
+            items.push({ text: qsTr("Link ON"       ), value: DigishowEnvironment.EndpointMetronomeLink,    tag: "link" })
+            items.push({ text: qsTr("Tap"           ), value: DigishowEnvironment.EndpointMetronomeLink,    tag: "tap" })
 
             menuType.optionItems = items
             menuType.selectedIndex = 0
@@ -109,8 +110,8 @@ Item {
 
     function refreshMoreOptions() {
 
-        moreOptions.resetOptions()
-        moreOptions.enableOptions({})
+        popupMoreOptions.resetOptions()
+        popupMoreOptions.enableOptions({})
         buttonMoreOptions.visible = false
     }
 

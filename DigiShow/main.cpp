@@ -201,12 +201,16 @@ int main(int argc, char *argv[])
     // start main app
     g_app = new DigishowApp();
 
+#ifndef DIGISHOW_NON_GUI
+
     // start main ui
     QQmlApplicationEngine engine;
 
-    //QQmlComponent component(&engine);
-    //component.loadUrl(QUrl("qrc:///Splash.qml"));
-    //if (component.isReady()) component.create();
+    /*
+    QQmlComponent component(&engine);
+    component.loadUrl(QUrl("qrc:///Splash.qml"));
+    if (component.isReady()) component.create();
+    */
 
     const QUrl url(QStringLiteral("qrc:///MainWindow.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -223,6 +227,8 @@ int main(int argc, char *argv[])
     case 0: app.allWindows().first()->showMinimized(); break;
     case 2: app.allWindows().first()->showFullScreen(); break;
     }
+
+#endif
 
     // enable autostart
     g_app->enableAutostart(appOptions.value("autostart", false).toBool());

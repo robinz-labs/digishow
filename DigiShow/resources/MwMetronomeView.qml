@@ -40,7 +40,7 @@ Item {
                 color: "#dddddd"
                 font.pixelSize: 12
                 font.bold: true
-                text: qsTr("Metronome")
+                text: qsTr("Beat Maker")
             }
 
             CButton {
@@ -112,45 +112,15 @@ Item {
                 anchors.left: spinBPM.right
                 anchors.leftMargin: 5
                 anchors.verticalCenter: textMetronome.verticalCenter
-                label.text: qsTr("Tap")
+                label.text: metronome.tapCount>0 ? metronome.tapCount : qsTr("Tap")
                 label.font.bold: false
                 label.font.pixelSize: 12
                 box.radius: 3
                 box.border.width: 1
                 colorNormal: "transparent"
-                colorActivated: "#383838"
+                colorActivated: metronome.tapCount>0 ? "darkRed" : "#383838"
 
-                property var timestamps: ([])
-
-                onClicked: {
-
-                    var now = Date.now()
-                    timestamps.push(now)
-
-                    if (timestamps.length > 2) {
-                        var firstTime = timestamps[0]
-                        var milliseconds = (now - firstTime) / (timestamps.length - 1)
-                        var bpm = 60000 / milliseconds
-
-                        metronome.bpm = Math.round(bpm)
-                        isModified = true
-                    }
-
-                    colorActivated = "darkRed"
-                    label.text = timestamps.length.toString()
-                    timerTap.restart()
-                }
-
-                Timer {
-                    id: timerTap
-                    interval: 2500
-                    repeat: false
-                    onTriggered: {
-                        buttonTap.timestamps = []
-                        buttonTap.label.text = qsTr("Tap")
-                        buttonTap.colorActivated = "#383838"
-                    }
-                }
+                onClicked: metronome.tap()
             }
 
             Rectangle {

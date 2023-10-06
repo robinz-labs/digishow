@@ -7,6 +7,8 @@
 #include <QMutex>
 #include <QAudioOutput>
 #include <QScopedPointer>
+#include <QTimer>
+#include <QElapsedTimer>
 
 namespace ableton {
     class Link;
@@ -26,6 +28,8 @@ class DigishowMetronome : public QObject
 
     Q_PROPERTY(double beat READ beat NOTIFY beatChanged)
     Q_PROPERTY(double phase READ phase NOTIFY beatChanged)
+
+    Q_PROPERTY(int tapCount READ tapCount NOTIFY tapCountChanged)
 
 public:
     explicit DigishowMetronome(QObject *parent = nullptr);
@@ -50,6 +54,10 @@ public:
     Q_INVOKABLE double beat() { return m_beat; }
     Q_INVOKABLE double phase() { return m_phase; }
 
+    Q_INVOKABLE void tap();
+    Q_INVOKABLE int tapCount() { return m_tapCount; }
+
+
     void run(); // called by the worker thread
 
 signals:
@@ -63,9 +71,13 @@ signals:
     void beatChanged();     // one beat progressed
     void quarterChanged();  // 1/4 beat progressed
 
+    void tapCountChanged();
+
 public slots:
     void onBeatChanged();
     void onQuarterChanged();
+
+    void onTapTimeout();
 
 private:
 
@@ -92,6 +104,11 @@ private:
 
     void startSoundOutput();
     void stopSoundOutput();
+
+    // tap to bpm
+    int m_tapCount;
+    QElapsedTimer m_tapElapsedTimer;
+    QTimer m_tapTimeoutTimer;
 };
 
 class DigishowMetronomeThread : public QThread

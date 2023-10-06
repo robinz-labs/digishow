@@ -58,6 +58,7 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointMetronomeQuantum  : return CColor.Ocean
             case DigishowEnvironment.EndpointMetronomeRun      : return CColor.Cherry
             case DigishowEnvironment.EndpointMetronomeLink     : return CColor.Cherry
+            case DigishowEnvironment.EndpointMetronomeTap      : return CColor.Cherry
         }
 
         return "#666666";
