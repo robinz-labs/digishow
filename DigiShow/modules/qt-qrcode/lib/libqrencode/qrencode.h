@@ -103,6 +103,12 @@
 extern "C" {
 #endif
 
+#define __STATIC static
+#define QRENCODE_MAJOR_VERSION 3
+#define QRENCODE_MINOR_VERSION 9
+#define QRENCODE_MICRO_VERSION 0
+#define QRENCODE_VERSION "3.9.0"
+
 /**
  * Encoding mode.
  */

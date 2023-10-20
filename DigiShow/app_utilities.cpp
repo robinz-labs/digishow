@@ -245,7 +245,7 @@ QString AppUtilities::httpUrlEncode(const QString & str)
     return QString::fromUtf8(QUrl::toPercentEncoding(str));
 }
 
-Q_INVOKABLE QString AppUtilities::fileUrlPath(const QString & strUrl)
+QString AppUtilities::fileUrlPath(const QString & strUrl)
 {
 
 #ifdef Q_OS_WIN
@@ -278,7 +278,7 @@ Q_INVOKABLE QString AppUtilities::fileUrlPath(const QString & strUrl)
     return filePath;
 }
 
-Q_INVOKABLE QString AppUtilities::filePathUrl(const QString & path)
+QString AppUtilities::filePathUrl(const QString & path)
 {
     QString strUrl = QUrl::fromLocalFile(path).toString();
 

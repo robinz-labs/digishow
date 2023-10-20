@@ -1,0 +1,306 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.2.6"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat1",
+                    "type": "beat"
+                },
+                {
+                    "channel": 9,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat2",
+                    "type": "beat"
+                }
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "preset1",
+                    "type": "preset"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "preset3",
+                    "type": "preset"
+                }
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog1",
+                    "range": 65535,
+                    "type": "analog"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog2",
+                    "range": 65535,
+                    "type": "analog"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog3",
+                    "range": 65535,
+                    "type": "analog"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "dimmer1",
+                    "type": "dimmer"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "dimmer2",
+                    "type": "dimmer"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "dimmer3",
+                    "type": "dimmer"
+                }
+            ],
+            "mode": "enttec",
+            "name": "dmx1",
+            "type": "dmx"
+        }
+    ],
+    "launches": {
+        "launch1": {
+            "assigned": true,
+            "color": "#44baec",
+            "title": "LAKE"
+        },
+        "launch2": {
+            "assigned": true,
+            "color": "#f7a08d",
+            "title": "GOLD"
+        },
+        "launch3": {
+            "assigned": true,
+            "color": "#ed1b74",
+            "title": "PINK"
+        },
+        "launch4": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "GRASS"
+        },
+        "launch5": {
+            "assigned": true,
+            "color": "#2b459c",
+            "title": "OFF"
+        }
+    },
+    "metronome": {
+        "bpm": 90,
+        "link": false,
+        "quantum": 4,
+        "run": true,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/analog1",
+            "launchDetails": {
+                "launch1": {
+                    "outputValue": 0
+                },
+                "launch2": {
+                    "outputValue": 65535
+                },
+                "launch3": {
+                    "outputValue": 65535
+                },
+                "launch4": {
+                    "outputValue": 17375
+                },
+                "launch5": {
+                    "outputValue": -1
+                }
+            },
+            "linked": true,
+            "title": "Red"
+        },
+        {
+            "destination": "pipe1/analog2",
+            "launchDetails": {
+                "launch1": {
+                    "outputValue": 20792
+                },
+                "launch2": {
+                    "outputValue": 29611
+                },
+                "launch3": {
+                    "outputValue": 0
+                },
+                "launch4": {
+                    "outputValue": 65535
+                },
+                "launch5": {
+                    "outputValue": -1
+                }
+            },
+            "linked": true,
+            "title": "Green"
+        },
+        {
+            "destination": "pipe1/analog3",
+            "launchDetails": {
+                "launch1": {
+                    "outputValue": 65535
+                },
+                "launch2": {
+                    "outputValue": 0
+                },
+                "launch3": {
+                    "outputValue": 34622
+                },
+                "launch4": {
+                    "outputValue": 0
+                },
+                "launch5": {
+                    "outputValue": 0
+                }
+            },
+            "linked": true,
+            "title": "Blue"
+        },
+        {
+            "destination": "dmx1/dimmer1",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                },
+                "launch5": {
+                }
+            },
+            "linked": true,
+            "outputSmoothing": 1000,
+            "source": "pipe1/analog1",
+            "title": "LED R"
+        },
+        {
+            "destination": "dmx1/dimmer2",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                },
+                "launch5": {
+                }
+            },
+            "linked": true,
+            "outputSmoothing": 1000,
+            "source": "pipe1/analog2",
+            "title": "LED G"
+        },
+        {
+            "destination": "dmx1/dimmer3",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                },
+                "launch5": {
+                }
+            },
+            "linked": true,
+            "outputSmoothing": 1000,
+            "source": "pipe1/analog3",
+            "title": "LED B"
+        },
+        {
+            "destination": "launch1/preset1",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch4": {
+                },
+                "launch5": {
+                    "linked": false
+                }
+            },
+            "linked": true,
+            "source": "metronome1/beat1",
+            "title": "Motion 1"
+        },
+        {
+            "destination": "launch1/preset3",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch4": {
+                },
+                "launch5": {
+                    "linked": false
+                }
+            },
+            "linked": true,
+            "source": "metronome1/beat2",
+            "title": "Motion 2"
+        }
+    ]
+}

@@ -171,6 +171,8 @@ Item {
                         onTriggered: {
                             menu.close()
                             model.assigned = false
+                            model.title = defaultItemTitle(model.index)
+                            model.color = defaultItemColor(model.index)
                             app.deleteLaunch(model.name)
                             window.isModified = true
                         }
@@ -333,6 +335,9 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
 
                     CButton {
+
+                        property bool isFirstTime: true
+
                         width: 90
                         height: 28
 
@@ -354,7 +359,9 @@ Item {
                             app.setLaunchOption(model.name, "title", model.title)
                             app.setLaunchOption(model.name, "color", model.color)
 
-                            messageBox.show(qsTr("Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset."), qsTr("OK"))
+                            if (isFirstTime)
+                                messageBox.show(qsTr("Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset."), qsTr("OK"))
+                            isFirstTime = false
                             window.isModified = true
                         }
                     }
@@ -399,16 +406,8 @@ Item {
 
             // create default data
             var name = "launch" + (n+1)
-            var row = Math.floor(n / 5)
-            var color
-            switch (row % 5) {
-            case 0: color = CColor.Lime;     break
-            case 1: color = CColor.RobinEgg; break
-            case 2: color = CColor.Ocean;    break
-            case 3: color = CColor.Iris;     break
-            case 4: color = CColor.HotPink;  break
-            }
-            var title = qsTr("Preset") + " " + (n + 1)
+            var color = defaultItemColor(n)
+            var title = defaultItemTitle(n)
             var assigned = false
 
             // load user data
@@ -431,4 +430,20 @@ Item {
 
         editingLaunchName = ""
     }
+
+    function defaultItemColor(index) {
+        var row = Math.floor(index / 5)
+        switch (row % 5) {
+        case 0: return CColor.Lime
+        case 1: return CColor.RobinEgg
+        case 2: return CColor.Ocean
+        case 3: return CColor.Iris
+        case 4: return CColor.HotPink
+        }
+    }
+
+    function defaultItemTitle(index) {
+        return qsTr("Preset") + " " + (index + 1)
+    }
+
 }

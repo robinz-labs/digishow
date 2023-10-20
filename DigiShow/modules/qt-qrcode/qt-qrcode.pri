@@ -1,8 +1,5 @@
 QT += svg
 
-# libqrencode requires
-DEFINES += __STATIC=static MAJOR_VERSION=3 MINOR_VERSION=9 MICRO_VERSION=0 VERSION=\'\"3.9.0\"\'
-
 INCLUDEPATH += \
     $$PWD \
     $$PWD/lib \

@@ -69,7 +69,7 @@ Item {
             items.push({ text: qsTr("Quantum Change"), value: DigishowEnvironment.EndpointMetronomeQuantum, tag: "quantum" })
             items.push({ text: qsTr("Run ON"        ), value: DigishowEnvironment.EndpointMetronomeRun,     tag: "run" })
             items.push({ text: qsTr("Link ON"       ), value: DigishowEnvironment.EndpointMetronomeLink,    tag: "link" })
-            items.push({ text: qsTr("Tap"           ), value: DigishowEnvironment.EndpointMetronomeLink,    tag: "tap" })
+            items.push({ text: qsTr("Tap"           ), value: DigishowEnvironment.EndpointMetronomeTap,     tag: "tap" })
 
             menuType.optionItems = items
             menuType.selectedIndex = 0

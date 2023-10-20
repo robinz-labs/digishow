@@ -130,7 +130,7 @@ include(modules/ableton/link.pri)
 include(modules/qt-qrcode/qt-qrcode.pri)
 
 # cloud implementation
-#include(digishow_cloud/cloud.pri)
+include(digishow_cloud/cloud.pri)
 
 # experimental code
 #include(digishow_experimental/experimental.pri)

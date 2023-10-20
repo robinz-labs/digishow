@@ -316,7 +316,7 @@ Item {
                             radius: 3
                             color: model.epInColor
 
-                            Behavior on value { NumberAnimation { duration: 300; easing.type: Easing.OutCubic } }
+                            Behavior on value { NumberAnimation { duration: 200; easing.type: Easing.OutExpo } }
                         }
 
                         Text {
@@ -464,7 +464,7 @@ Item {
                             radius: 3
                             color: model.epOutColor
 
-                            Behavior on value { NumberAnimation { duration: 300; easing.type: Easing.OutCubic } }
+                            Behavior on value { NumberAnimation { duration: 200; easing.type: Easing.OutExpo } }
                         }
 
                         Text {
@@ -1032,7 +1032,7 @@ Item {
     Timer {
         id: dataUpdater
 
-        interval: 50
+        interval: 20
         repeat: true
         running: true //app.isRunning
         onTriggered: {

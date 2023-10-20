@@ -103,6 +103,15 @@
   ! rewrite osc interface using tinyosc library
   + remote pipe supports more messages
 
+  v1.2.6 20231020
+  ! improved preset launcher and beat maker (metronome)
+  ! improved virtual pipe features
+  + pixel player support for dmx and artnet
+  + 16-bit dimmer support for dmx and artnet
+  + allows changing osc integer value range
+  + compatible dmx usb pro widget support
+  + digishow cloud service support ready
+
  */
 
 #ifndef DIGISHOW_H
