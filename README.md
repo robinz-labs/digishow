@@ -1,5 +1,7 @@
-# DigiShow LINK
-
+# DigiShow LINK  
+  
+[DOWNLOAD](https://github.com/robinz-labs/digishow/releases/latest)  
+  
 DigiShow is an easy-to-use software aims at controls for live performances and interactive shows with music, lights, displays, machines, robots and more digital things. It's a controller, console and smart gateway enables signal transferring between MIDI, DMX, OSC, ArtNet, Modbus, Arduino, Philips Hue and more interfaces.
 
 With using DigiShow LINK app, there are some scenarios assumed: 
