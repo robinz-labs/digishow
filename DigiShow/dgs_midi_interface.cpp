@@ -191,6 +191,24 @@ int DgsMidiInterface::sendData(int endpointIndex, dgsSignalData data)
         m_midiout->sendMessage(&message);
         //qDebug() << "midiout_program:" << message[0] << message[1];
 
+    } else if (type == ENDPOINT_MIDI_PITCH) {
+
+        // send pitch message
+        int value = 16383 * data.aValue / (data.aRange==0 ? 16383 : data.aRange);
+        if (value<0 || value>16383) return ERR_INVALID_DATA;
+
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+
+        // call rtmidi to send midi message
+        std::vector<unsigned char> message;
+        message.push_back(0xE0 +                                   // pitch bend
+                          static_cast<unsigned char>(channel));    // channel number
+        message.push_back(static_cast<unsigned char>(value&0x7F)); // value lsb (7 bits)
+        message.push_back(static_cast<unsigned char>(value>>7));   // value msb (7 bits)
+
+        m_midiout->sendMessage(&message);
+        //qDebug() << "midiout_program:" << message[0] << message[1] << message[2];
+
     } else if (type == ENDPOINT_MIDI_CC_PULSE) {
 
         // send cc pulse messages
@@ -245,6 +263,15 @@ int DgsMidiInterface::findEndpointWidthMidiProgram(int channel)
 {
     for (int n=0 ; n<m_endpointOptionsList.length() ; n++) {
         if (m_endpointInfoList[n].type == ENDPOINT_MIDI_PROGRAM &&
+            m_endpointInfoList[n].channel == channel) return n;
+    }
+    return -1;
+}
+
+int DgsMidiInterface::findEndpointWidthMidiPitch(int channel)
+{
+    for (int n=0 ; n<m_endpointOptionsList.length() ; n++) {
+        if (m_endpointInfoList[n].type == ENDPOINT_MIDI_PITCH &&
             m_endpointInfoList[n].channel == channel) return n;
     }
     return -1;
@@ -339,6 +366,34 @@ void DgsMidiInterface::callbackRtMidiIn(double deltatime, std::vector< unsigned 
             rawData["value"  ] = value;
             emit rawDataReceived(rawData);
         }
+
+    } else if (msgtype == 0xE0) {
+
+        // pitch bend
+        if (message->size()!=3) return;
+        int lsb = message->at(1); // 0 ~ 0x7F
+        int msb = message->at(2); // 0 ~ 0x7F
+        int value = (msb<<7) | lsb; // 14bit value = 7bit msb + 7bit lsb
+
+        dgsSignalData data;
+        data.signal = DATA_SIGNAL_ANALOG;
+        data.aRange = 16383; // 14 bits
+        data.aValue = value;
+        data.bValue = 0;
+
+        int endpointIndex = findEndpointWidthMidiPitch(channel);
+
+        //qDebug() << "midiin_pitch:" << endpointIndex << data.signal << data.aValue << data.bValue;
+        if (endpointIndex != -1 && m_endpointInfoList[endpointIndex].enabled) emit dataReceived(endpointIndex, data);
+
+        if (m_needReceiveRawData) {
+            QVariantMap rawData;
+            rawData["event"  ] = "pitch_bend";
+            rawData["channel"] = channel;
+            rawData["value"  ] = value;
+            emit rawDataReceived(rawData);
+        }
+
     }
 }
 

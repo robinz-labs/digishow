@@ -762,7 +762,7 @@ QString DigishowEnvironment::getMidiNoteName(int noteNumber, bool longName)
         case 44: name += tr("Pedal Hat"   ); break;
         case 45: name += tr("Mid Tom 2"   ); break;
         case 46: name += tr("Open Hat"    ); break;
-        case 47: name += tr("Mid Tom 2"   ); break;
+        case 47: name += tr("Mid Tom 1"   ); break;
         case 48: name += tr("High Tom 2"  ); break;
         case 49: name += tr("Crash"       ); break;
         case 50: name += tr("High Tom 1"  ); break;

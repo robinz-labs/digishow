@@ -88,6 +88,7 @@ public:
         EndpointMidiNote          = ENDPOINT_MIDI_NOTE,
         EndpointMidiControl       = ENDPOINT_MIDI_CONTROL,
         EndpointMidiProgram       = ENDPOINT_MIDI_PROGRAM,
+        EndpointMidiPitch         = ENDPOINT_MIDI_PITCH,
         EndpointMidiCcPulse       = ENDPOINT_MIDI_CC_PULSE,
         EndpointRiocDigitalIn     = ENDPOINT_RIOC_DIGITAL_IN,
         EndpointRiocDigitalOut    = ENDPOINT_RIOC_DIGITAL_OUT,

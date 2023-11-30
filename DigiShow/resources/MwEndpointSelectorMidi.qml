@@ -92,6 +92,7 @@ Item {
             items.push({ text: qsTr("MIDI Note"   ), value: DigishowEnvironment.EndpointMidiNote,    tag:"note"    })
             items.push({ text: qsTr("MIDI Control"), value: DigishowEnvironment.EndpointMidiControl, tag:"control" })
             items.push({ text: qsTr("MIDI Program"), value: DigishowEnvironment.EndpointMidiProgram, tag:"program" })
+            items.push({ text: qsTr("MIDI Pitch"  ), value: DigishowEnvironment.EndpointMidiPitch,   tag:"pitch"   })
 
             if (digishow.appExperimental()) {
                 items.push({
@@ -137,6 +138,10 @@ Item {
             endpointType === DigishowEnvironment.EndpointMidiProgram) {
 
             enables["optInitialMidi"] = true
+
+        } else if (endpointType === DigishowEnvironment.EndpointMidiPitch) {
+
+           enables["optInitialA"] = true
         }
 
         popupMoreOptions.resetOptions()
@@ -193,6 +198,10 @@ Item {
         } else if (event === "program_change") {
 
             menuType.selectOptionWithTag("program")
+
+        } else if (event === "pitch_bend") {
+
+            menuType.selectOptionWithTag("pitch")
 
         }
         menuChannel.selectOption(rawData["channel"])

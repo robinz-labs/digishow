@@ -53,6 +53,7 @@ private:
     int findEndpointWidthMidiNote(int channel, int note);
     int findEndpointWidthMidiControl(int channel, int control);
     int findEndpointWidthMidiProgram(int channel);
+    int findEndpointWidthMidiPitch(int channel);
 
 };
 
