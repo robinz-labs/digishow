@@ -2,7 +2,7 @@
   
 [DOWNLOAD](https://github.com/robinz-labs/digishow/releases/latest)  
   
-DigiShow is an easy-to-use software aims at controls for live performances and interactive shows with music, lights, displays, machines, robots and more digital things. It's a controller, console and smart gateway enables signal transferring between MIDI, DMX, OSC, ArtNet, Modbus, Arduino, Philips Hue and more interfaces.
+DigiShow is a lightweight control software designed for live performances and immersive show spaces with music, lights, displays, robots and interactive installations. It serves as an easy-to-use console for signal controlling, also enables signal mapping between MIDI, DMX, OSC, ArtNet, Modbus, Arduino, Philips Hue and more digital interfaces. 
 
 With using DigiShow LINK app, there are some scenarios assumed: 
 
@@ -12,8 +12,8 @@ For live music or theatre performances, DJ or producers can arrange show lightin
 **Performers:** 
 When playing MIDI instruments like drums or keyboards, DigiShow can trigger dynamic lighting changes and even robotic movements by MIDI notes following the beat or the music. Sensors can also be added to acoustic or DIY instruments to automatically generate MIDI notes.
 
-**Programmers:**
-For building interactive art installations, often need develop apps that work with the hardware. DigiShow provides the service based on virtual pipe for the external user programs. Programmers can create their game or web apps to access the hardware easily through the service. 
+**Artists and Designer:**
+For building interactive art installations, the creators often need to make software that works with the hardware. DigiShow provides OSC, ArtNet, WebSocket pipes for inter-application communication. Designers can create their interactive content in some creative software like TouchDesigner, Unity 3D, P5.js and access the hardware easily through DigiShow. Developers can also program using Python or JavaScript to connect DigiShow and extend interaction logic. 
 
 **Makers and Hobbyists:**
 DigiShow is for all show makers as well as hobbyists with little professional skills. Make digital shows for your own party time, or just make your house into a mini 'disneyland'.
@@ -27,11 +27,11 @@ For a typical 'digital' show, requires some particular digital things working to
 
 ![digishow_link](images/digishow_link.jpg)
 
-DigiShow LINK app enables signal transferring between MIDI and other digital device interfaces like DMX, ArtNet, OSC, Modbus, Arduino, Philips Hue, as well as controls for media presentation on screens. 
+DigiShow LINK app enables signal mapping and transferring between MIDI and other digital device interfaces like DMX, ArtNet, OSC, Modbus, Arduino, Philips Hue, as well as controls for interactive media presentation on screens. 
 
 MIDI notes and MIDI control changes are mapped and transformed to the signals for light, servo, media and more controls. Also, some input signals from sensors can be converted to MIDI notes or CC that will be able to be processed by other digital music software. 
 
-DigiShow LINK works well with any music software that supports MIDI input/output, like Ableton Live, Logic Pro, FL Studio, etc. Light, media and other show cues can be flexibly arranged on MIDI tracks with notes and CC automation.
+DigiShow LINK works well with any music software that supports MIDI input/output, like Ableton Live, Logic Pro, etc. Light, media and other show cues can be flexibly arranged on MIDI tracks with notes and CC automation.
 
 
 ## Supported Interfaces
@@ -43,7 +43,7 @@ DigiShow LINK works well with any music software that supports MIDI input/output
 - **Modbus** interface is typically for connecting your industrial automations, robots and machines.
 - **Arduino** is an open source electronic controller for making homebrew instruments, lights or gadgets for your interactive shows.
 - **Philips Hue** is the popular smart home wireless-controlled lights.
-- DigiShow can also control presenting videos, pictures and web contents with dynamic effects on multiple screens.  
+- DigiShow can also control presenting videos, pictures and web content with dynamic effects on multiple screens.  
 
 
 ## App Features
@@ -56,8 +56,8 @@ DigiShow LINK app provides a simple user interface, with which you can easily co
 **Console**  
 The most basic user interface of the app looks like a standalone console, which can be used to adjust output signals instantly by moving faders and view input signal changes in real-time meters. 
 
-**Gateway**  
-The primary function designed in the app is a smart signal gateway that works with digital show facilities, it provides an efficient configuration method for signal mapping and conversion. Typically, DigiShow LINK runs on the computer as a service responsible for connecting devices, and manages show content and executes show logic in another separate software running in parallel. The show is completed in cooperation of both. 
+**Signal Mapping**  
+The primary function designed in the app is a signal hub that works with digital show facilities, it provides an efficient configuration method for signal mapping and conversion. Typically, DigiShow LINK runs on the computer as a service responsible for connecting hardware devices and some other software that manages respective show content and executes the show logic. The show is done in cooperation of all hardware and software coordinated by DigiShow. 
 
 
 ## Release Downloads
@@ -74,13 +74,17 @@ Go to the page, where choose digishow_win_x.x.x_x64.zip, digishow_mac_x.x.x_x64.
 
 Download and unzip the latest release file.  
 
-macOS:  
-Copy app "DigiShow" to your Applications folder and run it.  
-For some macOS versions, it is also necessary to run the command xattr -cr /Applications/DigiShow.app in Terminal.
+**macOS:**  
+Copy app "DigiShow" to your Applications folder and run it. 
 
-Windows:  
-Copy folder "DigiShow LINK" to your disk and run "DigiShow.exe" in the folder.  
-For some Windows versions, it is also necessary to run Extra\vc_redist.x64.exe to install Visual C++ 2015 Redistributable to your windows system.
+If you see the error message says **DigiShow app is damaged and can’t be opened**, please also need to run the command _xattr -cr /Applications/DigiShow.app_ in the terminal before starting the app for the first time. 
+
+**Windows:**  
+Copy folder "DigiShow LINK" to your disk and run "DigiShow.exe" in the folder. 
+
+If you see the error message says **The code execution cannot proceed because MSVCP140.dll was not found**, please also need to run Extra\vc_redist.x64.exe to install Visual C++ Redistributable to your windows system. 
+
+It's also recommended to install loopMIDI and K-Lite Codec Pack to your Windows, the installer files can be found in Extra folder. 
 
 
 ## Extra Downloads and Resources
