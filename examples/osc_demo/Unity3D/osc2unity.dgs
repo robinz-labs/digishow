@@ -1,0 +1,163 @@
+{
+    "appInfo": {
+        "appExperimental": false,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.2.6"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/scale",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": 0.5,
+                    "name": "float6",
+                    "type": "float"
+                },
+                {
+                    "address": "/scale",
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": 0.5,
+                    "name": "float7",
+                    "type": "float"
+                },
+                {
+                    "address": "/scale",
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": 0.5,
+                    "name": "float8",
+                    "type": "float"
+                },
+                {
+                    "address": "/rotate",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": 0.5,
+                    "name": "float9",
+                    "type": "float"
+                },
+                {
+                    "address": "/rotate",
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": 0.5,
+                    "name": "float10",
+                    "type": "float"
+                },
+                {
+                    "address": "/rotate",
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": 0.5,
+                    "name": "float11",
+                    "type": "float"
+                }
+            ],
+            "mode": "output",
+            "name": "osc1",
+            "type": "osc",
+            "udpHost": "127.0.0.1",
+            "udpPort": 7000
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/rotate",
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float3",
+                    "type": "float"
+                }
+            ],
+            "mode": "input",
+            "name": "osc2",
+            "type": "osc",
+            "udpPort": 8000
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "bookmarked": false,
+            "linked": true,
+            "source": "osc2/float3",
+            "title": "Green Cube Rotation Change"
+        },
+        {
+            "bookmarked": false,
+            "destination": "osc1/float6",
+            "linked": true,
+            "title": "Red Cube Scale X"
+        },
+        {
+            "destination": "osc1/float7",
+            "linked": true,
+            "title": "Red Cube Scale Y"
+        },
+        {
+            "destination": "osc1/float8",
+            "linked": true,
+            "title": "Red Cube Scale Z"
+        },
+        {
+            "bookmarked": false,
+            "destination": "osc1/float9",
+            "inputInverted": false,
+            "linked": true,
+            "outputInverted": false,
+            "outputSmoothing": 0,
+            "source": "osc2/float3",
+            "title": "Red Cube Rotation X"
+        },
+        {
+            "destination": "osc1/float10",
+            "linked": true,
+            "title": "Red Cube Rotation Y"
+        },
+        {
+            "destination": "osc1/float11",
+            "linked": true,
+            "title": "Red Cube Rotation Z"
+        }
+    ]
+}

@@ -1,0 +1,378 @@
+{
+    "appInfo": {
+        "appExperimental": false,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.2.6"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat1",
+                    "type": "beat"
+                },
+                {
+                    "channel": 5,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat2",
+                    "type": "beat"
+                },
+                {
+                    "channel": 9,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat3",
+                    "type": "beat"
+                },
+                {
+                    "channel": 13,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat4",
+                    "type": "beat"
+                },
+                {
+                    "channel": 1,
+                    "control": 8,
+                    "enabled": true,
+                    "name": "beat5",
+                    "type": "beat"
+                },
+                {
+                    "channel": 5,
+                    "control": 8,
+                    "enabled": true,
+                    "name": "beat6",
+                    "type": "beat"
+                },
+                {
+                    "channel": 9,
+                    "control": 8,
+                    "enabled": true,
+                    "name": "beat7",
+                    "type": "beat"
+                },
+                {
+                    "channel": 13,
+                    "control": 8,
+                    "enabled": true,
+                    "name": "beat8",
+                    "type": "beat"
+                }
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/osc/x",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float5",
+                    "type": "float"
+                },
+                {
+                    "address": "/osc/x",
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float6",
+                    "type": "float"
+                },
+                {
+                    "address": "/osc/x",
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float7",
+                    "type": "float"
+                },
+                {
+                    "address": "/osc/x",
+                    "channel": 3,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float8",
+                    "type": "float"
+                },
+                {
+                    "address": "/osc/y",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float9",
+                    "type": "float"
+                },
+                {
+                    "address": "/osc/y",
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float10",
+                    "type": "float"
+                },
+                {
+                    "address": "/osc/y",
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float11",
+                    "type": "float"
+                },
+                {
+                    "address": "/osc/y",
+                    "channel": 3,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float12",
+                    "type": "float"
+                },
+                {
+                    "address": "/osc/color/red",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": 1,
+                    "name": "float4",
+                    "type": "float"
+                },
+                {
+                    "address": "/osc/color/green",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": 0,
+                    "name": "float13",
+                    "type": "float"
+                },
+                {
+                    "address": "/osc/color/blue",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": 0.5,
+                    "name": "float14",
+                    "type": "float"
+                }
+            ],
+            "mode": "output",
+            "name": "osc1",
+            "type": "osc",
+            "udpHost": "127.0.0.1",
+            "udpPort": 9000
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/ramp",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float1",
+                    "type": "float"
+                }
+            ],
+            "mode": "input",
+            "name": "osc2",
+            "type": "osc",
+            "udpPort": 8000
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 30,
+        "link": false,
+        "quantum": 4,
+        "run": true,
+        "sound": false
+    },
+    "slots": [
+        {
+            "linked": true,
+            "source": "osc2/float1",
+            "title": "beat ramp from td"
+        },
+        {
+            "destination": "osc1/float4",
+            "linked": true,
+            "title": "color red"
+        },
+        {
+            "destination": "osc1/float13",
+            "linked": true,
+            "title": "color green"
+        },
+        {
+            "destination": "osc1/float14",
+            "linked": true,
+            "title": "color blue"
+        },
+        {
+            "destination": "osc1/float5",
+            "envelopeAttack": 1000,
+            "envelopeRelease": 1000,
+            "linked": true,
+            "source": "metronome1/beat1",
+            "title": "x1"
+        },
+        {
+            "destination": "osc1/float6",
+            "envelopeAttack": 1000,
+            "envelopeDecay": 0,
+            "envelopeHold": 0,
+            "envelopeInDelay": 0,
+            "envelopeOutDelay": 0,
+            "envelopeRelease": 1000,
+            "envelopeSustain": 1,
+            "inputHigh": 1,
+            "inputLow": 0,
+            "linked": true,
+            "outputHigh": 1,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "source": "metronome1/beat2",
+            "title": "x2"
+        },
+        {
+            "destination": "osc1/float7",
+            "envelopeAttack": 1000,
+            "envelopeDecay": 0,
+            "envelopeHold": 0,
+            "envelopeInDelay": 0,
+            "envelopeOutDelay": 0,
+            "envelopeRelease": 1000,
+            "envelopeSustain": 1,
+            "inputHigh": 1,
+            "inputLow": 0,
+            "linked": true,
+            "outputHigh": 1,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "source": "metronome1/beat3",
+            "title": "x3"
+        },
+        {
+            "destination": "osc1/float8",
+            "envelopeAttack": 1000,
+            "envelopeDecay": 0,
+            "envelopeHold": 0,
+            "envelopeInDelay": 0,
+            "envelopeOutDelay": 0,
+            "envelopeRelease": 1000,
+            "envelopeSustain": 1,
+            "inputHigh": 1,
+            "inputLow": 0,
+            "linked": true,
+            "outputHigh": 1,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "source": "metronome1/beat4",
+            "title": "x4"
+        },
+        {
+            "destination": "osc1/float9",
+            "envelopeAttack": 500,
+            "envelopeDecay": 0,
+            "envelopeHold": 0,
+            "envelopeInDelay": 0,
+            "envelopeOutDelay": 0,
+            "envelopeRelease": 1500,
+            "envelopeSustain": 1,
+            "inputHigh": 1,
+            "inputLow": 0,
+            "linked": true,
+            "outputHigh": 1,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "source": "metronome1/beat5",
+            "title": "y1"
+        },
+        {
+            "destination": "osc1/float10",
+            "envelopeAttack": 500,
+            "envelopeDecay": 0,
+            "envelopeHold": 0,
+            "envelopeInDelay": 0,
+            "envelopeOutDelay": 0,
+            "envelopeRelease": 1500,
+            "envelopeSustain": 1,
+            "inputHigh": 1,
+            "inputLow": 0,
+            "linked": true,
+            "outputHigh": 1,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "source": "metronome1/beat6",
+            "title": "y2"
+        },
+        {
+            "destination": "osc1/float11",
+            "envelopeAttack": 500,
+            "envelopeDecay": 0,
+            "envelopeHold": 0,
+            "envelopeInDelay": 0,
+            "envelopeOutDelay": 0,
+            "envelopeRelease": 1500,
+            "envelopeSustain": 1,
+            "inputHigh": 1,
+            "inputLow": 0,
+            "linked": true,
+            "outputHigh": 1,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "source": "metronome1/beat7",
+            "title": "y3"
+        },
+        {
+            "destination": "osc1/float12",
+            "envelopeAttack": 500,
+            "envelopeDecay": 0,
+            "envelopeHold": 0,
+            "envelopeInDelay": 0,
+            "envelopeOutDelay": 0,
+            "envelopeRelease": 1500,
+            "envelopeSustain": 1,
+            "inputHigh": 1,
+            "inputLow": 0,
+            "linked": true,
+            "outputHigh": 1,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "source": "metronome1/beat8",
+            "title": "y4"
+        }
+    ]
+}
