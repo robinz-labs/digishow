@@ -2350,19 +2350,25 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
 <context>
     <name>MwInterfaceListViewMidi</name>
     <message>
-        <location filename="../MwInterfaceListViewMidi.qml" line="85"/>
+        <location filename="../MwInterfaceListViewMidi.qml" line="122"/>
+        <location filename="../MwInterfaceListViewMidi.qml" line="175"/>
         <source>MIDI Port</source>
         <translation>Puerto MIDI</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMidi.qml" line="98"/>
+        <location filename="../MwInterfaceListViewMidi.qml" line="54"/>
         <source>Input</source>
         <translation>Entrada</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMidi.qml" line="99"/>
+        <location filename="../MwInterfaceListViewMidi.qml" line="55"/>
         <source>Output</source>
         <translation>Salida</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewMidi.qml" line="69"/>
+        <source>Mode</source>
+        <translation>Modo</translation>
     </message>
 </context>
 <context>

@@ -2352,19 +2352,25 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
 <context>
     <name>MwInterfaceListViewMidi</name>
     <message>
-        <location filename="../MwInterfaceListViewMidi.qml" line="85"/>
+        <location filename="../MwInterfaceListViewMidi.qml" line="122"/>
+        <location filename="../MwInterfaceListViewMidi.qml" line="175"/>
         <source>MIDI Port</source>
         <translation>MIDI 端口</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMidi.qml" line="98"/>
+        <location filename="../MwInterfaceListViewMidi.qml" line="54"/>
         <source>Input</source>
         <translation>输入</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMidi.qml" line="99"/>
+        <location filename="../MwInterfaceListViewMidi.qml" line="55"/>
         <source>Output</source>
         <translation>输出</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewMidi.qml" line="69"/>
+        <source>Mode</source>
+        <translation>模式</translation>
     </message>
 </context>
 <context>

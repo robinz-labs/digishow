@@ -480,7 +480,7 @@ int DigishowApp::newInterface(const QString &interfaceType)
     if (interfaceType=="midi")   {
 
         interface = new DgsMidiInterface(this);
-        interface->setInterfaceOption("mode", "output");
+        interface->setInterfaceOption("mode", "input");
         interface->setInterfaceOption("outputInterval", 20);
 
     } else if (interfaceType=="rioc") {
