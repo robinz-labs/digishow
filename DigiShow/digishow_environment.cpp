@@ -775,36 +775,97 @@ QString DigishowEnvironment::getMidiNoteName(int noteNumber, bool longName)
 
 QString DigishowEnvironment::getRiocPinName(int mode, int pinNumber)
 {
-    QString pinName;
     if (mode == INTERFACE_RIOC_ARDUINO_UNO) {
 
         if (pinNumber>=14 && pinNumber<=21)
-            pinName = "A" + QString::number(pinNumber-14);
+            return "A" + QString::number(pinNumber-14);
         else
-            pinName = "D" + QString::number(pinNumber);
+            return "D" + QString::number(pinNumber);
 
     } else if (mode == INTERFACE_RIOC_ARDUINO_MEGA) {
 
         if (pinNumber>=54 && pinNumber<=69)
-            pinName = "A" + QString::number(pinNumber-54);
+            return "A" + QString::number(pinNumber-54);
         else
-            pinName = "D" + QString::number(pinNumber);
+            return "D" + QString::number(pinNumber);
 
     } else if (mode == INTERFACE_RIOC_ALADDIN) {
 
         for (int n=0 ; n<16 ; n++)
-            if (pinNumber==PIN_UD_DI[n]) { pinName = "DI" + QString::number(n); break; }
+            if (pinNumber==PIN_UD_DI[n]) return "DI" + QString::number(n);
 
         for (int n=0 ; n<8 ; n++)
-            if (pinNumber==PIN_UD_DO[n]) { pinName = "DO" + QString::number(n); break; }
+            if (pinNumber==PIN_UD_DO[n]) return "DO" + QString::number(n);
 
         for (int n=0 ; n<4 ; n++)
-            if (pinNumber==PIN_UD_ADC[n]) { pinName = "ADC" + QString::number(n); break; }
+            if (pinNumber==PIN_UD_ADC[n]) return "ADC" + QString::number(n);
+
+    } else if (mode == INTERFACE_RIOC_PLC1) {
+
+        for (int n=0 ; n<8 ; n++)
+            if (pinNumber==PIN_PLC1_X[n]) return "X" + QString::number(n);
+        for (int n=0 ; n<8 ; n++)
+            if (pinNumber==PIN_PLC1_X[n+8]) return "X" + QString::number(n+10);
+
+        for (int n=0 ; n<8 ; n++)
+            if (pinNumber==PIN_PLC1_Y[n]) return "Y" + QString::number(n);
+        for (int n=0 ; n<4 ; n++)
+            if (pinNumber==PIN_PLC1_Y[n+8]) return "Y" + QString::number(n+10);
+
+        switch (pinNumber) {
+        case PIN_PLC1_LED_RUN: return "LED RUN";
+        case PIN_PLC1_LED_ERR: return "LED ERR";
+        case PIN_PLC1_SWITCH : return "SW1";
+        }
+
+    } else if (mode == INTERFACE_RIOC_PLC2) {
+
+        for (int n=0 ; n<8 ; n++)
+            if (pinNumber==PIN_PLC2_X[n]) return "X" + QString::number(n);
+        for (int n=0 ; n<7 ; n++)
+            if (pinNumber==PIN_PLC2_X[n+8]) return "X" + QString::number(n+10);
+
+        for (int n=0 ; n<8 ; n++)
+            if (pinNumber==PIN_PLC2_Y[n]) return "Y" + QString::number(n);
+        for (int n=0 ; n<2 ; n++)
+            if (pinNumber==PIN_PLC2_Y[n+8]) return "Y" + QString::number(n+10);
+
+        switch (pinNumber) {
+        case PIN_PLC2_LED_RUN: return "LED RUN";
+        case PIN_PLC2_LED_ERR: return "LED ERR";
+        case PIN_PLC2_SWITCH : return "SW1";
+        }
     }
 
-    if (pinName.isEmpty()) pinName = QString::number(pinNumber);
+    return QString::number(pinNumber);
+}
 
-    return pinName;
+QList<int> DigishowEnvironment::getRiocPinList(int mode, int types)
+{
+    QList<int> list;
+    int len;
+
+    switch (mode) {
+    case INTERFACE_RIOC_ALADDIN:
+        if (types & PIN_TYPE_DI ) { len = sizeof(PIN_UD_DI )/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_UD_DI[n]; }
+        if (types & PIN_TYPE_DO ) { len = sizeof(PIN_UD_DO )/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_UD_DO[n]; }
+        if (types & PIN_TYPE_AI ) { len = sizeof(PIN_UD_ADC)/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_UD_ADC[n]; }
+        break;
+    case INTERFACE_RIOC_PLC1:
+        if (types & PIN_TYPE_DI ) { len = sizeof(PIN_PLC1_X)/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_PLC1_X[n]; }
+        if (types & PIN_TYPE_DO ) { len = sizeof(PIN_PLC1_Y)/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_PLC1_Y[n]; }
+        if (types & PIN_TYPE_LED) { list << PIN_PLC1_LED_RUN << PIN_PLC1_LED_ERR; }
+        if (types & PIN_TYPE_SW ) { list << PIN_PLC1_SWITCH; }
+        break;
+    case INTERFACE_RIOC_PLC2:
+        if (types & PIN_TYPE_DI ) { len = sizeof(PIN_PLC2_X)/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_PLC2_X[n]; }
+        if (types & PIN_TYPE_DO ) { len = sizeof(PIN_PLC2_Y)/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_PLC2_Y[n]; }
+        if (types & PIN_TYPE_LED) { list << PIN_PLC2_LED_RUN << PIN_PLC2_LED_ERR; }
+        if (types & PIN_TYPE_SW ) { list << PIN_PLC2_SWITCH; }
+        break;
+    }
+
+    return list;
 }
 
 QString DigishowEnvironment::getPipeModeName(int mode)

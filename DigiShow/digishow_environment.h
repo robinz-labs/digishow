@@ -61,6 +61,8 @@ public:
         InterfaceRiocArduinoUno   = INTERFACE_RIOC_ARDUINO_UNO,
         InterfaceRiocArduinoMega  = INTERFACE_RIOC_ARDUINO_MEGA,
         InterfaceRiocAladdin      = INTERFACE_RIOC_ALADDIN,
+        InterfaceRiocPlc1         = INTERFACE_RIOC_PLC1,
+        InterfaceRiocPlc2         = INTERFACE_RIOC_PLC2,
         InterfaceModbusRtu        = INTERFACE_MODBUS_RTU,
         InterfaceModbusTcp        = INTERFACE_MODBUS_TCP,
         InterfaceModbusRtuOverTcp = INTERFACE_MODBUS_RTUOVERTCP,
@@ -248,6 +250,7 @@ public:
     Q_INVOKABLE static QString getMidiControlName(int control);
     Q_INVOKABLE static QString getMidiNoteName(int noteNumber, bool longName = false);
     Q_INVOKABLE static QString getRiocPinName(int mode, int pinNumber);
+    Q_INVOKABLE static QList<int> getRiocPinList(int mode, int types = 0xFF);
     Q_INVOKABLE static QString getPipeModeName(int mode);
     Q_INVOKABLE static QString getMediaType(const QString &mediaUrl);
 

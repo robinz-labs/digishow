@@ -10,7 +10,7 @@ Item {
 
     COptionButton {
         id: buttonChannel
-        width: 120
+        width: 210
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
@@ -31,7 +31,8 @@ Item {
         var count = quickLaunchView.dataModel.count
         for (n=1 ; n<=count ; n++) {
             var title = quickLaunchView.dataModel.get(n-1).title
-            items.push({ text: (title === "" ? qsTr("Preset") + " " + n : title), value: n })
+            var name = quickLaunchView.defaultItemTitle(n-1)
+            items.push({ text: name + (name === title ? "" : " - " + title), value: n })
         }
         menuChannel.optionItems = items
         menuChannel.selectedIndex = 0

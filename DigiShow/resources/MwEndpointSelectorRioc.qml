@@ -76,11 +76,8 @@ Item {
             if (forOutput) items.push({ text: qsTr("PWM Out"),        value: DigishowEnvironment.EndpointRiocPwmOut,     tag: "pwm_out"     })
             if (forOutput) items.push({ text: qsTr("Frequency Out"),  value: DigishowEnvironment.EndpointRiocPfmOut,     tag: "pfm_out"     })
             if (forOutput) items.push({ text: qsTr("Servo"),          value: DigishowEnvironment.EndpointRiocRudderOut,  tag: "rudder_out"  })
-
-            if (digishow.appExperimental()) {
             if (forOutput) items.push({ text: qsTr("Stepper"),        value: DigishowEnvironment.EndpointRiocStepperOut, tag: "stepper_out" })
             if (forInput ) items.push({ text: qsTr("Encoder"),        value: DigishowEnvironment.EndpointRiocEncoderIn,  tag: "encoder_in"  })
-            }
 
             menuType.optionItems = items
             menuType.selectedIndex = 0
@@ -120,14 +117,19 @@ Item {
                     (name.startsWith("D") && endpointType!==DigishowEnvironment.EndpointRiocAnalogIn))
                     items.push({ text: name, value: n })
             }
-        } else if (interfaceMode === DigishowEnvironment.InterfaceRiocAladdin) {
-            for (n=2 ; n<70 ; n++) {
+        } else if (interfaceMode === DigishowEnvironment.InterfaceRiocAladdin ||
+                   interfaceMode === DigishowEnvironment.InterfaceRiocPlc1 ||
+                   interfaceMode === DigishowEnvironment.InterfaceRiocPlc2 ) {
+
+            var pins = digishow.getRiocPinList(interfaceMode)
+            for (var i=0 ; i<pins.length ; i++) {
+                n = pins[i]
                 name = digishow.getRiocPinName(interfaceMode, n)
-                if ((name.startsWith("DI") && (
+                if (((name.startsWith("DI") || name.startsWith("X")) && (
                      endpointType===DigishowEnvironment.EndpointRiocDigitalIn ||
                      endpointType===DigishowEnvironment.EndpointRiocEncoderIn
                     )) ||
-                    (name.startsWith("DO") && (
+                    ((name.startsWith("DO") || name.startsWith("Y")) && (
                      endpointType===DigishowEnvironment.EndpointRiocDigitalOut ||
                      endpointType===DigishowEnvironment.EndpointRiocPwmOut ||
                      endpointType===DigishowEnvironment.EndpointRiocPfmOut ||
@@ -136,12 +138,18 @@ Item {
                     )) ||
                     (name.startsWith("ADC") &&
                      endpointType===DigishowEnvironment.EndpointRiocAnalogIn
+                    ) ||
+                    (name.startsWith("LED") &&
+                     endpointType===DigishowEnvironment.EndpointRiocDigitalOut
+                    ) ||
+                    (name.startsWith("SW") &&
+                     endpointType===DigishowEnvironment.EndpointRiocDigitalIn
                     )
                 ) items.push({ text: name, value: n })
             }
         }
         menuChannel.optionItems = items
-        menuChannel.selectedIndex = 0
+        menuChannel.selectedIndex = (items.length > 0 ? 0 : -1)
 
     }
 

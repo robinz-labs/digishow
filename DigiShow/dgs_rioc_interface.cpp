@@ -15,6 +15,7 @@
 
  */
 
+#include "digishow_environment.h"
 #include "dgs_rioc_interface.h"
 #include "rioc_controller.h"
 #include "rioc_aladdin2560_def.h"
@@ -247,7 +248,24 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                 int mode = m_endpointOptionsList[n].value("optMode").toInt();
                 int samplingInterval = m_endpointOptionsList[n].value("optSamplingInterval").toInt();
 
-                m_rioc->setupObject(unit, RO_SENSOR_ENCODER, channel, channel+1,
+                int pins = 2;
+                unsigned char pin[2] = { 0, 0 };
+                if (m_interfaceInfo.mode == INTERFACE_RIOC_ALADDIN ||
+                    m_interfaceInfo.mode == INTERFACE_RIOC_PLC1 ||
+                    m_interfaceInfo.mode == INTERFACE_RIOC_PLC2 ) {
+                    // aladdin or plc pins
+                    QList<int>dinPinList = DigishowEnvironment::getRiocPinList(m_interfaceInfo.mode, PIN_TYPE_DI);
+                    for (int p=0 ; p<=(dinPinList.length()-pins) ; p++) {
+                        if (dinPinList[p] == channel) {
+                            for (int i=0 ; i<pins ; i++) pin[i] = dinPinList[p+i];
+                            break;
+                        }
+                    }
+                } else {
+                    // common arduino pins
+                    for (int i=0 ; i<pins ; i++) pin[i] = channel+i;
+                }
+                m_rioc->setupObject(unit, RO_SENSOR_ENCODER, pin[0], pin[1],
                                     static_cast<unsigned char>(mode),
                                     static_cast<unsigned char>(samplingInterval >> 8),
                                     static_cast<unsigned char>(samplingInterval & 0xff));
@@ -284,14 +302,18 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                 int mode = m_endpointOptionsList[n].value("optMode").toInt();
 
                 // mode 0: 4 pins (A+ A- B+ B-)
-                // mode 1: 2 pins (PUL and DIR)
-                int pins = (mode == 1 ? 2 : 4);
-                unsigned char pin[4] = {0,0,0,0};
-                if (m_interfaceInfo.mode == INTERFACE_RIOC_ALADDIN) {
-                    // aladdin pins
-                    for (int p=0 ; p<=(8-pins) ; p++) {
-                        if (PIN_UD_DO[p] == channel) {
-                            for (int i=0 ; i<pins ; i++) pin[i] = PIN_UD_DO[p+i];
+                // mode 1: 2 pins (PUL+ and DIR+)
+                // mode 2: 2 pins (PUL- and DIR-)
+                int pins = (mode == 0 ? 4 : 2);
+                unsigned char pin[4] = { 0, 0, 0, 0 };
+                if (m_interfaceInfo.mode == INTERFACE_RIOC_ALADDIN ||
+                    m_interfaceInfo.mode == INTERFACE_RIOC_PLC1 ||
+                    m_interfaceInfo.mode == INTERFACE_RIOC_PLC2 ) {
+                    // aladdin or plc pins
+                    QList<int>doutPinList = DigishowEnvironment::getRiocPinList(m_interfaceInfo.mode, PIN_TYPE_DO);
+                    for (int p=0 ; p<=(doutPinList.length()-pins) ; p++) {
+                        if (doutPinList[p] == channel) {
+                            for (int i=0 ; i<pins ; i++) pin[i] = doutPinList[p+i];
                             break;
                         }
                     }

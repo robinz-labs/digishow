@@ -204,6 +204,8 @@ void DigishowInterface::updateMetadata()
         else if (modeName == "arduino_uno" ) m_interfaceInfo.mode = INTERFACE_RIOC_ARDUINO_UNO;
         else if (modeName == "arduino_mega") m_interfaceInfo.mode = INTERFACE_RIOC_ARDUINO_MEGA;
         else if (modeName == "aladdin"     ) m_interfaceInfo.mode = INTERFACE_RIOC_ALADDIN;
+        else if (modeName == "plc1"        ) m_interfaceInfo.mode = INTERFACE_RIOC_PLC1;
+        else if (modeName == "plc2"        ) m_interfaceInfo.mode = INTERFACE_RIOC_PLC2;
         break;
     case INTERFACE_MODBUS:
         if      (modeName == "rtu"         ) m_interfaceInfo.mode = INTERFACE_MODBUS_RTU;
@@ -282,7 +284,15 @@ void DigishowInterface::updateMetadata()
         labelIdentity = m_interfaceOptions.value("port").toString();
         break;
     case INTERFACE_RIOC:
-        labelType = (m_interfaceInfo.mode==INTERFACE_RIOC_ALADDIN ? tr("Aladdin") : tr("Arduino"));
+        switch (m_interfaceInfo.mode) {
+        case INTERFACE_RIOC_ALADDIN:
+            labelType = tr("Aladdin"); break;
+        case INTERFACE_RIOC_PLC1:
+        case INTERFACE_RIOC_PLC2:
+            labelType = tr("Arduino PLC"); break;
+        default:
+            labelType = tr("Arduino"); break;
+        }
         labelIdentity = m_interfaceOptions.value("comPort").toString();
         break;
     case INTERFACE_MODBUS:

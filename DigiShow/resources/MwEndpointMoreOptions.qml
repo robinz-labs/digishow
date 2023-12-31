@@ -454,7 +454,8 @@ Popup {
 
                 optionItems: [
                                 { text: qsTr("A+  A-  B+  B-"), value: 0 },
-                                { text: qsTr("PUL and DIR"), value: 1 }
+                                { text: qsTr("PUL+ and DIR+"), value: 1 },
+                                { text: qsTr("PUL- and DIR-"), value: 2 }
                              ]
             }
 
