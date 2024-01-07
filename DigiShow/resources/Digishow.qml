@@ -12,44 +12,44 @@ DigishowEnvironment {
         switch (type) {
 
             case DigishowEnvironment.EndpointMidiNote          : return CColor.Lime
-            case DigishowEnvironment.EndpointMidiControl       : return CColor.Aqua
+            case DigishowEnvironment.EndpointMidiControl       : return CColor.Lake
             case DigishowEnvironment.EndpointMidiProgram       : return CColor.Iris
             case DigishowEnvironment.EndpointMidiPitch         : return CColor.Iris
             case DigishowEnvironment.EndpointMidiCcPulse       : return CColor.Iris
             case DigishowEnvironment.EndpointRiocDigitalIn     : return CColor.HotPink
             case DigishowEnvironment.EndpointRiocDigitalOut    : return CColor.HotPink
-            case DigishowEnvironment.EndpointRiocAnalogIn      : return CColor.Ocean
-            case DigishowEnvironment.EndpointRiocAnalogOut     : return CColor.Ocean
-            case DigishowEnvironment.EndpointRiocPwmOut        : return CColor.Ocean
-            case DigishowEnvironment.EndpointRiocPfmOut        : return CColor.Ocean
-            case DigishowEnvironment.EndpointRiocEncoderIn     : return CColor.Ocean
-            case DigishowEnvironment.EndpointRiocRudderOut     : return CColor.Ocean
-            case DigishowEnvironment.EndpointRiocStepperOut    : return CColor.Ocean
+            case DigishowEnvironment.EndpointRiocAnalogIn      : return CColor.Royal
+            case DigishowEnvironment.EndpointRiocAnalogOut     : return CColor.Royal
+            case DigishowEnvironment.EndpointRiocPwmOut        : return CColor.Royal
+            case DigishowEnvironment.EndpointRiocPfmOut        : return CColor.Royal
+            case DigishowEnvironment.EndpointRiocEncoderIn     : return CColor.Royal
+            case DigishowEnvironment.EndpointRiocRudderOut     : return CColor.Royal
+            case DigishowEnvironment.EndpointRiocStepperOut    : return CColor.Royal
             case DigishowEnvironment.EndpointModbusDiscreteIn  : return CColor.Cherry
             case DigishowEnvironment.EndpointModbusCoilOut     : return CColor.Cherry
             case DigishowEnvironment.EndpointModbusCoilIn      : return CColor.Cherry
-            case DigishowEnvironment.EndpointModbusRegisterIn  : return CColor.RobinEgg
-            case DigishowEnvironment.EndpointModbusHoldingOut  : return CColor.RobinEgg
-            case DigishowEnvironment.EndpointModbusHoldingIn   : return CColor.RobinEgg
-            case DigishowEnvironment.EndpointHueLight          : return CColor.Aqua
+            case DigishowEnvironment.EndpointModbusRegisterIn  : return CColor.Royal
+            case DigishowEnvironment.EndpointModbusHoldingOut  : return CColor.Royal
+            case DigishowEnvironment.EndpointModbusHoldingIn   : return CColor.Royal
+            case DigishowEnvironment.EndpointHueLight          : return CColor.Ocean
             case DigishowEnvironment.EndpointHueGroup          : return CColor.Ocean
-            case DigishowEnvironment.EndpointDmxDimmer         : return CColor.Aqua
-            case DigishowEnvironment.EndpointDmxDimmer2        : return CColor.Aqua
+            case DigishowEnvironment.EndpointDmxDimmer         : return CColor.Ocean
+            case DigishowEnvironment.EndpointDmxDimmer2        : return CColor.Ocean
             case DigishowEnvironment.EndpointDmxMedia          : return CColor.HotPink
-            case DigishowEnvironment.EndpointArtnetDimmer      : return CColor.Aqua
-            case DigishowEnvironment.EndpointArtnetDimmer2     : return CColor.Aqua
+            case DigishowEnvironment.EndpointArtnetDimmer      : return CColor.Ocean
+            case DigishowEnvironment.EndpointArtnetDimmer2     : return CColor.Ocean
             case DigishowEnvironment.EndpointArtnetMedia       : return CColor.HotPink
-            case DigishowEnvironment.EndpointOscInt            : return CColor.Aqua
-            case DigishowEnvironment.EndpointOscFloat          : return CColor.Aqua
+            case DigishowEnvironment.EndpointOscInt            : return CColor.Sky
+            case DigishowEnvironment.EndpointOscFloat          : return CColor.Sky
             case DigishowEnvironment.EndpointOscBool           : return CColor.RosePink
             case DigishowEnvironment.EndpointAudioInLevel      : return CColor.Ocean
-            case DigishowEnvironment.EndpointScreenLight       : return CColor.RobinEgg
+            case DigishowEnvironment.EndpointScreenLight       : return CColor.Lake
             case DigishowEnvironment.EndpointScreenMedia       : return sig === DigishowEnvironment.SignalBinary ?
                                                                         CColor.HotPink : CColor.Iris
             case DigishowEnvironment.EndpointScreenCanvas      : return CColor.Ocean
             case DigishowEnvironment.EndpointAPlayMedia        : return CColor.HotPink
             case DigishowEnvironment.EndpointMPlayMedia        : return CColor.HotPink
-            case DigishowEnvironment.EndpointPipeAnalog        : return CColor.Aqua
+            case DigishowEnvironment.EndpointPipeAnalog        : return CColor.Sky
             case DigishowEnvironment.EndpointPipeBinary        : return CColor.RosePink
             case DigishowEnvironment.EndpointPipeNote          : return CColor.Mint
             case DigishowEnvironment.EndpointLaunchPreset      : return CColor.Cherry

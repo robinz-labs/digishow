@@ -59,31 +59,35 @@ int DgsScreenInterface::openInterface()
 
         // make a player in the screen
         QString screenName = m_interfaceOptions.value("screen").toString();
-        if (!screenName.isEmpty()) {
 
-            // confirm the specified screen is ready
-            int screenIndex = -1;
+        // confirm the specified screen is ready
+        int screenIndex = -1;
+        if (screenName.isEmpty()) {
+            // use the default screen
+            screenIndex = 0;
+        } else {
+            // use a specified screen
             QList<QScreen*> screens = QGuiApplication::screens();
             for (int n=0 ; n < screens.length() ; n++)
                 if (getUniqueScreenName(n) == screenName) { screenIndex = n; break; }
             if (screenIndex == -1) return ERR_DEVICE_NOT_READY;
-
-            // make player (based on qml)
-            if (!m_qmlComponentPlayer->isReady()) return ERR_DEVICE_NOT_READY;
-            m_player = m_qmlComponentPlayer->create();
-
-            // show player
-            QVariant r;
-            QMetaObject::invokeMethod(
-                        m_player, "showInScreen", Qt::DirectConnection,
-                        Q_RETURN_ARG(QVariant, r), Q_ARG(QVariant, screenIndex));
-
-            // load media
-            QVariantList mediaList = cleanMediaList();
-            QMetaObject::invokeMethod(
-                        m_player, "loadMediaList", Qt::DirectConnection,
-                        Q_RETURN_ARG(QVariant, r), Q_ARG(QVariant, mediaList));
         }
+
+        // make player (based on qml)
+        if (!m_qmlComponentPlayer->isReady()) return ERR_DEVICE_NOT_READY;
+        m_player = m_qmlComponentPlayer->create();
+
+        // show player
+        QVariant r;
+        QMetaObject::invokeMethod(
+                    m_player, "showInScreen", Qt::DirectConnection,
+                    Q_RETURN_ARG(QVariant, r), Q_ARG(QVariant, screenIndex));
+
+        // load media
+        QVariantList mediaList = cleanMediaList();
+        QMetaObject::invokeMethod(
+                    m_player, "loadMediaList", Qt::DirectConnection,
+                    Q_RETURN_ARG(QVariant, r), Q_ARG(QVariant, mediaList));
 
     }
 

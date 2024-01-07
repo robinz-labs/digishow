@@ -101,10 +101,10 @@ MwInterfaceListView {
                         id: menuRiocMode
 
                         optionItems: [
-                            { text:  qsTr("General"),      value: 0, tag: "general" },
-                            { text:  qsTr("Arduino UNO"),  value: 1, tag: "arduino_uno" },
-                            { text:  qsTr("Arduino MEGA"), value: 2, tag: "arduino_mega" },
-                            { text:  qsTr("Aladdin"),      value: 3, tag: "aladdin" },
+                            { text:  qsTr("General"),              value: 0, tag: "general" },
+                            { text:  qsTr("Arduino UNO / Nano"),   value: 1, tag: "arduino_uno" },
+                            { text:  qsTr("Arduino MEGA"),         value: 2, tag: "arduino_mega" },
+                            { text:  qsTr("Aladdin"),              value: 3, tag: "aladdin" },
                             { text:  qsTr("Arduino PLC Model 1"),  value: 4, tag: "plc1" },
                             { text:  qsTr("Arduino PLC Model 2"),  value: 5, tag: "plc2" }
                         ]

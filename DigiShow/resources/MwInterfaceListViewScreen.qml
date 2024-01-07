@@ -41,7 +41,7 @@ MwInterfaceListView {
                     anchors.margins: 20
                     //anchors.bottom: buttonMedia.top
                     //anchors.bottomMargin: 36
-                    text: model.screen===undefined || model.screen==="" ? qsTr("None") : model.screen
+                    text: model.screen===undefined || model.screen==="" ? qsTr("Default") : model.screen
 
                     onClicked: {
                         menuScreen.selectOptionWithTag(model.screen===undefined ? "" : model.screen)
@@ -53,7 +53,7 @@ MwInterfaceListView {
 
                         optionItems: {
                             var items = listOnline["screen"]
-                            var options = [ { text: qsTr("None"), value: 0, tag: "" } ]
+                            var options = [ { text: qsTr("Default"), value: 0, tag: "" } ]
                             for (var n=0 ; n<items.length ; n++) {
                                 options.push({
                                     text: items[n]["screen"] + " (" + items[n]["width"] + "x" + items[n]["height"] + ")",

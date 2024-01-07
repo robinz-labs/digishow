@@ -2641,7 +2641,7 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwInterfaceListViewRioc.qml" line="105"/>
-        <source>Arduino UNO</source>
+        <source>Arduino UNO / Nano</source>
         <translation></translation>
     </message>
     <message>
@@ -2675,8 +2675,8 @@ Connection: %2</source>
     <message>
         <location filename="../MwInterfaceListViewScreen.qml" line="44"/>
         <location filename="../MwInterfaceListViewScreen.qml" line="56"/>
-        <source>None</source>
-        <translation>Ninguno</translation>
+        <source>Default</source>
+        <translation>Por defecto</translation>
     </message>
     <message>
         <location filename="../MwInterfaceListViewScreen.qml" line="78"/>
@@ -2743,51 +2743,71 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="262"/>
-        <source>Arduino is an open source electronic controller for making homebrew instruments, lights or gadgets for your interactive shows. A freeware named RIOC is employed for remote IO controls by DigiShow, you need upload the RIOC sketch to your Arduino UNO or MEGA boards.</source>
-        <translation>Arduino es un controlador electrónico de código abierto para fabricar instrumentos, luces o dispositivos caseros para sus espectáculos interactivos. DigiShow emplea un software gratuito llamado RIOC para los controles de E / S remotos. Necesita cargar el sketch RIOC en sus placas Arduino UNO o MEGA.</translation>
+        <source>Arduino is an open source electronic controller used for making interactive installations. With DigiShow, you can easily and quickly control sensors, motors, LEDs via an Arduino connected to your computer&apos;s USB port.</source>
+        <translation>Arduino es un controlador electrónico de código abierto que se utiliza para realizar instalaciones interactivas. Con DigiShow, puede controlar fácil y rápidamente sensores, motores y LED a través de un Arduino conectado al puerto USB de su computadora.</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="288"/>
+        <location filename="../MwInterfacesDialog.qml" line="270"/>
+        <source>How to work ?</source>
+        <translation>Como trabajar ?</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfacesDialog.qml" line="278"/>
+        <source>Please start by getting a pre-prepared RIOC sketch and upload it to your Arduino, the IO pins on it will be reconfigurable and controllable by the DigiShow app.</source>
+        <translation>Comience por obtener un programa RIOC previamente preparado y cárguelo en su Arduino, los pines IO serán reconfigurables y controlables mediante la aplicación DigiShow.</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfacesDialog.qml" line="279"/>
+        <source>Get RIOC</source>
+        <translation>Obtener RIOC</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfacesDialog.qml" line="279"/>
+        <source>Close</source>
+        <translation>Cerrar</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfacesDialog.qml" line="310"/>
         <source>Philips Hue Smart Lights</source>
         <translation>Iluminación inteligente Philips Hue</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="301"/>
+        <location filename="../MwInterfacesDialog.qml" line="323"/>
         <source>DigiShow is able to connect Philips Hue smart home bridge and control lights wirelessly.</source>
         <translation>DigiShow puede conectar el puente inteligente Philips Hue y controlar las luces de forma inalámbrica.</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="327"/>
+        <location filename="../MwInterfacesDialog.qml" line="349"/>
         <source>Audio Input Interfaces</source>
         <translation>Interfaces de entrada de audio</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="339"/>
+        <location filename="../MwInterfacesDialog.qml" line="361"/>
         <source>DigiShow is able to measure the audio input level from microphone, instrument or line input.</source>
         <translation>DigiShow puede medir el nivel de entrada de audio desde la entrada de micrófono, instrumento o línea.</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="366"/>
+        <location filename="../MwInterfacesDialog.qml" line="388"/>
         <source>Screen Presentations</source>
         <translation>Presentaciones en pantalla</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="378"/>
+        <location filename="../MwInterfacesDialog.qml" line="400"/>
         <source>DigiShow enables to accept control signals for presenting videos, pictures and web contents on multiple screens.</source>
         <translation>DigiShow puede aceptar señales de control para presentar videos, imágenes y contenido web en múltiples pantallas.</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="405"/>
+        <location filename="../MwInterfacesDialog.qml" line="427"/>
         <source>Virtual Pipes</source>
         <translation>Tubería virtual</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="418"/>
+        <location filename="../MwInterfacesDialog.qml" line="440"/>
         <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between separate links. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.</source>
         <translation>DigiShow puede configurar tuberías virtuales para transferir y duplicar señales entre enlaces separados. La tubería remota se puede utilizar cuando se necesita transferir señales entre varias aplicaciones DigiShow LINK que se ejecutan en diferentes computadoras.</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="445"/>
+        <location filename="../MwInterfacesDialog.qml" line="467"/>
         <source>Audio Player</source>
         <translation>Reproductor de audio</translation>
     </message>
@@ -2797,57 +2817,57 @@ Connection: %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="484"/>
+        <location filename="../MwInterfacesDialog.qml" line="506"/>
         <source>MIDI Player</source>
         <translation>Reproductor MIDI</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="526"/>
+        <location filename="../MwInterfacesDialog.qml" line="548"/>
         <source>MIDI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="534"/>
+        <location filename="../MwInterfacesDialog.qml" line="556"/>
         <source>DMX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="542"/>
+        <location filename="../MwInterfacesDialog.qml" line="564"/>
         <source>OSC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="550"/>
+        <location filename="../MwInterfacesDialog.qml" line="572"/>
         <source>ArtNet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="558"/>
+        <location filename="../MwInterfacesDialog.qml" line="580"/>
         <source>Modbus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="566"/>
+        <location filename="../MwInterfacesDialog.qml" line="588"/>
         <source>Arduino</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="574"/>
+        <location filename="../MwInterfacesDialog.qml" line="596"/>
         <source>Hue</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="582"/>
+        <location filename="../MwInterfacesDialog.qml" line="604"/>
         <source>Audio</source>
         <translation>Audio</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="598"/>
+        <location filename="../MwInterfacesDialog.qml" line="620"/>
         <source>Pipe</source>
         <translation>Tubería</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="590"/>
+        <location filename="../MwInterfacesDialog.qml" line="612"/>
         <source>Screen</source>
         <translation>Pantalla</translation>
     </message>

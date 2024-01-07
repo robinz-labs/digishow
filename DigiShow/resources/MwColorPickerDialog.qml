@@ -12,7 +12,7 @@ Dialog {
     property color color: "#000000"
 
     width: 400
-    height: 300
+    height: 400
     anchors.centerIn: parent
     modal: true
     focus: true
@@ -44,7 +44,7 @@ Dialog {
         anchors.fill: parent
         anchors.topMargin: 5
         cellWidth: width / 4
-        cellHeight: height / 3
+        cellHeight: height / 4
         clip: true
         focus: true
 
@@ -82,13 +82,16 @@ Dialog {
         dataModel.append({ color: CColor.RosePink })
         dataModel.append({ color: CColor.Salmon   })
         dataModel.append({ color: CColor.Orange   })
+        dataModel.append({ color: CColor.Curry    })
         dataModel.append({ color: CColor.Mint     })
         dataModel.append({ color: CColor.Lime     })
-        dataModel.append({ color: CColor.RobinEgg })
-        dataModel.append({ color: CColor.Aqua     })
+        dataModel.append({ color: CColor.Lake     })
+        dataModel.append({ color: CColor.Sky      })
         dataModel.append({ color: CColor.Ocean    })
-        dataModel.append({ color: CColor.Royal    })
         dataModel.append({ color: CColor.Iris     })
-
+        dataModel.append({ color: "#aaaaaa" })
+        dataModel.append({ color: "#888888" })
+        dataModel.append({ color: "#666666" })
+        dataModel.append({ color: "#444444" })
     }
 }

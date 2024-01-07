@@ -2641,7 +2641,7 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwInterfaceListViewRioc.qml" line="105"/>
-        <source>Arduino UNO</source>
+        <source>Arduino UNO / Nano</source>
         <translation></translation>
     </message>
     <message>
@@ -2675,8 +2675,8 @@ Connection: %2</source>
     <message>
         <location filename="../MwInterfaceListViewScreen.qml" line="44"/>
         <location filename="../MwInterfaceListViewScreen.qml" line="56"/>
-        <source>None</source>
-        <translation>なし</translation>
+        <source>Default</source>
+        <translation>デフォルト</translation>
     </message>
     <message>
         <location filename="../MwInterfaceListViewScreen.qml" line="78"/>
@@ -2743,51 +2743,71 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="262"/>
-        <source>Arduino is an open source electronic controller for making homebrew instruments, lights or gadgets for your interactive shows. A freeware named RIOC is employed for remote IO controls by DigiShow, you need upload the RIOC sketch to your Arduino UNO or MEGA boards.</source>
-        <translation>Arduinoは、インタラクティブショー用の自作楽器、ライト、ガジェットを作成するためのオープン送信元の電子コントローラーです。 DigiShowによるリモートIOコントロールには、RIOCというフリーウェアが採用されています。RIOCスケッチをArduino UNOまたはMEGAボードにアップロードする必要があります。</translation>
+        <source>Arduino is an open source electronic controller used for making interactive installations. With DigiShow, you can easily and quickly control sensors, motors, LEDs via an Arduino connected to your computer&apos;s USB port.</source>
+        <translation>Arduino は、インタラクティブなインストールを作成するために使用されるオープンソースの電子コントローラーです。 DigiShow を使用すると、コンピュータの USB ポートに接続された Arduino を介して、センサー、モーター、LED を簡単かつ迅速に制御できます。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="288"/>
+        <location filename="../MwInterfacesDialog.qml" line="270"/>
+        <source>How to work ?</source>
+        <translation>どのように動作します?</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfacesDialog.qml" line="278"/>
+        <source>Please start by getting a pre-prepared RIOC sketch and upload it to your Arduino, the IO pins on it will be reconfigurable and controllable by the DigiShow app.</source>
+        <translation>まず、あらかじめ用意された RIOC プログラムを入手し、Arduino にアップロードしてください。 その上の IO ピンは、DigiShow アプリケーションによって構成および制御できます。</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfacesDialog.qml" line="279"/>
+        <source>Get RIOC</source>
+        <translation>RIOC を入手</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfacesDialog.qml" line="279"/>
+        <source>Close</source>
+        <translation>閉じる</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfacesDialog.qml" line="310"/>
         <source>Philips Hue Smart Lights</source>
         <translation>Philips Hueスマートライト</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="301"/>
+        <location filename="../MwInterfacesDialog.qml" line="323"/>
         <source>DigiShow is able to connect Philips Hue smart home bridge and control lights wirelessly.</source>
         <translation>DigiShowは、Philips Hueスマートホームブリッジを接続してワイヤレスでライトを制御できます。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="327"/>
+        <location filename="../MwInterfacesDialog.qml" line="349"/>
         <source>Audio Input Interfaces</source>
         <translation>オーディオ入力インターフェース</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="339"/>
+        <location filename="../MwInterfacesDialog.qml" line="361"/>
         <source>DigiShow is able to measure the audio input level from microphone, instrument or line input.</source>
         <translation>DigiShowは、マイク、楽器、またはライン入力からのオーディオ入力レベルを測定できます。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="366"/>
+        <location filename="../MwInterfacesDialog.qml" line="388"/>
         <source>Screen Presentations</source>
         <translation>画面プレゼンテーション</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="378"/>
+        <location filename="../MwInterfacesDialog.qml" line="400"/>
         <source>DigiShow enables to accept control signals for presenting videos, pictures and web contents on multiple screens.</source>
         <translation>DigiShowを使用すると、ビデオ、画像、およびWebコンテンツを複数のスクリーンに表示するための制御信号を受け入れることができます。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="405"/>
+        <location filename="../MwInterfacesDialog.qml" line="427"/>
         <source>Virtual Pipes</source>
         <translation>バーチャルパイプ</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="418"/>
+        <location filename="../MwInterfacesDialog.qml" line="440"/>
         <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between separate links. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.</source>
         <translation>DigiShowを使用すると、バーチャルパイプをセットアップして、別々のリンクの間で信号を転送および複製できます。 リモートパイプは、異なるコンピューターで実行されている複数のDigiShow LINKアプリ間で信号を転送するためのものです。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="445"/>
+        <location filename="../MwInterfacesDialog.qml" line="467"/>
         <source>Audio Player</source>
         <translation>オーディオプレーヤー</translation>
     </message>
@@ -2797,57 +2817,57 @@ Connection: %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="484"/>
+        <location filename="../MwInterfacesDialog.qml" line="506"/>
         <source>MIDI Player</source>
         <translation>MIDI プレーヤー</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="526"/>
+        <location filename="../MwInterfacesDialog.qml" line="548"/>
         <source>MIDI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="534"/>
+        <location filename="../MwInterfacesDialog.qml" line="556"/>
         <source>DMX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="542"/>
+        <location filename="../MwInterfacesDialog.qml" line="564"/>
         <source>OSC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="550"/>
+        <location filename="../MwInterfacesDialog.qml" line="572"/>
         <source>ArtNet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="558"/>
+        <location filename="../MwInterfacesDialog.qml" line="580"/>
         <source>Modbus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="566"/>
+        <location filename="../MwInterfacesDialog.qml" line="588"/>
         <source>Arduino</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="574"/>
+        <location filename="../MwInterfacesDialog.qml" line="596"/>
         <source>Hue</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="582"/>
+        <location filename="../MwInterfacesDialog.qml" line="604"/>
         <source>Audio</source>
         <translation>オーディオ</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="598"/>
+        <location filename="../MwInterfacesDialog.qml" line="620"/>
         <source>Pipe</source>
         <translation>パイプ</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="590"/>
+        <location filename="../MwInterfacesDialog.qml" line="612"/>
         <source>Screen</source>
         <translation>スクリーン</translation>
     </message>

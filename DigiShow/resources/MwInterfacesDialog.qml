@@ -259,7 +259,29 @@ Dialog {
                 anchors.topMargin: 40
                 wrapMode: Label.Wrap
                 lineHeight: 1.3
-                text: qsTr("Arduino is an open source electronic controller for making homebrew instruments, lights or gadgets for your interactive shows. A freeware named RIOC is employed for remote IO controls by DigiShow, you need upload the RIOC sketch to your Arduino UNO or MEGA boards.")
+                text: qsTr("Arduino is an open source electronic controller used for making interactive installations. With DigiShow, you can easily and quickly control sensors, motors, LEDs via an Arduino connected to your computer's USB port.")
+
+                CButton {
+                    width: 130
+                    height: 24
+                    anchors.bottom: parent.top
+                    anchors.bottomMargin: 10
+                    anchors.right: parent.right
+                    label.text: qsTr("How to work ?")
+                    label.font.pixelSize: 11
+                    label.font.bold: false
+                    box.radius: 12
+                    colorNormal: Material.accent
+
+                    onClicked: {
+                        if (messageBox.showAndWait(
+                                qsTr("Please start by getting a pre-prepared RIOC sketch and upload it to your Arduino, the IO pins on it will be reconfigurable and controllable by the DigiShow app."),
+                                qsTr("Get RIOC"), qsTr("Close")) === 1) {
+                            Qt.openUrlExternally("https://github.com/robinz-labs/rioc-arduino")
+                        }
+                    }
+                }
+
             }
 
             MwInterfaceListViewRioc {

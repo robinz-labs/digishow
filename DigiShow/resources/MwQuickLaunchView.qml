@@ -435,7 +435,7 @@ Item {
         var row = Math.floor(index / 5)
         switch (row % 5) {
         case 0: return CColor.Lime
-        case 1: return CColor.RobinEgg
+        case 1: return CColor.Lake
         case 2: return CColor.Ocean
         case 3: return CColor.Iris
         case 4: return CColor.HotPink

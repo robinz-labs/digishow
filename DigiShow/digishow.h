@@ -112,6 +112,11 @@
   + compatible dmx usb pro widget support
   + digishow cloud service support ready
 
+  v1.2.7 20240107
+  + midi pitch bend support
+  ! improved arduino features
+  ! improved ui
+
  */
 
 #ifndef DIGISHOW_H
