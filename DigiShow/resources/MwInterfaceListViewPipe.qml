@@ -55,9 +55,9 @@ MwInterfaceListView {
                         id: menuMode
 
                         optionItems: [
-                            { text: qsTr("Local Pipe"),  value: 0, tag: "local" },
+                            { text: qsTr("Local Pipe" ), value: 0, tag: "local" },
                             { text: qsTr("Remote Pipe"), value: 1, tag: "remote" },
-                            { text: qsTr("Cloud Pipe"), value: 1, tag: "cloud" }
+                            { text: qsTr("Cloud Pipe" ), value: 2, tag: "cloud" }
                         ]
 
                         onOptionClicked: {

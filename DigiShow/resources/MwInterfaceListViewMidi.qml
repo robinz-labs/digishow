@@ -139,8 +139,8 @@ MwInterfaceListView {
                     }
 
                     onClicked: {
-                        menuMidiPortIn.selectOptionWithTag(model.port === undefined || model.port === "" ? "" : model.port)
-                        menuMidiPortIn.showOptions()
+                        menuMidiPortOut.selectOptionWithTag(model.port === undefined || model.port === "" ? "" : model.port)
+                        menuMidiPortOut.showOptions()
                     }
 
                     COptionMenu {
