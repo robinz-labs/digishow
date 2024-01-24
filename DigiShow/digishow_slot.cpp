@@ -38,6 +38,7 @@ DigishowSlot::DigishowSlot(QObject *parent) : QObject(parent)
     m_linked = true;
     m_selected = false;
     m_outputInterval = 0;
+    m_dataInProcessingStackLevel = 0;
     m_dataInTimeLastReceived = 0;
     m_dataOutTimeLastSent = 0;
     m_needSendDataOutLater =false;
@@ -744,6 +745,10 @@ void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
         return;
     }
 
+    // cancel to process the received data if out of stack
+    if (m_dataInProcessingStackLevel > 16) return;
+    m_dataInProcessingStackLevel += 1;
+
     // process the data package received from the source
     // to make a data package will be sent to the destination
     dgsSignalData dataOut;
@@ -761,6 +766,8 @@ void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
         if (g_needLogCtl) qDebug() << "slot_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
         sendDataOut(dataOut);
     }
+
+    m_dataInProcessingStackLevel -= 1;
 }
 
 void DigishowSlot::onDataPrepared(int endpointIndex, dgsSignalData dataOut)

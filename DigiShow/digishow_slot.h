@@ -113,6 +113,7 @@ private:
 
     // for traffic managment
     int    m_outputInterval;
+    int    m_dataInProcessingStackLevel;
     qint64 m_dataInTimeLastReceived;
     qint64 m_dataOutTimeLastSent;
     QTimer m_dataOutTimer;
