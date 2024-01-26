@@ -55,13 +55,24 @@ Item {
                 onPressed: held = true
                 onReleased: held = false
                 onClicked: {
-                    highlightedIndex = index
-                    listView.forceActiveFocus()
 
-                    if (mouse.button === Qt.RightButton) {
-                        menuSlot.x = mouse.x
-                        menuSlot.y = mouse.y
-                        menuSlot.open()
+                    if (shiftKeyHeld && highlightedIndex !== -1 && index !== highlightedIndex) {
+
+                        // select multiple
+                        selectMultiple(highlightedIndex, index)
+                        highlightedIndex = index
+
+                    } else {
+
+                        // hightlight one
+                        highlightedIndex = index
+                        listView.forceActiveFocus()
+
+                        if (mouse.button === Qt.RightButton) {
+                            menuSlot.x = mouse.x
+                            menuSlot.y = mouse.y
+                            menuSlot.open()
+                        }
                     }
                 }
                 onPressAndHold: {
@@ -381,8 +392,12 @@ Item {
                         box.border.width: mouseOver || !model.slotLinked ? 1 : 0
                         colorNormal: model.slotLinked ? "#666666" : "transparent"
                         onClicked: {
+
                             model.slotLinked = !model.slotLinked
                             app.slotAt(index).setLinked(model.slotLinked)
+
+                            if (isBlankSlot(index)) // the blank slot is regarded as a group header
+                                setGroupLinked(index, model.slotLinked)
                         }
                     }
 
@@ -625,20 +640,13 @@ Item {
                         visible: showSlotSelection
                         checked: model.slotSelected
                         onClicked: {
-                            if (!shiftKeyHeld || highlightedIndex === -1 || index === highlightedIndex) {
+                            if (shiftKeyHeld && highlightedIndex !== -1 && index !== highlightedIndex) {
+                                // select multiple
+                                selectMultiple(highlightedIndex, index, checked)
+                            } else {
                                 // select one
                                 model.slotSelected = checked
                                 app.slotAt(index).setSelected(checked)
-                            } else {
-                                // select multiple
-                                var iv1 = getVisualItemIndex(highlightedIndex)
-                                var iv2 = getVisualItemIndex(index)
-                                if (iv1 > iv2) { var iv0 = iv1; iv1 = iv2; iv2 = iv0 }
-                                for (var iv = iv1 ; iv <= iv2 ; iv++) {
-                                    var i = getDataItemIndex(iv)
-                                    dataModel.setProperty(i, "slotSelected", checked)
-                                    app.slotAt(i).setSelected(checked)
-                                }
                             }
                         }
                     }
@@ -860,6 +868,7 @@ Item {
 
                 onClicked: {
                     selectAll()
+                    listView.forceActiveFocus()
                 }
             }
 
@@ -879,6 +888,7 @@ Item {
 
                 onClicked: {
                     selectNone()
+                    listView.forceActiveFocus()
                 }
             }
 
@@ -898,6 +908,7 @@ Item {
 
                 onClicked: {
                     copySlots()
+                    listView.forceActiveFocus()
                 }
             }
 
@@ -917,6 +928,7 @@ Item {
 
                 onClicked: {
                     duplicateSelection()
+                    listView.forceActiveFocus()
                 }
             }
 
@@ -936,6 +948,7 @@ Item {
 
                 onClicked: {
                     deleteSelection()
+                    listView.forceActiveFocus()
                 }
             }
 
@@ -955,6 +968,7 @@ Item {
 
                 onClicked: {
                     moveSelection()
+                    listView.forceActiveFocus()
                 }
             }
 
@@ -972,6 +986,7 @@ Item {
 
                 onClicked: {
                     showSlotSelection = false
+                    listView.forceActiveFocus()
                 }
             }
 
@@ -1327,6 +1342,22 @@ Item {
         }
     }
 
+    function selectMultiple(slotIndex1, slotIndex2, slotSelected) {
+
+        if (slotSelected === undefined) slotSelected = true
+
+        var iv1 = getVisualItemIndex(slotIndex1)
+        var iv2 = getVisualItemIndex(slotIndex2)
+        if (iv1 > iv2) { var iv0 = iv1; iv1 = iv2; iv2 = iv0 }
+        for (var iv = iv1 ; iv <= iv2 ; iv++) {
+            var i = getDataItemIndex(iv)
+            dataModel.setProperty(i, "slotSelected", slotSelected)
+            app.slotAt(i).setSelected(slotSelected)
+        }
+
+        showSlotSelection = true
+    }
+
     function copySlots() {
 
         // no slot selection, instead select the current slot to copy
@@ -1518,4 +1549,20 @@ Item {
         window.isModified = true
         undoManager.archive()
     }
+
+    function isBlankSlot(slotIndex) {
+        var model = dataModel.get(slotIndex)
+        return model.epInSignal === 0 && model.epOutSignal === 0
+    }
+
+    function setGroupLinked(slotIndex, slotLinked) {
+        for (var n=getVisualItemIndex(slotIndex)+1 ; n<visualModel.items.count ; n++) {
+            var index = getDataItemIndex(n)
+            if (isBlankSlot(index))
+                break
+            else
+                app.slotAt(index).setLinked(slotLinked)
+        }
+    }
+
 }
