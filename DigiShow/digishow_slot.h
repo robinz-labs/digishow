@@ -132,6 +132,7 @@ private:
     bool envelopeIsRunning();
     dgsSignalData envelopeProcessOutputAnalog();
     dgsSignalData envelopeProcessOutputBinary();
+    dgsSignalData envelopeProcessOutputNote();
 
     // output smoothing controls
     QTimer m_smoothingTimer;

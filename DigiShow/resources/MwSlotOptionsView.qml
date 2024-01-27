@@ -127,6 +127,7 @@ Item {
         }
 
 
+        /*
         Rectangle {
             id: lineSpliter
 
@@ -136,6 +137,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             color: "#333333"
         }
+        */
 
         CheckBox {
             id: checkOutputLowAsZero
@@ -159,9 +161,9 @@ Item {
         CSpinBox {
             id: spinOutputSmoothing
 
-            width: 110
-            anchors.right: parent.right
-            anchors.rightMargin: 15
+            width: 120
+            anchors.left: parent.left
+            anchors.leftMargin: parent.width/2 + 120
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 15
             from: 0
@@ -197,7 +199,7 @@ Item {
                 width: parent.width/2 - 25
                 height: parent.height - 100
                 anchors.top: parent.top
-                anchors.topMargin: 70
+                anchors.topMargin: 50
 
                 Text {
                     id: labelMapping
@@ -308,7 +310,7 @@ Item {
                 width: parent.width/2 - 25
                 height: parent.height - 100
                 anchors.top: parent.top
-                anchors.topMargin: 70
+                anchors.topMargin: 50
 
                 Text {
                     id: labelEnvelope
@@ -359,7 +361,7 @@ Item {
                 Column {
                     anchors.top: labelEnvelope.bottom
                     anchors.topMargin: 30
-                    spacing: 10
+                    spacing: 3
 
                     CSpinBox {
                         id: spinEnvelopeInDelay
@@ -382,6 +384,11 @@ Item {
                             font.pixelSize: 12
                             text: qsTr("On Delay")
                         }
+                    }
+
+                    Item {
+                        width: 120
+                        height: 9
                     }
 
                     CSpinBox {
@@ -500,6 +507,11 @@ Item {
                         }
                     }
 
+                    Item {
+                        width: 120
+                        height: 9
+                    }
+
                     CSpinBox {
                         id: spinEnvelopeOutDelay
 
@@ -610,8 +622,12 @@ Item {
             sliderMappingInputRange.visible = false
             sliderMappingOutputRange.visible = true
 
+            refreshEnvelopeForAnalog()
+
         } else if (inputSignal  === DigishowEnvironment.SignalBinary &&
                    outputSignal === DigishowEnvironment.SignalBinary) {
+
+            refreshEnvelopeForBinary()
 
         } else if (inputSignal  === DigishowEnvironment.SignalBinary &&
                    outputSignal === DigishowEnvironment.SignalNote) {
@@ -620,37 +636,25 @@ Item {
             sliderMappingInputRange.visible = false
             sliderMappingOutputRange.visible = true
 
+            refreshEnvelopeForBinary()
+
         } else if (inputSignal  === DigishowEnvironment.SignalNote &&
                    outputSignal === DigishowEnvironment.SignalAnalog) {
 
             checkOutputLowAsZero.visible = true
+            spinOutputSmoothing.visible = true
 
             itemMappingOptions.visible = true
             sliderMappingInputRange.visible = true
             sliderMappingOutputRange.visible = true
 
-            itemEnvelopeOptions.visible = true
-            buttonEnvelopeHelp.visible = true
-            spinEnvelopeAttack.visible = true
-            spinEnvelopeHold.visible = true
-            spinEnvelopeDecay.visible = true
-            spinEnvelopeSustain.visible = true
-            spinEnvelopeRelease.visible = true
-            spinEnvelopeInDelay.visible = true
-            spinEnvelopeOutDelay.visible = true
+            refreshEnvelopeForAnalog()
+
 
         } else if (inputSignal  === DigishowEnvironment.SignalNote &&
                    outputSignal === DigishowEnvironment.SignalBinary) {
 
-            itemEnvelopeOptions.visible = true
-            buttonEnvelopeHelp.visible = false
-            spinEnvelopeAttack.visible = false
-            spinEnvelopeHold.visible = true
-            spinEnvelopeDecay.visible = false
-            spinEnvelopeSustain.visible = false
-            spinEnvelopeRelease.visible = false
-            spinEnvelopeInDelay.visible = true
-            spinEnvelopeOutDelay.visible = true
+            refreshEnvelopeForBinary()
 
         } else if (inputSignal  === DigishowEnvironment.SignalNote &&
                    outputSignal === DigishowEnvironment.SignalNote) {
@@ -658,6 +662,8 @@ Item {
             itemMappingOptions.visible = true
             sliderMappingInputRange.visible = true
             sliderMappingOutputRange.visible = true
+
+            refreshEnvelopeForBinary()
         }
 
         // refresh option values
@@ -747,6 +753,32 @@ Item {
         } else {
             clearSlotOption("envelopeOutDelay")
         }
+    }
+
+    function refreshEnvelopeForAnalog() {
+
+        itemEnvelopeOptions.visible = true
+        buttonEnvelopeHelp.visible = true
+        spinEnvelopeAttack.visible = true
+        spinEnvelopeHold.visible = true
+        spinEnvelopeDecay.visible = true
+        spinEnvelopeSustain.visible = true
+        spinEnvelopeRelease.visible = true
+        spinEnvelopeInDelay.visible = true
+        spinEnvelopeOutDelay.visible = true
+    }
+
+    function refreshEnvelopeForBinary() {
+
+        itemEnvelopeOptions.visible = true
+        buttonEnvelopeHelp.visible = false
+        spinEnvelopeAttack.visible = false
+        spinEnvelopeHold.visible = true
+        spinEnvelopeDecay.visible = false
+        spinEnvelopeSustain.visible = false
+        spinEnvelopeRelease.visible = false
+        spinEnvelopeInDelay.visible = true
+        spinEnvelopeOutDelay.visible = true
     }
 
     function importSlotInfo(slotInfo) {

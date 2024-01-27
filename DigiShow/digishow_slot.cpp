@@ -419,89 +419,37 @@ dgsSignalData DigishowSlot::processInputAnalog(dgsSignalData dataIn)
 
 dgsSignalData DigishowSlot::processInputBinary(dgsSignalData dataIn)
 {
-    dgsSignalData dataOut; // make a clear data package for ouptut
-
     bool inputState = dataIn.bValue;
     if (m_slotInfo.inputInverted) inputState = !inputState;
 
-    if (m_slotInfo.outputSignal == DATA_SIGNAL_ANALOG) {
-
-        // B to A
-        double outputRatio = (inputState ? m_slotInfo.outputHigh : m_slotInfo.outputLow);
-        if (m_slotInfo.outputInverted) outputRatio = 1.0 - outputRatio;
-
-        dataOut.signal = DATA_SIGNAL_ANALOG;
-        dataOut.aRange = m_destinationInterface->endpointInfoList()->at(m_destinationEndpointIndex).range;
-        dataOut.aValue = static_cast<int>(round(outputRatio * dataOut.aRange));
-
-        if (m_slotInfo.outputSmoothing > 0) {
-            // smoothing output
-            smoothingStart(dataOut);
-            dataOut = dgsSignalData();
-        }
-
-    } else if  (m_slotInfo.outputSignal == DATA_SIGNAL_BINARY) {
-
-        // B to B
-        bool outputState = (m_slotInfo.outputInverted ? !inputState : inputState);
-
-        dataOut.signal = DATA_SIGNAL_BINARY;
-        dataOut.bValue = outputState;
-
-    } else if (m_slotInfo.outputSignal == DATA_SIGNAL_NOTE) {
-
-        // B to N
-        bool lastInputState = m_lastDataIn.bValue;
-        if (m_slotInfo.inputInverted) lastInputState = !lastInputState;
-
-        bool isNoteOn = false;
-        bool isNoteOff = false;
-        if      (lastInputState == false && inputState == true) isNoteOn = true;
-        else if (lastInputState == true && inputState == false) isNoteOff = true;
-
-        if (isNoteOn || isNoteOff) {
-            dataOut.signal = DATA_SIGNAL_NOTE;
-            dataOut.aRange = m_destinationInterface->endpointInfoList()->at(m_destinationEndpointIndex).range;
-            dataOut.aValue = static_cast<int>(round((isNoteOn ? m_slotInfo.outputHigh : m_slotInfo.outputLow) * dataOut.aRange));
-            dataOut.bValue = isNoteOn;
-        }
-
+    // B to A
+    // B to B
+    // B to N
+    if (inputState) {
+        // state on
+        envelopeStart(dataIn);
+    } else {
+        // state off
+        m_envelopeTimeOff = elapsed();
     }
 
-    return dataOut;
+    return dgsSignalData(); // return an empty data package
 }
 
 dgsSignalData DigishowSlot::processInputNote(dgsSignalData dataIn)
 {
-    dgsSignalData dataOut; // make a clear data package for ouptut
-
-    if (m_slotInfo.outputSignal == DATA_SIGNAL_ANALOG ||
-        m_slotInfo.outputSignal == DATA_SIGNAL_BINARY) {
-
-        // N to A or B (envelope)
-        if (dataIn.bValue && dataIn.aValue != 0) {
-            // note on
-            envelopeStart(dataIn);
-        } else {
-            // note off
-            m_envelopeTimeOff = elapsed();
-        }
-
-    } else if (m_slotInfo.outputSignal == DATA_SIGNAL_NOTE) {
-
-        // N to N
-        double inputRatio = static_cast<double>(dataIn.aValue) / static_cast<double>(dataIn.aRange);
-        double outputRatio;
-        outputRatio = MAP(inputRatio, m_slotInfo.inputLow, m_slotInfo.inputHigh, m_slotInfo.outputLow, m_slotInfo.outputHigh);
-        outputRatio = MINMAX(outputRatio, m_slotInfo.outputLow, m_slotInfo.outputHigh);
-
-        dataOut.signal = DATA_SIGNAL_NOTE;
-        dataOut.aRange = dataIn.aRange;
-        dataOut.aValue = static_cast<int>(round(outputRatio * dataOut.aRange));
-        dataOut.bValue = dataIn.bValue;
+    // N to A
+    // N to B
+    // N to N
+    if (dataIn.bValue && dataIn.aValue != 0) {
+        // note on
+        envelopeStart(dataIn);
+    } else {
+        // note off
+        m_envelopeTimeOff = elapsed();
     }
 
-    return dataOut;
+    return dgsSignalData(); // return an empty data package
 }
 
 void DigishowSlot::sendDataOut(dgsSignalData dataOut)
@@ -615,15 +563,25 @@ dgsSignalData DigishowSlot::envelopeProcessOutputAnalog()
         }
     }
 
-    double inputRatio = static_cast<double>(m_envelopeDataIn.aValue) / static_cast<double>(m_envelopeDataIn.aRange);
-    double outputRatio;
-    if (m_slotInfo.outputLowAsZero && (inputRatio <= m_slotInfo.inputLow || envelopeRatio==0)) {
-        outputRatio = 0;
-    } else {
-        outputRatio = MAP(inputRatio, m_slotInfo.inputLow, m_slotInfo.inputHigh, m_slotInfo.outputLow, m_slotInfo.outputHigh);
-        outputRatio = MINMAX(outputRatio, m_slotInfo.outputLow, m_slotInfo.outputHigh);
-        outputRatio = envelopeRatio * (outputRatio - m_slotInfo.outputLow) + m_slotInfo.outputLow;
+    double outputRatio = 0;
+
+    dgsSignalData dataIn = m_envelopeDataIn;
+    if (dataIn.signal == DATA_SIGNAL_BINARY) {
+
+        outputRatio = envelopeRatio * (m_slotInfo.outputHigh - m_slotInfo.outputLow) + m_slotInfo.outputLow;
+
+    } else if (dataIn.signal == DATA_SIGNAL_NOTE) {
+
+        double inputRatio = static_cast<double>(dataIn.aValue) / static_cast<double>(dataIn.aRange);
+        if (m_slotInfo.outputLowAsZero && (inputRatio <= m_slotInfo.inputLow || envelopeRatio==0)) {
+            outputRatio = 0;
+        } else {
+            outputRatio = MAP(inputRatio, m_slotInfo.inputLow, m_slotInfo.inputHigh, m_slotInfo.outputLow, m_slotInfo.outputHigh);
+            outputRatio = MINMAX(outputRatio, m_slotInfo.outputLow, m_slotInfo.outputHigh);
+            outputRatio = envelopeRatio * (outputRatio - m_slotInfo.outputLow) + m_slotInfo.outputLow;
+        }
     }
+
     if (m_slotInfo.outputInverted) outputRatio = 1.0 - outputRatio;
 
     // prepare output data package
@@ -688,9 +646,74 @@ dgsSignalData DigishowSlot::envelopeProcessOutputBinary()
     return dataOut;
 }
 
+dgsSignalData DigishowSlot::envelopeProcessOutputNote()
+{
+    bool envelopeState = false;
+    bool isEnvelopeFinished = false;
+    qint64 now = elapsed();
+
+    // make output value in the envelope
+    if (m_slotInfo.envelopeHold > 0) {
+
+        // in-delay + hold
+        if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay) {
+            if (now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeHold)
+                envelopeState = true;
+            else
+                isEnvelopeFinished = true;
+        }
+
+    } else {
+
+        // in-delay + out-delay
+        if (m_envelopeTimeOff == 0) {
+            if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay) envelopeState = true;
+        } else {
+            if (now < m_envelopeTimeOff + m_slotInfo.envelopeOutDelay)
+                envelopeState = true;
+            else
+                isEnvelopeFinished = true;
+        }
+    }
+
+    bool outputState = (m_slotInfo.outputInverted ? !envelopeState : envelopeState);
+
+    // prepare output data package
+    dgsSignalData dataOut;
+    if (outputState != m_lastDataOut.bValue) {
+
+        dataOut.signal = DATA_SIGNAL_NOTE;
+        dataOut.aRange = 127;
+        dataOut.bValue = outputState;
+
+        dgsSignalData dataIn = m_envelopeDataIn;
+
+        if (dataIn.signal == DATA_SIGNAL_BINARY) {
+
+            dataOut.aValue = static_cast<int>(round((dataOut.bValue ? m_slotInfo.outputHigh : m_slotInfo.outputLow) * dataOut.aRange));
+
+        } else if (dataIn.signal == DATA_SIGNAL_NOTE) {
+
+            double inputRatio = static_cast<double>(dataIn.aValue) / static_cast<double>(dataIn.aRange);
+            double outputRatio;
+            outputRatio = MAP(inputRatio, m_slotInfo.inputLow, m_slotInfo.inputHigh, m_slotInfo.outputLow, m_slotInfo.outputHigh);
+            outputRatio = MINMAX(outputRatio, m_slotInfo.outputLow, m_slotInfo.outputHigh);
+
+            dataOut.aValue = static_cast<int>(round(outputRatio * dataOut.aRange));
+        }
+    }
+
+    // finish the envelope if need
+    if (isEnvelopeFinished) m_envelopeTimer.stop();
+
+    return dataOut;
+}
+
 void DigishowSlot::smoothingStart(dgsSignalData dataOut)
 {
     if (!m_linked) return;
+
+    if (smoothingIsRunning() && m_smoothingDataOutTo.aValue == dataOut.aValue) return;
 
     m_smoothingTimeStart = elapsed();
     m_smoothingDataOutFrom = m_lastDataOut;
@@ -745,7 +768,7 @@ void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
         return;
     }
 
-    // cancel to process the received data if out of stack
+    // stop processing the received data if there is too much traffic
     if (m_dataInProcessingStackLevel > 16) return;
     m_dataInProcessingStackLevel += 1;
 
@@ -761,8 +784,7 @@ void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
     m_lastDataIn = dataIn;
 
     // send data package to destination
-    if (!m_linked) return;
-    if (dataOut.signal) {
+    if (dataOut.signal && m_linked) {
         if (g_needLogCtl) qDebug() << "slot_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
         sendDataOut(dataOut);
     }
@@ -795,12 +817,18 @@ void DigishowSlot::onEnvelopeTimerFired()
     switch (m_slotInfo.outputSignal) {
     case DATA_SIGNAL_ANALOG: dataOut = envelopeProcessOutputAnalog(); break;
     case DATA_SIGNAL_BINARY: dataOut = envelopeProcessOutputBinary(); break;
+    case DATA_SIGNAL_NOTE:   dataOut = envelopeProcessOutputNote();   break;
     }
 
     // send data package to destination
     if (dataOut.signal) {
         if (g_needLogCtl) qDebug() << "envelope_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
-        sendDataOut(dataOut);
+
+        if (m_slotInfo.outputSignal == DATA_SIGNAL_ANALOG &&
+            m_slotInfo.outputSmoothing > 0)
+            smoothingStart(dataOut);
+        else
+            sendDataOut(dataOut);
     }
 }
 
