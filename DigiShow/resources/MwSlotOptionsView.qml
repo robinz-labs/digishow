@@ -126,18 +126,19 @@ Item {
             }
         }
 
-
-        /*
         Rectangle {
             id: lineSpliter
 
             width: 1
             anchors.top: parent.top
             anchors.bottom: parent.bottom
+            anchors.topMargin: 70
+            anchors.bottomMargin: 60
             anchors.horizontalCenter: parent.horizontalCenter
             color: "#333333"
+
+            visible: itemMappingOptions.visible && itemEnvelopeOptions.visible
         }
-        */
 
         CheckBox {
             id: checkOutputLowAsZero
