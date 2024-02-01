@@ -34,6 +34,7 @@ SOURCES += \
     digishow_data.cpp \
     digishow_environment.cpp \
     digishow_interface.cpp \
+    digishow_scriptable.cpp \
     digishow_slot.cpp \
     digishow_metronome.cpp \
     digishow_pixel_player.cpp \
@@ -71,6 +72,7 @@ HEADERS += \
     digishow_data.h \
     digishow_environment.h \
     digishow_interface.h \
+    digishow_scriptable.h \
     digishow_slot.h \
     digishow_metronome.h \
     digishow_pixel_player.h

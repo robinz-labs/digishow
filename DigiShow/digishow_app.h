@@ -26,6 +26,7 @@
 class DigishowInterface;
 class DigishowSlot;
 class DigishowMetronome;
+class DigishowScriptable;
 
 class DigishowApp : public QObject
 {
@@ -97,6 +98,7 @@ public:
     Q_INVOKABLE QVariantList getSlotLaunchOptions(const QString &launchName);
 
     Q_INVOKABLE DigishowMetronome *metronome() { return m_metronome; }
+    DigishowScriptable *scriptable() { return m_scriptable; }
 
     Q_INVOKABLE void messageNotify(const QString & msgText, int msgType = MsgAlert) {
         emit messageNotified(msgText, msgType);
@@ -138,6 +140,11 @@ private:
 
     QTimer *m_timer;
     DigishowMetronome *m_metronome;
+
+    // scriptable
+    DigishowScriptable *m_scriptable;
+    bool startScriptable();
+    void stopScriptable();
 
     // add-on process
     qint64 m_pidAddon;

@@ -109,6 +109,8 @@ QVariantMap DigishowEnvironment::getSlotRuntimeData(int slotIndex)
         data["epOutBusy"     ] = slot->isEndpointOutBusy();
         data["slotEnabled"   ] = slot->isEnabled();
         data["slotLinked"    ] = slot->isLinked();
+        data["errTraffic"    ] = slot->hasTrafficError();
+        data["errExpression" ] = slot->hasExpressionError();
     }
 
     return data;
@@ -134,6 +136,25 @@ QVariantMap DigishowEnvironment::getInterfaceConfiguration(int interfaceIndex)
     }
 
     return data;
+}
+
+
+int DigishowEnvironment::inputValueOf(const QString &slotTitle)
+{
+    int val = -1;
+    DigishowSlot *slot = g_app->slotTitled(slotTitle);
+    if (slot != nullptr) val  = slot->getEndpointInValue();
+
+    return (val != -1 ? val : 0);
+}
+
+int DigishowEnvironment::outputValueOf(const QString &slotTitle)
+{
+    int val = -1;
+    DigishowSlot *slot = g_app->slotTitled(slotTitle);
+    if (slot != nullptr) val  = slot->getEndpointOutValue();
+
+    return (val != -1 ? val : 0);
 }
 
 int DigishowEnvironment::getSourceInterfaceIndex(int slotIndex)

@@ -44,6 +44,164 @@ Item {
         }
     }
 
+    Item {
+        id: itemExpression
+
+        height: 30
+        anchors.bottom: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+
+        CButton {
+            id: buttonExpression
+            width: 110
+            height: 18
+            anchors.verticalCenter: textExpression.verticalCenter
+            anchors.right: textExpression.right
+            anchors.rightMargin: 12
+            colorNormal: "#331122"
+            label.font.pixelSize: 10
+            label.font.bold: false
+            label.text: qsTr("Add JS Expression")
+            box.border.width: 1
+            box.radius: 9
+            visible: !textExpression.visible
+
+            onClicked: {
+                textExpression.text = "inputValue * 1"
+                textExpression.apply()
+                textExpression.input.selectAll()
+                textExpression.input.forceActiveFocus()
+            }
+
+            Image {
+                width: 16
+                height: 16
+                anchors.right: parent.left
+                anchors.rightMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                source: "qrc:///images/icon_expression_white.png"
+                opacity: 0.5
+            }
+        }
+
+        CTextInputBox {
+
+            id: textExpression
+
+            property bool isEditing: false
+            property bool hasError: false
+
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 6
+            anchors.left: parent.left
+            anchors.right: parent.right
+            box.color: isEditing ? "#000000" : (hasError ? "#770000" : "#331122")
+            box.radius: 14
+            input.anchors.leftMargin: 50
+            input.anchors.rightMargin: 80
+            input.font.pixelSize: 12
+            input.font.bold: true
+            text: ""
+            visible: text !== ""
+
+            onTextEdited: {
+                isEditing = true
+                if (text === "") apply()
+            }
+
+            onEditingFinished: apply()
+
+            Image {
+                width: 16
+                height: 16
+                anchors.left: parent.left
+                anchors.leftMargin: 16
+                anchors.verticalCenter: parent.verticalCenter
+                source: "qrc:///images/icon_expression_white.png"
+                opacity: 0.5
+            }
+
+            Text {
+                anchors.left: parent.left
+                anchors.leftMargin: 36
+                anchors.verticalCenter: parent.verticalCenter
+                color: "white"
+                opacity: 0.5
+                font.pixelSize: 16
+                font.bold: true
+                text: "="
+            }
+
+            CButton {
+                width: 18
+                height: 18
+                anchors.right: parent.right
+                anchors.rightMargin: 6
+                anchors.verticalCenter: parent.verticalCenter
+                label.font.pixelSize: 11
+                label.font.bold: true
+                label.text: qsTr("?")
+                box.radius: 9
+
+                onClicked: {
+                    if (messageBox.showAndWait(
+                            qsTr("You could write a JavaScript expression to dynamically change the inputValue of the signal source, for example:\r\n\r\n = inputValue*0.5 + outputValueOf('Another Signal Link')*0.5"),
+                            qsTr("OK"), qsTr("More Info")) === 2) {
+                        Qt.openUrlExternally("https://github.com/robinz-labs/digishow#scriptable")
+                    }
+                }
+            }
+
+            CButton {
+                width: 18
+                height: 18
+                anchors.right: parent.right
+                anchors.rightMargin: 30
+                anchors.verticalCenter: parent.verticalCenter
+                icon.width: 16
+                icon.height: 16
+                icon.source: "qrc:///images/icon_close_white.png"
+                box.radius: 9
+
+                onClicked: {
+                    textExpression.text = ""
+                    textExpression.apply()
+                }
+            }
+
+            CButton {
+                width: 40
+                height: 18
+                anchors.right: parent.right
+                anchors.rightMargin: 30
+                anchors.verticalCenter: parent.verticalCenter
+                label.font.pixelSize: 10
+                label.font.bold: false
+                label.text: qsTr("OK")
+                box.radius: 9
+                colorNormal: Material.accent
+                visible: textExpression.isEditing
+
+                onClicked: textExpression.apply()
+            }
+
+            function apply() {
+
+                isEdited = true
+                isModified = true
+
+                if (textExpression.text !== "") {
+                    setSlotOption("expression", textExpression.text)
+                } else {
+                    clearSlotOption("expression")
+                }
+                textExpression.isEditing = false
+                parent.forceActiveFocus()
+            }
+        }
+    }
+
     CheckBox {
         id: checkInputInverted
 
@@ -551,6 +709,7 @@ Item {
         // show information and hide all options when slot is not ready
         itemInformation.visible = true
         itemSlotOptions.visible = false
+        itemExpression.visible = false
         checkInputInverted.visible = false
         checkOutputInverted.visible = false
 
@@ -566,6 +725,9 @@ Item {
         // show signal inversion options when source/destination endpoint is ready
         var inputSignal  = (digishow.getSourceEndpointIndex     (slotIndex) === -1 ? 0 : slotInfo["inputSignal" ])
         var outputSignal = (digishow.getDestinationEndpointIndex(slotIndex) === -1 ? 0 : slotInfo["outputSignal"])
+
+        if (inputSignal !== 0)
+            itemExpression.visible = true
 
         if (inputSignal === DigishowEnvironment.SignalAnalog ||
             inputSignal === DigishowEnvironment.SignalBinary)
@@ -754,6 +916,9 @@ Item {
         } else {
             clearSlotOption("envelopeOutDelay")
         }
+
+        textExpression.text = slotInfo["expression"]
+        textExpression.isEditing = false
     }
 
     function refreshEnvelopeForAnalog() {
@@ -876,6 +1041,7 @@ Item {
     function clearSlotOption(key) {
         if (slotIndex !== -1) {
             app.slotAt(slotIndex).clearSlotOption(key)
+            slotOptionUpdated(key, null) // emit signal
         }
     }
 }

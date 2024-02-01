@@ -58,6 +58,16 @@ Item {
             }
         }
 
+        Image {
+            width: 16
+            height: 16
+            anchors.top: rectSource.bottom
+            anchors.topMargin: 12
+            anchors.horizontalCenter: rectOptions.horizontalCenter
+            source: "qrc:///images/icon_arrow_down_white.png"
+            opacity: 0.5
+        }
+
         Rectangle {
             id: rectDestination
             height: 95
@@ -84,6 +94,16 @@ Item {
             }
         }
 
+        Image {
+            width: 16
+            height: 16
+            anchors.top: rectOptions.bottom
+            anchors.topMargin: 12
+            anchors.horizontalCenter: rectOptions.horizontalCenter
+            source: "qrc:///images/icon_arrow_down_white.png"
+            opacity: 0.5
+        }
+
         Rectangle {
             id: rectOptions
             anchors.top: rectSource.bottom
@@ -104,7 +124,7 @@ Item {
                 anchors.fill: parent
                 onSlotOptionUpdated: {
 
-                    if (key === "inputInverted" || key === "outputInverted") {
+                    if (key === "inputInverted" || key === "outputInverted" || key === "expression") {
                         slotDetailUpdated() // emit signal
                     }
                     window.isModified = true
@@ -113,25 +133,6 @@ Item {
             }
         }
 
-        Image {
-            width: 16
-            height: 16
-            anchors.top: rectSource.bottom
-            anchors.topMargin: 12
-            anchors.horizontalCenter: rectOptions.horizontalCenter
-            source: "qrc:///images/icon_arrow_down_white.png"
-            opacity: 0.5
-        }
-
-        Image {
-            width: 16
-            height: 16
-            anchors.top: rectOptions.bottom
-            anchors.topMargin: 12
-            anchors.horizontalCenter: rectOptions.horizontalCenter
-            source: "qrc:///images/icon_arrow_down_white.png"
-            opacity: 0.5
-        }
     }
 
     Rectangle {

@@ -208,6 +208,9 @@ public:
     Q_INVOKABLE QVariantMap getSlotRuntimeData(int slotIndex);
     Q_INVOKABLE QVariantMap getInterfaceConfiguration(int interfaceIndex);
 
+    Q_INVOKABLE int inputValueOf(const QString &slotTitle);
+    Q_INVOKABLE int outputValueOf(const QString &slotTitle);
+
     Q_INVOKABLE int getSourceInterfaceIndex(int slotIndex);
     Q_INVOKABLE int getSourceEndpointIndex(int slotIndex);
     Q_INVOKABLE int getDestinationInterfaceIndex(int slotIndex);

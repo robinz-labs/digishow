@@ -50,6 +50,7 @@ public:
     // slot info
     Q_INVOKABLE QVariantMap getSlotInfo();
     dgsSlotInfo *slotInfo() { return &m_slotInfo; }
+    Q_INVOKABLE QString slotExpression() { return m_slotExpression; }
 
     // slot controls
     Q_INVOKABLE int setEnabled(bool enabled);
@@ -65,6 +66,8 @@ public:
     Q_INVOKABLE bool isEndpointOutBusy();
     Q_INVOKABLE void setEndpointOutValue(int value);
 
+    Q_INVOKABLE bool hasTrafficError() { return m_trafficError; }
+    Q_INVOKABLE bool hasExpressionError() { return m_expressionError; }
 
 signals:
 
@@ -89,6 +92,7 @@ private:
 
     // slot info (for fast read)
     dgsSlotInfo m_slotInfo;
+    QString m_slotExpression;
 
     // normalize options ==> info
     void updateSlotInfoItem(const QString &name, const QVariant &value);
@@ -144,6 +148,14 @@ private:
     void smoothingCancel();
     bool smoothingIsRunning();
     dgsSignalData smoothingProcessOutputAnalog();
+
+    // expression executor
+    dgsSignalData expressionExecute(const QString & expression, dgsSignalData dataIn);
+
+    // error flags
+    bool m_trafficError;
+    bool m_expressionError;
+
 };
 
 #endif // DIGISHOWSLOT_H

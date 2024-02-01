@@ -20,6 +20,8 @@
 #include "digishow_interface.h"
 #include "digishow_slot.h"
 #include "digishow_metronome.h"
+#include "digishow_scriptable.h"
+
 #include "dgs_midi_interface.h"
 #include "dgs_rioc_interface.h"
 #include "dgs_modbus_interface.h"
@@ -47,6 +49,7 @@ DigishowApp::DigishowApp(QObject *parent) : QObject(parent)
     m_paused = false;
 
     m_pidAddon = 0;
+    m_scriptable = new DigishowScriptable();
 
     // start a timer to handle the periodic actions
     m_timer = new QTimer();
@@ -71,6 +74,8 @@ DigishowApp::DigishowApp(QObject *parent) : QObject(parent)
 
 DigishowApp::~DigishowApp()
 {
+    m_scriptable->deleteLater();
+
     m_metronome->deleteLater();
 
     m_timer->stop();
@@ -417,12 +422,18 @@ int DigishowApp::start()
     startAddon();
 #endif
 
+    // start scriptable
+    startScriptable();
+
     return hasError;
 }
 
 void DigishowApp::stop()
 {
     if (!m_running) return;
+
+    // stop scriptable
+    stopScriptable();
 
 #ifdef DIGISHOW_EXPERIMENTAL
     // stop add-on process
@@ -875,6 +886,25 @@ bool DigishowApp::confirmEndpointIsEmployed(const QString &interfaceName, const 
     return false;
 }
 
+bool DigishowApp::startScriptable()
+{
+    if (m_filepath.isEmpty()) {
+        return m_scriptable->start();
+    }
+
+    QFileInfo fileinfo(m_filepath);
+    QDir dir = fileinfo.dir();
+    QString name = fileinfo.completeBaseName();
+
+    QString filepath = dir.filePath(name + ".qml");
+    return m_scriptable->start(filepath);
+}
+
+void DigishowApp::stopScriptable()
+{
+    m_scriptable->stop();
+}
+
 bool DigishowApp::startAddon()
 {
     if (m_filepath.isEmpty()) return false;
@@ -920,7 +950,6 @@ void DigishowApp::stopAddon()
 
     m_pidAddon = 0;
 }
-
 
 QString DigishowApp::convertFileUrlToPath(const QString &url)
 {

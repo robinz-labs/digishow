@@ -402,6 +402,7 @@ Item {
                     }
 
                     Image {
+                        id: indicatorLink
                         width: 16
                         height: 16
                         anchors.left: buttonLink.right
@@ -409,7 +410,40 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter
                         source: "qrc:///images/icon_arrow_right_white.png"
                         opacity: model.epInBusy ? 1.0 : 0.1
-                        visible: model.slotLinked
+                        visible: model.slotLinked && !indicatorTraffic.visible
+                    }
+
+                    Image {
+                        id: indicatorTraffic
+                        width: 16
+                        height: 16
+                        anchors.left: buttonLink.right
+                        anchors.leftMargin: 10
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "qrc:///images/icon_arrow_right_red.png"
+                        visible: model.errTraffic && model.epInBusy
+                    }
+
+                    Image {
+                        id: indicatorExpression
+                        width: 16
+                        height: 16
+                        anchors.horizontalCenter: meterEndpointIn.horizontalCenter
+                        anchors.top: meterEndpointIn.bottom
+                        anchors.topMargin: 6
+                        source: "qrc:///images/icon_expression_white.png"
+                        visible: model.slotExpression !== "" && !indicatorExpressionError.visible
+                    }
+
+                    Image {
+                        id: indicatorExpressionError
+                        width: 16
+                        height: 16
+                        anchors.horizontalCenter: meterEndpointIn.horizontalCenter
+                        anchors.top: meterEndpointIn.bottom
+                        anchors.topMargin: 4
+                        source: "qrc:///images/icon_attention.png"
+                        visible: model.errExpression
                     }
 
                     Rectangle {
@@ -1066,6 +1100,8 @@ Item {
                 if (dataModel.get(n).epOutBusy      !== data["epOutBusy"     ]) dataModel.setProperty(n, "epOutBusy",      data["epOutBusy"     ])
                 if (dataModel.get(n).slotEnabled    !== data["slotEnabled"   ]) dataModel.setProperty(n, "slotEnabled",    data["slotEnabled"   ])
                 if (dataModel.get(n).slotLinked     !== data["slotLinked"    ]) dataModel.setProperty(n, "slotLinked",     data["slotLinked"    ])
+                if (dataModel.get(n).errTraffic     !== data["errTraffic"    ]) dataModel.setProperty(n, "errTraffic",     data["errTraffic"    ])
+                if (dataModel.get(n).errExpression  !== data["errExpression" ]) dataModel.setProperty(n, "errExpression",  data["errExpression" ])
             }
         }
     }
@@ -1097,6 +1133,7 @@ Item {
         if (slotBookmarked) hasBookmarks = true
 
         var slotInfo = config["slotInfo"]
+        var slotExpression = slotInfo["expression"]
         var slotInInverted = slotInfo["inputInverted"]
         var slotOutInverted = slotInfo["outputInverted"]
 
@@ -1146,12 +1183,15 @@ Item {
 
         var epInAvailable  = data["epInAvailable"]
         var epOutAvailable = data["epOutAvailable"]
-        var epInValue   = data["epInValue"]
-        var epOutValue  = data["epOutValue"]
-        var epInBusy    = data["epInBusy"]
-        var epOutBusy   = data["epOutBusy"]
-        var slotEnabled = data["slotEnabled"]
-        var slotLinked  = data["slotLinked"]
+        var epInValue      = data["epInValue"]
+        var epOutValue     = data["epOutValue"]
+        var epInBusy       = data["epInBusy"]
+        var epOutBusy      = data["epOutBusy"]
+        var slotEnabled    = data["slotEnabled"]
+        var slotLinked     = data["slotLinked"]
+        var errTraffic     = data["errTraffic"]
+        var errExpression  = data["errExpression"]
+
 
         // add to data model
         var item = {
@@ -1165,6 +1205,7 @@ Item {
             slotLinked: slotLinked,
             slotSelected: false,
 
+            slotExpression: slotExpression,
             slotInInverted: slotInInverted,
             slotOutInverted: slotOutInverted,
 
@@ -1193,6 +1234,9 @@ Item {
             epOutFaderValue: 0,
             epOutFaderHold: true,
             epOutTap: false,
+
+            errTraffic: errTraffic,
+            errExpression: errExpression,
 
             launchRememberLink: false,
             launchRememberOutput: false

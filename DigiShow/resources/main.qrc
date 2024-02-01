@@ -29,10 +29,12 @@
         <file>images/icon_signal_note_white.png</file>
         <file>images/icon_settings_white.png</file>
         <file>images/icon_arrow_left_white.png</file>
+        <file>images/icon_arrow_right_red.png</file>
         <file>images/icon_arrow_right_white.png</file>
         <file>images/icon_arrow_up_white.png</file>
         <file>images/icon_arrow_down_white.png</file>
         <file>images/icon_arrow_updown_white.png</file>
+        <file>images/icon_expression_white.png</file>
         <file>images/icon_fullscreen_enter_white.png</file>
         <file>images/icon_fullscreen_exit_white.png</file>
         <file>images/icon_invert_white.png</file>
@@ -141,5 +143,6 @@
         <file>SpImageView.qml</file>
         <file>SpWebView.qml</file>
         <file>SpAnimationFadeIn.qml</file>
+        <file>DigishowScriptable.qml</file>
     </qresource>
 </RCC>

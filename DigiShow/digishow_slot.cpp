@@ -17,12 +17,11 @@
 
 #include "digishow_slot.h"
 #include "digishow_interface.h"
+#include "digishow_scriptable.h"
 #include <math.h>
 #include <QJsonDocument>
 
 #define MINMAX(v,a,b) ( (v) < (a) ? (a) : ((v) > (b) ? (b) : (v)) )
-#define MIN(v,a) ( (v) < (a) ? (a) )
-#define MAX(v,b) ( (v) > (b) ? (b) : (v) )
 #define MAP(v,a,b,A,B) ( ((B)-(A)) * ((v)-(a)) / ((b)-(a)) + (A) )
 
 DigishowSlot::DigishowSlot(QObject *parent) : QObject(parent)
@@ -64,6 +63,10 @@ DigishowSlot::DigishowSlot(QObject *parent) : QObject(parent)
     // init input and output data
     m_lastDataIn = dgsSignalData();
     m_lastDataOut = dgsSignalData();
+
+    // init error flags
+    m_trafficError = false;
+    m_expressionError = false;
 
 #ifdef QT_DEBUG
     qDebug() << "slot created";
@@ -162,6 +165,8 @@ int DigishowSlot::clearSlotOption(const QString &name)
 QVariantMap DigishowSlot::getSlotInfo()
 {
     QVariantMap info;
+
+    info["expression"     ] = m_slotExpression;
 
     info["inputSignal"    ] = m_slotInfo.inputSignal;
     info["outputSignal"   ] = m_slotInfo.outputSignal;
@@ -307,7 +312,8 @@ void DigishowSlot::updateSlotInfoItem(const QString &name, const QVariant &value
 {
     static dgsSlotInfo newSlotInfo;
 
-    if      ( name == "inputLow"        ) m_slotInfo.inputLow         = value.isNull() ? newSlotInfo.inputLow         : MINMAX(value.toDouble(), 0.0, 1.0);
+    if      ( name == "expression"      ) m_slotExpression            = value.isNull() ? QString()                    : value.toString();
+    else if ( name == "inputLow"        ) m_slotInfo.inputLow         = value.isNull() ? newSlotInfo.inputLow         : MINMAX(value.toDouble(), 0.0, 1.0);
     else if ( name == "inputHigh"       ) m_slotInfo.inputHigh        = value.isNull() ? newSlotInfo.inputHigh        : MINMAX(value.toDouble(), 0.0, 1.0);
     else if ( name == "outputLow"       ) m_slotInfo.outputLow        = value.isNull() ? newSlotInfo.outputLow        : MINMAX(value.toDouble(), 0.0, 1.0);
     else if ( name == "outputHigh"      ) m_slotInfo.outputHigh       = value.isNull() ? newSlotInfo.outputHigh       : MINMAX(value.toDouble(), 0.0, 1.0);
@@ -752,6 +758,32 @@ dgsSignalData DigishowSlot::smoothingProcessOutputAnalog()
     return dataOut;
 }
 
+dgsSignalData DigishowSlot::expressionExecute(const QString & expression, dgsSignalData dataIn)
+{
+    if (expression.isEmpty()) return dataIn;
+
+    DigishowScriptable* scriptable = g_app->scriptable();
+    int inputValue = 0;
+    switch (dataIn.signal) {
+    case DATA_SIGNAL_ANALOG: inputValue = dataIn.aValue; break;
+    case DATA_SIGNAL_BINARY: inputValue = dataIn.bValue; break;
+    case DATA_SIGNAL_NOTE:   inputValue = dataIn.bValue ? dataIn.aValue : 0; break;
+    }
+
+    bool ok;
+    int value = scriptable->execute(expression, inputValue, &ok);
+    m_expressionError = !ok;
+    if (m_expressionError) value = 0;
+
+    dgsSignalData dataOut = dataIn;
+    switch (dataOut.signal) {
+    case DATA_SIGNAL_ANALOG: dataOut.aValue = MINMAX(value, 0, dataOut.aRange); break;
+    case DATA_SIGNAL_BINARY: dataOut.bValue = (value != 0); break;
+    case DATA_SIGNAL_NOTE:   dataOut.aValue = MINMAX(value, 0, dataOut.aRange); dataOut.bValue = (value != 0); break;
+    }
+    return dataOut;
+}
+
 void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
 {
     // only process data packages received from the relevant endpoint
@@ -762,6 +794,9 @@ void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
 
     m_dataInTimeLastReceived = elapsed();
 
+    // execute expression to preprocess the received data
+    dataIn = expressionExecute(m_slotExpression, dataIn);
+
     // confirm a destination has been assigned
     if (!m_enabled || m_destinationInterface == nullptr) {
         m_lastDataIn = dataIn;
@@ -769,7 +804,8 @@ void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
     }
 
     // stop processing the received data if there is too much traffic
-    if (m_dataInProcessingStackLevel > 16) return;
+    m_trafficError = (m_dataInProcessingStackLevel > 16);
+    if (m_trafficError) return;
     m_dataInProcessingStackLevel += 1;
 
     // process the data package received from the source
