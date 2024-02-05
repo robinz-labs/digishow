@@ -58,6 +58,7 @@ public:
     Q_INVOKABLE static bool dirExists(const QString & path);
 
     Q_INVOKABLE static void showFileInShell(const QString & path);
+    Q_INVOKABLE static void openFileInShell(const QString & path);
     Q_INVOKABLE static void newAppInstance();
 
     Q_INVOKABLE static void setMacWindowIsModified(QWindow *window, bool isModified);

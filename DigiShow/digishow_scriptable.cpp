@@ -40,9 +40,9 @@ bool DigishowScriptable::start(const QString &filepath)
     m_qmlComponent = new QQmlComponent(m_qmlEngine);
 
     if (!filepath.isEmpty() && AppUtilities::fileExists(filepath)) {
-        // a customized script
+        // a user script
         QString qml = AppUtilities::loadStringFromFile(filepath);
-        QUrl url = QUrl("qrc:///DigishowScriptableCustomized.qml");
+        QUrl url = QUrl("qrc:///DigishowScriptableUser.qml");
         m_qmlComponent->setData(qml.toUtf8(), url);
     } else {
         // the base script

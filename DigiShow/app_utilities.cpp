@@ -24,6 +24,7 @@
 #include <QtNetwork>
 #include <QUrl>
 #include <QClipboard>
+#include <QDesktopServices>
 #include <QGuiApplication>
 
 #include "app_utilities.h"
@@ -326,6 +327,11 @@ void AppUtilities::showFileInShell(const QString & path)
     params << "/select," << QDir::toNativeSeparators(path);
     QProcess::startDetached("explorer.exe", params);
 #endif
+}
+
+void AppUtilities::openFileInShell(const QString & path)
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }
 
 void AppUtilities::newAppInstance()

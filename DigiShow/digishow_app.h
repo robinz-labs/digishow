@@ -59,6 +59,10 @@ public:
     Q_INVOKABLE bool loadFile(const QString & filepath);
     Q_INVOKABLE bool saveFile(const QString & filepath = QString(), const QList<int> & slotListOrder = QList<int>(), bool onlySelection = false);
 
+    Q_INVOKABLE QString scriptableFilePath();
+    Q_INVOKABLE bool    scriptableFileExists();
+    Q_INVOKABLE bool    createScriptableFile();
+
     Q_INVOKABLE void enableAutostart(bool autostart = true) { m_autostart = autostart; }
 
     Q_INVOKABLE int  start();

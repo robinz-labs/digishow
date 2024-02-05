@@ -4,12 +4,12 @@
 <context>
     <name>DigishowApp</name>
     <message>
-        <location filename="../../digishow_app.cpp" line="342"/>
+        <location filename="../../digishow_app.cpp" line="371"/>
         <source>Requesting access to your microphone ...</source>
         <translation>Solicitando acceso a su micrófono...</translation>
     </message>
     <message>
-        <location filename="../../digishow_app.cpp" line="384"/>
+        <location filename="../../digishow_app.cpp" line="413"/>
         <source>Error occurred when open interface %1 .</source>
         <translation>Se produjo un error al abrir la interfaz %1 .</translation>
     </message>
@@ -702,10 +702,11 @@
     </message>
     <message>
         <location filename="../MainWindow.qml" line="293"/>
-        <location filename="../MainWindow.qml" line="799"/>
-        <location filename="../MainWindow.qml" line="812"/>
-        <location filename="../MainWindow.qml" line="858"/>
-        <location filename="../MainWindow.qml" line="879"/>
+        <location filename="../MainWindow.qml" line="814"/>
+        <location filename="../MainWindow.qml" line="827"/>
+        <location filename="../MainWindow.qml" line="873"/>
+        <location filename="../MainWindow.qml" line="894"/>
+        <location filename="../MainWindow.qml" line="906"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
@@ -720,32 +721,32 @@
         <translation>Mostrar archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="307"/>
+        <location filename="../MainWindow.qml" line="322"/>
         <source>About DigiShow</source>
         <translation>Acerca de DigiShow</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="311"/>
+        <location filename="../MainWindow.qml" line="326"/>
         <source>Preferences ...</source>
         <translation>Preferencias ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="315"/>
+        <location filename="../MainWindow.qml" line="330"/>
         <source>Exit Full Screen</source>
         <translation>Salir de pantalla completa</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="315"/>
+        <location filename="../MainWindow.qml" line="330"/>
         <source>Enter Full Screen</source>
         <translation>Pasar a pantalla completa</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="325"/>
+        <location filename="../MainWindow.qml" line="340"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="435"/>
+        <location filename="../MainWindow.qml" line="450"/>
         <source>Bookmarks</source>
         <translation>Marcadores</translation>
     </message>
@@ -755,145 +756,167 @@
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="373"/>
+        <location filename="../MainWindow.qml" line="307"/>
+        <source>Attached Script File ...</source>
+        <translation>Archivo de script adjunto ...</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="314"/>
+        <source>Do you want to create an attached script file contains user-defined functions that will be called by signal expressions in the DigiShow project ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="315"/>
+        <source>Create Script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="388"/>
         <source>Preset Launcher</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="399"/>
+        <location filename="../MainWindow.qml" line="414"/>
         <source>Beat Maker</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="570"/>
+        <location filename="../MainWindow.qml" line="585"/>
         <source>Interface Manager</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="601"/>
+        <location filename="../MainWindow.qml" line="616"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="605"/>
+        <location filename="../MainWindow.qml" line="620"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="609"/>
+        <location filename="../MainWindow.qml" line="624"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="613"/>
+        <location filename="../MainWindow.qml" line="628"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="617"/>
+        <location filename="../MainWindow.qml" line="632"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="621"/>
+        <location filename="../MainWindow.qml" line="636"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="625"/>
+        <location filename="../MainWindow.qml" line="640"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="629"/>
+        <location filename="../MainWindow.qml" line="644"/>
         <source>Audio In ...</source>
         <translation>Entrada de audio ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="633"/>
+        <location filename="../MainWindow.qml" line="648"/>
         <source>Screen ...</source>
         <translation>Pantalla ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="637"/>
+        <location filename="../MainWindow.qml" line="652"/>
         <source>Virtual Pipe ...</source>
         <translation>Tubería virtual ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="642"/>
+        <location filename="../MainWindow.qml" line="657"/>
         <source>More</source>
         <translation>Más</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="646"/>
+        <location filename="../MainWindow.qml" line="661"/>
         <source>Audio Player ...</source>
         <translation>Reproductor de audio ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="650"/>
+        <location filename="../MainWindow.qml" line="665"/>
         <source>MIDI Player ...</source>
         <translation>Reproductor MIDI ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="739"/>
+        <location filename="../MainWindow.qml" line="754"/>
         <source>Open File</source>
         <translation>Abrir archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="742"/>
-        <location filename="../MainWindow.qml" line="759"/>
+        <location filename="../MainWindow.qml" line="757"/>
+        <location filename="../MainWindow.qml" line="774"/>
         <source>DigiShow files</source>
         <translation>Archivos DigiShow</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="742"/>
+        <location filename="../MainWindow.qml" line="757"/>
         <source>JSON files</source>
         <translation>Archivos JSON</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="742"/>
-        <location filename="../MainWindow.qml" line="759"/>
+        <location filename="../MainWindow.qml" line="757"/>
+        <location filename="../MainWindow.qml" line="774"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="756"/>
+        <location filename="../MainWindow.qml" line="771"/>
         <source>Save File</source>
         <translation>Guardar archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="798"/>
+        <location filename="../MainWindow.qml" line="813"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de crear uno nuevo ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="799"/>
-        <location filename="../MainWindow.qml" line="812"/>
-        <location filename="../MainWindow.qml" line="858"/>
-        <location filename="../MainWindow.qml" line="879"/>
+        <location filename="../MainWindow.qml" line="814"/>
+        <location filename="../MainWindow.qml" line="827"/>
+        <location filename="../MainWindow.qml" line="873"/>
+        <location filename="../MainWindow.qml" line="894"/>
         <source>Don&apos;t Save</source>
         <translation>No guardar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="799"/>
-        <location filename="../MainWindow.qml" line="812"/>
-        <location filename="../MainWindow.qml" line="858"/>
-        <location filename="../MainWindow.qml" line="879"/>
+        <location filename="../MainWindow.qml" line="905"/>
+        <source>The attached script file will be saved in the same folder as the DigiShow project file, do you want to save the project and create the script file now ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="315"/>
+        <location filename="../MainWindow.qml" line="814"/>
+        <location filename="../MainWindow.qml" line="827"/>
+        <location filename="../MainWindow.qml" line="873"/>
+        <location filename="../MainWindow.qml" line="894"/>
+        <location filename="../MainWindow.qml" line="906"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="811"/>
+        <location filename="../MainWindow.qml" line="826"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de abrir otro ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="856"/>
+        <location filename="../MainWindow.qml" line="871"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>¿ Quieres guardar los datos actuales antes de abrir el archivo %1 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="878"/>
+        <location filename="../MainWindow.qml" line="893"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de cerrar la aplicación ?</translation>
     </message>
@@ -3189,115 +3212,157 @@ un nuevo enlace de señal entre tus cosas digitales</translation>
         <translation>Agregar expresión JS</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="144"/>
+        <location filename="../MwSlotOptionsView.qml" line="140"/>
         <source>?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="149"/>
-        <source>You could write a JavaScript expression to dynamically change the inputValue of the signal source, for example:<byte value="xd"/>
-<byte value="xd"/>
- = inputValue*0.5 + outputValueOf(&apos;Another Signal Link&apos;)*0.5</source>
+        <location filename="../MwSlotOptionsView.qml" line="147"/>
+        <source>Write a JavaScript expression to dynamically change the input value of the signal source, for example:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="150"/>
-        <location filename="../MwSlotOptionsView.qml" line="181"/>
+        <location filename="../MwSlotOptionsView.qml" line="148"/>
+        <location filename="../MwSlotOptionsView.qml" line="155"/>
+        <location filename="../MwSlotOptionsView.qml" line="162"/>
+        <source>Try It</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="148"/>
+        <location filename="../MwSlotOptionsView.qml" line="155"/>
+        <location filename="../MwSlotOptionsView.qml" line="162"/>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="154"/>
+        <source>The expression can reference the input or output value of any other signal link, for example:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="161"/>
+        <source>The expression can contain common JavaScript statements and functions, for example:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="168"/>
+        <source>The expression can also call user-defined functions, now you can create your functions in the attached script file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="169"/>
+        <source>Show Script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="169"/>
+        <location filename="../MwSlotOptionsView.qml" line="175"/>
+        <source>Done</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="174"/>
+        <source>The expression can also call user-defined functions, now you can create an attached script file contains your functions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="175"/>
+        <source>Create Script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotOptionsView.qml" line="207"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="150"/>
-        <source>More Info</source>
-        <translation>Más info</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotOptionsView.qml" line="213"/>
+        <location filename="../MwSlotOptionsView.qml" line="239"/>
         <source>Invert Input Signal</source>
         <translation>Invertir señal de entrada</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="226"/>
+        <location filename="../MwSlotOptionsView.qml" line="252"/>
         <source>Invert Output Signal</source>
         <translation>Invertir señal de salida</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="267"/>
+        <location filename="../MwSlotOptionsView.qml" line="293"/>
         <source>Revert</source>
         <translation>Revertir</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="273"/>
+        <location filename="../MwSlotOptionsView.qml" line="299"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="279"/>
+        <location filename="../MwSlotOptionsView.qml" line="305"/>
         <source>Paste</source>
         <translation>Pegar</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="309"/>
+        <location filename="../MwSlotOptionsView.qml" line="335"/>
         <source>Zero Output While Reaching Lower</source>
         <translation>Salida cero mientras alcanza más bajo</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="341"/>
+        <location filename="../MwSlotOptionsView.qml" line="367"/>
         <source>Output Smoothing</source>
         <translation>Suavizado de salida</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="369"/>
+        <location filename="../MwSlotOptionsView.qml" line="395"/>
         <source>Input-output Mapping</source>
         <translation>Mapeo de entrada-salida</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="417"/>
+        <location filename="../MwSlotOptionsView.qml" line="443"/>
         <source>Input Range</source>
         <translation>Rango de entrada</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="459"/>
+        <location filename="../MwSlotOptionsView.qml" line="485"/>
         <source>Output Range</source>
         <translation>Rango de salida</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="480"/>
+        <location filename="../MwSlotOptionsView.qml" line="506"/>
         <source>Output Envelope</source>
         <translation>Envolvente de salida</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="544"/>
+        <location filename="../MwSlotOptionsView.qml" line="570"/>
         <source>On Delay</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="693"/>
+        <location filename="../MwSlotOptionsView.qml" line="719"/>
         <source>Off Delay</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="572"/>
+        <location filename="../MwSlotOptionsView.qml" line="598"/>
         <source>Attack</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="595"/>
+        <location filename="../MwSlotOptionsView.qml" line="621"/>
         <source>Hold</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="618"/>
+        <location filename="../MwSlotOptionsView.qml" line="644"/>
         <source>Decay</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="642"/>
+        <location filename="../MwSlotOptionsView.qml" line="668"/>
         <source>Sustain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="665"/>
+        <location filename="../MwSlotOptionsView.qml" line="691"/>
         <source>Release</source>
         <translation></translation>
     </message>

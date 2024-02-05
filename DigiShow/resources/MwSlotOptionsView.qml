@@ -68,7 +68,7 @@ Item {
             visible: !textExpression.visible
 
             onClicked: {
-                textExpression.text = "inputValue * 1"
+                textExpression.text = "inputValue"
                 textExpression.apply()
                 textExpression.input.selectAll()
                 textExpression.input.forceActiveFocus()
@@ -103,13 +103,9 @@ Item {
             input.font.pixelSize: 12
             input.font.bold: true
             text: ""
-            visible: text !== ""
+            visible: text !== "" || isEditing
 
-            onTextEdited: {
-                isEditing = true
-                if (text === "") apply()
-            }
-
+            onTextEdited: isEditing = true
             onEditingFinished: apply()
 
             Image {
@@ -145,11 +141,41 @@ Item {
                 box.radius: 9
 
                 onClicked: {
-                    if (messageBox.showAndWait(
-                            qsTr("You could write a JavaScript expression to dynamically change the inputValue of the signal source, for example:\r\n\r\n = inputValue*0.5 + outputValueOf('Another Signal Link')*0.5"),
-                            qsTr("OK"), qsTr("More Info")) === 2) {
-                        Qt.openUrlExternally("https://github.com/robinz-labs/digishow#scriptable")
+                    var exampleCode = "inputValue*0.5 + 10000"
+                    var btn = 0
+                    btn = messageBox.showAndWait(
+                        qsTr("Write a JavaScript expression to dynamically change the input value of the signal source, for example:") + "\r\n\r\n= " + exampleCode,
+                        qsTr("Try It"), qsTr("Next"))
+                    if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
+                    if (btn <= 1) return
+
+                    exampleCode = "inputValue*0.5 + outputValueOf('Another Signal Link')*0.5"
+                    btn = messageBox.showAndWait(
+                        qsTr("The expression can reference the input or output value of any other signal link, for example:") + "\r\n\r\n= " + exampleCode,
+                        qsTr("Try It"), qsTr("Next"))
+                    if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
+                    if (btn <= 1) return
+
+                    exampleCode = "inputValue > 0 ? Math.random()*0xffff : 0"
+                    btn = messageBox.showAndWait(
+                        qsTr("The expression can contain common JavaScript statements and functions, for example:") + "\r\n\r\n= " + exampleCode,
+                        qsTr("Try It"), qsTr("Next"))
+                    if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
+                    if (btn <= 1) return
+
+                    if (app.scriptableFileExists()) {
+                        btn = messageBox.showAndWait(
+                            qsTr("The expression can also call user-defined functions, now you can create your functions in the attached script file."),
+                            qsTr("Show Script"), qsTr("Done"))
+                        if (btn == 1) showScriptableFile()
+
+                    } else {
+                        btn = messageBox.showAndWait(
+                            qsTr("The expression can also call user-defined functions, now you can create an attached script file contains your functions."),
+                            qsTr("Create Script"), qsTr("Done"))
+                        if (btn == 1) createScriptableFile()
                     }
+
                 }
             }
 
@@ -1044,4 +1070,5 @@ Item {
             slotOptionUpdated(key, null) // emit signal
         }
     }
+
 }

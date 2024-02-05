@@ -331,6 +331,35 @@ bool DigishowApp::saveFile(const QString & filepath, const QList<int> & slotList
 
 }
 
+QString DigishowApp::scriptableFilePath()
+{
+    if (m_filepath.isEmpty()) return QString();
+
+    QFileInfo fileinfo(m_filepath);
+    QDir dir = fileinfo.dir();
+    QString name = fileinfo.completeBaseName();
+
+    return dir.filePath(name + ".scriptable.txt");
+}
+
+bool DigishowApp::scriptableFileExists()
+{
+    QString filepath = scriptableFilePath();
+    if (filepath.isEmpty()) return false;
+    return QFile::exists(filepath);
+}
+
+bool DigishowApp::createScriptableFile()
+{
+    QString filepath = scriptableFilePath();
+    if (filepath.isEmpty()) return false;
+    if (QFile::exists(filepath)) return false;
+
+    QString templateCode = AppUtilities::loadStringFromFile(":/DigishowScriptableUserTemplate.qml");
+    bool done = AppUtilities::saveStringToFile(templateCode, filepath);
+    return done;
+}
+
 int DigishowApp::start()
 {
     if (m_running) return -1;
@@ -888,15 +917,7 @@ bool DigishowApp::confirmEndpointIsEmployed(const QString &interfaceName, const 
 
 bool DigishowApp::startScriptable()
 {
-    if (m_filepath.isEmpty()) {
-        return m_scriptable->start();
-    }
-
-    QFileInfo fileinfo(m_filepath);
-    QDir dir = fileinfo.dir();
-    QString name = fileinfo.completeBaseName();
-
-    QString filepath = dir.filePath(name + ".qml");
+    QString filepath = scriptableFilePath();
     return m_scriptable->start(filepath);
 }
 

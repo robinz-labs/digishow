@@ -302,6 +302,21 @@ ApplicationWindow {
                         text: qsTr("Show File")
                         onTriggered: utilities.showFileInShell(app.filepath)
                     }
+                    MenuItem {
+                        enabled: app.filepath!==""
+                        text: qsTr("Attached Script File ...")
+                        onTriggered: {
+                            menu.close()
+                            if (app.scriptableFileExists()) {
+                                showScriptableFile()
+                            } else {
+                                if (messageBox.showAndWait(
+                                    qsTr("Do you want to create an attached script file contains user-defined functions that will be called by signal expressions in the DigiShow project ?"),
+                                    qsTr("Create Script"), qsTr("Cancel")) === 1)
+                                    createScriptableFile()
+                            }
+                        }
+                    }
                     MwMenuSeparator {}
                     MenuItem {
                         text: qsTr("About DigiShow")
@@ -883,4 +898,26 @@ ApplicationWindow {
             }
         }
     }
+
+    function createScriptableFile() {
+        if (app.filepath === "") {
+            if (messageBox.showAndWait(
+                qsTr("The attached script file will be saved in the same folder as the DigiShow project file, do you want to save the project and create the script file now ?"),
+                qsTr("Save"), qsTr("Cancel")) === 1) {
+
+                window.saveAndDo(createScriptableFile)
+            }
+        } else {
+            if (app.createScriptableFile()) showScriptableFile()
+        }
+    }
+
+    function showScriptableFile() {
+        var filepath = app.scriptableFilePath()
+        if (filepath !== "") {
+            utilities.showFileInShell(filepath)
+            utilities.openFileInShell(filepath)
+        }
+    }
+
 }

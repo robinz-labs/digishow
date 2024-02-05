@@ -1,4 +1,4 @@
-import QtQml 2.12
+import QtQml 2.15
 import DigiShow 1.0
 
 DigishowEnvironment {
@@ -8,7 +8,8 @@ DigishowEnvironment {
     function onStart() { }
     function onStop() { }
 
-    function execute(script, inputValue) {
-        return eval(script)
-    }
+    function alert(message) { app.messageNotify(message, DigishowApp.MsgAlert) }
+    function toast(message) { app.messageNotify(message, DigishowApp.MsgToast) }
+
+    function execute(script, inputValue) { return eval(script) }
 }

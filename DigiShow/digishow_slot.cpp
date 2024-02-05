@@ -312,7 +312,8 @@ void DigishowSlot::updateSlotInfoItem(const QString &name, const QVariant &value
 {
     static dgsSlotInfo newSlotInfo;
 
-    if      ( name == "expression"      ) m_slotExpression            = value.isNull() ? QString()                    : value.toString();
+    if      ( name == "expression" ) { m_slotExpression = (value.isNull() || value == "inputValue") ? QString() : value.toString(); m_expressionError = false; }
+
     else if ( name == "inputLow"        ) m_slotInfo.inputLow         = value.isNull() ? newSlotInfo.inputLow         : MINMAX(value.toDouble(), 0.0, 1.0);
     else if ( name == "inputHigh"       ) m_slotInfo.inputHigh        = value.isNull() ? newSlotInfo.inputHigh        : MINMAX(value.toDouble(), 0.0, 1.0);
     else if ( name == "outputLow"       ) m_slotInfo.outputLow        = value.isNull() ? newSlotInfo.outputLow        : MINMAX(value.toDouble(), 0.0, 1.0);
