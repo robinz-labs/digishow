@@ -5,6 +5,10 @@
         <file>translations/language.es.qm</file>
         <file>images/background_about.png</file>
         <file>images/icon_attention.png</file>
+        <file>images/icon_lines_l2r.png</file>
+        <file>images/icon_lines_l2z.png</file>
+        <file>images/icon_lines_r2l.png</file>
+        <file>images/icon_lines_r2z.png</file>
         <file>images/icon_add_white.png</file>
         <file>images/icon_close_white.png</file>
         <file>images/icon_close_black.png</file>

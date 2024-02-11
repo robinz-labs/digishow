@@ -28,16 +28,30 @@
 typedef struct dppPixelMapping {
 
     int pixelMode;
-    int pixelCount;
-    int pixelOffset;
-    uint8_t* pDataOut;
+    int pixelCountX;
+    int pixelCountY;
+    int pixelOffsetX;
+    int pixelOffsetY;
+    int pixelSpacingX;
+    int pixelSpacingY;
+    int mappingMode;
+
+    int dataOutPixelCount; // The number of pixels allowed in the data output buffer
+    uint8_t* pDataOut;     // the pointer to the data out buffer
 
     // defaults
     dppPixelMapping() :
       pixelMode(0),
-      pixelCount(0),
-      pixelOffset(0),
+      pixelCountX(0),
+      pixelCountY(0),
+      pixelOffsetX(0),
+      pixelOffsetY(0),
+      pixelSpacingX(0),
+      pixelSpacingY(0),
+      mappingMode(0),
+      dataOutPixelCount(0),
       pDataOut(nullptr)
+
     {}
 
 } dppPixelMapping;
@@ -60,6 +74,15 @@ public:
         PixelBRG,
         PixelBGR
     };
+    Q_ENUM(PixelMode)
+
+    enum MappingMode {
+        MappingByRowL2R = 0,
+        MappingByRowR2L = 1,
+        MappingByRowL2Z = 2,
+        MappingByRowR2Z = 3
+    };
+    Q_ENUM(MappingMode)
 
     enum MediaType {
         MediaUnknown = 0,
@@ -67,6 +90,7 @@ public:
         MediaVideo,
         MediaImageSequence
     };
+    Q_ENUM(MediaType)
 
     static int pixelMode(const QString &pixelMode) {
         if      (pixelMode == "mono") return PixelMono;
@@ -141,11 +165,13 @@ private:
     // pixel frame buffer
     QByteArray m_frameLatest;  // each pixel occupies 4 bytes BGRA (A is alpha, used as opacity mask, 0 = transparency, other value = opacity)
     QByteArray m_frameBackup;  // each pixel occupies 4 bytes BGRX (X is the marker for backup, 0 = not backed up, 0xff = backed up)
+    int m_framePixelWidth;
+    int m_framePixelHeight;
 
     // pixel mapping
     QList<dppPixelMapping> m_pixelMappingList;
 
-    void updateFrameBuffer(uint8_t *pFramePixels, int length);
+    void updateFrameBuffer(uint8_t *pFramePixels, int width, int height);
     int transferFramePixels(dppPixelMapping mapping);
 };
 

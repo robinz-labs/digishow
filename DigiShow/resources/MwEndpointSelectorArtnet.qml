@@ -150,9 +150,9 @@ Item {
     Popup {
         id: popupMediaOptions
 
-        width: 280
-        height: 620
-        x: 100
+        width: 380
+        height: 660
+        x: 0
         y: -height-10
         transformOrigin: Popup.BottomRight
         modal: true
@@ -187,10 +187,10 @@ Item {
 
             COptionButton {
                 id: buttonMediaPixelMode
-                width: 120
+                width: 85
                 height: 28
                 anchors.left: parent.left
-                anchors.leftMargin: 105
+                anchors.leftMargin: 145
                 text: menuMediaPixelMode.selectedItemText
                 focus: true
                 onClicked: {
@@ -202,10 +202,6 @@ Item {
                     id: menuMediaPixelMode
 
                     onOptionClicked: {
-                        if (selectedItemTag === "mono" && spinMediaPixelCount.value === 170)
-                            spinMediaPixelCount.value = 512
-                        else if (selectedItemTag !== "mono" && spinMediaPixelCount.value === 512)
-                            spinMediaPixelCount.value = 170
                     }
                 }
 
@@ -219,18 +215,37 @@ Item {
                 }
             }
 
-            CSpinBox {
-                id: spinMediaPixelCount
-
-                width: 120
+            Item {
+                width: 180
+                height: 28
                 anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: 1
-                to: 99999999
-                value: 170
-                stepSize: 1
+                anchors.leftMargin: 145
 
-                onValueModified: isModified = true
+                CSpinBox {
+                    id: spinMediaPixelCountX
+
+                    width: 85
+                    anchors.left: parent.left
+                    from: 1
+                    to: 9999
+                    value: 170
+                    stepSize: 1
+
+                    onValueModified: isModified = true
+                }
+
+                CSpinBox {
+                    id: spinMediaPixelCountY
+
+                    width: 85
+                    anchors.right: parent.right
+                    from: 1
+                    to: 9999
+                    value: 1
+                    stepSize: 1
+
+                    onValueModified: isModified = true
+                }
 
                 Text {
                     anchors.right: parent.left
@@ -238,22 +253,84 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     color: "#cccccc"
                     font.pixelSize: 12
-                    text: qsTr("Pixel Count")
+                    text: qsTr("Pixel Count X | Y")
+                }
+
+            }
+
+            Item {
+                width: 180
+                height: 28
+                anchors.left: parent.left
+                anchors.leftMargin: 145
+
+                CSpinBox {
+                    id: spinMediaPixelOffsetX
+
+                    width: 85
+                    anchors.left: parent.left
+                    from: 0
+                    to: 9999
+                    value: 0
+                    stepSize: 1
+
+                    onValueModified: isModified = true
+                }
+
+                CSpinBox {
+                    id: spinMediaPixelOffsetY
+
+                    width: 85
+                    anchors.right: parent.right
+                    from: 0
+                    to: 9999
+                    value: 0
+                    stepSize: 1
+
+                    onValueModified: isModified = true
+                }
+
+                Text {
+                    anchors.right: parent.left
+                    anchors.rightMargin: 15
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: "#cccccc"
+                    font.pixelSize: 12
+                    text: qsTr("Pixel Offset X | Y")
                 }
             }
 
-            CSpinBox {
-                id: spinMediaPixelOffset
-
-                width: 120
+            Item {
+                width: 180
+                height: 28
                 anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: 1
-                to: 99999999
-                value: 1
-                stepSize: 1
+                anchors.leftMargin: 145
 
-                onValueModified: isModified = true
+                CSpinBox {
+                    id: spinMediaPixelSpacingX
+
+                    width: 85
+                    anchors.left: parent.left
+                    from: 0
+                    to: 9999
+                    value: 0
+                    stepSize: 1
+
+                    onValueModified: isModified = true
+                }
+
+                CSpinBox {
+                    id: spinMediaPixelSpacingY
+
+                    width: 85
+                    anchors.right: parent.right
+                    from: 0
+                    to: 9999
+                    value: 0
+                    stepSize: 1
+
+                    onValueModified: isModified = true
+                }
 
                 Text {
                     anchors.right: parent.left
@@ -261,22 +338,100 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     color: "#cccccc"
                     font.pixelSize: 12
-                    text: qsTr("From Pixel")
+                    text: qsTr("Pixel Spacing X | Y")
                 }
             }
 
-            CSpinBox {
-                id: spinMediaUnit
+            Item {
 
-                width: 120
+                id: itemMediaMappingMode
+
+                property int value: 0
+
+                width: 180
+                height: 28
                 anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: spinUnit.from
-                to: spinUnit.to
-                value: spinUnit.value
-                stepSize: spinUnit.stepSize
+                anchors.leftMargin: 145
 
-                onValueModified: spinUnit.value = spinMediaUnit.value
+                CButton {
+                    property int value: DigishowPixelPlayer.MappingByRowL2R
+
+                    width: 28
+                    height: 28
+                    anchors.left: parent.left
+                    anchors.leftMargin: 0
+                    anchors.verticalCenter: parent.verticalCenter
+                    icon.width: 26
+                    icon.height: 26
+                    icon.source: "qrc:///images/icon_lines_l2r.png"
+                    box.radius: 3
+                    box.border.width: mouseOver || parent.value !== this.value ? 1 : 0
+                    colorNormal: parent.value === this.value ? "#666666" : "transparent"
+                    onClicked: {
+                        parent.value = this.value
+                        isModified = true
+                    }
+                }
+
+                CButton {
+                    property int value: DigishowPixelPlayer.MappingByRowR2L
+
+                    width: 28
+                    height: 28
+                    anchors.left: parent.left
+                    anchors.leftMargin: 40
+                    anchors.verticalCenter: parent.verticalCenter
+                    icon.width: 26
+                    icon.height: 26
+                    icon.source: "qrc:///images/icon_lines_r2l.png"
+                    box.radius: 3
+                    box.border.width: mouseOver || parent.value !== this.value ? 1 : 0
+                    colorNormal: parent.value === this.value ? "#666666" : "transparent"
+                    onClicked: {
+                        parent.value = this.value
+                        isModified = true
+                    }
+                }
+
+                CButton {
+                    property int value: DigishowPixelPlayer.MappingByRowL2Z
+
+                    width: 28
+                    height: 28
+                    anchors.left: parent.left
+                    anchors.leftMargin: 80
+                    anchors.verticalCenter: parent.verticalCenter
+                    icon.width: 26
+                    icon.height: 26
+                    icon.source: "qrc:///images/icon_lines_l2z.png"
+                    box.radius: 3
+                    box.border.width: mouseOver || parent.value !== this.value ? 1 : 0
+                    colorNormal: parent.value === this.value ? "#666666" : "transparent"
+                    onClicked: {
+                        parent.value = this.value
+                        isModified = true
+                    }
+                }
+
+                CButton {
+                    property int value: DigishowPixelPlayer.MappingByRowR2Z
+
+                    width: 28
+                    height: 28
+                    anchors.left: parent.left
+                    anchors.leftMargin: 120
+                    anchors.verticalCenter: parent.verticalCenter
+                    icon.width: 26
+                    icon.height: 26
+                    icon.source: "qrc:///images/icon_lines_r2z.png"
+                    box.radius: 3
+                    box.border.width: mouseOver || parent.value !== this.value ? 1 : 0
+                    colorNormal: parent.value === this.value ? "#666666" : "transparent"
+                    onClicked: {
+                        parent.value = this.value
+                        isModified = true
+                    }
+                }
 
                 Text {
                     anchors.right: parent.left
@@ -284,22 +439,41 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     color: "#cccccc"
                     font.pixelSize: 12
-                    text: qsTr("To Universe")
+                    text: qsTr("Address Mapping")
                 }
             }
 
-            CSpinBox {
-                id: spinMediaChannel
-
-                width: 120
+            Item {
+                width: 180
+                height: 28
                 anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: spinChannel.from
-                to: spinChannel.to
-                value: spinChannel.value
-                stepSize: spinChannel.stepSize
+                anchors.leftMargin: 145
 
-                onValueModified: spinChannel.value = spinMediaChannel.value
+                CSpinBox {
+                    id: spinMediaUnit
+
+                    width: 85
+                    anchors.left: parent.left
+                    from: spinUnit.from
+                    to: spinUnit.to
+                    value: spinUnit.value
+                    stepSize: spinUnit.stepSize
+
+                    onValueModified: spinUnit.value = spinMediaUnit.value
+                }
+
+                CSpinBox {
+                    id: spinMediaChannel
+
+                    width: 85
+                    anchors.right: parent.right
+                    from: spinChannel.from
+                    to: spinChannel.to
+                    value: spinChannel.value
+                    stepSize: spinChannel.stepSize
+
+                    onValueModified: spinChannel.value = spinMediaChannel.value
+                }
 
                 Text {
                     anchors.right: parent.left
@@ -307,7 +481,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     color: "#cccccc"
                     font.pixelSize: 12
-                    text: qsTr("To Channel")
+                    text: qsTr("To Universe | Channel")
                 }
             }
 
@@ -325,7 +499,7 @@ Item {
 
                 height: 28
                 anchors.left: parent.left
-                anchors.leftMargin: 105
+                anchors.leftMargin: 145
                 padding: 0
                 checked: true
 
@@ -346,7 +520,7 @@ Item {
 
                 width: 120
                 anchors.left: parent.left
-                anchors.leftMargin: 105
+                anchors.leftMargin: 145
                 from: 0
                 to: 5000
                 value: 300
@@ -370,7 +544,7 @@ Item {
 
                 width: 120
                 anchors.left: parent.left
-                anchors.leftMargin: 105
+                anchors.leftMargin: 145
                 from: 0
                 to: 100
                 value: 100
@@ -394,7 +568,7 @@ Item {
 
                 width: 120
                 anchors.left: parent.left
-                anchors.leftMargin: 105
+                anchors.leftMargin: 145
                 from: 10
                 to: 400
                 value: 100
@@ -418,7 +592,7 @@ Item {
 
                 width: 120
                 anchors.left: parent.left
-                anchors.leftMargin: 105
+                anchors.leftMargin: 145
                 from: 0
                 to: 99999000
                 value: 0
@@ -442,7 +616,7 @@ Item {
 
                 width: 120
                 anchors.left: parent.left
-                anchors.leftMargin: 105
+                anchors.leftMargin: 145
                 from: 0
                 to: 99999999
                 value: 0
@@ -466,7 +640,7 @@ Item {
 
                 height: 28
                 anchors.left: parent.left
-                anchors.leftMargin: 105
+                anchors.leftMargin: 145
                 padding: 0
                 checked: false
 
@@ -491,7 +665,7 @@ Item {
                 width: 100
                 height: 28
                 anchors.left: parent.left
-                anchors.leftMargin: 105
+                anchors.leftMargin: 145
                 label.font.bold: false
                 label.font.pixelSize: 11
                 label.text: qsTr("Defaults")
@@ -605,9 +779,14 @@ Item {
         v = options["mediaDuration"]; spinMediaDuration.value  = (v === undefined ? 0     : v )
         v = options["mediaRepeat"];   checkMediaRepeat.checked = (v === undefined ? false : v )
 
-        v = options["mediaPixelMode"];   menuMediaPixelMode.selectOptionWithTag(v === undefined ? "rgb" : v )
-        v = options["mediaPixelCount"];  spinMediaPixelCount.value  = (v === undefined ? 170 : v )
-        v = options["mediaPixelOffset"]; spinMediaPixelOffset.value = (v === undefined ? 1   : v + 1 )
+        v = options["mediaPixelMode"];     menuMediaPixelMode.selectOptionWithTag(v === undefined ? "rgb" : v )
+        v = options["mediaPixelCountX"];   spinMediaPixelCountX.value  = (v === undefined ? 170 : v )
+        v = options["mediaPixelCountY"];   spinMediaPixelCountY.value  = (v === undefined ? 1 : v )
+        v = options["mediaPixelOffsetX"];  spinMediaPixelOffsetX.value = (v === undefined ? 0 : v )
+        v = options["mediaPixelOffsetY"];  spinMediaPixelOffsetY.value = (v === undefined ? 0 : v )
+        v = options["mediaPixelSpacingX"]; spinMediaPixelSpacingX.value = (v === undefined ? 0 : v )
+        v = options["mediaPixelSpacingY"]; spinMediaPixelSpacingY.value = (v === undefined ? 0 : v )
+        v = options["mediaMappingMode"];   itemMediaMappingMode.value = (v === undefined ? 0 : v )
     }
 
     function getEndpointMediaOptions() {
@@ -621,9 +800,14 @@ Item {
             mediaDuration: spinMediaDuration.value,
             mediaRepeat:   checkMediaRepeat.checked,
 
-            mediaPixelMode:   menuMediaPixelMode.selectedItemTag,
-            mediaPixelCount:  spinMediaPixelCount.value,
-            mediaPixelOffset: spinMediaPixelOffset.value - 1
+            mediaPixelMode:     menuMediaPixelMode.selectedItemTag,
+            mediaPixelCountX:   spinMediaPixelCountX.value,
+            mediaPixelCountY:   spinMediaPixelCountY.value,
+            mediaPixelOffsetX:  spinMediaPixelOffsetX.value,
+            mediaPixelOffsetY:  spinMediaPixelOffsetY.value,
+            mediaPixelSpacingX: spinMediaPixelSpacingX.value,
+            mediaPixelSpacingY: spinMediaPixelSpacingY.value,
+            mediaMappingMode:   itemMediaMappingMode.value
         }
 
         return options

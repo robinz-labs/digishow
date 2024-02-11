@@ -288,14 +288,26 @@ void DgsDmxInterface::setupPlayerPixelMapping(DigishowPixelPlayer *player, const
         if (pixelMode == DigishowPixelPlayer::PixelUnknown) continue;
         int bytesPerPixel = (pixelMode == DigishowPixelPlayer::PixelMono ? 1 : 3);
 
+        int pixelCountX = endpointOptions.value("mediaPixelCountX").toInt();
+        int pixelCountY = endpointOptions.value("mediaPixelCountY").toInt();
+        int pixelCount = pixelCountX * pixelCountY;
+
         int channel  = endpointInfo.channel;
-        int pixelCount = endpointOptions.value("mediaPixelCount").toInt();
+
+        // the number of pixels need be mapped to the dmx buffer
         pixelCount = qMin(pixelCount, (512-channel)/bytesPerPixel);
 
+        // map pixels to the dmx buffer
         dppPixelMapping mapping;
         mapping.pixelMode = pixelMode;
-        mapping.pixelCount = pixelCount;
-        mapping.pixelOffset = endpointOptions.value("mediaPixelOffset").toInt();
+        mapping.pixelCountX = pixelCountX;
+        mapping.pixelCountY = pixelCountY;
+        mapping.pixelOffsetX = endpointOptions.value("mediaPixelOffsetX").toInt();
+        mapping.pixelOffsetY = endpointOptions.value("mediaPixelOffsetY").toInt();
+        mapping.pixelSpacingX = endpointOptions.value("mediaPixelSpacingX").toInt();
+        mapping.pixelSpacingY = endpointOptions.value("mediaPixelSpacingY").toInt();
+        mapping.mappingMode = endpointOptions.value("mediaMappingMode").toInt();
+        mapping.dataOutPixelCount = pixelCount;
         mapping.pDataOut = (uint8_t*)m_data + channel;
         player->addPixelMapping(mapping);
     }

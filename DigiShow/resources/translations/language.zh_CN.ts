@@ -1299,47 +1299,27 @@ either express or implied.</source>
         <translation>像素映射</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="218"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="214"/>
         <source>Pixel Mode</source>
         <translation>像素模式</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="241"/>
-        <source>Pixel Count</source>
-        <translation>像素数目</translation>
-    </message>
-    <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="264"/>
-        <source>From Pixel</source>
-        <translation>从像素</translation>
-    </message>
-    <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="287"/>
-        <source>To Universe</source>
-        <translation>映射到线路</translation>
-    </message>
-    <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="310"/>
-        <source>To Channel</source>
-        <translation>映射到通道</translation>
-    </message>
-    <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="320"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="494"/>
         <source>Playback Options</source>
         <translation>播放选项</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="533"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="707"/>
         <source>Dimmer 16-bit</source>
         <translation>调光 16-bit</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="536"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="710"/>
         <source>Pixels</source>
         <translation>像素</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="340"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="514"/>
         <source>Play Alone</source>
         <translation>单独播放</translation>
     </message>
@@ -1349,98 +1329,123 @@ either express or implied.</source>
         <translation>图像序列</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="364"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="256"/>
+        <source>Pixel Count X | Y</source>
+        <translation>像素数目 X | Y</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="299"/>
+        <source>Pixel Offset X | Y</source>
+        <translation>像素偏移 X | Y</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="341"/>
+        <source>Pixel Spacing X | Y</source>
+        <translation>像素间隔 X | Y</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="484"/>
+        <source>To Universe | Channel</source>
+        <translation>映射到线路 | 通道</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="442"/>
+        <source>Address Mapping</source>
+        <translation>地址映射模式</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="538"/>
         <source>Fade In</source>
         <translation>淡入时长</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="388"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="562"/>
         <source>Volume</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="402"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="576"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="412"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="586"/>
         <source>Speed</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="426"/>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="450"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="600"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="624"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="436"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="610"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="460"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="634"/>
         <source>Duration</source>
         <translation>时长</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="481"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="655"/>
         <source>Repeat</source>
         <translation>循环播放</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="497"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="671"/>
         <source>Defaults</source>
         <translation>恢复默认</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="532"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="706"/>
         <source>Dimmer</source>
         <translation>调光</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="558"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="732"/>
         <source>Mono</source>
         <translation>单色</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="559"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="733"/>
         <source>RGB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="560"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="734"/>
         <source>RBG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="561"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="735"/>
         <source>GRB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="562"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="736"/>
         <source>GBR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="563"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="737"/>
         <source>BRG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="564"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="738"/>
         <source>BGR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="677"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="861"/>
         <source>Please select a video clip file exists on your computer disks or enter a valid url of the video clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的视频素材文件，或输入该视频素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="677"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="861"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
@@ -1501,138 +1506,148 @@ either express or implied.</source>
         <translation>像素映射</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="201"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="197"/>
         <source>Pixel Mode</source>
         <translation>像素模式</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="224"/>
-        <source>Pixel Count</source>
-        <translation>像素数目</translation>
+        <location filename="../MwEndpointSelectorDmx.qml" line="239"/>
+        <source>Pixel Count X | Y</source>
+        <translation>像素数目 X | Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="247"/>
-        <source>From Pixel</source>
-        <translation>从像素</translation>
+        <location filename="../MwEndpointSelectorDmx.qml" line="282"/>
+        <source>Pixel Offset X | Y</source>
+        <translation>像素偏移 X | Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="270"/>
-        <source>To Channel</source>
-        <translation>映射到通道</translation>
+        <location filename="../MwEndpointSelectorDmx.qml" line="324"/>
+        <source>Pixel Spacing X | Y</source>
+        <translation>像素间隔 X | Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="280"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="454"/>
+        <source>To DMX Channel</source>
+        <translation>映射到 DMX 通道</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorDmx.qml" line="425"/>
+        <source>Address Mapping</source>
+        <translation>地址映射模式</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorDmx.qml" line="464"/>
         <source>Playback Options</source>
         <translation>播放选项</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="300"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="484"/>
         <source>Play Alone</source>
         <translation>单独播放</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="324"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="508"/>
         <source>Fade In</source>
         <translation>淡入时长</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="348"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="532"/>
         <source>Volume</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="362"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="546"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="372"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="556"/>
         <source>Speed</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="386"/>
-        <location filename="../MwEndpointSelectorDmx.qml" line="410"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="570"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="594"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="396"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="580"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="420"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="604"/>
         <source>Duration</source>
         <translation>时长</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="441"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="625"/>
         <source>Repeat</source>
         <translation>循环播放</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="457"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="641"/>
         <source>Defaults</source>
         <translation>恢复默认</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="485"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="669"/>
         <source>Dimmer</source>
         <translation>调光</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="486"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="670"/>
         <source>Dimmer 16-bit</source>
         <translation>调光 16-bit</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="487"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="671"/>
         <source>Pixels</source>
         <translation>像素</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="509"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="693"/>
         <source>Mono</source>
         <translation>单色</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="510"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="694"/>
         <source>RGB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="511"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="695"/>
         <source>RBG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="512"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="696"/>
         <source>GRB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="513"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="697"/>
         <source>GBR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="514"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="698"/>
         <source>BRG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="515"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="699"/>
         <source>BGR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="626"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="820"/>
         <source>Please select a video clip file exists on your computer disks or enter a valid url of the video clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的视频素材文件，或输入该视频素材的有效 URL。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="626"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="820"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>

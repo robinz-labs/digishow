@@ -60,7 +60,7 @@ Item {
 
                         // select multiple
                         selectMultiple(highlightedIndex, index)
-                        highlightedIndex = index
+                        //highlightedIndex = index
 
                     } else {
 

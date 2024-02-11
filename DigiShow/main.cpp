@@ -34,6 +34,8 @@
 #include "digishow_slot.h"
 #include "digishow_data.h"
 #include "digishow_metronome.h"
+#include "digishow_pixel_player.h"
+
 
 #ifdef Q_OS_MAC
 #include <CoreMIDI/CoreMIDI.h>
@@ -135,6 +137,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<DigishowSlot>       ("DigiShow", 1, 0, "DigishowSlot");
     qmlRegisterType<DigishowData>       ("DigiShow", 1, 0, "DigishowData");
     qmlRegisterType<DigishowMetronome>  ("DigiShow", 1, 0, "DigishowMetronome");
+    qmlRegisterType<DigishowPixelPlayer>("DigiShow", 1, 0, "DigishowPixelPlayer");
     qmlRegisterType<DigishowCloud>      ("DigiShow", 1, 0, "DigishowCloud");
     qmlRegisterType<QtQrCodeQuickItem>  ("DigiShow", 1, 0, "QrCode");
 

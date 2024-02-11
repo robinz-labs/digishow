@@ -52,6 +52,11 @@ DigishowPixelPlayer::DigishowPixelPlayer(QObject *parent) : QObject(parent)
 
     m_elapsed = new QElapsedTimer();
     m_elapsed->start();
+
+    // init pixel frame buffer
+    m_framePixelWidth = 0;
+    m_framePixelHeight = 0;
+
 }
 
 DigishowPixelPlayer::~DigishowPixelPlayer()
@@ -87,7 +92,9 @@ bool DigishowPixelPlayer::load(const QString &mediaUrl, int mediaType)
         if (!image.load(filePath)) return false;
         if (image.format() != QImage::Format_ARGB32)
             image = image.convertToFormat(QImage::Format_ARGB32);
-        updateFrameBuffer(image.bits(), image.sizeInBytes());
+
+        if (image.width() * image.height() * 4 == image.sizeInBytes())
+            updateFrameBuffer(image.bits(), image.width(), image.height());
 
     } else if (m_mediaType == MediaVideo) {
 
@@ -255,27 +262,27 @@ int DigishowPixelPlayer::transferFrameAllMappedPixels()
     return count;
 }
 
-void DigishowPixelPlayer::updateFrameBuffer(uint8_t *pFramePixels, int length)
+void DigishowPixelPlayer::updateFrameBuffer(uint8_t *pFramePixels, int width, int height)
 {
+    int length = width * height * 4; // each pixel contains four bytes
     m_frameLatest = QByteArray((const char*)pFramePixels, length);
 
-    if (m_frameBackup.isEmpty() || m_frameBackup.length() != length) {
+    if (m_frameBackup.isEmpty() || m_frameBackup.length() != length ||
+        m_framePixelWidth != width || m_framePixelHeight != height) {
         m_frameBackup = QByteArray(length, 0);
     }
+
+    m_framePixelWidth = width;
+    m_framePixelHeight = height;
 
     emit frameUpdated();
 }
 
 int DigishowPixelPlayer::transferFramePixels(dppPixelMapping mapping)
 {
-    int pixelMode = mapping.pixelMode;
-    int pixelCount = mapping.pixelCount;
-    int pixelOffset = mapping.pixelOffset;
-    uint8_t* pDataOut = mapping.pDataOut;
-
     // pixel mode
     int rOffset, gOffset, bOffset;
-    switch (pixelMode) {
+    switch (mapping.pixelMode) {
     case PixelMono: rOffset = 0, gOffset = 0, bOffset = 0; break;
     case PixelRGB:  rOffset = 0; gOffset = 1; bOffset = 2; break;
     case PixelRBG:  rOffset = 0; gOffset = 2; bOffset = 1; break;
@@ -287,60 +294,109 @@ int DigishowPixelPlayer::transferFramePixels(dppPixelMapping mapping)
         return 0;
     }
 
-    // copy pixels
+    // copy mapped pixels
     uint8_t *pDataPixels = (uint8_t*)m_frameLatest.data();
     uint8_t *pDataBackup = (uint8_t*)m_frameBackup.data();
-    int idxByteIn = pixelOffset * 4;
+    int bytesPerPixelInDataOut = (mapping.pixelMode == PixelMono ? 1 : 3);
+
+    uint8_t* pDataOut = mapping.pDataOut;
+    int idxByteIn = 0;
     int idxByteOut = 0;
-    int bytesPerPixelInDataOut = (pixelMode == PixelMono ? 1 : 3);
+    int pixelMappedCount = 0;
 
-    int pixelCount1 = qMin(pixelCount, m_frameLatest.length()/4-pixelOffset);
-    for (int n=0 ; n<pixelCount1 ; n++) {
+    // inline pixel mapping parameters
+    int xFrom = 0;
+    int xTo = mapping.pixelCountX;
+    int xStep = 1;
 
-        uint8_t opacity = pDataPixels[idxByteIn+3];
-        if (opacity != 0) {
+    // pixel lines mapping
+    for (int y = 0 ; y < mapping.pixelCountY ; y++) {
 
-            if (m_fadein > 0 && m_elapsed->elapsed() < m_fadein) {
+        // confirm not out of original frame height
+        int originY = mapping.pixelOffsetY + (mapping.pixelSpacingY+1) * y;
+        if (originY >= m_framePixelHeight) break;
 
-                // with fade-in effect
+        int idxByteInRow = originY * m_framePixelWidth * 4; // each original pixel contains four bytes
 
-                // backup origin pixels
-                if (pDataBackup[idxByteIn+3] == 0) {
-                    pDataBackup[idxByteIn+3] = 0xff; // mark as backed up
-                    pDataBackup[idxByteIn+2] = pDataOut[idxByteOut + rOffset];
-                    pDataBackup[idxByteIn+1] = pDataOut[idxByteOut + gOffset];
-                    pDataBackup[idxByteIn  ] = pDataOut[idxByteOut + bOffset];
-                }
+        // inline pixel mapping
+        if (mapping.mappingMode == MappingByRowL2R ||
+           (mapping.mappingMode == MappingByRowL2Z && (y % 2 == 0)) ||
+           (mapping.mappingMode == MappingByRowR2Z && (y % 2 == 1))) {
 
-                float fadingInPercent  = (float)m_elapsed->elapsed() / m_fadein;
-                float fadingOutPercent = 1 - fadingInPercent;
+            xFrom = 0;
+            xTo   = mapping.pixelCountX;
+            xStep = 1;
+        } else
+        if (mapping.mappingMode == MappingByRowR2L ||
+           (mapping.mappingMode == MappingByRowL2Z && (y % 2 == 1)) ||
+           (mapping.mappingMode == MappingByRowR2Z && (y % 2 == 0))) {
 
-                // obtain new pixels
-                if (pixelMode == PixelMono) {
-                    pDataOut[idxByteOut] = pDataPixels[idxByteIn]*fadingInPercent + pDataBackup[idxByteIn]*fadingOutPercent;
-                } else {
-                    pDataOut[idxByteOut + rOffset] = pDataPixels[idxByteIn+2]*fadingInPercent + pDataBackup[idxByteIn+2]*fadingOutPercent;
-                    pDataOut[idxByteOut + gOffset] = pDataPixels[idxByteIn+1]*fadingInPercent + pDataBackup[idxByteIn+1]*fadingOutPercent;
-                    pDataOut[idxByteOut + bOffset] = pDataPixels[idxByteIn  ]*fadingInPercent + pDataBackup[idxByteIn  ]*fadingOutPercent;
-                }
-
-            } else {
-
-                // without fade-in effect
-
-                // just copy new pixels
-                if (pixelMode == PixelMono) {
-                    pDataOut[idxByteOut] = pDataPixels[idxByteIn];
-                } else {
-                    pDataOut[idxByteOut + rOffset] = pDataPixels[idxByteIn+2];
-                    pDataOut[idxByteOut + gOffset] = pDataPixels[idxByteIn+1];
-                    pDataOut[idxByteOut + bOffset] = pDataPixels[idxByteIn  ];
-                }
-            }
+            xFrom = mapping.pixelCountX-1;
+            xTo   = -1;
+            xStep = -1;
         }
 
-        idxByteIn += 4;
-        idxByteOut += bytesPerPixelInDataOut;
+        //qDebug() << "y --------------------------- " << y;
+
+        for (int x = xFrom ; x != xTo ; x += xStep) {
+
+            //qDebug() << "x" << x;
+
+            // confirm not out of data output buffer
+            if (pixelMappedCount+1 > mapping.dataOutPixelCount) break;
+            pixelMappedCount++;
+
+            // confirm not out of original frame width
+            int originX = mapping.pixelOffsetX + (mapping.pixelSpacingX+1) * x;
+            if (originX >= m_framePixelWidth) { idxByteOut += bytesPerPixelInDataOut; continue; }
+
+            idxByteIn = idxByteInRow + originX * 4; // each original pixel contains four bytes
+
+            // copy pixel bytes
+            uint8_t opacity = pDataPixels[idxByteIn+3]; // get the alpha byte
+            if (opacity != 0) {
+
+                if (m_fadein > 0 && m_elapsed->elapsed() < m_fadein) {
+
+                    // with fade-in effect
+
+                    // backup origin pixels
+                    if (pDataBackup[idxByteIn+3] == 0) {
+                        pDataBackup[idxByteIn+3] = 0xff; // mark as backed up
+                        pDataBackup[idxByteIn+2] = pDataOut[idxByteOut + rOffset];
+                        pDataBackup[idxByteIn+1] = pDataOut[idxByteOut + gOffset];
+                        pDataBackup[idxByteIn  ] = pDataOut[idxByteOut + bOffset];
+                    }
+
+                    float fadingInPercent  = (float)m_elapsed->elapsed() / m_fadein;
+                    float fadingOutPercent = 1 - fadingInPercent;
+
+                    // obtain new pixels
+                    if (mapping.pixelMode == PixelMono) {
+                        pDataOut[idxByteOut] = pDataPixels[idxByteIn]*fadingInPercent + pDataBackup[idxByteIn]*fadingOutPercent;
+                    } else {
+                        pDataOut[idxByteOut + rOffset] = pDataPixels[idxByteIn+2]*fadingInPercent + pDataBackup[idxByteIn+2]*fadingOutPercent;
+                        pDataOut[idxByteOut + gOffset] = pDataPixels[idxByteIn+1]*fadingInPercent + pDataBackup[idxByteIn+1]*fadingOutPercent;
+                        pDataOut[idxByteOut + bOffset] = pDataPixels[idxByteIn  ]*fadingInPercent + pDataBackup[idxByteIn  ]*fadingOutPercent;
+                    }
+
+                } else {
+
+                    // without fade-in effect
+
+                    // just copy new pixels
+                    if (mapping.pixelMode == PixelMono) {
+                        pDataOut[idxByteOut] = pDataPixels[idxByteIn];
+                    } else {
+                        pDataOut[idxByteOut + rOffset] = pDataPixels[idxByteIn+2];
+                        pDataOut[idxByteOut + gOffset] = pDataPixels[idxByteIn+1];
+                        pDataOut[idxByteOut + bOffset] = pDataPixels[idxByteIn  ];
+                    }
+                }
+            }
+
+            idxByteOut += bytesPerPixelInDataOut;
+        }
     }
 
     return idxByteOut; // number of bytes transferred
@@ -350,9 +406,9 @@ void DigishowPixelPlayer::onVideoFrameReady(const QVideoFrame &frame)
 {
     QVideoFrame f(frame);
     f.map(QAbstractVideoBuffer::ReadOnly);
-    updateFrameBuffer(f.bits(), f.mappedBytes());
+    if (f.width() * f.height() * 4 == f.mappedBytes())
+        updateFrameBuffer(f.bits(), f.width(), f.height());
     f.unmap();
-    emit frameUpdated();
 }
 
 void DigishowPixelPlayer::onTimerPlayerFired()
@@ -401,6 +457,6 @@ void DigishowPixelPlayer::onTimerSequencerFired()
     QImage *image = m_imageSequence[currentFrame];
     m_imageSequenceCurrentFrame = currentFrame;
 
-    updateFrameBuffer(image->bits(), image->sizeInBytes());
-    emit frameUpdated();
+    if (image->width() * image->height() * 4 == image->sizeInBytes())
+        updateFrameBuffer(image->bits(), image->width(), image->height());
 }
