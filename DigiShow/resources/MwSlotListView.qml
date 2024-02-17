@@ -319,11 +319,11 @@ Item {
                         Rectangle {
                             property real value: model.epInValue / model.epInRange
 
-                            width: Math.round(100 * value)
-                            anchors.left: parent.left
-                            anchors.top: parent.top
-                            anchors.bottom: parent.bottom
-                            anchors.margins: 3
+                            anchors.fill: parent
+                            anchors.leftMargin: 3 + (model.slotInInverted ? Math.round(100 * value) : 0)
+                            anchors.rightMargin: 3 + (model.slotInInverted ? 0 : Math.round(100 * (1.0-value)))
+                            anchors.topMargin: 3
+                            anchors.bottomMargin: 3
                             radius: 3
                             color: model.epInColor
 
@@ -347,7 +347,8 @@ Item {
                             anchors.top: parent.bottom
                             anchors.topMargin: 4
                             anchors.right: parent.right
-                            anchors.rightMargin: 4
+                            anchors.rightMargin: 2
+                            opacity: 0.5
                             source: "qrc:///images/icon_invert_white.png"
                             visible: model.slotInInverted
                         }
@@ -410,7 +411,7 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter
                         source: "qrc:///images/icon_arrow_right_white.png"
                         opacity: model.epInBusy ? 1.0 : 0.1
-                        visible: model.slotLinked && !indicatorTraffic.visible
+                        visible: model.slotLinked && !model.errTraffic
                     }
 
                     Image {
@@ -425,25 +426,26 @@ Item {
                     }
 
                     Image {
-                        id: indicatorExpression
+                        id: indicatorInputExpression
                         width: 16
                         height: 16
                         anchors.horizontalCenter: meterEndpointIn.horizontalCenter
                         anchors.top: meterEndpointIn.bottom
                         anchors.topMargin: 6
+                        opacity: 0.9
                         source: "qrc:///images/icon_expression_white.png"
-                        visible: model.slotExpression !== "" && !indicatorExpressionError.visible
+                        visible: model.slotInExpression !== "" && !model.errInExp
                     }
 
                     Image {
-                        id: indicatorExpressionError
+                        id: indicatorInputExpressionError
                         width: 16
                         height: 16
                         anchors.horizontalCenter: meterEndpointIn.horizontalCenter
                         anchors.top: meterEndpointIn.bottom
                         anchors.topMargin: 4
                         source: "qrc:///images/icon_attention.png"
-                        visible: model.errExpression
+                        visible: model.errInExp
                     }
 
                     Rectangle {
@@ -527,17 +529,6 @@ Item {
                             font.bold: true
                         }
 
-                        Image {
-                            width: 16
-                            height: 16
-                            anchors.top: parent.bottom
-                            anchors.topMargin: 4
-                            anchors.right: parent.right
-                            anchors.rightMargin: 4
-                            source: "qrc:///images/icon_invert_white.png"
-                            visible: model.slotOutInverted
-                        }
-
                         Text {
                             anchors.bottom: parent.top
                             anchors.bottomMargin: 6
@@ -586,13 +577,11 @@ Item {
                                     model.epOutFaderValue = 0
 
                                 model.epOutTap = true
-                                model.epOutValue = Math.round(faderOutput.value)
-                                app.slotAt(index).setEndpointOutValue(model.epOutValue)
+                                app.slotAt(index).setEndpointOutValue(faderOutput.value)
                             }
                             onReleased: {
                                 model.epOutTap = false
-                                model.epOutValue = (model.slotOutInverted ? model.epOutRange : 0)
-                                app.slotAt(index).setEndpointOutValue(model.epOutValue)
+                                app.slotAt(index).setEndpointOutValue(model.slotOutInverted ? model.epOutRange : 0)
                             }
                         }
 
@@ -611,8 +600,8 @@ Item {
                             colorNormal: model.epOutFaderHold ? "#666666" : "transparent"
                             onClicked: {
                                 if (!model.epOutFaderHold) {
-                                    model.epOutValue = Math.round(faderOutput.value)
-                                    app.slotAt(index).setEndpointOutValue(model.epOutValue)
+                                    model.epOutPreValue = faderOutput.value
+                                    app.slotAt(index).setEndpointOutValue(faderOutput.value)
                                 }
                                 model.epOutFaderHold = !model.epOutFaderHold
                             }
@@ -626,7 +615,7 @@ Item {
                             anchors.right: buttonHold.left
                             anchors.rightMargin: 18
                             anchors.verticalCenter: parent.verticalCenter
-                            value: model.slotLinked && model.epOutFaderHold ? model.epOutValue : model.epOutFaderValue
+                            value: model.slotLinked && model.epOutFaderHold ? model.epOutPreValue : model.epOutFaderValue
                             to: model.epOutRange
                             stepSize: 1
                             color: model.epOutColor
@@ -635,17 +624,48 @@ Item {
                             Behavior on value { NumberAnimation { duration: (model.slotLinked && model.epOutFaderHold ? 300 : 0); easing.type: Easing.OutCubic } }
 
                             onMoved: {
-                                if (model.epOutFaderHold) {
-                                    model.epOutValue = Math.round(faderOutput.value)
-                                    app.slotAt(index).setEndpointOutValue(model.epOutValue)
-                                }
-                                //model.epOutFaderValue = faderOutput.value
+                                if (model.epOutFaderHold) app.slotAt(index).setEndpointOutValue(faderOutput.value)
                             }
 
                             onValueChanged: {
                                 model.epOutFaderValue = faderOutput.value
                             }
+
+                            Image {
+                                width: 16
+                                height: 16
+                                anchors.top: parent.bottom
+                                anchors.topMargin: -5
+                                anchors.right: parent.right
+                                anchors.rightMargin: 0
+                                opacity: 0.5
+                                source: "qrc:///images/icon_invert_white.png"
+                                visible: model.slotOutInverted
+                            }
                         }
+                    }
+
+                    Image {
+                        id: indicatorOutputExpression
+                        width: 16
+                        height: 16
+                        anchors.horizontalCenter: meterEndpointOut.horizontalCenter
+                        anchors.top: meterEndpointOut.bottom
+                        anchors.topMargin: 6
+                        opacity: 0.9
+                        source: "qrc:///images/icon_expression_white.png"
+                        visible: model.slotOutExpression !== "" && !model.errOutExp
+                    }
+
+                    Image {
+                        id: indicatorOutputExpressionError
+                        width: 16
+                        height: 16
+                        anchors.horizontalCenter: meterEndpointOut.horizontalCenter
+                        anchors.top: meterEndpointOut.bottom
+                        anchors.topMargin: 4
+                        source: "qrc:///images/icon_attention.png"
+                        visible: model.errOutExp
                     }
 
                     CheckBox {
@@ -780,10 +800,8 @@ Item {
                     } else if (event.key === Qt.Key_H) {
 
                         // hold
-                        if (model.epOutFaderHold) {
-                            slot.setEndpointOutValue(model.slotOutInverted ? model.epOutRange : 0)
-                        } else {
-                            dataModel.setProperty(highlightedIndex, "epOutValue", model.epOutFaderValue)
+                        if (!model.epOutFaderHold) {
+                            dataModel.setProperty(highlightedIndex, "epOutPreValue", model.epOutFaderValue)
                             slot.setEndpointOutValue(model.epOutFaderValue)
                         }
                         dataModel.setProperty(highlightedIndex, "epOutFaderHold", !model.epOutFaderHold)
@@ -810,12 +828,13 @@ Item {
                     } else if (event.key === Qt.Key_Left || event.key === Qt.Key_Right) {
 
                         // fader - or fader +
-                        var signal = (event.key === Qt.Key_Left ? -1 : 1)
+                        var sign = (event.key === Qt.Key_Left ? -1 : 1)
                         var epOutFaderValue = (model.epOutSignal === DigishowEnvironment.SignalBinary
-                                               ? model.epOutFaderValue + signal * 1
-                                               : model.epOutFaderValue + signal * Math.round(model.epOutRange * 0.1) )
+                                               ? model.epOutFaderValue + sign * 1
+                                               : model.epOutFaderValue + sign * model.epOutRange * 0.1)
                         epOutFaderValue = Math.min(epOutFaderValue, model.epOutRange)
                         epOutFaderValue = Math.max(epOutFaderValue, 0)
+                        epOutFaderValue = Math.round(epOutFaderValue)
                         dataModel.setProperty(highlightedIndex, "epOutFaderValue", epOutFaderValue)
                         if (model.epOutFaderHold) slot.setEndpointOutValue(epOutFaderValue)
 
@@ -1096,12 +1115,14 @@ Item {
                 if (dataModel.get(n).epOutAvailable !== data["epOutAvailable"]) dataModel.setProperty(n, "epOutAvailable", data["epOutAvailable"])
                 if (dataModel.get(n).epInValue      !== data["epInValue"     ]) dataModel.setProperty(n, "epInValue",      data["epInValue"     ])
                 if (dataModel.get(n).epOutValue     !== data["epOutValue"    ]) dataModel.setProperty(n, "epOutValue",     data["epOutValue"    ])
+                if (dataModel.get(n).epOutPreValue  !== data["epOutPreValue" ]) dataModel.setProperty(n, "epOutPreValue",  data["epOutPreValue" ])
                 if (dataModel.get(n).epInBusy       !== data["epInBusy"      ]) dataModel.setProperty(n, "epInBusy",       data["epInBusy"      ])
                 if (dataModel.get(n).epOutBusy      !== data["epOutBusy"     ]) dataModel.setProperty(n, "epOutBusy",      data["epOutBusy"     ])
                 if (dataModel.get(n).slotEnabled    !== data["slotEnabled"   ]) dataModel.setProperty(n, "slotEnabled",    data["slotEnabled"   ])
                 if (dataModel.get(n).slotLinked     !== data["slotLinked"    ]) dataModel.setProperty(n, "slotLinked",     data["slotLinked"    ])
                 if (dataModel.get(n).errTraffic     !== data["errTraffic"    ]) dataModel.setProperty(n, "errTraffic",     data["errTraffic"    ])
-                if (dataModel.get(n).errExpression  !== data["errExpression" ]) dataModel.setProperty(n, "errExpression",  data["errExpression" ])
+                if (dataModel.get(n).errInExp       !== data["errInExp"      ]) dataModel.setProperty(n, "errInExp",       data["errInExp"      ])
+                if (dataModel.get(n).errOutExp      !== data["errOutExp"     ]) dataModel.setProperty(n, "errOutExp",      data["errOutExp"     ])
             }
         }
     }
@@ -1133,7 +1154,8 @@ Item {
         if (slotBookmarked) hasBookmarks = true
 
         var slotInfo = config["slotInfo"]
-        var slotExpression = slotInfo["expression"]
+        var slotInExpression = slotInfo["inputExpression"]
+        var slotOutExpression = slotInfo["outputExpression"]
         var slotInInverted = slotInfo["inputInverted"]
         var slotOutInverted = slotInfo["outputInverted"]
 
@@ -1185,12 +1207,14 @@ Item {
         var epOutAvailable = data["epOutAvailable"]
         var epInValue      = data["epInValue"]
         var epOutValue     = data["epOutValue"]
+        var epOutPreValue  = data["epOutPreValue"]
         var epInBusy       = data["epInBusy"]
         var epOutBusy      = data["epOutBusy"]
         var slotEnabled    = data["slotEnabled"]
         var slotLinked     = data["slotLinked"]
         var errTraffic     = data["errTraffic"]
-        var errExpression  = data["errExpression"]
+        var errInExp       = data["errInExp"]
+        var errOutExp      = data["errOutExp"]
 
 
         // add to data model
@@ -1205,7 +1229,8 @@ Item {
             slotLinked: slotLinked,
             slotSelected: false,
 
-            slotExpression: slotExpression,
+            slotInExpression: slotInExpression,
+            slotOutExpression: slotOutExpression,
             slotInInverted: slotInInverted,
             slotOutInverted: slotOutInverted,
 
@@ -1228,6 +1253,7 @@ Item {
 
             epOutRange: epOutRange,
             epOutValue: epOutValue,
+            epOutPreValue: epOutPreValue,
             epOutBusy: epOutBusy,
             epOutAvailable: epOutAvailable,
 
@@ -1236,7 +1262,8 @@ Item {
             epOutTap: false,
 
             errTraffic: errTraffic,
-            errExpression: errExpression,
+            errInExp: errInExp,
+            errOutExp: errOutExp,
 
             launchRememberLink: false,
             launchRememberOutput: false

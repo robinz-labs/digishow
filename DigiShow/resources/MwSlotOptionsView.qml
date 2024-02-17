@@ -45,7 +45,7 @@ Item {
     }
 
     Item {
-        id: itemExpression
+        id: itemInputExpression
 
         height: 30
         anchors.bottom: parent.top
@@ -53,25 +53,27 @@ Item {
         anchors.right: parent.right
 
         CButton {
-            id: buttonExpression
+            id: buttonInputExpression
             width: 110
             height: 18
-            anchors.verticalCenter: textExpression.verticalCenter
-            anchors.right: textExpression.right
+            anchors.verticalCenter: textInputExpression.verticalCenter
+            anchors.right: textInputExpression.right
             anchors.rightMargin: 12
-            colorNormal: "#331122"
             label.font.pixelSize: 10
             label.font.bold: false
             label.text: qsTr("Add JS Expression")
             box.border.width: 1
             box.radius: 9
-            visible: !textExpression.visible
+            visible: !textInputExpression.visible
+
+            colorNormal: mouseOver ? "#331122" : "transparent"
+            opacity: mouseOver ? 1.0 : 0.4
+            Behavior on opacity { NumberAnimation { duration: 200 } }
 
             onClicked: {
-                textExpression.text = "inputValue"
-                textExpression.apply()
-                textExpression.input.selectAll()
-                textExpression.input.forceActiveFocus()
+                textInputExpression.text = "value"
+                textInputExpression.apply()
+                textInputExpression.input.forceActiveFocus()
             }
 
             Image {
@@ -87,7 +89,7 @@ Item {
 
         CTextInputBox {
 
-            id: textExpression
+            id: textInputExpression
 
             property bool isEditing: false
             property bool hasError: false
@@ -140,43 +142,7 @@ Item {
                 label.text: qsTr("?")
                 box.radius: 9
 
-                onClicked: {
-                    var exampleCode = "inputValue*0.5 + 10000"
-                    var btn = 0
-                    btn = messageBox.showAndWait(
-                        qsTr("Write a JavaScript expression to dynamically change the input value of the signal source, for example:") + "\r\n\r\n= " + exampleCode,
-                        qsTr("Try It"), qsTr("Next"))
-                    if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
-                    if (btn <= 1) return
-
-                    exampleCode = "inputValue*0.5 + outputValueOf('Another Signal Link')*0.5"
-                    btn = messageBox.showAndWait(
-                        qsTr("The expression can reference the input or output value of any other signal link, for example:") + "\r\n\r\n= " + exampleCode,
-                        qsTr("Try It"), qsTr("Next"))
-                    if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
-                    if (btn <= 1) return
-
-                    exampleCode = "inputValue > 0 ? Math.random()*0xffff : 0"
-                    btn = messageBox.showAndWait(
-                        qsTr("The expression can contain common JavaScript statements and functions, for example:") + "\r\n\r\n= " + exampleCode,
-                        qsTr("Try It"), qsTr("Next"))
-                    if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
-                    if (btn <= 1) return
-
-                    if (app.scriptableFileExists()) {
-                        btn = messageBox.showAndWait(
-                            qsTr("The expression can also call user-defined functions, now you can create your functions in the attached script file."),
-                            qsTr("Show Script"), qsTr("Done"))
-                        if (btn == 1) showScriptableFile()
-
-                    } else {
-                        btn = messageBox.showAndWait(
-                            qsTr("The expression can also call user-defined functions, now you can create an attached script file contains your functions."),
-                            qsTr("Create Script"), qsTr("Done"))
-                        if (btn == 1) createScriptableFile()
-                    }
-
-                }
+                onClicked: expressionHelp(textInputExpression)
             }
 
             CButton {
@@ -191,8 +157,8 @@ Item {
                 box.radius: 9
 
                 onClicked: {
-                    textExpression.text = ""
-                    textExpression.apply()
+                    textInputExpression.text = ""
+                    textInputExpression.apply()
                 }
             }
 
@@ -207,9 +173,9 @@ Item {
                 label.text: qsTr("OK")
                 box.radius: 9
                 colorNormal: Material.accent
-                visible: textExpression.isEditing
+                visible: textInputExpression.isEditing
 
-                onClicked: textExpression.apply()
+                onClicked: textInputExpression.apply()
             }
 
             function apply() {
@@ -217,12 +183,162 @@ Item {
                 isEdited = true
                 isModified = true
 
-                if (textExpression.text !== "") {
-                    setSlotOption("expression", textExpression.text)
+                if (textInputExpression.text !== "") {
+                    setSlotOption("inputExpression", textInputExpression.text)
                 } else {
-                    clearSlotOption("expression")
+                    clearSlotOption("inputExpression")
                 }
-                textExpression.isEditing = false
+                textInputExpression.isEditing = false
+                parent.forceActiveFocus()
+            }
+        }
+    }
+
+    Item {
+        id: itemOutputExpression
+
+        height: 30
+        anchors.top: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+
+        CButton {
+            id: buttonOutputExpression
+            width: 110
+            height: 18
+            anchors.verticalCenter: textOutputExpression.verticalCenter
+            anchors.right: textOutputExpression.right
+            anchors.rightMargin: 12
+            label.font.pixelSize: 10
+            label.font.bold: false
+            label.text: qsTr("Add JS Expression")
+            box.border.width: 1
+            box.radius: 9
+            visible: !textOutputExpression.visible
+
+            colorNormal: mouseOver ? "#331122" : "transparent"
+            opacity: mouseOver ? 1.0 : 0.4
+            Behavior on opacity { NumberAnimation { duration: 200 } }
+
+            onClicked: {
+                textOutputExpression.text = "value"
+                textOutputExpression.apply()
+                textOutputExpression.input.forceActiveFocus()
+            }
+
+            Image {
+                width: 16
+                height: 16
+                anchors.right: parent.left
+                anchors.rightMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                source: "qrc:///images/icon_expression_white.png"
+                opacity: 0.5
+            }
+        }
+
+        CTextInputBox {
+
+            id: textOutputExpression
+
+            property bool isEditing: false
+            property bool hasError: false
+
+            anchors.top: parent.top
+            anchors.topMargin: 6
+            anchors.left: parent.left
+            anchors.right: parent.right
+            box.color: isEditing ? "#000000" : (hasError ? "#770000" : "#331122")
+            box.radius: 14
+            input.anchors.leftMargin: 50
+            input.anchors.rightMargin: 80
+            input.font.pixelSize: 12
+            input.font.bold: true
+            text: ""
+            visible: text !== "" || isEditing
+
+            onTextEdited: isEditing = true
+            onEditingFinished: apply()
+
+            Image {
+                width: 16
+                height: 16
+                anchors.left: parent.left
+                anchors.leftMargin: 16
+                anchors.verticalCenter: parent.verticalCenter
+                source: "qrc:///images/icon_expression_white.png"
+                opacity: 0.5
+            }
+
+            Text {
+                anchors.left: parent.left
+                anchors.leftMargin: 36
+                anchors.verticalCenter: parent.verticalCenter
+                color: "white"
+                opacity: 0.5
+                font.pixelSize: 16
+                font.bold: true
+                text: "="
+            }
+
+            CButton {
+                width: 18
+                height: 18
+                anchors.right: parent.right
+                anchors.rightMargin: 6
+                anchors.verticalCenter: parent.verticalCenter
+                label.font.pixelSize: 11
+                label.font.bold: true
+                label.text: qsTr("?")
+                box.radius: 9
+
+                onClicked: expressionHelp(textOutputExpression)
+            }
+
+            CButton {
+                width: 18
+                height: 18
+                anchors.right: parent.right
+                anchors.rightMargin: 30
+                anchors.verticalCenter: parent.verticalCenter
+                icon.width: 16
+                icon.height: 16
+                icon.source: "qrc:///images/icon_close_white.png"
+                box.radius: 9
+
+                onClicked: {
+                    textOutputExpression.text = ""
+                    textOutputExpression.apply()
+                }
+            }
+
+            CButton {
+                width: 40
+                height: 18
+                anchors.right: parent.right
+                anchors.rightMargin: 30
+                anchors.verticalCenter: parent.verticalCenter
+                label.font.pixelSize: 10
+                label.font.bold: false
+                label.text: qsTr("OK")
+                box.radius: 9
+                colorNormal: Material.accent
+                visible: textOutputExpression.isEditing
+
+                onClicked: textOutputExpression.apply()
+            }
+
+            function apply() {
+
+                isEdited = true
+                isModified = true
+
+                if (textOutputExpression.text !== "") {
+                    setSlotOption("outputExpression", textOutputExpression.text)
+                } else {
+                    clearSlotOption("outputExpression")
+                }
+                textOutputExpression.isEditing = false
                 parent.forceActiveFocus()
             }
         }
@@ -735,7 +851,8 @@ Item {
         // show information and hide all options when slot is not ready
         itemInformation.visible = true
         itemSlotOptions.visible = false
-        itemExpression.visible = false
+        itemInputExpression.visible = false
+        itemOutputExpression.visible = false
         checkInputInverted.visible = false
         checkOutputInverted.visible = false
 
@@ -753,7 +870,9 @@ Item {
         var outputSignal = (digishow.getDestinationEndpointIndex(slotIndex) === -1 ? 0 : slotInfo["outputSignal"])
 
         if (inputSignal !== 0)
-            itemExpression.visible = true
+            itemInputExpression.visible = true
+        if (outputSignal !== 0)
+            itemOutputExpression.visible = true
 
         if (inputSignal === DigishowEnvironment.SignalAnalog ||
             inputSignal === DigishowEnvironment.SignalBinary)
@@ -943,8 +1062,11 @@ Item {
             clearSlotOption("envelopeOutDelay")
         }
 
-        textExpression.text = slotInfo["expression"]
-        textExpression.isEditing = false
+        textInputExpression.text = slotInfo["inputExpression"]
+        textInputExpression.isEditing = false
+        textOutputExpression.text = slotInfo["outputExpression"]
+        textOutputExpression.isEditing = false
+
     }
 
     function refreshEnvelopeForAnalog() {
@@ -1067,8 +1189,47 @@ Item {
     function clearSlotOption(key) {
         if (slotIndex !== -1) {
             app.slotAt(slotIndex).clearSlotOption(key)
-            slotOptionUpdated(key, null) // emit signal
+            //slotOptionUpdated(key, null) // emit signal
         }
+    }
+
+    function expressionHelp(textExpression) {
+
+        var exampleCode = "value*0.5 + 10000"
+        var btn = 0
+        btn = messageBox.showAndWait(
+            qsTr("Write a JavaScript expression to dynamically change the signal value, for example:") + "\r\n\r\n= " + exampleCode,
+            qsTr("Try It"), qsTr("Next"))
+        if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
+        if (btn <= 1) return
+
+        exampleCode = "value*0.5 + outputValueOf('Another Signal Link')*0.5"
+        btn = messageBox.showAndWait(
+            qsTr("The expression can reference the input or output value of any other signal link, for example:") + "\r\n\r\n= " + exampleCode,
+            qsTr("Try It"), qsTr("Next"))
+        if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
+        if (btn <= 1) return
+
+        exampleCode = "value > 0 ? value*(Math.random()*0.2 + 0.8) : 0"
+        btn = messageBox.showAndWait(
+            qsTr("The expression can contain common JavaScript statements and functions, for example:") + "\r\n\r\n= " + exampleCode,
+            qsTr("Try It"), qsTr("Next"))
+        if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
+        if (btn <= 1) return
+
+        if (app.scriptableFileExists()) {
+            btn = messageBox.showAndWait(
+                qsTr("The expression can also call user-defined functions, now you can create your functions in the attached script file."),
+                qsTr("Show Script"), qsTr("Done"))
+            if (btn == 1) showScriptableFile()
+
+        } else {
+            btn = messageBox.showAndWait(
+                qsTr("The expression can also call user-defined functions, now you can create an attached script file contains your functions."),
+                qsTr("Create Script"), qsTr("Done"))
+            if (btn == 1) createScriptableFile()
+        }
+
     }
 
 }

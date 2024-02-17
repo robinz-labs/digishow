@@ -50,7 +50,8 @@ public:
     // slot info
     Q_INVOKABLE QVariantMap getSlotInfo();
     dgsSlotInfo *slotInfo() { return &m_slotInfo; }
-    Q_INVOKABLE QString slotExpression() { return m_slotExpression; }
+    Q_INVOKABLE QString slotInputExpression() { return m_slotInputExpression; }
+    Q_INVOKABLE QString slotOutputExpression() { return m_slotOutputExpression; }
 
     // slot controls
     Q_INVOKABLE int setEnabled(bool enabled);
@@ -60,14 +61,15 @@ public:
     Q_INVOKABLE int setSelected(bool selected);
     Q_INVOKABLE bool isSelected() { return m_selected; }
 
-    Q_INVOKABLE int getEndpointInValue();
-    Q_INVOKABLE int getEndpointOutValue();
+    Q_INVOKABLE int getEndpointInValue(bool pre = false);
+    Q_INVOKABLE int getEndpointOutValue(bool pre = false);
     Q_INVOKABLE bool isEndpointInBusy();
     Q_INVOKABLE bool isEndpointOutBusy();
     Q_INVOKABLE void setEndpointOutValue(int value);
 
     Q_INVOKABLE bool hasTrafficError() { return m_trafficError; }
-    Q_INVOKABLE bool hasExpressionError() { return m_expressionError; }
+    Q_INVOKABLE bool hasInputExpressionError() { return m_inputExpressionError; }
+    Q_INVOKABLE bool hasOutputExpressionError() { return m_outputExpressionError; }
 
 signals:
 
@@ -92,7 +94,8 @@ private:
 
     // slot info (for fast read)
     dgsSlotInfo m_slotInfo;
-    QString m_slotExpression;
+    QString m_slotInputExpression;
+    QString m_slotOutputExpression;
 
     // normalize options ==> info
     void updateSlotInfoItem(const QString &name, const QVariant &value);
@@ -102,14 +105,18 @@ private:
     bool m_enabled;
     bool m_linked;
     bool m_selected;
+
+    dgsSignalData m_lastDataInPre;  // input signal without expression processing
     dgsSignalData m_lastDataIn;
+    dgsSignalData m_lastDataOutPre; // output signal without expression processing
     dgsSignalData m_lastDataOut;
 
     dgsSignalData processInputAnalog(dgsSignalData dataIn);
     dgsSignalData processInputBinary(dgsSignalData dataIn);
     dgsSignalData processInputNote(dgsSignalData dataIn);
 
-    void sendDataOut(dgsSignalData dataOut);
+    void prepareDataOut(dgsSignalData dataOut);
+    void sendDataOut(dgsSignalData dataOut, bool hasExpression = true);
 
     // time controls
     QElapsedTimer m_elapsedTimer;
@@ -121,7 +128,7 @@ private:
     qint64 m_dataInTimeLastReceived;
     qint64 m_dataOutTimeLastSent;
     QTimer m_dataOutTimer;
-    bool m_needSendDataOutLater;
+    bool   m_needSendDataOutLater;
 
     // output envelope controls
     QTimer m_envelopeTimer;
@@ -150,11 +157,12 @@ private:
     dgsSignalData smoothingProcessOutputAnalog();
 
     // expression executor
-    dgsSignalData expressionExecute(const QString & expression, dgsSignalData dataIn);
+    dgsSignalData expressionExecute(const QString & expression, dgsSignalData dataIn, bool *ok);
 
     // error flags
     bool m_trafficError;
-    bool m_expressionError;
+    bool m_inputExpressionError;
+    bool m_outputExpressionError;
 
 };
 

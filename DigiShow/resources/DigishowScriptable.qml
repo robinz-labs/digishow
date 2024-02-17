@@ -11,5 +11,5 @@ DigishowEnvironment {
     function alert(message) { app.messageNotify(message, DigishowApp.MsgAlert) }
     function toast(message) { app.messageNotify(message, DigishowApp.MsgToast) }
 
-    function execute(script, inputValue) { return eval(script) }
+    function execute(script, value) { return eval(script) }
 }

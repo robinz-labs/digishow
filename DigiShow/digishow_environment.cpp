@@ -103,14 +103,16 @@ QVariantMap DigishowEnvironment::getSlotRuntimeData(int slotIndex)
 
         data["epInAvailable" ] = epInAvailable;
         data["epOutAvailable"] = epOutAvailable;
-        data["epInValue"     ] = (epInAvailable  ? slot->getEndpointInValue()  : 0);
-        data["epOutValue"    ] = (epOutAvailable ? slot->getEndpointOutValue() : 0);
+        data["epInValue"     ] = (epInAvailable  ? slot->getEndpointInValue()      : 0);
+        data["epOutValue"    ] = (epOutAvailable ? slot->getEndpointOutValue()     : 0);
+        data["epOutPreValue" ] = (epOutAvailable ? slot->getEndpointOutValue(true) : 0);
         data["epInBusy"      ] = slot->isEndpointInBusy();
         data["epOutBusy"     ] = slot->isEndpointOutBusy();
         data["slotEnabled"   ] = slot->isEnabled();
         data["slotLinked"    ] = slot->isLinked();
         data["errTraffic"    ] = slot->hasTrafficError();
-        data["errExpression" ] = slot->hasExpressionError();
+        data["errInExp"      ] = slot->hasInputExpressionError();
+        data["errOutExp"     ] = slot->hasOutputExpressionError();
     }
 
     return data;

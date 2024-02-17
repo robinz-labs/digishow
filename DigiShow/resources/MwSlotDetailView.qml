@@ -124,7 +124,7 @@ Item {
                 anchors.fill: parent
                 onSlotOptionUpdated: {
 
-                    if (key === "inputInverted" || key === "outputInverted" || key === "expression") {
+                    if (key === "inputInverted" || key === "outputInverted" || key === "inputExpression" || key === "outputExpression") {
                         slotDetailUpdated() // emit signal
                     }
                     window.isModified = true
