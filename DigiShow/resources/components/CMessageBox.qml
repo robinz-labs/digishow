@@ -131,6 +131,13 @@ Popup {
                 }
             }
         }
+
+        Timer {
+            id: timerToast
+            interval: 5000
+            repeat: false
+            onTriggered: messageBox.close()
+        }
     }
 
     // @disable-check M16
@@ -145,6 +152,12 @@ Popup {
                 buttonClicked(0)
             }
         }
+    }
+
+    function toast(message, timeout) {
+        show(message)
+        timerToast.interval = (timeout === undefined ? 5000 : timeout)
+        timerToast.start()
     }
 
     function show(message, buttonText1, buttonText2, buttonText3) {
@@ -188,6 +201,8 @@ Popup {
 
         qrCode.data = qrcode
         labelMessage.text = message
+
+        timerToast.stop()
 
         messageBox.buttonClickedAt = -1
         messageBox.open()

@@ -121,8 +121,7 @@ ApplicationWindow {
                 messageBox.show(msgText, qsTr("OK"))
                 break
             case DigishowApp.MsgToast:
-                messageBox.show(msgText)
-                common.setTimeout(messageBox.close, 6000)
+                messageBox.toast(msgText, 4000)
                 break
             case DigishowApp.MsgPopup:
                 messageBox.show(msgText)
