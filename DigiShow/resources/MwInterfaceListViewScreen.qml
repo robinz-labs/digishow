@@ -17,7 +17,7 @@ MwInterfaceListView {
            name: "_new"
            type: ""
            mode: ""
-           screen: ""
+           screen: 0
        }
     }
 
@@ -41,10 +41,10 @@ MwInterfaceListView {
                     anchors.margins: 20
                     //anchors.bottom: buttonMedia.top
                     //anchors.bottomMargin: 36
-                    text: model.screen===undefined || model.screen==="" ? qsTr("Default") : model.screen
+                    text: screenName(model.screen)
 
                     onClicked: {
-                        menuScreen.selectOptionWithTag(model.screen===undefined ? "" : model.screen)
+                        menuScreen.selectOption(model.screen)
                         menuScreen.showOptions()
                     }
 
@@ -53,19 +53,18 @@ MwInterfaceListView {
 
                         optionItems: {
                             var items = listOnline["screen"]
-                            var options = [ { text: qsTr("Default"), value: 0, tag: "" } ]
-                            for (var n=0 ; n<items.length ; n++) {
+                            var options = []
+                            for (var n=-1 ; n<=Math.max(4, items.length) ; n++) {
                                 options.push({
-                                    text: items[n]["screen"] + " (" + items[n]["width"] + "x" + items[n]["height"] + ")",
-                                    value: n+1,
-                                    tag: items[n]["screen"]
+                                    text: screenName(n) + (n>=1 && n<=items.length ? " (" + items[n-1]["width"] + "x" + items[n-1]["height"] + ")" : ""),
+                                    value: n
                                 })
                             }
                             return options
                         }
 
                         onOptionSelected: {
-                            var options = { screen: selectedItemTag }
+                            var options = { screen: selectedItemValue }
                             updateInterface(model.index, options)
                         }
                     }
@@ -111,6 +110,14 @@ MwInterfaceListView {
 
     Component.onCompleted: {
 
+    }
+
+    function screenName(n) {
+        switch (n) {
+        case -1: return qsTr("Preview Window")
+        case  0: return qsTr("Default")
+        default: return qsTr("Screen") + " " + n
+        }
     }
 }
 

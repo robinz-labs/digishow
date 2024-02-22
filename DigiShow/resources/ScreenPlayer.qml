@@ -107,22 +107,40 @@ QtObject {
         }
     }
 
-    function showInScreen(screenIndex) {
+    function showInScreen(screen) {
 
         var screens = Qt.application.screens
-        if (screenIndex>=0 && screenIndex<screens.length) {
 
+        var screenIndex = 0;
+        if (screen === 0) {
+            // default screen
+            if (screens.length >= 2) screenIndex = 1;
+        } else if (screen >= 1) {
+            // specified screen
+            screenIndex = screen - 1;
+        }
+
+        if (screenIndex >= screens.length) return false
+        playerWindow.title = qsTr("Screen") + (screen >=1 ? " " + screen : "")
+
+        if (screen === -1) {
+
+            // show in a preview window
+            common.runLater(function() {
+                playerWindow.show()
+            })
+
+        } else {
+
+            // show in the full screen
             playerWindow.screen = screens[screenIndex]
-            playerWindow.title = screens[screenIndex].name
-
             common.runLater(function() {
                 playerWindow.showMaximized()
                 playerWindow.showFullScreen()
             })
-            return true
         }
 
-        return false
+        return true
     }
 
     function goodbye() {

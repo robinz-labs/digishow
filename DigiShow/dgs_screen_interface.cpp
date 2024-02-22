@@ -58,20 +58,11 @@ int DgsScreenInterface::openInterface()
         }
 
         // make a player in the screen
-        QString screenName = m_interfaceOptions.value("screen").toString();
+        int screen = m_interfaceOptions.value("screen").toInt();
 
         // confirm the specified screen is ready
-        int screenIndex = -1;
-        if (screenName.isEmpty()) {
-            // use the default screen
-            screenIndex = 0;
-        } else {
-            // use a specified screen
-            QList<QScreen*> screens = QGuiApplication::screens();
-            for (int n=0 ; n < screens.length() ; n++)
-                if (getUniqueScreenName(n) == screenName) { screenIndex = n; break; }
-            if (screenIndex == -1) return ERR_DEVICE_NOT_READY;
-        }
+        QList<QScreen*> screens = QGuiApplication::screens();
+        if (screen < -1 || screen > screens.length()) return ERR_DEVICE_NOT_READY;
 
         // make player (based on qml)
         if (!m_qmlComponentPlayer->isReady()) return ERR_DEVICE_NOT_READY;
@@ -81,7 +72,7 @@ int DgsScreenInterface::openInterface()
         QVariant r;
         QMetaObject::invokeMethod(
                     m_player, "showInScreen", Qt::DirectConnection,
-                    Q_RETURN_ARG(QVariant, r), Q_ARG(QVariant, screenIndex));
+                    Q_RETURN_ARG(QVariant, r), Q_ARG(QVariant, screen));
 
         // load media
         QVariantList mediaList = cleanMediaList();
@@ -256,7 +247,7 @@ QVariantList DgsScreenInterface::listOnline()
     QList<QScreen*> screens = QGuiApplication::screens();
     for (int n=0 ; n < screens.length() ; n++) {
         info.clear();
-        info["screen"] = getUniqueScreenName(n);
+        info["name"]   = getUniqueScreenName(n);
         info["width"]  = screens[n]->geometry().width();
         info["height"] = screens[n]->geometry().height();
         info["ratio"]  = screens[n]->devicePixelRatio();

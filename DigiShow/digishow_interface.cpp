@@ -326,7 +326,11 @@ void DigishowInterface::updateMetadata()
         break;
     case INTERFACE_SCREEN:
         labelType = tr("Screen");
-        labelIdentity = m_interfaceOptions.value("screen").toString();
+        switch (int n = m_interfaceOptions.value("screen").toInt()) {
+        case -1: labelIdentity = tr("(Preview Window)"); break;
+        case  0: labelIdentity = ""; break;
+        default: labelIdentity = QString::number(n);
+        }
         break;
     case INTERFACE_APLAY:
         labelType = tr("Audio Player");

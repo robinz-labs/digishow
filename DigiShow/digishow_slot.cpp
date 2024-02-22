@@ -290,11 +290,6 @@ int DigishowSlot::setEnabled(bool enabled)
         m_lastDataOutPre = dgsSignalData();
         m_lastDataOut    = dgsSignalData();
 
-        // clear error flags
-        m_trafficError = false;
-        m_inputExpressionError = false;
-        m_outputExpressionError = false;
-
         // enable the slot
         if (sourceIsReady && destinationIsReady) {
             m_enabled = true;
@@ -307,6 +302,11 @@ int DigishowSlot::setEnabled(bool enabled)
     // finish the running envelope and smoothing
     if (envelopeIsRunning()) envelopeCancel();
     if (smoothingIsRunning()) smoothingCancel();
+
+    // clear error flags
+    m_trafficError = false;
+    m_inputExpressionError = false;
+    m_outputExpressionError = false;
 
     m_dataOutTimer.stop();
     m_enabled = false;
