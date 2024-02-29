@@ -64,6 +64,60 @@ QVariantMap DigishowEnvironment::getAppOptions()
     return AppUtilities::loadJsonFromFile(QDir(appDataPath()).filePath("options.json"));
 }
 
+int DigishowEnvironment::inputValueAt(int slotIndex)
+{
+    int val = -1;
+    DigishowSlot *slot = g_app->slotAt(slotIndex);
+    if (slot != nullptr) val = slot->getEndpointInValue();
+
+    return (val != -1 ? val : 0);
+}
+
+int DigishowEnvironment::inputValueOf(const QString &slotTitle)
+{
+    int val = -1;
+    DigishowSlot *slot = g_app->slotTitled(slotTitle);
+    if (slot != nullptr) val = slot->getEndpointInValue();
+
+    return (val != -1 ? val : 0);
+}
+
+int DigishowEnvironment::outputValueAt(int slotIndex)
+{
+    int val = -1;
+    DigishowSlot *slot = g_app->slotAt(slotIndex);
+    if (slot != nullptr) val = slot->getEndpointOutValue();
+
+    return (val != -1 ? val : 0);
+}
+
+int DigishowEnvironment::outputValueOf(const QString &slotTitle)
+{
+    int val = -1;
+    DigishowSlot *slot = g_app->slotTitled(slotTitle);
+    if (slot != nullptr) val = slot->getEndpointOutValue();
+
+    return (val != -1 ? val : 0);
+}
+
+bool DigishowEnvironment::setOutputValueAt(int slotIndex, int value)
+{
+    DigishowSlot *slot = g_app->slotAt(slotIndex);
+    if (slot == nullptr) return false;
+
+    slot->setEndpointOutValue(value);
+    return true;
+}
+
+bool DigishowEnvironment::setOutputValueOf(const QString &slotTitle, int value)
+{
+    DigishowSlot *slot = g_app->slotTitled(slotTitle);
+    if (slot == nullptr) return false;
+
+    slot->setEndpointOutValue(value);
+    return true;
+}
+
 QVariantMap DigishowEnvironment::getSlotConfiguration(int slotIndex)
 {
     QVariantMap data;
@@ -138,25 +192,6 @@ QVariantMap DigishowEnvironment::getInterfaceConfiguration(int interfaceIndex)
     }
 
     return data;
-}
-
-
-int DigishowEnvironment::inputValueOf(const QString &slotTitle)
-{
-    int val = -1;
-    DigishowSlot *slot = g_app->slotTitled(slotTitle);
-    if (slot != nullptr) val  = slot->getEndpointInValue();
-
-    return (val != -1 ? val : 0);
-}
-
-int DigishowEnvironment::outputValueOf(const QString &slotTitle)
-{
-    int val = -1;
-    DigishowSlot *slot = g_app->slotTitled(slotTitle);
-    if (slot != nullptr) val  = slot->getEndpointOutValue();
-
-    return (val != -1 ? val : 0);
 }
 
 int DigishowEnvironment::getSourceInterfaceIndex(int slotIndex)

@@ -312,7 +312,7 @@ int DigishowPixelPlayer::transferFramePixels(dppPixelMapping mapping)
     // pixel lines mapping
     for (int y = 0 ; y < mapping.pixelCountY ; y++) {
 
-        // confirm not out of original frame height
+        // confirm not out of the original frame height
         int originY = mapping.pixelOffsetY + (mapping.pixelSpacingY+1) * y;
         if (originY >= m_framePixelHeight) break;
 
@@ -342,11 +342,14 @@ int DigishowPixelPlayer::transferFramePixels(dppPixelMapping mapping)
 
             //qDebug() << "x" << x;
 
-            // confirm not out of data output buffer
-            if (pixelMappedCount+1 > mapping.dataOutPixelCount) break;
+            // confirm not out of the data output buffer
+            if (pixelMappedCount+1 > mapping.dataInPixelOffset + mapping.dataOutPixelCount) break;
             pixelMappedCount++;
 
-            // confirm not out of original frame width
+            // ignore unwanted leading pixels in the data input buffer
+            if (mapping.dataInPixelOffset > 0 && pixelMappedCount <= mapping.dataInPixelOffset) continue;
+
+            // confirm not out of the original frame width
             int originX = mapping.pixelOffsetX + (mapping.pixelSpacingX+1) * x;
             if (originX >= m_framePixelWidth) { idxByteOut += bytesPerPixelInDataOut; continue; }
 

@@ -58,7 +58,6 @@ int DgsArtnetInterface::openInterface()
 
     // create an udp socket for artnet
     m_udp = new QUdpSocket();
-    connect(m_udp, SIGNAL(readyRead()), this, SLOT(onUdpDataReceived()));
 
     if (m_interfaceInfo.mode == INTERFACE_ARTNET_INPUT) {
 
@@ -66,6 +65,8 @@ int DgsArtnetInterface::openInterface()
 
         m_dataAll.clear();
         m_udp->bind(m_udpPort);
+
+        connect(m_udp, SIGNAL(readyRead()), this, SLOT(onUdpDataReceived()));
 
     } else if (m_interfaceInfo.mode == INTERFACE_ARTNET_OUTPUT) {
 
@@ -295,30 +296,43 @@ void DgsArtnetInterface::setupPlayerPixelMapping(DigishowPixelPlayer *player, co
 
         int pixelCountX = endpointOptions.value("mediaPixelCountX").toInt();
         int pixelCountY = endpointOptions.value("mediaPixelCountY").toInt();
-        int pixelCount = pixelCountX * pixelCountY;
 
         int universe = endpointInfo.unit;
         int channel  = endpointInfo.channel;
 
-        // prepare dmx data buffer for the universe
-        if (!m_dataAll.contains(universe)) m_dataAll[universe] = QByteArray(512, 0x00);
+        int pixelCountPending = pixelCountX * pixelCountY;
+        int pixelCountMapped = 0;
 
-        // the number of pixels need be mapped to the universe
-        pixelCount = qMin(pixelCount, (512-channel)/bytesPerPixel);
+        // map all pixels into multiple universes
+        while (pixelCountPending > 0 && universe - endpointInfo.unit < 256) {
 
-        // map pixels to the universe
-        dppPixelMapping mapping;
-        mapping.pixelMode = pixelMode;
-        mapping.pixelCountX = pixelCountX;
-        mapping.pixelCountY = pixelCountY;
-        mapping.pixelOffsetX = endpointOptions.value("mediaPixelOffsetX").toInt();
-        mapping.pixelOffsetY = endpointOptions.value("mediaPixelOffsetY").toInt();
-        mapping.pixelSpacingX = endpointOptions.value("mediaPixelSpacingX").toInt();
-        mapping.pixelSpacingY = endpointOptions.value("mediaPixelSpacingY").toInt();
-        mapping.mappingMode = endpointOptions.value("mediaMappingMode").toInt();
-        mapping.dataOutPixelCount = pixelCount;
-        mapping.pDataOut = (uint8_t*)m_dataAll[universe].data() + channel;
-        player->addPixelMapping(mapping);
+            // parepare dmx data buffer for the universe
+            if (!m_dataAll.contains(universe)) m_dataAll[universe] = QByteArray(512, 0x00);
+
+            // the number of pixels need be mapped into one universe
+            int pixelCount = qMin(pixelCountPending, (512-channel)/bytesPerPixel);
+
+            // map pixels to the universe
+            dppPixelMapping mapping;
+            mapping.pixelMode = pixelMode;
+            mapping.pixelCountX = pixelCountX;
+            mapping.pixelCountY = pixelCountY;
+            mapping.pixelOffsetX = endpointOptions.value("mediaPixelOffsetX").toInt();
+            mapping.pixelOffsetY = endpointOptions.value("mediaPixelOffsetY").toInt();
+            mapping.pixelSpacingX = endpointOptions.value("mediaPixelSpacingX").toInt();
+            mapping.pixelSpacingY = endpointOptions.value("mediaPixelSpacingY").toInt();
+            mapping.mappingMode = endpointOptions.value("mediaMappingMode").toInt();
+            mapping.dataInPixelOffset = pixelCountMapped;
+            mapping.dataOutPixelCount = pixelCount;
+            mapping.pDataOut = (uint8_t*)m_dataAll[universe].data() + channel;
+            player->addPixelMapping(mapping);
+
+            // get ready for the next universe
+            pixelCountPending -= pixelCount;
+            pixelCountMapped  += pixelCount;
+            universe += 1;
+            channel = 0;
+        }
     }
 }
 

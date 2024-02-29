@@ -204,12 +204,19 @@ public:
     Q_INVOKABLE bool needLogs();
     Q_INVOKABLE void setNeedLogs(bool need);
 
+    Q_INVOKABLE int  inputValue(int slotNumber) { return inputValueAt(slotNumber - 1); }
+    Q_INVOKABLE int  outputValue(int slotNumber) { return outputValueAt(slotNumber - 1); }
+    Q_INVOKABLE bool setOutputValue(int slotNumber, int value) { return setOutputValueAt(slotNumber - 1, value); }
+    Q_INVOKABLE int  inputValueAt(int slotIndex);
+    Q_INVOKABLE int  outputValueAt(int slotIndex);
+    Q_INVOKABLE bool setOutputValueAt(int slotIndex, int value);
+    Q_INVOKABLE int  inputValueOf(const QString &slotTitle);
+    Q_INVOKABLE int  outputValueOf(const QString &slotTitle);
+    Q_INVOKABLE bool setOutputValueOf(const QString &slotTitle, int value);
+
     Q_INVOKABLE QVariantMap getSlotConfiguration(int slotIndex);
     Q_INVOKABLE QVariantMap getSlotRuntimeData(int slotIndex);
     Q_INVOKABLE QVariantMap getInterfaceConfiguration(int interfaceIndex);
-
-    Q_INVOKABLE int inputValueOf(const QString &slotTitle);
-    Q_INVOKABLE int outputValueOf(const QString &slotTitle);
 
     Q_INVOKABLE int getSourceInterfaceIndex(int slotIndex);
     Q_INVOKABLE int getSourceEndpointIndex(int slotIndex);

@@ -36,8 +36,9 @@ typedef struct dppPixelMapping {
     int pixelSpacingY;
     int mappingMode;
 
-    int dataOutPixelCount; // The number of pixels allowed in the data output buffer
-    uint8_t* pDataOut;     // the pointer to the data out buffer
+    int dataInPixelOffset; // number of pixels in the input buffer to ignore
+    int dataOutPixelCount; // number of pixels allowed in the data output buffer
+    uint8_t* pDataOut;     // the pointer to the data output buffer
 
     // defaults
     dppPixelMapping() :
@@ -49,6 +50,7 @@ typedef struct dppPixelMapping {
       pixelSpacingX(0),
       pixelSpacingY(0),
       mappingMode(0),
+      dataInPixelOffset(0),
       dataOutPixelCount(0),
       pDataOut(nullptr)
 

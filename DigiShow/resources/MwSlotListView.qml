@@ -18,6 +18,7 @@ Item {
     property bool  showSlotSelection: false
     property bool  hasBookmarks: false
     property bool  shiftKeyHeld: false
+    property bool  altKeyHeld: false
 
     onHighlightedIndexChanged: currentIndex = highlightedIndex
     onCurrentIndexChanged: currentIndexVisual = getVisualItemIndex(currentIndex)
@@ -190,6 +191,21 @@ Item {
                         color: "red"
                         radius: 4
                         visible: model.slotBookmarked
+                    }
+
+                    Text {
+                        id: labelSlotNumber
+
+                        anchors.left: parent.left
+                        anchors.leftMargin: 8
+                        anchors.top: parent.bottom
+                        anchors.topMargin: 8
+                        horizontalAlignment: Text.AlignHCenter
+                        color: "#ffffff"
+                        text: index+1
+                        font.pixelSize: 11
+                        font.bold: true
+                        visible: altKeyHeld
                     }
 
                     Text {
@@ -759,7 +775,10 @@ Item {
 
             Keys.onReleased: {
 
-                if (event.key === Qt.Key_Shift) shiftKeyHeld = false
+                switch(event.key) {
+                case Qt.Key_Shift: shiftKeyHeld = false; break
+                case Qt.Key_Alt:   altKeyHeld   = false; break
+                }
 
                 // slot actions
                 if (highlightedIndex !== -1) {
@@ -781,7 +800,10 @@ Item {
 
             Keys.onPressed: {
 
-                if (event.key === Qt.Key_Shift) shiftKeyHeld = true
+                switch(event.key) {
+                case Qt.Key_Shift: shiftKeyHeld = true; break
+                case Qt.Key_Alt:   altKeyHeld   = true; break
+                }
 
                 // slot actions
                 if (highlightedIndex !== -1) {

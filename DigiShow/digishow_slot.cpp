@@ -482,8 +482,8 @@ void DigishowSlot::prepareDataOut(dgsSignalData dataOut)
     // confirm output data is changed
     if (dataOut.signal == m_lastDataOutPre.signal && (
            (dataOut.signal == DATA_SIGNAL_ANALOG && dataOut.aRange == m_lastDataOutPre.aRange && dataOut.aValue == m_lastDataOutPre.aValue) ||
-           (dataOut.signal == DATA_SIGNAL_BINARY && dataOut.bValue == m_lastDataOutPre.bValue)) &&
-        isEndpointOutBusy()) return;
+           (dataOut.signal == DATA_SIGNAL_BINARY && dataOut.bValue == m_lastDataOutPre.bValue))) return;
+           // && isEndpointOutBusy()) return;
 
     m_lastDataOutPre = dataOut;
 

@@ -73,7 +73,6 @@ int DgsOscInterface::openInterface()
 
     // create an udp socket for osc
     m_udp = new QUdpSocket();
-    connect(m_udp, SIGNAL(readyRead()), this, SLOT(onUdpDataReceived()));
 
     if (m_interfaceInfo.mode == INTERFACE_OSC_INPUT) {
 
@@ -81,6 +80,8 @@ int DgsOscInterface::openInterface()
 
         m_dataAll.clear();
         m_udp->bind(m_udpPort);
+
+        connect(m_udp, SIGNAL(readyRead()), this, SLOT(onUdpDataReceived()));
 
     } else if (m_interfaceInfo.mode == INTERFACE_OSC_OUTPUT) {
 
@@ -179,6 +180,7 @@ void DgsOscInterface::onUdpDataReceived()
 
         char* buffer = datagram.data();
         int len = datagram.length();
+        if (len == 0) continue;
 
         if (tosc_isBundle(buffer)) {
             tosc_bundle bundle;
@@ -201,7 +203,6 @@ void DgsOscInterface::onUdpDataReceived()
         }
 
     } while (m_udp->hasPendingDatagrams());
-
 }
 
 void DgsOscInterface::processOscMessageIn(tosc_message *osc)
