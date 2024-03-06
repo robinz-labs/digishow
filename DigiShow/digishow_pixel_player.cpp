@@ -313,7 +313,7 @@ int DigishowPixelPlayer::transferFramePixels(dppPixelMapping mapping)
     for (int y = 0 ; y < mapping.pixelCountY ; y++) {
 
         // confirm not out of the original frame height
-        int originY = mapping.pixelOffsetY + (mapping.pixelSpacingY+1) * y;
+        int originY = mapping.pixelOffsetY + mapping.pixelSpacingY * y;
         if (originY >= m_framePixelHeight) break;
 
         int idxByteInRow = originY * m_framePixelWidth * 4; // each original pixel contains four bytes
@@ -350,7 +350,7 @@ int DigishowPixelPlayer::transferFramePixels(dppPixelMapping mapping)
             if (mapping.dataInPixelOffset > 0 && pixelMappedCount <= mapping.dataInPixelOffset) continue;
 
             // confirm not out of the original frame width
-            int originX = mapping.pixelOffsetX + (mapping.pixelSpacingX+1) * x;
+            int originX = mapping.pixelOffsetX + mapping.pixelSpacingX * x;
             if (originX >= m_framePixelWidth) { idxByteOut += bytesPerPixelInDataOut; continue; }
 
             idxByteIn = idxByteInRow + originX * 4; // each original pixel contains four bytes

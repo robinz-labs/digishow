@@ -311,7 +311,7 @@ Item {
 
                     width: 85
                     anchors.left: parent.left
-                    from: 0
+                    from: 1
                     to: 9999
                     value: 0
                     stepSize: 1
@@ -324,7 +324,7 @@ Item {
 
                     width: 85
                     anchors.right: parent.right
-                    from: 0
+                    from: 1
                     to: 9999
                     value: 0
                     stepSize: 1
@@ -784,8 +784,8 @@ Item {
         v = options["mediaPixelCountY"];   spinMediaPixelCountY.value  = (v === undefined ? 1 : v )
         v = options["mediaPixelOffsetX"];  spinMediaPixelOffsetX.value = (v === undefined ? 0 : v )
         v = options["mediaPixelOffsetY"];  spinMediaPixelOffsetY.value = (v === undefined ? 0 : v )
-        v = options["mediaPixelSpacingX"]; spinMediaPixelSpacingX.value = (v === undefined ? 0 : v )
-        v = options["mediaPixelSpacingY"]; spinMediaPixelSpacingY.value = (v === undefined ? 0 : v )
+        v = options["mediaPixelSpacingX"]; spinMediaPixelSpacingX.value = (v === undefined ? 1 : v )
+        v = options["mediaPixelSpacingY"]; spinMediaPixelSpacingY.value = (v === undefined ? 1 : v )
         v = options["mediaMappingMode"];   itemMediaMappingMode.value = (v === undefined ? 0 : v )
     }
 

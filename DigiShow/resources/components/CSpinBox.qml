@@ -21,23 +21,31 @@ SpinBox {
         radius: 3
     }
 
-    contentItem: TextInput {
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 8
-        text: spinBox.textFromValue(spinBox.value)
-        font: spinBox.font
-        color: "#cccccc"
-        selectionColor: "#666666"
-        selectedTextColor: "#ffffff"
-        horizontalAlignment: Qt.AlignHCenter
-        verticalAlignment: Qt.AlignVCenter
-        selectByMouse: true
-        readOnly: !spinBox.editable
-        validator: spinBox.validator
-        inputMethodHints: Qt.ImhDigitsOnly
-        onEditingFinished: {
-            spinBox.value = spinBox.valueFromText(text)
-            valueModified() // emit signal
+    contentItem: Item {
+
+        anchors.fill: parent
+        anchors.leftMargin: spinBox.height
+        anchors.rightMargin: spinBox.height
+
+        TextInput {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            text: spinBox.textFromValue(spinBox.value)
+            font: spinBox.font
+            color: "#cccccc"
+            selectionColor: "#666666"
+            selectedTextColor: "#ffffff"
+            horizontalAlignment: Qt.AlignHCenter
+            verticalAlignment: Qt.AlignVCenter
+            selectByMouse: true
+            readOnly: !spinBox.editable
+            validator: spinBox.validator
+            inputMethodHints: Qt.ImhDigitsOnly
+            onEditingFinished: {
+                spinBox.value = spinBox.valueFromText(text)
+                valueModified() // emit signal
+            }
         }
     }
 

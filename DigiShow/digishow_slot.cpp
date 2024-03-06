@@ -237,7 +237,7 @@ bool DigishowSlot::isEndpointOutBusy()
     return (elapsed()-m_dataOutTimeLastSent < 500);
 }
 
-void DigishowSlot::setEndpointOutValue(int value)
+void DigishowSlot::setEndpointOutValue(int value, bool pre)
 {
     dgsSignalData dataOut;
 
@@ -259,7 +259,14 @@ void DigishowSlot::setEndpointOutValue(int value)
         break;
     }
 
-    if (dataOut.signal) prepareDataOut(dataOut);
+    if (dataOut.signal) {
+
+        // finish the running envelope and smoothing
+        if (envelopeIsRunning()) envelopeCancel();
+        if (smoothingIsRunning()) smoothingCancel();
+
+        prepareDataOut(dataOut, pre);
+    }
 }
 
 int DigishowSlot::setEnabled(bool enabled)
@@ -456,6 +463,8 @@ dgsSignalData DigishowSlot::processInputBinary(dgsSignalData dataIn)
     } else {
         // state off
         m_envelopeTimeOff = elapsed();
+
+        if (m_linked && !envelopeIsRunning()) onEnvelopeTimerFired();
     }
 
     return dgsSignalData(); // return an empty data package
@@ -472,43 +481,56 @@ dgsSignalData DigishowSlot::processInputNote(dgsSignalData dataIn)
     } else {
         // note off
         m_envelopeTimeOff = elapsed();
+
+        if (m_linked && !envelopeIsRunning()) onEnvelopeTimerFired();
     }
 
     return dgsSignalData(); // return an empty data package
 }
 
-void DigishowSlot::prepareDataOut(dgsSignalData dataOut)
+void DigishowSlot::prepareDataOut(dgsSignalData dataOut, bool pre)
 {
     // confirm output data is changed
-    if (dataOut.signal == m_lastDataOutPre.signal && (
-           (dataOut.signal == DATA_SIGNAL_ANALOG && dataOut.aRange == m_lastDataOutPre.aRange && dataOut.aValue == m_lastDataOutPre.aValue) ||
-           (dataOut.signal == DATA_SIGNAL_BINARY && dataOut.bValue == m_lastDataOutPre.bValue))) return;
+    dgsSignalData lastDataOut = (pre ? m_lastDataOutPre : m_lastDataOut);
+    if (dataOut.signal == lastDataOut.signal && (
+           (dataOut.signal == DATA_SIGNAL_ANALOG && dataOut.aRange == lastDataOut.aRange && dataOut.aValue == lastDataOut.aValue) ||
+           (dataOut.signal == DATA_SIGNAL_BINARY && dataOut.bValue == lastDataOut.bValue))) return;
            // && isEndpointOutBusy()) return;
 
-    m_lastDataOutPre = dataOut;
+    if (pre) {
 
-    int elapsedSinceLastSent = static_cast<int>(elapsed() - m_dataOutTimeLastSent);
+        // send data with preprocessing
 
-    if (m_outputInterval > 0 &&
-        elapsedSinceLastSent < m_outputInterval) {
+        m_lastDataOutPre = dataOut;
 
-        // send data later by the timer (with traffic management)
-        m_needSendDataOutLater = true;
-        if (!m_dataOutTimer.isActive())
-            m_dataOutTimer.start(m_outputInterval-elapsedSinceLastSent);
+        int elapsedSinceLastSent = static_cast<int>(elapsed() - m_dataOutTimeLastSent);
+        if (m_outputInterval > 0 &&
+            elapsedSinceLastSent < m_outputInterval) {
+
+            // send data later by the timer (with traffic management)
+            m_needSendDataOutLater = true;
+            if (!m_dataOutTimer.isActive())
+                m_dataOutTimer.start(m_outputInterval-elapsedSinceLastSent);
+
+        } else {
+            // send data instantly (without traffic management)
+            sendDataOut(dataOut);
+        }
 
     } else {
-        // send data instantly (without traffic management)
-        sendDataOut(dataOut);
+
+        // send data directly without preprocessing
+        sendDataOut(dataOut, false);
     }
+
 }
 
-void DigishowSlot::sendDataOut(dgsSignalData dataOut, bool hasExpression)
+void DigishowSlot::sendDataOut(dgsSignalData dataOut, bool pre)
 {
-    m_lastDataOutPre = dataOut;
-
     // execute expression to preprocess the output data
-    if (hasExpression) {
+    if (pre) {
+        m_lastDataOutPre = dataOut;
+
         bool ok = true;
         dataOut = expressionExecute(m_slotOutputExpression, dataOut, &ok);
         m_outputExpressionError = !ok;
@@ -895,7 +917,7 @@ void DigishowSlot::onEnvelopeTimerFired()
 
     // send data package to destination
     if (dataOut.signal) {
-        if (g_needLogCtl) qDebug() << "envelope_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
+        //qDebug() << "envelope_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
 
         if (m_slotInfo.outputSignal == DATA_SIGNAL_ANALOG &&
             m_slotInfo.outputSmoothing > 0)
@@ -914,7 +936,7 @@ void DigishowSlot::onSmoothingTimerFired()
 
     // send data package to destination
     if (dataOut.signal) {
-        if (g_needLogCtl) qDebug() << "smoothing_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
+        //qDebug() << "smoothing_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
         prepareDataOut(dataOut);
     }
 }

@@ -65,7 +65,7 @@ public:
     Q_INVOKABLE int getEndpointOutValue(bool pre = false);
     Q_INVOKABLE bool isEndpointInBusy();
     Q_INVOKABLE bool isEndpointOutBusy();
-    Q_INVOKABLE void setEndpointOutValue(int value);
+    Q_INVOKABLE void setEndpointOutValue(int value, bool pre = true);
 
     Q_INVOKABLE bool hasTrafficError() { return m_trafficError; }
     Q_INVOKABLE bool hasInputExpressionError() { return m_inputExpressionError; }
@@ -115,8 +115,8 @@ private:
     dgsSignalData processInputBinary(dgsSignalData dataIn);
     dgsSignalData processInputNote(dgsSignalData dataIn);
 
-    void prepareDataOut(dgsSignalData dataOut);
-    void sendDataOut(dgsSignalData dataOut, bool hasExpression = true);
+    void prepareDataOut(dgsSignalData dataOut, bool pre = true);
+    void sendDataOut(dgsSignalData dataOut, bool pre = true);
 
     // time controls
     QElapsedTimer m_elapsedTimer;

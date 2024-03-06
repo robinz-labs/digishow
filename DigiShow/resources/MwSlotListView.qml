@@ -287,7 +287,7 @@ Item {
                         anchors.margins: 5
                         radius: 4
                         color: model.epInColor
-                        opacity: 0.6
+                        opacity: altKeyHeld && model.epInBusy ? 1.0 : 0.6
 
                         Text {
                             anchors.horizontalCenter: parent.horizontalCenter
@@ -474,7 +474,7 @@ Item {
                         anchors.margins: 5
                         radius: 4
                         color: model.epOutColor
-                        opacity: 0.6
+                        opacity: altKeyHeld && model.epOutBusy ? 1.0 : 0.6
 
                         Text {
                             anchors.horizontalCenter: parent.horizontalCenter

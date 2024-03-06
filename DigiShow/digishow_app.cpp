@@ -744,7 +744,7 @@ bool DigishowApp::updateLaunch(const QString &launchName, const QVariantList &sl
         if (optRememberLink) launchDetail["linked"] = slot->isLinked();
 
         bool optRememberOutput = slotLaunchOptions[n].toMap().value("rememberOutput").toBool();
-        if (optRememberOutput) launchDetail["outputValue"] = slot->getEndpointOutValue();
+        if (optRememberOutput) launchDetail["outputValue"] = slot->getEndpointOutValue(true);
 
         // write launch details into the slot
         QVariantMap launchDetails;
