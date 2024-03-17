@@ -1,0 +1,104 @@
+{
+    "appInfo": {
+        "appExperimental": false,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.2.6"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "A",
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "press1",
+                    "type": "press"
+                },
+                {
+                    "address": "B",
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "press2",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "binary1",
+                    "type": "binary"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "dimmer1",
+                    "type": "dimmer"
+                }
+            ],
+            "mode": "enttec",
+            "name": "dmx1",
+            "type": "dmx"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/binary1",
+            "inputInverted": true,
+            "linked": true,
+            "source": "hotkey1/press1",
+            "title": "ON"
+        },
+        {
+            "destination": "pipe1/binary1",
+            "inputInverted": false,
+            "linked": true,
+            "source": "hotkey1/press2",
+            "title": "OFF"
+        },
+        {
+            "destination": "dmx1/dimmer1",
+            "linked": true,
+            "outputSmoothing": 300,
+            "source": "pipe1/binary1",
+            "title": "Light"
+        }
+    ]
+}

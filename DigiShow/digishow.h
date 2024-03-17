@@ -1,5 +1,5 @@
 /*
-    Copyright 2021 Robin Zhang & Labs
+    Copyright 2021-2024 Robin Zhang & Labs
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -116,6 +116,12 @@
   + midi pitch bend support
   ! improved arduino features
   ! improved ui
+
+  v1.5 20240316
+  + scriptable environment and javascript expression support
+  ! complete signal mapping transformation options
+  ! improved pixel mapping over artnet/dmx
+  ! stability improvements
 
  */
 

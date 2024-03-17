@@ -1,0 +1,121 @@
+{
+    "appInfo": {
+        "appExperimental": false,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.2.6"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog1",
+                    "range": 65535,
+                    "type": "analog"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "binary1",
+                    "type": "binary"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "dimmer1",
+                    "type": "dimmer"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "dimmer2",
+                    "type": "dimmer"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "dimmer3",
+                    "type": "dimmer"
+                }
+            ],
+            "mode": "enttec",
+            "name": "dmx1",
+            "type": "dmx"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/binary1",
+            "linked": true,
+            "title": "Switch All"
+        },
+        {
+            "destination": "pipe1/analog1",
+            "linked": true,
+            "outputSmoothing": 1000,
+            "source": "pipe1/binary1",
+            "title": "Dimmer All"
+        },
+        {
+            "destination": "dmx1/dimmer1",
+            "linked": true,
+            "source": "pipe1/analog1",
+            "title": "Light 1"
+        },
+        {
+            "destination": "dmx1/dimmer2",
+            "linked": true,
+            "source": "pipe1/analog1",
+            "title": "Light 2"
+        },
+        {
+            "destination": "dmx1/dimmer3",
+            "linked": true,
+            "source": "pipe1/analog1",
+            "title": "Light 3"
+        }
+    ]
+}

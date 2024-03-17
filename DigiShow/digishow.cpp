@@ -1,5 +1,5 @@
 /*
-    Copyright 2021 Robin Zhang & Labs
+    Copyright 2021-2024 Robin Zhang & Labs
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 
 QString g_appname   = "DigiShow LINK";
 QString g_fullname  = "";
-QString g_version   = "1.2.7_a";
+QString g_version   = "1.5";
 QString g_copyright = "";
 QString g_serial    = "";
 

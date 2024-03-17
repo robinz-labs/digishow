@@ -1,0 +1,229 @@
+{
+    "appInfo": {
+        "appExperimental": false,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.2.6"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "A",
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "press1",
+                    "type": "press"
+                },
+                {
+                    "address": "B",
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "press2",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "preset1",
+                    "type": "preset"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "preset2",
+                    "type": "preset"
+                }
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "dimmer1",
+                    "type": "dimmer"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "dimmer2",
+                    "type": "dimmer"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "dimmer3",
+                    "type": "dimmer"
+                }
+            ],
+            "mode": "enttec",
+            "name": "dmx1",
+            "type": "dmx"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "control": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "control1",
+                    "type": "control"
+                },
+                {
+                    "channel": 0,
+                    "control": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "control2",
+                    "type": "control"
+                },
+                {
+                    "channel": 0,
+                    "control": 3,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "control3",
+                    "type": "control"
+                }
+            ],
+            "mode": "input",
+            "name": "midi1",
+            "outputInterval": 20,
+            "port": "IAC Bus 1",
+            "type": "midi"
+        }
+    ],
+    "launches": {
+        "launch1": {
+            "assigned": true,
+            "color": "#ff9900",
+            "title": "ORANGE"
+        },
+        "launch11": {
+            "assigned": true,
+            "color": "#1177dd",
+            "title": "MIDI LINK ON"
+        },
+        "launch16": {
+            "assigned": true,
+            "color": "#575aa9",
+            "title": "MIDI LINK OFF"
+        },
+        "launch2": {
+            "assigned": true,
+            "color": "#ed1b74",
+            "title": "PINK"
+        }
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "dmx1/dimmer1",
+            "launchDetails": {
+                "launch1": {
+                    "outputValue": 255
+                },
+                "launch11": {
+                    "linked": true
+                },
+                "launch16": {
+                    "linked": false
+                },
+                "launch2": {
+                    "outputValue": 255
+                }
+            },
+            "linked": false,
+            "source": "midi1/control1",
+            "title": "Light R"
+        },
+        {
+            "destination": "dmx1/dimmer2",
+            "launchDetails": {
+                "launch1": {
+                    "outputValue": 128
+                },
+                "launch11": {
+                    "linked": true
+                },
+                "launch16": {
+                    "linked": false
+                },
+                "launch2": {
+                    "outputValue": 0
+                }
+            },
+            "linked": false,
+            "source": "midi1/control2",
+            "title": "Light G"
+        },
+        {
+            "destination": "dmx1/dimmer3",
+            "launchDetails": {
+                "launch1": {
+                    "outputValue": -1
+                },
+                "launch11": {
+                    "linked": true
+                },
+                "launch16": {
+                    "linked": false
+                },
+                "launch2": {
+                    "outputValue": 164
+                }
+            },
+            "linked": false,
+            "source": "midi1/control3",
+            "title": "Light B"
+        },
+        {
+            "destination": "launch1/preset1",
+            "linked": true,
+            "source": "hotkey1/press1",
+            "title": "Orange"
+        },
+        {
+            "destination": "launch1/preset2",
+            "linked": true,
+            "source": "hotkey1/press2",
+            "title": "Pink"
+        }
+    ]
+}

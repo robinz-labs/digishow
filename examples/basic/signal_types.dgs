@@ -1,0 +1,145 @@
+{
+    "appInfo": {
+        "appExperimental": false,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.2.6"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog1",
+                    "range": 65535,
+                    "type": "analog"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "binary1",
+                    "type": "binary"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "note1",
+                    "type": "note"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog2",
+                    "range": 65535,
+                    "type": "analog"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "binary2",
+                    "type": "binary"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "note2",
+                    "type": "note"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/analog1",
+            "linked": true,
+            "source": "pipe1/binary1",
+            "title": "Binary to Analog"
+        },
+        {
+            "destination": "pipe1/note1",
+            "linked": false,
+            "source": "pipe1/binary1",
+            "title": "Binary to Note"
+        },
+        {
+            "destination": "pipe1/binary2",
+            "linked": false,
+            "source": "pipe1/binary1",
+            "title": "Binary to Binary"
+        },
+        {
+            "destination": "pipe1/binary1",
+            "linked": false,
+            "source": "pipe1/analog1",
+            "title": "Analog to Binary"
+        },
+        {
+            "destination": "pipe1/note1",
+            "linked": false,
+            "source": "pipe1/analog1",
+            "title": "Analog to Note"
+        },
+        {
+            "destination": "pipe1/analog2",
+            "linked": false,
+            "outputLow": 0,
+            "source": "pipe1/analog1",
+            "title": "Analog to Analog"
+        },
+        {
+            "destination": "pipe1/binary1",
+            "linked": false,
+            "source": "pipe1/note1",
+            "title": "Note to Binary"
+        },
+        {
+            "destination": "pipe1/analog1",
+            "linked": false,
+            "source": "pipe1/note1",
+            "title": "Note to Analog"
+        },
+        {
+            "destination": "pipe1/note2",
+            "linked": false,
+            "source": "pipe1/note1",
+            "title": "Note to Note"
+        }
+    ]
+}

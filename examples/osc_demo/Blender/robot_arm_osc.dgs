@@ -1,0 +1,429 @@
+{
+    "appInfo": {
+        "appExperimental": false,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.2.6"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog1",
+                    "range": 65535,
+                    "type": "analog"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog2",
+                    "range": 65535,
+                    "type": "analog"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog3",
+                    "range": 65535,
+                    "type": "analog"
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog4",
+                    "range": 65535,
+                    "type": "analog"
+                },
+                {
+                    "channel": 5,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog5",
+                    "range": 65535,
+                    "type": "analog"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/joint0",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float1",
+                    "type": "float"
+                },
+                {
+                    "address": "/joint1",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float2",
+                    "type": "float"
+                },
+                {
+                    "address": "/joint2",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float3",
+                    "type": "float"
+                },
+                {
+                    "address": "/joint3",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float4",
+                    "type": "float"
+                },
+                {
+                    "address": "/joint4",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float5",
+                    "type": "float"
+                }
+            ],
+            "mode": "input",
+            "name": "osc1",
+            "type": "osc",
+            "udpPort": 9002
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/joint0",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float1",
+                    "type": "float"
+                },
+                {
+                    "address": "/joint1",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float2",
+                    "type": "float"
+                },
+                {
+                    "address": "/joint2",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float3",
+                    "type": "float"
+                },
+                {
+                    "address": "/joint3",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float4",
+                    "type": "float"
+                },
+                {
+                    "address": "/joint4",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "float5",
+                    "type": "float"
+                }
+            ],
+            "mode": "output",
+            "name": "osc2",
+            "type": "osc",
+            "udpHost": "127.0.0.1",
+            "udpPort": 9001
+        }
+    ],
+    "launches": {
+        "launch1": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "Preset 1"
+        },
+        "launch2": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "Preset 2"
+        }
+    },
+    "metronome": {
+        "bpm": 30,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/analog1",
+            "launchDetails": {
+                "launch1": {
+                    "outputValue": 33045
+                },
+                "launch2": {
+                    "outputValue": 65535
+                }
+            },
+            "linked": true,
+            "source": "",
+            "title": "Joint 0"
+        },
+        {
+            "destination": "pipe1/analog2",
+            "launchDetails": {
+                "launch1": {
+                    "outputValue": 8302
+                },
+                "launch2": {
+                    "outputValue": 53832
+                }
+            },
+            "linked": true,
+            "source": "",
+            "title": "Joint 1"
+        },
+        {
+            "destination": "pipe1/analog3",
+            "launchDetails": {
+                "launch1": {
+                    "outputValue": 0
+                },
+                "launch2": {
+                    "outputValue": 4052
+                }
+            },
+            "linked": true,
+            "outputInverted": false,
+            "source": "",
+            "title": "Joint 2"
+        },
+        {
+            "destination": "pipe1/analog4",
+            "launchDetails": {
+                "launch1": {
+                    "outputValue": 32599
+                },
+                "launch2": {
+                    "outputValue": 0
+                }
+            },
+            "linked": true,
+            "outputInverted": false,
+            "source": "",
+            "title": "Joint 3"
+        },
+        {
+            "destination": "pipe1/analog5",
+            "launchDetails": {
+                "launch1": {
+                    "outputValue": 0
+                },
+                "launch2": {
+                    "outputValue": 311
+                }
+            },
+            "linked": true,
+            "outputInverted": false,
+            "source": "",
+            "title": "Joint 4"
+        },
+        {
+            "bookmarked": true,
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "title": "OSC OUT"
+        },
+        {
+            "destination": "osc2/float1",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "outputHigh": 1,
+            "outputLow": 0,
+            "outputSmoothing": 400,
+            "source": "pipe1/analog1",
+            "title": "OSC Joint 0"
+        },
+        {
+            "destination": "osc2/float2",
+            "inputInverted": true,
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "outputHigh": 0.31613,
+            "outputLow": 0.09698,
+            "outputSmoothing": 200,
+            "source": "pipe1/analog2",
+            "title": "OSC Joint 1"
+        },
+        {
+            "destination": "osc2/float3",
+            "inputInverted": false,
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "outputHigh": 0.35687,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "outputSmoothing": 200,
+            "source": "pipe1/analog3",
+            "title": "OSC Joint 2"
+        },
+        {
+            "destination": "osc2/float4",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "outputHigh": 0.49942,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "outputSmoothing": 200,
+            "source": "pipe1/analog4",
+            "title": "OSC Joint 3"
+        },
+        {
+            "destination": "osc2/float5",
+            "inputInverted": true,
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "outputHigh": 0.49627,
+            "outputInverted": false,
+            "outputLow": 0.14888,
+            "outputLowAsZero": false,
+            "outputSmoothing": 200,
+            "source": "pipe1/analog5",
+            "title": "OSC Joint 4"
+        },
+        {
+            "bookmarked": true,
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "title": "OSC IN"
+        },
+        {
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "source": "osc1/float1",
+            "title": "Joint 0"
+        },
+        {
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "source": "osc1/float2",
+            "title": "Joint 1"
+        },
+        {
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "source": "osc1/float3",
+            "title": "Joint 2"
+        },
+        {
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "source": "osc1/float4",
+            "title": "Joint 3"
+        },
+        {
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                }
+            },
+            "linked": true,
+            "source": "osc1/float5",
+            "title": "Joint 4"
+        }
+    ]
+}
