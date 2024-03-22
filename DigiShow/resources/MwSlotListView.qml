@@ -775,6 +775,8 @@ Item {
 
             Keys.onReleased: {
 
+                if (event.isAutoRepeat) return
+
                 switch(event.key) {
                 case Qt.Key_Shift: shiftKeyHeld = false; break
                 case Qt.Key_Alt:   altKeyHeld   = false; break
@@ -799,6 +801,8 @@ Item {
             }
 
             Keys.onPressed: {
+
+                if (event.isAutoRepeat) return
 
                 switch(event.key) {
                 case Qt.Key_Shift: shiftKeyHeld = true; break

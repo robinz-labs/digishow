@@ -148,6 +148,6 @@
         <file>SpWebView.qml</file>
         <file>SpAnimationFadeIn.qml</file>
         <file>DigishowScriptable.qml</file>
-        <file>DigishowScriptableUserTemplate.qml</file>
+        <file>DigishowScriptableUserTemplate.txt</file>
     </qresource>
 </RCC>

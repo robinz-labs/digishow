@@ -355,7 +355,7 @@ bool DigishowApp::createScriptableFile()
     if (filepath.isEmpty()) return false;
     if (QFile::exists(filepath)) return false;
 
-    QString templateCode = AppUtilities::loadStringFromFile(":/DigishowScriptableUserTemplate.qml");
+    QString templateCode = AppUtilities::loadStringFromFile(":/DigishowScriptableUserTemplate.txt");
     bool done = AppUtilities::saveStringToFile(templateCode, filepath);
     return done;
 }
