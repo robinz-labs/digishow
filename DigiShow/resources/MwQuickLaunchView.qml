@@ -185,7 +185,7 @@ Item {
             id: popupOptions
 
             width: 320
-            height: 200
+            height: 250
             anchors.centerIn: parent
             modal: false
             focus: true
@@ -239,113 +239,36 @@ Item {
                 spacing: 10
 
                 Label {
+                    height: 80
+                    width: 300
                     topPadding: 10
                     leftPadding: 10
+                    rightPadding: 10
                     bottomPadding: 5
-                    font.bold: true
+                    lineHeight: 1.5
+                    wrapMode: Text.WordWrap
+                    font.bold: false
                     font.pixelSize: 12
-                    text: qsTr("Create a preset to remember:")
-                }
-
-                Label {
-                    id: labelRememberOutput
-                    height: 28
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    leftPadding: 10
-                    verticalAlignment: Text.AlignVCenter
-                    font.pixelSize: 12
-                    text: qsTr("Checked output signals")
-
-                    CButton {
-                        id: buttonRememberOutputNone
-
-                        width: 50
-                        height: 22
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-                        anchors.rightMargin: 10
-                        colorNormal: "black"
-                        box.radius: 3
-                        label.text: qsTr("None")
-                        label.font.pixelSize: 10
-                        onClicked: slotListView.setSlotLaunchRememberAllOutputs(false)
-                    }
-
-                    CButton {
-                        id: buttonRememberOutputAll
-
-                        width: 50
-                        height: 22
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: buttonRememberOutputNone.left
-                        anchors.rightMargin: 10
-                        colorNormal: Material.accent
-                        box.radius: 3
-                        label.text: qsTr("All")
-                        label.font.pixelSize: 10
-                        onClicked: slotListView.setSlotLaunchRememberAllOutputs(true)
-                    }
-                }
-
-                Label {
-                    id: labelRememberLink
-                    height: 28
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    leftPadding: 10
-                    verticalAlignment: Text.AlignVCenter
-                    font.pixelSize: 12
-                    text: qsTr("Checked LINK states")
-
-                    CButton {
-                        id: buttonRememberLinkNone
-
-                        width: 50
-                        height: 22
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-                        anchors.rightMargin: 10
-                        colorNormal: "black"
-                        box.radius: 3
-                        label.text: qsTr("None")
-                        label.font.pixelSize: 10
-                        onClicked: slotListView.setSlotLaunchRememberAllLinks(false)
-                    }
-
-                    CButton {
-                        id: buttonRememberLinkAll
-
-                        width: 50
-                        height: 22
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: buttonRememberLinkNone.left
-                        anchors.rightMargin: 10
-                        colorNormal: Material.accent
-                        box.radius: 3
-                        label.text: qsTr("All")
-                        label.font.pixelSize: 10
-                        onClicked: slotListView.setSlotLaunchRememberAllLinks(true)
-                    }
+                    text: qsTr("Check the boxes next to the output faders and LINK buttons to memorize their values and states to the preset.")
                 }
 
                 Item {
-                    width: 200
-                    height: 45
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: 220
+                    height: 30
+                    anchors.right: parent.right
 
                     CButton {
 
                         property bool isFirstTime: true
 
-                        width: 90
+                        width: 120
                         height: 28
 
-                        anchors.bottom: parent.bottom
+                        anchors.top: parent.top
                         anchors.left: parent.left
-                        label.font.bold: false
+                        label.font.bold: true
                         label.font.pixelSize: 11
-                        label.text: qsTr("Save")
+                        label.text: qsTr("Save Preset")
                         colorNormal: Material.accent
                         box.radius: 3
 
@@ -367,12 +290,13 @@ Item {
                     }
 
                     CButton {
-                        width: 90
+                        width: 80
                         height: 28
 
-                        anchors.bottom: parent.bottom
+                        anchors.top: parent.top
                         anchors.right: parent.right
-                        label.font.bold: false
+                        anchors.rightMargin: 10
+                        label.font.bold: true
                         label.font.pixelSize: 11
                         label.text: qsTr("Cancel")
                         box.radius: 3
@@ -382,6 +306,109 @@ Item {
                         }
                     }
                 }
+
+                Item {
+                    height: 30
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    Rectangle {
+                        height: 1
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        color: "#333333"
+                    }
+                }
+
+                Label {
+                    id: labelRememberOutput
+                    height: 22
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    leftPadding: 10
+                    verticalAlignment: Text.AlignVCenter
+                    font.pixelSize: 12
+                    color: "#999999"
+                    text: qsTr("Output faders")
+
+                    CButton {
+                        id: buttonRememberOutputNone
+
+                        width: 80
+                        height: 20
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        anchors.rightMargin: 10
+                        colorNormal: "black"
+                        box.radius: 3
+                        label.text: qsTr("Check None")
+                        label.font.bold: false
+                        label.font.pixelSize: 9
+                        onClicked: slotListView.setSlotLaunchRememberAllOutputs(false)
+                    }
+
+                    CButton {
+                        id: buttonRememberOutputAll
+
+                        width: 80
+                        height: 20
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: buttonRememberOutputNone.left
+                        anchors.rightMargin: 5
+                        //colorNormal: Material.accent
+                        box.radius: 3
+                        label.text: qsTr("Check All")
+                        label.font.bold: false
+                        label.font.pixelSize: 9
+                        onClicked: slotListView.setSlotLaunchRememberAllOutputs(true)
+                    }
+                }
+
+                Label {
+                    id: labelRememberLink
+                    height: 22
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    leftPadding: 10
+                    verticalAlignment: Text.AlignVCenter
+                    font.pixelSize: 12
+                    color: "#999999"
+                    text: qsTr("LINK buttons")
+
+                    CButton {
+                        id: buttonRememberLinkNone
+
+                        width: 80
+                        height: 20
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        anchors.rightMargin: 10
+                        colorNormal: "black"
+                        box.radius: 3
+                        label.text: qsTr("Check None")
+                        label.font.bold: false
+                        label.font.pixelSize: 9
+                        onClicked: slotListView.setSlotLaunchRememberAllLinks(false)
+                    }
+
+                    CButton {
+                        id: buttonRememberLinkAll
+
+                        width: 80
+                        height: 20
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: buttonRememberLinkNone.left
+                        anchors.rightMargin: 5
+                        //colorNormal: Material.accent
+                        box.radius: 3
+                        label.text: qsTr("Check All")
+                        label.font.bold: false
+                        label.font.pixelSize: 9
+                        onClicked: slotListView.setSlotLaunchRememberAllLinks(true)
+                    }
+                }
+
             }
         }
 

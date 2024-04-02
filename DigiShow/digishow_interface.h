@@ -70,8 +70,11 @@ public:
 
 signals:
 
+    void metadataUpdated();
+
     void dataReceived(int endpointIndex, dgsSignalData dataIn);
-    void dataPrepared(int endpointIndex, dgsSignalData dataOut);
+    void dataPrepared(int endpointIndex, dgsSignalData dataOut, bool pre);
+    void dataSent(int endpointIndex, dgsSignalData dataOut);
 
     void rawDataReceived(const QVariantMap &rawData);
 

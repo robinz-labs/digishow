@@ -468,7 +468,7 @@ Item {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 15
             from: 0
-            to: 60000
+            to: 9000000
             stepSize: 10
             unit: "ms"
 
@@ -671,7 +671,7 @@ Item {
                         anchors.left: parent.left
                         anchors.leftMargin: 95
                         from: 0
-                        to: 60000
+                        to: 9000000
                         stepSize: 10
                         unit: "ms"
 
@@ -699,7 +699,7 @@ Item {
                         anchors.left: parent.left
                         anchors.leftMargin: 95
                         from: 0
-                        to: 60000
+                        to: 9000000
                         stepSize: 10
                         unit: "ms"
 
@@ -722,7 +722,7 @@ Item {
                         anchors.left: parent.left
                         anchors.leftMargin: 95
                         from: 0
-                        to: 60000
+                        to: 9000000
                         stepSize: 10
                         unit: "ms"
 
@@ -745,7 +745,7 @@ Item {
                         anchors.left: parent.left
                         anchors.leftMargin: 95
                         from: 0
-                        to: 60000
+                        to: 9000000
                         stepSize: 10
                         unit: "ms"
 
@@ -792,7 +792,7 @@ Item {
                         anchors.left: parent.left
                         anchors.leftMargin: 95
                         from: 0
-                        to: 60000
+                        to: 9000000
                         stepSize: 10
                         unit: "ms"
 
@@ -820,7 +820,7 @@ Item {
                         anchors.left: parent.left
                         anchors.leftMargin: 95
                         from: 0
-                        to: 60000
+                        to: 9000000
                         stepSize: 10
                         unit: "ms"
 
@@ -1195,7 +1195,7 @@ Item {
 
     function expressionHelp(textExpression) {
 
-        var exampleCode = "value*0.5 + 10000"
+        var exampleCode = "value*0.5 + 100"
         var btn = 0
         btn = messageBox.showAndWait(
             qsTr("Write a JavaScript expression to dynamically change the signal value, for example:") + "\r\n\r\n= " + exampleCode,
@@ -1210,7 +1210,7 @@ Item {
         if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
         if (btn <= 1) return
 
-        exampleCode = "value > 0 ? value*(Math.random()*0.2 + 0.8) : 0"
+        exampleCode = "value/range > 0.5 ? value*(Math.random()*0.2 + 0.8) : null"
         btn = messageBox.showAndWait(
             qsTr("The expression can contain common JavaScript statements and functions, for example:") + "\r\n\r\n= " + exampleCode,
             qsTr("Try It"), qsTr("Next"))

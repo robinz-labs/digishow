@@ -167,6 +167,9 @@ QVariantMap DigishowEnvironment::getSlotRuntimeData(int slotIndex)
         data["errTraffic"    ] = slot->hasTrafficError();
         data["errInExp"      ] = slot->hasInputExpressionError();
         data["errOutExp"     ] = slot->hasOutputExpressionError();
+
+        // data["epInRange"     ] = slot->getEndpointInRange();
+        // data["epOutRange"    ] = slot->getEndpointOutRange();
     }
 
     return data;
@@ -947,7 +950,7 @@ QString DigishowEnvironment::getMediaType(const QString &mediaUrl)
 
     if (mediaUrl1.endsWith(".mp4") || mediaUrl1.endsWith(".mov") || mediaUrl1.endsWith(".avi") || mediaUrl1.endsWith(".flv") || mediaUrl1.endsWith(".m4v") || mediaUrl1.endsWith(".wmv") || mediaUrl1.endsWith(".mkv"))
         return "video";
-    else if (mediaUrl1.endsWith(".jpg") || mediaUrl1.endsWith(".png") || mediaUrl1.endsWith(".bmp") || mediaUrl1.endsWith(".svg"))
+    else if (mediaUrl1.endsWith(".jpg") || mediaUrl1.endsWith(".jpeg") || mediaUrl1.endsWith(".png") || mediaUrl1.endsWith(".bmp") || mediaUrl1.endsWith(".svg"))
         return "image";
     else if (mediaUrl1.endsWith(".ini"))
         return "ini";

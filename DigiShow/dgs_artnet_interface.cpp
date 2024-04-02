@@ -378,7 +378,7 @@ void DgsArtnetInterface::onUdpDataReceived()
                 if (type == ENDPOINT_ARTNET_DIMMER && unit == universe && channel < length) {
 
                     unsigned char value = packetBytes[channel+18];
-                    bool changed = !m_dataAll.contains(universe) || m_dataAll[universe].data()[channel] != value;
+                    bool changed = !m_dataAll.contains(universe) || (unsigned char)m_dataAll[universe].data()[channel] != value;
 
                     // emit artnet input signal
                     if (changed) {
@@ -395,7 +395,7 @@ void DgsArtnetInterface::onUdpDataReceived()
 
                     unsigned char msb = packetBytes[channel+18];
                     unsigned char lsb = packetBytes[channel+19];
-                    bool changed = !m_dataAll.contains(universe) || m_dataAll[universe].data()[channel] != msb || m_dataAll[universe].data()[channel+1] != lsb;
+                    bool changed = !m_dataAll.contains(universe) || (unsigned char)m_dataAll[universe].data()[channel] != msb || (unsigned char)m_dataAll[universe].data()[channel+1] != lsb;
 
                     // emit artnet input signal
                     if (changed) {

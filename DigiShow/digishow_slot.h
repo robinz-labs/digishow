@@ -61,6 +61,8 @@ public:
     Q_INVOKABLE int setSelected(bool selected);
     Q_INVOKABLE bool isSelected() { return m_selected; }
 
+    Q_INVOKABLE int getEndpointInRange();
+    Q_INVOKABLE int getEndpointOutRange();
     Q_INVOKABLE int getEndpointInValue(bool pre = false);
     Q_INVOKABLE int getEndpointOutValue(bool pre = false);
     Q_INVOKABLE bool isEndpointInBusy();
@@ -72,11 +74,16 @@ public:
     Q_INVOKABLE bool hasOutputExpressionError() { return m_outputExpressionError; }
 
 signals:
+    void metadataUpdated();
 
 public slots:
 
-    void onDataReceived(int endpointIndex, dgsSignalData dataIn);  // incoming data is received
-    void onDataPrepared(int endpointIndex, dgsSignalData dataOut); // outgoing data is pareared
+    void onInterfaceMetadataUpdated();
+
+    void onDataReceived(int endpointIndex, dgsSignalData dataIn);            // incoming data is received
+    void onDataPrepared(int endpointIndex, dgsSignalData dataOut, bool pre); // outgoing data is pareared
+    void onDataSent(int endpointIndex, dgsSignalData dataOut);               // outgoing data is sent
+
     void onDataOutTimerFired();
     void onEnvelopeTimerFired();
     void onSmoothingTimerFired();

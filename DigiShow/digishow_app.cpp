@@ -443,9 +443,6 @@ int DigishowApp::start()
     m_running = true;
     emit isRunningChanged();
 
-    // initialize all interfaces
-    for (int n=0 ; n<m_interfaces.length() ; n++) m_interfaces[n]->init();
-
 #ifdef DIGISHOW_EXPERIMENTAL
     // start add-on process
     startAddon();
@@ -453,6 +450,9 @@ int DigishowApp::start()
 
     // start scriptable
     startScriptable();
+
+    // initialize all interfaces
+    for (int n=0 ; n<m_interfaces.length() ; n++) m_interfaces[n]->init();
 
     return hasError;
 }
@@ -781,15 +781,21 @@ bool DigishowApp::startLaunch(const QString &launchName)
     if (!m_launches.contains(launchName)) return false;
 
     for (int n=0 ; n<m_slots.length() ; n++) {
+
         DigishowSlot* slot = m_slots[n];
         if (slot->slotOptions()->contains("launchDetails")) {
+
             QVariantMap launchDetails = slot->slotOptions()->value("launchDetails").toMap();
             if (launchDetails.contains(launchName)) {
+
                 QVariantMap launchDetail = launchDetails.value(launchName).toMap();
-                if (launchDetail.contains("linked"))
+                if (launchDetail.contains("linked")) {
                     slot->setLinked(launchDetail.value("linked").toBool());
-                if (launchDetail.contains("outputValue"))
-                    slot->setEndpointOutValue(launchDetail.value("outputValue").toInt());
+                }
+                if (launchDetail.contains("outputValue")) {
+                    int value = launchDetail.value("outputValue").toInt();
+                    if (value >= 0) slot->setEndpointOutValue(value);
+                }
             }
         }
     }
@@ -1029,4 +1035,22 @@ void DigishowApp::onTimerFired()
 {
 
 }
+
+void DigishowApp::onSlotMetadataUpdated()
+{
+    DigishowSlot *slot = (DigishowSlot*)sender();
+
+    for (int n=0 ; n<m_slots.length() ; n++) {
+        if (m_slots[n] == slot) {
+
+            #ifdef QT_DEBUG
+            qDebug() << "slot refresh request" << n;
+            #endif
+
+            emit slotRefreshRequest(n);
+            return;
+        }
+    }
+}
+
 

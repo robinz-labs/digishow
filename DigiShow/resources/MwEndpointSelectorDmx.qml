@@ -120,7 +120,7 @@ Item {
         folder: shortcuts.home
         selectExisting: true
         nameFilters: [ qsTr("Video files") + " (*.avi *.mp4 *.mov)",
-                       qsTr("Image files") + " (*.bmp *.png *.jpg)",
+                       qsTr("Image files") + " (*.bmp *.png *.jpg *.jpeg)",
                        qsTr("Image Sequence") + " (*.ini)",
                        qsTr("All files") + " (*)" ]
         onAccepted: {

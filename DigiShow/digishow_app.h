@@ -123,10 +123,13 @@ signals:
     void slotListChanged();
     void launchListChanged();
 
+    void slotRefreshRequest(int slotIndex);
+
     void messageNotified(QString msgText, int msgType);
 
 public slots:
     void onTimerFired();
+    void onSlotMetadataUpdated();
 
 private:
 

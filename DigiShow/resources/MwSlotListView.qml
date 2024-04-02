@@ -395,6 +395,17 @@ Item {
                         }
                     }
 
+                    CheckBox {
+                        id: checkLaunchRememberLink
+                        anchors.verticalCenter: buttonLink.verticalCenter
+                        anchors.left: buttonLink.right
+                        anchors.leftMargin: -9
+                        scale: 0.8
+                        visible: quickLaunchView.visible && quickLaunchView.editingLaunchName !== ""
+                        checked: model.launchRememberLink
+                        onClicked: model.launchRememberLink = checked
+                    }
+
                     CButton {
                         id: buttonLink
                         width: 34
@@ -423,7 +434,7 @@ Item {
                         width: 16
                         height: 16
                         anchors.left: buttonLink.right
-                        anchors.leftMargin: 10
+                        anchors.leftMargin: 20
                         anchors.verticalCenter: parent.verticalCenter
                         source: "qrc:///images/icon_arrow_right_white.png"
                         opacity: model.epInBusy ? 1.0 : 0.1
@@ -623,13 +634,24 @@ Item {
                             }
                         }
 
+                        CheckBox {
+                            id: checkLaunchRememberOutput
+                            anchors.verticalCenter: faderOutput.verticalCenter
+                            anchors.right: faderOutput.left
+                            anchors.rightMargin: -9
+                            scale: 0.8
+                            visible: quickLaunchView.visible && quickLaunchView.editingLaunchName !== ""
+                            checked: model.launchRememberOutput
+                            onClicked: model.launchRememberOutput = checked
+                        }
+
                         CSlider {
                             id: faderOutput
 
-                            width: rectTopLeftBar.width - 710 + 90
+                            width: rectTopLeftBar.width - 710 + 80
                             height:30
                             anchors.right: buttonHold.left
-                            anchors.rightMargin: 18
+                            anchors.rightMargin: 10
                             anchors.verticalCenter: parent.verticalCenter
                             value: model.slotLinked && model.epOutFaderHold ? model.epOutPreValue : model.epOutFaderValue
                             to: model.epOutRange
@@ -682,24 +704,6 @@ Item {
                         anchors.topMargin: 4
                         source: "qrc:///images/icon_attention.png"
                         visible: model.errOutExp
-                    }
-
-                    CheckBox {
-                        id: checkLaunchRememberLink
-                        anchors.horizontalCenter: buttonLink.horizontalCenter
-                        anchors.verticalCenter: labelSlotTitle.verticalCenter
-                        visible: quickLaunchView.visible && quickLaunchView.editingLaunchName !== ""
-                        checked: model.launchRememberLink
-                        onClicked: model.launchRememberLink = checked
-                    }
-
-                    CheckBox {
-                        id: checkLaunchRememberOutput
-                        anchors.horizontalCenter: rectEndpointOut.horizontalCenter
-                        anchors.verticalCenter: labelSlotTitle.verticalCenter
-                        visible: quickLaunchView.visible && quickLaunchView.editingLaunchName !== ""
-                        checked: model.launchRememberOutput
-                        onClicked: model.launchRememberOutput = checked
                     }
 
                     CheckBox {
@@ -1149,6 +1153,11 @@ Item {
                 if (dataModel.get(n).errTraffic     !== data["errTraffic"    ]) dataModel.setProperty(n, "errTraffic",     data["errTraffic"    ])
                 if (dataModel.get(n).errInExp       !== data["errInExp"      ]) dataModel.setProperty(n, "errInExp",       data["errInExp"      ])
                 if (dataModel.get(n).errOutExp      !== data["errOutExp"     ]) dataModel.setProperty(n, "errOutExp",      data["errOutExp"     ])
+
+                // var epInRange  = data["epInRange" ]
+                // var epOutRange = data["epOutRange"]
+                // if (epInRange  > 0 && epInRange  !== dataModel.get(n).epInRange ) dataModel.setProperty(n, "epInRange" , epInRange)
+                // if (epOutRange > 0 && epOutRange !== dataModel.get(n).epOutRange) dataModel.setProperty(n, "epOutRange", epOutRange)
             }
         }
     }

@@ -33,7 +33,7 @@ public:
     void stop();
 
     QVariant execute(const QString &script);
-    int execute(const QString &expression, int inputValue, bool *ok = nullptr);
+    int execute(const QString &expression, int inputValue, int inputRange, bool *ok = nullptr);
 
 
 signals:

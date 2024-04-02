@@ -40,8 +40,9 @@ SpinBox {
             verticalAlignment: Qt.AlignVCenter
             selectByMouse: true
             readOnly: !spinBox.editable
-            validator: spinBox.validator
+            //validator: spinBox.validator
             inputMethodHints: Qt.ImhDigitsOnly
+            clip: true
             onEditingFinished: {
                 spinBox.value = spinBox.valueFromText(text)
                 valueModified() // emit signal

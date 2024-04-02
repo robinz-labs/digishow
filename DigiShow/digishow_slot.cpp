@@ -71,6 +71,8 @@ DigishowSlot::DigishowSlot(QObject *parent) : QObject(parent)
     m_inputExpressionError = false;
     m_outputExpressionError = false;
 
+    connect(this, SIGNAL(metadataUpdated()), g_app, SLOT(onSlotMetadataUpdated()));
+
 #ifdef QT_DEBUG
     qDebug() << "slot created";
 #endif
@@ -88,6 +90,7 @@ int DigishowSlot::setSource(DigishowInterface *interface, int endpointIndex)
 {
     // release old source connection
     if (m_sourceInterface != nullptr) {
+        disconnect(m_sourceInterface, SIGNAL(metadataUpdated()), this, nullptr);
         disconnect(m_sourceInterface, SIGNAL(dataReceived(int, dgsSignalData)), this, nullptr);
         m_sourceInterface = nullptr;
         m_sourceEndpointIndex = -1;
@@ -104,6 +107,7 @@ int DigishowSlot::setSource(DigishowInterface *interface, int endpointIndex)
         m_lastDataInPre = dgsSignalData();
         m_lastDataIn    = dgsSignalData();
 
+        connect(m_sourceInterface, SIGNAL(metadataUpdated()), this, SLOT(onInterfaceMetadataUpdated()));
         connect(m_sourceInterface, SIGNAL(dataReceived(int, dgsSignalData)), this, SLOT(onDataReceived(int, dgsSignalData)));
     }
 
@@ -114,7 +118,9 @@ int DigishowSlot::setDestination(DigishowInterface *interface, int endpointIndex
 {
     // release old destination connection
     if (m_destinationInterface != nullptr) {
-        disconnect(m_destinationInterface, SIGNAL(dataPrepared(int, dgsSignalData)), this, nullptr);
+        disconnect(m_destinationInterface, SIGNAL(metadataUpdated()), this, nullptr);
+        disconnect(m_destinationInterface, SIGNAL(dataPrepared(int, dgsSignalData, bool)), this, nullptr);
+        disconnect(m_destinationInterface, SIGNAL(dataSent(int, dgsSignalData)), this, nullptr);
         m_destinationInterface = nullptr;
         m_destinationEndpointIndex = -1;
         m_slotInfo.outputSignal = 0;
@@ -133,7 +139,9 @@ int DigishowSlot::setDestination(DigishowInterface *interface, int endpointIndex
         // set output interval option
         updateSlotOuputInterval();
 
-        connect(m_destinationInterface, SIGNAL(dataPrepared(int, dgsSignalData)), this, SLOT(onDataPrepared(int, dgsSignalData)));
+        connect(m_destinationInterface, SIGNAL(metadataUpdated()), this, SLOT(onInterfaceMetadataUpdated()));
+        connect(m_destinationInterface, SIGNAL(dataPrepared(int, dgsSignalData, bool)), this, SLOT(onDataPrepared(int, dgsSignalData, bool)));
+        connect(m_destinationInterface, SIGNAL(dataSent(int, dgsSignalData)), this, SLOT(onDataSent(int, dgsSignalData)));
     }
 
     return ERR_NONE;
@@ -199,6 +207,20 @@ QVariantMap DigishowSlot::getSlotInfo()
     info["outputInterval" ] = m_slotInfo.outputInterval;
 
     return info;
+}
+
+int DigishowSlot::getEndpointInRange()
+{
+    if (m_sourceInterface != nullptr && m_sourceEndpointIndex != -1)
+        return m_sourceInterface->endpointInfoList()->at(m_sourceEndpointIndex).range;
+    return 0;
+}
+
+int DigishowSlot::getEndpointOutRange()
+{
+    if (m_destinationInterface != nullptr && m_destinationEndpointIndex != -1)
+        return m_destinationInterface->endpointInfoList()->at(m_destinationEndpointIndex).range;
+    return 0;
 }
 
 int DigishowSlot::getEndpointInValue(bool pre)
@@ -346,14 +368,14 @@ void DigishowSlot::updateSlotInfoItem(const QString &name, const QVariant &value
     else if ( name == "inputInverted"   ) m_slotInfo.inputInverted    = value.isNull() ? newSlotInfo.inputInverted    : value.toBool();
     else if ( name == "outputInverted"  ) m_slotInfo.outputInverted   = value.isNull() ? newSlotInfo.outputInverted   : value.toBool();
     else if ( name == "outputLowAsZero" ) m_slotInfo.outputLowAsZero  = value.isNull() ? newSlotInfo.outputLowAsZero  : value.toBool();
-    else if ( name == "envelopeAttack"  ) m_slotInfo.envelopeAttack   = value.isNull() ? newSlotInfo.envelopeAttack   : MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "envelopeHold"    ) m_slotInfo.envelopeHold     = value.isNull() ? newSlotInfo.envelopeHold     : MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "envelopeDecay"   ) m_slotInfo.envelopeDecay    = value.isNull() ? newSlotInfo.envelopeDecay    : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "envelopeAttack"  ) m_slotInfo.envelopeAttack   = value.isNull() ? newSlotInfo.envelopeAttack   : MINMAX(value.toInt(), 0, 9000000);
+    else if ( name == "envelopeHold"    ) m_slotInfo.envelopeHold     = value.isNull() ? newSlotInfo.envelopeHold     : MINMAX(value.toInt(), 0, 9000000);
+    else if ( name == "envelopeDecay"   ) m_slotInfo.envelopeDecay    = value.isNull() ? newSlotInfo.envelopeDecay    : MINMAX(value.toInt(), 0, 9000000);
     else if ( name == "envelopeSustain" ) m_slotInfo.envelopeSustain  = value.isNull() ? newSlotInfo.envelopeSustain  : MINMAX(value.toDouble(), 0.0, 1.0);
-    else if ( name == "envelopeRelease" ) m_slotInfo.envelopeRelease  = value.isNull() ? newSlotInfo.envelopeRelease  : MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "envelopeInDelay" ) m_slotInfo.envelopeInDelay  = value.isNull() ? newSlotInfo.envelopeInDelay  : MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "envelopeOutDelay") m_slotInfo.envelopeOutDelay = value.isNull() ? newSlotInfo.envelopeOutDelay : MINMAX(value.toInt(), 0, 60000);
-    else if ( name == "outputSmoothing" ) m_slotInfo.outputSmoothing  = value.isNull() ? newSlotInfo.outputSmoothing  : MINMAX(value.toInt(), 0, 60000);
+    else if ( name == "envelopeRelease" ) m_slotInfo.envelopeRelease  = value.isNull() ? newSlotInfo.envelopeRelease  : MINMAX(value.toInt(), 0, 9000000);
+    else if ( name == "envelopeInDelay" ) m_slotInfo.envelopeInDelay  = value.isNull() ? newSlotInfo.envelopeInDelay  : MINMAX(value.toInt(), 0, 9000000);
+    else if ( name == "envelopeOutDelay") m_slotInfo.envelopeOutDelay = value.isNull() ? newSlotInfo.envelopeOutDelay : MINMAX(value.toInt(), 0, 9000000);
+    else if ( name == "outputSmoothing" ) m_slotInfo.outputSmoothing  = value.isNull() ? newSlotInfo.outputSmoothing  : MINMAX(value.toInt(), 0, 9000000);
     else if ( name == "outputInterval"  ) m_slotInfo.outputInterval   = value.isNull() ? newSlotInfo.outputInterval   : MINMAX(value.toInt(), 0, 60000);
 }
 
@@ -428,7 +450,7 @@ dgsSignalData DigishowSlot::processInputAnalog(dgsSignalData dataIn)
     } else if (m_slotInfo.outputSignal == DATA_SIGNAL_NOTE) {
 
         // A to N
-        double lastInputRatio = static_cast<double>(m_lastDataIn.aValue) / static_cast<double>(m_lastDataIn.aRange);
+        double lastInputRatio = m_lastDataIn.signal == 0 ? 0 : static_cast<double>(m_lastDataIn.aValue) / static_cast<double>(m_lastDataIn.aRange);
         if (m_slotInfo.inputInverted) lastInputRatio = 1.0 - lastInputRatio;
 
         bool isNoteOn = false;
@@ -492,10 +514,9 @@ void DigishowSlot::prepareDataOut(dgsSignalData dataOut, bool pre)
 {
     // confirm output data is changed
     dgsSignalData lastDataOut = (pre ? m_lastDataOutPre : m_lastDataOut);
-    if (dataOut.signal == lastDataOut.signal && (
-           (dataOut.signal == DATA_SIGNAL_ANALOG && dataOut.aRange == lastDataOut.aRange && dataOut.aValue == lastDataOut.aValue) ||
-           (dataOut.signal == DATA_SIGNAL_BINARY && dataOut.bValue == lastDataOut.bValue))) return;
-           // && isEndpointOutBusy()) return;
+    if (lastDataOut.signal != 0 &&
+        lastDataOut.aValue == dataOut.aValue &&
+        lastDataOut.bValue == dataOut.bValue) return;
 
     if (pre) {
 
@@ -533,14 +554,15 @@ void DigishowSlot::sendDataOut(dgsSignalData dataOut, bool pre)
 
         bool ok = true;
         dataOut = expressionExecute(m_slotOutputExpression, dataOut, &ok);
+        if (dataOut.signal == 0) dataOut = m_lastDataOut;
         m_outputExpressionError = !ok;
     }
 
     // send data to the interface
+    m_lastDataOut = dataOut;
     m_dataOutTimeLastSent = elapsed();
     m_destinationInterface->sendData(m_destinationEndpointIndex, dataOut);
 
-    m_lastDataOut = dataOut;
 }
 
 void DigishowSlot::envelopeStart(dgsSignalData dataIn)
@@ -821,15 +843,16 @@ dgsSignalData DigishowSlot::expressionExecute(const QString & expression, dgsSig
     if (expression.isEmpty()) return dataIn;
 
     DigishowScriptable* scriptable = g_app->scriptable();
-    int inputValue = 0;
+    int inputValue = 0, inputRange = 1;
     switch (dataIn.signal) {
-    case DATA_SIGNAL_ANALOG: inputValue = dataIn.aValue; break;
-    case DATA_SIGNAL_BINARY: inputValue = dataIn.bValue; break;
-    case DATA_SIGNAL_NOTE:   inputValue = dataIn.bValue ? dataIn.aValue : 0; break;
+    case DATA_SIGNAL_ANALOG: inputValue = dataIn.aValue; inputRange = dataIn.aRange; break;
+    case DATA_SIGNAL_BINARY: inputValue = dataIn.bValue; inputRange = 1; break;
+    case DATA_SIGNAL_NOTE:   inputValue = dataIn.bValue ? dataIn.aValue : 0; inputRange = 127; break;
     }
 
-    int outputValue = scriptable->execute(expression, inputValue, ok);
+    int outputValue = scriptable->execute(expression, inputValue, inputRange, ok);
     if (*ok == false) return dataIn;
+    if (outputValue < 0) return dgsSignalData();
 
     dgsSignalData dataOut = dataIn;
     switch (dataOut.signal) {
@@ -840,21 +863,39 @@ dgsSignalData DigishowSlot::expressionExecute(const QString & expression, dgsSig
     return dataOut;
 }
 
+void DigishowSlot::onInterfaceMetadataUpdated()
+{
+    if (m_lastDataIn.signal == DATA_SIGNAL_ANALOG && m_lastDataIn.aRange != getEndpointInRange()) {
+        m_lastDataInPre = dgsSignalData();
+        m_lastDataIn    = dgsSignalData();
+    }
+
+    if (m_lastDataOut.signal == DATA_SIGNAL_ANALOG && m_lastDataOut.aRange != getEndpointOutRange()) {
+        m_lastDataOutPre = dgsSignalData();
+        m_lastDataOut    = dgsSignalData();
+    }
+
+    emit metadataUpdated();
+}
+
 void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
 {
     // only process data packages received from the relevant endpoint
     if (m_sourceEndpointIndex != endpointIndex) return;
 
-    if (g_needLogCtl)
-        qDebug() << "slot_in:" << m_sourceEndpointIndex << dataIn.signal << dataIn.aValue << dataIn.aRange << dataIn.bValue;
+    // confirm input data is changed
+    dgsSignalData lastDataIn = m_lastDataInPre;
+    if (lastDataIn.signal != 0 &&
+        lastDataIn.aValue == dataIn.aValue &&
+        lastDataIn.bValue == dataIn.bValue) return;
+    m_lastDataInPre = dataIn;
 
     m_dataInTimeLastReceived = elapsed();
-
-    m_lastDataInPre = dataIn;
 
     // execute expression to preprocess the received data
     bool ok = true;
     dataIn = expressionExecute(m_slotInputExpression, dataIn, &ok);
+    if (dataIn.signal == 0) dataIn = m_lastDataIn;
     m_inputExpressionError = !ok;
 
     // confirm a destination has been assigned
@@ -881,21 +922,31 @@ void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
 
     // send data package to destination
     if (dataOut.signal && m_linked) {
-        if (g_needLogCtl) qDebug() << "slot_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
         prepareDataOut(dataOut);
     }
 
     m_dataInProcessingStackLevel -= 1;
 }
 
-void DigishowSlot::onDataPrepared(int endpointIndex, dgsSignalData dataOut)
+void DigishowSlot::onDataPrepared(int endpointIndex, dgsSignalData dataOut, bool pre)
 {
     // only process data packages prepared for the relevant endpoint
     if (m_destinationEndpointIndex != endpointIndex) return;
 
-    if (g_needLogCtl) qDebug() << "slot_out:" << m_destinationEndpointIndex << dataOut.signal << dataOut.aValue << dataOut.aRange << dataOut.bValue;
+    prepareDataOut(dataOut, pre);
+}
 
-    prepareDataOut(dataOut);
+void DigishowSlot::onDataSent(int endpointIndex, dgsSignalData dataOut)
+{
+    // only process data packages prepared for the relevant endpoint
+    if (m_destinationEndpointIndex != endpointIndex) return;
+
+    if (m_lastDataOut.signal == 0 ||
+        m_lastDataOut.aValue != dataOut.aValue ||
+        m_lastDataOut.bValue != dataOut.bValue)
+        m_lastDataOutPre = dgsSignalData();
+
+    m_lastDataOut = dataOut;
 }
 
 void DigishowSlot::onDataOutTimerFired()

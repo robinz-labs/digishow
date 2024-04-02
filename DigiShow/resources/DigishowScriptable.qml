@@ -12,5 +12,5 @@ DigishowEnvironment {
     function toast(message) { app.messageNotify(message, DigishowApp.MsgToast) }
     function popup(message) { app.messageNotify(message, DigishowApp.MsgPopup) }
 
-    function execute(script, value) { return eval(script) }
+    function execute(script, value, range) { var r = eval(script); return (r === null ? -1 : r) }
 }

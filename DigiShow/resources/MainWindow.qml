@@ -110,6 +110,12 @@ ApplicationWindow {
             quickLaunchView.refresh()
         })
 
+        // callback for slot refresh
+        app.slotRefreshRequest.connect(function(slotIndex) {
+
+            slotListView.refreshSlot(slotIndex)
+        })
+
         // callback for message notifications
         app.messageNotified.connect(function(msgText, msgType) {
 

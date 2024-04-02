@@ -156,6 +156,8 @@ int DigishowInterface::sendData(int endpointIndex, dgsSignalData data)
     if (endpointIndex<0 || endpointIndex>=m_endpointOptionsList.length()) return ERR_INVALID_INDEX;
     if (!m_endpointInfoList[endpointIndex].enabled) return ERR_DEVICE_NOT_READY;
 
+    emit dataSent(endpointIndex, data);
+
     return ERR_NONE;
 }
 
@@ -858,6 +860,8 @@ void DigishowInterface::updateMetadata()
 
         m_endpointInfoList.append(endpointInfo);
     }
+
+    emit metadataUpdated();
 }
 
 int DigishowInterface::initEndpointValue(int endpointIndex)
@@ -882,7 +886,7 @@ int DigishowInterface::initEndpointValue(int endpointIndex)
         }
         if (m_endpointInfoList[n].output) {
             //qDebug() << "dataPrepared" << n << data.signal << data.aValue << data.bValue;
-            emit dataPrepared(n, data);
+            emit dataPrepared(n, data, false);
         }
     }
 
