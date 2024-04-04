@@ -1151,6 +1151,10 @@ Item {
                 var epOutAvailable    = (epOutValue    >= 0)
                 var epOutPreAvailable = (epOutPreValue >= 0)
 
+                if (!epInAvailable    ) epInValue     = 0
+                if (!epOutAvailable   ) epOutValue    = 0
+                if (!epOutPreAvailable) epOutPreValue = 0
+
                 if (dataModel.get(n).epInAvailable     !== epInAvailable    ) dataModel.setProperty(n, "epInAvailable",     epInAvailable)
                 if (dataModel.get(n).epOutAvailable    !== epOutAvailable   ) dataModel.setProperty(n, "epOutAvailable",    epOutAvailable)
                 if (dataModel.get(n).epOutPreAvailable !== epOutPreAvailable) dataModel.setProperty(n, "epOutPreAvailable", epOutPreAvailable)
@@ -1258,6 +1262,10 @@ Item {
         var epInAvailable     = (epInValue     >= 0)
         var epOutAvailable    = (epOutValue    >= 0)
         var epOutPreAvailable = (epOutPreValue >= 0)
+
+        if (!epInAvailable    ) epInValue     = 0
+        if (!epOutAvailable   ) epOutValue    = 0
+        if (!epOutPreAvailable) epOutPreValue = 0
 
         var epInBusy       = data["epInBusy"]
         var epOutBusy      = data["epOutBusy"]

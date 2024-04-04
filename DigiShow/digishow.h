@@ -118,10 +118,15 @@
   ! improved ui
 
   v1.5 20240316
+  alpha release
   + scriptable environment and javascript expression support
   ! complete signal mapping transformation options
   ! improved pixel mapping over artnet/dmx
   ! stability improvements
+
+  v1.5.1 20240405
+  beta release
+  ! bug fixes and improvements
 
  */
 
