@@ -886,7 +886,7 @@ int DigishowInterface::initEndpointValue(int endpointIndex)
         }
         if (m_endpointInfoList[n].output) {
             //qDebug() << "dataPrepared" << n << data.signal << data.aValue << data.bValue;
-            emit dataPrepared(n, data, false);
+            emit dataPrepared(n, data, true);
         }
     }
 

@@ -342,6 +342,7 @@ Item {
                             anchors.bottomMargin: 3
                             radius: 3
                             color: model.epInColor
+                            opacity: model.epInAvailable ? 1 : 0
 
                             Behavior on value { NumberAnimation { duration: 200; easing.type: Easing.OutExpo } }
                         }
@@ -364,7 +365,7 @@ Item {
                             anchors.topMargin: 4
                             anchors.right: parent.right
                             anchors.rightMargin: 2
-                            opacity: 0.5
+                            opacity: 0.15
                             source: "qrc:///images/icon_invert_white.png"
                             visible: model.slotInInverted
                         }
@@ -446,7 +447,7 @@ Item {
                         width: 16
                         height: 16
                         anchors.left: buttonLink.right
-                        anchors.leftMargin: 10
+                        anchors.leftMargin: 20
                         anchors.verticalCenter: parent.verticalCenter
                         source: "qrc:///images/icon_arrow_right_red.png"
                         visible: model.errTraffic && model.epInBusy
@@ -541,6 +542,7 @@ Item {
                             anchors.margins: 3
                             radius: 3
                             color: model.epOutColor
+                            opacity: model.epOutAvailable ? 1 : 0
 
                             Behavior on value { NumberAnimation { duration: 200; easing.type: Easing.OutExpo } }
                         }
@@ -656,7 +658,7 @@ Item {
                             value: model.slotLinked && model.epOutFaderHold ? model.epOutPreValue : model.epOutFaderValue
                             to: model.epOutRange
                             stepSize: 1
-                            color: model.epOutColor
+                            color: model.epOutPreAvailable ? model.epOutColor : "#666666"
                             inverted: model.slotOutInverted
 
                             Behavior on value { NumberAnimation { duration: (model.slotLinked && model.epOutFaderHold ? 300 : 0); easing.type: Easing.OutCubic } }
@@ -676,7 +678,7 @@ Item {
                                 anchors.topMargin: -5
                                 anchors.right: parent.right
                                 anchors.rightMargin: 0
-                                opacity: 0.5
+                                opacity: 0.15
                                 source: "qrc:///images/icon_invert_white.png"
                                 visible: model.slotOutInverted
                             }
@@ -1141,11 +1143,22 @@ Item {
             for (var n=0 ; n<slotCount ; n++) {
                 var data = digishow.getSlotRuntimeData(n)
 
-                if (dataModel.get(n).epInAvailable  !== data["epInAvailable" ]) dataModel.setProperty(n, "epInAvailable",  data["epInAvailable" ])
-                if (dataModel.get(n).epOutAvailable !== data["epOutAvailable"]) dataModel.setProperty(n, "epOutAvailable", data["epOutAvailable"])
-                if (dataModel.get(n).epInValue      !== data["epInValue"     ]) dataModel.setProperty(n, "epInValue",      data["epInValue"     ])
-                if (dataModel.get(n).epOutValue     !== data["epOutValue"    ]) dataModel.setProperty(n, "epOutValue",     data["epOutValue"    ])
-                if (dataModel.get(n).epOutPreValue  !== data["epOutPreValue" ]) dataModel.setProperty(n, "epOutPreValue",  data["epOutPreValue" ])
+                var epInValue     = data["epInValue"     ]
+                var epOutValue    = data["epOutValue"    ]
+                var epOutPreValue = data["epOutPreValue" ]
+
+                var epInAvailable     = (epInValue     >= 0)
+                var epOutAvailable    = (epOutValue    >= 0)
+                var epOutPreAvailable = (epOutPreValue >= 0)
+
+                if (dataModel.get(n).epInAvailable     !== epInAvailable    ) dataModel.setProperty(n, "epInAvailable",     epInAvailable)
+                if (dataModel.get(n).epOutAvailable    !== epOutAvailable   ) dataModel.setProperty(n, "epOutAvailable",    epOutAvailable)
+                if (dataModel.get(n).epOutPreAvailable !== epOutPreAvailable) dataModel.setProperty(n, "epOutPreAvailable", epOutPreAvailable)
+
+                if (dataModel.get(n).epInValue      !== epInValue    ) dataModel.setProperty(n, "epInValue",     epInValue)
+                if (dataModel.get(n).epOutValue     !== epOutValue   ) dataModel.setProperty(n, "epOutValue",    epOutValue)
+                if (dataModel.get(n).epOutPreValue  !== epOutPreValue) dataModel.setProperty(n, "epOutPreValue", epOutPreValue)
+
                 if (dataModel.get(n).epInBusy       !== data["epInBusy"      ]) dataModel.setProperty(n, "epInBusy",       data["epInBusy"      ])
                 if (dataModel.get(n).epOutBusy      !== data["epOutBusy"     ]) dataModel.setProperty(n, "epOutBusy",      data["epOutBusy"     ])
                 if (dataModel.get(n).slotEnabled    !== data["slotEnabled"   ]) dataModel.setProperty(n, "slotEnabled",    data["slotEnabled"   ])
@@ -1238,11 +1251,14 @@ Item {
         // obtain runtime date
         var data = digishow.getSlotRuntimeData(n)
 
-        var epInAvailable  = data["epInAvailable"]
-        var epOutAvailable = data["epOutAvailable"]
         var epInValue      = data["epInValue"]
         var epOutValue     = data["epOutValue"]
         var epOutPreValue  = data["epOutPreValue"]
+
+        var epInAvailable     = (epInValue     >= 0)
+        var epOutAvailable    = (epOutValue    >= 0)
+        var epOutPreAvailable = (epOutPreValue >= 0)
+
         var epInBusy       = data["epInBusy"]
         var epOutBusy      = data["epOutBusy"]
         var slotEnabled    = data["slotEnabled"]
@@ -1291,6 +1307,7 @@ Item {
             epOutPreValue: epOutPreValue,
             epOutBusy: epOutBusy,
             epOutAvailable: epOutAvailable,
+            epOutPreAvailable : epOutPreAvailable,
 
             epOutFaderValue: 0,
             epOutFaderHold: true,
