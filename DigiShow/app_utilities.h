@@ -57,6 +57,7 @@ public:
     Q_INVOKABLE static bool fileExists(const QString & path);
     Q_INVOKABLE static bool dirExists(const QString & path);
 
+    Q_INVOKABLE static bool runInShell(const QString &program, const QStringList &arguments = QStringList());
     Q_INVOKABLE static void showFileInShell(const QString & path);
     Q_INVOKABLE static void openFileInShell(const QString & path);
     Q_INVOKABLE static void newAppInstance();

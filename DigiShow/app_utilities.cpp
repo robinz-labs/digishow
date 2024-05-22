@@ -19,6 +19,7 @@
 #include <QUuid>
 #include <QDate>
 #include <QFile>
+#include <QFileInfo>
 #include <QTextStream>
 #include <QJsonDocument>
 #include <QtNetwork>
@@ -317,6 +318,11 @@ bool AppUtilities::dirExists(const QString & path)
     return QDir(path).exists();
 }
 
+bool AppUtilities::runInShell(const QString &program, const QStringList &arguments)
+{
+    return QProcess::startDetached(program, arguments);
+}
+
 void AppUtilities::showFileInShell(const QString & path)
 {
 #ifdef Q_OS_MAC
@@ -326,6 +332,11 @@ void AppUtilities::showFileInShell(const QString & path)
     QStringList params;
     params << "/select," << QDir::toNativeSeparators(path);
     QProcess::startDetached("explorer.exe", params);
+#endif
+#ifdef Q_OS_LINUX
+    QStringList params;
+    params << QFileInfo(path).absolutePath();
+    QProcess::startDetached("xdg-open", params);
 #endif
 }
 

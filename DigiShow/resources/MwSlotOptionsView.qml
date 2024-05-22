@@ -687,10 +687,10 @@ Item {
                         }
                     }
 
-                    Item {
-                        width: 120
-                        height: 9
-                    }
+                    //Item {
+                    //    width: 120
+                    //    height: 9
+                    //}
 
                     CSpinBox {
                         id: spinEnvelopeAttack
@@ -808,10 +808,10 @@ Item {
                         }
                     }
 
-                    Item {
-                        width: 120
-                        height: 9
-                    }
+                    //Item {
+                    //    width: 120
+                    //    height: 9
+                    //}
 
                     CSpinBox {
                         id: spinEnvelopeOutDelay

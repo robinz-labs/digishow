@@ -456,7 +456,6 @@ Item {
                     anchors.left: parent.left
                     from: spinUnit.from
                     to: spinUnit.to
-                    value: spinUnit.value
                     stepSize: spinUnit.stepSize
 
                     onValueModified: spinUnit.value = spinMediaUnit.value
@@ -469,7 +468,6 @@ Item {
                     anchors.right: parent.right
                     from: spinChannel.from
                     to: spinChannel.to
-                    value: spinChannel.value
                     stepSize: spinChannel.stepSize
 
                     onValueModified: spinChannel.value = spinMediaChannel.value
@@ -829,6 +827,9 @@ Item {
             var mediaUrl = "file://"
             if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
             textMediaUrl.text = mediaUrl
+
+            spinMediaUnit.value = spinUnit.value
+            spinMediaChannel.value = spinChannel.value
 
             setEndpointMediaOptions(endpointOptions)
 

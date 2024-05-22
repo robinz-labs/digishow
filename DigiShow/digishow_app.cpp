@@ -443,10 +443,8 @@ int DigishowApp::start()
     m_running = true;
     emit isRunningChanged();
 
-#ifdef DIGISHOW_EXPERIMENTAL
     // start add-on process
     startAddon();
-#endif
 
     // start scriptable
     startScriptable();
@@ -464,10 +462,8 @@ void DigishowApp::stop()
     // stop scriptable
     stopScriptable();
 
-#ifdef DIGISHOW_EXPERIMENTAL
     // stop add-on process
     stopAddon();
-#endif
 
     // disable all slots
     for (int n=0 ; n<m_slots.length() ; n++) {
@@ -939,7 +935,7 @@ bool DigishowApp::startAddon()
 
     QFileInfo fileinfo(m_filepath);
     QDir dir = fileinfo.dir();
-    QString name = fileinfo.completeBaseName();
+    QString name = fileinfo.completeBaseName() + ".addon";
 
 #ifdef Q_OS_WIN
     QString filepathAddon = dir.filePath(name + ".bat");

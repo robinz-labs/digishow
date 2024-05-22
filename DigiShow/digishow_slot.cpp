@@ -486,7 +486,11 @@ dgsSignalData DigishowSlot::processInputBinary(dgsSignalData dataIn)
         // state off
         m_envelopeTimeOff = elapsed();
 
-        if (m_linked && !envelopeIsRunning()) onEnvelopeTimerFired();
+        if (m_linked && !envelopeIsRunning()) {
+            m_envelopeTimeOn  = -0xffffff;
+            m_envelopeTimeOff = -0xffffff;
+            onEnvelopeTimerFired();
+        }
     }
 
     return dgsSignalData(); // return an empty data package
@@ -504,7 +508,11 @@ dgsSignalData DigishowSlot::processInputNote(dgsSignalData dataIn)
         // note off
         m_envelopeTimeOff = elapsed();
 
-        if (m_linked && !envelopeIsRunning()) onEnvelopeTimerFired();
+        if (m_linked && !envelopeIsRunning()) {
+            m_envelopeTimeOn  = -0xffffff;
+            m_envelopeTimeOff = -0xffffff;
+            onEnvelopeTimerFired();
+        }
     }
 
     return dgsSignalData(); // return an empty data package
@@ -576,7 +584,8 @@ void DigishowSlot::envelopeStart(dgsSignalData dataIn)
     m_envelopeTimeLastUpdated = 0;
     m_envelopeRatio = 0;
     m_envelopeDataIn = dataIn;
-    m_envelopeTimer.start();
+
+    if (envelopeIsSet()) m_envelopeTimer.start();
     onEnvelopeTimerFired();
 }
 
@@ -591,6 +600,28 @@ void DigishowSlot::envelopeCancel()
 bool DigishowSlot::envelopeIsRunning()
 {
     return m_envelopeTimer.isActive();
+}
+
+bool DigishowSlot::envelopeIsSet()
+{
+    switch (m_slotInfo.outputSignal) {
+    case DATA_SIGNAL_ANALOG:
+        if (m_slotInfo.envelopeAttack > 0 ||
+            m_slotInfo.envelopeHold > 0 ||
+            m_slotInfo.envelopeDecay > 0 ||
+            m_slotInfo.envelopeSustain < 1.0 ||
+            m_slotInfo.envelopeRelease > 0 ||
+            m_slotInfo.envelopeInDelay > 0 ||
+            m_slotInfo.envelopeOutDelay > 0) return true;
+        break;
+    case DATA_SIGNAL_BINARY:
+    case DATA_SIGNAL_NOTE:
+        if (m_slotInfo.envelopeHold > 0 ||
+            m_slotInfo.envelopeInDelay > 0 ||
+            m_slotInfo.envelopeOutDelay > 0) return true;
+        break;
+    }
+    return false;
 }
 
 dgsSignalData DigishowSlot::envelopeProcessOutputAnalog()
@@ -696,8 +727,16 @@ dgsSignalData DigishowSlot::envelopeProcessOutputBinary()
     if (m_slotInfo.envelopeHold > 0) {
 
         // in-delay + hold
-        if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay) {
-            if (now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeHold)
+        if (m_envelopeTimeOff == 0) {
+            if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay) {
+                if (now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeHold)
+                    envelopeState = true;
+                else
+                    isEnvelopeFinished = true;
+            }
+        } else {
+            if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay &&
+                now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeHold)
                 envelopeState = true;
             else
                 isEnvelopeFinished = true;
@@ -707,9 +746,10 @@ dgsSignalData DigishowSlot::envelopeProcessOutputBinary()
 
         // in-delay + out-delay
         if (m_envelopeTimeOff == 0) {
-            if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay) envelopeState = true;
+            if (now >= m_envelopeTimeOn + m_slotInfo.envelopeInDelay) envelopeState = true;
         } else {
-            if (now < m_envelopeTimeOff + m_slotInfo.envelopeOutDelay)
+            if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay &&
+                now < m_envelopeTimeOff + m_slotInfo.envelopeOutDelay)
                 envelopeState = true;
             else
                 isEnvelopeFinished = true;
@@ -720,8 +760,7 @@ dgsSignalData DigishowSlot::envelopeProcessOutputBinary()
 
     // prepare output data package
     dgsSignalData dataOut;
-    if (outputState != m_lastDataOutPre.bValue) {
-
+    if (m_lastDataOutPre.signal == 0 || outputState != m_lastDataOutPre.bValue) {
         dataOut.signal = DATA_SIGNAL_BINARY;
         dataOut.bValue = outputState;
     }
@@ -742,8 +781,16 @@ dgsSignalData DigishowSlot::envelopeProcessOutputNote()
     if (m_slotInfo.envelopeHold > 0) {
 
         // in-delay + hold
-        if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay) {
-            if (now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeHold)
+        if (m_envelopeTimeOff == 0) {
+            if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay) {
+                if (now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeHold)
+                    envelopeState = true;
+                else
+                    isEnvelopeFinished = true;
+            }
+        } else {
+            if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay &&
+                now < m_envelopeTimeOn + m_slotInfo.envelopeInDelay + m_slotInfo.envelopeHold)
                 envelopeState = true;
             else
                 isEnvelopeFinished = true;
@@ -753,9 +800,10 @@ dgsSignalData DigishowSlot::envelopeProcessOutputNote()
 
         // in-delay + out-delay
         if (m_envelopeTimeOff == 0) {
-            if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay) envelopeState = true;
+            if (now >= m_envelopeTimeOn + m_slotInfo.envelopeInDelay) envelopeState = true;
         } else {
-            if (now < m_envelopeTimeOff + m_slotInfo.envelopeOutDelay)
+            if (now > m_envelopeTimeOn + m_slotInfo.envelopeInDelay &&
+                now < m_envelopeTimeOff + m_slotInfo.envelopeOutDelay)
                 envelopeState = true;
             else
                 isEnvelopeFinished = true;
@@ -766,7 +814,7 @@ dgsSignalData DigishowSlot::envelopeProcessOutputNote()
 
     // prepare output data package
     dgsSignalData dataOut;
-    if (outputState != m_lastDataOutPre.bValue) {
+    if (m_lastDataOutPre.signal == 0 || outputState != m_lastDataOutPre.bValue) {
 
         dataOut.signal = DATA_SIGNAL_NOTE;
         dataOut.aRange = 127;

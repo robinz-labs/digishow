@@ -187,13 +187,7 @@ public:
     Q_INVOKABLE static QString appBuildDate() { return __DATE__; }
     Q_INVOKABLE static QString appQtVersion() { return QT_VERSION_STR; }
 
-    Q_INVOKABLE static bool appExperimental() {
-#ifdef DIGISHOW_EXPERIMENTAL
-        return true;   // this app is a version with experimental features
-#else
-        return false;  // this app is a standard version
-#endif
-    }
+    Q_INVOKABLE static bool appExperimental() { return g_experimental; }
 
     Q_INVOKABLE DigishowApp *app() { return g_app; }
     Q_INVOKABLE DigishowMetronome *metronome() { return g_app->metronome(); }

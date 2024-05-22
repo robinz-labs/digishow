@@ -158,7 +158,6 @@ int main(int argc, char *argv[])
     float scale = appOptions.value("scale", 0).toFloat();
     if (scale > 0) qputenv("QT_SCALE_FACTOR", QString::number(scale).toUtf8());
 
-
 #if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
     QtWebEngine::initialize();
 #endif
@@ -204,6 +203,10 @@ int main(int argc, char *argv[])
     // start main app
     g_app = new DigishowApp();
 
+#ifdef DIGISHOW_EXPERIMENTAL
+    DigishowExperimental ex(&app);
+#endif
+
 #ifndef DIGISHOW_NON_GUI
 
     // start main ui
@@ -243,7 +246,6 @@ int main(int argc, char *argv[])
     }
 
 #ifdef DIGISHOW_EXPERIMENTAL
-    DigishowExperimental ex(&app);
     ex.initExperimentalApp(argc, argv);
 #endif
 

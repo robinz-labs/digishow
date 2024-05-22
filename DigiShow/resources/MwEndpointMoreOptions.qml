@@ -10,6 +10,7 @@ Popup {
     id: popupMoreOptions
 
     property bool isDefault: false
+    property bool isRevealed: false
 
     width: 290
     height: columnMoreOptions.height + 40
@@ -520,6 +521,8 @@ Popup {
         columnMoreOptions.height = height
 
         showOptions()
+
+        isRevealed = true
     }
 
     function showOptions() {
@@ -585,6 +588,7 @@ Popup {
         menuOptModePuPd        .selectOption(menuOptModePuPd     .defaultValue)
 
         isDefault = true
+        isRevealed = false
     }
 
     function setOptions(options) {

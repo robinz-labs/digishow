@@ -148,6 +148,7 @@ private:
     void envelopeStart(dgsSignalData dataIn);
     void envelopeCancel();
     bool envelopeIsRunning();
+    bool envelopeIsSet();
     dgsSignalData envelopeProcessOutputAnalog();
     dgsSignalData envelopeProcessOutputBinary();
     dgsSignalData envelopeProcessOutputNote();

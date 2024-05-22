@@ -17,319 +17,327 @@
 <context>
     <name>DigishowEnvironment</name>
     <message>
-        <location filename="../../digishow_environment.cpp" line="742"/>
+        <location filename="../../digishow_environment.cpp" line="737"/>
         <source>R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="742"/>
+        <location filename="../../digishow_environment.cpp" line="737"/>
         <source>Red</source>
         <translation>赤</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="743"/>
+        <location filename="../../digishow_environment.cpp" line="738"/>
         <source>G</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="743"/>
+        <location filename="../../digishow_environment.cpp" line="738"/>
         <source>Green</source>
         <translation>緑</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="744"/>
+        <location filename="../../digishow_environment.cpp" line="739"/>
         <source>B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="744"/>
+        <location filename="../../digishow_environment.cpp" line="739"/>
         <source>Blue</source>
         <translation>青</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="745"/>
+        <location filename="../../digishow_environment.cpp" line="740"/>
         <source>W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="745"/>
+        <location filename="../../digishow_environment.cpp" line="740"/>
         <source>White</source>
         <translation>白</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="746"/>
+        <location filename="../../digishow_environment.cpp" line="741"/>
         <source>Hue</source>
         <translation>色相</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="747"/>
+        <location filename="../../digishow_environment.cpp" line="742"/>
         <source>Sat</source>
         <translation>彩度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="747"/>
+        <location filename="../../digishow_environment.cpp" line="742"/>
         <source>Saturation</source>
         <translation>彩度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="748"/>
+        <location filename="../../digishow_environment.cpp" line="743"/>
         <source>Bri</source>
         <translation>明度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="748"/>
+        <location filename="../../digishow_environment.cpp" line="743"/>
         <source>Brightness</source>
         <translation>明度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="749"/>
+        <location filename="../../digishow_environment.cpp" line="744"/>
         <source>CT</source>
         <translation>色温度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="749"/>
+        <location filename="../../digishow_environment.cpp" line="744"/>
         <source>C. Temp</source>
         <translation>色温度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="759"/>
+        <location filename="../../digishow_environment.cpp" line="754"/>
         <source>Hide All</source>
         <translation>すべて隠す</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="761"/>
+        <location filename="../../digishow_environment.cpp" line="756"/>
         <source>Opacity</source>
         <translation>不透明さ</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="762"/>
+        <location filename="../../digishow_environment.cpp" line="757"/>
         <source>Scale</source>
         <translation>スケール</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="763"/>
+        <location filename="../../digishow_environment.cpp" line="758"/>
         <source>Rotation</source>
         <translation>ローテーション</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="764"/>
+        <location filename="../../digishow_environment.cpp" line="759"/>
         <source>X Offset</source>
         <translation>X オフセット</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="765"/>
+        <location filename="../../digishow_environment.cpp" line="760"/>
         <source>Y Offset</source>
         <translation>Y オフセット</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="767"/>
+        <location filename="../../digishow_environment.cpp" line="762"/>
         <source>Speed</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="768"/>
+        <location filename="../../digishow_environment.cpp" line="763"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="788"/>
+        <location filename="../../digishow_environment.cpp" line="783"/>
         <source>Volume </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="814"/>
+        <location filename="../../digishow_environment.cpp" line="809"/>
         <source>Mid C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="815"/>
+        <location filename="../../digishow_environment.cpp" line="810"/>
         <source>Kick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="816"/>
+        <location filename="../../digishow_environment.cpp" line="811"/>
         <source>Side Stick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="817"/>
+        <location filename="../../digishow_environment.cpp" line="812"/>
         <source>Snare 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="826"/>
+        <location filename="../../digishow_environment.cpp" line="821"/>
         <source>Mid Tom 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="827"/>
+        <location filename="../../digishow_environment.cpp" line="822"/>
         <source>High Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="828"/>
+        <location filename="../../digishow_environment.cpp" line="823"/>
         <source>Crash</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="829"/>
+        <location filename="../../digishow_environment.cpp" line="824"/>
         <source>High Tom 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="830"/>
+        <location filename="../../digishow_environment.cpp" line="825"/>
         <source>Ride</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="935"/>
+        <location filename="../../digishow_environment.cpp" line="930"/>
         <source>Remote</source>
         <translation>リモート</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="936"/>
+        <location filename="../../digishow_environment.cpp" line="931"/>
         <source>Cloud</source>
         <translation>クラウド</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="937"/>
+        <location filename="../../digishow_environment.cpp" line="932"/>
         <source>Pipe</source>
         <translation>パイプ</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="818"/>
+        <location filename="../../digishow_environment.cpp" line="813"/>
         <source>Clap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="819"/>
+        <location filename="../../digishow_environment.cpp" line="814"/>
         <source>Snare 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="820"/>
+        <location filename="../../digishow_environment.cpp" line="815"/>
         <source>Low Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="821"/>
+        <location filename="../../digishow_environment.cpp" line="816"/>
         <source>Closed Hat</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="822"/>
+        <location filename="../../digishow_environment.cpp" line="817"/>
         <source>Low Tom 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="823"/>
+        <location filename="../../digishow_environment.cpp" line="818"/>
         <source>Pedal Hat</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="824"/>
+        <location filename="../../digishow_environment.cpp" line="819"/>
         <source>Mid Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="825"/>
+        <location filename="../../digishow_environment.cpp" line="820"/>
         <source>Open Hat</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="757"/>
+        <location filename="../../digishow_environment.cpp" line="752"/>
         <source>Show</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="758"/>
+        <location filename="../../digishow_environment.cpp" line="753"/>
         <source>Hide</source>
         <translation>隠す</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="757"/>
+        <location filename="../../digishow_environment.cpp" line="752"/>
         <source>Play</source>
         <translation>再生</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="766"/>
+        <location filename="../../digishow_environment.cpp" line="761"/>
         <source>Volume</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="758"/>
+        <location filename="../../digishow_environment.cpp" line="753"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="759"/>
+        <location filename="../../digishow_environment.cpp" line="754"/>
         <source>Stop All</source>
         <translation>すべて停止</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="784"/>
+        <location filename="../../digishow_environment.cpp" line="779"/>
         <source>Bank</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="785"/>
+        <location filename="../../digishow_environment.cpp" line="780"/>
         <source>Modulation</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="786"/>
+        <location filename="../../digishow_environment.cpp" line="781"/>
         <source>Foot Pedal</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="787"/>
+        <location filename="../../digishow_environment.cpp" line="782"/>
         <source>Data Entry</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="790"/>
+        <location filename="../../digishow_environment.cpp" line="785"/>
         <source>Expression</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="791"/>
+        <location filename="../../digishow_environment.cpp" line="786"/>
         <source>Bank (LSB)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="792"/>
+        <location filename="../../digishow_environment.cpp" line="787"/>
         <source>Sustain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="794"/>
+        <location filename="../../digishow_environment.cpp" line="789"/>
         <source>Resonance</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="795"/>
+        <location filename="../../digishow_environment.cpp" line="790"/>
         <source>Cutoff</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="796"/>
+        <location filename="../../digishow_environment.cpp" line="791"/>
         <source>Reverb</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="797"/>
+        <location filename="../../digishow_environment.cpp" line="792"/>
         <source>Chorus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="793"/>
+        <location filename="../../digishow_environment.cpp" line="788"/>
         <source>Portamento</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="789"/>
+        <location filename="../../digishow_environment.cpp" line="784"/>
         <source>Pan</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>DigishowExperimental</name>
+    <message>
+        <location filename="../../digishow_experimental/digishow_experimental.cpp" line="149"/>
+        <source>You are using software with experimental features.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1023,96 +1031,96 @@ either express or implied.</source>
 <context>
     <name>MwEndpointMoreOptions</name>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="68"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="69"/>
         <source>Need to Initialize</source>
         <translation>初期化は必要</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="98"/>
-        <location filename="../MwEndpointMoreOptions.qml" line="128"/>
-        <location filename="../MwEndpointMoreOptions.qml" line="158"/>
-        <location filename="../MwEndpointMoreOptions.qml" line="188"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="99"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="129"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="159"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="189"/>
         <source>Initial Value</source>
         <translation>初期値</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="215"/>
-        <location filename="../MwEndpointMoreOptions.qml" line="242"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="216"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="243"/>
         <source>Value Range</source>
         <translation>値の範囲</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="269"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="270"/>
         <source>Value Range (ms)</source>
         <translation>値の範囲（ms）</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="296"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="297"/>
         <source>Value Range (steps)</source>
         <translation>値の範囲（ステップ）</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="323"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="324"/>
         <source>Value Range (Freq.)</source>
         <translation>値の範囲（頻度）</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="350"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="351"/>
         <source>Smoothing Level</source>
         <translation>平滑化レベル</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="377"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="378"/>
         <source>Sampling Interval</source>
         <translation>サンプリング間隔</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="457"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="458"/>
         <source>PUL+ and DIR+</source>
         <translation>PUL+ と DIR+</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="458"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="459"/>
         <source>PUL- and DIR-</source>
         <translation>PUL- と DIR-</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="493"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="494"/>
         <source>Default</source>
         <translation>デフォルト</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="494"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="495"/>
         <source>Internal Pull-Up</source>
         <translation>内部 Pull-Up</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="495"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="496"/>
         <source>External PU/PD</source>
         <translation>外部 PU / PD</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="505"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="506"/>
         <source>PU/PD Resistor</source>
         <translation>PU / PD 抵抗</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="404"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="405"/>
         <source>Speed (steps/sec)</source>
         <translation>速度（ステップ / 秒）</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="431"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="432"/>
         <source>Original Position</source>
         <translation>元の位置</translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="456"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="457"/>
         <source>A+  A-  B+  B-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointMoreOptions.qml" line="468"/>
+        <location filename="../MwEndpointMoreOptions.qml" line="469"/>
         <source>Drive Lines</source>
         <translation>ドライブライン</translation>
     </message>
@@ -3006,54 +3014,54 @@ Connection: %2</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="251"/>
+        <location filename="../MwQuickLaunchView.qml" line="252"/>
         <source>Check the boxes next to the output faders and LINK buttons to memorize their values and states to the preset.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="270"/>
+        <location filename="../MwQuickLaunchView.qml" line="271"/>
         <source>Save Preset</source>
         <translation>プリセットを保存</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="285"/>
+        <location filename="../MwQuickLaunchView.qml" line="286"/>
         <source>Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset.</source>
         <translation>プリセットに保存されているすべてのチェック済みアイテムのスナップショットを作成しました。 これで、いつでもボタンをタップしてプリセットを起動できます。</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="332"/>
+        <location filename="../MwQuickLaunchView.qml" line="333"/>
         <source>Output faders</source>
         <translation>出力フェーダー</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="344"/>
-        <location filename="../MwQuickLaunchView.qml" line="388"/>
+        <location filename="../MwQuickLaunchView.qml" line="345"/>
+        <location filename="../MwQuickLaunchView.qml" line="389"/>
         <source>Check None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="360"/>
-        <location filename="../MwQuickLaunchView.qml" line="404"/>
+        <location filename="../MwQuickLaunchView.qml" line="361"/>
+        <location filename="../MwQuickLaunchView.qml" line="405"/>
         <source>Check All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="376"/>
+        <location filename="../MwQuickLaunchView.qml" line="377"/>
         <source>LINK buttons</source>
         <translation>LINKボタン</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="472"/>
+        <location filename="../MwQuickLaunchView.qml" line="473"/>
         <source>Preset</source>
         <translation>プリセット</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="285"/>
+        <location filename="../MwQuickLaunchView.qml" line="286"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="300"/>
+        <location filename="../MwQuickLaunchView.qml" line="301"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
@@ -3081,14 +3089,14 @@ Connection: %2</source>
 <context>
     <name>MwSlotListView</name>
     <message>
-        <location filename="../MwSlotListView.qml" line="1089"/>
+        <location filename="../MwSlotListView.qml" line="1091"/>
         <source>Please tap button + to add a new <byte value="xd"/>
  signal link between your digital things</source>
         <translation>「＋」ボタンをタップして
 デジタル設備間の新しい信号リンクを追加してください</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1121"/>
+        <location filename="../MwSlotListView.qml" line="1123"/>
         <source>STEP 2</source>
         <translation></translation>
     </message>
@@ -3109,16 +3117,16 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="108"/>
-        <location filename="../MwSlotListView.qml" line="1005"/>
-        <location filename="../MwSlotListView.qml" line="1351"/>
+        <location filename="../MwSlotListView.qml" line="1007"/>
+        <location filename="../MwSlotListView.qml" line="1376"/>
         <source>Duplicate</source>
         <translation>複製</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="115"/>
-        <location filename="../MwSlotListView.qml" line="1025"/>
-        <location filename="../MwSlotListView.qml" line="1383"/>
-        <location filename="../MwSlotListView.qml" line="1409"/>
+        <location filename="../MwSlotListView.qml" line="1027"/>
+        <location filename="../MwSlotListView.qml" line="1408"/>
+        <location filename="../MwSlotListView.qml" line="1434"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
@@ -3149,77 +3157,77 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="223"/>
-        <location filename="../MwSlotListView.qml" line="1622"/>
+        <location filename="../MwSlotListView.qml" line="1647"/>
         <source>Untitled Link</source>
         <translation>無題のリンク</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="945"/>
+        <location filename="../MwSlotListView.qml" line="947"/>
         <source>Select All</source>
         <translation>全選択</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="965"/>
+        <location filename="../MwSlotListView.qml" line="967"/>
         <source>Select None</source>
         <translation>なしを選択</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="132"/>
-        <location filename="../MwSlotListView.qml" line="985"/>
+        <location filename="../MwSlotListView.qml" line="987"/>
         <source>Copy</source>
         <translation>コビー</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1045"/>
-        <location filename="../MwSlotListView.qml" line="1418"/>
+        <location filename="../MwSlotListView.qml" line="1047"/>
+        <location filename="../MwSlotListView.qml" line="1443"/>
         <source>Move</source>
         <translation>移動</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1202"/>
+        <location filename="../MwSlotListView.qml" line="1219"/>
         <source>Source</source>
         <translation>送信元</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1203"/>
+        <location filename="../MwSlotListView.qml" line="1220"/>
         <source>no input</source>
         <translation>入力がない</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1211"/>
+        <location filename="../MwSlotListView.qml" line="1228"/>
         <source>no output</source>
         <translation>出力がない</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1351"/>
+        <location filename="../MwSlotListView.qml" line="1376"/>
         <source>Do you want to duplicate all selected links ?</source>
         <translation>選択したすべてのリンクを複製してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1383"/>
+        <location filename="../MwSlotListView.qml" line="1408"/>
         <source>Do you want to delete the link ?</source>
         <translation>このリンクを削除してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1409"/>
+        <location filename="../MwSlotListView.qml" line="1434"/>
         <source>Do you want to delete all selected links ?</source>
         <translation>選択したすべてのリンクを削除してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1418"/>
+        <location filename="../MwSlotListView.qml" line="1443"/>
         <source>Do you want to move all selected links to the current cursor position ?</source>
         <translation>選択したすべてのリンクを現在のカーソル位置に移動してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1210"/>
+        <location filename="../MwSlotListView.qml" line="1227"/>
         <source>Destination</source>
         <translation>宛先</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1351"/>
-        <location filename="../MwSlotListView.qml" line="1383"/>
-        <location filename="../MwSlotListView.qml" line="1409"/>
-        <location filename="../MwSlotListView.qml" line="1418"/>
+        <location filename="../MwSlotListView.qml" line="1376"/>
+        <location filename="../MwSlotListView.qml" line="1408"/>
+        <location filename="../MwSlotListView.qml" line="1434"/>
+        <location filename="../MwSlotListView.qml" line="1443"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>

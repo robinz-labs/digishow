@@ -28,6 +28,7 @@ SpinBox {
         anchors.rightMargin: spinBox.height
 
         TextInput {
+
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
@@ -43,6 +44,7 @@ SpinBox {
             //validator: spinBox.validator
             inputMethodHints: Qt.ImhDigitsOnly
             clip: true
+
             onEditingFinished: {
                 spinBox.value = spinBox.valueFromText(text)
                 valueModified() // emit signal
@@ -51,13 +53,16 @@ SpinBox {
     }
 
     textFromValue: function(value) {
-        if (unit !== "")
-            return value + " " + unit
+        if (spinBox.unit !== "")
+            return value + " " + spinBox.unit
         else
             return value
     }
 
     valueFromText: function(text) {
-        return parseInt(text)
+        var val = parseInt(text)
+        val = Math.min(spinBox.to, val)
+        val = Math.max(spinBox.from, val)
+        return val
     }
 }

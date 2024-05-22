@@ -396,6 +396,31 @@ Item {
                         }
                     }
 
+                    Rectangle {
+                        height: 36
+                        anchors.left: buttonLink.left
+                        anchors.right: buttonLink.right
+                        anchors.verticalCenter: buttonLink.verticalCenter
+                        anchors.margins: -6
+                        anchors.rightMargin: -13
+                        color: "transparent"
+                        border.color: Material.accent
+                        border.width: 1
+                        opacity: 0.7
+                        radius: 5
+                        visible: checkLaunchRememberLink.visible
+                    }
+
+                    Rectangle {
+                        height: 18
+                        width: 18
+                        anchors.verticalCenter: checkLaunchRememberLink.verticalCenter
+                        anchors.horizontalCenter: checkLaunchRememberLink.horizontalCenter
+                        color: "#222222"
+                        radius: 2
+                        visible: checkLaunchRememberLink.visible
+                    }
+
                     CheckBox {
                         id: checkLaunchRememberLink
                         anchors.verticalCenter: buttonLink.verticalCenter
@@ -636,6 +661,31 @@ Item {
                             }
                         }
 
+                        Rectangle {
+                            height: 36
+                            anchors.left: faderOutput.left
+                            anchors.right: faderOutput.right
+                            anchors.verticalCenter: faderOutput.verticalCenter
+                            anchors.margins: -6
+                            anchors.leftMargin: -13
+                            color: "transparent"
+                            border.color: Material.accent
+                            border.width: 1
+                            opacity: 0.7
+                            radius: 5
+                            visible: checkLaunchRememberOutput.visible
+                        }
+
+                        Rectangle {
+                            height: 18
+                            width: 18
+                            anchors.verticalCenter: checkLaunchRememberOutput.verticalCenter
+                            anchors.horizontalCenter: checkLaunchRememberOutput.horizontalCenter
+                            color: "#222222"
+                            radius: 2
+                            visible: checkLaunchRememberOutput.visible
+                        }
+
                         CheckBox {
                             id: checkLaunchRememberOutput
                             anchors.verticalCenter: faderOutput.verticalCenter
@@ -645,6 +695,7 @@ Item {
                             visible: quickLaunchView.visible && quickLaunchView.editingLaunchName !== ""
                             checked: model.launchRememberOutput
                             onClicked: model.launchRememberOutput = checked
+
                         }
 
                         CSlider {

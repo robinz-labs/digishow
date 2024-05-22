@@ -509,8 +509,10 @@ Item {
             newEndpointOptions = itemEndpoint.getEndpointOptions()
 
         // append more options
-        newEndpointOptions = utilities.merge(newEndpointOptions, popupMoreOptions.getOptions())
-        popupMoreOptions.setOptions(newEndpointOptions) // here refresh ui
+        if (popupMoreOptions.isRevealed) {
+            newEndpointOptions = utilities.merge(newEndpointOptions, popupMoreOptions.getOptions())
+            popupMoreOptions.setOptions(newEndpointOptions) // here refresh ui
+        }
 
         // save the updated endpoint
         var newEndpointIndex = -1;
@@ -539,6 +541,8 @@ Item {
         if (app.isRunning && needStopApp) {
             app.stop()
         }
+
+        refresh()
     }
 
     function clear() {
