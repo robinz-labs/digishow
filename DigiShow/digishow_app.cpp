@@ -211,6 +211,7 @@ void DigishowApp::importData(const QVariantMap & data)
 
         // apply to the app environment
         m_slots.append(slot);
+        slot->setSlotIndex(m_slots.length()-1);
     }
 
     // set up launches
@@ -655,7 +656,10 @@ int DigishowApp::newSlot()
 {
     DigishowSlot *slot = new DigishowSlot(this);
     m_slots.append(slot);
-    return m_slots.length()-1; // new slot index
+
+    int newSlotIndex = m_slots.length()-1;
+    slot->setSlotIndex(newSlotIndex);
+    return newSlotIndex;
 }
 
 int DigishowApp::duplicateSlot(int slotIndex)
@@ -685,6 +689,12 @@ bool DigishowApp::deleteSlot(int slotIndex)
         DigishowSlot *slot = m_slots[slotIndex];
         m_slots.removeAt(slotIndex);
         delete slot;
+
+        // update the slot index of all items after the deleted item
+        for (int n = slotIndex ; n < m_slots.length() ; n++) {
+            m_slots[n]->setSlotIndex(n);
+        }
+
         return true;
     }
     return false;
@@ -718,6 +728,14 @@ DigishowSlot *DigishowApp::slotTitled(const QString &title)
         if (slot->slotOptions()->value("title") == title) return slot;
     }
     return nullptr;
+}
+
+int DigishowApp::getSlotIndex(DigishowSlot *slot)
+{
+    for (int n=0 ; n<m_slots.length() ; n++) {
+        if (m_slots[n] == slot) return n;
+    }
+    return -1;
 }
 
 bool DigishowApp::updateLaunch(const QString &launchName, const QVariantList &slotLaunchOptions)

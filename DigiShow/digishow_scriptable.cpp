@@ -92,18 +92,21 @@ QVariant DigishowScriptable::execute(const QString &script)
     return r;
 }
 
-int DigishowScriptable::execute(const QString &expression, int inputValue, int inputRange, bool *ok)
+int DigishowScriptable::execute(const QString &expression, int inputValue, int inputRange, int lastValue, int slotIndex, int slotEnd, bool *ok)
 {
     if (ok != nullptr) *ok = false;
     if (m_qmlObject == nullptr) return 0;
 
     QVariant r;
     bool done = QMetaObject::invokeMethod(
-                m_qmlObject, "execute", Qt::DirectConnection,
+                m_qmlObject, "executeExpression", Qt::DirectConnection,
                 Q_RETURN_ARG(QVariant, r),
                 Q_ARG(QVariant, expression),
                 Q_ARG(QVariant, inputValue),
-                Q_ARG(QVariant, inputRange));
+                Q_ARG(QVariant, inputRange),
+                Q_ARG(QVariant, lastValue),
+                Q_ARG(QVariant, slotIndex),
+                Q_ARG(QVariant, slotEnd));
 
     if (!done) return 0;
     if (r.isNull() || !r.isValid()) return 0;

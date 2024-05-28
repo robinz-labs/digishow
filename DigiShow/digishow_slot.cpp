@@ -26,6 +26,8 @@
 
 DigishowSlot::DigishowSlot(QObject *parent) : QObject(parent)
 {
+    m_slotIndex = -1;
+
     // no source and no destination is assigned
     m_sourceInterface          = nullptr;
     m_destinationInterface     = nullptr;
@@ -561,7 +563,7 @@ void DigishowSlot::sendDataOut(dgsSignalData dataOut, bool pre)
         m_lastDataOutPre = dataOut;
 
         bool ok = true;
-        dataOut = expressionExecute(m_slotOutputExpression, dataOut, &ok);
+        dataOut = expressionExecute(m_slotOutputExpression, dataOut, SlotOutputEnd, &ok);
         if (dataOut.signal == 0) dataOut = m_lastDataOut;
         m_outputExpressionError = !ok;
     }
@@ -886,7 +888,7 @@ dgsSignalData DigishowSlot::smoothingProcessOutputAnalog()
     return dataOut;
 }
 
-dgsSignalData DigishowSlot::expressionExecute(const QString & expression, dgsSignalData dataIn, bool *ok)
+dgsSignalData DigishowSlot::expressionExecute(const QString & expression, dgsSignalData dataIn, int slotEnd, bool *ok)
 {
     if (expression.isEmpty()) return dataIn;
 
@@ -898,7 +900,12 @@ dgsSignalData DigishowSlot::expressionExecute(const QString & expression, dgsSig
     case DATA_SIGNAL_NOTE:   inputValue = dataIn.bValue ? dataIn.aValue : 0; inputRange = 127; break;
     }
 
-    int outputValue = scriptable->execute(expression, inputValue, inputRange, ok);
+    int lastValue = (slotEnd == SlotInputEnd ? getEndpointInValue() : getEndpointOutValue());
+    if (lastValue < 0) lastValue = 0;
+
+    int slotIndex = m_slotIndex; //g_app->getSlotIndex(this);
+
+    int outputValue = scriptable->execute(expression, inputValue, inputRange, lastValue, slotIndex, slotEnd, ok);
     if (*ok == false) return dataIn;
     if (outputValue < 0) return dgsSignalData();
 
@@ -942,7 +949,7 @@ void DigishowSlot::onDataReceived(int endpointIndex, dgsSignalData dataIn)
 
     // execute expression to preprocess the received data
     bool ok = true;
-    dataIn = expressionExecute(m_slotInputExpression, dataIn, &ok);
+    dataIn = expressionExecute(m_slotInputExpression, dataIn, SlotInputEnd, &ok);
     if (dataIn.signal == 0) dataIn = m_lastDataIn;
     m_inputExpressionError = !ok;
 

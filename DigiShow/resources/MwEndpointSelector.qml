@@ -179,7 +179,7 @@ Item {
         label.font.pixelSize: 10
         label.text: qsTr("LEARN")
         box.radius: 3
-        colorNormal: isDetecting ? "#990000" : "transparent"
+        colorNormal: isDetecting ? "#990000" : "#484848"
         visible: app.isRunning && forInput && (interfaceType === "midi" || interfaceType === "osc")
         onClicked: {
             if (isDetecting)

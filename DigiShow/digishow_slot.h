@@ -29,8 +29,18 @@ class DigishowSlot : public QObject
     Q_OBJECT
 
 public:
+
+    enum SlotEndType {
+        SlotInputEnd   = 0,
+        SlotOutputEnd  = 1
+    };
+    Q_ENUM(SlotEndType)
+
     explicit DigishowSlot(QObject *parent = nullptr);
     ~DigishowSlot();
+
+    int slotIndex() { return m_slotIndex; }
+    void setSlotIndex(int slotIndex) { m_slotIndex = slotIndex; }
 
     // source and destination
     int setSource(DigishowInterface *interface, int endpointIndex);
@@ -89,6 +99,8 @@ public slots:
     void onSmoothingTimerFired();
 
 private:
+
+    int m_slotIndex;
 
     // source and destination
     DigishowInterface *m_sourceInterface;
@@ -165,7 +177,7 @@ private:
     dgsSignalData smoothingProcessOutputAnalog();
 
     // expression executor
-    dgsSignalData expressionExecute(const QString & expression, dgsSignalData dataIn, bool *ok);
+    dgsSignalData expressionExecute(const QString & expression, dgsSignalData dataIn, int slotEnd, bool *ok);
 
     // error flags
     bool m_trafficError;

@@ -91,6 +91,7 @@ public:
     Q_INVOKABLE DigishowSlot *slotAt(int index);
     Q_INVOKABLE DigishowSlot *slotTitled(const QString &title);
     Q_INVOKABLE QList<DigishowSlot*> slotList() { return m_slots; }
+    Q_INVOKABLE int getSlotIndex(DigishowSlot *slot);
 
     Q_INVOKABLE bool updateLaunch(const QString &launchName, const QVariantList &slotLaunchOptions);
     Q_INVOKABLE bool deleteLaunch(const QString &launchName);
