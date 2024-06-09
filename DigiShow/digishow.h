@@ -128,6 +128,10 @@
   beta release
   ! bug fixes and improvements
 
+  v1.5.2 20240608
+  final release
+  ! bug fixes and improvements
+
  */
 
 #ifndef DIGISHOW_H

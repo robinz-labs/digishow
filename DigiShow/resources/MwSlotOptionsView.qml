@@ -1195,39 +1195,48 @@ Item {
 
     function expressionHelp(textExpression) {
 
+        function expressionReference() {
+            Qt.openUrlExternally("https://github.com/robinz-labs/digishow/blob/master/guides/" + qsTr("expression.md"))
+        }
+
         var exampleCode = "value*0.5 + 100"
         var btn = 0
         btn = messageBox.showAndWait(
             qsTr("Write a JavaScript expression to dynamically change the signal value, for example:") + "\r\n\r\n= " + exampleCode,
-            qsTr("Try It"), qsTr("Next"))
+            qsTr("Try It"), qsTr("Reference ..."), qsTr("Next"))
         if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
-        if (btn <= 1) return
+        if (btn == 2) expressionReference()
+        if (btn <= 2) return
 
         exampleCode = "value*0.5 + outputValueOf('Another Signal Link')*0.5"
         btn = messageBox.showAndWait(
             qsTr("The expression can reference the input or output value of any other signal link, for example:") + "\r\n\r\n= " + exampleCode,
-            qsTr("Try It"), qsTr("Next"))
+            qsTr("Try It"), qsTr("Reference ..."), qsTr("Next"))
         if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
-        if (btn <= 1) return
+        if (btn == 2) expressionReference()
+        if (btn <= 2) return
 
         exampleCode = "value/range > 0.5 ? value*(Math.random()*0.2 + 0.8) : null"
         btn = messageBox.showAndWait(
             qsTr("The expression can contain common JavaScript statements and functions, for example:") + "\r\n\r\n= " + exampleCode,
-            qsTr("Try It"), qsTr("Next"))
+            qsTr("Try It"), qsTr("Reference ..."), qsTr("Next"))
         if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
-        if (btn <= 1) return
+        if (btn == 2) expressionReference()
+        if (btn <= 2) return
 
         if (app.scriptableFileExists()) {
             btn = messageBox.showAndWait(
                 qsTr("The expression can also call user-defined functions, now you can create your functions in the attached script file."),
-                qsTr("Show Script"), qsTr("Done"))
+                qsTr("Show Script"), qsTr("Reference ..."), qsTr("Done"))
             if (btn == 1) showScriptableFile()
+            if (btn == 2) expressionReference()
 
         } else {
             btn = messageBox.showAndWait(
                 qsTr("The expression can also call user-defined functions, now you can create an attached script file contains your functions."),
-                qsTr("Create Script"), qsTr("Done"))
+                qsTr("Create Script"), qsTr("Reference ..."), qsTr("Done"))
             if (btn == 1) createScriptableFile()
+            if (btn == 2) expressionReference()
         }
 
     }

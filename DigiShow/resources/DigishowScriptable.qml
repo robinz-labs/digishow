@@ -13,5 +13,5 @@ DigishowEnvironment {
     function popup(message) { app.messageNotify(message, DigishowApp.MsgPopup) }
 
     function execute(script) { return eval(script) }
-    function executeExpression(expression, value, range, lastValue, slotIndex, slotEnd) { var r = eval(expression); return (r === null ? -1 : r) }
+    function executeExpression(expression, value, range, lastValue, index, end) { var r = eval(expression); return (r === null ? -1 : r) }
 }

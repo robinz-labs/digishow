@@ -1,0 +1,112 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.1_c"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "dimmer1",
+                    "type": "dimmer"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "dimmer2",
+                    "type": "dimmer"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "dimmer3",
+                    "type": "dimmer"
+                }
+            ],
+            "mode": "enttec",
+            "name": "dmx1",
+            "type": "dmx"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "control": 102,
+                    "enabled": true,
+                    "name": "control1",
+                    "type": "control"
+                }
+            ],
+            "mode": "input",
+            "name": "midi1",
+            "outputInterval": 20,
+            "port": "Arduino Leonardo",
+            "type": "midi"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "inputExpression": "onInputChanged(value)",
+            "linked": true,
+            "source": "midi1/control1",
+            "title": "Input"
+        },
+        {
+            "destination": "dmx1/dimmer1",
+            "linked": true,
+            "title": "R"
+        },
+        {
+            "bookmarked": false,
+            "destination": "dmx1/dimmer2",
+            "linked": true,
+            "title": "G"
+        },
+        {
+            "bookmarked": false,
+            "destination": "dmx1/dimmer3",
+            "linked": true,
+            "title": "B"
+        }
+    ]
+}

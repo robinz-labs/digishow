@@ -482,6 +482,12 @@ void DigishowApp::stop()
     emit isRunningChanged();
 }
 
+int DigishowApp::restart()
+{
+    stop();
+    return start();
+}
+
 void DigishowApp::pause(bool paused)
 {
     // link or unlink all slots

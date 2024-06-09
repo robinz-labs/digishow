@@ -1,0 +1,143 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.1_d"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "F1",
+                    "enabled": true,
+                    "name": "press3",
+                    "type": "press"
+                },
+                {
+                    "address": "F2",
+                    "enabled": true,
+                    "name": "press4",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "analog1",
+                    "type": "analog"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog2",
+                    "range": 10,
+                    "type": "analog"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "binary1",
+                    "type": "binary"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "binary2",
+                    "type": "binary"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "binary3",
+                    "type": "binary"
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "name": "binary4",
+                    "type": "binary"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/analog1",
+            "envelopeHold": 0,
+            "inputExpression": "value ? !lastValue : null",
+            "linked": true,
+            "outputSmoothing": 300,
+            "source": "hotkey1/press3",
+            "title": "on/off button"
+        },
+        {
+            "destination": "pipe1/analog2",
+            "linked": true,
+            "outputExpression": "value > 0 ? (lastValue >= 4 ? 0  :  lastValue + 1) : null",
+            "outputSmoothing": 0,
+            "source": "hotkey1/press4",
+            "title": "mode switch button"
+        },
+        {
+            "destination": "pipe1/binary1",
+            "inputExpression": "value==1",
+            "linked": true,
+            "source": "pipe1/analog2",
+            "title": "mode 1"
+        },
+        {
+            "destination": "pipe1/binary2",
+            "inputExpression": "value==2",
+            "linked": true,
+            "source": "pipe1/analog2",
+            "title": "mode 2"
+        },
+        {
+            "destination": "pipe1/binary3",
+            "inputExpression": "value==3",
+            "linked": true,
+            "source": "pipe1/analog2",
+            "title": "mode 3"
+        },
+        {
+            "destination": "pipe1/binary4",
+            "inputExpression": "value==4",
+            "linked": true,
+            "source": "pipe1/analog2",
+            "title": "mode 4"
+        }
+    ]
+}

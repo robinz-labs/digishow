@@ -54,6 +54,31 @@ QString DigishowEnvironment::appDataPath(const QString &filename)
         return dir.filePath(filename);
 }
 
+QString DigishowEnvironment::appExecPath(const QString &filename)
+{
+    QString path = QCoreApplication::applicationDirPath();
+    QDir dir(path);
+
+    if (filename.isEmpty())
+        return path;
+    else
+        return dir.filePath(filename);
+}
+
+QString DigishowEnvironment::appFilePath(const QString &filename)
+{
+    QString path = g_app->filepath();
+    if (path.isEmpty()) return QString();
+
+    QFileInfo fileinfo(path);
+    QDir dir = fileinfo.dir();
+
+    if (filename.isEmpty())
+        return path;
+    else
+        return dir.filePath(filename);
+}
+
 void DigishowEnvironment::setAppOptions(const QVariantMap &options)
 {
     AppUtilities::saveJsonToFile(options, QDir(appDataPath()).filePath("options.json"));
@@ -61,7 +86,20 @@ void DigishowEnvironment::setAppOptions(const QVariantMap &options)
 
 QVariantMap DigishowEnvironment::getAppOptions()
 {
-    return AppUtilities::loadJsonFromFile(QDir(appDataPath()).filePath("options.json"));
+    QVariantMap options = AppUtilities::loadJsonFromFile(QDir(appDataPath()).filePath("options.json"));
+
+    // service options
+    QString fileServiceOptions = QDir(appDataPath()).filePath("service.json");
+    if (QFile::exists(fileServiceOptions)) {
+        QVariantMap serviceOptions = AppUtilities::loadJsonFromFile(fileServiceOptions);
+        QMapIterator<QString, QVariant> i(serviceOptions);
+        while (i.hasNext()) {
+            i.next();
+            options[i.key()] = i.value();
+        }
+    }
+
+    return options;
 }
 
 int DigishowEnvironment::inputValueAt(int slotIndex)

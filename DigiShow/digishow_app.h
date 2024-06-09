@@ -67,6 +67,7 @@ public:
 
     Q_INVOKABLE int  start();
     Q_INVOKABLE void stop();
+    Q_INVOKABLE int  restart();
     Q_INVOKABLE void pause(bool paused);
 
     Q_INVOKABLE void newShow();

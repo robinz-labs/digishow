@@ -183,6 +183,8 @@ public:
     Q_INVOKABLE static QString appSerial()    { return g_serial; }
 
     Q_INVOKABLE static QString appDataPath(const QString &filename = QString());
+    Q_INVOKABLE static QString appExecPath(const QString &filename = QString());
+    Q_INVOKABLE static QString appFilePath(const QString &filename = QString());
 
     Q_INVOKABLE static QString appBuildDate() { return __DATE__; }
     Q_INVOKABLE static QString appQtVersion() { return QT_VERSION_STR; }

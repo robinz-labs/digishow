@@ -31,8 +31,8 @@ class DigishowSlot : public QObject
 public:
 
     enum SlotEndType {
-        SlotInputEnd   = 0,
-        SlotOutputEnd  = 1
+        SlotOutputEnd  = 0,
+        SlotInputEnd   = 1
     };
     Q_ENUM(SlotEndType)
 

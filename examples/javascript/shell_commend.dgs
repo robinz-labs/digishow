@@ -1,0 +1,86 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.1_d"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 101,
+                    "enabled": true,
+                    "name": "binary1",
+                    "type": "binary"
+                },
+                {
+                    "channel": 102,
+                    "enabled": true,
+                    "name": "binary2",
+                    "type": "binary"
+                },
+                {
+                    "channel": 103,
+                    "enabled": true,
+                    "name": "binary3",
+                    "type": "binary"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/binary1",
+            "linked": true,
+            "outputExpression": "utilities.runInShell('shutdown', ['-f', '-r', '-t', '0'])",
+            "source": "",
+            "title": "Windows - Restart"
+        },
+        {
+            "destination": "pipe1/binary2",
+            "linked": true,
+            "outputExpression": "utilities.runInShell('shutdown', ['-f', '-s', '-t', '0'])",
+            "source": "",
+            "title": "Windows - Shutdown"
+        },
+        {
+            "destination": "pipe1/binary3",
+            "linked": true,
+            "outputExpression": "utilities.runInShell('osascript', [appFilePath('qt_camera.applescript')])",
+            "title": "macOS - Call AppleScript"
+        }
+    ]
+}

@@ -19,7 +19,7 @@
 
 QString g_appname   = "DigiShow LINK";
 QString g_fullname  = "";
-QString g_version   = "1.5.1_d";
+QString g_version   = "1.5.2";
 QString g_copyright = "";
 QString g_serial    = "";
 bool g_experimental = false;

@@ -477,7 +477,7 @@ Dialog {
                 anchors.topMargin: 40
                 wrapMode: Label.Wrap
                 lineHeight: 1.3
-                text: qsTr("")
+                text: qsTr("DigiShow enables to accept control signals for playing audio clips.")
             }
 
             MwInterfaceListViewAPlay {
@@ -516,7 +516,7 @@ Dialog {
                 anchors.topMargin: 40
                 wrapMode: Label.Wrap
                 lineHeight: 1.3
-                text: qsTr("")
+                text: qsTr("DigiShow enables to accept control signals for playing MIDI clips.")
             }
 
             MwInterfaceListViewMPlay {

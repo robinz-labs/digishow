@@ -1,0 +1,84 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.2"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "note1",
+                    "type": "note"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "binary2",
+                    "type": "binary"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog1",
+                    "type": "analog"
+                }
+            ],
+            "mode": "remote",
+            "name": "pipe1",
+            "outputInterval": 20,
+            "tcpHost": "127.0.0.1",
+            "tcpPort": 50000,
+            "type": "pipe"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/analog1",
+            "envelopeAttack": 500,
+            "envelopeInDelay": 0,
+            "envelopeRelease": 1000,
+            "linked": true,
+            "source": "pipe1/note1"
+        },
+        {
+            "destination": "pipe1/binary2",
+            "linked": true,
+            "source": "pipe1/note1"
+        }
+    ]
+}

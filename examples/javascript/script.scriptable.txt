@@ -1,0 +1,35 @@
+DigishowScriptable {
+
+    function onInputChanged(value) {
+        if (value < 32) {
+            setOutputValueOf('R', 127)
+            setOutputValueOf('G', 255)
+            setOutputValueOf('B', 64)
+        } else if (value < 64) {
+            setOutputValueOf('R', 255)
+            setOutputValueOf('G', 64)
+            setOutputValueOf('B', 127)
+        } else if (value < 96) {
+            setOutputValueOf('R', 64)
+            setOutputValueOf('G', 127)
+            setOutputValueOf('B', 255)
+        } else {
+            setOutputValueOf('R', 0)
+            setOutputValueOf('G', 0)
+            setOutputValueOf('B', 0)
+        }
+        return value
+    }
+
+    // event callback functions
+
+    function onStart() {
+
+        // toast('The scriptable module is started.')
+    }
+
+    function onStop() {
+
+        // alert('The scriptable module is stopped.')
+    }
+}
