@@ -94,7 +94,7 @@ Item {
             items.push({ text: qsTr("MIDI Program"), value: DigishowEnvironment.EndpointMidiProgram, tag:"program" })
             items.push({ text: qsTr("MIDI Pitch"  ), value: DigishowEnvironment.EndpointMidiPitch,   tag:"pitch"   })
 
-            if (digishow.appExperimental()) {
+            if (digishow.appExperimental() && forOutput) {
                 items.push({
                     text: qsTr("MIDI CC Pulse"),
                     value: DigishowEnvironment.EndpointMidiCcPulse,

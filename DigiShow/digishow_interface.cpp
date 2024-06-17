@@ -129,13 +129,14 @@ int DigishowInterface::openInterface()
     if (m_isInterfaceOpened) return ERR_DEVICE_BUSY;
     updateMetadata();
     m_needReceiveRawData = false;
+    m_isInterfaceOpened = true;
     return ERR_NONE;
 }
 
 int DigishowInterface::closeInterface()
 {
     m_needReceiveRawData = false;
-    m_isInterfaceOpened = true;
+    m_isInterfaceOpened = false;
     return ERR_NONE;
 }
 

@@ -40,7 +40,8 @@ int DgsHotkeyInterface::openInterface()
 
     m_hotkeys.clear();
     for (int n=0 ; n<m_endpointOptionsList.length() ; n++) {
-        if (m_endpointInfoList[n].type == ENDPOINT_HOTKEY_PRESS) {
+        if (m_endpointInfoList[n].type == ENDPOINT_HOTKEY_PRESS &&
+            m_endpointInfoList[n].enabled) {
 
             QKeySequence key = QKeySequence(m_endpointInfoList[n].address);
             m_endpointInfoList[n].control = key[0];

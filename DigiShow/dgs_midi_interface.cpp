@@ -304,7 +304,7 @@ void DgsMidiInterface::callbackRtMidiIn(double deltatime, std::vector< unsigned 
         int endpointIndex = findEndpointWidthMidiNote(channel, note);
 
         //qDebug() << "midiin_note:" << endpointIndex << data.signal << data.aValue << data.bValue;
-        if (endpointIndex != -1) emit dataReceived(endpointIndex, data);
+        if (endpointIndex != -1  && m_endpointInfoList[endpointIndex].enabled) emit dataReceived(endpointIndex, data);
 
         if (m_needReceiveRawData) {
             QVariantMap rawData;
@@ -357,7 +357,7 @@ void DgsMidiInterface::callbackRtMidiIn(double deltatime, std::vector< unsigned 
         int endpointIndex = findEndpointWidthMidiProgram(channel);
 
         //qDebug() << "midiin_program:" << endpointIndex << data.signal << data.aValue << data.bValue;
-        if (endpointIndex != -1) emit dataReceived(endpointIndex, data);
+        if (endpointIndex != -1 && m_endpointInfoList[endpointIndex].enabled) emit dataReceived(endpointIndex, data);
 
         if (m_needReceiveRawData) {
             QVariantMap rawData;
