@@ -39,6 +39,7 @@ DgsDmxInterface::DgsDmxInterface(QObject *parent) : DigishowInterface(parent)
 
     // clear dmx data buffer
     for (int n=0 ; n<512 ; n++) m_data[n]=0;
+    m_master = 255;
 }
 
 DgsDmxInterface::~DgsDmxInterface()
@@ -139,7 +140,19 @@ int DgsDmxInterface::sendData(int endpointIndex, dgsSignalData data)
     int r = DigishowInterface::sendData(endpointIndex, data);
     if ( r != ERR_NONE) return r;
 
-    if (m_endpointInfoList[endpointIndex].type == ENDPOINT_DMX_DIMMER) {
+    if (m_endpointInfoList[endpointIndex].type == ENDPOINT_DMX_MASTER) {
+
+        // master control
+
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+
+        int value = 255 * data.aValue / (data.aRange==0 ? 255 : data.aRange);
+        if (value<0 || value>255) return ERR_INVALID_DATA;
+
+        // update master volume
+        m_master = value;
+
+    } else if (m_endpointInfoList[endpointIndex].type == ENDPOINT_DMX_DIMMER) {
 
         // dimmer control
 
@@ -315,8 +328,24 @@ void DgsDmxInterface::setupPlayerPixelMapping(DigishowPixelPlayer *player, const
 
 void DgsDmxInterface::onTimerFired()
 {
-    // send dmx data frame
-    enttecDmxSendDmxFrame(m_data);
+    // master adjustment
+    static unsigned char data[512];
+
+    if (m_master < 255) {
+        memcpy(data, m_data, sizeof(m_data));
+        for (int n=0 ; n<m_channels ; n++) {
+            unsigned char val = data[n];
+            if (val > 0) data[n] = m_master * val / 255;
+        }
+
+        // send dmx data frame (modified)
+        enttecDmxSendDmxFrame(data);
+
+    } else {
+
+        // send dmx data frame (original)
+        enttecDmxSendDmxFrame(m_data);
+    }
 }
 
 void DgsDmxInterface::onPlayerFrameUpdated()
@@ -348,6 +377,7 @@ bool DgsDmxInterface::enttecDmxOpen(const QString &port, int channels)
 
     // clear dmx data buffer
     //for (int n=0 ; n<512 ; n++) m_data[n]=0;
+    //m_master = 255;
 
     // set number of channels
     m_channels = (channels+7) / 8 * 8;

@@ -59,6 +59,7 @@ private:
     // key: universe number
     // val: 512 bytes of dmx data
     QMap<int, QByteArray> m_dataAll;
+    QMap<int, int> m_masterAll;
 
     // sequence number for artnet dmx output ( 0x01 ~ 0xff )
     unsigned char m_sequence;

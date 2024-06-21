@@ -31,6 +31,7 @@ DgsArtnetInterface::DgsArtnetInterface(QObject *parent) : DigishowInterface(pare
 
     // clear dmx data buffer
     m_dataAll.clear();
+    m_masterAll.clear();
     m_sequence = 0;
 }
 
@@ -73,6 +74,7 @@ int DgsArtnetInterface::openInterface()
         // for artnet sender
 
         //m_dataAll.clear();
+        //m_masterAll.clear();
         m_sequence = 0;
 
         // broadcast an artnet poll packet
@@ -141,7 +143,22 @@ int DgsArtnetInterface::sendData(int endpointIndex, dgsSignalData data)
     int r = DigishowInterface::sendData(endpointIndex, data);
     if ( r != ERR_NONE) return r;
 
-    if (m_endpointInfoList[endpointIndex].type == ENDPOINT_ARTNET_DIMMER) {
+
+    if (m_endpointInfoList[endpointIndex].type == ENDPOINT_ARTNET_MASTER) {
+
+        // master control
+
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+
+        int value = 255 * data.aValue / (data.aRange==0 ? 255 : data.aRange);
+        if (value<0 || value>255) return ERR_INVALID_DATA;
+
+        int universe = m_endpointInfoList[endpointIndex].unit;
+
+        // update master volume of the specified universe
+        m_masterAll[universe] = value;
+
+    } else if (m_endpointInfoList[endpointIndex].type == ENDPOINT_ARTNET_DIMMER) {
 
         // dimmer control
 
@@ -445,8 +462,28 @@ void DgsArtnetInterface::onTimerFired()
             0x02, 0x00  // length (512)
         };
 
-        QByteArray datagram = QByteArray((const char*)bytes, sizeof(bytes)).append(d.value()); // header + 512-byte dmx data
+        QByteArray datagram = QByteArray((const char*)bytes, sizeof(bytes));
 
+        // master adjustment
+        int master = m_masterAll.value(universe, 255);
+        if (master < 255) {
+            QByteArray data = d.value();
+            int len = data.length();
+            for (int n=0 ; n<len ; n++) {
+                unsigned char val = data[n];
+                if (val > 0) data[n] = master * val / 255;
+            }
+
+            // header + 512-byte dmx data (modified)
+            datagram.append(data);
+
+        } else {
+
+            // header + 512-byte dmx data (original)
+            datagram.append(d.value());
+        }
+
+        // send the udp message
         m_udp->writeDatagram(datagram.constData(), datagram.size(),
                              m_udpHost, (quint16)m_udpPort);
     }

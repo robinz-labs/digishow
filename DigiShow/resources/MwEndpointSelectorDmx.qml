@@ -9,6 +9,7 @@ Item {
     id: itemDmx
 
     property bool forMedia: menuType.selectedItemValue === DigishowEnvironment.EndpointDmxMedia
+    property bool forMaster: menuType.selectedItemValue === DigishowEnvironment.EndpointDmxMaster
 
     COptionButton {
         id: buttonType
@@ -34,7 +35,7 @@ Item {
         anchors.leftMargin: 10
         anchors.top: parent.top
         text: qsTr("Channel") + " " + spinChannel.value
-        visible: !forMedia
+        visible: !forMedia && !forMaster
         onClicked: spinChannel.visible = true
 
         COptionSpinBox {
@@ -668,6 +669,7 @@ Item {
             items.push({ text: qsTr("Dimmer"       ), value: DigishowEnvironment.EndpointDmxDimmer,  tag: "dimmer"   })
             items.push({ text: qsTr("Dimmer 16-bit"), value: DigishowEnvironment.EndpointDmxDimmer2, tag: "dimmer2x" })
             items.push({ text: qsTr("Pixels"       ), value: DigishowEnvironment.EndpointDmxMedia,   tag: "media"    })
+            items.push({ text: qsTr("Master"       ), value: DigishowEnvironment.EndpointDmxMaster,  tag: "master"   })
 
             menuType.optionItems = items
             menuType.selectedIndex = 0
@@ -710,7 +712,8 @@ Item {
         var endpointType = menuType.selectedItemValue
         var enables = {}
 
-        if (endpointType === DigishowEnvironment.EndpointDmxDimmer) {
+        if (endpointType === DigishowEnvironment.EndpointDmxDimmer ||
+            endpointType === DigishowEnvironment.EndpointDmxMaster) {
 
             enables["optInitialDmx"] = true
 
@@ -776,7 +779,8 @@ Item {
     function setEndpointOptions(endpointInfo, endpointOptions) {
 
         menuType.selectOption(endpointInfo["type"])
-        spinChannel.value = endpointInfo["channel"] + 1
+
+        if (!forMaster) spinChannel.value = endpointInfo["channel"] + 1
 
         switch (endpointInfo["type"]) {
         case DigishowEnvironment.EndpointDmxMedia:
@@ -801,7 +805,8 @@ Item {
 
         var options = {}
         options["type"] = menuType.selectedItemTag
-        options["channel"] = spinChannel.value - 1
+
+        if (!forMaster) options["channel"] = spinChannel.value - 1
 
         switch (menuType.selectedItemValue) {
         case DigishowEnvironment.EndpointDmxMedia:

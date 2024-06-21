@@ -52,6 +52,7 @@ private:
 
     int m_channels; // number of channels
     unsigned char m_data[512];
+    int m_master;
 
     bool enttecDmxOpen(const QString &port, int channels = 512);
     bool enttecDmxSendDmxFrame(unsigned char *data);

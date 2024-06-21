@@ -425,11 +425,13 @@ void DigishowInterface::updateMetadata()
             if      (typeName == "dimmer"     ) endpointInfo.type = ENDPOINT_DMX_DIMMER;
             else if (typeName == "dimmer2x"   ) endpointInfo.type = ENDPOINT_DMX_DIMMER2;
             else if (typeName == "media"      ) endpointInfo.type = ENDPOINT_DMX_MEDIA;
+            else if (typeName == "master"     ) endpointInfo.type = ENDPOINT_DMX_MASTER;
             break;
         case INTERFACE_ARTNET:
             if      (typeName == "dimmer"     ) endpointInfo.type = ENDPOINT_ARTNET_DIMMER;
             else if (typeName == "dimmer2x"   ) endpointInfo.type = ENDPOINT_ARTNET_DIMMER2;
             else if (typeName == "media"      ) endpointInfo.type = ENDPOINT_ARTNET_MEDIA;
+            else if (typeName == "master"     ) endpointInfo.type = ENDPOINT_ARTNET_MASTER;
             break;
         case INTERFACE_OSC:
             if      (typeName == "int"        ) endpointInfo.type = ENDPOINT_OSC_INT;
@@ -646,6 +648,13 @@ void DigishowInterface::updateMetadata()
             endpointInfo.labelEPT = tr("DMX");
             endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control);
             break;
+        case ENDPOINT_DMX_MASTER:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = true;
+            endpointInfo.range  = 255;
+            endpointInfo.labelEPT = tr("DMX");
+            endpointInfo.labelEPI = tr("Master");
+            break;
         case ENDPOINT_ARTNET_DIMMER:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
             endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_ARTNET_OUTPUT);
@@ -673,6 +682,13 @@ void DigishowInterface::updateMetadata()
             }
             endpointInfo.labelEPT = tr("ArtNet");
             endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control);
+            break;
+        case ENDPOINT_ARTNET_MASTER:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = true;
+            endpointInfo.range  = 255;
+            endpointInfo.labelEPT = tr("ArtNet");
+            endpointInfo.labelEPI = tr("Master") + QString(" %1").arg(endpointInfo.unit);
             break;
         case ENDPOINT_OSC_INT:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;

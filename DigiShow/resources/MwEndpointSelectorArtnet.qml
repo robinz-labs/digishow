@@ -10,6 +10,7 @@ Item {
     id: itemArtnet
 
     property bool forMedia: menuType.selectedItemValue === DigishowEnvironment.EndpointArtnetMedia
+    property bool forMaster: menuType.selectedItemValue === DigishowEnvironment.EndpointArtnetMaster
 
     COptionButton {
         id: buttonArtnetType
@@ -51,7 +52,7 @@ Item {
         anchors.leftMargin: 10
         anchors.top: parent.top
         text: qsTr("Channel") + " " + spinChannel.value
-        visible: !forMedia
+        visible: !forMedia && !forMaster
         onClicked: spinChannel.visible = true
 
         COptionSpinBox {
@@ -704,8 +705,10 @@ Item {
             items.push({ text: qsTr("Dimmer"       ), value: DigishowEnvironment.EndpointArtnetDimmer,  tag: "dimmer"   })
             items.push({ text: qsTr("Dimmer 16-bit"), value: DigishowEnvironment.EndpointArtnetDimmer2, tag: "dimmer2x" })
 
-            if (forOutput)
-            items.push({ text: qsTr("Pixels"       ), value: DigishowEnvironment.EndpointArtnetMedia,   tag: "media"    })
+            if (forOutput) {
+                items.push({ text: qsTr("Pixels"   ), value: DigishowEnvironment.EndpointArtnetMedia,   tag: "media"    })
+                items.push({ text: qsTr("Master"   ), value: DigishowEnvironment.EndpointArtnetMaster,  tag: "master"   })
+            }
 
             menuType.optionItems = items
             menuType.selectedIndex = 0
@@ -748,7 +751,8 @@ Item {
         var endpointType = menuType.selectedItemValue
         var enables = {}
 
-        if (endpointType === DigishowEnvironment.EndpointArtnetDimmer) {
+        if (endpointType === DigishowEnvironment.EndpointArtnetDimmer ||
+            endpointType === DigishowEnvironment.EndpointArtnetMaster) {
 
             enables["optInitialDmx"] = true
 
@@ -815,7 +819,7 @@ Item {
 
         menuType.selectOption(endpointInfo["type"])
         spinUnit.value = endpointInfo["unit"]
-        spinChannel.value = endpointInfo["channel"] + 1
+        if (!forMaster) spinChannel.value = endpointInfo["channel"] + 1
 
         switch (endpointInfo["type"]) {
         case DigishowEnvironment.EndpointArtnetMedia:
@@ -842,7 +846,7 @@ Item {
         var options = {}
         options["type"] = menuType.selectedItemTag
         options["unit"] = spinUnit.value
-        options["channel"] = spinChannel.value - 1
+        if (!forMaster) options["channel"] = spinChannel.value - 1
 
         switch (menuType.selectedItemValue) {
         case DigishowEnvironment.EndpointArtnetMedia:
