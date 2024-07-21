@@ -54,6 +54,9 @@ alert("value = " + value); value
  
 ## app 对象的成员函数
  
+**app.elapsed()**
+返回当前项目启动后的经过的时长（毫秒数）
+
 **app.restart()** 
 重启当前 DigiShow 项目的运行 
  

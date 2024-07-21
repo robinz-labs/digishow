@@ -103,6 +103,8 @@ public:
     Q_INVOKABLE QVariantList getSlotLaunchDetails(const QString &launchName);
     Q_INVOKABLE QVariantList getSlotLaunchOptions(const QString &launchName);
 
+    Q_INVOKABLE qint64 elapsed() { return m_elapsedTimer->elapsed(); }
+
     Q_INVOKABLE DigishowMetronome *metronome() { return m_metronome; }
     DigishowScriptable *scriptable() { return m_scriptable; }
 
@@ -148,6 +150,7 @@ private:
     bool m_paused;
 
     QTimer *m_timer;
+    QElapsedTimer *m_elapsedTimer;
     DigishowMetronome *m_metronome;
 
     // scriptable

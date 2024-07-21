@@ -54,6 +54,9 @@ Returns the absolute path of the file named _filename_ in the DigiShow configura
  
 ## Functions of the app object
  
+**app.elapsed()**
+Returns the elapsed time in milliseconds since the project was started.
+ 
 **app.restart()** 
 Restart the current DigiShow project. 
  

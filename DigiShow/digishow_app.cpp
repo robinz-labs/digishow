@@ -58,6 +58,9 @@ DigishowApp::DigishowApp(QObject *parent) : QObject(parent)
     m_timer->setInterval(1000);
     m_timer->start();
 
+    m_elapsedTimer = new QElapsedTimer();
+    m_elapsedTimer->start();
+
     // create a metronome
     m_metronome = new DigishowMetronome();
     m_metronome->setLinkEnabled(true);
@@ -80,6 +83,8 @@ DigishowApp::~DigishowApp()
 
     m_timer->stop();
     m_timer->deleteLater();
+
+    delete m_elapsedTimer;
 
 #ifdef QT_DEBUG
     qDebug() << "app released";
@@ -376,6 +381,7 @@ int DigishowApp::start()
     }
 
     // starting
+    m_elapsedTimer->restart();
     m_starting = true;
     emit isStartingChanged();
 
