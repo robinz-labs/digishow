@@ -4,12 +4,12 @@
 <context>
     <name>DigishowApp</name>
     <message>
-        <location filename="../../digishow_app.cpp" line="372"/>
+        <location filename="../../digishow_app.cpp" line="377"/>
         <source>Requesting access to your microphone ...</source>
         <translation>Solicitando acceso a su micrófono...</translation>
     </message>
     <message>
-        <location filename="../../digishow_app.cpp" line="414"/>
+        <location filename="../../digishow_app.cpp" line="420"/>
         <source>Error occurred when open interface %1 .</source>
         <translation>Se produjo un error al abrir la interfaz %1 .</translation>
     </message>
@@ -2705,8 +2705,8 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwInterfaceListViewRioc.qml" line="82"/>
-        <source>USB Serial Port</source>
-        <translation>Puerto serial USB</translation>
+        <source>Serial Port</source>
+        <translation>Puerto serial</translation>
     </message>
     <message>
         <location filename="../MwInterfaceListViewRioc.qml" line="104"/>

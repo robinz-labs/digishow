@@ -1,0 +1,100 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.2_b"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat1",
+                    "type": "beat"
+                }
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog1",
+                    "range": 23,
+                    "type": "analog"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog2",
+                    "range": 59,
+                    "type": "analog"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog3",
+                    "range": 59,
+                    "type": "analog"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 60,
+        "link": false,
+        "quantum": 2,
+        "run": true,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/analog1",
+            "linked": true,
+            "outputExpression": "new Date().getHours()",
+            "source": "metronome1/beat1",
+            "title": "hours"
+        },
+        {
+            "destination": "pipe1/analog2",
+            "linked": true,
+            "outputExpression": "new Date().getMinutes()",
+            "source": "metronome1/beat1",
+            "title": "minutes"
+        },
+        {
+            "destination": "pipe1/analog3",
+            "linked": true,
+            "outputExpression": "new Date().getSeconds()",
+            "source": "metronome1/beat1",
+            "title": "seconds"
+        }
+    ]
+}

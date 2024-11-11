@@ -79,7 +79,7 @@ MwInterfaceListView {
                         anchors.bottom: parent.top
                         anchors.bottomMargin: 10
                         font.pixelSize: 11
-                        text: qsTr("USB Serial Port")
+                        text: qsTr("Serial Port")
 
                     }
                 }

@@ -6,18 +6,24 @@
 #include <QPair>
 #include <QLoggingCategory>
 
-#ifdef QHOTKEY_LIB
-	#ifdef QHOTKEY_LIB_BUILD
-		#define QHOTKEY_SHARED_EXPORT Q_DECL_EXPORT
-	#else
-		#define QHOTKEY_SHARED_EXPORT Q_DECL_IMPORT
-	#endif
+#ifdef QHOTKEY_SHARED
+#	ifdef QHOTKEY_LIBRARY
+#		define QHOTKEY_EXPORT Q_DECL_EXPORT
+#	else
+#		define QHOTKEY_EXPORT Q_DECL_IMPORT
+#	endif
 #else
-	#define QHOTKEY_SHARED_EXPORT
+#	define QHOTKEY_EXPORT
+#endif
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	#define QHOTKEY_HASH_SEED size_t
+#else
+	#define QHOTKEY_HASH_SEED uint
 #endif
 
 //! A class to define global, systemwide Hotkeys
-class QHOTKEY_SHARED_EXPORT QHotkey : public QObject
+class QHOTKEY_EXPORT QHotkey : public QObject
 {
 	Q_OBJECT
 	//! @private
@@ -30,7 +36,7 @@ class QHOTKEY_SHARED_EXPORT QHotkey : public QObject
 
 public:
 	//! Defines shortcut with native keycodes
-	class QHOTKEY_SHARED_EXPORT NativeShortcut {
+	class QHOTKEY_EXPORT NativeShortcut {
 	public:
 		//! The native keycode
 		quint32 key;
@@ -114,10 +120,10 @@ private:
 	bool _registered;
 };
 
-uint QHOTKEY_SHARED_EXPORT qHash(QHotkey::NativeShortcut key);
-uint QHOTKEY_SHARED_EXPORT qHash(QHotkey::NativeShortcut key, uint seed);
+QHOTKEY_HASH_SEED QHOTKEY_EXPORT qHash(QHotkey::NativeShortcut key);
+QHOTKEY_HASH_SEED QHOTKEY_EXPORT qHash(QHotkey::NativeShortcut key, QHOTKEY_HASH_SEED seed);
 
-QHOTKEY_SHARED_EXPORT Q_DECLARE_LOGGING_CATEGORY(logQHotkey)
+QHOTKEY_EXPORT Q_DECLARE_LOGGING_CATEGORY(logQHotkey)
 
 Q_DECLARE_METATYPE(QHotkey::NativeShortcut)
 

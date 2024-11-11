@@ -1,6 +1,6 @@
 DigishowScriptable {
 
-    function onInputChanged(value) {
+    function onValueChanged(value) {
         if (value < 32) {
             setOutputValueOf('R', 127)
             setOutputValueOf('G', 255)

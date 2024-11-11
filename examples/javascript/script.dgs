@@ -2,7 +2,7 @@
     "appInfo": {
         "appExperimental": true,
         "appName": "DigiShow LINK",
-        "appVersion": "1.5.1_c"
+        "appVersion": "1.5.2_b"
     },
     "interfaces": [
         {
@@ -28,6 +28,14 @@
         },
         {
             "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog1",
+                    "range": 127,
+                    "type": "analog"
+                }
             ],
             "mode": "local",
             "name": "pipe1",
@@ -61,17 +69,17 @@
         {
             "endpoints": [
                 {
-                    "channel": 1,
+                    "channel": 0,
                     "control": 102,
                     "enabled": true,
-                    "name": "control1",
+                    "name": "control2",
                     "type": "control"
                 }
             ],
             "mode": "input",
             "name": "midi1",
             "outputInterval": 20,
-            "port": "Arduino Leonardo",
+            "port": "EM-MIDI",
             "type": "midi"
         }
     ],
@@ -86,9 +94,10 @@
     },
     "slots": [
         {
-            "inputExpression": "onInputChanged(value)",
+            "destination": "pipe1/analog1",
             "linked": true,
-            "source": "midi1/control1",
+            "outputExpression": "onValueChanged(value)",
+            "source": "midi1/control2",
             "title": "Input"
         },
         {

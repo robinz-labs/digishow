@@ -7,7 +7,13 @@
 #include <QMutex>
 #include <QGlobalStatic>
 
-class QHOTKEY_SHARED_EXPORT QHotkeyPrivate : public QObject, public QAbstractNativeEventFilter
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	#define _NATIVE_EVENT_RESULT qintptr
+#else
+	#define _NATIVE_EVENT_RESULT long
+#endif
+
+class QHOTKEY_EXPORT QHotkeyPrivate : public QObject, public QAbstractNativeEventFilter
 {
 	Q_OBJECT
 
@@ -52,8 +58,5 @@ private:
 	{\
 		return hotkeyPrivate;\
 	}
-
-Q_DECLARE_METATYPE(Qt::Key)
-Q_DECLARE_METATYPE(Qt::KeyboardModifiers)
 
 #endif // QHOTKEY_P_H

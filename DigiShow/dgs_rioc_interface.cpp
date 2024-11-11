@@ -412,7 +412,7 @@ QVariantList DgsRiocInterface::listOnline()
         if (serialPortInfo.portName().startsWith("cu.")) continue;
 #endif
 
-        if (serialPortInfo.hasVendorIdentifier()) {
+        //if (serialPortInfo.hasVendorIdentifier()) {
 
             uint16_t vid = serialPortInfo.vendorIdentifier();
             uint16_t pid = serialPortInfo.productIdentifier();
@@ -424,7 +424,7 @@ QVariantList DgsRiocInterface::listOnline()
             info["comPort"] = serialPortInfo.portName();
             info["mode"   ] = mode;
             list.append(info);
-        }
+        //}
     }
 
     return list;

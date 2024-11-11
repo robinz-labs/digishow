@@ -1,5 +1,7 @@
 CONFIG += c++11
 
+DEFINES += RTMIDI_DO_NOT_ENSURE_UNIQUE_PORTNAMES
+
 win32: {
     DEFINES += __WINDOWS_MM__
     LIBS += -lwinmm
