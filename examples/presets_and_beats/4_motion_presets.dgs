@@ -2,7 +2,7 @@
     "appInfo": {
         "appExperimental": true,
         "appName": "DigiShow LINK",
-        "appVersion": "1.2.6"
+        "appVersion": "1.5.2_b"
     },
     "interfaces": [
         {
@@ -193,6 +193,7 @@
         },
         "launch4": {
             "assigned": true,
+            "color": "#00a652",
             "title": "GRASS"
         },
         "launch5": {

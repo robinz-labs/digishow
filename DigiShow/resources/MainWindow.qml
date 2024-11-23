@@ -17,6 +17,7 @@ ApplicationWindow {
 
     property alias app: digishow.app
     property alias metronome: digishow.metronome
+    property alias remoteWeb: digishow.remoteWeb
 
     visible: true
     width: 1280

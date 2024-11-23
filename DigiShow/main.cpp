@@ -35,6 +35,7 @@
 #include "digishow_data.h"
 #include "digishow_metronome.h"
 #include "digishow_pixel_player.h"
+#include "digishow_remote_web.h"
 
 
 #ifdef Q_OS_MAC
@@ -138,6 +139,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<DigishowData>       ("DigiShow", 1, 0, "DigishowData");
     qmlRegisterType<DigishowMetronome>  ("DigiShow", 1, 0, "DigishowMetronome");
     qmlRegisterType<DigishowPixelPlayer>("DigiShow", 1, 0, "DigishowPixelPlayer");
+    qmlRegisterType<DigishowRemoteWeb>  ("DigiShow", 1, 0, "DigishowRemoteWeb");
     qmlRegisterType<DigishowCloud>      ("DigiShow", 1, 0, "DigishowCloud");
     qmlRegisterType<QtQrCodeQuickItem>  ("DigiShow", 1, 0, "QrCode");
 

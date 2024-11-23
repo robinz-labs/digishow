@@ -26,6 +26,7 @@
 class DigishowInterface;
 class DigishowSlot;
 class DigishowMetronome;
+class DigishowRemoteWeb;
 class DigishowScriptable;
 
 class DigishowApp : public QObject
@@ -79,6 +80,7 @@ public:
     Q_INVOKABLE int duplicateSlot(int slotIndex);
     Q_INVOKABLE bool deleteSlot(int slotIndex);
 
+    Q_INVOKABLE QString filename(bool withExtension = true);
     Q_INVOKABLE QString filepath() { return m_filepath; }
     Q_INVOKABLE bool isStarting() { return m_starting; }
     Q_INVOKABLE bool isRunning() { return m_running; }
@@ -106,6 +108,7 @@ public:
     Q_INVOKABLE qint64 elapsed() { return m_elapsedTimer->elapsed(); }
 
     Q_INVOKABLE DigishowMetronome *metronome() { return m_metronome; }
+    Q_INVOKABLE DigishowRemoteWeb *remoteWeb() { return m_remoteWeb; }
     DigishowScriptable *scriptable() { return m_scriptable; }
 
     Q_INVOKABLE void messageNotify(const QString & msgText, int msgType = MsgAlert) {
@@ -151,7 +154,12 @@ private:
 
     QTimer *m_timer;
     QElapsedTimer *m_elapsedTimer;
+
+    // metronome (beat maker)
     DigishowMetronome *m_metronome;
+
+    // web service for remote control
+    DigishowRemoteWeb *m_remoteWeb;
 
     // scriptable
     DigishowScriptable *m_scriptable;

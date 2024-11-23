@@ -23,6 +23,7 @@
 #include <QTextStream>
 #include <QJsonDocument>
 #include <QtNetwork>
+#include <QNetworkInterface>
 #include <QUrl>
 #include <QClipboard>
 #include <QDesktopServices>
@@ -180,6 +181,22 @@ QString AppUtilities::upnpWaitResponse(QString strWaitRsp, int timeout)
     }
 
     return "";
+}
+
+QString AppUtilities::hostIpAddress()
+{
+    QString hostName = QHostInfo::localHostName();
+
+    QHostInfo hostInfo = QHostInfo::fromName(hostName);
+    QList<QHostAddress> addresses = hostInfo.addresses();
+
+    foreach (const QHostAddress &address, addresses) {
+        if (address.protocol() == QAbstractSocket::IPv4Protocol && !address.isLoopback()) {
+            return address.toString();
+        }
+    }
+
+    return "127.0.0.1";
 }
 
 QString AppUtilities::httpRequest(const QString & strUrl, const QString & strMethod, const QString & strBody, int timeout)

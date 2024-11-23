@@ -13,6 +13,8 @@ SOURCES += \
     $$PWD/shared/modbus_tcp_handler.cpp \
     $$PWD/shared/rioc_service.cpp \
     $$PWD/shared/rioc_controller.cpp \
+    $$PWD/shared/http_server.cpp \
+    $$PWD/shared/http_socket.cpp \
     app_utilities.cpp \
     dgs_midi_interface.cpp \
     dgs_rioc_interface.cpp \
@@ -34,6 +36,7 @@ SOURCES += \
     digishow_data.cpp \
     digishow_environment.cpp \
     digishow_interface.cpp \
+    digishow_remote_web.cpp \
     digishow_scriptable.cpp \
     digishow_slot.cpp \
     digishow_metronome.cpp \
@@ -50,6 +53,8 @@ HEADERS += \
     $$PWD/shared/rioc_service.h \
     $$PWD/shared/rioc_controller.h \
     $$PWD/shared/rioc_aladdin2560_def.h \
+    $$PWD/shared/http_server.h \
+    $$PWD/shared/http_socket.h \
     app_common.h \
     app_utilities.h \
     dgs_midi_interface.h \
@@ -72,6 +77,7 @@ HEADERS += \
     digishow_data.h \
     digishow_environment.h \
     digishow_interface.h \
+    digishow_remote_web.h \
     digishow_scriptable.h \
     digishow_slot.h \
     digishow_metronome.h \

@@ -20,6 +20,7 @@
 #include "digishow_interface.h"
 #include "digishow_slot.h"
 #include "digishow_metronome.h"
+#include "digishow_remote_web.h"
 #include "digishow_scriptable.h"
 
 #include "dgs_midi_interface.h"
@@ -65,6 +66,9 @@ DigishowApp::DigishowApp(QObject *parent) : QObject(parent)
     m_metronome = new DigishowMetronome();
     m_metronome->setLinkEnabled(true);
 
+    // create a web server for remote control
+    m_remoteWeb = new DigishowRemoteWeb();
+
     // list all available online ports and write to file
     // AppUtilities::saveJsonToFile(
     //             DigishowEnvironment::listOnline(),
@@ -78,7 +82,7 @@ DigishowApp::DigishowApp(QObject *parent) : QObject(parent)
 DigishowApp::~DigishowApp()
 {
     m_scriptable->deleteLater();
-
+    m_remoteWeb->deleteLater();
     m_metronome->deleteLater();
 
     m_timer->stop();
@@ -106,12 +110,18 @@ void DigishowApp::clear()
 
     // reset metronome parameters
     m_metronome->reset();
+
+    // reset remote web parameters
+    m_remoteWeb->reset();
 }
 
 void DigishowApp::importData(const QVariantMap & data)
 {
     // clear all in the app environment
     clear();
+
+    // set up remote web
+    m_remoteWeb->setParameters(data.value("remoteWeb").toMap());
 
     // set up metronome
     m_metronome->setParameters(data.value("metronome").toMap());
@@ -279,6 +289,7 @@ QVariantMap DigishowApp::exportData(const QList<int> & slotListOrder, bool onlyS
     data["slots"] = dataSlots;
     data["launches"] = m_launches;
     data["metronome"] = m_metronome->getParameters();
+    data["remoteWeb"] = m_remoteWeb->getParameters();
 
     return data;
 }
@@ -710,6 +721,15 @@ bool DigishowApp::deleteSlot(int slotIndex)
         return true;
     }
     return false;
+}
+
+QString DigishowApp::filename(bool withExtension)
+{
+    QFileInfo fileinfo(m_filepath);
+    if (withExtension)
+        return fileinfo.fileName();
+    else
+        return fileinfo.completeBaseName();
 }
 
 int DigishowApp::interfaceCount()

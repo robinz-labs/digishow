@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIGISHOW :: PRESETS</title>
+  <link rel="stylesheet" href="parts/bootstrap.min.css">
+  <style>
+    body {
+      margin-left: 15px;
+      margin-right: 15px;
+      background-color: #333;
+    }
+
+    .container-user {
+      max-width: 1800px;
+    }
+
+    .txt-user {
+      margin-top: 50px;
+      font-size: 24px;
+      color: #fff3
+    }
+
+    .btn-user {
+      width: 100%;
+      height: 92px;
+      border-radius: 10px;
+      border-color: #fff3;
+      border-width: 2px;
+      margin-top: 30px;
+      font-size: 24px;
+      color: #fffc
+    }
+
+    .btn-user:hover {
+      color: #fff
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container container-user">
+    <h1 id="txtInfo" class="txt-user text-center">No Launchable Presets</h1>
+    <div id="buttonGrid">
+      <!-- buttons will be dynamically added here -->
+    </div>    
+  </div>
+
+  <script src="parts/jquery-3.5.1.min.js"></script>
+  <script src="parts/bootstrap.bundle.min.js"></script>
+  <script>
+
+    function loadAppData() {
+      fetch('/appdata')
+      .then(response => response.json())
+      .then(data => {
+        addButtons(data);
+      })
+      .catch(error => console.error('[ERROR] failed to load data: ', error));
+    }
+
+    function addButtons(data) {
+      
+      // prepare data
+      const launches = data.launches;
+      const launchNames = Object.keys(launches);
+      
+      if (launchNames.length == 0) return;
+      document.getElementById('txtInfo').style.display = 'none';
+      
+      // create grid rows
+      const buttonGrid = document.getElementById('buttonGrid');
+      const buttonRows = [];
+      for (let n=1 ; n<=10 ; n++) {
+        const buttonRow = document.createElement('div');
+        buttonRow.id = 'buttonRow' + n;
+        buttonRow.className = 'row';
+        buttonGrid.appendChild(buttonRow);
+        buttonRows[n-1] = buttonRow;      
+      }
+
+      // create and add buttons
+      for (let n=1 ; n<=50 ; n++) {
+        const launchName = 'launch'+n;
+        const launch = launches[launchName];
+
+        if (launch != undefined && launch.assigned) {
+          const col = document.createElement('div');
+          col.className = 'col-sm-6 col-md-4 col-lg-2'; 
+
+          const button = document.createElement('button');
+          button.id = launchName;
+          button.className = 'btn btn-block btn-user';
+          button.textContent = launch.title;
+          button.style.backgroundColor = launch.color;
+          button.onclick = () => appExecLaunch(n);
+          
+          const row = buttonRows[Math.floor((n-1)/5)];
+          col.appendChild(button);
+          row.appendChild(col);
+        }
+      }
+    }
+
+    function appExecLaunch(launchId) {
+      const button = document.getElementById('launch'+launchId);
+      button.style.borderWidth = '3px';
+      button.style.borderColor = '#FFFC';
+
+      fetch('/appexec?launch='+launchId)
+      .then(response => response.json())
+      .then(data => {
+        if (data.ok) {
+          // success
+          setTimeout(function(){
+            button.style.borderWidth = '2px';
+            button.style.borderColor = '#FFF3';
+          }, 500);
+        } else {
+          // failure
+          button.style.borderColor = '#F00';
+        }
+      })
+      .catch(error => {
+        button.style.borderColor = '#F00';
+        console.error('[ERROR] failed to launch the preset: ', launchId, error)
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadAppData);
+  </script>
+</body>
+</html>

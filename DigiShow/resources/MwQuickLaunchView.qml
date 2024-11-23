@@ -135,7 +135,7 @@ Item {
 
                 CMenu {
                     id: menu
-                    width: 120
+                    width: 160
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
                     CMenuItem {
@@ -174,6 +174,142 @@ Item {
                             model.title = defaultItemTitle(model.index)
                             model.color = defaultItemColor(model.index)
                             app.deleteLaunch(model.name)
+                            window.isModified = true
+                        }
+                    }
+                    MenuSeparator {}
+                    CMenuItem {
+                        spacing: 7
+                        text: qsTr("Remote Control ...")
+                        checked: remoteWeb.isRunning
+                        onTriggered: {
+                            menu.close()
+                            popupRemote.open()
+                        }
+                    }
+                }
+            }
+        }
+
+        Popup {
+            id: popupRemote
+
+            width: 500
+            height: 200
+            anchors.centerIn: parent
+            modal: false
+            focus: true
+            //closePolicy: Popup.NoAutoClose
+
+            onVisibleChanged: {
+
+                if (popupRemote.visible) {
+
+                    // when opened the popup
+                    txtRemotePort.text = remoteWeb.port
+
+                } else {
+
+                    // when closed the popup
+                }
+            }
+
+            background: Rectangle {
+                anchors.fill: parent
+                color: "#222222"
+                opacity: 0.9
+                radius: 5
+                border.width: 1
+                border.color: "#999999"
+            }
+
+            Column {
+                anchors.fill: parent
+                spacing: 10
+
+                Label {
+                    height: 80
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    topPadding: 10
+                    leftPadding: 10
+                    rightPadding: 10
+                    lineHeight: 1.5
+                    wrapMode: Text.WordWrap
+                    font.bold: false
+                    font.pixelSize: 12
+                    text: qsTr("Enable DigiShow built-in web service, and you can remotely operate the Preset Launcher through a web browser on your smart phone or mobile tablet. Please enter the service port number and click the Start button.")
+                }
+
+                CTextInputBox {
+                    id: txtRemotePort
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.margins: 10
+                    validator: IntValidator {
+                        bottom: 0
+                        top: 65535
+                    }
+                    text: ""
+
+                    Label {
+                        anchors.left: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        leftPadding: 10
+                        color: "#999"
+                        text: "http://" + utilities.hostIpAddress() + ":" + parseInt(txtRemotePort.text)
+                    }
+                }
+
+                Item {
+                    width: 220
+                    height: 40
+                    anchors.right: parent.right
+
+                    CButton {
+
+                        property bool isFirstTime: true
+
+                        width: 120
+                        height: 28
+
+                        anchors.bottom: parent.bottom
+                        anchors.left: parent.left
+                        label.font.bold: true
+                        label.font.pixelSize: 11
+                        label.text: qsTr("Start")
+                        colorNormal: Material.accent
+                        box.radius: 3
+
+                        onClicked: {
+                            popupRemote.close()
+
+                            var port = parseInt(txtRemotePort.text)
+                            remoteWeb.setPort(port)
+                            remoteWeb.setRunning(true)
+
+                            var url = "http://" + utilities.hostIpAddress() + ":" + remoteWeb.port
+                            Qt.openUrlExternally(url)
+
+                            window.isModified = true
+                        }
+                    }
+
+                    CButton {
+                        width: 80
+                        height: 28
+
+                        anchors.bottom: parent.bottom
+                        anchors.right: parent.right
+                        anchors.rightMargin: 10
+                        label.font.bold: true
+                        label.font.pixelSize: 11
+                        label.text: qsTr("Stop")
+                        box.radius: 3
+
+                        onClicked: {
+                            popupRemote.close()
+                            remoteWeb.setRunning(false)
                             window.isModified = true
                         }
                     }

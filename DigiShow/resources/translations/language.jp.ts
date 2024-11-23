@@ -4,12 +4,12 @@
 <context>
     <name>DigishowApp</name>
     <message>
-        <location filename="../../digishow_app.cpp" line="377"/>
+        <location filename="../../digishow_app.cpp" line="388"/>
         <source>Requesting access to your microphone ...</source>
         <translation>マイクへのアクセスをリクエストしています...</translation>
     </message>
     <message>
-        <location filename="../../digishow_app.cpp" line="420"/>
+        <location filename="../../digishow_app.cpp" line="431"/>
         <source>Error occurred when open interface %1 .</source>
         <translation>インターフェイス %1 を開くときにエラーが発生しました。</translation>
     </message>
@@ -677,267 +677,267 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../MainWindow.qml" line="28"/>
+        <location filename="../MainWindow.qml" line="29"/>
         <source>Untitled</source>
         <translation>無題</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="320"/>
-        <location filename="../MainWindow.qml" line="819"/>
-        <location filename="../MainWindow.qml" line="832"/>
-        <location filename="../MainWindow.qml" line="878"/>
-        <location filename="../MainWindow.qml" line="899"/>
-        <location filename="../MainWindow.qml" line="911"/>
+        <location filename="../MainWindow.qml" line="321"/>
+        <location filename="../MainWindow.qml" line="820"/>
+        <location filename="../MainWindow.qml" line="833"/>
+        <location filename="../MainWindow.qml" line="879"/>
+        <location filename="../MainWindow.qml" line="900"/>
+        <location filename="../MainWindow.qml" line="912"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="898"/>
+        <location filename="../MainWindow.qml" line="899"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>アプリを閉じる前にすべてのデータを保存してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="298"/>
-        <location filename="../MainWindow.qml" line="819"/>
-        <location filename="../MainWindow.qml" line="832"/>
-        <location filename="../MainWindow.qml" line="878"/>
-        <location filename="../MainWindow.qml" line="899"/>
-        <location filename="../MainWindow.qml" line="911"/>
+        <location filename="../MainWindow.qml" line="299"/>
+        <location filename="../MainWindow.qml" line="820"/>
+        <location filename="../MainWindow.qml" line="833"/>
+        <location filename="../MainWindow.qml" line="879"/>
+        <location filename="../MainWindow.qml" line="900"/>
+        <location filename="../MainWindow.qml" line="912"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="27"/>
+        <location filename="../MainWindow.qml" line="28"/>
         <source>DigiShow LINK - </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="30"/>
+        <location filename="../MainWindow.qml" line="31"/>
         <source> ( stopped )</source>
         <translation> ( 停止しました )</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="270"/>
+        <location filename="../MainWindow.qml" line="271"/>
         <source>New</source>
         <translation>新規</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="455"/>
+        <location filename="../MainWindow.qml" line="456"/>
         <source>Bookmarks</source>
         <translation>ブックマーク</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="759"/>
+        <location filename="../MainWindow.qml" line="760"/>
         <source>Open File</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="818"/>
+        <location filename="../MainWindow.qml" line="819"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>新規する前にすべてのデータを保存してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="819"/>
-        <location filename="../MainWindow.qml" line="832"/>
-        <location filename="../MainWindow.qml" line="878"/>
-        <location filename="../MainWindow.qml" line="899"/>
+        <location filename="../MainWindow.qml" line="820"/>
+        <location filename="../MainWindow.qml" line="833"/>
+        <location filename="../MainWindow.qml" line="879"/>
+        <location filename="../MainWindow.qml" line="900"/>
         <source>Don&apos;t Save</source>
         <translation>保存しない</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="277"/>
+        <location filename="../MainWindow.qml" line="278"/>
         <source>Open ...</source>
         <translation>開く ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="831"/>
+        <location filename="../MainWindow.qml" line="832"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>他のファイルを開く前にすべてのデータを保存してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="302"/>
+        <location filename="../MainWindow.qml" line="303"/>
         <source>Save As ...</source>
         <translation>名前を付けて保存 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="259"/>
+        <location filename="../MainWindow.qml" line="260"/>
         <source>New Instance</source>
         <translation>新しいインスタンス</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="261"/>
+        <location filename="../MainWindow.qml" line="262"/>
         <source>Starting a new DigiShow LINK instance ...</source>
         <translation>新しい DigiShow LINK インスタンスを開始 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="285"/>
+        <location filename="../MainWindow.qml" line="286"/>
         <source>Open Recent</source>
         <translation>最近使った項目を開く</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="287"/>
+        <location filename="../MainWindow.qml" line="288"/>
         <source>Clear Menu</source>
         <translation>メニューを消去</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="307"/>
+        <location filename="../MainWindow.qml" line="308"/>
         <source>Show File</source>
         <translation>ファイルを表示</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="327"/>
+        <location filename="../MainWindow.qml" line="328"/>
         <source>About DigiShow</source>
         <translation>DigiShow について</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="331"/>
+        <location filename="../MainWindow.qml" line="332"/>
         <source>Preferences ...</source>
         <translation>環境設定 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="335"/>
+        <location filename="../MainWindow.qml" line="336"/>
         <source>Exit Full Screen</source>
         <translation>全画面表示を終了</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="335"/>
+        <location filename="../MainWindow.qml" line="336"/>
         <source>Enter Full Screen</source>
         <translation>全画面表示に入る</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="345"/>
+        <location filename="../MainWindow.qml" line="346"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="127"/>
+        <location filename="../MainWindow.qml" line="128"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="312"/>
+        <location filename="../MainWindow.qml" line="313"/>
         <source>Attached Script File ...</source>
         <translation>添付されたスクリプト ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="319"/>
+        <location filename="../MainWindow.qml" line="320"/>
         <source>Do you want to create an attached script file contains user-defined functions that will be called by signal expressions in the DigiShow project ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="320"/>
+        <location filename="../MainWindow.qml" line="321"/>
         <source>Create Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="393"/>
+        <location filename="../MainWindow.qml" line="394"/>
         <source>Preset Launcher</source>
         <translation>プリセットランチャー</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="419"/>
+        <location filename="../MainWindow.qml" line="420"/>
         <source>Beat Maker</source>
         <translation>ビートメーカー</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="590"/>
+        <location filename="../MainWindow.qml" line="591"/>
         <source>Interface Manager</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="621"/>
+        <location filename="../MainWindow.qml" line="622"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="625"/>
+        <location filename="../MainWindow.qml" line="626"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="629"/>
+        <location filename="../MainWindow.qml" line="630"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="633"/>
+        <location filename="../MainWindow.qml" line="634"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="637"/>
+        <location filename="../MainWindow.qml" line="638"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="641"/>
+        <location filename="../MainWindow.qml" line="642"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="645"/>
+        <location filename="../MainWindow.qml" line="646"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="649"/>
+        <location filename="../MainWindow.qml" line="650"/>
         <source>Audio In ...</source>
         <translation>オーディオ入力 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="653"/>
+        <location filename="../MainWindow.qml" line="654"/>
         <source>Screen ...</source>
         <translation>スクリーン ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="657"/>
+        <location filename="../MainWindow.qml" line="658"/>
         <source>Virtual Pipe ...</source>
         <translation>バーチャルパイプ ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="662"/>
+        <location filename="../MainWindow.qml" line="663"/>
         <source>More</source>
         <translation>もっと</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="666"/>
+        <location filename="../MainWindow.qml" line="667"/>
         <source>Audio Player ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="670"/>
+        <location filename="../MainWindow.qml" line="671"/>
         <source>MIDI Player ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="762"/>
-        <location filename="../MainWindow.qml" line="779"/>
+        <location filename="../MainWindow.qml" line="763"/>
+        <location filename="../MainWindow.qml" line="780"/>
         <source>DigiShow files</source>
         <translation>DigiShow ファイル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="762"/>
-        <location filename="../MainWindow.qml" line="779"/>
+        <location filename="../MainWindow.qml" line="763"/>
+        <location filename="../MainWindow.qml" line="780"/>
         <source>All files</source>
         <translation>すべてのファイル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="762"/>
+        <location filename="../MainWindow.qml" line="763"/>
         <source>JSON files</source>
         <translation>JSON ファイル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="776"/>
+        <location filename="../MainWindow.qml" line="777"/>
         <source>Save File</source>
         <translation>ファイルを保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="876"/>
+        <location filename="../MainWindow.qml" line="877"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>ファイル %1 を開く前に現在のデータを保存してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="910"/>
+        <location filename="../MainWindow.qml" line="911"/>
         <source>The attached script file will be saved in the same folder as the DigiShow project file, do you want to save the project and create the script file now ?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3042,54 +3042,74 @@ Connection: %2</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="252"/>
+        <location filename="../MwQuickLaunchView.qml" line="183"/>
+        <source>Remote Control ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="241"/>
+        <source>Enable DigiShow built-in web service, and you can remotely operate the Preset Launcher through a web browser on your smart phone or mobile tablet. Please enter the service port number and click the Start button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="280"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="307"/>
+        <source>Stop</source>
+        <translation type="unfinished">停止</translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="388"/>
         <source>Check the boxes next to the output faders and LINK buttons to memorize their values and states to the preset.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="271"/>
+        <location filename="../MwQuickLaunchView.qml" line="407"/>
         <source>Save Preset</source>
         <translation>プリセットを保存</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="286"/>
+        <location filename="../MwQuickLaunchView.qml" line="422"/>
         <source>Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset.</source>
         <translation>プリセットに保存されているすべてのチェック済みアイテムのスナップショットを作成しました。 これで、いつでもボタンをタップしてプリセットを起動できます。</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="333"/>
+        <location filename="../MwQuickLaunchView.qml" line="469"/>
         <source>Output faders</source>
         <translation>出力フェーダー</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="345"/>
-        <location filename="../MwQuickLaunchView.qml" line="389"/>
+        <location filename="../MwQuickLaunchView.qml" line="481"/>
+        <location filename="../MwQuickLaunchView.qml" line="525"/>
         <source>Check None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="361"/>
-        <location filename="../MwQuickLaunchView.qml" line="405"/>
+        <location filename="../MwQuickLaunchView.qml" line="497"/>
+        <location filename="../MwQuickLaunchView.qml" line="541"/>
         <source>Check All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="377"/>
+        <location filename="../MwQuickLaunchView.qml" line="513"/>
         <source>LINK buttons</source>
         <translation>LINKボタン</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="473"/>
+        <location filename="../MwQuickLaunchView.qml" line="609"/>
         <source>Preset</source>
         <translation>プリセット</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="286"/>
+        <location filename="../MwQuickLaunchView.qml" line="422"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="301"/>
+        <location filename="../MwQuickLaunchView.qml" line="437"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
@@ -3453,12 +3473,12 @@ Connection: %2</source>
 <context>
     <name>QHotkey</name>
     <message>
-        <location filename="../../modules/qhotkey/QHotkey/qhotkey.cpp" line="277"/>
+        <location filename="../../modules/qhotkey/QHotkey/qhotkey.cpp" line="294"/>
         <source>Failed to register %1. Error: %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../modules/qhotkey/QHotkey/qhotkey.cpp" line="297"/>
+        <location filename="../../modules/qhotkey/QHotkey/qhotkey.cpp" line="314"/>
         <source>Failed to unregister %1. Error: %2</source>
         <translation></translation>
     </message>
