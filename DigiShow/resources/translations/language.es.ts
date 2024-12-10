@@ -490,11 +490,6 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="554"/>
-        <source>PFM Out</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../digishow_interface.cpp" line="561"/>
         <source>Encoder</source>
         <translation></translation>
@@ -591,6 +586,11 @@
         <location filename="../../digishow_interface.cpp" line="849"/>
         <location filename="../../digishow_interface.cpp" line="855"/>
         <source>Beat Maker</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="554"/>
+        <source>Freq Out</source>
         <translation></translation>
     </message>
     <message>
@@ -2894,11 +2894,6 @@ Connection: %2</source>
         <location filename="../MwInterfacesDialog.qml" line="480"/>
         <source>DigiShow enables to accept control signals for playing audio clips.</source>
         <translation>DigiShow puede aceptar señales de control para reproducir clips de audio.</translation>
-    </message>
-    <message>
-        <location filename="../MwInterfacesDialog.qml" line="458"/>
-        <source></source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="506"/>

@@ -551,7 +551,7 @@ void DigishowInterface::updateMetadata()
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
             endpointInfo.output = true;
             endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
-            endpointInfo.labelEPT = tr("PFM Out");
+            endpointInfo.labelEPT = tr("Freq Out");
             endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(DigishowEnvironment::getRiocPinName(m_interfaceInfo.mode, endpointInfo.channel));
             break;
         case ENDPOINT_RIOC_ENCODER_IN:

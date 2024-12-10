@@ -480,11 +480,6 @@
         <translation>PWM 输出</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="554"/>
-        <source>PFM Out</source>
-        <translation>PFM 输出</translation>
-    </message>
-    <message>
         <location filename="../../digishow_interface.cpp" line="561"/>
         <source>Encoder</source>
         <translation>编码器</translation>
@@ -632,6 +627,11 @@
         <location filename="../../digishow_interface.cpp" line="855"/>
         <source>Beat Maker</source>
         <translation>节拍生成器</translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="554"/>
+        <source>Freq Out</source>
+        <translation>频率输出</translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="568"/>
@@ -2846,11 +2846,6 @@ Connection: %2</source>
         <translation>音频播放器</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="458"/>
-        <source></source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../MwInterfacesDialog.qml" line="506"/>
         <source>MIDI Player</source>
         <translation>MIDI 播放器</translation>
@@ -2888,12 +2883,12 @@ Connection: %2</source>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="278"/>
         <source>Please start by getting a pre-prepared RIOC sketch and upload it to your Arduino, the IO pins on it will be reconfigurable and controllable by the DigiShow app.</source>
-        <translation>请首先获取预先准备好的 RIOC 程序并将其上传到你的 Arduino，然后它上面的 IO 引脚就可以由 DigiShow 应用程序来配置和控制了。</translation>
+        <translation>请首先将我们为你预先准备好的 RIOC 程序写入到你的 Arduino，然后它上面的 IO 引脚就可以由 DigiShow 应用程序来配置和控制了。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="279"/>
         <source>Get RIOC</source>
-        <translation>获取 RIOC</translation>
+        <translation>获取 RIOC 程序</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="279"/>

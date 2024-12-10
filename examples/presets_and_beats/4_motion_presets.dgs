@@ -240,7 +240,7 @@
                     "outputValue": 17375
                 },
                 "launch5": {
-                    "outputValue": -1
+                    "outputValue": 0
                 }
             },
             "linked": true,
@@ -276,7 +276,7 @@
                     "outputValue": 65535
                 },
                 "launch5": {
-                    "outputValue": -1
+                    "outputValue": 0
                 }
             },
             "linked": true,

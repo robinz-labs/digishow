@@ -337,7 +337,7 @@
     <message>
         <location filename="../../digishow_experimental/digishow_experimental.cpp" line="149"/>
         <source>You are using software with experimental features.</source>
-        <translation type="unfinished"></translation>
+        <translation>ご使用のソフトウェアには実験的な機能が含まれています。</translation>
     </message>
 </context>
 <context>
@@ -490,11 +490,6 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="554"/>
-        <source>PFM Out</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../digishow_interface.cpp" line="561"/>
         <source>Encoder</source>
         <translation></translation>
@@ -592,6 +587,11 @@
         <location filename="../../digishow_interface.cpp" line="855"/>
         <source>Beat Maker</source>
         <translation>ビートメーカー</translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="554"/>
+        <source>Freq Out</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="727"/>
@@ -822,12 +822,12 @@
     <message>
         <location filename="../MainWindow.qml" line="320"/>
         <source>Do you want to create an attached script file contains user-defined functions that will be called by signal expressions in the DigiShow project ?</source>
-        <translation type="unfinished"></translation>
+        <translation>ユーザー定義関数を含む追加のスクリプト ファイルを作成しますか? DigiShow プロジェクトの信号式は、これらの関数を呼び出すことができます。</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="321"/>
         <source>Create Script</source>
-        <translation type="unfinished"></translation>
+        <translation>スクリプトを作成</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="394"/>
@@ -902,12 +902,12 @@
     <message>
         <location filename="../MainWindow.qml" line="667"/>
         <source>Audio Player ...</source>
-        <translation type="unfinished"></translation>
+        <translation>オーディオプレーヤー ...</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="671"/>
         <source>MIDI Player ...</source>
-        <translation type="unfinished"></translation>
+        <translation>MIDI プレーヤー ...</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="763"/>
@@ -939,7 +939,7 @@
     <message>
         <location filename="../MainWindow.qml" line="911"/>
         <source>The attached script file will be saved in the same folder as the DigiShow project file, do you want to save the project and create the script file now ?</source>
-        <translation type="unfinished"></translation>
+        <translation>添付されたスクリプト ファイルは、DigiShow プロジェクト ファイルと同じフォルダーに保存されます。今すぐプロジェクトを保存してスクリプト ファイルを作成しますか?</translation>
     </message>
 </context>
 <context>
@@ -1350,27 +1350,27 @@ either express or implied.</source>
     <message>
         <location filename="../MwEndpointSelectorArtnet.qml" line="257"/>
         <source>Pixel Count X | Y</source>
-        <translation type="unfinished"></translation>
+        <translation>画素数 X | Y</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorArtnet.qml" line="300"/>
         <source>Pixel Offset X | Y</source>
-        <translation type="unfinished"></translation>
+        <translation>画素オフセット X | Y</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorArtnet.qml" line="342"/>
         <source>Pixel Spacing X | Y</source>
-        <translation type="unfinished"></translation>
+        <translation>画素間隔 X | Y</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorArtnet.qml" line="483"/>
         <source>To Universe | Channel</source>
-        <translation type="unfinished"></translation>
+        <translation>対象ユニバース | チャネル</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorArtnet.qml" line="443"/>
         <source>Address Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>アドレスマッピング</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorArtnet.qml" line="537"/>
@@ -1537,27 +1537,27 @@ either express or implied.</source>
     <message>
         <location filename="../MwEndpointSelectorDmx.qml" line="240"/>
         <source>Pixel Count X | Y</source>
-        <translation type="unfinished"></translation>
+        <translation>画素数 X | Y</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorDmx.qml" line="283"/>
         <source>Pixel Offset X | Y</source>
-        <translation type="unfinished"></translation>
+        <translation>画素オフセット X | Y</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorDmx.qml" line="325"/>
         <source>Pixel Spacing X | Y</source>
-        <translation type="unfinished"></translation>
+        <translation>画素間隔 X | Y</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorDmx.qml" line="454"/>
         <source>To DMX Channel</source>
-        <translation type="unfinished"></translation>
+        <translation>対象DMXチャネル</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorDmx.qml" line="426"/>
         <source>Address Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>アドレスマッピング</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorDmx.qml" line="464"/>
@@ -2833,7 +2833,7 @@ Connection: %2</source>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="278"/>
         <source>Please start by getting a pre-prepared RIOC sketch and upload it to your Arduino, the IO pins on it will be reconfigurable and controllable by the DigiShow app.</source>
-        <translation>まず、あらかじめ用意された RIOC プログラムを入手し、Arduino にアップロードしてください。 その上の IO ピンは、DigiShow アプリケーションによって構成および制御できます。</translation>
+        <translation>まず、用意された RIOC プログラムを Arduino に書き込んでください。その後、DigiShow アプリケーションによって IO ピンを設定および制御できるようになります。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="279"/>
@@ -2888,27 +2888,22 @@ Connection: %2</source>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="467"/>
         <source>Audio Player</source>
-        <translation type="unfinished">オーディオプレーヤー</translation>
+        <translation>オーディオプレーヤー</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="480"/>
         <source>DigiShow enables to accept control signals for playing audio clips.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MwInterfacesDialog.qml" line="458"/>
-        <source></source>
-        <translation></translation>
+        <translation>DigiShow は信号を受け入れてオーディオ素材を再生できます。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="506"/>
         <source>MIDI Player</source>
-        <translation type="unfinished">MIDI プレーヤー</translation>
+        <translation>MIDI プレーヤー</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="519"/>
         <source>DigiShow enables to accept control signals for playing MIDI clips.</source>
-        <translation type="unfinished"></translation>
+        <translation>DigiShow は信号を受け入れてMIDI素材を再生できます。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="548"/>
@@ -3044,27 +3039,27 @@ Connection: %2</source>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="183"/>
         <source>Remote Control ...</source>
-        <translation type="unfinished"></translation>
+        <translation>リモコン ...</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="241"/>
         <source>Enable DigiShow built-in web service, and you can remotely operate the Preset Launcher through a web browser on your smart phone or mobile tablet. Please enter the service port number and click the Start button.</source>
-        <translation type="unfinished"></translation>
+        <translation>DigiShow の組み込み Web サービスを起動すると、携帯電話またはタブレットの Web ブラウザを通じてプリセット ランチャーをリモート制御できます。サービスポート番号を入力して「開始」ボタンをクリックしてください。</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="280"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>開始</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="307"/>
         <source>Stop</source>
-        <translation type="unfinished">停止</translation>
+        <translation>停止</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="388"/>
         <source>Check the boxes next to the output faders and LINK buttons to memorize their values and states to the preset.</source>
-        <translation type="unfinished"></translation>
+        <translation>出力フェーダーと LINK ボタンの横にあるボックスをチェックして、その値と状態をプリセットに記憶します。</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="407"/>
@@ -3085,13 +3080,13 @@ Connection: %2</source>
         <location filename="../MwQuickLaunchView.qml" line="481"/>
         <location filename="../MwQuickLaunchView.qml" line="525"/>
         <source>Check None</source>
-        <translation type="unfinished"></translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="497"/>
         <location filename="../MwQuickLaunchView.qml" line="541"/>
         <source>Check All</source>
-        <translation type="unfinished"></translation>
+        <translation>すべて</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="513"/>
@@ -3327,12 +3322,12 @@ Connection: %2</source>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="1213"/>
         <source>The expression can reference the input or output value of any other signal link, for example:</source>
-        <translation type="unfinished"></translation>
+        <translation>式は、他の信号リンクの入力値または出力値を参照できます。例:</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="1221"/>
         <source>The expression can contain common JavaScript statements and functions, for example:</source>
-        <translation type="unfinished"></translation>
+        <translation>式は、一般的な JavaScript ステートメントと関数を含めることができます。例:</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="173"/>
@@ -3398,21 +3393,21 @@ Connection: %2</source>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="1205"/>
         <source>Write a JavaScript expression to dynamically change the signal value, for example:</source>
-        <translation type="unfinished"></translation>
+        <translation>JavaScript 式を記述して信号の値を動的に変更する。例:</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="1206"/>
         <location filename="../MwSlotOptionsView.qml" line="1214"/>
         <location filename="../MwSlotOptionsView.qml" line="1222"/>
         <source>Try It</source>
-        <translation type="unfinished"></translation>
+        <translation>試してみる</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="1206"/>
         <location filename="../MwSlotOptionsView.qml" line="1214"/>
         <location filename="../MwSlotOptionsView.qml" line="1222"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>学び続ける</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="1206"/>
@@ -3421,33 +3416,33 @@ Connection: %2</source>
         <location filename="../MwSlotOptionsView.qml" line="1230"/>
         <location filename="../MwSlotOptionsView.qml" line="1237"/>
         <source>Reference ...</source>
-        <translation type="unfinished"></translation>
+        <translation>参考資料...</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="1229"/>
         <source>The expression can also call user-defined functions, now you can create your functions in the attached script file.</source>
-        <translation type="unfinished"></translation>
+        <translation>式はユーザー定義関数を呼び出すこともできます。添付の​​スクリプト ファイルで関数を作成できるようになりました。</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="1230"/>
         <source>Show Script</source>
-        <translation type="unfinished"></translation>
+        <translation>スクリプトを表示</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="1230"/>
         <location filename="../MwSlotOptionsView.qml" line="1237"/>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>終了</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="1236"/>
         <source>The expression can also call user-defined functions, now you can create an attached script file contains your functions.</source>
-        <translation type="unfinished"></translation>
+        <translation>式はユーザー定義関数を呼び出すこともできます。追加のスクリプト ファイルを作成して独自の関数を保持できます。</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="1237"/>
         <source>Create Script</source>
-        <translation type="unfinished"></translation>
+        <translation>スクリプトを作成</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="737"/>

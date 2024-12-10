@@ -97,7 +97,7 @@ Popup {
 
             CButton {
                 id: button1
-                width: 130
+                width: 150
                 height: 42
                 label.text: "Button 1"
                 onClicked: {
@@ -109,7 +109,7 @@ Popup {
 
             CButton {
                 id: button2
-                width: 130
+                width: 150
                 height: 42
                 label.text: "Button 2"
                 onClicked: {
@@ -121,7 +121,7 @@ Popup {
 
             CButton {
                 id: button3
-                width: 130
+                width: 150
                 height: 42
                 label.text: "Button 3"
                 onClicked: {
