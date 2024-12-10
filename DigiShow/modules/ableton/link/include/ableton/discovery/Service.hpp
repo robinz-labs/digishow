@@ -33,14 +33,21 @@ public:
   using ServicePeerGateways = PeerGateways<NodeState, GatewayFactory, IoContext>;
 
   Service(NodeState state, GatewayFactory factory, util::Injected<IoContext> io)
-    : mGateways(
+    : mEnabled(false)
+    , mGateways(
         std::chrono::seconds(5), std::move(state), std::move(factory), std::move(io))
   {
   }
 
   void enable(const bool bEnable)
   {
+    mEnabled = bEnable;
     mGateways.enable(bEnable);
+  }
+
+  bool isEnabled() const
+  {
+    return mEnabled;
   }
 
   // Asynchronously operate on the current set of peer gateways. The
@@ -59,12 +66,13 @@ public:
   // Repair the gateway with the given address if possible. Its
   // sockets may have been closed, for example, and the gateway needs
   // to be regenerated.
-  void repairGateway(const asio::ip::address& gatewayAddr)
+  void repairGateway(const IpAddress& gatewayAddr)
   {
     mGateways.repairGateway(gatewayAddr);
   }
 
 private:
+  bool mEnabled;
   ServicePeerGateways mGateways;
 };
 

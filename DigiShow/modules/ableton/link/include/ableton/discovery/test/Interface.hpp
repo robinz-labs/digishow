@@ -31,9 +31,15 @@ namespace test
 class Interface
 {
 public:
-  void send(const uint8_t* const bytes,
-    const size_t numBytes,
-    const asio::ip::udp::endpoint& endpoint)
+  Interface() = default;
+
+  Interface(UdpEndpoint endpoint)
+    : mEndpoint(std::move(endpoint))
+  {
+  }
+
+  void send(
+    const uint8_t* const bytes, const size_t numBytes, const UdpEndpoint& endpoint)
   {
     sentMessages.push_back(
       std::make_pair(std::vector<uint8_t>{bytes, bytes + numBytes}, endpoint));
@@ -42,32 +48,32 @@ public:
   template <typename Callback, typename Tag>
   void receive(Callback callback, Tag tag)
   {
-    mCallback = [callback, tag](const asio::ip::udp::endpoint& from,
-                  const std::vector<uint8_t>& buffer) {
+    mCallback = [callback, tag](
+                  const UdpEndpoint& from, const std::vector<uint8_t>& buffer) {
       callback(tag, from, begin(buffer), end(buffer));
     };
   }
 
   template <typename It>
-  void incomingMessage(
-    const asio::ip::udp::endpoint& from, It messageBegin, It messageEnd)
+  void incomingMessage(const UdpEndpoint& from, It messageBegin, It messageEnd)
   {
     std::vector<uint8_t> buffer{messageBegin, messageEnd};
     mCallback(from, buffer);
   }
 
-  asio::ip::udp::endpoint endpoint() const
+  UdpEndpoint endpoint() const
   {
-    return asio::ip::udp::endpoint({}, 0);
+    return mEndpoint;
   }
 
-  using SentMessage = std::pair<std::vector<uint8_t>, asio::ip::udp::endpoint>;
+  using SentMessage = std::pair<std::vector<uint8_t>, UdpEndpoint>;
   std::vector<SentMessage> sentMessages;
 
 private:
   using ReceiveCallback =
-    std::function<void(const asio::ip::udp::endpoint&, const std::vector<uint8_t>&)>;
+    std::function<void(const UdpEndpoint&, const std::vector<uint8_t>&)>;
   ReceiveCallback mCallback;
+  UdpEndpoint mEndpoint;
 };
 
 } // namespace test

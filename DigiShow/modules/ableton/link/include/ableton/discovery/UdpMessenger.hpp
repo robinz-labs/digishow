@@ -19,10 +19,10 @@
 
 #pragma once
 
-#include <ableton/discovery/IpV4Interface.hpp>
+#include <ableton/discovery/AsioTypes.hpp>
+#include <ableton/discovery/IpInterface.hpp>
 #include <ableton/discovery/MessageTypes.hpp>
 #include <ableton/discovery/v1/Messages.hpp>
-#include <ableton/platforms/asio/AsioWrapper.hpp>
 #include <ableton/util/Injected.hpp>
 #include <ableton/util/SafeAsyncHandler.hpp>
 #include <algorithm>
@@ -37,14 +37,22 @@ namespace discovery
 // interface through which the sending failed.
 struct UdpSendException : std::runtime_error
 {
-  UdpSendException(const std::runtime_error& e, asio::ip::address ifAddr)
+  UdpSendException(const std::runtime_error& e, IpAddress ifAddr)
     : std::runtime_error(e.what())
     , interfaceAddr(std::move(ifAddr))
   {
   }
 
-  asio::ip::address interfaceAddr;
+  IpAddress interfaceAddr;
 };
+
+template <typename Interface>
+UdpEndpoint ipV6Endpoint(Interface& iface, const UdpEndpoint& endpoint)
+{
+  auto v6Address = endpoint.address().to_v6();
+  v6Address.scope_id(iface.endpoint().address().to_v6().scope_id());
+  return {v6Address, endpoint.port()};
+}
 
 // Throws UdpSendException
 template <typename Interface, typename NodeId, typename Payload>
@@ -53,7 +61,7 @@ void sendUdpMessage(Interface& iface,
   const uint8_t ttl,
   const v1::MessageType messageType,
   const Payload& payload,
-  const asio::ip::udp::endpoint& to)
+  const UdpEndpoint& to)
 {
   using namespace std;
   v1::MessageBuffer buffer;
@@ -176,8 +184,16 @@ private:
 
     void sendByeBye()
     {
-      sendUdpMessage(
-        *mInterface, mState.ident(), 0, v1::kByeBye, makePayload(), multicastEndpoint());
+      if (mInterface->endpoint().address().is_v4())
+      {
+        sendUdpMessage(*mInterface, mState.ident(), 0, v1::kByeBye, makePayload(),
+          multicastEndpointV4());
+      }
+      if (mInterface->endpoint().address().is_v6())
+      {
+        sendUdpMessage(*mInterface, mState.ident(), 0, v1::kByeBye, makePayload(),
+          multicastEndpointV6(mInterface->endpoint().address().to_v6().scope_id()));
+      }
     }
 
     void updateState(NodeState state)
@@ -213,21 +229,29 @@ private:
       if (delay < milliseconds{1})
       {
         debug(mIo->log()) << "Broadcasting state";
-        sendPeerState(v1::kAlive, multicastEndpoint());
+        if (mInterface->endpoint().address().is_v4())
+        {
+          sendPeerState(v1::kAlive, multicastEndpointV4());
+        }
+        if (mInterface->endpoint().address().is_v6())
+        {
+          sendPeerState(v1::kAlive,
+            multicastEndpointV6(mInterface->endpoint().address().to_v6().scope_id()));
+        }
       }
     }
 
-    void sendPeerState(
-      const v1::MessageType messageType, const asio::ip::udp::endpoint& to)
+    void sendPeerState(const v1::MessageType messageType, const UdpEndpoint& to)
     {
       sendUdpMessage(
         *mInterface, mState.ident(), mTtl, messageType, toPayload(mState), to);
       mLastBroadcastTime = mTimer.now();
     }
 
-    void sendResponse(const asio::ip::udp::endpoint& to)
+    void sendResponse(const UdpEndpoint& to)
     {
-      sendPeerState(v1::kResponse, to);
+      const auto endpoint = to.address().is_v4() ? to : ipV6Endpoint(*mInterface, to);
+      sendPeerState(v1::kResponse, endpoint);
     }
 
     template <typename Tag>
@@ -237,10 +261,8 @@ private:
     }
 
     template <typename Tag, typename It>
-    void operator()(Tag tag,
-      const asio::ip::udp::endpoint& from,
-      const It messageBegin,
-      const It messageEnd)
+    void operator()(
+      Tag tag, const UdpEndpoint& from, const It messageBegin, const It messageEnd)
     {
       auto result = v1::parseMessageHeader<NodeId>(messageBegin, messageEnd);
 
@@ -248,24 +270,42 @@ private:
       // Ignore messages from self and other groups
       if (header.ident != mState.ident() && header.groupId == 0)
       {
-        debug(mIo->log()) << "Received message type "
-                          << static_cast<int>(header.messageType) << " from peer "
-                          << header.ident;
-
-        switch (header.messageType)
+        // On Linux multicast messages are sent to all sockets registered to the multicast
+        // group. To avoid duplicate message handling and invalid response messages we
+        // check if the message is coming from an endpoint that is in the same subnet as
+        // the interface.
+        auto ignoreIpV4Message = false;
+        if (from.address().is_v4() && mInterface->endpoint().address().is_v4())
         {
-        case v1::kAlive:
-          sendResponse(from);
-          receivePeerState(std::move(result.first), result.second, messageEnd);
-          break;
-        case v1::kResponse:
-          receivePeerState(std::move(result.first), result.second, messageEnd);
-          break;
-        case v1::kByeBye:
-          receiveByeBye(std::move(result.first.ident));
-          break;
-        default:
-          info(mIo->log()) << "Unknown message received of type: " << header.messageType;
+          const auto subnet = LINK_ASIO_NAMESPACE::ip::make_network_v4(
+            mInterface->endpoint().address().to_v4(), 24);
+          const auto fromAddr =
+            LINK_ASIO_NAMESPACE::ip::make_network_v4(from.address().to_v4(), 32);
+          ignoreIpV4Message = !fromAddr.is_subnet_of(subnet);
+        }
+
+        if (!ignoreIpV4Message)
+        {
+          debug(mIo->log()) << "Received message type "
+                            << static_cast<int>(header.messageType) << " from peer "
+                            << header.ident;
+
+          switch (header.messageType)
+          {
+          case v1::kAlive:
+            sendResponse(from);
+            receivePeerState(std::move(result.first), result.second, messageEnd);
+            break;
+          case v1::kResponse:
+            receivePeerState(std::move(result.first), result.second, messageEnd);
+            break;
+          case v1::kByeBye:
+            receiveByeBye(std::move(result.first.ident));
+            break;
+          default:
+            info(mIo->log()) << "Unknown message received of type: "
+                             << header.messageType;
+          }
         }
       }
       listen(tag);

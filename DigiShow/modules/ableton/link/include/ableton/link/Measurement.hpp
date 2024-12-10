@@ -37,8 +37,7 @@ namespace link
 template <typename Clock, typename IoContext>
 struct Measurement
 {
-  using Point = std::pair<double, double>;
-  using Callback = std::function<void(std::vector<Point>)>;
+  using Callback = std::function<void(std::vector<double>&)>;
   using Micros = std::chrono::microseconds;
 
   static const std::size_t kNumberDataPoints = 100;
@@ -46,7 +45,7 @@ struct Measurement
 
   Measurement(const PeerState& state,
     Callback callback,
-    asio::ip::address_v4 address,
+    discovery::IpAddress address,
     Clock clock,
     util::Injected<IoContext> io)
     : mIo(std::move(io))
@@ -70,12 +69,11 @@ struct Measurement
 
     Impl(const PeerState& state,
       Callback callback,
-      asio::ip::address_v4 address,
+      discovery::IpAddress address,
       Clock clock,
       util::Injected<IoContext> io)
       : mSocket(io->template openUnicastSocket<v1::kMaxMessageSize>(address))
       , mSessionId(state.nodeState.sessionId)
-      , mEndpoint(state.endpoint)
       , mCallback(std::move(callback))
       , mClock(std::move(clock))
       , mTimer(io->makeTimer())
@@ -83,6 +81,17 @@ struct Measurement
       , mLog(channel(io->log(), "Measurement on gateway@" + address.to_string()))
       , mSuccess(false)
     {
+      if (state.endpoint.address().is_v4())
+      {
+        mEndpoint = state.endpoint;
+      }
+      else
+      {
+        auto v6Address = state.endpoint.address().to_v6();
+        v6Address.scope_id(address.to_v6().scope_id());
+        mEndpoint = {v6Address, state.endpoint.port()};
+      }
+
       const auto ht = HostTime{mClock.micros()};
       sendPing(mEndpoint, discovery::makePayload(ht));
       resetTimer();
@@ -118,7 +127,7 @@ struct Measurement
     // Operator to handle incoming messages on the interface
     template <typename It>
     void operator()(
-      const asio::ip::udp::endpoint& from, const It messageBegin, const It messageEnd)
+      const discovery::UdpEndpoint& from, const It messageBegin, const It messageEnd)
     {
       using namespace std;
       const auto result = v1::parseMessageHeader(messageBegin, messageEnd);
@@ -161,13 +170,19 @@ struct Measurement
           sendPing(from, payload);
           listen();
 
-          if (prevGHostTime != Micros{0})
+
+          if (ghostTime != Micros{0} && prevHostTime != Micros{0})
           {
             mData.push_back(
-              std::make_pair(static_cast<double>((hostTime + prevHostTime).count()) * 0.5,
-                static_cast<double>(ghostTime.count())));
-            mData.push_back(std::make_pair(static_cast<double>(prevHostTime.count()),
-              static_cast<double>((ghostTime + prevGHostTime).count()) * 0.5));
+              static_cast<double>(ghostTime.count())
+              - (static_cast<double>((hostTime + prevHostTime).count()) * 0.5));
+
+            if (prevGHostTime != Micros{0})
+            {
+              mData.push_back(
+                (static_cast<double>((ghostTime + prevGHostTime).count()) * 0.5)
+                - static_cast<double>(prevHostTime.count()));
+            }
           }
 
           if (mData.size() > kNumberDataPoints)
@@ -192,7 +207,7 @@ struct Measurement
     }
 
     template <typename Payload>
-    void sendPing(asio::ip::udp::endpoint to, const Payload& payload)
+    void sendPing(discovery::UdpEndpoint to, const Payload& payload)
     {
       v1::MessageBuffer buffer;
       const auto msgBegin = std::begin(buffer);
@@ -227,8 +242,8 @@ struct Measurement
 
     Socket mSocket;
     SessionId mSessionId;
-    asio::ip::udp::endpoint mEndpoint;
-    std::vector<std::pair<double, double>> mData;
+    discovery::UdpEndpoint mEndpoint;
+    std::vector<double> mData;
     Callback mCallback;
     Clock mClock;
     Timer mTimer;

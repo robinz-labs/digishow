@@ -19,32 +19,48 @@
 
 #pragma once
 
-#include <ableton/discovery/IpV4Interface.hpp>
+#include <ableton/discovery/IpInterface.hpp>
 #include <ableton/platforms/asio/AsioTimer.hpp>
-#include <ableton/platforms/asio/AsioWrapper.hpp>
 #include <ableton/platforms/asio/LockFreeCallbackDispatcher.hpp>
 #include <ableton/platforms/asio/Socket.hpp>
 #include <thread>
+#include <utility>
 
 namespace ableton
 {
 namespace platforms
 {
-namespace asio
+namespace LINK_ASIO_NAMESPACE
+{
+namespace
 {
 
-template <typename ScanIpIfAddrs, typename LogT>
+struct ThreadFactory
+{
+  template <typename Callable, typename... Args>
+  static std::thread makeThread(std::string, Callable&& f, Args&&... args)
+  {
+    return std::thread(std::forward<Callable>(f), std::forward<Args>(args)...);
+  }
+};
+
+} // namespace
+
+template <typename ScanIpIfAddrs, typename LogT, typename ThreadFactoryT = ThreadFactory>
 class Context
 {
 public:
-  using Timer = AsioTimer;
+  using Timer = LINK_ASIO_NAMESPACE::AsioTimer;
   using Log = LogT;
 
   template <typename Handler, typename Duration>
-  using LockFreeCallbackDispatcher = LockFreeCallbackDispatcher<Handler, Duration>;
+  using LockFreeCallbackDispatcher =
+    LockFreeCallbackDispatcher<Handler, Duration, ThreadFactoryT>;
 
   template <std::size_t BufferSize>
-  using Socket = asio::Socket<BufferSize>;
+  using Socket = Socket<BufferSize>;
+  using IoService = ::LINK_ASIO_NAMESPACE::io_service;
+  using Work = IoService::work;
 
   Context()
     : Context(DefaultHandler{})
@@ -53,25 +69,25 @@ public:
 
   template <typename ExceptionHandler>
   explicit Context(ExceptionHandler exceptHandler)
-    : mpService(new ::asio::io_service())
-    , mpWork(new ::asio::io_service::work(*mpService))
+    : mpService(new IoService())
+    , mpWork(new Work(*mpService))
   {
-    mThread =
-      std::thread{[](::asio::io_service& service, ExceptionHandler handler) {
-                    for (;;)
-                    {
-                      try
-                      {
-                        service.run();
-                        break;
-                      }
-                      catch (const typename ExceptionHandler::Exception& exception)
-                      {
-                        handler(exception);
-                      }
-                    }
-                  },
-        std::ref(*mpService), std::move(exceptHandler)};
+    mThread = ThreadFactoryT::makeThread("Link Main",
+      [](IoService& service, ExceptionHandler handler) {
+        for (;;)
+        {
+          try
+          {
+            service.run();
+            break;
+          }
+          catch (const typename ExceptionHandler::Exception& exception)
+          {
+            handler(exception);
+          }
+        }
+      },
+      std::ref(*mpService), std::move(exceptHandler));
   }
 
   Context(const Context&) = delete;
@@ -106,34 +122,79 @@ public:
 
 
   template <std::size_t BufferSize>
-  Socket<BufferSize> openUnicastSocket(const ::asio::ip::address_v4& addr)
+  Socket<BufferSize> openUnicastSocket(const discovery::IpAddress addr)
   {
-    auto socket = Socket<BufferSize>{*mpService};
+    auto socket =
+      addr.is_v4() ? Socket<BufferSize>{*mpService, ::LINK_ASIO_NAMESPACE::ip::udp::v4()}
+                   : Socket<BufferSize>{*mpService, ::LINK_ASIO_NAMESPACE::ip::udp::v6()};
     socket.mpImpl->mSocket.set_option(
-      ::asio::ip::multicast::enable_loopback(addr.is_loopback()));
-    socket.mpImpl->mSocket.set_option(::asio::ip::multicast::outbound_interface(addr));
-    socket.mpImpl->mSocket.bind(::asio::ip::udp::endpoint{addr, 0});
+      ::LINK_ASIO_NAMESPACE::ip::multicast::enable_loopback(addr.is_loopback()));
+    if (addr.is_v4())
+    {
+      socket.mpImpl->mSocket.set_option(
+        ::LINK_ASIO_NAMESPACE::ip::multicast::outbound_interface(addr.to_v4()));
+      socket.mpImpl->mSocket.bind(
+        ::LINK_ASIO_NAMESPACE::ip::udp::endpoint{addr.to_v4(), 0});
+    }
+    else if (addr.is_v6())
+    {
+      const auto scopeId = addr.to_v6().scope_id();
+      socket.mpImpl->mSocket.set_option(
+        ::LINK_ASIO_NAMESPACE::ip::multicast::outbound_interface(
+          static_cast<unsigned int>(scopeId)));
+      socket.mpImpl->mSocket.bind(
+        ::LINK_ASIO_NAMESPACE::ip::udp::endpoint{addr.to_v6(), 0});
+    }
+    else
+    {
+      throw(std::runtime_error("Unknown Protocol"));
+    }
     return socket;
   }
 
   template <std::size_t BufferSize>
-  Socket<BufferSize> openMulticastSocket(const ::asio::ip::address_v4& addr)
+  Socket<BufferSize> openMulticastSocket(const discovery::IpAddress& addr)
   {
-    auto socket = Socket<BufferSize>{*mpService};
-    socket.mpImpl->mSocket.set_option(::asio::ip::udp::socket::reuse_address(true));
+    auto socket =
+      addr.is_v4() ? Socket<BufferSize>{*mpService, ::LINK_ASIO_NAMESPACE::ip::udp::v4()}
+                   : Socket<BufferSize>{*mpService, ::LINK_ASIO_NAMESPACE::ip::udp::v6()};
+
     socket.mpImpl->mSocket.set_option(
-      ::asio::socket_base::broadcast(!addr.is_loopback()));
+      ::LINK_ASIO_NAMESPACE::ip::udp::socket::reuse_address(true));
     socket.mpImpl->mSocket.set_option(
-      ::asio::ip::multicast::enable_loopback(addr.is_loopback()));
-    socket.mpImpl->mSocket.set_option(::asio::ip::multicast::outbound_interface(addr));
-    socket.mpImpl->mSocket.bind({::asio::ip::address::from_string("0.0.0.0"),
-      discovery::multicastEndpoint().port()});
-    socket.mpImpl->mSocket.set_option(::asio::ip::multicast::join_group(
-      discovery::multicastEndpoint().address().to_v4(), addr));
+      ::LINK_ASIO_NAMESPACE::socket_base::broadcast(!addr.is_loopback()));
+    socket.mpImpl->mSocket.set_option(
+      ::LINK_ASIO_NAMESPACE::ip::multicast::enable_loopback(addr.is_loopback()));
+
+    if (addr.is_v4())
+    {
+      socket.mpImpl->mSocket.set_option(
+        ::LINK_ASIO_NAMESPACE::ip::multicast::outbound_interface(addr.to_v4()));
+      socket.mpImpl->mSocket.bind({::LINK_ASIO_NAMESPACE::ip::address_v4::any(),
+        discovery::multicastEndpointV4().port()});
+      socket.mpImpl->mSocket.set_option(::LINK_ASIO_NAMESPACE::ip::multicast::join_group(
+        discovery::multicastEndpointV4().address().to_v4(), addr.to_v4()));
+    }
+    else if (addr.is_v6())
+    {
+      const auto scopeId = addr.to_v6().scope_id();
+      socket.mpImpl->mSocket.set_option(
+        ::LINK_ASIO_NAMESPACE::ip::multicast::outbound_interface(
+          static_cast<unsigned int>(scopeId)));
+      const auto multicastEndpoint = discovery::multicastEndpointV6(scopeId);
+      socket.mpImpl->mSocket.bind(
+        {::LINK_ASIO_NAMESPACE::ip::address_v6::any(), multicastEndpoint.port()});
+      socket.mpImpl->mSocket.set_option(::LINK_ASIO_NAMESPACE::ip::multicast::join_group(
+        multicastEndpoint.address().to_v6(), scopeId));
+    }
+    else
+    {
+      throw(std::runtime_error("Unknown Protocol"));
+    }
     return socket;
   }
 
-  std::vector<::asio::ip::address> scanNetworkInterfaces()
+  std::vector<discovery::IpAddress> scanNetworkInterfaces()
   {
     return mScanIpIfAddrs();
   }
@@ -169,13 +230,13 @@ private:
     }
   };
 
-  std::unique_ptr<::asio::io_service> mpService;
-  std::unique_ptr<::asio::io_service::work> mpWork;
+  std::unique_ptr<::LINK_ASIO_NAMESPACE::io_service> mpService;
+  std::unique_ptr<::LINK_ASIO_NAMESPACE::io_service::work> mpWork;
   std::thread mThread;
   Log mLog;
   ScanIpIfAddrs mScanIpIfAddrs;
 };
 
-} // namespace asio
+} // namespace LINK_ASIO_NAMESPACE
 } // namespace platforms
 } // namespace ableton

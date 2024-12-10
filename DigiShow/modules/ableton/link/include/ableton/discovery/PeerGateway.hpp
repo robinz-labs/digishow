@@ -213,24 +213,22 @@ PeerGateway<Messenger, PeerObserver, IoContext> makePeerGateway(
   return {std::move(messenger), std::move(observer), std::move(io)};
 }
 
-// IpV4 gateway types
 template <typename StateQuery, typename IoContext>
-using IpV4Messenger = UdpMessenger<
-  IpV4Interface<typename util::Injected<IoContext>::type&, v1::kMaxMessageSize>,
+using Messenger = UdpMessenger<
+  IpInterface<typename util::Injected<IoContext>::type&, v1::kMaxMessageSize>,
   StateQuery,
   IoContext>;
 
 template <typename PeerObserver, typename StateQuery, typename IoContext>
-using IpV4Gateway =
-  PeerGateway<IpV4Messenger<StateQuery, typename util::Injected<IoContext>::type&>,
+using Gateway =
+  PeerGateway<Messenger<StateQuery, typename util::Injected<IoContext>::type&>,
     PeerObserver,
     IoContext>;
 
-// Factory function to bind a PeerGateway to an IpV4Interface with the given address.
+// Factory function to bind a PeerGateway to an IpInterface with the given address.
 template <typename PeerObserver, typename NodeState, typename IoContext>
-IpV4Gateway<PeerObserver, NodeState, IoContext> makeIpV4Gateway(
-  util::Injected<IoContext> io,
-  const asio::ip::address_v4& addr,
+Gateway<PeerObserver, NodeState, IoContext> makeGateway(util::Injected<IoContext> io,
+  const IpAddress& addr,
   util::Injected<PeerObserver> observer,
   NodeState state)
 {
@@ -240,7 +238,7 @@ IpV4Gateway<PeerObserver, NodeState, IoContext> makeIpV4Gateway(
   const uint8_t ttl = 5;
   const uint8_t ttlRatio = 20;
 
-  auto iface = makeIpV4Interface<v1::kMaxMessageSize>(injectRef(*io), addr);
+  auto iface = makeIpInterface<v1::kMaxMessageSize>(injectRef(*io), addr);
 
   auto messenger = makeUdpMessenger(
     injectVal(std::move(iface)), std::move(state), injectRef(*io), ttl, ttlRatio);

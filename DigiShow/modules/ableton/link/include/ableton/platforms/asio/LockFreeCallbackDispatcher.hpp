@@ -27,7 +27,7 @@ namespace ableton
 {
 namespace platforms
 {
-namespace asio
+namespace LINK_ASIO_NAMESPACE
 {
 
 // Utility to signal invocation of a callback on another thread in a lock free manner.
@@ -38,7 +38,7 @@ namespace asio
 // after a timeout. This gives us a guaranteed minimum signaling rate which is defined
 // by the fallbackPeriod parameter.
 
-template <typename Callback, typename Duration>
+template <typename Callback, typename Duration, typename ThreadFactory>
 class LockFreeCallbackDispatcher
 {
 public:
@@ -46,7 +46,7 @@ public:
     : mCallback(std::move(callback))
     , mFallbackPeriod(std::move(fallbackPeriod))
     , mRunning(true)
-    , mThread([this] { run(); })
+    , mThread(ThreadFactory::makeThread("Link Dispatcher", [this] { run(); }))
   {
   }
 
@@ -59,11 +59,7 @@ public:
 
   void invoke()
   {
-    if (mMutex.try_lock())
-    {
-      mCondition.notify_one();
-      mMutex.unlock();
-    }
+    mCondition.notify_one();
   }
 
 private:
@@ -87,6 +83,6 @@ private:
   std::thread mThread;
 };
 
-} // namespace asio
+} // namespace LINK_ASIO_NAMESPACE
 } // namespace platforms
 } // namespace ableton
