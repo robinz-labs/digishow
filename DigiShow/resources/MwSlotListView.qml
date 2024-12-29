@@ -706,13 +706,16 @@ Item {
                             anchors.right: buttonHold.left
                             anchors.rightMargin: 10
                             anchors.verticalCenter: parent.verticalCenter
-                            value: model.slotLinked && model.epOutFaderHold ? model.epOutPreValue : model.epOutFaderValue
+                            //value: model.slotLinked && model.epOutFaderHold ? model.epOutPreValue : model.epOutFaderValue
+                            value: model.epOutFaderHold ? model.epOutPreValue : model.epOutFaderValue
                             to: model.epOutRange
                             stepSize: 1
                             color: model.epOutPreAvailable ? model.epOutColor : "#666666"
                             inverted: model.slotOutInverted
 
-                            Behavior on value { NumberAnimation { duration: (model.slotLinked && model.epOutFaderHold ? 300 : 0); easing.type: Easing.OutCubic } }
+                            //Behavior on value { NumberAnimation { duration: (model.slotLinked && model.epOutFaderHold ? 300 : 0); easing.type: Easing.OutCubic } }
+                            Behavior on value { NumberAnimation { duration: (model.epOutFaderHold ? 300 : 0); easing.type: Easing.OutCubic } }
+
 
                             onMoved: {
                                 if (model.epOutFaderHold) app.slotAt(index).setEndpointOutValue(faderOutput.value)

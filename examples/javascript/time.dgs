@@ -56,7 +56,13 @@
                     "enabled": true,
                     "initial": -1,
                     "name": "analog3",
-                    "range": 59,
+                    "range": 65535,
+                    "type": "analog"
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "name": "analog4",
                     "type": "analog"
                 }
             ],
@@ -95,6 +101,13 @@
             "outputExpression": "new Date().getSeconds()",
             "source": "metronome1/beat1",
             "title": "seconds"
+        },
+        {
+            "destination": "pipe1/analog4",
+            "linked": false,
+            "outputExpression": "toast(outputValueOf('hours') + \" : \" + outputValueOf('minutes') + '  :  ' + outputValueOf('seconds'));value",
+            "source": "metronome1/beat1",
+            "title": "time display"
         }
     ]
 }

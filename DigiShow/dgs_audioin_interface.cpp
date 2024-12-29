@@ -53,7 +53,7 @@ int DgsAudioinInterface::openInterface()
     }
 
     // initialize audio input and sound level meter
-    /*
+
     QAudioFormat format;
     format.setSampleRate(44100);
     format.setChannelCount(1);
@@ -62,9 +62,10 @@ int DgsAudioinInterface::openInterface()
     format.setByteOrder(QAudioFormat::LittleEndian);
     format.setCodec("audio/pcm");
     if (!device.isFormatSupported(format)) format = device.nearestFormat(format);
-    */
 
-    QAudioFormat format = device.preferredFormat();
+    //QAudioFormat format = device.preferredFormat();
+    //qDebug() << format;
+
     m_soundLevelMeter.reset(new SoundLevelMeter(format));
     connect(m_soundLevelMeter.data(), &SoundLevelMeter::update, [this]() {
 

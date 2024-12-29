@@ -329,6 +329,11 @@ ApplicationWindow {
                         onTriggered: dialogAbout.open()
                     }
                     MenuItem {
+                        text: qsTr("Tutorials ...")
+                        onTriggered: Qt.openUrlExternally("https://github.com/robinz-labs/digishow/blob/master/guides/" + qsTr("tutorials.md"))
+
+                    }
+                    MenuItem {
                         text: qsTr("Preferences ...")
                         onTriggered: dialogAppOptions.show()
                     }

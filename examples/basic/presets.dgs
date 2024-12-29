@@ -1,8 +1,8 @@
 {
     "appInfo": {
-        "appExperimental": false,
+        "appExperimental": true,
         "appName": "DigiShow LINK",
-        "appVersion": "1.2.6"
+        "appVersion": "1.5.2_b"
     },
     "interfaces": [
         {
@@ -119,7 +119,7 @@
             "mode": "input",
             "name": "midi1",
             "outputInterval": 20,
-            "port": "IAC Bus 1",
+            "port": "IAC Bus 2",
             "type": "midi"
         }
     ],
@@ -129,20 +129,20 @@
             "color": "#ff9900",
             "title": "ORANGE"
         },
-        "launch11": {
+        "launch19": {
             "assigned": true,
-            "color": "#1177dd",
-            "title": "MIDI LINK ON"
-        },
-        "launch16": {
-            "assigned": true,
-            "color": "#575aa9",
-            "title": "MIDI LINK OFF"
+            "color": "#888888",
+            "title": "midi-to-dmx ON"
         },
         "launch2": {
             "assigned": true,
             "color": "#ed1b74",
             "title": "PINK"
+        },
+        "launch20": {
+            "assigned": true,
+            "color": "#444444",
+            "title": "midi-to-dmx OFF"
         }
     },
     "metronome": {
@@ -157,16 +157,16 @@
             "destination": "dmx1/dimmer1",
             "launchDetails": {
                 "launch1": {
-                    "outputValue": 255
+                    "outputValue": 215
                 },
-                "launch11": {
+                "launch19": {
                     "linked": true
-                },
-                "launch16": {
-                    "linked": false
                 },
                 "launch2": {
                     "outputValue": 255
+                },
+                "launch20": {
+                    "linked": false
                 }
             },
             "linked": false,
@@ -177,16 +177,16 @@
             "destination": "dmx1/dimmer2",
             "launchDetails": {
                 "launch1": {
-                    "outputValue": 128
+                    "outputValue": 83
                 },
-                "launch11": {
+                "launch19": {
                     "linked": true
-                },
-                "launch16": {
-                    "linked": false
                 },
                 "launch2": {
                     "outputValue": 0
+                },
+                "launch20": {
+                    "linked": false
                 }
             },
             "linked": false,
@@ -197,16 +197,16 @@
             "destination": "dmx1/dimmer3",
             "launchDetails": {
                 "launch1": {
-                    "outputValue": -1
+                    "outputValue": 0
                 },
-                "launch11": {
+                "launch19": {
                     "linked": true
                 },
-                "launch16": {
-                    "linked": false
-                },
                 "launch2": {
-                    "outputValue": 164
+                    "outputValue": 80
+                },
+                "launch20": {
+                    "linked": false
                 }
             },
             "linked": false,
@@ -215,12 +215,32 @@
         },
         {
             "destination": "launch1/preset1",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch19": {
+                },
+                "launch2": {
+                },
+                "launch20": {
+                }
+            },
             "linked": true,
             "source": "hotkey1/press1",
             "title": "Orange"
         },
         {
             "destination": "launch1/preset2",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch19": {
+                },
+                "launch2": {
+                },
+                "launch20": {
+                }
+            },
             "linked": true,
             "source": "hotkey1/press2",
             "title": "Pink"

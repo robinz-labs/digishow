@@ -509,7 +509,7 @@ Item {
             newEndpointOptions = itemEndpoint.getEndpointOptions()
 
         // append more options
-        if (popupMoreOptions.isRevealed) {
+        if (popupMoreOptions.isRevealed || !popupMoreOptions.isDefault) {
             newEndpointOptions = utilities.merge(newEndpointOptions, popupMoreOptions.getOptions())
             popupMoreOptions.setOptions(newEndpointOptions) // here refresh ui
         }
