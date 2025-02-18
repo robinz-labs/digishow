@@ -71,6 +71,7 @@ public:
 signals:
 
     void metadataUpdated();
+    void errorDetected(int errorCode, const QString &errorMessage);
 
     void dataReceived(int endpointIndex, dgsSignalData dataIn);
     void dataPrepared(int endpointIndex, dgsSignalData dataOut, bool pre);

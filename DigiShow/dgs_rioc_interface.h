@@ -40,13 +40,18 @@ public:
 signals:
 
 public slots:
+    void onStartingTimeout();
     void onUnitStarted(unsigned char unit);
     void onDigitalInValueUpdated(unsigned char unit, unsigned char channel, bool value);
     void onAnalogInValueUpdated(unsigned char unit, unsigned char channel, int value);
     void onEncoderValueUpdated(unsigned char unit, unsigned char channel, int value);
+    void onUserChannelValueUpdated(unsigned char unit, unsigned char channel, int value);
 
 private:
     RiocController *m_rioc;
+
+    QTimer *m_timerStarting;
+    int m_startedUnitCount;
 
     int findEndpoint(int unit, int channel);
 

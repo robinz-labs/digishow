@@ -157,7 +157,7 @@ Item {
                     interfaceType = config["interfaceOptions"]["type"];
                 }
 
-                if (forInput) stopDetection()
+                if (forInput) stopDetectionAll()
             }
 
             function getSelectedInterfaceConfiguration() {
@@ -588,24 +588,32 @@ Item {
         isDetecting = false
     }
 
+    function stopDetectionAll() {
+
+        digishow.stopInterfaceDataInputDetectionAll()
+        isDetecting = false
+    }
+
     function onInterfaceDataInputDetected(interfaceIndex, rawData) {
 
         console.log("InterfaceDataInputDetected", interfaceIndex, JSON.stringify(rawData))
 
         if (interfaceIndex === menuInterface.selectedItemValue) {
 
+            var ok = false
             if (interfaceType === "midi") {
 
-                itemMidi.learn(rawData)
+                ok = itemMidi.learn(rawData)
 
             } else if (interfaceType === "osc") {
 
-                itemOsc.learn(rawData)
+                ok = itemOsc.learn(rawData)
             }
 
-            isModified = true
+            if (ok) {
+                isModified = true
+                stopDetection()
+            }
         }
-
-        stopDetection()
     }
 }

@@ -732,11 +732,17 @@ bool DigishowEnvironment::stopInterfaceDataInputDetection(int interfaceIndex)
 {
     DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
     if (interface == nullptr) return false;
+    if (!interface->needReceiveRawData()) return true;
 
     interface->setNeedReceiveRawData(false);
     //disconnect(interface, SIGNAL(rawDataReceived(QVaribleMap)), this, nullptr);
     disconnect(interface, &DigishowInterface::rawDataReceived, this, nullptr);
     return true;
+}
+
+void DigishowEnvironment::stopInterfaceDataInputDetectionAll()
+{
+    for (int n=0 ; n<g_app->interfaceCount() ; n++) stopInterfaceDataInputDetection(n);
 }
 
 void DigishowEnvironment::onRawDataReceived(const QVariantMap &rawData)
@@ -751,7 +757,7 @@ void DigishowEnvironment::onRawDataReceived(const QVariantMap &rawData)
 
             //qDebug() << "interfaceDataInputDetected" << i << rawData;
             emit interfaceDataInputDetected(i, rawData);
-            stopInterfaceDataInputDetection(i);
+            //stopInterfaceDataInputDetection(i);
             break;
         }
     }

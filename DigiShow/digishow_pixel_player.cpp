@@ -249,6 +249,10 @@ void DigishowPixelPlayer::clearPixelMapping()
 
 int DigishowPixelPlayer::addPixelMapping(dppPixelMapping mapping)
 {
+    // compatible with the older version that allows the pixel spacing is zero
+    if (mapping.pixelSpacingX == 0) mapping.pixelSpacingX = 1;
+    if (mapping.pixelSpacingY == 0) mapping.pixelSpacingY = 1;
+
     m_pixelMappingList.append(mapping);
     return m_pixelMappingList.length()-1; // index of the item added into the mapping list
 }

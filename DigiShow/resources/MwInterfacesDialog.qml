@@ -275,9 +275,9 @@ Dialog {
 
                     onClicked: {
                         if (messageBox.showAndWait(
-                                qsTr("Please start by getting a pre-prepared RIOC sketch and upload it to your Arduino, the IO pins on it will be reconfigurable and controllable by the DigiShow app."),
-                                qsTr("Get RIOC"), qsTr("Close")) === 1) {
-                            Qt.openUrlExternally("https://github.com/robinz-labs/rioc-arduino")
+                                qsTr("In order for DigiShow to work with your Arduino, \r\nthe RIOC sketch must first be uploaded to the Arduino."),
+                                qsTr("Get RIOC Sketch"), qsTr("Close")) === 1) {
+                            Qt.openUrlExternally("https://github.com/robinz-labs/digishow-rioc")
                         }
                     }
                 }

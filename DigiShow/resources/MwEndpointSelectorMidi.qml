@@ -184,6 +184,8 @@ Item {
 
     function learn(rawData) {
 
+        menuChannel.selectOption(rawData["channel"])
+
         var event = rawData["event"]
         if (event === "note_on" || event === "note_off") {
 
@@ -203,9 +205,9 @@ Item {
 
             menuType.selectOptionWithTag("pitch")
 
-        }
-        menuChannel.selectOption(rawData["channel"])
+        } else return false
 
+        return true
     }
 
 }

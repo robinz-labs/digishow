@@ -1,0 +1,105 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.2_b"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/value",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "int1",
+                    "range": 4095,
+                    "type": "int"
+                },
+                {
+                    "address": "/value",
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "int2",
+                    "range": 4095,
+                    "type": "int"
+                }
+            ],
+            "mode": "input",
+            "name": "osc1",
+            "type": "osc",
+            "udpPort": 8000
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/led",
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "bool1",
+                    "type": "bool"
+                }
+            ],
+            "mode": "output",
+            "name": "osc2",
+            "type": "osc",
+            "udpHost": "192.168.1.20",
+            "udpPort": 9000
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "linked": true,
+            "source": "osc1/int1",
+            "title": "Input Value A0"
+        },
+        {
+            "linked": true,
+            "source": "osc1/int2",
+            "title": "Input Value A1"
+        },
+        {
+            "destination": "osc2/bool1",
+            "linked": true,
+            "title": "LED Control"
+        }
+    ]
+}

@@ -26,6 +26,9 @@ DgsRiocInterface::DgsRiocInterface(QObject *parent) : DigishowInterface(parent)
 {
     m_interfaceOptions["type"] = "rioc";
     m_rioc = nullptr;
+
+    m_timerStarting = nullptr;
+    m_startedUnitCount = 0;
 }
 
 DgsRiocInterface::~DgsRiocInterface()
@@ -53,9 +56,19 @@ int DgsRiocInterface::openInterface()
         connect(m_rioc, SIGNAL(digitalInValueUpdated(unsigned char, unsigned char, bool)), this, SLOT(onDigitalInValueUpdated(unsigned char, unsigned char, bool)));
         connect(m_rioc, SIGNAL(analogInValueUpdated(unsigned char, unsigned char, int)), this, SLOT(onAnalogInValueUpdated(unsigned char, unsigned char, int)));
         connect(m_rioc, SIGNAL(encoderValueUpdated(unsigned char, unsigned char, int)), this, SLOT(onEncoderValueUpdated(unsigned char, unsigned char, int)));
+        connect(m_rioc, SIGNAL(userChannelValueUpdated(unsigned char, unsigned char, int)), this, SLOT(onUserChannelValueUpdated(unsigned char, unsigned char, int)));
 
         // reset all rioc units
         m_rioc->resetUnit(0xff);
+
+        // need to check after a few seconds
+        // whether the rioc units are started
+        m_timerStarting = new QTimer();
+        connect(m_timerStarting, SIGNAL(timeout()), this, SLOT(onStartingTimeout()));
+        m_timerStarting->setSingleShot(true);
+        m_timerStarting->setInterval(6000);
+        m_timerStarting->start();
+        m_startedUnitCount = 0;
 
         done = true;
     }
@@ -71,6 +84,13 @@ int DgsRiocInterface::openInterface()
 
 int DgsRiocInterface::closeInterface()
 {
+    if (m_timerStarting != nullptr) {
+        m_timerStarting->stop();
+        delete m_timerStarting;
+        m_timerStarting = nullptr;
+        m_startedUnitCount = 0;
+    }
+
     if (m_rioc != nullptr) {
         delete m_rioc;
         m_rioc = nullptr;
@@ -126,7 +146,7 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
         // write pfm out channel
         if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
         int range = m_endpointInfoList[endpointIndex].range;
-        int value = range * data.aValue / (data.aRange==0 ? range : data.aRange);
+        int value = (long)range * data.aValue / (data.aRange==0 ? range : data.aRange);
         if (value<0 || value>range) return ERR_INVALID_DATA;
         if (value>0)
             m_rioc->tonePlay(unit, channel, value);
@@ -146,9 +166,27 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
         // write stepper out channel
         if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
         int range = m_endpointInfoList[endpointIndex].range;
-        int value = range * data.aValue / (data.aRange==0 ? range : data.aRange);
+        int value = (long)range * data.aValue / (data.aRange==0 ? range : data.aRange);
         if (value<0 || value>range) return ERR_INVALID_DATA;
         m_rioc->stepperGoto(unit, channel, value);
+
+    } else if (type == ENDPOINT_RIOC_ENCODER_IN) {
+
+        // write encoder (set encoder value)
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+        int range = m_endpointInfoList[endpointIndex].range;
+        int value = (long)range * data.aValue / (data.aRange==0 ? range : data.aRange);
+        if (value<0 || value>range) return ERR_INVALID_DATA;
+        m_rioc->encoderWrite(unit, channel, value);
+
+    } else if (type == ENDPOINT_RIOC_USER_CHANNEL) {
+
+        // write user channel
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+        int range = m_endpointInfoList[endpointIndex].range;
+        int value = (long)range * data.aValue / (data.aRange==0 ? range : data.aRange);
+        if (value<0 || value>range) return ERR_INVALID_DATA;
+        m_rioc->userChannelWrite(unit, channel, value);
     }
 
     return ERR_NONE;
@@ -163,9 +201,20 @@ int DgsRiocInterface::findEndpoint(int unit, int channel)
     return -1;
 }
 
+void DgsRiocInterface::onStartingTimeout()
+{
+    if  (m_startedUnitCount == 0) {
+        emit errorDetected(
+                    1,
+                    tr("DigiShow doesn't seem to work with your Arduino yet, \r\nmake sure the RIOC sketch is uploaded to the Arduino."));
+    }
+}
+
 void DgsRiocInterface::onUnitStarted(unsigned char unit)
 {
-    qDebug() << "DgsRiocInterface::onUnitStarted" << unit;
+    //qDebug() << "DgsRiocInterface::onUnitStarted" << unit;
+
+    m_startedUnitCount++;
 
     // dynamically configure all channels when the unit started
     for (int n=0 ; n<m_endpointOptionsList.length() ; n++) {
@@ -273,9 +322,13 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                 int updatingInterval = m_endpointOptionsList[n].value("optUpdatingInterval").toInt();
                 if (updatingInterval==0) updatingInterval = 50;
 
+                // set encoder value range
+                int range = m_endpointInfoList[n].range;
+                m_rioc->encoderSetRangeLower(unit, channel, 0);
+                m_rioc->encoderSetRangeUpper(unit, channel, range);
+
                 // write initial value
                 double initial = m_endpointInfoList[n].initial;
-                int range = m_endpointInfoList[n].range;
                 if (initial >= 0) {
                     m_rioc->encoderWrite(unit, channel, round(initial*range));
                 }
@@ -335,6 +388,24 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                 if (position > 0) {
                     done = m_rioc->stepperSetPosition(unit, channel, position, true);
                 }
+
+            } else if (type==ENDPOINT_RIOC_USER_CHANNEL) {
+
+                // set up user channel
+                int mode = m_endpointOptionsList[n].value("optMode").toInt();
+                m_rioc->setupObject(unit, RO_USER_CHANNEL, channel,
+                                    static_cast<unsigned char>(mode),
+                                    0, 0, 0);
+                // read value
+                int value;
+                if (m_rioc->userChannelRead(unit, channel, &value)) {
+                    this->onUserChannelValueUpdated(unit, channel, value);
+                }
+
+                int updatingInterval = m_endpointOptionsList[n].value("optUpdatingInterval").toInt();
+                if (updatingInterval==0) updatingInterval = 50;
+
+                done = m_rioc->userChannelSetNotification(unit, channel, true, updatingInterval);
             }
 
             // set ready flag for this endpoint
@@ -382,6 +453,33 @@ void DgsRiocInterface::onAnalogInValueUpdated(unsigned char unit, unsigned char 
 void DgsRiocInterface::onEncoderValueUpdated(unsigned char unit, unsigned char channel, int value)
 {
     //qDebug() << "DgsRiocInterface::onEncoderValueUpdated" << unit << channel << value;
+
+    int endpointIndex = findEndpoint(unit, channel);
+    if (endpointIndex == -1) return;
+
+    int range = m_endpointInfoList[endpointIndex].range;
+    if (range == 0) range = 0xffff;
+
+    if (value < 0) {
+        value = 0;
+        m_rioc->encoderWrite(unit, channel, 0);
+    } else if (value > range) {
+        value = range;
+        m_rioc->encoderWrite(unit, channel, range);
+    }
+
+    dgsSignalData data;
+    data.signal = DATA_SIGNAL_ANALOG;
+    data.aRange = range;
+    data.aValue = value;
+    data.bValue = 0;
+
+    emit dataReceived(endpointIndex, data);
+}
+
+void DgsRiocInterface::onUserChannelValueUpdated(unsigned char unit, unsigned char channel, int value)
+{
+    //qDebug() << "DgsRiocInterface::onUserCannelValueUpdated" << unit << channel << value;
 
     int endpointIndex = findEndpoint(unit, channel);
     if (endpointIndex == -1) return;

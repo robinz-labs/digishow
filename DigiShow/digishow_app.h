@@ -137,6 +137,7 @@ signals:
 public slots:
     void onTimerFired();
     void onSlotMetadataUpdated();
+    void onInterfaceErrorDetected(int errorCode, const QString &errorMessage);
 
 private:
 

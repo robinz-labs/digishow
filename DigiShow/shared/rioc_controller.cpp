@@ -414,7 +414,7 @@ bool RiocController::encoderSetNotification(unsigned char unit, unsigned char ch
 
 }
 
-bool RiocController::encoderWrite(unsigned char unit, unsigned char channel, int value)
+bool RiocController::encoderWrite(unsigned char unit, unsigned char channel, int value, bool wait)
 {
     unsigned char valH = (abs(value) >> 16) & 0xFF ;
     unsigned char valM = (abs(value) >> 8) & 0xFF ;
@@ -432,12 +432,68 @@ bool RiocController::encoderWrite(unsigned char unit, unsigned char channel, int
         0 };
 
     QByteArray cmd((const char*)bytes, 8);
+    if (!wait) {
+        _riocService->sendRiocMessage(0, unit, cmd);
+        return true;
+    }
+
     QByteArray rsp;
     if (_riocService->sendRiocMessageAndWaitResponse(0, unit, cmd, rsp)) {
         return true;
     }
     return false;
 }
+
+bool RiocController::encoderSetRangeLower(unsigned char unit, unsigned char channel, int rangeLower)
+{
+    unsigned char valH = (abs(rangeLower) >> 16) & 0xFF ;
+    unsigned char valM = (abs(rangeLower) >> 8) & 0xFF ;
+    unsigned char valL = abs(rangeLower) & 0xFF;
+    unsigned char sign = (rangeLower >= 0 ? 0x00 : 0x01);
+
+    unsigned char bytes[] = {
+        RO_SENSOR_ENCODER,
+        RO_SENSOR_ENCODER_SET_RANGE_LOWER,
+        channel,
+        sign,
+        valH,
+        valM,
+        valL,
+        0 };
+
+    QByteArray cmd((const char*)bytes, 8);
+    QByteArray rsp;
+    if (_riocService->sendRiocMessageAndWaitResponse(0, unit, cmd, rsp)) {
+        return true;
+    }
+    return false;
+}
+
+bool RiocController::encoderSetRangeUpper(unsigned char unit, unsigned char channel, int rangeUpper)
+{
+    unsigned char valH = (abs(rangeUpper) >> 16) & 0xFF ;
+    unsigned char valM = (abs(rangeUpper) >> 8) & 0xFF ;
+    unsigned char valL = abs(rangeUpper) & 0xFF;
+    unsigned char sign = (rangeUpper >= 0 ? 0x00 : 0x01);
+
+    unsigned char bytes[] = {
+        RO_SENSOR_ENCODER,
+        RO_SENSOR_ENCODER_SET_RANGE_UPPER,
+        channel,
+        sign,
+        valH,
+        valM,
+        valL,
+        0 };
+
+    QByteArray cmd((const char*)bytes, 8);
+    QByteArray rsp;
+    if (_riocService->sendRiocMessageAndWaitResponse(0, unit, cmd, rsp)) {
+        return true;
+    }
+    return false;
+}
+
 
 bool RiocController::rudderSetAngle(unsigned char unit, unsigned char channel, int angle, bool wait)
 {
@@ -659,6 +715,84 @@ bool RiocController::stepperGetPosition(unsigned char unit, unsigned char channe
     return false;
 }
 
+bool RiocController::userChannelRead(unsigned char unit, unsigned char channel, int* pValue)
+{
+    unsigned char bytes[] = {
+        RO_USER_CHANNEL,
+        RO_USER_CHANNEL_READ,
+        channel,
+        0, 0, 0, 0, 0 };
+
+    QByteArray cmd((const char*)bytes, 8);
+    QByteArray rsp;
+    if (_riocService->sendRiocMessageAndWaitResponse(0, unit, cmd, rsp)) {
+
+        uint32_t val1 = (unsigned char)rsp.at(3); // MSB
+        uint32_t val2 = (unsigned char)rsp.at(4);
+        uint32_t val3 = (unsigned char)rsp.at(5);
+        uint32_t val4 = (unsigned char)rsp.at(6); // LSB
+
+        uint32_t val = (val1*0x01000000 + val2*0x010000 + val3*0x0100 + val4);
+        *pValue = val;
+
+        return true;
+    }
+    return false;
+
+}
+
+bool RiocController::userChannelSetNotification(unsigned char unit, unsigned char channel, bool enabled, int interval)
+{
+    unsigned char bytes[] = {
+        RO_USER_CHANNEL,
+        RO_USER_CHANNEL_SET_NOTIFICATION,
+        channel,
+        (unsigned char)(enabled ? 0x01 : 0x00),
+        (unsigned char)((interval>>8) & 0xFF),
+        (unsigned char)(interval & 0xFF),
+        0,
+        0 };
+
+    QByteArray cmd((const char*)bytes, 8);
+    QByteArray rsp;
+    if (_riocService->sendRiocMessageAndWaitResponse(0, unit, cmd, rsp)) {
+        return true;
+    }
+    return false;
+
+}
+
+bool RiocController::userChannelWrite(unsigned char unit, unsigned char channel, int value, bool wait)
+{
+    uint32_t val = value;
+    unsigned char val1 = (val >> 24) & 0xFF ;
+    unsigned char val2 = (val >> 16) & 0xFF ;
+    unsigned char val3 = (val >>  8) & 0xFF ;
+    unsigned char val4 = val & 0xFF;
+
+    unsigned char bytes[] = {
+        RO_USER_CHANNEL,
+        RO_USER_CHANNEL_WRITE,
+        channel,
+        val1,  // MSB
+        val2,
+        val3,
+        val4,  // LSB
+        0 };
+
+    QByteArray cmd((const char*)bytes, 8);
+    if (!wait) {
+        _riocService->sendRiocMessage(0, unit, cmd);
+        return true;
+    }
+
+    QByteArray rsp;
+    if (_riocService->sendRiocMessageAndWaitResponse(0, unit, cmd, rsp)) {
+        return true;
+    }
+    return false;
+}
+
 bool RiocController::motorMove(unsigned char unit, unsigned char channel, int position, int speed, bool brake)
 {
     unsigned char positionH = (position >> 16) & 0xFF;
@@ -854,5 +988,17 @@ void RiocController::handleRiocMessageReceived(unsigned char fromID, unsigned ch
         int value = (valH*0x010000 + valM*0x0100 + valL) * sign;
 
         emit encoderValueUpdated(fromID, channel, value);
+
+    } else if (classID == RO_USER_CHANNEL && funcCode == RO_USER_CHANNEL_NOTIFY) {
+
+        uint32_t val1 = (unsigned char)data.at(3); // MSB
+        uint32_t val2 = (unsigned char)data.at(4);
+        uint32_t val3 = (unsigned char)data.at(5);
+        uint32_t val4 = (unsigned char)data.at(6); // LSB
+
+        uint32_t val = val1*0x01000000 + val2*0x010000 + val3*0x0100 + val4;
+        int value = val;
+
+        emit userChannelValueUpdated(fromID, channel, value);
     }
 }

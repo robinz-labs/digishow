@@ -334,7 +334,7 @@ Popup {
             anchors.left: parent.left
             anchors.leftMargin: 120
             from: 0
-            to: 255
+            to: 32
             stepSize: 1
             unit: ""
             visible: enabled
@@ -491,9 +491,10 @@ Popup {
                 property int defaultValue: 0
 
                 optionItems: [
-                                { text: qsTr("Default"), value: 0 },
-                                { text: qsTr("Internal Pull-Up"), value: 1 },
-                                { text: qsTr("External PU/PD"), value: 2 }
+                                { text: qsTr("Default"           ), value: 0 },
+                                { text: qsTr("External"          ), value: 1 },
+                                { text: qsTr("Internal Pull-Up"  ), value: 2 },
+                                { text: qsTr("Internal Pull-Down"), value: 3 }
                              ]
             }
 

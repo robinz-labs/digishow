@@ -188,6 +188,9 @@ void DigishowApp::importData(const QVariantMap & data)
         // build metadata after all options have been set
         interface->updateMetadata();
 
+        // set error callback
+        connect(interface, SIGNAL(errorDetected(int, QString)), this, SLOT(onInterfaceErrorDetected(int, QString)));
+
         // apply to the app environment
         m_interfaces.append(interface);
     }
@@ -442,6 +445,7 @@ int DigishowApp::start()
              dgsEndpointInfo srcEpInfo = m_slots[n]->sourceInterface()->endpointInfoList()->at(m_slots[n]->sourceEndpointIndex());
              dgsEndpointInfo dstEpInfo = m_slots[n]->destinationInterface()->endpointInfoList()->at(m_slots[n]->destinationEndpointIndex());
 
+             /*
              qInfo("slot #%d enabled: source=[%c] %s ( %s %s ) \tdestination=[%c] %s ( %s %s )", n,
                    m_slots[n]->slotInfo()->inputSignal,
                    m_slots[n]->slotOptions()->value("source").toString().toLocal8Bit().constData(),
@@ -451,6 +455,7 @@ int DigishowApp::start()
                    m_slots[n]->slotOptions()->value("destination").toString().toLocal8Bit().constData(),
                    dstEpInfo.labelEPT.toUtf8().constData(),
                    dstEpInfo.labelEPI.toUtf8().constData());
+             */
          }
     }
 
@@ -649,6 +654,7 @@ int DigishowApp::newInterface(const QString &interfaceType)
     }
 
     interface->updateMetadata();
+    connect(interface, SIGNAL(errorDetected(int, QString)), this, SLOT(onInterfaceErrorDetected(int, QString)));
     m_interfaces.append(interface);
     return m_interfaces.length()-1; // return new interface index
 }
@@ -1099,4 +1105,11 @@ void DigishowApp::onSlotMetadataUpdated()
     }
 }
 
-
+void DigishowApp::onInterfaceErrorDetected(int errorCode, const QString &errorMessage)
+{
+    DigishowInterface *interface = (DigishowInterface*)sender();
+    messageNotify(tr("%1 Error %2 :\r\n\r\n%3")
+                  .arg(interface->interfaceInfo()->label)
+                  .arg(errorCode)
+                  .arg(errorMessage));
+}

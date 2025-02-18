@@ -102,6 +102,7 @@ public:
         EndpointRiocEncoderIn     = ENDPOINT_RIOC_ENCODER_IN,
         EndpointRiocRudderOut     = ENDPOINT_RIOC_RUDDER_OUT,
         EndpointRiocStepperOut    = ENDPOINT_RIOC_STEPPER_OUT,
+        EndpointRiocUserChannel   = ENDPOINT_RIOC_USER_CHANNEL,
         EndpointModbusDiscreteIn  = ENDPOINT_MODBUS_DISCRETE_IN,
         EndpointModbusCoilOut     = ENDPOINT_MODBUS_COIL_OUT,
         EndpointModbusCoilIn      = ENDPOINT_MODBUS_COIL_IN,
@@ -252,6 +253,7 @@ public:
 
     Q_INVOKABLE bool startInterfaceDataInputDetection(int interfaceIndex);
     Q_INVOKABLE bool stopInterfaceDataInputDetection(int interfaceIndex);
+    Q_INVOKABLE void stopInterfaceDataInputDetectionAll();
 
     Q_INVOKABLE static QVariantMap listOnline();
 

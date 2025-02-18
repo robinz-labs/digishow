@@ -78,6 +78,10 @@ Item {
             if (forOutput) items.push({ text: qsTr("Servo"),          value: DigishowEnvironment.EndpointRiocRudderOut,  tag: "rudder_out"  })
             if (forOutput) items.push({ text: qsTr("Stepper"),        value: DigishowEnvironment.EndpointRiocStepperOut, tag: "stepper_out" })
             if (forInput ) items.push({ text: qsTr("Encoder"),        value: DigishowEnvironment.EndpointRiocEncoderIn,  tag: "encoder_in"  })
+            if (forOutput) items.push({ text: qsTr("Encoder") + " " + qsTr("(SET)"),
+                                                                      value: DigishowEnvironment.EndpointRiocEncoderIn,  tag: "encoder_in"  })
+            if (forInput ) items.push({ text: qsTr("User Channel"),   value: DigishowEnvironment.EndpointRiocUserChannel,tag: "user_channel"})
+            if (forOutput) items.push({ text: qsTr("User Channel"),   value: DigishowEnvironment.EndpointRiocUserChannel,tag: "user_channel"})
 
             menuType.optionItems = items
             menuType.selectedIndex = 0
@@ -100,7 +104,11 @@ Item {
 
         var interfaceMode = menuInterface.getSelectedInterfaceConfiguration()["interfaceInfo"]["mode"]
         var endpointType = menuType.selectedItemValue
-        if (interfaceMode === undefined || interfaceMode === DigishowEnvironment.InterfaceRiocGeneral) {
+
+        if (endpointType===DigishowEnvironment.EndpointRiocUserChannel) {
+            for (n=0 ; n<256 ; n++)
+                items.push({ text: qsTr("Ch") + " " + n, value: n })
+        } else if (interfaceMode === undefined || interfaceMode === DigishowEnvironment.InterfaceRiocGeneral) {
             for (n=0 ; n<128 ; n++)
                 items.push({ text: qsTr("Pin") + " " + n, value: n })
         } else if (interfaceMode === DigishowEnvironment.InterfaceRiocArduinoUno) {
@@ -171,6 +179,7 @@ Item {
         if (endpointType === DigishowEnvironment.EndpointRiocPfmOut) {
             enables["optRangeFrequency"] = true
         }
+
         if (endpointType === DigishowEnvironment.EndpointRiocEncoderIn) {
             enables["optRangeSteps"] = true
         }
@@ -196,6 +205,10 @@ Item {
             enables["optSpeed"] = true
             enables["optPosition"] = true
             enables["optModeStepper"] = true
+        }
+
+        if (endpointType === DigishowEnvironment.EndpointRiocUserChannel) {
+            enables["optRangeInt"] = true
         }
 
         popupMoreOptions.resetOptions()

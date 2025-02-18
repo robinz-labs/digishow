@@ -408,6 +408,7 @@ void DigishowInterface::updateMetadata()
             else if (typeName == "encoder_in" ) endpointInfo.type = ENDPOINT_RIOC_ENCODER_IN;
             else if (typeName == "rudder_out" ) endpointInfo.type = ENDPOINT_RIOC_RUDDER_OUT;
             else if (typeName == "stepper_out") endpointInfo.type = ENDPOINT_RIOC_STEPPER_OUT;
+            else if (typeName == "user_channel")endpointInfo.type = ENDPOINT_RIOC_USER_CHANNEL;
             break;
         case INTERFACE_MODBUS:
             if      (typeName == "discrete_in") endpointInfo.type = ENDPOINT_MODBUS_DISCRETE_IN;
@@ -556,6 +557,7 @@ void DigishowInterface::updateMetadata()
             break;
         case ENDPOINT_RIOC_ENCODER_IN:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = true;
             endpointInfo.input  = true;
             endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
             endpointInfo.labelEPT = tr("Encoder");
@@ -574,6 +576,14 @@ void DigishowInterface::updateMetadata()
             endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
             endpointInfo.labelEPT = tr("Stepper");
             endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(DigishowEnvironment::getRiocPinName(m_interfaceInfo.mode, endpointInfo.channel));
+            break;
+        case ENDPOINT_RIOC_USER_CHANNEL:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.output = true;
+            endpointInfo.input  = true;
+            endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000000);
+            endpointInfo.labelEPT = tr("Channel");
+            endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(endpointInfo.channel);
             break;
         case ENDPOINT_MODBUS_DISCRETE_IN:
             endpointInfo.signal = DATA_SIGNAL_BINARY;

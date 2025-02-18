@@ -920,12 +920,15 @@ dgsSignalData DigishowSlot::expressionExecute(const QString & expression, dgsSig
 
 void DigishowSlot::onInterfaceMetadataUpdated()
 {
-    if (m_lastDataIn.signal == DATA_SIGNAL_ANALOG && m_lastDataIn.aRange != getEndpointInRange()) {
+    m_slotInfo.inputRange = getEndpointInRange();
+    m_slotInfo.outputRange = getEndpointOutRange();
+
+    if (m_lastDataIn.signal == DATA_SIGNAL_ANALOG && m_lastDataIn.aRange != m_slotInfo.inputRange) {
         m_lastDataInPre = dgsSignalData();
         m_lastDataIn    = dgsSignalData();
     }
 
-    if (m_lastDataOut.signal == DATA_SIGNAL_ANALOG && m_lastDataOut.aRange != getEndpointOutRange()) {
+    if (m_lastDataOut.signal == DATA_SIGNAL_ANALOG && m_lastDataOut.aRange != m_slotInfo.outputRange) {
         m_lastDataOutPre = dgsSignalData();
         m_lastDataOut    = dgsSignalData();
     }

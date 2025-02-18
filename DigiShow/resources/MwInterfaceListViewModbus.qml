@@ -167,7 +167,8 @@ MwInterfaceListView {
                             { text: qsTr("8-E-1"), value: 1, tag: "8E1" },
                             { text: qsTr("8-O-1"), value: 2, tag: "8O1" },
                             { text: qsTr("7-E-1"), value: 3, tag: "7E1" },
-                            { text: qsTr("7-O-1"), value: 4, tag: "7O1" }
+                            { text: qsTr("7-O-1"), value: 4, tag: "7O1" },
+                            { text: qsTr("8-N-2"), value: 5, tag: "8N2" }
                         ]
 
                         onOptionSelected: {

@@ -132,6 +132,13 @@
   final release
   ! bug fixes and improvements
 
+  v1.6 20250218
+  alpha release
+  + built-in web service for remote control
+  + online tutorials
+  ! improved arduino rioc to support user channels etc.
+  ! bug fixes and improvements
+
  */
 
 #ifndef DIGISHOW_H
