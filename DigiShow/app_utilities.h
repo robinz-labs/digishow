@@ -47,7 +47,10 @@ public:
     Q_INVOKABLE static QString upnpWaitResponse(QString strWaitRsp, int timeout = 5000);
 
     Q_INVOKABLE static QString hostIpAddress();
+    Q_INVOKABLE static bool udpSend(const QString & ip, int port, const QByteArray & data);
+    Q_INVOKABLE static bool udpSendHex(const QString & ip, int port, const QByteArray & hexstr);
 
+    Q_INVOKABLE static bool isValidJson(const QString &str);
     Q_INVOKABLE static QString httpRequest(const QString & strUrl, const QString & strMethod = "get", const QString & strBody = "", int timeout = 3000);
     Q_INVOKABLE static QString httpUrlEncode(const QString & str);
     Q_INVOKABLE static QString fileUrlPath(const QString & url);

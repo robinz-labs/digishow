@@ -70,17 +70,29 @@ alert("value = " + value); value
  
 **utilities.runInShell(program, arguments)** 
 在操作系统 shell 中运行程序 program, 并在数组 arguments 中指定运行程序的各个参数 
-如：utilities.runInShell('shutdown', ['-f', '-s', '-t', '0']) 
-即相当于在命令行中运行 shutdown -f -s -t 0 
+- 如：utilities.runInShell('shutdown', ['-f', '-s', '-t', '0']) 
+- 即相当于在命令行中运行 shutdown -f -s -t 0 
  
 **utilities.httpRequest(url)**
 以 GET 方法向目标 url 发起 http 请求，并获得由服务器返回的内容 
  
 **utilities.httpRequest(url, method, contents, timeout)** 
 以 GET / POST / PUT 方法向目标 url 发起 http 请求，并获得由服务器返回的内容 
-参数 method 可以是 'get'、'post' 或 'put' 
-参数 contents 是被 post 或 put 到 http 服务器的数据内容 
-参数 timeout 以毫秒为单位，当在等待 http 请求回复超时后，函数将返回一个空字符串 
+- 参数 method 可以是 'get'、'post' 或 'put' 
+- 参数 contents 是被 post 或 put 到 http 服务器的数据内容 
+- 参数 timeout 以毫秒为单位，当在等待 http 请求回复超时后，函数将返回一个空字符串 
+ 
+**utilities.udpSend(ip, port, data)**
+发送文本内容的 UDP 报文  
+- 参数 ip 是目标端主机的 IP 地址 
+- 参数 port 是目标接收端的 UDP 端口 
+- 参数 data 是一个描述报文内容的字符串 
+ 
+**utilities.udpSend(ip, port, hex)**
+发送以16进制数描述内容的 UDP 报文  
+- 参数 ip 是目标端主机的 IP 地址 
+- 参数 port 是目标接收端的 UDP 端口 
+- 参数 hex 是一个描述报文内容的 HEX 字符串，如："01 f3 e8 5b ff 00" 
  
 **utilities.delay(timeout)** 
 程序停顿特定时长后继续执行，参数 timeout 以毫秒数为单位。在停顿期间 DigiShow 主程序始终保持活动状态，信号正常收发 

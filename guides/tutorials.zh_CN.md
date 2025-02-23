@@ -2,7 +2,6 @@
 
 我们为你学习使用 DigiShow 提供了一个简明的教程，它几乎涵盖了所有关于该软件的常用和有特色的功能。你用可以用你的浏览器来打开查看各章节的PDF内容，也可以把它们下载到你电脑硬盘上以备随时查阅。
 
-( 另可下载本教程配套实例 https://github.com/robinz-labs/learning-digishow-examples ) 
 
 **1 基本概念** 
 - 了解 DigiShow 是什么，你可以用它来做什么
@@ -57,3 +56,6 @@
 - 学会在信号条的输入输出端使用表达式，实现更多互动逻辑
 - 学会在附加脚本文件中编写自定义函数，以供在表达式中调用
 - [阅读 PDF](http://121.43.184.98/digishow/tutorials/learning-digishow-cn/DigiShow%20%e6%95%99%e7%a8%8b8%20%e8%a1%a8%e8%be%be%e5%bc%8f%e5%92%8c%e8%84%9a%e6%9c%ac.pdf) 
+
+
+( 另可下载本教程配套实例 https://github.com/robinz-labs/learning-digishow-examples ) 

@@ -70,17 +70,29 @@ Start the specified preset (launch) item, the parameter _name_ can usually be 'l
  
 **utilities.runInShell(program, arguments)** 
 Run the program program in the operating system shell, and specify the various parameters of the program in the array arguments.
-For example: _utilities.runInShell('shutdown', ['-f', '-s', '-t', '0'])_ 
-It is equivalent to running _shutdown -f -s -t 0_ in the command line. 
+- For example: _utilities.runInShell('shutdown', ['-f', '-s', '-t', '0'])_ 
+- It is equivalent to running _shutdown -f -s -t 0_ in the command line. 
 
 **utilities.httpRequest(url)**
 Invoke an http request to the target _url_ with the GET method and obtain the content returned by the server. 
  
 **utilities.httpRequest(url, method, contents, timeout)** 
 Invoke an http request to the target _url_ with the GET / POST / PUT method and obtain the content returned by the server. 
-Parameter _method_ can be 'get', 'post' or 'put'. 
-Parameter _contents_ is the data content posted or put to the http server. 
-Parameter _timeout_ is in milliseconds. When the timeout of waiting for the http request reply is exceeded, the function will return an empty string. 
+- Parameter _method_ can be 'get', 'post' or 'put'. 
+- Parameter _contents_ is the data content posted or put to the http server. 
+- Parameter _timeout_ is in milliseconds. When the timeout of waiting for the http request reply is exceeded, the function will return an empty string. 
+ 
+**utilities.udpSend(ip, port, data)**
+Send a UDP message with text content 
+- Parameter _ip_ is the IP address of the destination host 
+- Parameter _port_ is the UDP port of the destination for receiving the message 
+- Parameter _data_ is a string describing the message content 
+ 
+**utilities.udpSend(ip, port, hex)**
+Send a UDP message with content described in hexadecimal 
+- Parameter _ip_ is the IP address of the destination host 
+- Parameter _port_ is the UDP port of the destination for receiving the message 
+- Parameter _hex_ is a hexadecimal string describing the message content, example: _"01 f3 e8 5b ff 00"_ 
  
 **utilities.delay(timeout)** 
 The program pauses for a specific time and then continues after the timeout. The parameter _timeout_ is in milliseconds. During the pause, the DigiShow main program remains active and signals are sent and received normally. 

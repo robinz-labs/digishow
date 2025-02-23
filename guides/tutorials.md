@@ -3,7 +3,6 @@
 We provide a concise tutorial for you to learn how to use DigiShow, which covers almost all the common and unique functions of the software. 
 You can use your web browser to open and view the PDF content of each chapter, or you can download them to your computer disk for easy reference at any time. 
 
-( You can also download the supporting examples of this tutorial https://github.com/robinz-labs/learning-digishow-examples ) 
 
 **1 Basic Concepts** 
 - Learn what DigiShow is and what you can do with it.
@@ -58,3 +57,6 @@ This section is intended for people with some JavaScript programming skills, but
 - Learn to use expressions at the input and output of the signal bar to implement more interactive logic
 - Learn to write user-defined functions in attached script files for calling in expressions
 - [Read PDF](http://121.43.184.98/digishow/tutorials/learning-digishow-en/Learning%20DigiShow%208%20Expressions%20and%20Scripts.pdf) 
+
+
+( You can also download the supporting examples of this tutorial https://github.com/robinz-labs/learning-digishow-examples ) 

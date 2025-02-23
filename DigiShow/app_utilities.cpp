@@ -199,6 +199,28 @@ QString AppUtilities::hostIpAddress()
     return "127.0.0.1";
 }
 
+bool AppUtilities::udpSend(const QString & ip, int port, const QByteArray & data)
+{
+    QUdpSocket udpSocket;
+    int len = udpSocket.writeDatagram(data, QHostAddress(ip), (quint16)port);
+    return (len>0);
+}
+
+bool AppUtilities::udpSendHex(const QString & ip, int port, const QByteArray &hexstr )
+{
+    QUdpSocket udpSocket;
+    int len = udpSocket.writeDatagram(QByteArray::fromHex(hexstr), QHostAddress(ip), (quint16)port);
+    return (len>0);
+}
+
+bool AppUtilities::isValidJson(const QString &str)
+{
+    if (str.isEmpty()) return false;
+    QJsonParseError parseError;
+    QJsonDocument::fromJson(str.toUtf8(), &parseError);
+    return (parseError.error == QJsonParseError::NoError);
+}
+
 QString AppUtilities::httpRequest(const QString & strUrl, const QString & strMethod, const QString & strBody, int timeout)
 {
     QString strReply;
@@ -206,14 +228,15 @@ QString AppUtilities::httpRequest(const QString & strUrl, const QString & strMet
     QNetworkRequest request(strUrl);
     QNetworkAccessManager* connection = new QNetworkAccessManager();
 
+    QString strCcontentType = isValidJson(strBody) ? "application/json" : "text/plain; charset=utf-8";
     QNetworkReply* reply;
     if (strMethod=="post") {
         // POST
-        request.setHeader(QNetworkRequest::ContentTypeHeader, "text/plain; charset=utf-8");
+        request.setHeader(QNetworkRequest::ContentTypeHeader, strCcontentType);
         reply = connection->post(request, strBody.toUtf8());
     } else if (strMethod=="put") {
         // PUT
-        request.setHeader(QNetworkRequest::ContentTypeHeader, "text/plain; charset=utf-8");
+        request.setHeader(QNetworkRequest::ContentTypeHeader, strCcontentType);
         reply = connection->put(request, strBody.toUtf8());
     } else {
         // GET

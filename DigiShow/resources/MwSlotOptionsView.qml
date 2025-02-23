@@ -93,6 +93,7 @@ Item {
 
             property bool isEditing: false
             property bool hasError: false
+            property alias isLargeEditor: rectInputExpression.visible
 
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 6
@@ -108,7 +109,18 @@ Item {
             visible: text !== "" || isEditing
 
             onTextEdited: isEditing = true
-            onEditingFinished: apply()
+            onReturnPressed: apply()
+
+            onIsLargeEditorChanged: {
+                if (isLargeEditor) {
+                    var isAlreadyEditing = isEditing
+                    editInputExpression.text = text
+                    editInputExpression.forceActiveFocus()
+                    isEditing = isAlreadyEditing;
+                } else {
+                    text = editInputExpression.text
+                }
+            }
 
             Image {
                 width: 16
@@ -131,6 +143,50 @@ Item {
                 text: "="
             }
 
+            Rectangle {
+                id: rectInputExpression
+
+                height: 142
+                anchors.bottom: parent.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                color: parent.box.color
+                radius: 8
+                border.width: 1
+                border.color: "#555555"
+                visible: false
+
+                ScrollView {
+                    anchors.fill: parent
+                    anchors.topMargin: 16
+                    anchors.leftMargin: 16
+                    anchors.bottomMargin: 28
+                    clip: true
+
+                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
+
+                    TextEdit {
+                        id: editInputExpression
+
+                        width: parent.parent.width - 16
+                        color: "#cccccc"
+                        selectionColor: "#666666"
+                        selectedTextColor: "#ffffff"
+                        selectByMouse: true
+                        font.pixelSize: 12
+                        font.bold: true
+                        wrapMode: TextEdit.WordWrap
+
+                        onTextChanged: textInputExpression.isEditing = true
+                    }
+                }
+            }
+
             CButton {
                 width: 18
                 height: 18
@@ -151,31 +207,46 @@ Item {
                 anchors.right: parent.right
                 anchors.rightMargin: 30
                 anchors.verticalCenter: parent.verticalCenter
+                icon.width: 12
+                icon.height: 12
+                icon.source: parent.isLargeEditor ? "qrc:///images/icon_edit_one_white.png" : "qrc:///images/icon_edit_multi_white.png"
+                box.radius: 9
+
+                onClicked: parent.isLargeEditor = !parent.isLargeEditor
+            }
+
+            CButton {
+                width: 18
+                height: 18
+                anchors.right: parent.right
+                anchors.rightMargin: 54
+                anchors.verticalCenter: parent.verticalCenter
                 icon.width: 16
                 icon.height: 16
                 icon.source: "qrc:///images/icon_close_white.png"
                 box.radius: 9
+                visible: !parent.isLargeEditor
 
                 onClicked: {
-                    textInputExpression.text = ""
-                    textInputExpression.apply()
+                    parent.text = ""
+                    parent.apply()
                 }
             }
 
             CButton {
-                width: 40
+                width: 50
                 height: 18
                 anchors.right: parent.right
-                anchors.rightMargin: 30
+                anchors.rightMargin: 54
                 anchors.verticalCenter: parent.verticalCenter
                 label.font.pixelSize: 10
                 label.font.bold: false
                 label.text: qsTr("OK")
                 box.radius: 9
                 colorNormal: Material.accent
-                visible: textInputExpression.isEditing
+                visible: parent.isEditing
 
-                onClicked: textInputExpression.apply()
+                onClicked: parent.apply()
             }
 
             function apply() {
@@ -183,12 +254,13 @@ Item {
                 isEdited = true
                 isModified = true
 
-                if (textInputExpression.text !== "") {
-                    setSlotOption("inputExpression", textInputExpression.text)
+                isLargeEditor = false
+                if (text !== "") {
+                    setSlotOption("inputExpression", text)
                 } else {
                     clearSlotOption("inputExpression")
                 }
-                textInputExpression.isEditing = false
+                isEditing = false
                 parent.forceActiveFocus()
             }
         }
@@ -243,6 +315,7 @@ Item {
 
             property bool isEditing: false
             property bool hasError: false
+            property alias isLargeEditor: rectOutputExpression.visible
 
             anchors.top: parent.top
             anchors.topMargin: 6
@@ -258,7 +331,18 @@ Item {
             visible: text !== "" || isEditing
 
             onTextEdited: isEditing = true
-            onEditingFinished: apply()
+            onReturnPressed: apply()
+
+            onIsLargeEditorChanged: {
+                if (isLargeEditor) {
+                    var isAlreadyEditing = isEditing
+                    editOutputExpression.text = text
+                    editOutputExpression.forceActiveFocus()
+                    isEditing = isAlreadyEditing;
+                } else {
+                    text = editOutputExpression.text
+                }
+            }
 
             Image {
                 width: 16
@@ -281,6 +365,49 @@ Item {
                 text: "="
             }
 
+            Rectangle {
+                id: rectOutputExpression
+
+                height: 142
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                color: parent.box.color
+                radius: 8
+                border.width: 1
+                border.color: "#555555"
+                visible: false
+
+                ScrollView {
+                    anchors.fill: parent
+                    anchors.topMargin: 28
+                    anchors.leftMargin: 16
+                    anchors.bottomMargin: 16
+                    clip: true
+
+                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
+                    TextEdit {
+                        id: editOutputExpression
+
+                        width: parent.parent.width - 16
+                        color: "#cccccc"
+                        selectionColor: "#666666"
+                        selectedTextColor: "#ffffff"
+                        selectByMouse: true
+                        font.pixelSize: 12
+                        font.bold: true
+                        wrapMode: TextEdit.WordWrap
+
+                        onTextChanged: textOutputExpression.isEditing = true
+                    }
+                }
+            }
+
             CButton {
                 width: 18
                 height: 18
@@ -301,31 +428,46 @@ Item {
                 anchors.right: parent.right
                 anchors.rightMargin: 30
                 anchors.verticalCenter: parent.verticalCenter
+                icon.width: 12
+                icon.height: 12
+                icon.source: parent.isLargeEditor ? "qrc:///images/icon_edit_one_white.png" : "qrc:///images/icon_edit_multi_white.png"
+                box.radius: 9
+
+                onClicked: parent.isLargeEditor = !parent.isLargeEditor
+            }
+
+            CButton {
+                width: 18
+                height: 18
+                anchors.right: parent.right
+                anchors.rightMargin: 54
+                anchors.verticalCenter: parent.verticalCenter
                 icon.width: 16
                 icon.height: 16
                 icon.source: "qrc:///images/icon_close_white.png"
                 box.radius: 9
+                visible: !parent.isLargeEditor
 
                 onClicked: {
-                    textOutputExpression.text = ""
-                    textOutputExpression.apply()
+                    parent.text = ""
+                    parent.apply()
                 }
             }
 
             CButton {
-                width: 40
+                width: 50
                 height: 18
                 anchors.right: parent.right
-                anchors.rightMargin: 30
+                anchors.rightMargin: 54
                 anchors.verticalCenter: parent.verticalCenter
                 label.font.pixelSize: 10
                 label.font.bold: false
                 label.text: qsTr("OK")
                 box.radius: 9
                 colorNormal: Material.accent
-                visible: textOutputExpression.isEditing
+                visible: parent.isEditing
 
-                onClicked: textOutputExpression.apply()
+                onClicked: parent.apply()
             }
 
             function apply() {
@@ -333,12 +475,13 @@ Item {
                 isEdited = true
                 isModified = true
 
-                if (textOutputExpression.text !== "") {
-                    setSlotOption("outputExpression", textOutputExpression.text)
+                isLargeEditor = false
+                if (text !== "") {
+                    setSlotOption("outputExpression", text)
                 } else {
                     clearSlotOption("outputExpression")
                 }
-                textOutputExpression.isEditing = false
+                isEditing = false
                 parent.forceActiveFocus()
             }
         }
@@ -1062,11 +1205,12 @@ Item {
             clearSlotOption("envelopeOutDelay")
         }
 
-        textInputExpression.text = slotInfo["inputExpression"]
+        textInputExpression.isLargeEditor = false
         textInputExpression.isEditing = false
-        textOutputExpression.text = slotInfo["outputExpression"]
+        textInputExpression.text = slotInfo["inputExpression"]
+        textOutputExpression.isLargeEditor = false
         textOutputExpression.isEditing = false
-
+        textOutputExpression.text = slotInfo["outputExpression"]
     }
 
     function refreshEnvelopeForAnalog() {
@@ -1204,7 +1348,7 @@ Item {
         btn = messageBox.showAndWait(
             qsTr("Write a JavaScript expression to dynamically change the signal value, for example:") + "\r\n\r\n= " + exampleCode,
             qsTr("Try It"), qsTr("Reference ..."), qsTr("Next"))
-        if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
+        if (btn == 1) { textExpression.isLargeEditor = false; textExpression.text = exampleCode; textExpression.isEditing = true; }
         if (btn == 2) expressionReference()
         if (btn <= 2) return
 
@@ -1212,7 +1356,7 @@ Item {
         btn = messageBox.showAndWait(
             qsTr("The expression can reference the input or output value of any other signal link, for example:") + "\r\n\r\n= " + exampleCode,
             qsTr("Try It"), qsTr("Reference ..."), qsTr("Next"))
-        if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
+        if (btn == 1) { textExpression.isLargeEditor = false; textExpression.text = exampleCode; textExpression.isEditing = true; }
         if (btn == 2) expressionReference()
         if (btn <= 2) return
 
@@ -1220,7 +1364,7 @@ Item {
         btn = messageBox.showAndWait(
             qsTr("The expression can contain common JavaScript statements and functions, for example:") + "\r\n\r\n= " + exampleCode,
             qsTr("Try It"), qsTr("Reference ..."), qsTr("Next"))
-        if (btn == 1) { textExpression.text = exampleCode; textExpression.isEditing = true; }
+        if (btn == 1) { textExpression.isLargeEditor = false; textExpression.text = exampleCode; textExpression.isEditing = true; }
         if (btn == 2) expressionReference()
         if (btn <= 2) return
 

@@ -14,6 +14,7 @@ Item {
 
     signal editingFinished()
     signal textEdited()
+    signal returnPressed()
 
     width: 150
     height: 28
@@ -58,6 +59,12 @@ Item {
 
         onEditingFinished: inputBox.editingFinished() // emit signal
         onTextEdited: inputBox.textEdited() // emit signal
+
+        Keys.onPressed: {
+            if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                inputBox.returnPressed() // emit signal
+            }
+        }
     }
 
 }
