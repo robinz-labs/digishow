@@ -42,7 +42,18 @@ AppUtilities::AppUtilities(QObject *parent) : QObject(parent)
 
 AppUtilities::~AppUtilities()
 {
-
+    foreach (QSerialPort *serial, m_comConnections) {
+        if (serial != nullptr) {
+            serial->close();
+            delete serial;
+        }
+    }
+    foreach (QTcpSocket *socket, m_tcpConnections) {
+        if (socket != nullptr) {
+            socket->close();
+            delete socket;
+        }
+    }
 }
 
 QString AppUtilities::loadStringFromFile(const QString & filepath)
@@ -208,9 +219,131 @@ bool AppUtilities::udpSend(const QString & ip, int port, const QByteArray & data
 
 bool AppUtilities::udpSendHex(const QString & ip, int port, const QByteArray &hexstr )
 {
-    QUdpSocket udpSocket;
-    int len = udpSocket.writeDatagram(QByteArray::fromHex(hexstr), QHostAddress(ip), (quint16)port);
-    return (len>0);
+    return udpSend(ip, port, QByteArray::fromHex(hexstr));
+}
+
+int AppUtilities::tcpOpen(const QString & ip, int port)
+{
+    QTcpSocket *socket = new QTcpSocket();
+
+    socket->connectToHost(QHostAddress(ip), port);
+    if (!socket->waitForConnected(5000)) {
+        socket->close();
+        socket->deleteLater();
+        return -1;
+    }
+
+    m_tcpConnections.append(socket);
+
+    return m_tcpConnections.length()-1;
+}
+
+bool AppUtilities::tcpSend(int index, const QByteArray & data)
+{
+    if (index < 0 || index > m_tcpConnections.length()-1) return false;
+
+    QTcpSocket *socket = m_tcpConnections[index];
+    if (socket == nullptr) return false;
+
+    socket->write(data);
+    socket->flush();
+
+    //qDebug() << "tcpSend" << data;
+    return true;
+}
+
+bool AppUtilities::tcpSendHex(int index, const QByteArray & hexstr)
+{
+    return tcpSend(index, QByteArray::fromHex(hexstr));
+}
+
+void AppUtilities::tcpClose(int index)
+{
+    if (index < 0 || index > m_tcpConnections.length()-1) return;
+
+    QTcpSocket *socket = m_tcpConnections[index];
+    if (socket == nullptr) return;
+
+    socket->close();
+    delete socket;
+    m_tcpConnections[index] = nullptr;
+}
+
+
+int AppUtilities::comOpen(const QString & port, int baud, const QString & setting)
+{
+    QSerialPort *serial = new QSerialPort();
+
+    serial->setPortName(port);
+    if (!serial->open(QIODevice::ReadWrite)) return -1;
+
+    serial->setBaudRate(baud);
+    serial->setFlowControl(QSerialPort::NoFlowControl);
+
+    if (setting == "8N1") {
+        serial->setDataBits(QSerialPort::Data8);
+        serial->setParity(QSerialPort::NoParity);
+        serial->setStopBits(QSerialPort::OneStop);
+    } else if (setting == "8E1") {
+        serial->setDataBits(QSerialPort::Data8);
+        serial->setParity(QSerialPort::EvenParity);
+        serial->setStopBits(QSerialPort::OneStop);
+    } else if (setting == "8O1") {
+        serial->setDataBits(QSerialPort::Data8);
+        serial->setParity(QSerialPort::OddParity);
+        serial->setStopBits(QSerialPort::OneStop);
+    } else if (setting == "7E1") {
+        serial->setDataBits(QSerialPort::Data7);
+        serial->setParity(QSerialPort::EvenParity);
+        serial->setStopBits(QSerialPort::OneStop);
+    } else if (setting == "7O1") {
+        serial->setDataBits(QSerialPort::Data7);
+        serial->setParity(QSerialPort::OddParity);
+        serial->setStopBits(QSerialPort::OneStop);
+    } else if (setting == "8N2") {
+        serial->setDataBits(QSerialPort::Data8);
+        serial->setParity(QSerialPort::NoParity);
+        serial->setStopBits(QSerialPort::TwoStop);
+    } else { // default is 8N1
+        serial->setDataBits(QSerialPort::Data8);
+        serial->setParity(QSerialPort::NoParity);
+        serial->setStopBits(QSerialPort::OneStop);
+    }
+
+    m_comConnections.append(serial);
+
+    return m_comConnections.length()-1;
+}
+
+bool AppUtilities::comSend(int index, const QByteArray & data)
+{
+    if (index < 0 || index > m_comConnections.length()-1) return false;
+
+    QSerialPort *serial = m_comConnections[index];
+    if (serial == nullptr) return false;
+
+    serial->write(data);
+    serial->flush();
+
+    //qDebug() << "comSend" << data;
+    return true;
+}
+
+bool AppUtilities::comSendHex(int index, const QByteArray & hexstr)
+{
+    return comSend(index, QByteArray::fromHex(hexstr));
+}
+
+void AppUtilities::comClose(int index)
+{
+    if (index < 0 || index > m_comConnections.length()-1) return;
+
+    QSerialPort *serial = m_comConnections[index];
+    if (serial == nullptr) return;
+
+    serial->close();
+    delete serial;
+    m_comConnections[index] = nullptr;
 }
 
 bool AppUtilities::isValidJson(const QString &str)

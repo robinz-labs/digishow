@@ -22,6 +22,8 @@
 #include <QVariant>
 #include <QElapsedTimer>
 #include <QWindow>
+#include <QSerialPort>
+#include <QTcpSocket>
 
 class AppUtilities : public QObject
 {
@@ -49,6 +51,16 @@ public:
     Q_INVOKABLE static QString hostIpAddress();
     Q_INVOKABLE static bool udpSend(const QString & ip, int port, const QByteArray & data);
     Q_INVOKABLE static bool udpSendHex(const QString & ip, int port, const QByteArray & hexstr);
+
+    Q_INVOKABLE int  tcpOpen(const QString & ip, int port);
+    Q_INVOKABLE bool tcpSend(int index, const QByteArray & data);
+    Q_INVOKABLE bool tcpSendHex(int index, const QByteArray & hexstr);
+    Q_INVOKABLE void tcpClose(int index);
+
+    Q_INVOKABLE int  comOpen(const QString & port, int baud = 9600, const QString & setting = "8N1");
+    Q_INVOKABLE bool comSend(int index, const QByteArray & data);
+    Q_INVOKABLE bool comSendHex(int index, const QByteArray & hexstr);
+    Q_INVOKABLE void comClose(int index);
 
     Q_INVOKABLE static bool isValidJson(const QString &str);
     Q_INVOKABLE static QString httpRequest(const QString & strUrl, const QString & strMethod = "get", const QString & strBody = "", int timeout = 3000);
@@ -100,10 +112,9 @@ public:
 #endif
     }
 
-signals:
-
-public slots:
-
+private:
+    QList<QSerialPort*> m_comConnections;
+    QList<QTcpSocket*>  m_tcpConnections;
 };
 
 #endif // APP_UTILITIES_H

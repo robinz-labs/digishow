@@ -1,0 +1,15 @@
+DigishowScriptable {
+
+    property int device: -1;
+
+    function onStart() {
+
+	device = utilities.tcpOpen('127.0.0.1', 12345)
+	toast(device != -1 ? "Device Connected" : "Device Not Connected");
+    }
+
+    function onStop() {
+
+	utilities.tcpClose(device);
+    }
+}

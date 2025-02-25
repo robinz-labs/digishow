@@ -88,12 +88,49 @@ Send a UDP message with text content
 - Parameter _port_ is the UDP port of the destination for receiving the message 
 - Parameter _data_ is a string describing the message content 
  
-**utilities.udpSend(ip, port, hex)**
+**utilities.udpSendHex(ip, port, hex)**
 Send a UDP message with content described in hexadecimal 
 - Parameter _ip_ is the IP address of the destination host 
 - Parameter _port_ is the UDP port of the destination for receiving the message 
 - Parameter _hex_ is a hexadecimal string describing the message content, example: _"01 f3 e8 5b ff 00"_ 
  
+**utilities.tcpOpen(ip, port)**
+Establish a connection with a specific TCP server. Return the index of the TCP connection if succeeds, or return -1 if fails. 
+- Parameter _ip_ is the IP address of the destination server 
+- Parameter _port_ is the TCP port of the destination server 
+
+**utilities.tcpSend(index, data)**
+Send TCP data with text content 
+- Parameter _index_ is the index of the TCP connection 
+- Parameter _data_ is a string describing the content of the message 
+
+**utilities.tcpSendHex(index, hex)**
+Send TCP data with hexadecimal description 
+- Parameter _index_ is the index of the TCP connection 
+- Parameter _hex_ is a hexadecimal string describing the data content, example: "01 f3 e8 5b ff 00" 
+
+**utilities.tcpClose(index)**
+Close the TCP connection at _index_ 
+
+**utilities.comOpen(port, baud, setting)**
+Open a specific serial communication port. Return the index of the serial connection if succeeds, or return -1 if fails. 
+- Parameter _port_ is the name of the serial communication port, such as: COM3 (on Windows), cu.usbserial (on macOS) or ttyUSB0 (on Linux) 
+- Parameter _baud_ is the serial communication baud rate, such as: 9600, 115200, etc. 
+- Parameter _setting_ is the data bit, parity and stop bit setting of the serial communication. This parameter is composed of three characters, such as: "8N1", "8E1", "8O1", "7N1", "7E1", "7O1", "8N2" 
+
+**utilities.comSend(index, data)**
+Send serial communication data with text content 
+- Parameter _index_ is the index number of the serial connection 
+- Parameter _data_ is a string describing the content of the message 
+
+**utilities.comSendHex(index, hex)**
+Send serial communication data with hexadecimal description 
+- Parameter _index_ is the index number of the serial connection 
+- Parameter _hex_ is a hexadecimal string describing the data content, such as: "01 f3 e8 5b ff 00" 
+
+**utilities.comClose(index)**
+Close the serial connection at _index_ 
+
 **utilities.delay(timeout)** 
 The program pauses for a specific time and then continues after the timeout. The parameter _timeout_ is in milliseconds. During the pause, the DigiShow main program remains active and signals are sent and received normally. 
  

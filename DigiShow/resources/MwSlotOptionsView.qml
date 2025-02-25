@@ -156,24 +156,25 @@ Item {
                 border.color: "#555555"
                 visible: false
 
+                MouseArea {
+                    anchors.fill: parent
+                }
+
                 ScrollView {
                     anchors.fill: parent
-                    anchors.topMargin: 16
+                    anchors.topMargin: 4
                     anchors.leftMargin: 16
-                    anchors.bottomMargin: 28
+                    anchors.bottomMargin: 4
+                    anchors.rightMargin: 110
                     clip: true
-
-                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
 
                     background: Rectangle {
                         color: "transparent"
                     }
 
-
-                    TextEdit {
+                    TextArea {
                         id: editInputExpression
 
-                        width: parent.parent.width - 16
                         color: "#cccccc"
                         selectionColor: "#666666"
                         selectedTextColor: "#ffffff"
@@ -181,6 +182,7 @@ Item {
                         font.pixelSize: 12
                         font.bold: true
                         wrapMode: TextEdit.WordWrap
+                        tabStopDistance: 10
 
                         onTextChanged: textInputExpression.isEditing = true
                     }
@@ -229,7 +231,7 @@ Item {
 
                 onClicked: {
                     parent.text = ""
-                    parent.apply()
+                    parent.isEditing = true
                 }
             }
 
@@ -378,23 +380,25 @@ Item {
                 border.color: "#555555"
                 visible: false
 
+                MouseArea {
+                    anchors.fill: parent
+                }
+
                 ScrollView {
                     anchors.fill: parent
-                    anchors.topMargin: 28
+                    anchors.topMargin: 4
                     anchors.leftMargin: 16
-                    anchors.bottomMargin: 16
+                    anchors.bottomMargin: 4
+                    anchors.rightMargin: 110
                     clip: true
-
-                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
 
                     background: Rectangle {
                         color: "transparent"
                     }
 
-                    TextEdit {
+                    TextArea {
                         id: editOutputExpression
 
-                        width: parent.parent.width - 16
                         color: "#cccccc"
                         selectionColor: "#666666"
                         selectedTextColor: "#ffffff"
@@ -402,6 +406,7 @@ Item {
                         font.pixelSize: 12
                         font.bold: true
                         wrapMode: TextEdit.WordWrap
+                        tabStopDistance: 10
 
                         onTextChanged: textOutputExpression.isEditing = true
                     }
@@ -450,7 +455,7 @@ Item {
 
                 onClicked: {
                     parent.text = ""
-                    parent.apply()
+                    parent.isEditing = true
                 }
             }
 

@@ -1,0 +1,128 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.6"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat1",
+                    "type": "beat"
+                },
+                {
+                    "channel": 5,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat2",
+                    "type": "beat"
+                },
+                {
+                    "channel": 13,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat3",
+                    "type": "beat"
+                },
+                {
+                    "channel": 9,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat4",
+                    "type": "beat"
+                }
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "binary2",
+                    "type": "binary"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "binary1",
+                    "type": "binary"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "binary3",
+                    "type": "binary"
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "name": "binary4",
+                    "type": "binary"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 60,
+        "link": false,
+        "quantum": 4,
+        "run": true,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/binary2",
+            "linked": true,
+            "outputExpression": "if (value) {\n  utilities.comSend(\n    device, \n    '$J=G21G91Z15F50000\\r\\n' );\n}\n\nvalue",
+            "source": "metronome1/beat1"
+        },
+        {
+            "destination": "pipe1/binary1",
+            "linked": true,
+            "outputExpression": "if (value) {\n  utilities.comSend(\n    device, \n    '$J=G21G91X20Y20F2000\\r\\n' );\n}\n\nvalue",
+            "source": "metronome1/beat2"
+        },
+        {
+            "destination": "pipe1/binary3",
+            "linked": true,
+            "outputExpression": "if (value) {\n  utilities.comSend(\n   \tdevice, \n   \t'$J=G21G91Z20F2000\\r\\n');\n}\n\nvalue",
+            "source": "metronome1/beat4"
+        },
+        {
+            "destination": "pipe1/binary4",
+            "linked": true,
+            "outputExpression": "if (value) {\n  utilities.comSend(\n    device,  \n    '$J=G21G91X-20Y-20F2000\\r\\n' );\n}\n\nvalue",
+            "source": "metronome1/beat3"
+        }
+    ]
+}
