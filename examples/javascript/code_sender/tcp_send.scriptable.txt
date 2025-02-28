@@ -4,12 +4,12 @@ DigishowScriptable {
 
     function onStart() {
 
-	device = utilities.tcpOpen('127.0.0.1', 12345)
-	toast(device != -1 ? "Device Connected" : "Device Not Connected");
+        device = utilities.tcpOpen('127.0.0.1', 12345)
+        alert(device != -1 ? "Device Connected" : "Device Not Connected !\r\nEdit connection settings in the attached script file.");
     }
 
     function onStop() {
 
-	utilities.tcpClose(device);
+        utilities.tcpClose(device);
     }
 }

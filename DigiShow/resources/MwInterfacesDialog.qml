@@ -259,7 +259,8 @@ Dialog {
                 anchors.topMargin: 40
                 wrapMode: Label.Wrap
                 lineHeight: 1.3
-                text: qsTr("Arduino is an open source electronic controller used for making interactive installations. With DigiShow, you can easily and quickly control sensors, motors, LEDs via an Arduino connected to your computer's USB port.")
+                text: qsTr("Arduino is an open source electronic controller used for making interactive installations. With DigiShow, you can easily and quickly control sensors, motors, LEDs via an Arduino connected to your computer's USB port.") + " ( " +
+                      qsTr("A specific sketch named DigiShow RIOC also needs to be uploaded to the Arduino.") + " )"
 
                 CButton {
                     width: 130
@@ -267,16 +268,16 @@ Dialog {
                     anchors.bottom: parent.top
                     anchors.bottomMargin: 10
                     anchors.right: parent.right
-                    label.text: qsTr("How to work ?")
+                    label.text: qsTr("DigiShow RIOC ?")
                     label.font.pixelSize: 11
-                    label.font.bold: false
+                    label.font.bold: true
                     box.radius: 12
                     colorNormal: Material.accent
 
                     onClicked: {
                         if (messageBox.showAndWait(
-                                qsTr("In order for DigiShow to work with your Arduino, \r\nthe RIOC sketch must first be uploaded to the Arduino."),
-                                qsTr("Get RIOC Sketch"), qsTr("Close")) === 1) {
+                                qsTr("In order for DigiShow to work with your Arduino, please search and install DigiShow RIOC in the Library Manager in your Arduino IDE, and open example DigiShow RIOC -> RiocArduino to upload."),
+                                qsTr("More Info ..."), qsTr("Close")) === 1) {
                             Qt.openUrlExternally("https://github.com/robinz-labs/digishow-rioc")
                         }
                     }

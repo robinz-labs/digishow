@@ -139,7 +139,12 @@
   ! improved arduino rioc to support user channels etc.
   ! bug fixes and improvements
 
- */
+  v1.6.1 20250228
+  beta release
+  + sending code over udp/tcp/com by scripts
+  + multi-line expression editor
+
+*/
 
 #ifndef DIGISHOW_H
 #define DIGISHOW_H

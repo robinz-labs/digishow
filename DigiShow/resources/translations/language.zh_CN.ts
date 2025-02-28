@@ -352,6 +352,14 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
     </message>
 </context>
 <context>
+    <name>DigishowExperimental</name>
+    <message>
+        <location filename="../../digishow_experimental/digishow_experimental.cpp" line="149"/>
+        <source>You are using software with experimental features.</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>DigishowInterface</name>
     <message>
         <location filename="../../digishow_interface.cpp" line="286"/>
@@ -763,6 +771,11 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation> ( 停止工作中 )</translation>
     </message>
     <message>
+        <location filename="../MainWindow.qml" line="333"/>
+        <source>https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md</source>
+        <translation>http://digishow.cn</translation>
+    </message>
+    <message>
         <location filename="../MainWindow.qml" line="825"/>
         <location filename="../MainWindow.qml" line="838"/>
         <location filename="../MainWindow.qml" line="884"/>
@@ -824,11 +837,6 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <location filename="../MainWindow.qml" line="332"/>
         <source>Tutorials ...</source>
         <translation>使用教程 ...</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.qml" line="333"/>
-        <source>tutorials.md</source>
-        <translation>tutorials.zh_CN.md</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="337"/>
@@ -1002,7 +1010,7 @@ either express or implied.</source>
     </message>
     <message>
         <location filename="../MwAboutDialog.qml" line="41"/>
-        <source>© 2020-2024 Robin Zhang &amp; Labs</source>
+        <source>© 2020-2025 Robin Zhang &amp; Labs</source>
         <translation></translation>
     </message>
     <message>
@@ -2874,59 +2882,52 @@ Connection: %2</source>
         <translation>Arduino IO 控制</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="278"/>
-        <source>In order for DigiShow to work with your Arduino, <byte value="xd"/>
-the RIOC sketch must first be uploaded to the Arduino.</source>
-        <translation>为了使 DigiShow 能与你的 Arduino 配合使用，
-请务必首先将 RIOC 程序写入到 Arduino 上。</translation>
-    </message>
-    <message>
         <location filename="../MwInterfacesDialog.qml" line="279"/>
-        <source>Get RIOC Sketch</source>
-        <translation>获取 RIOC 程序</translation>
+        <source>In order for DigiShow to work with your Arduino, please search and install DigiShow RIOC in the Library Manager in your Arduino IDE, and open example DigiShow RIOC -&gt; RiocArduino to upload.</source>
+        <translation>为了能让 DigiShow 与 Arduino 联机工作，请在 Arduino IDE 的库管理器中搜索并安装 DigiShow RIOC，然后打开示例 DigiShow RIOC -&gt; RiocArduino 进行上传。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="310"/>
+        <location filename="../MwInterfacesDialog.qml" line="311"/>
         <source>Philips Hue Smart Lights</source>
         <translation>飞利浦 Hue 智能灯光</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="323"/>
+        <location filename="../MwInterfacesDialog.qml" line="324"/>
         <source>DigiShow is able to connect Philips Hue smart home bridge and control lights wirelessly.</source>
         <translation>DigiShow 可以联接飞利浦 Hue 智能家居桥接器，以便通过无线方式控制你的灯光。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="349"/>
+        <location filename="../MwInterfacesDialog.qml" line="350"/>
         <source>Audio Input Interfaces</source>
         <translation>音频输入接口</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="427"/>
+        <location filename="../MwInterfacesDialog.qml" line="428"/>
         <source>Virtual Pipes</source>
         <translation>虚拟管道</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="467"/>
+        <location filename="../MwInterfacesDialog.qml" line="468"/>
         <source>Audio Player</source>
         <translation>音频播放器</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="506"/>
+        <location filename="../MwInterfacesDialog.qml" line="507"/>
         <source>MIDI Player</source>
         <translation>MIDI 播放器</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="604"/>
+        <location filename="../MwInterfacesDialog.qml" line="605"/>
         <source>Audio</source>
         <translation>音频</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="620"/>
+        <location filename="../MwInterfacesDialog.qml" line="621"/>
         <source>Pipe</source>
         <translation>管道</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="388"/>
+        <location filename="../MwInterfacesDialog.qml" line="389"/>
         <source>Screen Presentations</source>
         <translation>屏幕展示</translation>
     </message>
@@ -2941,77 +2942,87 @@ the RIOC sketch must first be uploaded to the Arduino.</source>
         <translation>Arduino 是一款开源电子控制器，你可以用它来制作各种交互装置。借助 DigiShow 可以很轻松快捷地通过连接在电脑 USB 端口上的 Arduino 来控制传感器、电机或 LED 等。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="270"/>
-        <source>How to work ?</source>
-        <translation>如何工作 ?</translation>
+        <location filename="../MwInterfacesDialog.qml" line="263"/>
+        <source>A specific sketch named DigiShow RIOC also needs to be uploaded to the Arduino.</source>
+        <translation>为此另需将一个名为 DigiShow RIOC 的特定程序上传到 Arduino。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="279"/>
+        <location filename="../MwInterfacesDialog.qml" line="271"/>
+        <source>DigiShow RIOC ?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfacesDialog.qml" line="280"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="361"/>
+        <location filename="../MwInterfacesDialog.qml" line="280"/>
+        <source>More Info ...</source>
+        <translation>更多信息 ...</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfacesDialog.qml" line="362"/>
         <source>DigiShow is able to measure the audio input level from microphone, instrument or line input.</source>
         <translation>DigiShow 可以监测来自麦克风、乐器或线路输入的音频输入电平变化。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="400"/>
+        <location filename="../MwInterfacesDialog.qml" line="401"/>
         <source>DigiShow enables to accept control signals for presenting videos, pictures and web contents on multiple screens.</source>
         <translation>DigiShow 可以通过接受信号，来在多屏幕中控制视频、图片和Web网页内容的播放展示。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="440"/>
+        <location filename="../MwInterfacesDialog.qml" line="441"/>
         <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between separate links. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.</source>
         <translation>DigiShow 可以通过建立虚拟管道，来在各个独立的信号链接间传输和复制信号。当需要在不同电脑上运行的多个 DigiShow LINK 应用程序之间传输信号时，可以使用远程管道。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="480"/>
+        <location filename="../MwInterfacesDialog.qml" line="481"/>
         <source>DigiShow enables to accept control signals for playing audio clips.</source>
         <translation>DigiShow 可以通过接受信号来播放音频素材。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="519"/>
+        <location filename="../MwInterfacesDialog.qml" line="520"/>
         <source>DigiShow enables to accept control signals for playing MIDI clips.</source>
         <translation>DigiShow 可以通过接受信号来播放 MIDI 素材。</translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="548"/>
+        <location filename="../MwInterfacesDialog.qml" line="549"/>
         <source>MIDI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="556"/>
+        <location filename="../MwInterfacesDialog.qml" line="557"/>
         <source>DMX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="564"/>
+        <location filename="../MwInterfacesDialog.qml" line="565"/>
         <source>OSC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="572"/>
+        <location filename="../MwInterfacesDialog.qml" line="573"/>
         <source>ArtNet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="580"/>
+        <location filename="../MwInterfacesDialog.qml" line="581"/>
         <source>Modbus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="588"/>
+        <location filename="../MwInterfacesDialog.qml" line="589"/>
         <source>Arduino</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="596"/>
+        <location filename="../MwInterfacesDialog.qml" line="597"/>
         <source>Hue</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfacesDialog.qml" line="612"/>
+        <location filename="../MwInterfacesDialog.qml" line="613"/>
         <source>Screen</source>
         <translation>屏幕</translation>
     </message>
@@ -3349,179 +3360,179 @@ the RIOC sketch must first be uploaded to the Arduino.</source>
         <translation>请先选择信号的来源和目标</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="409"/>
+        <location filename="../MwSlotOptionsView.qml" line="557"/>
         <source>Revert</source>
         <translation>恢复</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="415"/>
+        <location filename="../MwSlotOptionsView.qml" line="563"/>
         <source>Copy</source>
         <translation>拷贝</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="421"/>
+        <location filename="../MwSlotOptionsView.qml" line="569"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="355"/>
+        <location filename="../MwSlotOptionsView.qml" line="503"/>
         <source>Invert Input Signal</source>
         <translation>反转输入信号量</translation>
     </message>
     <message>
         <location filename="../MwSlotOptionsView.qml" line="64"/>
-        <location filename="../MwSlotOptionsView.qml" line="214"/>
+        <location filename="../MwSlotOptionsView.qml" line="288"/>
         <source>Add JS Expression</source>
         <translation>添加 JS 表达式</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="142"/>
-        <location filename="../MwSlotOptionsView.qml" line="292"/>
+        <location filename="../MwSlotOptionsView.qml" line="200"/>
+        <location filename="../MwSlotOptionsView.qml" line="424"/>
         <source>?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1213"/>
+        <location filename="../MwSlotOptionsView.qml" line="1362"/>
         <source>The expression can reference the input or output value of any other signal link, for example:</source>
         <translation>表达式可以引用任何其他信号链接的输入或输出值，例如：</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1221"/>
+        <location filename="../MwSlotOptionsView.qml" line="1370"/>
         <source>The expression can contain common JavaScript statements and functions, for example:</source>
         <translation>表达式可以包含常见的 JavaScript 语句和函数，例如：</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="173"/>
-        <location filename="../MwSlotOptionsView.qml" line="323"/>
+        <location filename="../MwSlotOptionsView.qml" line="246"/>
+        <location filename="../MwSlotOptionsView.qml" line="470"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="368"/>
+        <location filename="../MwSlotOptionsView.qml" line="516"/>
         <source>Invert Output Signal</source>
         <translation>反转输出信号量</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="451"/>
+        <location filename="../MwSlotOptionsView.qml" line="599"/>
         <source>Zero Output While Reaching Lower</source>
         <translation>当达到输出下限时输出零值</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="483"/>
+        <location filename="../MwSlotOptionsView.qml" line="631"/>
         <source>Output Smoothing</source>
         <translation>平滑输出信号量</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="511"/>
+        <location filename="../MwSlotOptionsView.qml" line="659"/>
         <source>Input-output Mapping</source>
         <translation>输入输出信号量映射</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="559"/>
+        <location filename="../MwSlotOptionsView.qml" line="707"/>
         <source>Input Range</source>
         <translation>输入信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="601"/>
+        <location filename="../MwSlotOptionsView.qml" line="749"/>
         <source>Output Range</source>
         <translation>输出信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="622"/>
+        <location filename="../MwSlotOptionsView.qml" line="770"/>
         <source>Output Envelope</source>
         <translation>输出信号包络参数</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="686"/>
+        <location filename="../MwSlotOptionsView.qml" line="834"/>
         <source>On Delay</source>
         <translation>On 延时</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="835"/>
+        <location filename="../MwSlotOptionsView.qml" line="983"/>
         <source>Off Delay</source>
         <translation>Off 延时</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="714"/>
+        <location filename="../MwSlotOptionsView.qml" line="862"/>
         <source>Attack</source>
         <translation>Attack 渐入</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1199"/>
+        <location filename="../MwSlotOptionsView.qml" line="1348"/>
         <source>expression.md</source>
         <translation>expression.zh_CN.md</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1205"/>
+        <location filename="../MwSlotOptionsView.qml" line="1354"/>
         <source>Write a JavaScript expression to dynamically change the signal value, for example:</source>
         <translation>可以编写一个 JavaScript 表达式来动态改变信号的数值，例如：</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1206"/>
-        <location filename="../MwSlotOptionsView.qml" line="1214"/>
-        <location filename="../MwSlotOptionsView.qml" line="1222"/>
+        <location filename="../MwSlotOptionsView.qml" line="1355"/>
+        <location filename="../MwSlotOptionsView.qml" line="1363"/>
+        <location filename="../MwSlotOptionsView.qml" line="1371"/>
         <source>Try It</source>
         <translation>试一下</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1206"/>
-        <location filename="../MwSlotOptionsView.qml" line="1214"/>
-        <location filename="../MwSlotOptionsView.qml" line="1222"/>
+        <location filename="../MwSlotOptionsView.qml" line="1355"/>
+        <location filename="../MwSlotOptionsView.qml" line="1363"/>
+        <location filename="../MwSlotOptionsView.qml" line="1371"/>
         <source>Next</source>
         <translation>继续学习</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1206"/>
-        <location filename="../MwSlotOptionsView.qml" line="1214"/>
-        <location filename="../MwSlotOptionsView.qml" line="1222"/>
-        <location filename="../MwSlotOptionsView.qml" line="1230"/>
-        <location filename="../MwSlotOptionsView.qml" line="1237"/>
+        <location filename="../MwSlotOptionsView.qml" line="1355"/>
+        <location filename="../MwSlotOptionsView.qml" line="1363"/>
+        <location filename="../MwSlotOptionsView.qml" line="1371"/>
+        <location filename="../MwSlotOptionsView.qml" line="1379"/>
+        <location filename="../MwSlotOptionsView.qml" line="1386"/>
         <source>Reference ...</source>
         <translation>参考资料 ...</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1229"/>
+        <location filename="../MwSlotOptionsView.qml" line="1378"/>
         <source>The expression can also call user-defined functions, now you can create your functions in the attached script file.</source>
         <translation>表达式还可以调用用户自定义的函数，现在你可以在附加的脚本文件中创建你自己的函数。</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1230"/>
+        <location filename="../MwSlotOptionsView.qml" line="1379"/>
         <source>Show Script</source>
         <translation>查看脚本</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1230"/>
-        <location filename="../MwSlotOptionsView.qml" line="1237"/>
+        <location filename="../MwSlotOptionsView.qml" line="1379"/>
+        <location filename="../MwSlotOptionsView.qml" line="1386"/>
         <source>Done</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1236"/>
+        <location filename="../MwSlotOptionsView.qml" line="1385"/>
         <source>The expression can also call user-defined functions, now you can create an attached script file contains your functions.</source>
         <translation>表达式还可以调用用户自定义的函数，现在你就可以创建一个附加的脚本文件来存放你自己的函数。</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1237"/>
+        <location filename="../MwSlotOptionsView.qml" line="1386"/>
         <source>Create Script</source>
         <translation>创建脚本</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="737"/>
+        <location filename="../MwSlotOptionsView.qml" line="885"/>
         <source>Hold</source>
         <translation>Hold 保持</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="760"/>
+        <location filename="../MwSlotOptionsView.qml" line="908"/>
         <source>Decay</source>
         <translation>Decay 衰减</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="784"/>
+        <location filename="../MwSlotOptionsView.qml" line="932"/>
         <source>Sustain</source>
         <translation>Sustain 延持</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="807"/>
+        <location filename="../MwSlotOptionsView.qml" line="955"/>
         <source>Release</source>
         <translation>Release 渐出</translation>
     </message>

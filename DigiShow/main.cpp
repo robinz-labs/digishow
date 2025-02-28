@@ -174,6 +174,15 @@ int main(int argc, char *argv[])
 
     // set translation
     QString appLanguage = appOptions.value("language").toString();
+
+    if (appLanguage.isEmpty()) {
+        QLocale locale = QLocale::system();
+        if (locale.uiLanguages().length() > 0 &&
+            locale.uiLanguages()[0].startsWith("zh") &&
+            locale.uiLanguages()[0].endsWith("CN"))
+            appLanguage = "zh_CN";
+    }
+
     QTranslator qtTranslator;
     if (!appLanguage.isEmpty())
         if (qtTranslator.load(":translations/language." + appLanguage + ".qm"))
@@ -191,6 +200,8 @@ int main(int argc, char *argv[])
 #endif
 #ifdef Q_OS_MAC
             QString fontName = fontAvailable({"Yuanti SC"});
+
+
             if (!fontName.isEmpty()) appFontName = fontName;
 #endif
         } else if (appLanguage == "jp") {
