@@ -288,10 +288,15 @@ Item {
                             remoteWeb.setPort(port)
                             remoteWeb.setRunning(true)
 
-                            var url = "http://" + utilities.hostIpAddress() + ":" + remoteWeb.port
-                            Qt.openUrlExternally(url)
-
                             window.isModified = true
+
+                            var url = "http://" + utilities.hostIpAddress() + ":" + remoteWeb.port
+                            var r = messageBox.showQrAndWait(
+                                        url,
+                                        qsTr("Please scan the QR code with your smartphone:"),
+                                        qsTr("Preview in Web"), qsTr("Close"))
+
+                            if (r===1) Qt.openUrlExternally(url)
                         }
                     }
 

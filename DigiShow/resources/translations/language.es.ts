@@ -4,7 +4,7 @@
 <context>
     <name>DgsRiocInterface</name>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="209"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="211"/>
         <source>DigiShow doesn&apos;t seem to work with your Arduino yet, <byte value="xd"/>
 make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation>Parece que DigiShow aún no funciona con tu Arduino,
@@ -2713,7 +2713,7 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
     </message>
     <message>
         <location filename="../MwInterfaceListViewPipe.qml" line="356"/>
-        <source>Please use DigiShow Outlet app on your phone to scan the QR code here to sign in to the cloud service:</source>
+        <source>Please scan the QR code with the DigiShow Outlet app on your smartphone to sign in to the cloud service:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3078,7 +3078,7 @@ Connection: %2</source>
 <context>
     <name>MwQuickLaunchView</name>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="609"/>
+        <location filename="../MwQuickLaunchView.qml" line="614"/>
         <source>Preset</source>
         <translation></translation>
     </message>
@@ -3123,54 +3123,69 @@ Connection: %2</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="307"/>
+        <location filename="../MwQuickLaunchView.qml" line="296"/>
+        <source>Please scan the QR code with your smartphone:</source>
+        <translation>Por favor escanee el código QR con su teléfono inteligente:</translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="297"/>
+        <source>Preview in Web</source>
+        <translation>Vista previa en web</translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="297"/>
+        <source>Close</source>
+        <translation>Cerrar</translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="312"/>
         <source>Stop</source>
         <translation>Detener</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="388"/>
+        <location filename="../MwQuickLaunchView.qml" line="393"/>
         <source>Check the boxes next to the output faders and LINK buttons to memorize their values and states to the preset.</source>
         <translation>Marque las casillas junto a los faders de salida y los botones LINK para memorizar sus valores y estados en el preset.</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="407"/>
+        <location filename="../MwQuickLaunchView.qml" line="412"/>
         <source>Save Preset</source>
         <translation>Guardar preset</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="469"/>
+        <location filename="../MwQuickLaunchView.qml" line="474"/>
         <source>Output faders</source>
         <translation>Faders de salida</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="481"/>
-        <location filename="../MwQuickLaunchView.qml" line="525"/>
+        <location filename="../MwQuickLaunchView.qml" line="486"/>
+        <location filename="../MwQuickLaunchView.qml" line="530"/>
         <source>Check None</source>
         <translation>Marcar ninguno</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="497"/>
-        <location filename="../MwQuickLaunchView.qml" line="541"/>
+        <location filename="../MwQuickLaunchView.qml" line="502"/>
+        <location filename="../MwQuickLaunchView.qml" line="546"/>
         <source>Check All</source>
         <translation>Marcar todo</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="513"/>
+        <location filename="../MwQuickLaunchView.qml" line="518"/>
         <source>LINK buttons</source>
         <translation>Botones LINK</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="422"/>
+        <location filename="../MwQuickLaunchView.qml" line="427"/>
         <source>Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset.</source>
         <translation>Tomó una instantánea de todos los elementos marcados, que se ha guardado en un preset. Ahora, puede tocar el botón en cualquier momento para iniciar el preset.</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="422"/>
+        <location filename="../MwQuickLaunchView.qml" line="427"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="437"/>
+        <location filename="../MwQuickLaunchView.qml" line="442"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>

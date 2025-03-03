@@ -4,7 +4,7 @@
 <context>
     <name>DgsRiocInterface</name>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="209"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="211"/>
         <source>DigiShow doesn&apos;t seem to work with your Arduino yet, <byte value="xd"/>
 make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation>DigiShow 似乎还不能与你的 Arduino 配合使用，
@@ -2715,8 +2715,9 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     </message>
     <message>
         <location filename="../MwInterfaceListViewPipe.qml" line="356"/>
-        <source>Please use DigiShow Outlet app on your phone to scan the QR code here to sign in to the cloud service:</source>
-        <translation>请使用你手机上的 DigiShow Outlet 小程序来扫描此处的二维码，以便登录云服务：</translation>
+        <source>Please scan the QR code with the DigiShow Outlet app on your smartphone to sign in to the cloud service:</source>
+        <translation>请使用你手机上的 DigiShow Outlet 小程序
+扫描此二维码来登录云服务：</translation>
     </message>
     <message>
         <location filename="../MwInterfaceListViewPipe.qml" line="357"/>
@@ -3123,60 +3124,75 @@ Connection: %2</source>
         <translation>启动</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="307"/>
+        <location filename="../MwQuickLaunchView.qml" line="296"/>
+        <source>Please scan the QR code with your smartphone:</source>
+        <translation>请用你的手机扫描此处的二维码：</translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="297"/>
+        <source>Preview in Web</source>
+        <translation>Web 预览</translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="297"/>
+        <source>Close</source>
+        <translation>关闭</translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="312"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="388"/>
+        <location filename="../MwQuickLaunchView.qml" line="393"/>
         <source>Check the boxes next to the output faders and LINK buttons to memorize their values and states to the preset.</source>
         <translation>勾选中输出推子和 LINK 按钮旁的复选框，选择将它们的数值和状态都记忆到预置中。</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="407"/>
+        <location filename="../MwQuickLaunchView.qml" line="412"/>
         <source>Save Preset</source>
         <translation>保存预置</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="422"/>
+        <location filename="../MwQuickLaunchView.qml" line="427"/>
         <source>Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset.</source>
         <translation>已将所有勾选项的当前内容保存到了预置中。
 今后在任何时刻都可以通过点击此按钮来启动该预置项。</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="469"/>
+        <location filename="../MwQuickLaunchView.qml" line="474"/>
         <source>Output faders</source>
         <translation>输出推子</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="481"/>
-        <location filename="../MwQuickLaunchView.qml" line="525"/>
+        <location filename="../MwQuickLaunchView.qml" line="486"/>
+        <location filename="../MwQuickLaunchView.qml" line="530"/>
         <source>Check None</source>
         <translation>全不勾选</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="497"/>
-        <location filename="../MwQuickLaunchView.qml" line="541"/>
+        <location filename="../MwQuickLaunchView.qml" line="502"/>
+        <location filename="../MwQuickLaunchView.qml" line="546"/>
         <source>Check All</source>
         <translation>勾选全部</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="513"/>
+        <location filename="../MwQuickLaunchView.qml" line="518"/>
         <source>LINK buttons</source>
         <translation>LINK 按钮</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="609"/>
+        <location filename="../MwQuickLaunchView.qml" line="614"/>
         <source>Preset</source>
         <translation>预置</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="422"/>
+        <location filename="../MwQuickLaunchView.qml" line="427"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="437"/>
+        <location filename="../MwQuickLaunchView.qml" line="442"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>

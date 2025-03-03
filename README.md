@@ -18,7 +18,7 @@ For building interactive art installations, the creators often need to make soft
 **Makers and Hobbyists:**
 DigiShow is for all show makers as well as hobbyists with little professional skills. Make digital shows for your own party time, or just make your house into a mini 'disneyland'.
 
-Watch Video https://www.youtube.com/channel/UCmswlPRHZ5FhZIxTHJWqj7w  
+Watch Video https://www.youtube.com/@robinzlabs6390 
 
 
 ## How does DigiShow work?
@@ -65,7 +65,7 @@ The primary function designed in the app is a signal hub that works with digital
 Please visit https://github.com/robinz-labs/digishow/releases/latest to download the latest releases:  
 - DigiShow LINK for windows (64bit / intel)
 - DigiShow LINK for macOS (64bit / intel)
-- DigiShow LINK for macOS (64bit / apple silicon)
+- DigiShow LINK for macOS (64bit / apple M series)
 
 Go to the page, where choose digishow_win_x.x.x_x64.zip, digishow_mac_x.x.x_x64.zip or digishow_mac_x.x.x_arm64.zip in Assets list to download. 
 

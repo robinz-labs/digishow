@@ -353,7 +353,7 @@ MwInterfaceListView {
 
             var r = messageBox.showQrAndWait(
                         cloud.getSignInCode(),
-                        qsTr("Please use DigiShow Outlet app on your phone to scan the QR code here to sign in to the cloud service:"),
+                        qsTr("Please scan the QR code with the DigiShow Outlet app on your smartphone to sign in to the cloud service:"),
                         qsTr("Not Now"))
 
             timerCloudCheckSignIn.stop()

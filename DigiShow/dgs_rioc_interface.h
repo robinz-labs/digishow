@@ -53,7 +53,7 @@ private:
     QTimer *m_timerStarting;
     int m_startedUnitCount;
 
-    int findEndpoint(int unit, int channel);
+    int findEndpoint(int unit, int type, int channel);
 
     static QString guessRiocMode(uint16_t vid, uint16_t pid);
 

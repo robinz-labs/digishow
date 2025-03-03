@@ -192,10 +192,12 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
     return ERR_NONE;
 }
 
-int DgsRiocInterface::findEndpoint(int unit, int channel)
+int DgsRiocInterface::findEndpoint(int unit, int type, int channel)
 {
     for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
-        if (m_endpointInfoList[n].unit == unit && m_endpointInfoList[n].channel == channel) return n;
+        if (m_endpointInfoList[n].unit == unit &&
+            m_endpointInfoList[n].type == type &&
+            m_endpointInfoList[n].channel == channel) return n;
     }
 
     return -1;
@@ -432,7 +434,7 @@ void DgsRiocInterface::onDigitalInValueUpdated(unsigned char unit, unsigned char
     data.aValue = 0;
     data.bValue = value;
 
-    int endpointIndex = findEndpoint(unit, channel);
+    int endpointIndex = findEndpoint(unit, ENDPOINT_RIOC_DIGITAL_IN, channel);
     if (endpointIndex != -1) emit dataReceived(endpointIndex, data);
 }
 
@@ -446,7 +448,7 @@ void DgsRiocInterface::onAnalogInValueUpdated(unsigned char unit, unsigned char 
     data.aValue = value;
     data.bValue = 0;
 
-    int endpointIndex = findEndpoint(unit, channel);
+    int endpointIndex = findEndpoint(unit, ENDPOINT_RIOC_ANALOG_IN, channel);
     if (endpointIndex != -1) emit dataReceived(endpointIndex, data);
 }
 
@@ -454,7 +456,7 @@ void DgsRiocInterface::onEncoderValueUpdated(unsigned char unit, unsigned char c
 {
     //qDebug() << "DgsRiocInterface::onEncoderValueUpdated" << unit << channel << value;
 
-    int endpointIndex = findEndpoint(unit, channel);
+    int endpointIndex = findEndpoint(unit, ENDPOINT_RIOC_ENCODER_IN, channel);
     if (endpointIndex == -1) return;
 
     int range = m_endpointInfoList[endpointIndex].range;
@@ -481,7 +483,7 @@ void DgsRiocInterface::onUserChannelValueUpdated(unsigned char unit, unsigned ch
 {
     //qDebug() << "DgsRiocInterface::onUserCannelValueUpdated" << unit << channel << value;
 
-    int endpointIndex = findEndpoint(unit, channel);
+    int endpointIndex = findEndpoint(unit, ENDPOINT_RIOC_USER_CHANNEL, channel);
     if (endpointIndex == -1) return;
 
     int range = m_endpointInfoList[endpointIndex].range;
