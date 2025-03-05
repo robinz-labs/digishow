@@ -1,6 +1,6 @@
 # DigiShow LINK  
   
-[DOWNLOAD](https://github.com/robinz-labs/digishow/releases/latest)  
+[DOWNLOAD](https://github.com/robinz-labs/digishow/releases/latest) | [TUTORIALS](https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md) 
   
 DigiShow is a lightweight control software designed for live performances and immersive show spaces with music, lights, displays, robots and interactive installations. It serves as an easy-to-use console for signal controlling, also enables signal mapping between MIDI, DMX, OSC, ArtNet, Modbus, Arduino, Philips Hue and more digital interfaces. 
 
@@ -31,7 +31,7 @@ DigiShow LINK app enables signal mapping and transferring between MIDI and other
 
 MIDI notes and MIDI control changes are mapped and transformed to the signals for light, servo, media and more controls. Also, some input signals from sensors can be converted to MIDI notes or CC that will be able to be processed by other digital music software. 
 
-DigiShow LINK works well with any music software that supports MIDI input/output, like Ableton Live, Logic Pro, etc. Light, media and other show cues can be flexibly arranged on MIDI tracks with notes and CC automation.
+DigiShow LINK works well with any music software that supports MIDI input/output, like Ableton Live, Logic Pro, etc. Light, media and other show cues can be flexibly arranged on MIDI tracks with notes and CC automation. 
 
 
 ## Supported Interfaces
@@ -58,6 +58,9 @@ The most basic user interface of the app looks like a standalone console, which 
 
 **Signal Mapping**  
 The primary function designed in the app is a signal hub that works with digital show facilities, it provides an efficient configuration method for signal mapping and conversion. Typically, DigiShow LINK runs on the computer as a service responsible for connecting hardware devices and some other software that manages respective show content and executes the show logic. The show is done in cooperation of all hardware and software coordinated by DigiShow. 
+
+There are more tutorials to help you learn DigiShow step by step!
+https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md 
 
 
 ## Release Downloads
@@ -107,45 +110,6 @@ Required to enable DigiShow LINK to play MP4, MOV video files on your Windows co
 [download](https://www.codecguide.com/download_kl.htm) 
 
 
-## Get Started with DigiShow
-
-1. Let's try to use DigiShow for the first time. Connect a MIDI keyboard and an ENTTEC DMX USB Pro adapter to the USB ports of your computer. ENTTEC adapter is used to connect DMX lights. 
-
-2. Open the DigiShow LINK app, and click 'Interface Manager' button in the upper right corner of the window. 
-
-![interface_manager_button](images/screenshot_interface_manager_button.png)
-
-Interface Manager dialog box appears, select the MIDI tab item and click the + button to create a new interface section labeled 'MIDI 1', where select your MIDI keyboard model. 
-
-![screenshot_interface_midi](images/screenshot_interface_midi.png)
-
-Select the DMX tab item and click the + button to create a new interface section labeled 'DMX 1'. Close the Interface Manager dialog when finished all. 
-
-![screenshot_interface_dmx](images/screenshot_interface_dmx.png)
-
-3. Now let's try to create a signal link to connect your MIDI keyboard input with the DMX light output, click the + button in the upper left corner of the window, a blank link item will be added to the left list. Alongside, you need to set the input source, output destination and mapping transformation parameters for the signal link on the right. 
-
-![screenshot_new](images/screenshot_new.png)
-
-4. Click the 'Select Source' drop-down menu, select your MIDI keyboard in it, and set the input parameters to 'Channel 1' 'MIDI Note' 'C3', and click the Apply button. 
-
-![screenshot_set_source_midi](images/screenshot_set_source_midi.png)
-
-Click the 'Select Destination' drop-down menu, select DMX in it, set the output parameter to 'Channel 1', and click the Apply button. 
-
-![screenshot_set_destination_dmx](images/screenshot_set_destination_dmx.png)
-
-5. Click the ▶︎ button in top bar to start the signal link session. At this point, when you press C3 (Middle C) on the MIDI keyboard, the lighting changes in DMX channel 1 will be trigged synchronously. 
-
-![screenshot_running](images/screenshot_running.png)
-
-6. Modify the settings in 'Input-out Mapping' and 'Output Envelope' to change the effect of the mapping transformation in real time. For example, setting 'Attack' to 300ms and 'Release' to 700ms makes the lighting fade in and out. 
-
-![screenshot_set_transformation](images/screenshot_set_transformation.png)
-
-7. And, add more signal links in this way. 
-
- 
 ## Developer Resources
 
 DigiShow is open-source. If you would like to rebuild this software using the source code we contributed, please visit https://github.com/robinz-labs/ . 
