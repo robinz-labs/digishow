@@ -873,6 +873,69 @@ QString DigishowEnvironment::getMidiNoteName(int noteNumber, bool longName)
     return note + (name.isEmpty() ? "" : " ( " + name +" )") ;
 }
 
+QString DigishowEnvironment::getSpectrumBandName(int band, bool longName)
+{
+    QString name;
+    switch (band) {
+    case  1: name = "20 - 25 Hz";      break;
+    case  2: name = "25 - 32 Hz";      break;
+    case  3: name = "32 - 40 Hz";      break;
+    case  4: name = "40 - 50 Hz";      break;
+    case  5: name = "50 - 63 Hz";      break;
+    case  6: name = "63 - 80 Hz";      break;
+    case  7: name = "80 - 100 Hz";     break;
+    case  8: name = "100 - 125 Hz";    break;
+    case  9: name = "125 - 160 Hz";    break;
+    case 10: name = "160 - 200 Hz";    break;
+    case 11: name = "200 - 250 Hz";    break;
+    case 12: name = "250 - 315 Hz";    break;
+    case 13: name = "315 - 400 Hz";    break;
+    case 14: name = "400 - 500 Hz";    break;
+    case 15: name = "500 - 630 Hz";    break;
+    case 16: name = "630 - 800 Hz";    break;
+    case 17: name = "800 - 1K Hz";     break;
+    case 18: name = "1K - 1.25K Hz";   break;
+    case 19: name = "1.25K - 1.6K Hz"; break;
+    case 20: name = "1.6K - 2K Hz";    break;
+    case 21: name = "2K - 2.5K Hz";    break;
+    case 22: name = "2.5K - 5K Hz";    break;
+    case 23: name = "5K - 10K Hz";     break;
+    case 24: name = "10K - 20K Hz";    break;
+    }
+
+    QString description;
+    if (longName) {
+        switch (band) {
+        case  1: description = tr("Sub-bass perception"     ); break;
+        case  2: description = tr("Ultra-low bass"          ); break;
+        case  3: description = tr("Subwoofer main"          ); break;
+        case  4: description = tr("Bass fundamental 1"      ); break;
+        case  5: description = tr("Bass fundamental 2"      ); break;
+        case  6: description = tr("Bass playing range 1"    ); break;
+        case  7: description = tr("Bass playing range 2"    ); break;
+        case  8: description = tr("Kick drum main"          ); break;
+        case  9: description = tr("Low vocals"              ); break;
+        case 10: description = tr("Male bass voice"         ); break;
+        case 11: description = tr("Male tenor"              ); break;
+        case 12: description = tr("Middle C range (261.6Hz)"); break;
+        case 13: description = tr("Female alto"             ); break;
+        case 14: description = tr("Violin G string"         ); break;
+        case 15: description = tr("Vocal main 1"            ); break;
+        case 16: description = tr("Vocal main 2"            ); break;
+        case 17: description = tr("Vocal main 3"            ); break;
+        case 18: description = tr("Vocal harmonics 1"       ); break;
+        case 19: description = tr("Vocal harmonics 2"       ); break;
+        case 20: description = tr("Presence range"          ); break;
+        case 21: description = tr("High detail 1"           ); break;
+        case 22: description = tr("High detail 2"           ); break;
+        case 23: description = tr("Brilliance"              ); break;
+        case 24: description = tr("Air band"                ); break;
+        }
+    }
+
+    return name + (longName ? "  " + description : "");
+}
+
 QString DigishowEnvironment::getRiocPinName(int mode, int pinNumber)
 {
     if (mode == INTERFACE_RIOC_ARDUINO_UNO) {

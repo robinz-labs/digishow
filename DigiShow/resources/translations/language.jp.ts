@@ -200,17 +200,137 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="974"/>
+        <location filename="../../digishow_environment.cpp" line="909"/>
+        <source>Sub-bass perception</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="910"/>
+        <source>Ultra-low bass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="911"/>
+        <source>Subwoofer main</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="912"/>
+        <source>Bass fundamental 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="913"/>
+        <source>Bass fundamental 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="914"/>
+        <source>Bass playing range 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="915"/>
+        <source>Bass playing range 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="916"/>
+        <source>Kick drum main</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="917"/>
+        <source>Low vocals</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="918"/>
+        <source>Male bass voice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="919"/>
+        <source>Male tenor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="920"/>
+        <source>Middle C range (261.6Hz)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="921"/>
+        <source>Female alto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="922"/>
+        <source>Violin G string</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="923"/>
+        <source>Vocal main 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="924"/>
+        <source>Vocal main 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="925"/>
+        <source>Vocal main 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="926"/>
+        <source>Vocal harmonics 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="927"/>
+        <source>Vocal harmonics 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="928"/>
+        <source>Presence range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="929"/>
+        <source>High detail 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="930"/>
+        <source>High detail 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="931"/>
+        <source>Brilliance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="932"/>
+        <source>Air band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../digishow_environment.cpp" line="1037"/>
         <source>Remote</source>
         <translation>リモート</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="975"/>
+        <location filename="../../digishow_environment.cpp" line="1038"/>
         <source>Cloud</source>
         <translation>クラウド</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="976"/>
+        <location filename="../../digishow_environment.cpp" line="1039"/>
         <source>Pipe</source>
         <translation>パイプ</translation>
     </message>
@@ -392,27 +512,27 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="313"/>
-        <location filename="../../digishow_interface.cpp" line="639"/>
-        <location filename="../../digishow_interface.cpp" line="646"/>
-        <location filename="../../digishow_interface.cpp" line="658"/>
-        <location filename="../../digishow_interface.cpp" line="665"/>
+        <location filename="../../digishow_interface.cpp" line="641"/>
+        <location filename="../../digishow_interface.cpp" line="648"/>
+        <location filename="../../digishow_interface.cpp" line="660"/>
+        <location filename="../../digishow_interface.cpp" line="667"/>
         <source>DMX</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="317"/>
-        <location filename="../../digishow_interface.cpp" line="673"/>
-        <location filename="../../digishow_interface.cpp" line="681"/>
-        <location filename="../../digishow_interface.cpp" line="693"/>
-        <location filename="../../digishow_interface.cpp" line="700"/>
+        <location filename="../../digishow_interface.cpp" line="675"/>
+        <location filename="../../digishow_interface.cpp" line="683"/>
+        <location filename="../../digishow_interface.cpp" line="695"/>
+        <location filename="../../digishow_interface.cpp" line="702"/>
         <source>ArtNet</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="322"/>
-        <location filename="../../digishow_interface.cpp" line="708"/>
-        <location filename="../../digishow_interface.cpp" line="716"/>
-        <location filename="../../digishow_interface.cpp" line="723"/>
+        <location filename="../../digishow_interface.cpp" line="710"/>
+        <location filename="../../digishow_interface.cpp" line="718"/>
+        <location filename="../../digishow_interface.cpp" line="725"/>
         <source>OSC</source>
         <translation></translation>
     </message>
@@ -462,136 +582,143 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation>ホットキー</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="484"/>
+        <location filename="../../digishow_interface.cpp" line="486"/>
         <source>MIDI Note</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="492"/>
-        <location filename="../../digishow_interface.cpp" line="515"/>
+        <location filename="../../digishow_interface.cpp" line="494"/>
+        <location filename="../../digishow_interface.cpp" line="517"/>
         <source>MIDI CC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="500"/>
+        <location filename="../../digishow_interface.cpp" line="502"/>
         <source>MIDI Prgm</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="508"/>
+        <location filename="../../digishow_interface.cpp" line="510"/>
         <source>MIDI Pitch</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="521"/>
+        <location filename="../../digishow_interface.cpp" line="523"/>
         <source>Digital In</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="527"/>
+        <location filename="../../digishow_interface.cpp" line="529"/>
         <source>Digital Out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="534"/>
+        <location filename="../../digishow_interface.cpp" line="536"/>
         <source>Analog In</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="541"/>
+        <location filename="../../digishow_interface.cpp" line="543"/>
         <source>Analog Out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="548"/>
+        <location filename="../../digishow_interface.cpp" line="550"/>
         <source>PWM Out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="563"/>
+        <location filename="../../digishow_interface.cpp" line="565"/>
         <source>Encoder</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="570"/>
+        <location filename="../../digishow_interface.cpp" line="572"/>
         <source>Servo</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="577"/>
+        <location filename="../../digishow_interface.cpp" line="579"/>
         <source>Stepper</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="585"/>
+        <location filename="../../digishow_interface.cpp" line="587"/>
         <source>Channel</source>
         <translation>チャンネル</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="591"/>
+        <location filename="../../digishow_interface.cpp" line="593"/>
         <source>Discrete</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="597"/>
-        <location filename="../../digishow_interface.cpp" line="603"/>
+        <location filename="../../digishow_interface.cpp" line="599"/>
+        <location filename="../../digishow_interface.cpp" line="605"/>
         <source>Coil</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="610"/>
+        <location filename="../../digishow_interface.cpp" line="612"/>
         <source>Input</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="617"/>
-        <location filename="../../digishow_interface.cpp" line="624"/>
+        <location filename="../../digishow_interface.cpp" line="619"/>
+        <location filename="../../digishow_interface.cpp" line="626"/>
         <source>Holding</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="632"/>
+        <location filename="../../digishow_interface.cpp" line="634"/>
         <source>Light</source>
         <translation>明かり</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="632"/>
+        <location filename="../../digishow_interface.cpp" line="634"/>
         <source>Group</source>
         <translation>グループ</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="666"/>
-        <location filename="../../digishow_interface.cpp" line="701"/>
+        <location filename="../../digishow_interface.cpp" line="668"/>
+        <location filename="../../digishow_interface.cpp" line="703"/>
         <source>Master</source>
         <translation>マスター</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="709"/>
+        <location filename="../../digishow_interface.cpp" line="711"/>
         <source>Integer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="717"/>
+        <location filename="../../digishow_interface.cpp" line="719"/>
         <source>Float</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="724"/>
+        <location filename="../../digishow_interface.cpp" line="726"/>
         <source>Bool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="731"/>
+        <location filename="../../digishow_interface.cpp" line="733"/>
         <source>Level</source>
         <translation>レベル</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="825"/>
+        <location filename="../../digishow_interface.cpp" line="740"/>
+        <source>Peak</source>
+        <translation>ピーク</translation>
+    </message>
+    <message>
+        <location filename="../../digishow_interface.cpp" line="841"/>
         <source>Launcher</source>
         <translation>ランチャー</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="730"/>
+        <location filename="../../digishow_interface.cpp" line="732"/>
+        <location filename="../../digishow_interface.cpp" line="739"/>
+        <location filename="../../digishow_interface.cpp" line="746"/>
         <source>Audio</source>
         <translation>オーディオ</translation>
     </message>
@@ -602,97 +729,97 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
     </message>
     <message>
         <location filename="../../digishow_interface.cpp" line="368"/>
-        <location filename="../../digishow_interface.cpp" line="832"/>
-        <location filename="../../digishow_interface.cpp" line="840"/>
-        <location filename="../../digishow_interface.cpp" line="847"/>
-        <location filename="../../digishow_interface.cpp" line="853"/>
-        <location filename="../../digishow_interface.cpp" line="859"/>
-        <location filename="../../digishow_interface.cpp" line="865"/>
+        <location filename="../../digishow_interface.cpp" line="848"/>
+        <location filename="../../digishow_interface.cpp" line="856"/>
+        <location filename="../../digishow_interface.cpp" line="863"/>
+        <location filename="../../digishow_interface.cpp" line="869"/>
+        <location filename="../../digishow_interface.cpp" line="875"/>
+        <location filename="../../digishow_interface.cpp" line="881"/>
         <source>Beat Maker</source>
         <translation>ビートメーカー</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="555"/>
+        <location filename="../../digishow_interface.cpp" line="557"/>
         <source>Freq Out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="737"/>
+        <location filename="../../digishow_interface.cpp" line="753"/>
         <source>Backlight</source>
         <translation>バックライト</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="766"/>
+        <location filename="../../digishow_interface.cpp" line="782"/>
         <source>Media Clip</source>
         <translation>メディア</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="784"/>
+        <location filename="../../digishow_interface.cpp" line="800"/>
         <source>Canvas</source>
         <translation>カンバス</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="790"/>
+        <location filename="../../digishow_interface.cpp" line="806"/>
         <source>Audio Clip</source>
         <translation>オーディオ</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="796"/>
+        <location filename="../../digishow_interface.cpp" line="812"/>
         <source>MIDI Clip</source>
         <translation>MIDI</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="805"/>
+        <location filename="../../digishow_interface.cpp" line="821"/>
         <source>Analog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="812"/>
+        <location filename="../../digishow_interface.cpp" line="828"/>
         <source>Binary</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="820"/>
+        <location filename="../../digishow_interface.cpp" line="836"/>
         <source>Note</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="826"/>
+        <location filename="../../digishow_interface.cpp" line="842"/>
         <source>Preset</source>
         <translation>プリセット</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="833"/>
+        <location filename="../../digishow_interface.cpp" line="849"/>
         <source>Beat %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="841"/>
+        <location filename="../../digishow_interface.cpp" line="857"/>
         <source>BPM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="848"/>
+        <location filename="../../digishow_interface.cpp" line="864"/>
         <source>Quantum</source>
         <translation>拍数</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="854"/>
+        <location filename="../../digishow_interface.cpp" line="870"/>
         <source>Run</source>
         <translation>実行</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="860"/>
+        <location filename="../../digishow_interface.cpp" line="876"/>
         <source>Link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="866"/>
+        <location filename="../../digishow_interface.cpp" line="882"/>
         <source>Tap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="874"/>
+        <location filename="../../digishow_interface.cpp" line="890"/>
         <source>Key</source>
         <translation>キー</translation>
     </message>
@@ -1515,9 +1642,19 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorAudioin</name>
     <message>
-        <location filename="../MwEndpointSelectorAudioin.qml" line="35"/>
+        <location filename="../MwEndpointSelectorAudioin.qml" line="54"/>
         <source>Level</source>
         <translation>レベル</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorAudioin.qml" line="55"/>
+        <source>Peak Level</source>
+        <translation>ピークレベル</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorAudioin.qml" line="56"/>
+        <source>Spectrum</source>
+        <translation>スペクトラム</translation>
     </message>
 </context>
 <context>

@@ -1,5 +1,5 @@
 /*
-    Copyright 2021 Robin Zhang & Labs
+    Copyright 2021-2025 Robin Zhang & Labs
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -441,6 +441,8 @@ void DigishowInterface::updateMetadata()
             break;
         case INTERFACE_AUDIOIN:
             if      (typeName == "level"      ) endpointInfo.type = ENDPOINT_AUDIOIN_LEVEL;
+            else if (typeName == "peak"       ) endpointInfo.type = ENDPOINT_AUDIOIN_PEAK;
+            else if (typeName == "spectrum"   ) endpointInfo.type = ENDPOINT_AUDIOIN_SPECTRUM;
             break;
         case INTERFACE_SCREEN:
             if      (typeName == "light"      ) endpointInfo.type = ENDPOINT_SCREEN_LIGHT;
@@ -729,6 +731,20 @@ void DigishowInterface::updateMetadata()
             endpointInfo.range  = 1000000;
             endpointInfo.labelEPT = tr("Audio");
             endpointInfo.labelEPI = tr("Level");
+            break;
+        case ENDPOINT_AUDIOIN_PEAK:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.input = true;
+            endpointInfo.range  = 1000000;
+            endpointInfo.labelEPT = tr("Audio");
+            endpointInfo.labelEPI = tr("Peak");
+            break;
+        case ENDPOINT_AUDIOIN_SPECTRUM:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.input = true;
+            endpointInfo.range  = 1000000;
+            endpointInfo.labelEPT = tr("Audio");
+            endpointInfo.labelEPI = DigishowEnvironment::getSpectrumBandName(endpointInfo.channel).split(" ").at(0) + " Hz";
             break;
         case ENDPOINT_SCREEN_LIGHT:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;

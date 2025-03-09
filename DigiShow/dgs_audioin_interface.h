@@ -1,5 +1,5 @@
 /*
-    Copyright 2021 Robin Zhang & Labs
+    Copyright 2021-2015 Robin Zhang & Labs
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -18,11 +18,9 @@
 #ifndef DGSAUDIOININTERFACE_H
 #define DGSAUDIOININTERFACE_H
 
-#include <QScopedPointer>
-#include <QAudioInput>
 #include "digishow_interface.h"
 
-class SoundLevelMeter;
+class AudioAnalyzer;
 
 class DgsAudioinInterface : public DigishowInterface
 {
@@ -41,35 +39,11 @@ public:
 signals:
 
 public slots:
+    void onSpectrumDataReady(const QVector<float> &spectrum, float level, float peak);
 
 private:
 
-    QScopedPointer<SoundLevelMeter> m_soundLevelMeter;
-    QScopedPointer<QAudioInput> m_audioInput;
-};
-
-class SoundLevelMeter : public QIODevice
-{
-    Q_OBJECT
-
-public:
-    SoundLevelMeter(const QAudioFormat &format);
-
-    void start();
-    void stop();
-
-    qreal level() const { return m_level; }
-
-    qint64 readData(char *data, qint64 maxlen) override;
-    qint64 writeData(const char *data, qint64 len) override;
-
-private:
-    const QAudioFormat m_format;
-    quint32 m_maxAmplitude = 0;
-    qreal m_level = 0.0; // 0.0 <= m_level <= 1.0
-
-signals:
-    void update();
+    AudioAnalyzer *m_analyzer;
 };
 
 #endif // DGSAUDIOININTERFACE_H

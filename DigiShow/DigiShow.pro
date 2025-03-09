@@ -15,6 +15,8 @@ SOURCES += \
     $$PWD/shared/rioc_controller.cpp \
     $$PWD/shared/http_server.cpp \
     $$PWD/shared/http_socket.cpp \
+    $$PWD/shared/kiss_fft.cpp \
+    $$PWD/shared/audioanalyzer.cpp \
     app_utilities.cpp \
     dgs_midi_interface.cpp \
     dgs_rioc_interface.cpp \
@@ -55,6 +57,10 @@ HEADERS += \
     $$PWD/shared/rioc_aladdin2560_def.h \
     $$PWD/shared/http_server.h \
     $$PWD/shared/http_socket.h \
+    $$PWD/shared/kiss_fft.h \
+    $$PWD/shared/kiss_fft_log.h \
+    $$PWD/shared/_kiss_fft_guts.h \
+    $$PWD/shared/audioanalyzer.h \
     app_common.h \
     app_utilities.h \
     dgs_midi_interface.h \

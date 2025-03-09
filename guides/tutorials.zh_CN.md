@@ -10,7 +10,9 @@
 
 **2 软件安装使用入门** 
 - 在你自己的电脑上完成安装 DigiShow 软件
-- 熟悉 DigiShow 的基本界面，初步学会在 Interface Manager (接口管理器) 中配置设备接口和在信号链接表中添加信号条的方法
+- 熟悉 DigiShow 软件的基本界面
+- 初步学会在 Interface Manager (接口管理器) 中配置设备接口
+- 初步学会在信号链接表中添加信号条
 - 学会保存和打开 DigiShow 工程文件的方法
 - [阅读 PDF](http://cdn.digishow.cn/digishow/tutorials/learning-digishow-cn/DigiShow%20%e6%95%99%e7%a8%8b2%20%e8%bd%af%e4%bb%b6%e5%ae%89%e8%a3%85%e4%bd%bf%e7%94%a8%e5%85%a5%e9%97%a8.pdf) 
 

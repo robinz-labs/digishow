@@ -496,7 +496,7 @@ Item {
         case DigishowEnvironment.InterfaceModbus:    itemEndpoint = itemModbus;    needRestartInterface = true; break
         case DigishowEnvironment.InterfaceRioc:      itemEndpoint = itemRioc;      needStopApp = true; break
         case DigishowEnvironment.InterfaceHue:       itemEndpoint = itemHue;       break
-        case DigishowEnvironment.InterfaceAudioIn:   itemEndpoint = itemAudioin;   break
+        case DigishowEnvironment.InterfaceAudioIn:   itemEndpoint = itemAudioin;   needRestartInterface = true; break
         case DigishowEnvironment.InterfaceScreen:    itemEndpoint = itemScreen;    break
         case DigishowEnvironment.InterfaceAPlay:     itemEndpoint = itemAPlay;     break
         case DigishowEnvironment.InterfaceMPlay:     itemEndpoint = itemMPlay;     break

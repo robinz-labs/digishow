@@ -1,5 +1,5 @@
 /*
-    Copyright 2021 Robin Zhang & Labs
+    Copyright 2021-2025 Robin Zhang & Labs
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -113,6 +113,8 @@
 #define ENDPOINT_OSC_FLOAT          10702
 #define ENDPOINT_OSC_BOOL           10703
 #define ENDPOINT_AUDIOIN_LEVEL      10801
+#define ENDPOINT_AUDIOIN_PEAK       10802
+#define ENDPOINT_AUDIOIN_SPECTRUM   10803
 #define ENDPOINT_SCREEN_LIGHT       80101
 #define ENDPOINT_SCREEN_MEDIA       80102
 #define ENDPOINT_SCREEN_CANVAS      80103

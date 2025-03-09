@@ -1,5 +1,5 @@
 /*
-    Copyright 2021 Robin Zhang & Labs
+    Copyright 2021-2025 Robin Zhang & Labs
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -123,6 +123,8 @@ public:
         EndpointOscFloat          = ENDPOINT_OSC_FLOAT,
         EndpointOscBool           = ENDPOINT_OSC_BOOL,
         EndpointAudioInLevel      = ENDPOINT_AUDIOIN_LEVEL,
+        EndpointAudioInPeak       = ENDPOINT_AUDIOIN_PEAK,
+        EndpointAudioInSpectrum   = ENDPOINT_AUDIOIN_SPECTRUM,
         EndpointScreenLight       = ENDPOINT_SCREEN_LIGHT,
         EndpointScreenMedia       = ENDPOINT_SCREEN_MEDIA,
         EndpointScreenCanvas      = ENDPOINT_SCREEN_CANVAS,
@@ -261,6 +263,7 @@ public:
     Q_INVOKABLE static QString getMediaControlName(int control, bool forScreen = false);
     Q_INVOKABLE static QString getMidiControlName(int control);
     Q_INVOKABLE static QString getMidiNoteName(int noteNumber, bool longName = false);
+    Q_INVOKABLE static QString getSpectrumBandName(int band, bool longName = false);
     Q_INVOKABLE static QString getRiocPinName(int mode, int pinNumber);
     Q_INVOKABLE static QList<int> getRiocPinList(int mode, int types = 0xFF);
     Q_INVOKABLE static QString getPipeModeName(int mode);

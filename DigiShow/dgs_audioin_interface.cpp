@@ -1,5 +1,5 @@
 /*
-    Copyright 2021 Robin Zhang & Labs
+    Copyright 2021-2025 Robin Zhang & Labs
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -16,12 +16,12 @@
  */
 
 #include "dgs_audioin_interface.h"
+#include "audioanalyzer.h"
 
 DgsAudioinInterface::DgsAudioinInterface(QObject *parent) : DigishowInterface(parent)
 {
     m_interfaceOptions["type"] = "audioin";
-
-    // TODO:
+    m_analyzer = nullptr;
 }
 
 
@@ -52,40 +52,26 @@ int DgsAudioinInterface::openInterface()
         device = devices[audioinIndex];
     }
 
-    // initialize audio input and sound level meter
-
-    QAudioFormat format;
-    format.setSampleRate(44100);
-    format.setChannelCount(1);
-    format.setSampleSize(16);
-    format.setSampleType(QAudioFormat::SignedInt);
-    format.setByteOrder(QAudioFormat::LittleEndian);
-    format.setCodec("audio/pcm");
-    if (!device.isFormatSupported(format)) format = device.nearestFormat(format);
-
-    //QAudioFormat format = device.preferredFormat();
-    //qDebug() << format;
-
-    m_soundLevelMeter.reset(new SoundLevelMeter(format));
-    connect(m_soundLevelMeter.data(), &SoundLevelMeter::update, [this]() {
-
-        // qDebug() << m_soundLevelMeter->level();
-
-        for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
-            if (m_endpointInfoList[n].type == ENDPOINT_AUDIOIN_LEVEL) {
-                dgsSignalData data;
-                data.signal = DATA_SIGNAL_ANALOG;
-                data.aRange = m_endpointInfoList[n].range;
-                data.aValue = m_soundLevelMeter->level() * m_endpointInfoList[n].range;
-                emit dataReceived(n, data);
-            }
+    // initialize audio analyzer
+    bool enableUpdateLevel = false;
+    bool enableUpdatePeak = false;
+    bool enableUpdateSpectrum = false;
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+        int type  = m_endpointInfoList[n].type;
+        switch (type) {
+        case ENDPOINT_AUDIOIN_LEVEL:    enableUpdateLevel    = true; break;
+        case ENDPOINT_AUDIOIN_PEAK:     enableUpdatePeak     = true; break;
+        case ENDPOINT_AUDIOIN_SPECTRUM: enableUpdateSpectrum = true; break;
         }
-    });
+    }
 
-    m_audioInput.reset(new QAudioInput(device, format));
-    m_audioInput->setVolume(1.0);
-    m_soundLevelMeter->start();
-    m_audioInput->start(m_soundLevelMeter.data());
+    m_analyzer = new AudioAnalyzer(device);
+    connect(m_analyzer, SIGNAL(spectrumDataReady(QVector<float>, float, float)),
+            this, SLOT(onSpectrumDataReady(QVector<float>, float, float)));
+    m_analyzer->setEnableUpdateLevel(enableUpdateLevel);
+    m_analyzer->setEnableUpdatePeak(enableUpdatePeak);
+    m_analyzer->setEnableUpdateSpectrum(enableUpdateSpectrum);
+    m_analyzer->start();
 
     m_isInterfaceOpened = true;
     return ERR_NONE;
@@ -93,15 +79,10 @@ int DgsAudioinInterface::openInterface()
 
 int DgsAudioinInterface::closeInterface()
 {
-    if (!m_audioInput.isNull()) {
-        m_audioInput->stop();
-        m_audioInput.reset();
-    }
-
-    if (!m_soundLevelMeter.isNull()) {
-        m_soundLevelMeter->stop();
-        m_soundLevelMeter->disconnect();
-        m_soundLevelMeter.reset();
+    if (m_analyzer) {
+        m_analyzer->stop();
+        delete m_analyzer;
+        m_analyzer = nullptr;
     }
 
     m_isInterfaceOpened = false;
@@ -116,6 +97,45 @@ int DgsAudioinInterface::sendData(int endpointIndex, dgsSignalData data)
     // TODO:
 
     return ERR_NONE;
+}
+
+void DgsAudioinInterface::onSpectrumDataReady(const QVector<float> &spectrum, float level, float peak)
+{
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        int type  = m_endpointInfoList[n].type;
+        int range = m_endpointInfoList[n].range;
+
+        if (type == ENDPOINT_AUDIOIN_LEVEL) {
+
+            dgsSignalData data;
+            data.signal = DATA_SIGNAL_ANALOG;
+            data.aRange = range;
+            data.aValue = qBound<int>(0, (level + 50) * 20000, range); // sound level: -50 to 0 dB
+            emit dataReceived(n, data);
+
+        } else if (type == ENDPOINT_AUDIOIN_PEAK) {
+
+            dgsSignalData data;
+            data.signal = DATA_SIGNAL_ANALOG;
+            data.aRange = range;
+            data.aValue = qBound<int>(0, (peak + 50) * 20000, range); // peak level: -50 to 0 dB
+            emit dataReceived(n, data);
+
+        } else if (type == ENDPOINT_AUDIOIN_SPECTRUM) {
+
+            int channel = m_endpointInfoList[n].channel;
+            float db = spectrum.at(channel-1);
+            if (channel>=1 && channel<=spectrum.length()) {
+
+                dgsSignalData data;
+                data.signal = DATA_SIGNAL_ANALOG;
+                data.aRange = range;
+                data.aValue = qBound<int>(0, (db + 50) * 10000, range); // spectrum: -50 to 50 dB
+                emit dataReceived(n, data);
+            }
+        }
+    }
 }
 
 QVariantList DgsAudioinInterface::listOnline()
@@ -155,129 +175,5 @@ QString DgsAudioinInterface::getUniqueAudioinName(int index)
 
     if (i>0) return audioinName + " #" + QString::number(i+1);
     return audioinName;
-}
-
-SoundLevelMeter::SoundLevelMeter(const QAudioFormat &format)
-    : m_format(format)
-{
-    switch (m_format.sampleSize()) {
-    case 8:
-        switch (m_format.sampleType()) {
-        case QAudioFormat::UnSignedInt:
-            m_maxAmplitude = 255;
-            break;
-        case QAudioFormat::SignedInt:
-            m_maxAmplitude = 127;
-            break;
-        default:
-            break;
-        }
-        break;
-    case 16:
-        switch (m_format.sampleType()) {
-        case QAudioFormat::UnSignedInt:
-            m_maxAmplitude = 65535;
-            break;
-        case QAudioFormat::SignedInt:
-            m_maxAmplitude = 32767;
-            break;
-        default:
-            break;
-        }
-        break;
-
-    case 32:
-        switch (m_format.sampleType()) {
-        case QAudioFormat::UnSignedInt:
-            m_maxAmplitude = 0xffffffff;
-            break;
-        case QAudioFormat::SignedInt:
-            m_maxAmplitude = 0x7fffffff;
-            break;
-        case QAudioFormat::Float:
-            m_maxAmplitude = 0x7fffffff; // Kind of
-        default:
-            break;
-        }
-        break;
-
-    default:
-        break;
-    }
-}
-
-void SoundLevelMeter::start()
-{
-    open(QIODevice::WriteOnly);
-}
-
-void SoundLevelMeter::stop()
-{
-    close();
-}
-
-qint64 SoundLevelMeter::readData(char *data, qint64 maxlen)
-{
-    Q_UNUSED(data)
-    Q_UNUSED(maxlen)
-
-    return 0;
-}
-
-qint64 SoundLevelMeter::writeData(const char *data, qint64 len)
-{
-    if (m_maxAmplitude) {
-        Q_ASSERT(m_format.sampleSize() % 8 == 0);
-        const int channelBytes = m_format.sampleSize() / 8;
-        const int sampleBytes = m_format.channelCount() * channelBytes;
-        Q_ASSERT(len % sampleBytes == 0);
-        const int numSamples = len / sampleBytes;
-
-        quint32 maxValue = 0;
-        const unsigned char *ptr = reinterpret_cast<const unsigned char *>(data);
-
-        for (int i = 0; i < numSamples; ++i) {
-            for (int j = 0; j < m_format.channelCount(); ++j) {
-                quint32 value = 0;
-
-                if (m_format.sampleSize() == 8 && m_format.sampleType() == QAudioFormat::UnSignedInt) {
-                    value = *reinterpret_cast<const quint8*>(ptr);
-                } else if (m_format.sampleSize() == 8 && m_format.sampleType() == QAudioFormat::SignedInt) {
-                    value = qAbs(*reinterpret_cast<const qint8*>(ptr));
-                } else if (m_format.sampleSize() == 16 && m_format.sampleType() == QAudioFormat::UnSignedInt) {
-                    if (m_format.byteOrder() == QAudioFormat::LittleEndian)
-                        value = qFromLittleEndian<quint16>(ptr);
-                    else
-                        value = qFromBigEndian<quint16>(ptr);
-                } else if (m_format.sampleSize() == 16 && m_format.sampleType() == QAudioFormat::SignedInt) {
-                    if (m_format.byteOrder() == QAudioFormat::LittleEndian)
-                        value = qAbs(qFromLittleEndian<qint16>(ptr));
-                    else
-                        value = qAbs(qFromBigEndian<qint16>(ptr));
-                } else if (m_format.sampleSize() == 32 && m_format.sampleType() == QAudioFormat::UnSignedInt) {
-                    if (m_format.byteOrder() == QAudioFormat::LittleEndian)
-                        value = qFromLittleEndian<quint32>(ptr);
-                    else
-                        value = qFromBigEndian<quint32>(ptr);
-                } else if (m_format.sampleSize() == 32 && m_format.sampleType() == QAudioFormat::SignedInt) {
-                    if (m_format.byteOrder() == QAudioFormat::LittleEndian)
-                        value = qAbs(qFromLittleEndian<qint32>(ptr));
-                    else
-                        value = qAbs(qFromBigEndian<qint32>(ptr));
-                } else if (m_format.sampleSize() == 32 && m_format.sampleType() == QAudioFormat::Float) {
-                    value = qAbs(*reinterpret_cast<const float*>(ptr) * 0x7fffffff); // assumes 0-1.0
-                }
-
-                maxValue = qMax(value, maxValue);
-                ptr += channelBytes;
-            }
-        }
-
-        maxValue = qMin(maxValue, m_maxAmplitude);
-        m_level = qreal(maxValue) / m_maxAmplitude;
-    }
-
-    emit update();
-    return len;
 }
 
