@@ -1,0 +1,320 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.6.2"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "enabled": true,
+                    "name": "level1",
+                    "type": "level"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "spectrum1",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "spectrum2",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "spectrum3",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "name": "spectrum4",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 5,
+                    "enabled": true,
+                    "name": "spectrum5",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 6,
+                    "enabled": true,
+                    "name": "spectrum6",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 7,
+                    "enabled": true,
+                    "name": "spectrum7",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 8,
+                    "enabled": true,
+                    "name": "spectrum8",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 9,
+                    "enabled": true,
+                    "name": "spectrum9",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 10,
+                    "enabled": true,
+                    "name": "spectrum10",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 11,
+                    "enabled": true,
+                    "name": "spectrum11",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 12,
+                    "enabled": true,
+                    "name": "spectrum12",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 13,
+                    "enabled": true,
+                    "name": "spectrum13",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 14,
+                    "enabled": true,
+                    "name": "spectrum14",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 15,
+                    "enabled": true,
+                    "name": "spectrum15",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 16,
+                    "enabled": true,
+                    "name": "spectrum16",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 17,
+                    "enabled": true,
+                    "name": "spectrum17",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 18,
+                    "enabled": true,
+                    "name": "spectrum18",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 19,
+                    "enabled": true,
+                    "name": "spectrum19",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 20,
+                    "enabled": true,
+                    "name": "spectrum20",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 21,
+                    "enabled": true,
+                    "name": "spectrum21",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 22,
+                    "enabled": true,
+                    "name": "spectrum22",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 23,
+                    "enabled": true,
+                    "name": "spectrum23",
+                    "type": "spectrum"
+                },
+                {
+                    "channel": 24,
+                    "enabled": true,
+                    "name": "spectrum24",
+                    "type": "spectrum"
+                },
+                {
+                    "enabled": true,
+                    "name": "peak1",
+                    "type": "peak"
+                }
+            ],
+            "mode": "",
+            "name": "audioin1",
+            "type": "audioin"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "",
+            "linked": true,
+            "source": "audioin1/level1",
+            "title": ""
+        },
+        {
+            "linked": true,
+            "source": "audioin1/peak1",
+            "title": ""
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum1"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum2"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum3"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum4"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum5"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum6"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum7"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum8"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum9"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum10"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum11"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum12"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum13"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum14"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum15"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum16"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum17"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum18"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum19"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum20"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum21"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum22"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum23"
+        },
+        {
+            "linked": true,
+            "source": "audioin1/spectrum24"
+        }
+    ]
+}

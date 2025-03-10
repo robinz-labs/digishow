@@ -1,0 +1,153 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.6.2"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "analog1",
+                    "type": "analog"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "analog2",
+                    "type": "analog"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "analog3",
+                    "type": "analog"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "comPort": "tty.usbserial-0001",
+            "endpoints": [
+            ],
+            "mode": "general",
+            "name": "rioc1",
+            "outputInterval": 20,
+            "type": "rioc"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/value",
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "int1",
+                    "range": 20000,
+                    "type": "int"
+                },
+                {
+                    "address": "/value",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "int2",
+                    "range": 20000,
+                    "type": "int"
+                },
+                {
+                    "address": "/value",
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "int3",
+                    "range": 20000,
+                    "type": "int"
+                }
+            ],
+            "mode": "input",
+            "name": "osc1",
+            "type": "osc",
+            "udpPort": 8000
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/analog1",
+            "inputHigh": 0.6,
+            "inputLow": 0.4,
+            "linked": true,
+            "outputHigh": 1,
+            "outputLow": 0,
+            "outputSmoothing": 100,
+            "source": "osc1/int2",
+            "title": "acceleration X"
+        },
+        {
+            "destination": "pipe1/analog2",
+            "inputHigh": 0.6,
+            "inputInverted": false,
+            "inputLow": 0.4,
+            "linked": true,
+            "outputHigh": 1,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "outputSmoothing": 100,
+            "source": "osc1/int3",
+            "title": "acceleration Y"
+        },
+        {
+            "destination": "pipe1/analog3",
+            "inputHigh": 0.6,
+            "inputInverted": false,
+            "inputLow": 0.4,
+            "linked": true,
+            "outputHigh": 1,
+            "outputInverted": false,
+            "outputLow": 0,
+            "outputLowAsZero": false,
+            "outputSmoothing": 100,
+            "source": "osc1/int1",
+            "title": "acceleration Z"
+        }
+    ]
+}

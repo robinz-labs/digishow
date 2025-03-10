@@ -1,0 +1,157 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.2_b"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/seconds",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "int1",
+                    "range": 60,
+                    "type": "int"
+                },
+                {
+                    "address": "/test2",
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "bool2",
+                    "type": "bool"
+                },
+                {
+                    "address": "/test1",
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "float2",
+                    "type": "float"
+                },
+                {
+                    "address": "/test3",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "int2",
+                    "range": 10,
+                    "type": "int"
+                }
+            ],
+            "mode": "input",
+            "name": "osc1",
+            "type": "osc",
+            "udpPort": 8000
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/test2",
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "bool2",
+                    "type": "bool"
+                },
+                {
+                    "address": "/test1",
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "float2",
+                    "type": "float"
+                },
+                {
+                    "address": "/test3",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "int1",
+                    "range": 10,
+                    "type": "int"
+                }
+            ],
+            "mode": "output",
+            "name": "osc2",
+            "type": "osc",
+            "udpHost": "192.168.1.20",
+            "udpPort": 9000
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "linked": true,
+            "source": "osc1/int1",
+            "title": "Seconds"
+        },
+        {
+            "destination": "osc2/float2",
+            "linked": true,
+            "title": "OSC Out 1"
+        },
+        {
+            "linked": true,
+            "source": "osc1/float2",
+            "title": "OSC In 1"
+        },
+        {
+            "destination": "osc2/bool2",
+            "linked": true,
+            "title": "OSC Out 2"
+        },
+        {
+            "destination": "",
+            "linked": true,
+            "source": "osc1/bool2",
+            "title": "OSC In 2"
+        },
+        {
+            "destination": "osc2/int1",
+            "linked": true,
+            "title": "OSC Out 3"
+        },
+        {
+            "destination": "",
+            "linked": true,
+            "source": "osc1/int2",
+            "title": "OSC In 3"
+        }
+    ]
+}

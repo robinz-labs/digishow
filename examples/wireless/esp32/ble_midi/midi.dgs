@@ -1,0 +1,170 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.2_b"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "control": 20,
+                    "enabled": true,
+                    "name": "control1",
+                    "type": "control"
+                },
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "note1",
+                    "note": 60,
+                    "type": "note"
+                },
+                {
+                    "channel": 0,
+                    "control": 1,
+                    "enabled": true,
+                    "name": "control2",
+                    "type": "control"
+                },
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "program1",
+                    "type": "program"
+                },
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "pitch1",
+                    "type": "pitch"
+                }
+            ],
+            "mode": "input",
+            "name": "midi1",
+            "outputInterval": 20,
+            "port": "Esp32-BLE-MIDI Bluetooth",
+            "type": "midi"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "note1",
+                    "note": 60,
+                    "type": "note"
+                },
+                {
+                    "channel": 0,
+                    "control": 1,
+                    "enabled": true,
+                    "name": "control1",
+                    "type": "control"
+                },
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "program1",
+                    "type": "program"
+                },
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "pitch1",
+                    "type": "pitch"
+                }
+            ],
+            "mode": "output",
+            "name": "midi2",
+            "outputInterval": 20,
+            "port": "Esp32-BLE-MIDI Bluetooth",
+            "type": "midi"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "linked": true,
+            "source": "midi1/control1",
+            "title": "Seconds"
+        },
+        {
+            "destination": "midi2/note1",
+            "linked": true,
+            "title": "Note Out"
+        },
+        {
+            "linked": true,
+            "source": "midi1/note1",
+            "title": "Note In"
+        },
+        {
+            "destination": "midi2/control1",
+            "linked": true,
+            "title": "Control Out"
+        },
+        {
+            "linked": true,
+            "source": "midi1/control2",
+            "title": "Control In"
+        },
+        {
+            "destination": "midi2/program1",
+            "linked": true,
+            "title": "Program Out"
+        },
+        {
+            "linked": true,
+            "source": "midi1/program1",
+            "title": "Program In"
+        },
+        {
+            "destination": "midi2/pitch1",
+            "linked": true,
+            "title": "Pitch Out"
+        },
+        {
+            "linked": true,
+            "source": "midi1/pitch1",
+            "title": "Pitch In"
+        }
+    ]
+}
