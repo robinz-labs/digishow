@@ -441,7 +441,9 @@ void DigishowInterface::updateMetadata()
             break;
         case INTERFACE_AUDIOIN:
             if      (typeName == "level"      ) endpointInfo.type = ENDPOINT_AUDIOIN_LEVEL;
+            else if (typeName == "level_db"   ) endpointInfo.type = ENDPOINT_AUDIOIN_LEVEL_DB;
             else if (typeName == "peak"       ) endpointInfo.type = ENDPOINT_AUDIOIN_PEAK;
+            else if (typeName == "peak_db"    ) endpointInfo.type = ENDPOINT_AUDIOIN_PEAK_DB;
             else if (typeName == "spectrum"   ) endpointInfo.type = ENDPOINT_AUDIOIN_SPECTRUM;
             break;
         case INTERFACE_SCREEN:
@@ -732,12 +734,26 @@ void DigishowInterface::updateMetadata()
             endpointInfo.labelEPT = tr("Audio");
             endpointInfo.labelEPI = tr("Level");
             break;
+        case ENDPOINT_AUDIOIN_LEVEL_DB:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.input = true;
+            endpointInfo.range  = 1000000;
+            endpointInfo.labelEPT = tr("Audio");
+            endpointInfo.labelEPI = tr("Level") + " dB";
+            break;
         case ENDPOINT_AUDIOIN_PEAK:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
             endpointInfo.input = true;
             endpointInfo.range  = 1000000;
             endpointInfo.labelEPT = tr("Audio");
             endpointInfo.labelEPI = tr("Peak");
+            break;
+        case ENDPOINT_AUDIOIN_PEAK_DB:
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.input = true;
+            endpointInfo.range  = 1000000;
+            endpointInfo.labelEPT = tr("Audio");
+            endpointInfo.labelEPI = tr("Peak") + " dB";
             break;
         case ENDPOINT_AUDIOIN_SPECTRUM:
             endpointInfo.signal = DATA_SIGNAL_ANALOG;

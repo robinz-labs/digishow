@@ -140,14 +140,17 @@
   ! bug fixes and improvements
 
   v1.6.1 20250228
-  beta 1 release
+  beta release
   + sending code over udp/tcp/com by scripts
   + multi-line expression editor
 
   v1.6.2 20250303
-  beta 2 release
+  final release
   ! fixed bugs of rioc channel number and pin number conflict
   + qr code for web remote control
+
+  v1.6.3 20250313
+  ! rewrote the audio input interface with FFT
 
 */
 

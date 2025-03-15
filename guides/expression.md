@@ -14,6 +14,9 @@ The maximum value of this signal in the range.
 **lastValue** 
 The last value stored in this signal after the expression is calculated. 
  
+**null**
+In JavaScript, null represents "no value". If an expression returns null, it indicates that the signal remains unchanged, and the current signal value update is ignored. 
+ 
  
 ## Common functions in expressions
  
@@ -30,7 +33,14 @@ Display an information dialog box with the text _message_, and close it after pr
 Display a notification prompt box with the text _message_, which will automatically disappear after staying for a few seconds. 
 
 An expression can also contain multiple statements, and the statements need to be separated by ; semicolons. The last statement is used to return the value calculated by the expression. For example: 
+
 _alert("value = " + value); value_ 
+
+In multi-line expression editing mode, it can also be written as follows, where the last line of the code is the return value: 
+
+_alert("value = " + value)_ 
+ 
+_value_ 
   
 In addition, there are more functions that can be called in expressions and the attached script file of DigiShow projects. 
  

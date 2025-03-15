@@ -11,7 +11,7 @@ Item {
 
     COptionButton {
         id: buttonType
-        width: 100
+        width: 120
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
@@ -26,9 +26,21 @@ Item {
 
     }
 
+    Text {
+        anchors.left: buttonType.right
+        anchors.leftMargin: 10
+        anchors.verticalCenter: buttonType.verticalCenter
+        font.pixelSize: 12
+        font.bold: false
+        text: "-50 dB ~ 0 dB"
+        color: "#666"
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointAudioInLevelDb ||
+                 menuType.selectedItemValue === DigishowEnvironment.EndpointAudioInPeakDb
+    }
+
     COptionButton {
         id: buttonChannel
-        width: 250
+        width: 240
         height: 28
         anchors.left: buttonType.right
         anchors.leftMargin: 10
@@ -51,12 +63,14 @@ Item {
         // init type menu
         if (menuType.count === 0) {
             items = []
-            items.push({ text: qsTr("Level"     ), value: DigishowEnvironment.EndpointAudioInLevel,    tag:"level"    })
-            items.push({ text: qsTr("Peak Level"), value: DigishowEnvironment.EndpointAudioInPeak,     tag:"peak"     })
-            items.push({ text: qsTr("Spectrum"  ), value: DigishowEnvironment.EndpointAudioInSpectrum, tag:"spectrum" })
+            items.push({ text: qsTr("Level")              , value: DigishowEnvironment.EndpointAudioInLevel,    tag:"level"    })
+            items.push({ text: qsTr("Level")+" (dB)"      , value: DigishowEnvironment.EndpointAudioInLevelDb,  tag:"level_db" })
+            items.push({ text: qsTr("Peak Level")         , value: DigishowEnvironment.EndpointAudioInPeak,     tag:"peak"     })
+            items.push({ text: qsTr("Peak Level")+" (dB)" , value: DigishowEnvironment.EndpointAudioInPeakDb,   tag:"peak_db"  })
+            items.push({ text: qsTr("Spectrum")           , value: DigishowEnvironment.EndpointAudioInSpectrum, tag:"spectrum" })
 
             menuType.optionItems = items
-            menuType.selectedIndex = 0
+            menuType.selectedIndex = 2 // peak level
         }
 
         // init spectrum band menu
@@ -67,7 +81,7 @@ Item {
                 items.push({ text: bandName, value: n })
             }
             menuChannel.optionItems = items
-            menuChannel.selectOption(8) // kick
+            menuChannel.selectOption(8) // band of kick
         }
 
         // init more options

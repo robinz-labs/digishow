@@ -46,7 +46,9 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointOscFloat          : return CColor.Sky
             case DigishowEnvironment.EndpointOscBool           : return CColor.RosePink
             case DigishowEnvironment.EndpointAudioInLevel      : return CColor.Ocean
+            case DigishowEnvironment.EndpointAudioInLevelDb    : return CColor.Ocean
             case DigishowEnvironment.EndpointAudioInPeak       : return CColor.Ocean
+            case DigishowEnvironment.EndpointAudioInPeakDb     : return CColor.Ocean
             case DigishowEnvironment.EndpointAudioInSpectrum   : return CColor.Lake
             case DigishowEnvironment.EndpointScreenLight       : return CColor.Lake
             case DigishowEnvironment.EndpointScreenMedia       : return sig === DigishowEnvironment.SignalBinary ?

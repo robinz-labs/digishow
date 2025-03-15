@@ -27,6 +27,10 @@
 #include <QTimer>
 #include "kiss_fft.h"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 AudioAnalyzer::AudioAnalyzer(const QAudioDeviceInfo &device, QObject *parent)
     : QObject(parent)
     , m_enableUpdateLevel(true)
@@ -137,7 +141,8 @@ void AudioAnalyzer::performAnalysis()
             sumSquares += m_sampleWindow[i] * m_sampleWindow[i];
         }
         float rms = std::sqrt(sumSquares / FFT_SIZE);
-        soundLevel = 20.0f * log10(rms + 1e-6f); // Convert to dB
+        soundLevel = rms;
+        //soundLevel = 20.0f * log10(rms + 1e-6f); // Convert to dB
     }
 
     // Calculate overall peak level from the sliding window
@@ -147,7 +152,8 @@ void AudioAnalyzer::performAnalysis()
             float absValue = std::abs(m_sampleWindow[i]);
             maxValue = std::max(maxValue, absValue);
         }
-        peakLevel = 20.0f * log10(maxValue + 1e-6f); // Convert to dB
+        peakLevel = maxValue;
+        //peakLevel = 20.0f * log10(maxValue + 1e-6f); // Convert to dB
     }
 
     // Copy data from sliding window to FFT buffer, maintaining correct time order

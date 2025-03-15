@@ -2,7 +2,7 @@
     "appInfo": {
         "appExperimental": true,
         "appName": "DigiShow LINK",
-        "appVersion": "1.6.2"
+        "appVersion": "1.6.3"
     },
     "interfaces": [
         {
@@ -188,6 +188,16 @@
                     "enabled": true,
                     "name": "peak1",
                     "type": "peak"
+                },
+                {
+                    "enabled": true,
+                    "name": "level_db1",
+                    "type": "level_db"
+                },
+                {
+                    "enabled": true,
+                    "name": "peak_db1",
+                    "type": "peak_db"
                 }
             ],
             "mode": "",
@@ -216,9 +226,19 @@
             "title": ""
         },
         {
+            "destination": "",
+            "linked": true,
+            "source": "audioin1/level_db1",
+            "title": ""
+        },
+        {
             "linked": true,
             "source": "audioin1/peak1",
             "title": ""
+        },
+        {
+            "linked": true,
+            "source": "audioin1/peak_db1"
         },
         {
             "linked": true,

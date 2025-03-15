@@ -59,8 +59,10 @@ int DgsAudioinInterface::openInterface()
     for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
         int type  = m_endpointInfoList[n].type;
         switch (type) {
-        case ENDPOINT_AUDIOIN_LEVEL:    enableUpdateLevel    = true; break;
-        case ENDPOINT_AUDIOIN_PEAK:     enableUpdatePeak     = true; break;
+        case ENDPOINT_AUDIOIN_LEVEL:
+        case ENDPOINT_AUDIOIN_LEVEL_DB: enableUpdateLevel    = true; break;
+        case ENDPOINT_AUDIOIN_PEAK:
+        case ENDPOINT_AUDIOIN_PEAK_DB:  enableUpdatePeak     = true; break;
         case ENDPOINT_AUDIOIN_SPECTRUM: enableUpdateSpectrum = true; break;
         }
     }
@@ -106,20 +108,36 @@ void DgsAudioinInterface::onSpectrumDataReady(const QVector<float> &spectrum, fl
         int type  = m_endpointInfoList[n].type;
         int range = m_endpointInfoList[n].range;
 
-        if (type == ENDPOINT_AUDIOIN_LEVEL) {
+        if (type == ENDPOINT_AUDIOIN_LEVEL || type == ENDPOINT_AUDIOIN_LEVEL_DB) {
+
+            int value;
+            if (type == ENDPOINT_AUDIOIN_LEVEL_DB) {
+                float db = 20.0f * log10(level + 1e-6f); // covert to decibel
+                value = (db + 50) * 20000;               // spectrum: -50 to 0 dB
+            } else {
+                value = range * level;
+            }
 
             dgsSignalData data;
             data.signal = DATA_SIGNAL_ANALOG;
             data.aRange = range;
-            data.aValue = qBound<int>(0, (level + 50) * 20000, range); // sound level: -50 to 0 dB
+            data.aValue = qBound<int>(0, value, range);
             emit dataReceived(n, data);
 
-        } else if (type == ENDPOINT_AUDIOIN_PEAK) {
+        } else if (type == ENDPOINT_AUDIOIN_PEAK || type == ENDPOINT_AUDIOIN_PEAK_DB) {
+
+            int value;
+            if (type == ENDPOINT_AUDIOIN_PEAK_DB) {
+                float db = 20.0f * log10(peak + 1e-6f); // covert to decibel
+                value = (db + 50) * 20000;              // spectrum: -50 to 0 dB
+            } else {
+                value = range * peak;
+            }
 
             dgsSignalData data;
             data.signal = DATA_SIGNAL_ANALOG;
             data.aRange = range;
-            data.aValue = qBound<int>(0, (peak + 50) * 20000, range); // peak level: -50 to 0 dB
+            data.aValue = qBound<int>(0, value, range);;
             emit dataReceived(n, data);
 
         } else if (type == ENDPOINT_AUDIOIN_SPECTRUM) {

@@ -113,8 +113,10 @@
 #define ENDPOINT_OSC_FLOAT          10702
 #define ENDPOINT_OSC_BOOL           10703
 #define ENDPOINT_AUDIOIN_LEVEL      10801
-#define ENDPOINT_AUDIOIN_PEAK       10802
-#define ENDPOINT_AUDIOIN_SPECTRUM   10803
+#define ENDPOINT_AUDIOIN_LEVEL_DB   10802
+#define ENDPOINT_AUDIOIN_PEAK       10803
+#define ENDPOINT_AUDIOIN_PEAK_DB    10804
+#define ENDPOINT_AUDIOIN_SPECTRUM   10805
 #define ENDPOINT_SCREEN_LIGHT       80101
 #define ENDPOINT_SCREEN_MEDIA       80102
 #define ENDPOINT_SCREEN_CANVAS      80103
@@ -209,7 +211,7 @@ typedef struct dgsEndpointInfo {
     int unit;           // unit address number
     int channel;        // channel number
     int note;           // note number (for midi only)
-    int control;        // control number (for midi only)
+    int control;        // control number (for midi and some others)
     char signal;        // signal data type
     bool output;        // is output signal
     bool input;         // is input signal
