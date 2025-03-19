@@ -24,6 +24,7 @@
 #include "dgs_dmx_interface.h"
 #include "dgs_audioin_interface.h"
 #include "dgs_screen_interface.h"
+#include "dgs_messager_interface.h"
 #include "rioc_aladdin2560_def.h"
 
 DigishowEnvironment::DigishowEnvironment(QObject *parent) : QObject(parent)
@@ -355,7 +356,16 @@ bool DigishowEnvironment::restartInterface(int interfaceIndex)
     DigishowInterface *interface = g_app->interfaceAt(interfaceIndex);
     if (interface == nullptr) return false;
 
+    // close the interface
     interface->closeInterface();
+
+    // repair endpoints of the interface (disable endpoints that are not employed by any slot)
+    for (int i=0 ; i<interface->endpointCount() ; i++) {
+        if (!g_app->confirmEndpointIsEmployed(interfaceIndex, i))
+            interface->setEndpointOption(i, "enabled", false);
+    }
+
+    // open the interface again
     return (interface->openInterface() == ERR_NONE);
 }
 
@@ -766,12 +776,13 @@ void DigishowEnvironment::onRawDataReceived(const QVariantMap &rawData)
 QVariantMap DigishowEnvironment::listOnline()
 {
     QVariantMap info;
-    info["midi"   ] = DgsMidiInterface   ::listOnline();
-    info["dmx"    ] = DgsDmxInterface    ::listOnline();
-    info["rioc"   ] = DgsRiocInterface   ::listOnline();
-    info["modbus" ] = DgsModbusInterface ::listOnline();
-    info["audioin"] = DgsAudioinInterface::listOnline();
-    info["screen" ] = DgsScreenInterface ::listOnline();
+    info["midi"    ] = DgsMidiInterface    ::listOnline();
+    info["dmx"     ] = DgsDmxInterface     ::listOnline();
+    info["rioc"    ] = DgsRiocInterface    ::listOnline();
+    info["modbus"  ] = DgsModbusInterface  ::listOnline();
+    info["audioin" ] = DgsAudioinInterface ::listOnline();
+    info["screen"  ] = DgsScreenInterface  ::listOnline();
+    info["messager"] = DgsMessagerInterface::listOnline();
     return info;
 }
 

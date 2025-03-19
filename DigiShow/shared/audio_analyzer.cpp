@@ -20,7 +20,7 @@
     The code in this file was co-written by AI (Trae/Claude-3.5-Sonnet).
  */
 
-#include "audioanalyzer.h"
+#include "audio_analyzer.h"
 #include <QAudioFormat>
 #include <QDebug>
 #include <cmath>

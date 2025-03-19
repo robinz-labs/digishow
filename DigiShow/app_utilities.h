@@ -32,6 +32,11 @@ public:
     explicit AppUtilities(QObject *parent = nullptr);
     ~AppUtilities();
 
+    Q_INVOKABLE static QByteArray decodeCStyleEscapes(const QString &escapedString); // to parse C printf-style escaped strings
+    Q_INVOKABLE static QString    encodeCStyleEscapes(const QByteArray &rawData);    // for encoding C printf-style escaped strings
+
+    Q_INVOKABLE static QString txt2hex(const QString &txt) { return decodeCStyleEscapes(txt).toHex(' ').toUpper(); }
+    Q_INVOKABLE static QString hex2txt(const QString &hex) { return encodeCStyleEscapes(QByteArray::fromHex(hex.toUtf8())); }
 
     Q_INVOKABLE static QString loadStringFromFile(const QString & filepath);
     Q_INVOKABLE static bool saveStringToFile(const QString & data, const QString & filepath);
@@ -113,8 +118,8 @@ public:
     }
 
 private:
-    QList<QSerialPort*> m_comConnections;
-    QList<QTcpSocket*>  m_tcpConnections;
+    QList<QSerialPort*> m_comConnections; // used for comOpen, comSend functions
+    QList<QTcpSocket*>  m_tcpConnections; // used for tcpOpen, tcpSend functions
 };
 
 #endif // APP_UTILITIES_H

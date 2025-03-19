@@ -16,7 +16,7 @@
  */
 
 #include "dgs_audioin_interface.h"
-#include "audioanalyzer.h"
+#include "audio_analyzer.h"
 
 DgsAudioinInterface::DgsAudioinInterface(QObject *parent) : DigishowInterface(parent)
 {

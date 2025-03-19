@@ -414,6 +414,46 @@ Dialog {
         }
 
         Rectangle {
+            id: rectMessager
+            color: "transparent"
+
+            Label {
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                color: Material.accent
+                font.bold: true
+                font.pixelSize: 16
+                text: qsTr("COM Serial and TCP/UDP Messagers")
+            }
+
+            Label {
+                id: labelMessagerInfo
+                anchors.left: parent.left
+                anchors.leftMargin: 25
+                anchors.right: parent.right
+                anchors.rightMargin: 25
+                anchors.top: parent.top
+                anchors.topMargin: 40
+                wrapMode: Label.Wrap
+                lineHeight: 1.3
+                text: qsTr("DigiShow enables the communications with other devices to receive and send specific code messages via COM (serial) ports or IP networks.")
+            }
+
+            MwInterfaceListViewMessager {
+                id: interfaceListViewMessager
+                interfaceType: "messager"
+                anchors.top: labelMessagerInfo.bottom
+                anchors.topMargin: 20
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+            }
+        }
+
+        Rectangle {
             id: rectPipe
             color: "transparent"
 
@@ -548,81 +588,100 @@ Dialog {
         TabButton {
             text: qsTr("MIDI")
             font.capitalization: Font.MixedCase
+            font.pixelSize: 12
             icon.source: "qrc:///images/icon_interface_midi_white.png"
-            icon.width: 48
-            icon.height: 48
+            icon.width: 42
+            icon.height: 42
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
             text: qsTr("DMX")
             font.capitalization: Font.MixedCase
+            font.pixelSize: 12
             icon.source: "qrc:///images/icon_interface_dmx_white.png"
-            icon.width: 48
-            icon.height: 48
+            icon.width: 42
+            icon.height: 42
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
             text: qsTr("OSC")
             font.capitalization: Font.MixedCase
+            font.pixelSize: 12
             icon.source: "qrc:///images/icon_interface_osc_white.png"
-            icon.width: 48
-            icon.height: 48
+            icon.width: 42
+            icon.height: 42
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
             text: qsTr("ArtNet")
             font.capitalization: Font.MixedCase
+            font.pixelSize: 12
             icon.source: "qrc:///images/icon_interface_artnet_white.png"
-            icon.width: 48
-            icon.height: 48
+            icon.width: 42
+            icon.height: 42
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
             text: qsTr("Modbus")
             font.capitalization: Font.MixedCase
+            font.pixelSize: 12
             icon.source: "qrc:///images/icon_interface_modbus_white.png"
-            icon.width: 48
-            icon.height: 48
+            icon.width: 42
+            icon.height: 42
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
             text: qsTr("Arduino")
             font.capitalization: Font.MixedCase
+            font.pixelSize: 12
             icon.source: "qrc:///images/icon_interface_rioc_white.png"
-            icon.width: 48
-            icon.height: 48
+            icon.width: 42
+            icon.height: 42
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
             text: qsTr("Hue")
             font.capitalization: Font.MixedCase
+            font.pixelSize: 12
             icon.source: "qrc:///images/icon_interface_hue_white.png"
-            icon.width: 48
-            icon.height: 48
+            icon.width: 42
+            icon.height: 42
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
             text: qsTr("Audio")
             font.capitalization: Font.MixedCase
+            font.pixelSize: 12
             icon.source: "qrc:///images/icon_interface_audioin_white.png"
-            icon.width: 48
-            icon.height: 48
+            icon.width: 42
+            icon.height: 42
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
             text: qsTr("Screen")
             font.capitalization: Font.MixedCase
+            font.pixelSize: 12
             icon.source: "qrc:///images/icon_interface_screen_white.png"
-            icon.width: 48
-            icon.height: 48
+            icon.width: 42
+            icon.height: 42
+            display: AbstractButton.TextUnderIcon
+        }
+        TabButton {
+            text: qsTr("Messager")
+            font.capitalization: Font.MixedCase
+            font.pixelSize: 12
+            icon.source: "qrc:///images/icon_interface_messager_white.png"
+            icon.width: 42
+            icon.height: 42
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
             text: qsTr("Pipe")
             font.capitalization: Font.MixedCase
+            font.pixelSize: 12
             icon.source: "qrc:///images/icon_interface_pipe_white.png"
-            icon.width: 48
-            icon.height: 48
+            icon.width: 42
+            icon.height: 42
             display: AbstractButton.TextUnderIcon
         }
     }
@@ -660,6 +719,7 @@ Dialog {
         interfaceListViewHue.refresh()
         interfaceListViewAudioin.refresh()
         interfaceListViewScreen.refresh()
+        interfaceListViewMessager.refresh()
         interfaceListViewPipe.refresh()
         interfaceListViewAPlay.refresh()
         interfaceListViewMPlay.refresh()

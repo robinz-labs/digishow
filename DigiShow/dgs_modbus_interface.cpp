@@ -58,13 +58,13 @@ int DgsModbusInterface::openInterface()
         m_modbusComBaud   = m_interfaceOptions.value("comBaud").toInt();
 
         m_modbusComParity = 0;
-        QString comParty = m_interfaceOptions.value("comParity").toString();
-        if (comParty == "8N1") m_modbusComParity = CH_SETTING_8N1; else
-        if (comParty == "8E1") m_modbusComParity = CH_SETTING_8E1; else
-        if (comParty == "8O1") m_modbusComParity = CH_SETTING_8O1; else
-        if (comParty == "7E1") m_modbusComParity = CH_SETTING_7E1; else
-        if (comParty == "7O1") m_modbusComParity = CH_SETTING_7O1; else
-        if (comParty == "8N2") m_modbusComParity = CH_SETTING_8N2;
+        QString comParity = m_interfaceOptions.value("comParity").toString();
+        if (comParity == "8N1") m_modbusComParity = CH_SETTING_8N1; else
+        if (comParity == "8E1") m_modbusComParity = CH_SETTING_8E1; else
+        if (comParity == "8O1") m_modbusComParity = CH_SETTING_8O1; else
+        if (comParity == "7E1") m_modbusComParity = CH_SETTING_7E1; else
+        if (comParity == "7O1") m_modbusComParity = CH_SETTING_7O1; else
+        if (comParity == "8N2") m_modbusComParity = CH_SETTING_8N2;
 
     } else
     if (m_modbusMode == INTERFACE_MODBUS_TCP ||

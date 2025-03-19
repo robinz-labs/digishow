@@ -42,18 +42,90 @@ AppUtilities::AppUtilities(QObject *parent) : QObject(parent)
 
 AppUtilities::~AppUtilities()
 {
+    // used for comOpen, comSend functions
     foreach (QSerialPort *serial, m_comConnections) {
         if (serial != nullptr) {
             serial->close();
             delete serial;
         }
     }
+    // used for tcpOpen, tcpSend functions
     foreach (QTcpSocket *socket, m_tcpConnections) {
         if (socket != nullptr) {
             socket->close();
             delete socket;
         }
     }
+}
+
+QByteArray AppUtilities::decodeCStyleEscapes(const QString &escapedString)
+{
+    QByteArray result;
+    bool escapeMode = false;
+
+    for (int i = 0; i < escapedString.length(); ++i) {
+        QChar currentChar = escapedString[i];
+        if (escapeMode) {
+            switch (currentChar.toLatin1()) {
+            case 'n': result.append('\n'); break;  // Newline
+            case 'r': result.append('\r'); break;  // Carriage return
+            case 't': result.append('\t'); break;  // Tab
+            case '\\': result.append('\\'); break; // Backslash
+            case 'x': {
+                // Process \xNN (hexadecimal escape)
+                if (i + 2 < escapedString.length()) {
+                    QString hexCode = escapedString.mid(i + 1, 2); // Extract two hex digits
+                    bool ok;
+                    result.append(char(hexCode.toUInt(&ok, 16))); // Convert to byte
+                    if (ok) i += 2; // Skip processed characters
+                }
+                break;
+            }
+            default:
+                result.append(currentChar.toLatin1()); // Treat unknown escape literally
+            }
+            escapeMode = false; // Exit escape mode
+        } else if (currentChar == '\\') {
+            escapeMode = true; // Enter escape mode
+        } else {
+            result.append(currentChar.toLatin1()); // Append regular character
+        }
+    }
+
+    return result;
+}
+
+QString AppUtilities::encodeCStyleEscapes(const QByteArray &rawData)
+{
+    QString result;
+
+    for (char byte : rawData) {
+        switch (byte) {
+        case '\n':
+            result.append("\\n");
+            break; // Newline character
+        case '\r':
+            result.append("\\r");
+            break; // Carriage return character
+        case '\t':
+            result.append("\\t");
+            break; // Tab character
+        case '\\':
+            result.append("\\\\");
+            break; // Backslash character
+        default:
+            // If the character is non-printable or outside the visible ASCII range,
+            // encode it in \xHH format (hexadecimal)
+            if (byte < 0x20 || byte > 0x7E) {
+                result.append(QString("\\x%1").arg(static_cast<unsigned char>(byte), 2, 16, QChar('0')));
+            } else {
+                // For regular printable ASCII characters, append them as-is
+                result.append(byte);
+            }
+        }
+    }
+
+    return result;
 }
 
 QString AppUtilities::loadStringFromFile(const QString & filepath)

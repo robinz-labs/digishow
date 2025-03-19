@@ -194,6 +194,7 @@ void DigishowInterface::updateMetadata()
     else if (typeName == "launch"   ) m_interfaceInfo.type = INTERFACE_LAUNCH;
     else if (typeName == "hotkey"   ) m_interfaceInfo.type = INTERFACE_HOTKEY;
     else if (typeName == "metronome") m_interfaceInfo.type = INTERFACE_METRONOME;
+    else if (typeName == "messager" ) m_interfaceInfo.type = INTERFACE_MESSAGER;
 
     // set interface mode
     QString modeName = m_interfaceOptions.value("mode").toString();
@@ -248,6 +249,12 @@ void DigishowInterface::updateMetadata()
         break;
     case INTERFACE_METRONOME:                m_interfaceInfo.mode = INTERFACE_METRONOME_DEFAULT;
         break;
+    case INTERFACE_MESSAGER:
+        if      (modeName == "com"         ) m_interfaceInfo.mode = INTERFACE_MESSAGER_COM;
+        else if (modeName == "tcp"         ) m_interfaceInfo.mode = INTERFACE_MESSAGER_TCP;
+        else if (modeName == "udp_in"      ) m_interfaceInfo.mode = INTERFACE_MESSAGER_UDP_IN;
+        else if (modeName == "udp_out"     ) m_interfaceInfo.mode = INTERFACE_MESSAGER_UDP_OUT;
+        break;
     }
 
     // set interface input flag
@@ -256,6 +263,7 @@ void DigishowInterface::updateMetadata()
     else if (m_interfaceInfo.mode==INTERFACE_MIDI_OUTPUT ||
              m_interfaceInfo.mode==INTERFACE_ARTNET_OUTPUT ||
              m_interfaceInfo.mode==INTERFACE_OSC_OUTPUT ||
+             m_interfaceInfo.mode==INTERFACE_MESSAGER_UDP_OUT ||
              m_interfaceInfo.type==INTERFACE_HUE ||
              m_interfaceInfo.type==INTERFACE_DMX ||
              m_interfaceInfo.type==INTERFACE_SCREEN ||
@@ -272,6 +280,7 @@ void DigishowInterface::updateMetadata()
     else if (m_interfaceInfo.mode==INTERFACE_MIDI_INPUT ||
              m_interfaceInfo.mode==INTERFACE_ARTNET_INPUT ||
              m_interfaceInfo.mode==INTERFACE_OSC_INPUT ||
+             m_interfaceInfo.mode==INTERFACE_MESSAGER_UDP_IN ||
              m_interfaceInfo.type==INTERFACE_AUDIOIN ||
              m_interfaceInfo.type==INTERFACE_HOTKEY )
         m_interfaceInfo.output = false;
@@ -368,6 +377,27 @@ void DigishowInterface::updateMetadata()
         labelType = tr("Beat Maker");
         labelIdentity = "";
         break;
+    case INTERFACE_MESSAGER:
+        switch (m_interfaceInfo.mode) {
+        case INTERFACE_MESSAGER_COM:
+            labelType = tr("COM");
+            labelIdentity = m_interfaceOptions.value("comPort").toString();
+            break;
+        case INTERFACE_MESSAGER_TCP:
+            labelType = tr("TCP");
+            labelIdentity = m_interfaceOptions.value("tcpHost").toString() + ":" +
+                            m_interfaceOptions.value("tcpPort").toString();
+            break;
+        case INTERFACE_MESSAGER_UDP_IN:
+            labelType = tr("UDP");
+            labelIdentity = m_interfaceOptions.value("udpPort").toString();
+            break;
+        case INTERFACE_MESSAGER_UDP_OUT:
+            labelType = tr("UDP");
+            labelIdentity = m_interfaceOptions.value("udpHost").toString() + ":" +
+                            m_interfaceOptions.value("udpPort").toString();
+            break;
+        }
     }
     m_interfaceInfo.label = labelType + (!labelIdentity.isEmpty() ? " " + labelIdentity : "");
 
@@ -475,6 +505,10 @@ void DigishowInterface::updateMetadata()
             else if (typeName == "run"        ) endpointInfo.type = ENDPOINT_METRONOME_RUN;
             else if (typeName == "link"       ) endpointInfo.type = ENDPOINT_METRONOME_LINK;
             else if (typeName == "tap"        ) endpointInfo.type = ENDPOINT_METRONOME_TAP;
+            break;
+        case INTERFACE_MESSAGER:
+            if      (typeName == "text"       ) endpointInfo.type = ENDPOINT_MESSAGER_TEXT;
+            else if (typeName == "hex"        ) endpointInfo.type = ENDPOINT_MESSAGER_HEXCODE;
             break;
         }
 
@@ -896,6 +930,16 @@ void DigishowInterface::updateMetadata()
             endpointInfo.output = true;
             endpointInfo.labelEPT = tr("Beat Maker");
             endpointInfo.labelEPI = tr("Tap");
+            break;
+        case ENDPOINT_MESSAGER_TEXT:
+        case ENDPOINT_MESSAGER_HEXCODE:
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            if (m_endpointOptionsList[n].value("subscribed").toBool())
+                endpointInfo.input  = true;
+            else
+                endpointInfo.output = true;
+            endpointInfo.labelEPT = labelType;
+            endpointInfo.labelEPI = m_endpointOptionsList[n].value("message").toString().left(8);
             break;
         case ENDPOINT_HOTKEY_PRESS:
             endpointInfo.signal = DATA_SIGNAL_BINARY;

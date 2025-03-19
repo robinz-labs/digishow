@@ -20,8 +20,8 @@
     The code in this file was co-written by AI (Trae/Claude-3.5-Sonnet).
  */
 
-#ifndef AUDIOANALYZER_H
-#define AUDIOANALYZER_H
+#ifndef AUDIO_ANALYZER_H
+#define AUDIO_ANALYZER_H
 
 #include <QObject>
 #include <QAudioInput>
@@ -82,4 +82,4 @@ private:
     kiss_fft_cpx *m_fftOut;
 };
 
-#endif // AUDIOANALYZER_H
+#endif // AUDIO_ANALYZER_H

@@ -67,6 +67,8 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointMetronomeRun      : return CColor.Cherry
             case DigishowEnvironment.EndpointMetronomeLink     : return CColor.Cherry
             case DigishowEnvironment.EndpointMetronomeTap      : return CColor.Cherry
+            case DigishowEnvironment.EndpointMessagerText      : return CColor.HotPink
+            case DigishowEnvironment.EndpointMessagerHexCode   : return CColor.RosePink
         }
 
         return "#666666";

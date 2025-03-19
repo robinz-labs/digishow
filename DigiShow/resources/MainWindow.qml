@@ -660,8 +660,12 @@ ApplicationWindow {
                         onTriggered: dialogInterfaces.showTab(8)
                     }
                     MenuItem {
-                        text: qsTr("Virtual Pipe ...")
+                        text: qsTr("Messager ...")
                         onTriggered: dialogInterfaces.showTab(9)
+                    }
+                    MenuItem {
+                        text: qsTr("Virtual Pipe ...")
+                        onTriggered: dialogInterfaces.showTab(10)
                     }
 
                     Menu {
@@ -670,11 +674,11 @@ ApplicationWindow {
 
                         MenuItem {
                             text: qsTr("Audio Player ...")
-                            onTriggered: dialogInterfaces.showTab(10)
+                            onTriggered: dialogInterfaces.showTab(11)
                         }
                         MenuItem {
                             text: qsTr("MIDI Player ...")
-                            onTriggered: dialogInterfaces.showTab(11)
+                            onTriggered: dialogInterfaces.showTab(12)
                         }
                     }
 

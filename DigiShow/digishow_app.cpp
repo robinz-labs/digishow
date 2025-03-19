@@ -36,6 +36,7 @@
 #include "dgs_launch_interface.h"
 #include "dgs_hotkey_interface.h"
 #include "dgs_metronome_interface.h"
+#include "dgs_messager_interface.h"
 
 #ifdef DIGISHOW_EXPERIMENTAL
 #include "dgs_aplay_interface.h"
@@ -173,6 +174,7 @@ void DigishowApp::importData(const QVariantMap & data)
         else if (interfaceType=="launch"   ) interface = new DgsLaunchInterface(this);
         else if (interfaceType=="hotkey"   ) interface = new DgsHotkeyInterface(this);
         else if (interfaceType=="metronome") interface = new DgsMetronomeInterface(this);
+        else if (interfaceType=="messager" ) interface = new DgsMessagerInterface(this);
 #ifdef DIGISHOW_EXPERIMENTAL
         else if (interfaceType=="aplay"    ) interface = new DgsAPlayInterface(this);
         else if (interfaceType=="mplay"    ) interface = new DgsMPlayInterface(this);
@@ -605,6 +607,13 @@ int DigishowApp::newInterface(const QString &interfaceType)
 
         interface = new DgsMetronomeInterface(this);
         interface->setInterfaceOption("mode", "");
+
+    } else if (interfaceType=="messager") {
+
+        interface = new DgsMessagerInterface(this);
+        interface->setInterfaceOption("mode", "com");
+        interface->setInterfaceOption("comBaud", 9600);
+        interface->setInterfaceOption("comParity", "8N1");
 
     } else if (interfaceType=="audioin") {
 
