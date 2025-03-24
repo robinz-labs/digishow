@@ -380,7 +380,7 @@ void DigishowInterface::updateMetadata()
     case INTERFACE_MESSAGER:
         switch (m_interfaceInfo.mode) {
         case INTERFACE_MESSAGER_COM:
-            labelType = tr("COM");
+            labelType = tr("Serial");
             labelIdentity = m_interfaceOptions.value("comPort").toString();
             break;
         case INTERFACE_MESSAGER_TCP:

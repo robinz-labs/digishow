@@ -12,6 +12,8 @@
         <file>images/icon_add_white.png</file>
         <file>images/icon_close_white.png</file>
         <file>images/icon_close_black.png</file>
+        <file>images/icon_ep_in.png</file>
+        <file>images/icon_ep_out.png</file>
         <file>images/icon_ep_in_white.png</file>
         <file>images/icon_ep_out_white.png</file>
         <file>images/icon_forward_white.png</file>
@@ -95,6 +97,7 @@
         <file>components/CSlider.qml</file>
         <file>components/CRangeSlider.qml</file>
         <file>components/CTextInputBox.qml</file>
+        <file>components/CTipBubble.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>Utilities.qml</file>
         <file>Digishow.qml</file>

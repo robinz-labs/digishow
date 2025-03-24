@@ -19,6 +19,8 @@ ApplicationWindow {
     property alias metronome: digishow.metronome
     property alias remoteWeb: digishow.remoteWeb
 
+    property bool needShowTips: (slotListView.listItemCount === 0)
+
     visible: true
     width: 1280
     height: 800
@@ -128,7 +130,7 @@ ApplicationWindow {
                 messageBox.show(msgText, qsTr("OK"))
                 break
             case DigishowApp.MsgToast:
-                messageBox.toast(msgText, 4000)
+                messageBox.toast(msgText, 3000)
                 break
             case DigishowApp.MsgPopup:
                 messageBox.show(msgText)
@@ -232,6 +234,7 @@ ApplicationWindow {
             anchors.top: parent.top
             anchors.left: parent.left
             color: "#222222"
+            z: 1
 
             CButton {
                 id: buttonMenu
@@ -325,19 +328,6 @@ ApplicationWindow {
                     }
                     MwMenuSeparator {}
                     MenuItem {
-                        text: qsTr("About DigiShow")
-                        onTriggered: dialogAbout.open()
-                    }
-                    MenuItem {
-                        text: qsTr("Tutorials ...")
-                        onTriggered: Qt.openUrlExternally(qsTr("https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md"))
-
-                    }
-                    MenuItem {
-                        text: qsTr("Preferences ...")
-                        onTriggered: dialogAppOptions.show()
-                    }
-                    MenuItem {
                         text: window.visibility==Window.FullScreen ? qsTr("Exit Full Screen") : qsTr("Enter Full Screen")
                         onTriggered: {
                             if (window.visibility==Window.FullScreen)
@@ -345,6 +335,25 @@ ApplicationWindow {
                             else
                                 window.showFullScreen()
                         }
+                    }
+                    MwMenuSeparator {}
+                    MenuItem {
+                        text: qsTr("About DigiShow")
+                        onTriggered: dialogAbout.open()
+                    }
+                    MenuItem {
+                        text: qsTr("Preferences ...")
+                        onTriggered: dialogAppOptions.show()
+                    }
+                    MenuItem {
+                        text: qsTr("Tutorials ...")
+                        onTriggered: Qt.openUrlExternally(qsTr("https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md"))
+
+                    }
+                    MenuItem {
+                        text: qsTr("Version Update ...")
+                        onTriggered: Qt.openUrlExternally(qsTr("https://github.com/robinz-labs/digishow/releases/latest"))
+
                     }
                     MwMenuSeparator {}
                     MenuItem {
@@ -370,6 +379,11 @@ ApplicationWindow {
                 icon.source: "qrc:///images/icon_add_white.png"
 
                 onClicked: slotListView.newSlot()
+
+                CTipBubble {
+                    text: "2"
+                    opacity: needShowTips ? 1 : 0
+                }
             }
 
             CButton {
@@ -517,6 +531,8 @@ ApplicationWindow {
                 icon.width: 24
                 icon.height: 24
                 icon.source: "qrc:///images/icon_stop_white.png"
+                colorNormal: Material.accent
+                visible: app.isRunning
                 onClicked: app.stop()
             }
 
@@ -526,9 +542,9 @@ ApplicationWindow {
                 height: 40
                 width: 40
                 anchors.top: parent.top
-                anchors.right: buttonStop.left
+                anchors.right: parent.right
                 anchors.topMargin: 20
-                anchors.rightMargin: 10
+                anchors.rightMargin: 20
                 icon.width: 24
                 icon.height: 24
                 icon.source: "qrc:///images/icon_play_white.png"
@@ -543,6 +559,7 @@ ApplicationWindow {
                             return (blink.state ? Material.accent : "#484848")
                     }
                 }
+                visible: !app.isRunning
 
                 onClicked: app.start()
 
@@ -570,6 +587,11 @@ ApplicationWindow {
                         }
                     }
                 }
+
+                CTipBubble {
+                    text: "3"
+                    opacity: needShowTips ? 1 : 0
+                }
             }
         }
 
@@ -580,6 +602,7 @@ ApplicationWindow {
             anchors.left: rectTopLeftBar.right
             anchors.right: parent.right
             color: rectTopLeftBar.color
+            z: 1
 
             CButton {
                 id: buttonInterfaceSettings
@@ -613,6 +636,12 @@ ApplicationWindow {
 
                 onLongPressed: {
                     menuInterfaceSettings.open()
+                }
+
+                CTipBubble {
+                    text: "1"
+                    offset: 56
+                    opacity: needShowTips ? 1 : 0
                 }
 
                 Menu {
@@ -694,6 +723,7 @@ ApplicationWindow {
             anchors.horizontalCenter: rectTopLeftBar.horizontalCenter
             source: "qrc:///images/logo.png"
             anchors.horizontalCenterOffset: slotListView.listItemCount === 0 ? 0 : rectTopLeftBar.width / 2 + 175
+            z: 1
         }
 
         MwMetronomeView {

@@ -573,11 +573,6 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation>热键</translation>
     </message>
     <message>
-        <location filename="../../digishow_interface.cpp" line="383"/>
-        <source>COM</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../digishow_interface.cpp" line="387"/>
         <source>TCP</source>
         <translation></translation>
@@ -799,6 +794,11 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation>节拍生成器</translation>
     </message>
     <message>
+        <location filename="../../digishow_interface.cpp" line="383"/>
+        <source>Serial</source>
+        <translation>串口</translation>
+    </message>
+    <message>
         <location filename="../../digishow_interface.cpp" line="593"/>
         <source>Freq Out</source>
         <translation>频率输出</translation>
@@ -848,282 +848,292 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../MainWindow.qml" line="29"/>
+        <location filename="../MainWindow.qml" line="31"/>
         <source>Untitled</source>
         <translation>未命名</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="321"/>
-        <location filename="../MainWindow.qml" line="829"/>
-        <location filename="../MainWindow.qml" line="842"/>
-        <location filename="../MainWindow.qml" line="888"/>
-        <location filename="../MainWindow.qml" line="909"/>
-        <location filename="../MainWindow.qml" line="921"/>
+        <location filename="../MainWindow.qml" line="324"/>
+        <location filename="../MainWindow.qml" line="859"/>
+        <location filename="../MainWindow.qml" line="872"/>
+        <location filename="../MainWindow.qml" line="918"/>
+        <location filename="../MainWindow.qml" line="939"/>
+        <location filename="../MainWindow.qml" line="951"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="271"/>
+        <location filename="../MainWindow.qml" line="274"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="299"/>
-        <location filename="../MainWindow.qml" line="829"/>
-        <location filename="../MainWindow.qml" line="842"/>
-        <location filename="../MainWindow.qml" line="888"/>
-        <location filename="../MainWindow.qml" line="909"/>
-        <location filename="../MainWindow.qml" line="921"/>
+        <location filename="../MainWindow.qml" line="302"/>
+        <location filename="../MainWindow.qml" line="859"/>
+        <location filename="../MainWindow.qml" line="872"/>
+        <location filename="../MainWindow.qml" line="918"/>
+        <location filename="../MainWindow.qml" line="939"/>
+        <location filename="../MainWindow.qml" line="951"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="328"/>
+        <location filename="../MainWindow.qml" line="341"/>
         <source>About DigiShow</source>
         <translation>关于 DigiShow</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="461"/>
+        <location filename="../MainWindow.qml" line="475"/>
         <source>Bookmarks</source>
         <translation>书签</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="128"/>
+        <location filename="../MainWindow.qml" line="130"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="278"/>
+        <location filename="../MainWindow.qml" line="281"/>
         <source>Open ...</source>
         <translation>打开 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="908"/>
+        <location filename="../MainWindow.qml" line="938"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>在关闭应用程序前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="828"/>
+        <location filename="../MainWindow.qml" line="858"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>在创建新项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="28"/>
+        <location filename="../MainWindow.qml" line="30"/>
         <source>DigiShow LINK - </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="31"/>
+        <location filename="../MainWindow.qml" line="33"/>
         <source> ( stopped )</source>
         <translation> ( 停止工作中 )</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="333"/>
+        <location filename="../MainWindow.qml" line="350"/>
         <source>https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md</source>
         <translation>http://digishow.cn</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="829"/>
-        <location filename="../MainWindow.qml" line="842"/>
-        <location filename="../MainWindow.qml" line="888"/>
-        <location filename="../MainWindow.qml" line="909"/>
+        <location filename="../MainWindow.qml" line="859"/>
+        <location filename="../MainWindow.qml" line="872"/>
+        <location filename="../MainWindow.qml" line="918"/>
+        <location filename="../MainWindow.qml" line="939"/>
         <source>Don&apos;t Save</source>
         <translation>不保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="841"/>
+        <location filename="../MainWindow.qml" line="871"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>在打开另一个项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="303"/>
+        <location filename="../MainWindow.qml" line="306"/>
         <source>Save As ...</source>
         <translation>另存为 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="260"/>
+        <location filename="../MainWindow.qml" line="263"/>
         <source>New Instance</source>
         <translation>新建实例</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="262"/>
+        <location filename="../MainWindow.qml" line="265"/>
         <source>Starting a new DigiShow LINK instance ...</source>
         <translation>正在启动新创建的 DigiShow LINK 实例 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="286"/>
+        <location filename="../MainWindow.qml" line="289"/>
         <source>Open Recent</source>
         <translation>打开最近使用</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="288"/>
+        <location filename="../MainWindow.qml" line="291"/>
         <source>Clear Menu</source>
         <translation>清除菜单</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="308"/>
+        <location filename="../MainWindow.qml" line="311"/>
         <source>Show File</source>
         <translation>查看文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="313"/>
+        <location filename="../MainWindow.qml" line="316"/>
         <source>Attached Script File ...</source>
         <translation>附加脚本文件 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="320"/>
+        <location filename="../MainWindow.qml" line="323"/>
         <source>Do you want to create an attached script file contains user-defined functions that will be called by signal expressions in the DigiShow project ?</source>
         <translation>你是否要创建一个包含用户自定义函数的附加脚本文件？DigiShow 工程中的信号表达式将可以调用到这些函数。</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="321"/>
+        <location filename="../MainWindow.qml" line="324"/>
         <source>Create Script</source>
         <translation>创建脚本</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="332"/>
+        <location filename="../MainWindow.qml" line="349"/>
         <source>Tutorials ...</source>
         <translation>使用教程 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="337"/>
+        <location filename="../MainWindow.qml" line="345"/>
         <source>Preferences ...</source>
         <translation>偏好设置 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="341"/>
+        <location filename="../MainWindow.qml" line="331"/>
         <source>Exit Full Screen</source>
         <translation>退出全屏模式</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="341"/>
+        <location filename="../MainWindow.qml" line="331"/>
         <source>Enter Full Screen</source>
         <translation>进入全屏模式</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="351"/>
+        <location filename="../MainWindow.qml" line="354"/>
+        <source>Version Update ...</source>
+        <translation>版本更新 ...</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="355"/>
+        <source>https://github.com/robinz-labs/digishow/releases/latest</source>
+        <translation>http://digishow.cn/download.html</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="360"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="399"/>
+        <location filename="../MainWindow.qml" line="413"/>
         <source>Preset Launcher</source>
         <translation>预置启动器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="425"/>
+        <location filename="../MainWindow.qml" line="439"/>
         <source>Beat Maker</source>
         <translation>节拍生成器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="596"/>
+        <location filename="../MainWindow.qml" line="619"/>
         <source>Interface Manager</source>
         <translation>接口管理器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="627"/>
+        <location filename="../MainWindow.qml" line="656"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="631"/>
+        <location filename="../MainWindow.qml" line="660"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="635"/>
+        <location filename="../MainWindow.qml" line="664"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="639"/>
+        <location filename="../MainWindow.qml" line="668"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="643"/>
+        <location filename="../MainWindow.qml" line="672"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="647"/>
+        <location filename="../MainWindow.qml" line="676"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="651"/>
+        <location filename="../MainWindow.qml" line="680"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="655"/>
+        <location filename="../MainWindow.qml" line="684"/>
         <source>Audio In ...</source>
         <translation>音频输入 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="663"/>
+        <location filename="../MainWindow.qml" line="692"/>
         <source>Messager ...</source>
         <translation>消息收发器 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="667"/>
+        <location filename="../MainWindow.qml" line="696"/>
         <source>Virtual Pipe ...</source>
         <translation>虚拟管道 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="672"/>
+        <location filename="../MainWindow.qml" line="701"/>
         <source>More</source>
         <translation>更多</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="676"/>
+        <location filename="../MainWindow.qml" line="705"/>
         <source>Audio Player ...</source>
         <translation>音频播放器 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="680"/>
+        <location filename="../MainWindow.qml" line="709"/>
         <source>MIDI Player ...</source>
         <translation>MIDI 播放器 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="769"/>
+        <location filename="../MainWindow.qml" line="799"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="772"/>
+        <location filename="../MainWindow.qml" line="802"/>
         <source>JSON files</source>
         <translation>JSON 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="886"/>
+        <location filename="../MainWindow.qml" line="916"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>在打开文件 “ %1 ” 前是否需要保存当前数据 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="920"/>
+        <location filename="../MainWindow.qml" line="950"/>
         <source>The attached script file will be saved in the same folder as the DigiShow project file, do you want to save the project and create the script file now ?</source>
         <translation>附加的脚本文件将保存在与 DigiShow 工程文件相同的文件夹中，你要立即保存工程并创建脚本文件吗？</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="659"/>
+        <location filename="../MainWindow.qml" line="688"/>
         <source>Screen ...</source>
         <translation>屏幕 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="772"/>
-        <location filename="../MainWindow.qml" line="789"/>
+        <location filename="../MainWindow.qml" line="802"/>
+        <location filename="../MainWindow.qml" line="819"/>
         <source>DigiShow files</source>
         <translation>DigiShow 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="772"/>
-        <location filename="../MainWindow.qml" line="789"/>
+        <location filename="../MainWindow.qml" line="802"/>
+        <location filename="../MainWindow.qml" line="819"/>
         <source>All files</source>
         <translation>所有文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="786"/>
+        <location filename="../MainWindow.qml" line="816"/>
         <source>Save File</source>
         <translation>保存文件</translation>
     </message>
@@ -1335,13 +1345,13 @@ either express or implied.</source>
     </message>
     <message>
         <location filename="../MwEndpointSelector.qml" line="103"/>
-        <source>Select Source</source>
-        <translation>选择信号来源</translation>
+        <source>Select Input Source</source>
+        <translation>选择信号输入来源</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelector.qml" line="105"/>
-        <source>Select Destination</source>
-        <translation>选择信号目标</translation>
+        <source>Select Output Destination</source>
+        <translation>选择信号输出目标</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelector.qml" line="107"/>
@@ -2691,8 +2701,8 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     <name>MwInterfaceListViewMessager</name>
     <message>
         <location filename="../MwInterfaceListViewMessager.qml" line="63"/>
-        <source>COM (Serial)</source>
-        <translation>COM (串口)</translation>
+        <source>Serial</source>
+        <translation>串口</translation>
     </message>
     <message>
         <location filename="../MwInterfaceListViewMessager.qml" line="64"/>
@@ -3233,6 +3243,16 @@ Connection: %2</source>
         <translation>音频输入接口</translation>
     </message>
     <message>
+        <location filename="../MwInterfacesDialog.qml" line="428"/>
+        <source>Serial and TCP/UDP Messagers</source>
+        <translation>串口及 TCP/UDP 消息收发器</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfacesDialog.qml" line="441"/>
+        <source>DigiShow enables the communications with other devices to receive and send specific code messages via serial ports or IP networks.</source>
+        <translation>DigiShow 可以与其他设备进行通信，通过串口或 IP 网络接收和发送特定的代码消息。</translation>
+    </message>
+    <message>
         <location filename="../MwInterfacesDialog.qml" line="468"/>
         <source>Virtual Pipes</source>
         <translation>虚拟管道</translation>
@@ -3306,16 +3326,6 @@ Connection: %2</source>
         <location filename="../MwInterfacesDialog.qml" line="401"/>
         <source>DigiShow enables to accept control signals for presenting videos, pictures and web contents on multiple screens.</source>
         <translation>DigiShow 可以通过接受信号，来在多屏幕中控制视频、图片和Web网页内容的播放展示。</translation>
-    </message>
-    <message>
-        <location filename="../MwInterfacesDialog.qml" line="428"/>
-        <source>COM Serial and TCP/UDP Messagers</source>
-        <translation>COM 串口及 TCP/UDP 消息收发器</translation>
-    </message>
-    <message>
-        <location filename="../MwInterfacesDialog.qml" line="441"/>
-        <source>DigiShow enables the communications with other devices to receive and send specific code messages via COM (serial) ports or IP networks.</source>
-        <translation>DigiShow 可以与其他设备进行通信，通过 COM（串行）端口或 IP 网络接收和发送特定的代码消息。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="481"/>
@@ -3545,37 +3555,13 @@ Connection: %2</source>
 <context>
     <name>MwSlotDetailView</name>
     <message>
-        <location filename="../MwSlotDetailView.qml" line="148"/>
+        <location filename="../MwSlotDetailView.qml" line="147"/>
         <source>Please select a link item in left list</source>
         <translation>请在左侧列表中选择信号链接</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotDetailView.qml" line="149"/>
-        <source>Please use Interface Manager to configure <byte value="xd"/>
- your MIDI, DMX and more digital things for your show</source>
-        <translation>请使用 “接口管理器” 来配置
-你的 MIDI、DMX 和各种演出中需要的数码设备</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotDetailView.qml" line="182"/>
-        <source>STEP 1</source>
-        <translation></translation>
     </message>
 </context>
 <context>
     <name>MwSlotListView</name>
-    <message>
-        <location filename="../MwSlotListView.qml" line="1145"/>
-        <source>Please tap button + to add a new <byte value="xd"/>
- signal link between your digital things</source>
-        <translation>请点击 + 按钮
-来在你的数码设备间创建新的信号链接</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="1177"/>
-        <source>STEP 2</source>
-        <translation></translation>
-    </message>
     <message>
         <location filename="../MwSlotListView.qml" line="94"/>
         <source>Rename</source>
@@ -3594,15 +3580,15 @@ Connection: %2</source>
     <message>
         <location filename="../MwSlotListView.qml" line="108"/>
         <location filename="../MwSlotListView.qml" line="1061"/>
-        <location filename="../MwSlotListView.qml" line="1430"/>
+        <location filename="../MwSlotListView.qml" line="1431"/>
         <source>Duplicate</source>
         <translation>创建副本</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="115"/>
         <location filename="../MwSlotListView.qml" line="1081"/>
-        <location filename="../MwSlotListView.qml" line="1462"/>
-        <location filename="../MwSlotListView.qml" line="1488"/>
+        <location filename="../MwSlotListView.qml" line="1463"/>
+        <location filename="../MwSlotListView.qml" line="1489"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -3633,7 +3619,7 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="223"/>
-        <location filename="../MwSlotListView.qml" line="1701"/>
+        <location filename="../MwSlotListView.qml" line="1702"/>
         <source>Untitled Link</source>
         <translation>未命名信号链接</translation>
     </message>
@@ -3648,6 +3634,36 @@ Connection: %2</source>
         <translation>选择无</translation>
     </message>
     <message>
+        <location filename="../MwSlotListView.qml" line="1151"/>
+        <source>Open Interface Manager to configure your MIDI, DMX, OSC, Arduino and more device interfaces.</source>
+        <translation>打开 “接口管理器” 来配置你的 MIDI、DMX、OSC、Arduino 和更多设备接口。</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotListView.qml" line="1154"/>
+        <source>Tap the + button to add a new item to the signal link table, which is used to control and map the input/output signals of your devices.</source>
+        <translation>点击 + 按钮，可在信号链接表中添加新项，用于控制和映射设备的输入/输出信号。</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotListView.qml" line="1157"/>
+        <source>Tap the play button to activate all signal links.</source>
+        <translation>点击播放按钮，即可激活所有信号链接。</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotListView.qml" line="1178"/>
+        <source>Instructions</source>
+        <translation>使用指南</translation>
+    </message>
+    <message>
+        <location filename="../MwSlotListView.qml" line="1274"/>
+        <source>IN</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwSlotListView.qml" line="1282"/>
+        <source>OUT</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../MwSlotListView.qml" line="132"/>
         <location filename="../MwSlotListView.qml" line="1041"/>
         <source>Copy</source>
@@ -3655,55 +3671,42 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="1101"/>
-        <location filename="../MwSlotListView.qml" line="1497"/>
+        <location filename="../MwSlotListView.qml" line="1498"/>
         <source>Move</source>
         <translation>移动</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1273"/>
-        <source>Source</source>
-        <translation>信号来源</translation>
+        <location filename="../MwSlotListView.qml" line="1150"/>
+        <location filename="../MwSlotListView.qml" line="1153"/>
+        <location filename="../MwSlotListView.qml" line="1156"/>
+        <source>STEP</source>
+        <translation>步骤</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1274"/>
-        <source>no input</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="1282"/>
-        <source>no output</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="1430"/>
+        <location filename="../MwSlotListView.qml" line="1431"/>
         <source>Do you want to duplicate all selected links ?</source>
         <translation>您是否需要将所有选中的信号链接再复制一份 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1462"/>
+        <location filename="../MwSlotListView.qml" line="1463"/>
         <source>Do you want to delete the link ?</source>
         <translation>您是否需要删除此信号链接 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1488"/>
+        <location filename="../MwSlotListView.qml" line="1489"/>
         <source>Do you want to delete all selected links ?</source>
         <translation>您是否需要将所有选中的信号链接都删除 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1497"/>
+        <location filename="../MwSlotListView.qml" line="1498"/>
         <source>Do you want to move all selected links to the current cursor position ?</source>
         <translation>您是否需要将所有选中的信号链接移动到当前光标位置 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1281"/>
-        <source>Destination</source>
-        <translation>信号目标</translation>
-    </message>
-    <message>
-        <location filename="../MwSlotListView.qml" line="1430"/>
-        <location filename="../MwSlotListView.qml" line="1462"/>
-        <location filename="../MwSlotListView.qml" line="1488"/>
-        <location filename="../MwSlotListView.qml" line="1497"/>
+        <location filename="../MwSlotListView.qml" line="1431"/>
+        <location filename="../MwSlotListView.qml" line="1463"/>
+        <location filename="../MwSlotListView.qml" line="1489"/>
+        <location filename="../MwSlotListView.qml" line="1498"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>

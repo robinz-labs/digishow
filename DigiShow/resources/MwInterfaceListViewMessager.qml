@@ -60,10 +60,10 @@ MwInterfaceListView {
                         id: menuMode
 
                         optionItems: [
-                            { text: qsTr("COM (Serial)"), value: 0, tag: "com" },
-                            { text: qsTr("TCP"),          value: 1, tag: "tcp" },
-                            { text: qsTr("UDP Input"   ), value: 2, tag: "udp_in" },
-                            { text: qsTr("UDP Output"  ), value: 3, tag: "udp_out" }
+                            { text: qsTr("Serial"    ), value: 0, tag: "com" },
+                            { text: qsTr("TCP"       ), value: 1, tag: "tcp" },
+                            { text: qsTr("UDP Input" ), value: 2, tag: "udp_in" },
+                            { text: qsTr("UDP Output"), value: 3, tag: "udp_out" }
 
                         ]
 

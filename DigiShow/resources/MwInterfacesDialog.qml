@@ -425,7 +425,7 @@ Dialog {
                 color: Material.accent
                 font.bold: true
                 font.pixelSize: 16
-                text: qsTr("COM Serial and TCP/UDP Messagers")
+                text: qsTr("Serial and TCP/UDP Messagers")
             }
 
             Label {
@@ -438,7 +438,7 @@ Dialog {
                 anchors.topMargin: 40
                 wrapMode: Label.Wrap
                 lineHeight: 1.3
-                text: qsTr("DigiShow enables the communications with other devices to receive and send specific code messages via COM (serial) ports or IP networks.")
+                text: qsTr("DigiShow enables the communications with other devices to receive and send specific code messages via serial ports or IP networks.")
             }
 
             MwInterfaceListViewMessager {

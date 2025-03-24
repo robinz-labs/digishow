@@ -144,47 +144,12 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             color: "#555555"
-            text: slotListView.listItemCount > 0
-                  ? qsTr("Please select a link item in left list")
-                  : qsTr("Please use Interface Manager to configure \r\n your MIDI, DMX and more digital things for your show")
+            text: qsTr("Please select a link item in left list")
+            visible: slotListView.listItemCount > 0
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 14
             font.bold: true
             lineHeight: 2.0
-
-            Rectangle {
-                width: 90
-                height: 30
-                anchors.top: parent.bottom
-                anchors.topMargin: 30
-                anchors.horizontalCenter: parent.horizontalCenter
-                radius: 15
-                color: "#333333"
-                opacity: 0.5
-                visible: slotListView.listItemCount === 0
-
-                MouseArea {
-                    anchors.fill: parent
-                    onPressed: {
-                        parent.color = Material.accent
-                        buttonInterfaceSettings.colorNormal = Material.accent
-                    }
-                    onReleased: {
-                        parent.color = "#333333"
-                        buttonInterfaceSettings.colorNormal = "#484848"
-                    }
-                }
-
-                Text {
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    color: "#999999"
-                    text: qsTr("STEP 1")
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 10
-                    font.bold: true
-                }
-            }
         }
     }
 

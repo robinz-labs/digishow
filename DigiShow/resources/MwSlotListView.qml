@@ -710,7 +710,7 @@ Item {
                             value: model.epOutFaderHold ? model.epOutPreValue : model.epOutFaderValue
                             to: model.epOutRange
                             stepSize: 1
-                            color: model.epOutPreAvailable ? model.epOutColor : "#666666"
+                            color: model.epOutPreAvailable && model.epOutFaderHold ? model.epOutColor : "#666666"
                             inverted: model.slotOutInverted
 
                             //Behavior on value { NumberAnimation { duration: (model.slotLinked && model.epOutFaderHold ? 300 : 0); easing.type: Easing.OutCubic } }
@@ -1136,47 +1136,48 @@ Item {
 
         anchors.fill: parent
         color: "#111111"
+        opacity: 0.8
         visible: dataModel.count===0
 
         Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: "#555555"
-            text: qsTr("Please tap button + to add a new \r\n signal link between your digital things")
-            horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: 14
-            font.bold: true
-            lineHeight: 2.0
+            anchors.left: parent.left
+            anchors.leftMargin: 80
+            anchors.right: parent.right
+            anchors.rightMargin: 300
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 80
+            color: "#888888"
+            text: qsTr("STEP") + " 1:  " +
+                  qsTr("Open Interface Manager to configure your MIDI, DMX, OSC, Arduino and more device interfaces.") +
+                  "\r\n\r\n" +
+                  qsTr("STEP") + " 2:  " +
+                  qsTr("Tap the + button to add a new item to the signal link table, which is used to control and map the input/output signals of your devices.") +
+                  "\r\n\r\n" +
+                  qsTr("STEP") + " 3:  " +
+                  qsTr("Tap the play button to activate all signal links.")
+
+            horizontalAlignment: Text.AlignLeft
+            font.pixelSize: 13
+            font.bold: false
+            lineHeight: 1.5
+            wrapMode: Text.WordWrap
 
             Rectangle {
-                width: 90
+                width: 120
                 height: 30
-                anchors.top: parent.bottom
-                anchors.topMargin: 30
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.top
+                anchors.bottomMargin: 50
+                anchors.left: parent.left
                 radius: 15
                 color: "#333333"
-                opacity: 0.5
-
-                MouseArea {
-                    anchors.fill: parent
-                    onPressed: {
-                        parent.color = Material.accent
-                        buttonNewSlot.colorNormal = Material.accent
-                    }
-                    onReleased: {
-                        parent.color = "#333333"
-                        buttonNewSlot.colorNormal = "#484848"
-                    }
-                }
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
-                    color: "#999999"
-                    text: qsTr("STEP 2")
+                    color: "#ffffff"
+                    text: qsTr("Instructions")
                     horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 10
+                    font.pixelSize: 12
                     font.bold: true
                 }
             }
@@ -1268,18 +1269,18 @@ Item {
         // obtain endpoint data
         var epInSignal = 0
         var epInType = 0
-        var epInColor = "#666666"
-        var epInIcon = "qrc:///images/icon_ep_in_white.png"
-        var epInLabelEPT = qsTr("Source")
-        var epInLabelEPI = qsTr("no input")
+        var epInColor = "#000000"
+        var epInIcon = "qrc:///images/icon_ep_in.png"
+        var epInLabelEPT = qsTr("IN")
+        var epInLabelEPI = ""
         var epInRange = 1
 
         var epOutSignal = 0
         var epOutType = 0
-        var epOutColor = "#666666"
-        var epOutIcon = "qrc:///images/icon_ep_out_white.png"
-        var epOutLabelEPT = qsTr("Destination")
-        var epOutLabelEPI = qsTr("no output")
+        var epOutColor = "#000000"
+        var epOutIcon = "qrc:///images/icon_ep_out.png"
+        var epOutLabelEPT = qsTr("OUT")
+        var epOutLabelEPI = ""
         var epOutRange = 1
 
         var epInInfo = config["epInInfo"]

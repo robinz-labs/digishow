@@ -50,11 +50,11 @@ Item {
         anchors.topMargin: 12
         source: {
             if (forInput && !forOutput)
-                return "qrc:///images/icon_ep_in_white.png"
+                return "qrc:///images/icon_ep_in.png"
             else if (!forInput && forOutput)
-                return "qrc:///images/icon_ep_out_white.png"
+                return "qrc:///images/icon_ep_out.png"
         }
-        opacity: 0.2
+        opacity: 0.6
         visible: interfaceType === ""
     }
 
@@ -100,9 +100,9 @@ Item {
         text: {
             var strSelect
             if (forInput && !forOutput)
-                strSelect = qsTr("Select Source")
+                strSelect = qsTr("Select Input Source")
             else if (!forInput && forOutput)
-                strSelect = qsTr("Select Destination")
+                strSelect = qsTr("Select Output Destination")
             else
                 strSelect = qsTr("Select")
 
