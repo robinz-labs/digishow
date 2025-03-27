@@ -44,6 +44,8 @@ public slots:
 private:
 
     AudioAnalyzer *m_analyzer;
+
+    void updateMetadata_() override;
 };
 
 #endif // DGSAUDIOININTERFACE_H

@@ -95,6 +95,8 @@ private:
     void updateLights(int type);
     void callHueLightApi(int type, int channel, const QVariantMap &options, int delay = 0);
     static bool convertRgbToXy(uint8_t r, uint8_t g, uint8_t b, float *px, float *py);
+
+    void updateMetadata_() override;
 };
 
 class HueLightWorker : public QThread

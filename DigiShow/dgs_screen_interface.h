@@ -51,6 +51,8 @@ private:
 
     static QString getPropertyName(int control);
     static double  getPropertyValue(int control, dgsSignalData data);
+
+    void updateMetadata_() override;
 };
 
 #endif // DGSSCREENINTERFACE_H

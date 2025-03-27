@@ -586,3 +586,129 @@ QString DgsRiocInterface::guessRiocMode(uint16_t vid, uint16_t pid)
 
     return "";
 }
+
+void DgsRiocInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_RIOC;
+
+    // Set interface mode
+    QString modeName = m_interfaceOptions.value("mode").toString();
+    if      (modeName == "general"     ) m_interfaceInfo.mode = INTERFACE_RIOC_GENERAL;
+    else if (modeName == "arduino_uno" ) m_interfaceInfo.mode = INTERFACE_RIOC_ARDUINO_UNO;
+    else if (modeName == "arduino_mega") m_interfaceInfo.mode = INTERFACE_RIOC_ARDUINO_MEGA;
+    else if (modeName == "aladdin"     ) m_interfaceInfo.mode = INTERFACE_RIOC_ALADDIN;
+    else if (modeName == "plc1"        ) m_interfaceInfo.mode = INTERFACE_RIOC_PLC1;
+    else if (modeName == "plc2"        ) m_interfaceInfo.mode = INTERFACE_RIOC_PLC2;
+
+    // Set interface input/output flags
+    m_interfaceInfo.input = true;
+    m_interfaceInfo.output = true;
+
+    // Set interface label
+    switch (m_interfaceInfo.mode) {
+        case INTERFACE_RIOC_ALADDIN:
+            m_interfaceInfo.label = tr("Aladdin");
+            break;
+        case INTERFACE_RIOC_PLC1:
+        case INTERFACE_RIOC_PLC2:
+            m_interfaceInfo.label = tr("Arduino PLC");
+            break;
+        default:
+            m_interfaceInfo.label = tr("Arduino");
+            break;
+    }
+    m_interfaceInfo.label += " " + m_interfaceOptions.value("comPort").toString();
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if      (typeName == "digital_in" ) endpointInfo.type = ENDPOINT_RIOC_DIGITAL_IN;
+        else if (typeName == "digital_out") endpointInfo.type = ENDPOINT_RIOC_DIGITAL_OUT;
+        else if (typeName == "analog_in"  ) endpointInfo.type = ENDPOINT_RIOC_ANALOG_IN;
+        else if (typeName == "analog_out" ) endpointInfo.type = ENDPOINT_RIOC_ANALOG_OUT;
+        else if (typeName == "pwm_out"    ) endpointInfo.type = ENDPOINT_RIOC_PWM_OUT;
+        else if (typeName == "pfm_out"    ) endpointInfo.type = ENDPOINT_RIOC_PFM_OUT;
+        else if (typeName == "encoder_in" ) endpointInfo.type = ENDPOINT_RIOC_ENCODER_IN;
+        else if (typeName == "rudder_out" ) endpointInfo.type = ENDPOINT_RIOC_RUDDER_OUT;
+        else if (typeName == "stepper_out") endpointInfo.type = ENDPOINT_RIOC_STEPPER_OUT;
+        else if (typeName == "user_channel")endpointInfo.type = ENDPOINT_RIOC_USER_CHANNEL;
+
+        // Set endpoint properties based on type
+        QString pinName = DigishowEnvironment::getRiocPinName(m_interfaceInfo.mode, endpointInfo.channel);
+
+        switch (endpointInfo.type) {
+            case ENDPOINT_RIOC_DIGITAL_IN:
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.input  = true;
+                endpointInfo.labelEPT = tr("Digital In");
+                break;
+            case ENDPOINT_RIOC_DIGITAL_OUT:
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.output = true;
+                endpointInfo.labelEPT = tr("Digital Out");
+                break;
+            case ENDPOINT_RIOC_ANALOG_IN:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.input  = true;
+                endpointInfo.range  = 65535;
+                endpointInfo.labelEPT = tr("Analog In");
+                break;
+            case ENDPOINT_RIOC_ANALOG_OUT:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = 65535;
+                endpointInfo.labelEPT = tr("Analog Out");
+                break;
+            case ENDPOINT_RIOC_PWM_OUT:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = 255;
+                endpointInfo.labelEPT = tr("PWM Out");
+                break;
+            case ENDPOINT_RIOC_PFM_OUT:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
+                endpointInfo.labelEPT = tr("Freq Out");
+                break;
+            case ENDPOINT_RIOC_ENCODER_IN:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.input  = true;
+                endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
+                endpointInfo.labelEPT = tr("Encoder");
+                break;
+            case ENDPOINT_RIOC_RUDDER_OUT:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = 180;
+                endpointInfo.labelEPT = tr("Servo");
+                break;
+            case ENDPOINT_RIOC_STEPPER_OUT:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
+                endpointInfo.labelEPT = tr("Stepper");
+                break;
+            case ENDPOINT_RIOC_USER_CHANNEL:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.input  = true;
+                endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000000);
+                endpointInfo.labelEPT = tr("Channel");
+                endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(endpointInfo.channel);
+                break;
+        }
+
+        // Set common label format for most RIOC endpoints
+        if (endpointInfo.type != ENDPOINT_RIOC_USER_CHANNEL) {
+            endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(pinName);
+        }
+
+        m_endpointInfoList.append(endpointInfo);
+    }
+}
+

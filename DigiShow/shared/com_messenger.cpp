@@ -19,24 +19,24 @@
     The code in this file was co-written by AI (Trae/Claude-3.5-Sonnet).
 */
 
-#include "com_messager.h"
+#include "com_messenger.h"
 
 // Constructor: Initialize serial port
-ComMessager::ComMessager(QObject *parent)
-    : AbstractMessager(parent)
+ComMessenger::ComMessenger(QObject *parent)
+    : AbstractMessenger(parent)
     , m_serialPort(new QSerialPort(this))
 {
-    connect(m_serialPort, &QSerialPort::readyRead, this, &ComMessager::handleReadyRead);
+    connect(m_serialPort, &QSerialPort::readyRead, this, &ComMessenger::handleReadyRead);
 }
 
 // Destructor: Ensure proper cleanup
-ComMessager::~ComMessager()
+ComMessenger::~ComMessenger()
 {
     close();
 }
 
 // Open serial port with specified parameters
-bool ComMessager::open(const QString &portName, int portBaud, SerialSetting portSetting)
+bool ComMessenger::open(const QString &portName, int portBaud, SerialSetting portSetting)
 {
     close();
     m_serialPort->setPortName(portName);
@@ -88,7 +88,7 @@ bool ComMessager::open(const QString &portName, int portBaud, SerialSetting port
 }
 
 // Close the serial port
-void ComMessager::close()
+void ComMessenger::close()
 {
     if (m_serialPort->isOpen()) {
         m_serialPort->close();
@@ -97,7 +97,7 @@ void ComMessager::close()
 }
 
 // Send message through serial port
-bool ComMessager::sendMessage(const QByteArray &message)
+bool ComMessenger::sendMessage(const QByteArray &message)
 {
     if (!m_serialPort->isOpen()) {
         return false;
@@ -108,7 +108,7 @@ bool ComMessager::sendMessage(const QByteArray &message)
 }
 
 // Handle incoming serial data
-void ComMessager::handleReadyRead()
+void ComMessenger::handleReadyRead()
 {
     QByteArray newData = m_serialPort->readAll();
     emit rawDataReceived(newData);

@@ -19,21 +19,21 @@
     The code in this file was co-written by AI (Trae/Claude-3.5-Sonnet).
 */
 
-#ifndef TCP_MESSAGER_H
-#define TCP_MESSAGER_H
+#ifndef UDP_MESSENGER_H
+#define UDP_MESSENGER_H
 
-#include "abstract_messager.h"
-#include <QTcpSocket>
+#include "abstract_messenger.h"
+#include <QUdpSocket>
 
-class TcpMessager : public AbstractMessager
+class UdpMessenger : public AbstractMessenger
 {
     Q_OBJECT
 
 public:
-    explicit TcpMessager(QObject *parent = nullptr);
-    ~TcpMessager();
+    explicit UdpMessenger(QObject *parent = nullptr);
+    ~UdpMessenger();
 
-    bool open(const QString &hostName, quint16 port);
+    bool open(quint16 localPort, const QString &remoteHost, quint16 remotePort);
     void close() override;
     bool sendMessage(const QByteArray &message) override;
 
@@ -41,8 +41,9 @@ private slots:
     void handleReadyRead();
 
 private:
-    QTcpSocket *m_tcpSocket;
-    QByteArray m_buffer;
+    QUdpSocket *m_udpSocket;
+    QString m_remoteHost;
+    quint16 m_remotePort;
 };
 
-#endif // TCP_MESSAGER_H
+#endif // UDP_MESSENGER_H

@@ -52,7 +52,7 @@ public:
         InterfaceLaunch    = INTERFACE_LAUNCH,
         InterfaceHotkey    = INTERFACE_HOTKEY,
         InterfaceMetronome = INTERFACE_METRONOME,
-        InterfaceMessager  = INTERFACE_MESSAGER
+        InterfaceMessenger  = INTERFACE_MESSENGER
     };
     Q_ENUM(InterfaceType)
 
@@ -85,10 +85,10 @@ public:
         InterfaceLaunchDefault    = INTERFACE_LAUNCH_DEFAULT,
         InterfaceHotkeyDefault    = INTERFACE_HOTKEY_DEFAULT,
         InterfaceMetronomeDefault = INTERFACE_METRONOME_DEFAULT,
-        InterfaceMessagerCom      = INTERFACE_MESSAGER_COM,
-        InterfaceMessagerTcp      = INTERFACE_MESSAGER_TCP,
-        InterfaceMessagerUdpIn    = INTERFACE_MESSAGER_UDP_IN,
-        InterfaceMessagerUdpOut   = INTERFACE_MESSAGER_UDP_OUT
+        InterfaceMessengerCom      = INTERFACE_MESSENGER_COM,
+        InterfaceMessengerTcp      = INTERFACE_MESSENGER_TCP,
+        InterfaceMessengerUdpIn    = INTERFACE_MESSENGER_UDP_IN,
+        InterfaceMessengerUdpOut   = INTERFACE_MESSENGER_UDP_OUT
     };
     Q_ENUM(InterfaceMode)
 
@@ -148,8 +148,8 @@ public:
         EndpointMetronomeRun      = ENDPOINT_METRONOME_RUN,
         EndpointMetronomeLink     = ENDPOINT_METRONOME_LINK,
         EndpointMetronomeTap      = ENDPOINT_METRONOME_TAP,
-        EndpointMessagerText      = ENDPOINT_MESSAGER_TEXT,
-        EndpointMessagerHexCode   = ENDPOINT_MESSAGER_HEXCODE
+        EndpointMessengerText      = ENDPOINT_MESSENGER_TEXT,
+        EndpointMessengerHexCode   = ENDPOINT_MESSENGER_HEXCODE
     };
     Q_ENUM(EndpointType)
 

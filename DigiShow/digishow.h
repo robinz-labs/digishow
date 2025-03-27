@@ -153,7 +153,7 @@
   ! rewrote the audio input interface with FFT
 
   v1.6.5 20250323
-  + com/tcp/udp messager interface
+  + com/tcp/udp messenger interface
   ! improved ui
 
 */

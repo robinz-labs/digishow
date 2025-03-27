@@ -689,7 +689,7 @@ ApplicationWindow {
                         onTriggered: dialogInterfaces.showTab(8)
                     }
                     MenuItem {
-                        text: qsTr("Messager ...")
+                        text: qsTr("Messenger ...")
                         onTriggered: dialogInterfaces.showTab(9)
                     }
                     MenuItem {

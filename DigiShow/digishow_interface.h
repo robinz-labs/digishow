@@ -51,8 +51,9 @@ public:
     Q_INVOKABLE QVariantMap getEndpointInfoAt(int endpointIndex);
     QList<dgsEndpointInfo> *endpointInfoList() { return &m_endpointInfoList; }
 
-    // normalize options ==> info
+    // create interface and endpoints info
     Q_INVOKABLE void updateMetadata();
+
 
     // controls
     virtual int openInterface();
@@ -100,6 +101,16 @@ protected:
     // clean up media list (delete unused media)
     // only for the interface that contains a media list
     QVariantList cleanMediaList();
+
+    // helper function to initialize endpoint info
+    // used in updateMetadata_()
+    dgsEndpointInfo initializeEndpointInfo(int index);
+
+private:
+
+    // update metadata for the specific interface
+    // need be implemented in the inherited class
+    virtual void updateMetadata_() {}
 };
 
 #endif // DIGISHOWINTERFACE_H

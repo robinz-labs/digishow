@@ -16,6 +16,7 @@
  */
 
 #include "dgs_midi_interface.h"
+#include "digishow_environment.h"
 #include "rtmidi/RtMidi.h"
 
 DgsMidiInterface::DgsMidiInterface(QObject *parent) : DigishowInterface(parent)
@@ -459,4 +460,79 @@ QString DgsMidiInterface::getUniqueMidiPortName(RtMidi *midi, unsigned int index
 
     if (i>0) return portName + " #" + QString::number(i+1);
     return portName;
+}
+
+void DgsMidiInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_MIDI;
+
+    // Set interface mode
+    QString modeName = m_interfaceOptions.value("mode").toString();
+    if      (modeName == "input" ) m_interfaceInfo.mode = INTERFACE_MIDI_INPUT;
+    else if (modeName == "output") m_interfaceInfo.mode = INTERFACE_MIDI_OUTPUT;
+
+    // Set interface input/output flags
+    m_interfaceInfo.input  = (m_interfaceInfo.mode == INTERFACE_MIDI_INPUT);
+    m_interfaceInfo.output = (m_interfaceInfo.mode == INTERFACE_MIDI_OUTPUT);
+
+    // Set interface label
+    m_interfaceInfo.label = tr("MIDI") + " " + m_interfaceOptions.value("port").toString();
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if      (typeName == "note"    ) endpointInfo.type = ENDPOINT_MIDI_NOTE;
+        else if (typeName == "control" ) endpointInfo.type = ENDPOINT_MIDI_CONTROL;
+        else if (typeName == "program" ) endpointInfo.type = ENDPOINT_MIDI_PROGRAM;
+        else if (typeName == "pitch"   ) endpointInfo.type = ENDPOINT_MIDI_PITCH;
+        else if (typeName == "cc_pulse") endpointInfo.type = ENDPOINT_MIDI_CC_PULSE;
+
+        // Set endpoint properties based on type
+        switch (endpointInfo.type) {
+            case ENDPOINT_MIDI_NOTE:
+                endpointInfo.signal = DATA_SIGNAL_NOTE;
+                endpointInfo.range  = 127;
+                endpointInfo.labelEPT = tr("MIDI Note");
+                endpointInfo.labelEPI = QString("Ch%1 : %2").arg(endpointInfo.channel+1)
+                                      .arg(DigishowEnvironment::getMidiNoteName(endpointInfo.note));
+                break;
+            case ENDPOINT_MIDI_CONTROL:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.range  = 127;
+                endpointInfo.labelEPT = tr("MIDI CC");
+                endpointInfo.labelEPI = QString("Ch%1 : %2").arg(endpointInfo.channel+1)
+                                      .arg(endpointInfo.control);
+                break;
+            case ENDPOINT_MIDI_PROGRAM:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.range  = 127;
+                endpointInfo.labelEPT = tr("MIDI Prgm");
+                endpointInfo.labelEPI = QString("Ch%1").arg(endpointInfo.channel+1);
+                break;
+            case ENDPOINT_MIDI_PITCH:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.range  = 16383;
+                endpointInfo.labelEPT = tr("MIDI Pitch");
+                endpointInfo.labelEPI = QString("Ch%1").arg(endpointInfo.channel+1);
+                break;
+            case ENDPOINT_MIDI_CC_PULSE:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = 127;
+                endpointInfo.labelEPT = tr("MIDI CC");
+                endpointInfo.labelEPI = QString("Ch%1").arg(endpointInfo.channel+1);
+                break;
+        }
+
+        // Set endpoint input/output flags
+        if (endpointInfo.type != ENDPOINT_MIDI_CC_PULSE) {
+            endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_MIDI_OUTPUT);
+            endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_MIDI_INPUT);
+        }
+
+        m_endpointInfoList.append(endpointInfo);
+    }
 }

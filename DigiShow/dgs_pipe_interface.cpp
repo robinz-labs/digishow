@@ -17,6 +17,7 @@
 
 #include "dgs_pipe_interface.h"
 #include "digishow_slot.h"
+#include "digishow_environment.h"
 
 #ifdef DIGISHOW_CLOUD
 #include "digishow_cloud.h"
@@ -418,5 +419,75 @@ bool DgsPipeInterface::messageToLaunch(const QString &message, int *launchId)
     }
 
     return false;
+}
+
+void DgsPipeInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_PIPE;
+
+    // Set interface mode
+    QString modeName = m_interfaceOptions.value("mode").toString();
+    if      (modeName == "local" ) m_interfaceInfo.mode = INTERFACE_PIPE_LOCAL;
+    else if (modeName == "remote") m_interfaceInfo.mode = INTERFACE_PIPE_REMOTE;
+    else if (modeName == "cloud" ) m_interfaceInfo.mode = INTERFACE_PIPE_CLOUD;
+
+    // Set interface flags
+    m_interfaceInfo.input = true;
+    m_interfaceInfo.output = true;
+
+    // Set interface label
+    QString labelType, labelIdentity;
+    if (m_interfaceInfo.mode==INTERFACE_PIPE_REMOTE) {
+        labelType = tr("Remote Pipe");
+        labelIdentity = m_interfaceOptions.value("tcpHost").toString() + ":" +
+                        m_interfaceOptions.value("tcpPort").toString();
+    } else if (m_interfaceInfo.mode==INTERFACE_PIPE_CLOUD) {
+        labelType = tr("Cloud Pipe");
+        labelIdentity = m_interfaceOptions.value("pipeId").toString();
+    } else {
+        labelType = tr("Virtual Pipe");
+        labelIdentity = m_interfaceOptions.value("comment").toString();
+    }
+    m_interfaceInfo.label = labelType + " " + labelIdentity;
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if      (typeName == "analog") endpointInfo.type = ENDPOINT_PIPE_ANALOG;
+        else if (typeName == "binary") endpointInfo.type = ENDPOINT_PIPE_BINARY;
+        else if (typeName == "note"  ) endpointInfo.type = ENDPOINT_PIPE_NOTE;
+
+        // Set endpoint properties based on type
+        switch (endpointInfo.type) {
+            case ENDPOINT_PIPE_ANALOG:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.input  = true;
+                endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 65535);
+                endpointInfo.labelEPT = DigishowEnvironment::getPipeModeName(m_interfaceInfo.mode);
+                endpointInfo.labelEPI = tr("Analog") + " " + QString::number(endpointInfo.channel);
+                break;
+            case ENDPOINT_PIPE_BINARY:
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.output = true;
+                endpointInfo.input  = true;
+                endpointInfo.labelEPT = DigishowEnvironment::getPipeModeName(m_interfaceInfo.mode);
+                endpointInfo.labelEPI = tr("Binary") + " " + QString::number(endpointInfo.channel);
+                break;
+            case ENDPOINT_PIPE_NOTE:
+                endpointInfo.signal = DATA_SIGNAL_NOTE;
+                endpointInfo.output = true;
+                endpointInfo.input  = true;
+                endpointInfo.range  = 127;
+                endpointInfo.labelEPT = DigishowEnvironment::getPipeModeName(m_interfaceInfo.mode);
+                endpointInfo.labelEPI = tr("Note") + " " + QString::number(endpointInfo.channel);
+                break;
+        }
+
+        m_endpointInfoList.append(endpointInfo);
+    }
 }
 

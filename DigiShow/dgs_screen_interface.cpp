@@ -16,6 +16,7 @@
  */
 
 #include "dgs_screen_interface.h"
+#include "digishow_environment.h"
 #include <QJsonDocument>
 #include <QtQuick/QQuickWindow>
 #include <QGuiApplication>
@@ -309,4 +310,98 @@ double DgsScreenInterface::getPropertyValue(int control, dgsSignalData data)
         if (control == CONTROL_MEDIA_SCALE || control == CONTROL_MEDIA_SPEED) value = value*2;
     }
     return value;
+}
+
+void DgsScreenInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_SCREEN;
+
+    // Set interface mode and flags
+    m_interfaceInfo.mode = INTERFACE_SCREEN_DEFAULT;
+    m_interfaceInfo.output = true;
+    m_interfaceInfo.input = false;
+
+    // Set interface label
+    QString labelIdentity;
+    switch (int n = m_interfaceOptions.value("screen").toInt()) {
+    case -1: labelIdentity = tr("(Preview Window)"); break;
+    case  0: labelIdentity = ""; break;
+    default: labelIdentity = QString::number(n);
+    }
+    m_interfaceInfo.label = tr("Screen") + " " + labelIdentity;
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if      (typeName == "light" ) endpointInfo.type = ENDPOINT_SCREEN_LIGHT;
+        else if (typeName == "media" ) endpointInfo.type = ENDPOINT_SCREEN_MEDIA;
+        else if (typeName == "canvas") endpointInfo.type = ENDPOINT_SCREEN_CANVAS;
+
+        // Set endpoint properties based on type
+        switch (endpointInfo.type) {
+            case ENDPOINT_SCREEN_LIGHT:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = 255;
+                endpointInfo.labelEPT = tr("Backlight");
+                endpointInfo.labelEPI = DigishowEnvironment::getLightControlName(endpointInfo.control);
+                break;
+
+            case ENDPOINT_SCREEN_MEDIA:
+                endpointInfo.output = true;
+                endpointInfo.labelEPT = tr("Media Clip");
+                endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control, true);
+
+                switch (endpointInfo.control) {
+                    case CONTROL_MEDIA_START:
+                    case CONTROL_MEDIA_STOP:
+                    case CONTROL_MEDIA_STOP_ALL:
+                        endpointInfo.signal = DATA_SIGNAL_BINARY;
+                        break;
+                    case CONTROL_MEDIA_ROTATION:
+                        endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                        endpointInfo.range  = 3600;
+                        break;
+                    case CONTROL_MEDIA_OPACITY:
+                    case CONTROL_MEDIA_SCALE:
+                    case CONTROL_MEDIA_XOFFSET:
+                    case CONTROL_MEDIA_YOFFSET:
+                    case CONTROL_MEDIA_VOLUME:
+                    case CONTROL_MEDIA_SPEED:
+                        endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                        endpointInfo.range  = 10000;
+                        break;
+                    case CONTROL_MEDIA_POSITION:
+                        endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                        endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 100000);
+                        break;
+                }
+                break;
+
+            case ENDPOINT_SCREEN_CANVAS:
+                endpointInfo.output = true;
+                endpointInfo.labelEPT = tr("Canvas");
+                endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control, true);
+
+                switch (endpointInfo.control) {
+                    case CONTROL_MEDIA_ROTATION:
+                        endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                        endpointInfo.range  = 3600;
+                        break;
+                    case CONTROL_MEDIA_OPACITY:
+                    case CONTROL_MEDIA_SCALE:
+                    case CONTROL_MEDIA_XOFFSET:
+                    case CONTROL_MEDIA_YOFFSET:
+                        endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                        endpointInfo.range  = 10000;
+                        break;
+                }
+                break;
+        }
+
+        m_endpointInfoList.append(endpointInfo);
+    }
 }

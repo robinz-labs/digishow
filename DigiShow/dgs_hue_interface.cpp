@@ -16,6 +16,7 @@
  */
 
 #include "dgs_hue_interface.h"
+#include "digishow_environment.h"
 
 #define HUE_OUT_FREQ 10
 
@@ -318,6 +319,41 @@ void DgsHueInterface::callHueLightApi(int type, int channel, const QVariantMap &
     worker->delay = delay;
     worker->start();
 }
+
+void DgsHueInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_HUE;
+
+    // Set interface mode and flags
+    m_interfaceInfo.mode = INTERFACE_HUE_DEFAULT;
+    m_interfaceInfo.output = true;
+    m_interfaceInfo.input = false;
+
+    // Set interface label
+    m_interfaceInfo.label = tr("Hue") + " " + m_interfaceOptions.value("serial").toString();
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if      (typeName == "light") endpointInfo.type = ENDPOINT_HUE_LIGHT;
+        else if (typeName == "group") endpointInfo.type = ENDPOINT_HUE_GROUP;
+
+        // Set endpoint properties
+        endpointInfo.signal = DATA_SIGNAL_ANALOG;
+        endpointInfo.output = true;
+        endpointInfo.range  = (endpointInfo.control==CONTROL_LIGHT_HUE ||
+                              endpointInfo.control==CONTROL_LIGHT_CT ? 65535 : 255);
+        endpointInfo.labelEPT = (endpointInfo.type==ENDPOINT_HUE_GROUP ? tr("Group") : tr("Light")) +
+                               " " + QString::number(endpointInfo.channel);
+        endpointInfo.labelEPI = DigishowEnvironment::getLightControlName(endpointInfo.control);
+
+        m_endpointInfoList.append(endpointInfo);
+    }
+}
+
 
 void HueLightWorker::run()
 {

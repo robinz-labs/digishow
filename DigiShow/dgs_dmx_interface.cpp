@@ -18,6 +18,7 @@
 #include "dgs_dmx_interface.h"
 #include "com_handler.h"
 #include "digishow_pixel_player.h"
+#include "digishow_environment.h"
 
 #include <QSerialPortInfo>
 
@@ -497,3 +498,68 @@ QVariantList DgsDmxInterface::listOnline()
     return list;
 }
 
+void DgsDmxInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_DMX;
+
+    // Set interface mode
+    QString modeName = m_interfaceOptions.value("mode").toString();
+    if      (modeName == "enttec" ) m_interfaceInfo.mode = INTERFACE_DMX_ENTTEC_PRO;
+    else if (modeName == "opendmx") m_interfaceInfo.mode = INTERFACE_DMX_ENTTEC_OPEN;
+
+    // Set interface flags
+    m_interfaceInfo.output = true;
+    m_interfaceInfo.input = false;
+
+    // Set interface label
+    m_interfaceInfo.label = tr("DMX") + " " + m_interfaceOptions.value("comPort").toString();
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if      (typeName == "dimmer"  ) endpointInfo.type = ENDPOINT_DMX_DIMMER;
+        else if (typeName == "dimmer2x") endpointInfo.type = ENDPOINT_DMX_DIMMER2;
+        else if (typeName == "media"   ) endpointInfo.type = ENDPOINT_DMX_MEDIA;
+        else if (typeName == "master"  ) endpointInfo.type = ENDPOINT_DMX_MASTER;
+
+        // Set endpoint properties based on type
+        endpointInfo.labelEPT = tr("DMX");
+
+        switch (endpointInfo.type) {
+            case ENDPOINT_DMX_DIMMER:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = 255;
+                endpointInfo.labelEPI = QString("Ch%1").arg(endpointInfo.channel + 1);
+                break;
+            case ENDPOINT_DMX_DIMMER2:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = 65535;
+                endpointInfo.labelEPI = QString("Ch%1 +").arg(endpointInfo.channel + 1);
+                break;
+            case ENDPOINT_DMX_MEDIA:
+                endpointInfo.output = true;
+                switch (endpointInfo.control) {
+                    case CONTROL_MEDIA_START:
+                    case CONTROL_MEDIA_STOP:
+                    case CONTROL_MEDIA_STOP_ALL:
+                        endpointInfo.signal = DATA_SIGNAL_BINARY;
+                        break;
+                }
+                endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control);
+                break;
+            case ENDPOINT_DMX_MASTER:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = 255;
+                endpointInfo.labelEPI = tr("Master");
+                break;
+        }
+
+        m_endpointInfoList.append(endpointInfo);
+    }
+}

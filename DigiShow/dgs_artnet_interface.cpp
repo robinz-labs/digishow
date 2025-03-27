@@ -17,6 +17,7 @@
 
 #include "dgs_artnet_interface.h"
 #include "digishow_pixel_player.h"
+#include "digishow_environment.h"
 
 #define ARTNET_UDP_PORT 6454
 #define ARTNET_OUT_FREQ 30
@@ -493,4 +494,76 @@ void DgsArtnetInterface::onPlayerFrameUpdated()
 {
     DigishowPixelPlayer *player = qobject_cast<DigishowPixelPlayer*>(sender());
     player->transferFrameAllMappedPixels();
+}
+
+void DgsArtnetInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_ARTNET;
+
+    // Set interface mode
+    QString modeName = m_interfaceOptions.value("mode").toString();
+    if      (modeName == "input" ) m_interfaceInfo.mode = INTERFACE_ARTNET_INPUT;
+    else if (modeName == "output") m_interfaceInfo.mode = INTERFACE_ARTNET_OUTPUT;
+
+    // Set interface flags
+    m_interfaceInfo.input  = (m_interfaceInfo.mode == INTERFACE_ARTNET_INPUT);
+    m_interfaceInfo.output = (m_interfaceInfo.mode == INTERFACE_ARTNET_OUTPUT);
+
+    // Set interface label
+    m_interfaceInfo.label = tr("ArtNet") + " " +
+        m_interfaceOptions.value("udpHost").toString() + ":" +
+        m_interfaceOptions.value("udpPort").toString();
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if      (typeName == "dimmer"  ) endpointInfo.type = ENDPOINT_ARTNET_DIMMER;
+        else if (typeName == "dimmer2x") endpointInfo.type = ENDPOINT_ARTNET_DIMMER2;
+        else if (typeName == "media"   ) endpointInfo.type = ENDPOINT_ARTNET_MEDIA;
+        else if (typeName == "master"  ) endpointInfo.type = ENDPOINT_ARTNET_MASTER;
+
+        // Set endpoint properties based on type
+        endpointInfo.labelEPT = tr("ArtNet");
+
+        switch (endpointInfo.type) {
+            case ENDPOINT_ARTNET_DIMMER:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_ARTNET_OUTPUT);
+                endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_ARTNET_INPUT);
+                endpointInfo.range  = 255;
+                endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit)
+                                      .arg(endpointInfo.channel + 1);
+                break;
+            case ENDPOINT_ARTNET_DIMMER2:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_ARTNET_OUTPUT);
+                endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_ARTNET_INPUT);
+                endpointInfo.range  = 65535;
+                endpointInfo.labelEPI = QString("%1 : %2 +").arg(endpointInfo.unit)
+                                      .arg(endpointInfo.channel + 1);
+                break;
+            case ENDPOINT_ARTNET_MEDIA:
+                endpointInfo.output = true;
+                switch (endpointInfo.control) {
+                    case CONTROL_MEDIA_START:
+                    case CONTROL_MEDIA_STOP:
+                    case CONTROL_MEDIA_STOP_ALL:
+                        endpointInfo.signal = DATA_SIGNAL_BINARY;
+                        break;
+                }
+                endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control);
+                break;
+            case ENDPOINT_ARTNET_MASTER:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = 255;
+                endpointInfo.labelEPI = tr("Master") + QString(" %1").arg(endpointInfo.unit);
+                break;
+        }
+
+        m_endpointInfoList.append(endpointInfo);
+    }
 }

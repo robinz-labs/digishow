@@ -17,6 +17,7 @@
 
 #include "dgs_audioin_interface.h"
 #include "audio_analyzer.h"
+#include "digishow_environment.h"
 
 DgsAudioinInterface::DgsAudioinInterface(QObject *parent) : DigishowInterface(parent)
 {
@@ -195,3 +196,55 @@ QString DgsAudioinInterface::getUniqueAudioinName(int index)
     return audioinName;
 }
 
+void DgsAudioinInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_AUDIOIN;
+
+    // Set interface mode and flags
+    m_interfaceInfo.mode = INTERFACE_AUDIOIN_DEFAULT;
+    m_interfaceInfo.input = true;
+    m_interfaceInfo.output = false;
+
+    // Set interface label
+    m_interfaceInfo.label = tr("Audio In") + " " + m_interfaceOptions.value("port").toString();
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if      (typeName == "level"     ) endpointInfo.type = ENDPOINT_AUDIOIN_LEVEL;
+        else if (typeName == "level_db"  ) endpointInfo.type = ENDPOINT_AUDIOIN_LEVEL_DB;
+        else if (typeName == "peak"      ) endpointInfo.type = ENDPOINT_AUDIOIN_PEAK;
+        else if (typeName == "peak_db"   ) endpointInfo.type = ENDPOINT_AUDIOIN_PEAK_DB;
+        else if (typeName == "spectrum"  ) endpointInfo.type = ENDPOINT_AUDIOIN_SPECTRUM;
+
+        // Set endpoint properties based on type
+        endpointInfo.signal = DATA_SIGNAL_ANALOG;
+        endpointInfo.input = true;
+        endpointInfo.range = 1000000;
+        endpointInfo.labelEPT = tr("Audio");
+
+        switch (endpointInfo.type) {
+            case ENDPOINT_AUDIOIN_LEVEL:
+                endpointInfo.labelEPI = tr("Level");
+                break;
+            case ENDPOINT_AUDIOIN_LEVEL_DB:
+                endpointInfo.labelEPI = tr("Level") + " dB";
+                break;
+            case ENDPOINT_AUDIOIN_PEAK:
+                endpointInfo.labelEPI = tr("Peak");
+                break;
+            case ENDPOINT_AUDIOIN_PEAK_DB:
+                endpointInfo.labelEPI = tr("Peak") + " dB";
+                break;
+            case ENDPOINT_AUDIOIN_SPECTRUM:
+                endpointInfo.labelEPI = DigishowEnvironment::getSpectrumBandName(endpointInfo.channel)
+                                      .split(" ").at(0) + " Hz";
+                break;
+        }
+
+        m_endpointInfoList.append(endpointInfo);
+    }
+}

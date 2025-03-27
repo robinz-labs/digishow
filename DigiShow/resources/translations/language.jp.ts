@@ -2,12 +2,412 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja">
 <context>
+    <name>DgsAPlayInterface</name>
+    <message>
+        <location filename="../../digishow_experimental/dgs_aplay_interface.cpp" line="192"/>
+        <source>Audio Player</source>
+        <translation>オーディオプレーヤー</translation>
+    </message>
+    <message>
+        <location filename="../../digishow_experimental/dgs_aplay_interface.cpp" line="205"/>
+        <source>Audio Clip</source>
+        <translation>オーディオ</translation>
+    </message>
+</context>
+<context>
+    <name>DgsArtnetInterface</name>
+    <message>
+        <location filename="../../dgs_artnet_interface.cpp" line="513"/>
+        <location filename="../../dgs_artnet_interface.cpp" line="529"/>
+        <source>ArtNet</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_artnet_interface.cpp" line="563"/>
+        <source>Master</source>
+        <translation>マスター</translation>
+    </message>
+</context>
+<context>
+    <name>DgsAudioinInterface</name>
+    <message>
+        <location filename="../../dgs_audioin_interface.cpp" line="209"/>
+        <source>Audio In</source>
+        <translation>オーディオ入力</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_audioin_interface.cpp" line="227"/>
+        <source>Audio</source>
+        <translation>オーディオ</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_audioin_interface.cpp" line="231"/>
+        <location filename="../../dgs_audioin_interface.cpp" line="234"/>
+        <source>Level</source>
+        <translation>レベル</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_audioin_interface.cpp" line="237"/>
+        <location filename="../../dgs_audioin_interface.cpp" line="240"/>
+        <source>Peak</source>
+        <translation>ピーク</translation>
+    </message>
+</context>
+<context>
+    <name>DgsDmxInterface</name>
+    <message>
+        <location filename="../../dgs_dmx_interface.cpp" line="515"/>
+        <location filename="../../dgs_dmx_interface.cpp" line="529"/>
+        <source>DMX</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_dmx_interface.cpp" line="559"/>
+        <source>Master</source>
+        <translation>マスター</translation>
+    </message>
+</context>
+<context>
+    <name>DgsHotkeyInterface</name>
+    <message>
+        <location filename="../../dgs_hotkey_interface.cpp" line="136"/>
+        <source>Hot Key</source>
+        <translation>ホットキー</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_hotkey_interface.cpp" line="153"/>
+        <source>Key</source>
+        <translation>キー</translation>
+    </message>
+</context>
+<context>
+    <name>DgsHueInterface</name>
+    <message>
+        <location filename="../../dgs_hue_interface.cpp" line="333"/>
+        <source>Hue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_hue_interface.cpp" line="349"/>
+        <source>Group</source>
+        <translation>グループ</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_hue_interface.cpp" line="349"/>
+        <source>Light</source>
+        <translation>明かり</translation>
+    </message>
+</context>
+<context>
+    <name>DgsLaunchInterface</name>
+    <message>
+        <location filename="../../dgs_launch_interface.cpp" line="70"/>
+        <source>Preset Launcher</source>
+        <translation>プリセットランチャー</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_launch_interface.cpp" line="83"/>
+        <source>Launcher</source>
+        <translation>ランチャー</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_launch_interface.cpp" line="84"/>
+        <source>Preset</source>
+        <translation>プリセット</translation>
+    </message>
+</context>
+<context>
+    <name>DgsMPlayInterface</name>
+    <message>
+        <location filename="../../digishow_experimental/dgs_mplay_interface.cpp" line="189"/>
+        <source>MIDI Player</source>
+        <translation>MIDI プレーヤー</translation>
+    </message>
+    <message>
+        <location filename="../../digishow_experimental/dgs_mplay_interface.cpp" line="202"/>
+        <source>MIDI Clip</source>
+        <translation>MIDI</translation>
+    </message>
+</context>
+<context>
+    <name>DgsMessengerInterface</name>
+    <message>
+        <location filename="../../dgs_messenger_interface.cpp" line="245"/>
+        <source>Serial</source>
+        <translation>シリアル</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_messenger_interface.cpp" line="249"/>
+        <source>TCP</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_messenger_interface.cpp" line="254"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="258"/>
+        <source>UDP</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>DgsMetronomeInterface</name>
+    <message>
+        <location filename="../../dgs_metronome_interface.cpp" line="146"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="167"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="176"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="183"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="189"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="195"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="201"/>
+        <source>Beat Maker</source>
+        <translation>ビートメーカー</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_metronome_interface.cpp" line="168"/>
+        <source>Beat %1</source>
+        <translation>ビート %1</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_metronome_interface.cpp" line="177"/>
+        <source>BPM</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_metronome_interface.cpp" line="184"/>
+        <source>Quantum</source>
+        <translation>拍数</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_metronome_interface.cpp" line="190"/>
+        <source>Run</source>
+        <translation>実行</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_metronome_interface.cpp" line="196"/>
+        <source>Link</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_metronome_interface.cpp" line="202"/>
+        <source>Tap</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>DgsMidiInterface</name>
+    <message>
+        <location filename="../../dgs_midi_interface.cpp" line="479"/>
+        <source>MIDI</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_midi_interface.cpp" line="498"/>
+        <source>MIDI Note</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_midi_interface.cpp" line="505"/>
+        <location filename="../../dgs_midi_interface.cpp" line="525"/>
+        <source>MIDI CC</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_midi_interface.cpp" line="512"/>
+        <source>MIDI Prgm</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_midi_interface.cpp" line="518"/>
+        <source>MIDI Pitch</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>DgsModbusInterface</name>
+    <message>
+        <location filename="../../dgs_modbus_interface.cpp" line="419"/>
+        <source>Modbus</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_modbus_interface.cpp" line="443"/>
+        <source>Discrete</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_modbus_interface.cpp" line="448"/>
+        <location filename="../../dgs_modbus_interface.cpp" line="453"/>
+        <source>Coil</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_modbus_interface.cpp" line="459"/>
+        <source>Input</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_modbus_interface.cpp" line="465"/>
+        <location filename="../../dgs_modbus_interface.cpp" line="471"/>
+        <source>Holding</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>DgsOscInterface</name>
+    <message>
+        <location filename="../../dgs_osc_interface.cpp" line="460"/>
+        <location filename="../../dgs_osc_interface.cpp" line="475"/>
+        <source>OSC</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_osc_interface.cpp" line="483"/>
+        <source>Integer</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_osc_interface.cpp" line="490"/>
+        <source>Float</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_osc_interface.cpp" line="496"/>
+        <source>Bool</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>DgsPipeInterface</name>
+    <message>
+        <location filename="../../dgs_pipe_interface.cpp" line="441"/>
+        <source>Remote Pipe</source>
+        <translation>リモートパイプ</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_pipe_interface.cpp" line="445"/>
+        <source>Cloud Pipe</source>
+        <translation>クラウドパイプ</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_pipe_interface.cpp" line="448"/>
+        <source>Virtual Pipe</source>
+        <translation>バーチャルパイプ</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_pipe_interface.cpp" line="471"/>
+        <source>Analog</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_pipe_interface.cpp" line="478"/>
+        <source>Binary</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_pipe_interface.cpp" line="486"/>
+        <source>Note</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>DgsRiocInterface</name>
     <message>
         <location filename="../../dgs_rioc_interface.cpp" line="211"/>
         <source>DigiShow doesn&apos;t seem to work with your Arduino yet, <byte value="xd"/>
 make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="610"/>
+        <source>Aladdin</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="614"/>
+        <source>Arduino PLC</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="617"/>
+        <source>Arduino</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="646"/>
+        <source>Digital In</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="651"/>
+        <source>Digital Out</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="657"/>
+        <source>Analog In</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="663"/>
+        <source>Analog Out</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="669"/>
+        <source>PWM Out</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="675"/>
+        <source>Freq Out</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="682"/>
+        <source>Encoder</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="688"/>
+        <source>Servo</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="694"/>
+        <source>Stepper</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_rioc_interface.cpp" line="701"/>
+        <source>Channel</source>
+        <translation>チャンネル</translation>
+    </message>
+</context>
+<context>
+    <name>DgsScreenInterface</name>
+    <message>
+        <location filename="../../dgs_screen_interface.cpp" line="327"/>
+        <source>(Preview Window)</source>
+        <translation>(プレビューウィンドウ)</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_screen_interface.cpp" line="331"/>
+        <source>Screen</source>
+        <translation>スクリーン</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_screen_interface.cpp" line="349"/>
+        <source>Backlight</source>
+        <translation>バックライト</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_screen_interface.cpp" line="355"/>
+        <source>Media Clip</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_screen_interface.cpp" line="386"/>
+        <source>Canvas</source>
+        <translation>カンバス</translation>
     </message>
 </context>
 <context>
@@ -479,372 +879,6 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
     </message>
 </context>
 <context>
-    <name>DigishowInterface</name>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="295"/>
-        <source>MIDI</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="301"/>
-        <source>Aladdin</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="304"/>
-        <source>Arduino PLC</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="306"/>
-        <source>Arduino</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="311"/>
-        <source>Modbus</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="318"/>
-        <source>Hue</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="322"/>
-        <location filename="../../digishow_interface.cpp" line="677"/>
-        <location filename="../../digishow_interface.cpp" line="684"/>
-        <location filename="../../digishow_interface.cpp" line="696"/>
-        <location filename="../../digishow_interface.cpp" line="703"/>
-        <source>DMX</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="326"/>
-        <location filename="../../digishow_interface.cpp" line="711"/>
-        <location filename="../../digishow_interface.cpp" line="719"/>
-        <location filename="../../digishow_interface.cpp" line="731"/>
-        <location filename="../../digishow_interface.cpp" line="738"/>
-        <source>ArtNet</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="331"/>
-        <location filename="../../digishow_interface.cpp" line="746"/>
-        <location filename="../../digishow_interface.cpp" line="754"/>
-        <location filename="../../digishow_interface.cpp" line="761"/>
-        <source>OSC</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="336"/>
-        <source>Audio In</source>
-        <translation>オーディオ入力</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="340"/>
-        <source>Screen</source>
-        <translation>スクリーン</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="342"/>
-        <source>(Preview Window)</source>
-        <translation>(プレビューウィンドウ)</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="348"/>
-        <source>Audio Player</source>
-        <translation>オーディオプレーヤー</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="352"/>
-        <source>MIDI Player</source>
-        <translation>MIDI プレーヤー</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="357"/>
-        <source>Remote Pipe</source>
-        <translation>リモートパイプ</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="361"/>
-        <source>Cloud Pipe</source>
-        <translation>クラウドパイプ</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="364"/>
-        <source>Virtual Pipe</source>
-        <translation>バーチャルパイプ</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="373"/>
-        <source>Hot Key</source>
-        <translation>ホットキー</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="387"/>
-        <source>TCP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="392"/>
-        <location filename="../../digishow_interface.cpp" line="396"/>
-        <source>UDP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="522"/>
-        <source>MIDI Note</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="530"/>
-        <location filename="../../digishow_interface.cpp" line="553"/>
-        <source>MIDI CC</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="538"/>
-        <source>MIDI Prgm</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="546"/>
-        <source>MIDI Pitch</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="559"/>
-        <source>Digital In</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="565"/>
-        <source>Digital Out</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="572"/>
-        <source>Analog In</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="579"/>
-        <source>Analog Out</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="586"/>
-        <source>PWM Out</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="601"/>
-        <source>Encoder</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="608"/>
-        <source>Servo</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="615"/>
-        <source>Stepper</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="623"/>
-        <source>Channel</source>
-        <translation>チャンネル</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="629"/>
-        <source>Discrete</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="635"/>
-        <location filename="../../digishow_interface.cpp" line="641"/>
-        <source>Coil</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="648"/>
-        <source>Input</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="655"/>
-        <location filename="../../digishow_interface.cpp" line="662"/>
-        <source>Holding</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="670"/>
-        <source>Light</source>
-        <translation>明かり</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="670"/>
-        <source>Group</source>
-        <translation>グループ</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="704"/>
-        <location filename="../../digishow_interface.cpp" line="739"/>
-        <source>Master</source>
-        <translation>マスター</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="747"/>
-        <source>Integer</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="755"/>
-        <source>Float</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="762"/>
-        <source>Bool</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="769"/>
-        <location filename="../../digishow_interface.cpp" line="776"/>
-        <source>Level</source>
-        <translation>レベル</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="783"/>
-        <location filename="../../digishow_interface.cpp" line="790"/>
-        <source>Peak</source>
-        <translation>ピーク</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="891"/>
-        <source>Launcher</source>
-        <translation>ランチャー</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="768"/>
-        <location filename="../../digishow_interface.cpp" line="775"/>
-        <location filename="../../digishow_interface.cpp" line="782"/>
-        <location filename="../../digishow_interface.cpp" line="789"/>
-        <location filename="../../digishow_interface.cpp" line="796"/>
-        <source>Audio</source>
-        <translation>オーディオ</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="369"/>
-        <source>Preset Launcher</source>
-        <translation>プリセットランチャー</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="377"/>
-        <location filename="../../digishow_interface.cpp" line="898"/>
-        <location filename="../../digishow_interface.cpp" line="906"/>
-        <location filename="../../digishow_interface.cpp" line="913"/>
-        <location filename="../../digishow_interface.cpp" line="919"/>
-        <location filename="../../digishow_interface.cpp" line="925"/>
-        <location filename="../../digishow_interface.cpp" line="931"/>
-        <source>Beat Maker</source>
-        <translation>ビートメーカー</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="383"/>
-        <source>Serial</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="593"/>
-        <source>Freq Out</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="803"/>
-        <source>Backlight</source>
-        <translation>バックライト</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="832"/>
-        <source>Media Clip</source>
-        <translation>メディア</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="850"/>
-        <source>Canvas</source>
-        <translation>カンバス</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="856"/>
-        <source>Audio Clip</source>
-        <translation>オーディオ</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="862"/>
-        <source>MIDI Clip</source>
-        <translation>MIDI</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="871"/>
-        <source>Analog</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="878"/>
-        <source>Binary</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="886"/>
-        <source>Note</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="892"/>
-        <source>Preset</source>
-        <translation>プリセット</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="899"/>
-        <source>Beat %1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="907"/>
-        <source>BPM</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="914"/>
-        <source>Quantum</source>
-        <translation>拍数</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="920"/>
-        <source>Run</source>
-        <translation>実行</translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="926"/>
-        <source>Link</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="932"/>
-        <source>Tap</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../digishow_interface.cpp" line="950"/>
-        <source>Key</source>
-        <translation>キー</translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <location filename="../MainWindow.qml" line="31"/>
@@ -1081,8 +1115,8 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="692"/>
-        <source>Messager ...</source>
-        <translation type="unfinished"></translation>
+        <source>Messenger ...</source>
+        <translation>メッセンジャー ...</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="696"/>
@@ -2009,36 +2043,36 @@ either express or implied.</source>
     </message>
 </context>
 <context>
-    <name>MwEndpointSelectorMessager</name>
+    <name>MwEndpointSelectorMessenger</name>
     <message>
-        <location filename="../MwEndpointSelectorMessager.qml" line="52"/>
+        <location filename="../MwEndpointSelectorMessenger.qml" line="52"/>
         <source>?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMessager.qml" line="56"/>
+        <location filename="../MwEndpointSelectorMessenger.qml" line="56"/>
         <source>For selecting Text mode:<byte value="xd"/>
 The entered text can contain escape sequences like: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMessager.qml" line="57"/>
+        <location filename="../MwEndpointSelectorMessenger.qml" line="57"/>
         <source>For selecting Hex Code mode:<byte value="xd"/>
 You can enter any hex code, for example: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMessager.qml" line="58"/>
+        <location filename="../MwEndpointSelectorMessenger.qml" line="58"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMessager.qml" line="70"/>
+        <location filename="../MwEndpointSelectorMessenger.qml" line="70"/>
         <source>Text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMessager.qml" line="71"/>
+        <location filename="../MwEndpointSelectorMessenger.qml" line="71"/>
         <source>Hex Code</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2495,8 +2529,8 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     </message>
     <message>
         <location filename="../MwInterfaceListItem.qml" line="114"/>
-        <source>Messager</source>
-        <translation type="unfinished"></translation>
+        <source>Messenger</source>
+        <translation>メッセンジャー</translation>
     </message>
     <message>
         <location filename="../MwInterfaceListItem.qml" line="115"/>
@@ -2693,127 +2727,127 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     </message>
 </context>
 <context>
-    <name>MwInterfaceListViewMessager</name>
+    <name>MwInterfaceListViewMessenger</name>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="63"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="63"/>
         <source>Serial</source>
-        <translation type="unfinished"></translation>
+        <translation>シリアル</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="64"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="64"/>
         <source>TCP</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="65"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="65"/>
         <source>UDP Input</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="66"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="66"/>
         <source>UDP Output</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="123"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="123"/>
         <source>Mode</source>
-        <translation type="unfinished">モード</translation>
+        <translation>モード</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="170"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="170"/>
         <source>Serial Port</source>
-        <translation type="unfinished">シリアルポート</translation>
+        <translation>シリアルポート</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="194"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="194"/>
         <source>8-N-1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="195"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="195"/>
         <source>8-E-1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="196"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="196"/>
         <source>8-O-1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="197"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="197"/>
         <source>7-E-1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="198"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="198"/>
         <source>7-O-1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="199"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="199"/>
         <source>8-N-2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="213"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="213"/>
         <source>Parity</source>
-        <translation type="unfinished">パリティ</translation>
+        <translation>パリティ</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="237"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="237"/>
         <source>4800</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="238"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="238"/>
         <source>9600</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="239"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="239"/>
         <source>14400</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="240"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="240"/>
         <source>19200</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="241"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="241"/>
         <source>38400</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="242"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="242"/>
         <source>57600</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="243"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="243"/>
         <source>115200</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="257"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="257"/>
         <source>Baud Rate</source>
-        <translation type="unfinished">ボーレート</translation>
+        <translation>ボーレート</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="287"/>
-        <location filename="../MwInterfaceListViewMessager.qml" line="348"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="287"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="348"/>
         <source>Device IP</source>
-        <translation type="unfinished">設備IP</translation>
+        <translation>設備IP</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="318"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="318"/>
         <source>TCP Port</source>
-        <translation type="unfinished">TCPポート</translation>
+        <translation>TCPポート</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewMessager.qml" line="380"/>
+        <location filename="../MwInterfaceListViewMessenger.qml" line="380"/>
         <source>UDP Port</source>
-        <translation type="unfinished">UDPポート</translation>
+        <translation>UDPポート</translation>
     </message>
 </context>
 <context>
@@ -3280,13 +3314,13 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="428"/>
-        <source>Serial and TCP/UDP Messagers</source>
-        <translation type="unfinished"></translation>
+        <source>Serial and TCP/UDP Messengers</source>
+        <translation>シリアルおよび TCP/UDP メッセンジャー</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="441"/>
         <source>DigiShow enables the communications with other devices to receive and send specific code messages via serial ports or IP networks.</source>
-        <translation type="unfinished"></translation>
+        <translation>DigiShow を使用すると、シリアル ポートまたは IP ネットワークを介して他のデバイスと通信し、特定のコード メッセージを送受信できます。</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="468"/>
@@ -3360,8 +3394,8 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="670"/>
-        <source>Messager</source>
-        <translation type="unfinished"></translation>
+        <source>Messenger</source>
+        <translation>メッセージ</translation>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="679"/>

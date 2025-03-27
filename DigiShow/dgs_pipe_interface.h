@@ -75,6 +75,8 @@ private:
     static bool messageToSlotOption(const QString &message, QString &slotName, QString &optName, QString &optValue);
     static bool messageToSlotLink(const QString &message, QString &slotName, bool *linked);
     static bool messageToLaunch(const QString &message, int *launchId);
+
+    void updateMetadata_() override;
 };
 
 

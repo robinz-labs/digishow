@@ -441,3 +441,62 @@ void DgsOscInterface::onTimerFired()
     // send osc data once or continuously
     if (!m_outputContinuous) m_dataUpdatedAddresses.clear();
 }
+
+
+void DgsOscInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_OSC;
+
+    // Set interface mode
+    QString modeName = m_interfaceOptions.value("mode").toString();
+    if      (modeName == "input" ) m_interfaceInfo.mode = INTERFACE_OSC_INPUT;
+    else if (modeName == "output") m_interfaceInfo.mode = INTERFACE_OSC_OUTPUT;
+
+    // Set interface flags
+    m_interfaceInfo.input  = (m_interfaceInfo.mode == INTERFACE_OSC_INPUT);
+    m_interfaceInfo.output = (m_interfaceInfo.mode == INTERFACE_OSC_OUTPUT);
+
+    // Set interface label
+    m_interfaceInfo.label = tr("OSC") + " " +
+                           m_interfaceOptions.value("udpHost").toString() + ":" +
+                           m_interfaceOptions.value("udpPort").toString();
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if      (typeName == "int"  ) endpointInfo.type = ENDPOINT_OSC_INT;
+        else if (typeName == "float") endpointInfo.type = ENDPOINT_OSC_FLOAT;
+        else if (typeName == "bool" ) endpointInfo.type = ENDPOINT_OSC_BOOL;
+
+        // Set endpoint properties based on type
+        endpointInfo.labelEPT = tr("OSC");
+
+        switch (endpointInfo.type) {
+            case ENDPOINT_OSC_INT:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_OSC_OUTPUT);
+                endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_OSC_INPUT);
+                endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000000);
+                endpointInfo.labelEPI = tr("Integer") + QString(" %1").arg(endpointInfo.channel + 1);
+                break;
+            case ENDPOINT_OSC_FLOAT:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_OSC_OUTPUT);
+                endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_OSC_INPUT);
+                endpointInfo.range  = 1000000;
+                endpointInfo.labelEPI = tr("Float") + QString(" %1").arg(endpointInfo.channel + 1);
+                break;
+            case ENDPOINT_OSC_BOOL:
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.output = (m_interfaceInfo.mode == INTERFACE_OSC_OUTPUT);
+                endpointInfo.input  = (m_interfaceInfo.mode == INTERFACE_OSC_INPUT);
+                endpointInfo.labelEPI = tr("Bool") + QString(" %1").arg(endpointInfo.channel + 1);
+                break;
+        }
+
+        m_endpointInfoList.append(endpointInfo);
+    }
+}

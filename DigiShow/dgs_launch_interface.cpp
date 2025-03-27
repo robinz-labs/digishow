@@ -56,3 +56,33 @@ int DgsLaunchInterface::sendData(int endpointIndex, dgsSignalData data)
 
     return ERR_NONE;
 }
+
+void DgsLaunchInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_LAUNCH;
+
+    // Set interface mode and flags
+    m_interfaceInfo.mode = INTERFACE_LAUNCH_DEFAULT;
+    m_interfaceInfo.output = true;
+    m_interfaceInfo.input = false;
+
+    // Set interface label
+    m_interfaceInfo.label = tr("Preset Launcher");
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if (typeName == "preset") endpointInfo.type = ENDPOINT_LAUNCH_PRESET;
+
+        // Set endpoint properties
+        endpointInfo.signal = DATA_SIGNAL_BINARY;
+        endpointInfo.output = true;
+        endpointInfo.labelEPT = tr("Launcher");
+        endpointInfo.labelEPI = tr("Preset") + " " + QString::number(endpointInfo.channel);
+
+        m_endpointInfoList.append(endpointInfo);
+    }
+}

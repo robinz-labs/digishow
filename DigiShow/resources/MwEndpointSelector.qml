@@ -35,8 +35,8 @@ Item {
             itemMidi.visible = !isDetecting
         } else if (interfaceType === "osc") {
             itemOsc.visible = !isDetecting
-        } else if (interfaceType === "messager") {
-            itemMessager.visible = !isDetecting
+        } else if (interfaceType === "messenger") {
+            itemMessenger.visible = !isDetecting
         }
     }
 
@@ -130,7 +130,7 @@ Item {
                 itemLaunch   .visible = false
                 itemHotkey   .visible = false
                 itemMetronome.visible = false
-                itemMessager .visible = false
+                itemMessenger .visible = false
 
                 popupMoreOptions.resetOptions()
                 popupMoreOptions.enableOptions({})
@@ -156,7 +156,7 @@ Item {
                     case DigishowEnvironment.InterfaceLaunch:    itemLaunch   .visible = true; itemLaunch   .refresh(); break
                     case DigishowEnvironment.InterfaceHotkey:    itemHotkey   .visible = true; itemHotkey   .refresh(); break
                     case DigishowEnvironment.InterfaceMetronome: itemMetronome.visible = true; itemMetronome.refresh(); break
-                    case DigishowEnvironment.InterfaceMessager:  itemMessager .visible = true; itemMessager .refresh(); break
+                    case DigishowEnvironment.InterfaceMessenger:  itemMessenger .visible = true; itemMessenger .refresh(); break
 
                     }
                     interfaceType = config["interfaceOptions"]["type"];
@@ -185,7 +185,7 @@ Item {
         label.text: qsTr("LEARN")
         box.radius: 3
         colorNormal: isDetecting ? "#990000" : "#484848"
-        visible: app.isRunning && forInput && (interfaceType === "midi" || interfaceType === "osc" || interfaceType === "messager")
+        visible: app.isRunning && forInput && (interfaceType === "midi" || interfaceType === "osc" || interfaceType === "messenger")
         onClicked: {
             if (isDetecting)
                 stopDetection()
@@ -377,9 +377,9 @@ Item {
         visible: false
     }
 
-    MwEndpointSelectorMessager {
+    MwEndpointSelectorMessenger {
 
-        id: itemMessager
+        id: itemMessenger
 
         anchors.left: buttonInterface.left
         anchors.right: parent.right
@@ -479,7 +479,7 @@ Item {
             case DigishowEnvironment.InterfaceLaunch:    itemEndpoint = itemLaunch;    break
             case DigishowEnvironment.InterfaceHotkey:    itemEndpoint = itemHotkey;    break
             case DigishowEnvironment.InterfaceMetronome: itemEndpoint = itemMetronome; break
-            case DigishowEnvironment.InterfaceMessager:  itemEndpoint = itemMessager;  break
+            case DigishowEnvironment.InterfaceMessenger:  itemEndpoint = itemMessenger;  break
 
             }
             if (itemEndpoint !== null)
@@ -523,7 +523,7 @@ Item {
         case DigishowEnvironment.InterfaceLaunch:    itemEndpoint = itemLaunch;    break
         case DigishowEnvironment.InterfaceHotkey:    itemEndpoint = itemHotkey;    needRestartInterface = true; break
         case DigishowEnvironment.InterfaceMetronome: itemEndpoint = itemMetronome; needRestartInterface = true; break
-        case DigishowEnvironment.InterfaceMessager:  itemEndpoint = itemMessager;  needRestartInterface = forInput; break
+        case DigishowEnvironment.InterfaceMessenger:  itemEndpoint = itemMessenger;  needRestartInterface = forInput; break
         }
         if (itemEndpoint !== null)
             newEndpointOptions = itemEndpoint.getEndpointOptions()
@@ -629,9 +629,9 @@ Item {
 
                 ok = itemOsc.learn(rawData)
 
-            } else if (interfaceType === "messager") {
+            } else if (interfaceType === "messenger") {
 
-                ok = itemMessager.learn(rawData)
+                ok = itemMessenger.learn(rawData)
             }
 
             if (ok) {

@@ -111,6 +111,8 @@ private:
     // process data input and output (in worker thread)
     void processEpDataOut();
     void processEpDataIn();
+
+    void updateMetadata_() override;
 };
 
 

@@ -45,6 +45,8 @@ private:
     QList<QHotkey*> m_hotkeys;
 
     int findEndpoint(int keyCode);
+
+    void updateMetadata_() override;
 };
 
 #endif // DGSHOTKEYINTERFACE_H

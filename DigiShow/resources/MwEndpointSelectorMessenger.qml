@@ -6,7 +6,7 @@ import DigiShow 1.0
 import "components"
 
 Item {
-    id: itemMessager
+    id: itemMessenger
 
     COptionButton {
         id: buttonType
@@ -21,7 +21,7 @@ Item {
             id: menuType
             onOptionSelected: refreshMoreOptions()
             onOptionClicked: {
-                if (menuType.selectedItemValue == DigishowEnvironment.EndpointMessagerHexCode)
+                if (menuType.selectedItemValue == DigishowEnvironment.EndpointMessengerHexCode)
                     textMessage.text = utilities.txt2hex(textMessage.text)
                 else
                     textMessage.text = utilities.hex2txt(textMessage.text)
@@ -67,8 +67,8 @@ Item {
         // init message mode option menu
         if (menuType.count === 0) {
             items = []
-            items.push({ text: qsTr("Text"    ), value: DigishowEnvironment.EndpointMessagerText   , tag:"text"})
-            items.push({ text: qsTr("Hex Code"), value: DigishowEnvironment.EndpointMessagerHexCode, tag:"hex" })
+            items.push({ text: qsTr("Text"    ), value: DigishowEnvironment.EndpointMessengerText   , tag:"text"})
+            items.push({ text: qsTr("Hex Code"), value: DigishowEnvironment.EndpointMessengerHexCode, tag:"hex" })
             menuType.optionItems = items
             menuType.selectedIndex = 0
         }
@@ -95,7 +95,7 @@ Item {
 
     function getEndpointOptions() {
 
-        if (menuType.selectedItemValue == DigishowEnvironment.EndpointMessagerHexCode)
+        if (menuType.selectedItemValue == DigishowEnvironment.EndpointMessengerHexCode)
             textMessage.text = validateAndFormatHex(textMessage.text)
 
         var options = {}

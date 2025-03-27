@@ -400,3 +400,82 @@ QVariantList DgsModbusInterface::listOnline()
 
     return list;
 }
+
+void DgsModbusInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_MODBUS;
+
+    // Set interface mode
+    QString modeName = m_interfaceOptions.value("mode").toString();
+    if      (modeName == "rtu"       ) m_interfaceInfo.mode = INTERFACE_MODBUS_RTU;
+    else if (modeName == "tcp"       ) m_interfaceInfo.mode = INTERFACE_MODBUS_TCP;
+    else if (modeName == "rtuovertcp") m_interfaceInfo.mode = INTERFACE_MODBUS_RTUOVERTCP;
+
+    // Set interface input/output flags
+    m_interfaceInfo.input = true;
+    m_interfaceInfo.output = true;
+
+    // Set interface label
+    m_interfaceInfo.label = tr("Modbus") + " " +
+        (m_interfaceInfo.mode == INTERFACE_MODBUS_RTU ?
+         m_interfaceOptions.value("comPort").toString() :
+         m_interfaceOptions.value("tcpHost").toString() + ":" +
+         m_interfaceOptions.value("tcpPort").toString());
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if      (typeName == "discrete_in") endpointInfo.type = ENDPOINT_MODBUS_DISCRETE_IN;
+        else if (typeName == "coil_out"   ) endpointInfo.type = ENDPOINT_MODBUS_COIL_OUT;
+        else if (typeName == "coil_in"    ) endpointInfo.type = ENDPOINT_MODBUS_COIL_IN;
+        else if (typeName == "register_in") endpointInfo.type = ENDPOINT_MODBUS_REGISTER_IN;
+        else if (typeName == "holding_out") endpointInfo.type = ENDPOINT_MODBUS_HOLDING_OUT;
+        else if (typeName == "holding_in" ) endpointInfo.type = ENDPOINT_MODBUS_HOLDING_IN;
+
+        // Set endpoint properties based on type
+        switch (endpointInfo.type) {
+            case ENDPOINT_MODBUS_DISCRETE_IN:
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.input  = true;
+                endpointInfo.labelEPT = tr("Discrete");
+                break;
+            case ENDPOINT_MODBUS_COIL_OUT:
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.output = true;
+                endpointInfo.labelEPT = tr("Coil");
+                break;
+            case ENDPOINT_MODBUS_COIL_IN:
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.input  = true;
+                endpointInfo.labelEPT = tr("Coil");
+                break;
+            case ENDPOINT_MODBUS_REGISTER_IN:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.input  = true;
+                endpointInfo.range  = 65535;
+                endpointInfo.labelEPT = tr("Input");
+                break;
+            case ENDPOINT_MODBUS_HOLDING_OUT:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = 65535;
+                endpointInfo.labelEPT = tr("Holding");
+                break;
+            case ENDPOINT_MODBUS_HOLDING_IN:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.input  = true;
+                endpointInfo.range  = 65535;
+                endpointInfo.labelEPT = tr("Holding");
+                break;
+        }
+
+        // Set common label format for all Modbus endpoints
+        endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(endpointInfo.channel);
+
+        m_endpointInfoList.append(endpointInfo);
+    }
+}
+

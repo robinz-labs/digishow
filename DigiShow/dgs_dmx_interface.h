@@ -65,6 +65,8 @@ private:
     void stopAll();
     void setupPlayerPixelMapping(DigishowPixelPlayer *player, const QString &mediaName);
 
+
+    void updateMetadata_() override;
 };
 
 #endif // DGSDMXINTERFACE_H

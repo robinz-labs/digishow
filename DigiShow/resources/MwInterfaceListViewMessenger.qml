@@ -9,7 +9,7 @@ MwInterfaceListView {
 
     id: interfaceListView
 
-    interfaceType: "messager"
+    interfaceType: "messenger"
 
     dataModel: ListModel {
 
@@ -144,7 +144,7 @@ MwInterfaceListView {
                         width: interfaceListItem.width - 40
 
                         optionItems: {
-                            var items = listOnline["messager"]
+                            var items = listOnline["messenger"]
                             var options = []
                             var i = 0
                             for (var n=0 ; n<items.length ; n++) {

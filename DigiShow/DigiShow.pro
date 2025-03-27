@@ -17,9 +17,9 @@ SOURCES += \
     $$PWD/shared/http_socket.cpp \
     $$PWD/shared/kiss_fft.cpp \
     $$PWD/shared/audio_analyzer.cpp \
-    $$PWD/shared/com_messager.cpp \
-    $$PWD/shared/tcp_messager.cpp \
-    $$PWD/shared/udp_messager.cpp \
+    $$PWD/shared/com_messenger.cpp \
+    $$PWD/shared/tcp_messenger.cpp \
+    $$PWD/shared/udp_messenger.cpp \
     app_utilities.cpp \
     dgs_midi_interface.cpp \
     dgs_rioc_interface.cpp \
@@ -34,7 +34,7 @@ SOURCES += \
     dgs_launch_interface.cpp \
     dgs_hotkey_interface.cpp \
     dgs_metronome_interface.cpp \
-    dgs_messager_interface.cpp \
+    dgs_messenger_interface.cpp \
     digishow.cpp \
     digishow_app.cpp \
     digishow_cloud_dummy.cpp \
@@ -65,10 +65,10 @@ HEADERS += \
     $$PWD/shared/kiss_fft_log.h \
     $$PWD/shared/_kiss_fft_guts.h \
     $$PWD/shared/audio_analyzer.h \
-    $$PWD/shared/abstract_messager.h \
-    $$PWD/shared/com_messager.h \
-    $$PWD/shared/tcp_messager.h \
-    $$PWD/shared/udp_messager.h \
+    $$PWD/shared/abstract_messenger.h \
+    $$PWD/shared/com_messenger.h \
+    $$PWD/shared/tcp_messenger.h \
+    $$PWD/shared/udp_messenger.h \
     app_common.h \
     app_utilities.h \
     dgs_midi_interface.h \
@@ -84,7 +84,7 @@ HEADERS += \
     dgs_launch_interface.h \
     dgs_hotkey_interface.h \
     dgs_metronome_interface.h \
-    dgs_messager_interface.h \
+    dgs_messenger_interface.h \
     digishow.h \
     digishow_app.h \
     digishow_cloud_dummy.h \

@@ -58,6 +58,7 @@ private:
     void processOscMessageIn(tosc_message *osc);
     int  prepareOscMessageOut(char *buffer, const int len, const char *address, const QVariantList &values);
 
+    void updateMetadata_() override;
 };
 
 #endif // DGSOSCINTERFACE_H

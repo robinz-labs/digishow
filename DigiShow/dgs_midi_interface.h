@@ -55,6 +55,7 @@ private:
     int findEndpointWidthMidiProgram(int channel);
     int findEndpointWidthMidiPitch(int channel);
 
+    void updateMetadata_() override;
 };
 
 #endif // DGSMIDIINTERFACE_H

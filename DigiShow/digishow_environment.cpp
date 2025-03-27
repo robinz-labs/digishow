@@ -24,7 +24,7 @@
 #include "dgs_dmx_interface.h"
 #include "dgs_audioin_interface.h"
 #include "dgs_screen_interface.h"
-#include "dgs_messager_interface.h"
+#include "dgs_messenger_interface.h"
 #include "rioc_aladdin2560_def.h"
 
 DigishowEnvironment::DigishowEnvironment(QObject *parent) : QObject(parent)
@@ -782,7 +782,7 @@ QVariantMap DigishowEnvironment::listOnline()
     info["modbus"  ] = DgsModbusInterface  ::listOnline();
     info["audioin" ] = DgsAudioinInterface ::listOnline();
     info["screen"  ] = DgsScreenInterface  ::listOnline();
-    info["messager"] = DgsMessagerInterface::listOnline();
+    info["messenger"] = DgsMessengerInterface::listOnline();
     return info;
 }
 

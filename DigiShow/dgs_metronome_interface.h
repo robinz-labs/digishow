@@ -54,6 +54,8 @@ private:
     BeatActionMap m_beatActionMap;
 
     void processBeatAction(int beatIndex);
+
+    void updateMetadata_() override;
 };
 
 #endif // DGSMETRONOMEINTERFACE_H

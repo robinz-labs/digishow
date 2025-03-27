@@ -19,25 +19,25 @@
     The code in this file was co-written by AI (Trae/Claude-3.5-Sonnet).
 */
 
-#include "udp_messager.h"
+#include "udp_messenger.h"
 
 // Constructor: Initialize UDP socket
-UdpMessager::UdpMessager(QObject *parent)
-    : AbstractMessager(parent)
+UdpMessenger::UdpMessenger(QObject *parent)
+    : AbstractMessenger(parent)
     , m_udpSocket(new QUdpSocket(this))
     , m_remotePort(0)
 {
-    connect(m_udpSocket, &QUdpSocket::readyRead, this, &UdpMessager::handleReadyRead);
+    connect(m_udpSocket, &QUdpSocket::readyRead, this, &UdpMessenger::handleReadyRead);
 }
 
 // Destructor: Ensure proper cleanup
-UdpMessager::~UdpMessager()
+UdpMessenger::~UdpMessenger()
 {
     close();
 }
 
 // Open UDP socket with specified local port and remote endpoint
-bool UdpMessager::open(quint16 localPort, const QString &remoteHost, quint16 remotePort)
+bool UdpMessenger::open(quint16 localPort, const QString &remoteHost, quint16 remotePort)
 {
     close();
     
@@ -54,7 +54,7 @@ bool UdpMessager::open(quint16 localPort, const QString &remoteHost, quint16 rem
 }
 
 // Close the UDP socket
-void UdpMessager::close()
+void UdpMessenger::close()
 {
     if (m_udpSocket->state() != QAbstractSocket::UnconnectedState) {
         m_udpSocket->close();
@@ -63,7 +63,7 @@ void UdpMessager::close()
 }
 
 // Send message to the configured remote endpoint
-bool UdpMessager::sendMessage(const QByteArray &message)
+bool UdpMessenger::sendMessage(const QByteArray &message)
 {
     if (m_remotePort == 0) {
         return false;
@@ -74,7 +74,7 @@ bool UdpMessager::sendMessage(const QByteArray &message)
 }
 
 // Handle incoming UDP datagrams
-void UdpMessager::handleReadyRead()
+void UdpMessenger::handleReadyRead()
 {
     while (m_udpSocket->hasPendingDatagrams()) {
         QByteArray datagram;

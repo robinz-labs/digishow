@@ -19,20 +19,20 @@
     The code in this file was co-written by AI (Trae/Claude-3.5-Sonnet).
 */
 
-#include "tcp_messager.h"
+#include "tcp_messenger.h"
 
 // Constructor: Initialize TCP socket and setup signal connections
-TcpMessager::TcpMessager(QObject *parent)
-    : AbstractMessager(parent)
+TcpMessenger::TcpMessenger(QObject *parent)
+    : AbstractMessenger(parent)
     , m_tcpSocket(new QTcpSocket(this))
 {
-    connect(m_tcpSocket, &QTcpSocket::readyRead, this, &TcpMessager::handleReadyRead);
-    connect(m_tcpSocket, &QTcpSocket::connected, this, &TcpMessager::connected);
-    connect(m_tcpSocket, &QTcpSocket::disconnected, this, &TcpMessager::disconnected);
+    connect(m_tcpSocket, &QTcpSocket::readyRead, this, &TcpMessenger::handleReadyRead);
+    connect(m_tcpSocket, &QTcpSocket::connected, this, &TcpMessenger::connected);
+    connect(m_tcpSocket, &QTcpSocket::disconnected, this, &TcpMessenger::disconnected);
 }
 
 // Destructor: Ensure proper disconnection
-TcpMessager::~TcpMessager()
+TcpMessenger::~TcpMessenger()
 {
     if (m_tcpSocket->state() == QAbstractSocket::ConnectedState) {
         m_tcpSocket->disconnectFromHost();
@@ -40,7 +40,7 @@ TcpMessager::~TcpMessager()
 }
 
 // Open connection to specified host and port
-bool TcpMessager::open(const QString &hostName, quint16 port)
+bool TcpMessenger::open(const QString &hostName, quint16 port)
 {
     if (m_tcpSocket->state() == QAbstractSocket::ConnectedState) {
         m_tcpSocket->disconnectFromHost();
@@ -51,7 +51,7 @@ bool TcpMessager::open(const QString &hostName, quint16 port)
 }
 
 // Close the current connection
-void TcpMessager::close()
+void TcpMessenger::close()
 {
     if (m_tcpSocket->state() == QAbstractSocket::ConnectedState) {
         m_tcpSocket->disconnectFromHost();
@@ -59,7 +59,7 @@ void TcpMessager::close()
 }
 
 // Send message through TCP connection
-bool TcpMessager::sendMessage(const QByteArray &message)
+bool TcpMessenger::sendMessage(const QByteArray &message)
 {
     if (m_tcpSocket->state() != QAbstractSocket::ConnectedState) {
         return false;
@@ -70,7 +70,7 @@ bool TcpMessager::sendMessage(const QByteArray &message)
 }
 
 // Handle incoming data
-void TcpMessager::handleReadyRead()
+void TcpMessenger::handleReadyRead()
 {
     QByteArray newData = m_tcpSocket->readAll();
     emit rawDataReceived(newData);

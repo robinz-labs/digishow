@@ -19,20 +19,20 @@
     The code in this file was co-written by AI (Trae/Claude-3.5-Sonnet).
 */
 
-#ifndef ABSTRACT_MESSAGER_H
-#define ABSTRACT_MESSAGER_H
+#ifndef ABSTRACT_MESSENGER_H
+#define ABSTRACT_MESSENGER_H
 
 #include <QObject>
 #include <QByteArray>
 #include <QList>
 
-class AbstractMessager : public QObject
+class AbstractMessenger : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit AbstractMessager(QObject *parent = nullptr) : QObject(parent) {}
-    virtual ~AbstractMessager() {}
+    explicit AbstractMessenger(QObject *parent = nullptr) : QObject(parent) {}
+    virtual ~AbstractMessenger() {}
 
     virtual void close() = 0;
     virtual bool sendMessage(const QByteArray &message) = 0;
@@ -54,4 +54,4 @@ protected:
     QList<QByteArray> m_subscribedMessages;
 };
 
-#endif // ABSTRACT_MESSAGER_H
+#endif // ABSTRACT_MESSENGER_H

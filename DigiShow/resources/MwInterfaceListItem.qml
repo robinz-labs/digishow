@@ -111,7 +111,7 @@ Rectangle {
                 else if (model.type === "hue"     ) typeName = qsTr("Hue")
                 else if (model.type === "audioin" ) typeName = qsTr("Audio In")
                 else if (model.type === "screen"  ) typeName = qsTr("Screen")
-                else if (model.type === "messager") typeName = qsTr("Messager")
+                else if (model.type === "messenger") typeName = qsTr("Messenger")
                 else if (model.type === "pipe"    ) typeName = qsTr("Virtual Pipe")
                 else if (model.type === "aplay"   ) typeName = qsTr("Audio Player")
                 else if (model.type === "mplay"   ) typeName = qsTr("MIDI Player")

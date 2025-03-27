@@ -19,13 +19,13 @@
     The code in this file was co-written by AI (Trae/Claude-3.5-Sonnet).
 */
 
-#ifndef COM_MESSAGER_H
-#define COM_MESSAGER_H
+#ifndef COM_MESSENGER_H
+#define COM_MESSENGER_H
 
-#include "abstract_messager.h"
+#include "abstract_messenger.h"
 #include <QSerialPort>
 
-class ComMessager : public AbstractMessager
+class ComMessenger : public AbstractMessenger
 {
     Q_OBJECT
 
@@ -41,8 +41,8 @@ public:
     };
     Q_ENUM(SerialSetting)
 
-    explicit ComMessager(QObject *parent = nullptr);
-    ~ComMessager();
+    explicit ComMessenger(QObject *parent = nullptr);
+    ~ComMessenger();
 
     bool open(const QString &portName, 
              int portBaud = QSerialPort::Baud115200,
@@ -58,4 +58,4 @@ private:
     QByteArray m_buffer;
 };
 
-#endif // COM_MESSAGER_H
+#endif // COM_MESSENGER_H

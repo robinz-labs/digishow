@@ -122,3 +122,48 @@ int DgsHotkeyInterface::findEndpoint(int keyCode)
 
     return -1;
 }
+
+void DgsHotkeyInterface::updateMetadata_()
+{
+    m_interfaceInfo.type = INTERFACE_HOTKEY;
+
+    // Set interface mode and flags
+    m_interfaceInfo.mode = INTERFACE_HOTKEY_DEFAULT;
+    m_interfaceInfo.input = true;
+    m_interfaceInfo.output = false;
+
+    // Set interface label
+    m_interfaceInfo.label = tr("Hot Key");
+
+    // Process endpoints
+    for (int n = 0; n < m_endpointOptionsList.length(); n++) {
+        dgsEndpointInfo endpointInfo = initializeEndpointInfo(n);
+
+        // Set endpoint type
+        QString typeName = m_endpointOptionsList[n].value("type").toString();
+        if (typeName == "press") endpointInfo.type = ENDPOINT_HOTKEY_PRESS;
+
+        // Set endpoint properties
+        endpointInfo.signal = DATA_SIGNAL_BINARY;
+        endpointInfo.input = true;
+
+        // Parse hotkey combination
+        QStringList hotkey = endpointInfo.address.split("+");
+        switch (hotkey.length()) {
+            case 1: endpointInfo.labelEPT = tr("Key"); break;
+            case 2: endpointInfo.labelEPT = hotkey.first(); break;
+            case 3: endpointInfo.labelEPT = hotkey.at(0) + " + " + hotkey.at(1); break;
+        }
+        endpointInfo.labelEPI = hotkey.last();
+
+        // Adjust key names for macOS
+#ifdef Q_OS_MAC
+        endpointInfo.labelEPT.replace("Ctrl", "Cmd" );
+        endpointInfo.labelEPT.replace("Alt" , "Opt" );
+        endpointInfo.labelEPT.replace("Meta", "Ctrl");
+#endif
+
+        m_endpointInfoList.append(endpointInfo);
+    }
+}
+

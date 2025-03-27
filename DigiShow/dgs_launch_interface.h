@@ -31,6 +31,9 @@ public:
     int openInterface() override;
     int closeInterface() override;
     int sendData(int endpointIndex, dgsSignalData data) override;
+
+private:
+    void updateMetadata_() override;
 };
 
 

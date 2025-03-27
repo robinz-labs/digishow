@@ -827,10 +827,12 @@ Item {
             highlightMoveDuration: 200
 
             ScrollBar.vertical: ScrollBar {
-                width: 6
+                width: 8
                 topPadding: -20
                 bottomPadding: -30
                 rightPadding: 0
+                minimumSize: 0.1
+                opacity: 0.4
             }
 
             Keys.onReleased: {
@@ -1143,7 +1145,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 80
             anchors.right: parent.right
-            anchors.rightMargin: 300
+            anchors.rightMargin: 280
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 80
             color: "#888888"
@@ -1269,16 +1271,16 @@ Item {
         // obtain endpoint data
         var epInSignal = 0
         var epInType = 0
-        var epInColor = "#000000"
-        var epInIcon = "qrc:///images/icon_ep_in.png"
+        var epInColor = "#333333"
+        var epInIcon = "qrc:///images/icon_ep_in_white.png"
         var epInLabelEPT = qsTr("IN")
         var epInLabelEPI = ""
         var epInRange = 1
 
         var epOutSignal = 0
         var epOutType = 0
-        var epOutColor = "#000000"
-        var epOutIcon = "qrc:///images/icon_ep_out.png"
+        var epOutColor = "#333333"
+        var epOutIcon = "qrc:///images/icon_ep_out_white.png"
         var epOutLabelEPT = qsTr("OUT")
         var epOutLabelEPI = ""
         var epOutRange = 1

@@ -61,7 +61,7 @@
         <file>images/icon_interface_launch_white.png</file>
         <file>images/icon_interface_hotkey_white.png</file>
         <file>images/icon_interface_metronome_white.png</file>
-        <file>images/icon_interface_messager_white.png</file>
+        <file>images/icon_interface_messenger_white.png</file>
         <file>images/icon_interface_midi_white@2x.png</file>
         <file>images/icon_interface_rioc_white@2x.png</file>
         <file>images/icon_interface_modbus_white@2x.png</file>
@@ -77,7 +77,7 @@
         <file>images/icon_interface_launch_white@2x.png</file>
         <file>images/icon_interface_hotkey_white@2x.png</file>
         <file>images/icon_interface_metronome_white@2x.png</file>
-        <file>images/icon_interface_messager_white@2x.png</file>
+        <file>images/icon_interface_messenger_white@2x.png</file>
         <file>images/AHDSR.png</file>
         <file>images/logo.png</file>
         <file>sounds/metro1.wav</file>
@@ -122,7 +122,7 @@
         <file>MwEndpointSelectorLaunch.qml</file>
         <file>MwEndpointSelectorHotkey.qml</file>
         <file>MwEndpointSelectorMetronome.qml</file>
-        <file>MwEndpointSelectorMessager.qml</file>
+        <file>MwEndpointSelectorMessenger.qml</file>
         <file>MwInterfaceListViewMPlay.qml</file>
         <file>MwInterfaceListViewAPlay.qml</file>
         <file>MwAboutDialog.qml</file>
@@ -145,7 +145,7 @@
         <file>MwInterfaceListViewAudioin.qml</file>
         <file>MwInterfaceListViewScreen.qml</file>
         <file>MwInterfaceListViewPipe.qml</file>
-        <file>MwInterfaceListViewMessager.qml</file>
+        <file>MwInterfaceListViewMessenger.qml</file>
         <file>MwEndpointMoreOptions.qml</file>
         <file>MwUndoManager.qml</file>
         <file>MwRecentFilesManager.qml</file>

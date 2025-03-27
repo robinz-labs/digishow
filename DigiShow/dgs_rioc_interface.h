@@ -57,6 +57,7 @@ private:
 
     static QString guessRiocMode(uint16_t vid, uint16_t pid);
 
+    void updateMetadata_() override;
 };
 
 #endif // DGSRIOCINTERFACE_H

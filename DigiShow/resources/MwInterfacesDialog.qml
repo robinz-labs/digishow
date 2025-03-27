@@ -414,7 +414,7 @@ Dialog {
         }
 
         Rectangle {
-            id: rectMessager
+            id: rectMessenger
             color: "transparent"
 
             Label {
@@ -425,11 +425,11 @@ Dialog {
                 color: Material.accent
                 font.bold: true
                 font.pixelSize: 16
-                text: qsTr("Serial and TCP/UDP Messagers")
+                text: qsTr("Serial and TCP/UDP Messengers")
             }
 
             Label {
-                id: labelMessagerInfo
+                id: labelMessengerInfo
                 anchors.left: parent.left
                 anchors.leftMargin: 25
                 anchors.right: parent.right
@@ -441,10 +441,10 @@ Dialog {
                 text: qsTr("DigiShow enables the communications with other devices to receive and send specific code messages via serial ports or IP networks.")
             }
 
-            MwInterfaceListViewMessager {
-                id: interfaceListViewMessager
-                interfaceType: "messager"
-                anchors.top: labelMessagerInfo.bottom
+            MwInterfaceListViewMessenger {
+                id: interfaceListViewMessenger
+                interfaceType: "messenger"
+                anchors.top: labelMessengerInfo.bottom
                 anchors.topMargin: 20
                 anchors.left: parent.left
                 anchors.leftMargin: 20
@@ -667,10 +667,10 @@ Dialog {
             display: AbstractButton.TextUnderIcon
         }
         TabButton {
-            text: qsTr("Messager")
+            text: qsTr("Messenger")
             font.capitalization: Font.MixedCase
             font.pixelSize: 12
-            icon.source: "qrc:///images/icon_interface_messager_white.png"
+            icon.source: "qrc:///images/icon_interface_messenger_white.png"
             icon.width: 42
             icon.height: 42
             display: AbstractButton.TextUnderIcon
@@ -719,7 +719,7 @@ Dialog {
         interfaceListViewHue.refresh()
         interfaceListViewAudioin.refresh()
         interfaceListViewScreen.refresh()
-        interfaceListViewMessager.refresh()
+        interfaceListViewMessenger.refresh()
         interfaceListViewPipe.refresh()
         interfaceListViewAPlay.refresh()
         interfaceListViewMPlay.refresh()

@@ -15,19 +15,19 @@
 
  */
 
-#ifndef DGSMESSAGERINTERFACE_H
-#define DGSMESSAGERINTERFACE_H
+#ifndef DGSMESSENGERINTERFACE_H
+#define DGSMESSENGERINTERFACE_H
 
 #include "digishow_interface.h"
 
-class AbstractMessager;
+class AbstractMessenger;
 
-class DgsMessagerInterface : public DigishowInterface
+class DgsMessengerInterface : public DigishowInterface
 {
     Q_OBJECT
 public:
-    explicit DgsMessagerInterface(QObject *parent = nullptr);
-    ~DgsMessagerInterface() override;
+    explicit DgsMessengerInterface(QObject *parent = nullptr);
+    ~DgsMessengerInterface() override;
 
     int openInterface() override;
     int closeInterface() override;
@@ -43,10 +43,12 @@ public slots:
 
 private:
 
-    AbstractMessager *m_messager;
+    AbstractMessenger *m_messenger;
     QList<int> m_subscribedMessageIndexes;
 
     static QByteArray getMessageBytes(const QString & message, bool isHex);
+
+    void updateMetadata_() override;
 };
 
-#endif // DGSMESSAGERINTERFACE_H
+#endif // DGSMESSENGERINTERFACE_H
