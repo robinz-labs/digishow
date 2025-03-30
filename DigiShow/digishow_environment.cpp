@@ -776,12 +776,12 @@ void DigishowEnvironment::onRawDataReceived(const QVariantMap &rawData)
 QVariantMap DigishowEnvironment::listOnline()
 {
     QVariantMap info;
-    info["midi"    ] = DgsMidiInterface    ::listOnline();
-    info["dmx"     ] = DgsDmxInterface     ::listOnline();
-    info["rioc"    ] = DgsRiocInterface    ::listOnline();
-    info["modbus"  ] = DgsModbusInterface  ::listOnline();
-    info["audioin" ] = DgsAudioinInterface ::listOnline();
-    info["screen"  ] = DgsScreenInterface  ::listOnline();
+    info["midi"     ] = DgsMidiInterface     ::listOnline();
+    info["dmx"      ] = DgsDmxInterface      ::listOnline();
+    info["rioc"     ] = DgsRiocInterface     ::listOnline();
+    info["modbus"   ] = DgsModbusInterface   ::listOnline();
+    info["audioin"  ] = DgsAudioinInterface  ::listOnline();
+    info["screen"   ] = DgsScreenInterface   ::listOnline();
     info["messenger"] = DgsMessengerInterface::listOnline();
     return info;
 }

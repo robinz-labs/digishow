@@ -102,19 +102,19 @@ Rectangle {
                 if (model.name === "_new") return ""
 
                 var typeName = ""
-                if      (model.type === "midi"    ) typeName = qsTr("MIDI")
-                else if (model.type === "dmx"     ) typeName = qsTr("DMX")
-                else if (model.type === "osc"     ) typeName = qsTr("OSC")
-                else if (model.type === "artnet"  ) typeName = qsTr("ArtNet")
-                else if (model.type === "modbus"  ) typeName = qsTr("Modbus")
-                else if (model.type === "rioc"    ) typeName = qsTr("Arduino")
-                else if (model.type === "hue"     ) typeName = qsTr("Hue")
-                else if (model.type === "audioin" ) typeName = qsTr("Audio In")
-                else if (model.type === "screen"  ) typeName = qsTr("Screen")
+                if      (model.type === "midi"     ) typeName = qsTr("MIDI")
+                else if (model.type === "dmx"      ) typeName = qsTr("DMX")
+                else if (model.type === "osc"      ) typeName = qsTr("OSC")
+                else if (model.type === "artnet"   ) typeName = qsTr("ArtNet")
+                else if (model.type === "modbus"   ) typeName = qsTr("Modbus")
+                else if (model.type === "rioc"     ) typeName = qsTr("Arduino")
+                else if (model.type === "hue"      ) typeName = qsTr("Hue")
+                else if (model.type === "audioin"  ) typeName = qsTr("Audio In")
+                else if (model.type === "screen"   ) typeName = qsTr("Screen")
                 else if (model.type === "messenger") typeName = qsTr("Messenger")
-                else if (model.type === "pipe"    ) typeName = qsTr("Virtual Pipe")
-                else if (model.type === "aplay"   ) typeName = qsTr("Audio Player")
-                else if (model.type === "mplay"   ) typeName = qsTr("MIDI Player")
+                else if (model.type === "pipe"     ) typeName = qsTr("Virtual Pipe")
+                else if (model.type === "aplay"    ) typeName = qsTr("Audio Player")
+                else if (model.type === "mplay"    ) typeName = qsTr("MIDI Player")
 
                 return typeName + " " + (model.index + 1)
             }

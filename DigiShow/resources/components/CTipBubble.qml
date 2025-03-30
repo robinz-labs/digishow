@@ -5,6 +5,7 @@ Rectangle {
 
     property alias text: textTip.text
     property int offset: 60
+    property bool mouseOver: false
 
     width: 36
     height: 36
@@ -13,6 +14,7 @@ Rectangle {
     anchors.horizontalCenter: parent.horizontalCenter
     radius: 18
     color: Material.accent
+    visible: opacity > 0
 
     Rectangle {
         width: 1
@@ -43,6 +45,13 @@ Rectangle {
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: 14
         font.bold: true
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        onEntered: mouseOver = true
+        onExited: mouseOver = false
     }
 
     Behavior on opacity { NumberAnimation { duration: 300 } }

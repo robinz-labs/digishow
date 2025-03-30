@@ -195,11 +195,11 @@ int main(int argc, char *argv[])
         if (appLanguage == "zh_CN") {
 
 #ifdef Q_OS_WIN
-            QString fontName = fontAvailable({"Microsoft YaHei Light", "微软雅黑 Light", "Microsoft YaHei", "微软雅黑"});
+            QString fontName = fontAvailable({"Microsoft YaHei", "微软雅黑"});
             if (!fontName.isEmpty()) appFontName = fontName;
 #endif
 #ifdef Q_OS_MAC
-            QString fontName = fontAvailable({"Yuanti SC"});
+            QString fontName = fontAvailable({"Yuanti SC", "PingFang SC"});
 
 
             if (!fontName.isEmpty()) appFontName = fontName;

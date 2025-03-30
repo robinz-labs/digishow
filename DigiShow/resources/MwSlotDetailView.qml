@@ -145,7 +145,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             color: "#555555"
             text: qsTr("Please select a link item in left list")
-            visible: slotListView.listItemCount > 0
+            visible: !window.isEmpty
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 14
             font.bold: true

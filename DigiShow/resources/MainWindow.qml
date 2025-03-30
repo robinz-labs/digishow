@@ -19,7 +19,7 @@ ApplicationWindow {
     property alias metronome: digishow.metronome
     property alias remoteWeb: digishow.remoteWeb
 
-    property bool needShowTips: (slotListView.listItemCount === 0)
+    property bool isEmpty: (slotListView.listItemCount === 0)
 
     visible: true
     width: 1280
@@ -149,12 +149,18 @@ ApplicationWindow {
         }
     }
 
+    onIsEmptyChanged: {
+        if (isEmpty) {
+            metronomeView.close()
+            quickLaunchView.close()
+        }
+    }
+
     onIsModifiedChanged: {
         utilities.setMacWindowIsModified(window, isModified)
     }
 
     onClosing: {
-
         app.stop()
         close.accepted = false
         common.runLater(appClose)
@@ -382,7 +388,8 @@ ApplicationWindow {
 
                 CTipBubble {
                     text: "2"
-                    opacity: needShowTips ? 1 : 0
+                    opacity: window.isEmpty && slotListView.rectInstructions.highlighted ? 1 : 0
+                    onMouseOverChanged: if (window.isEmpty) parent.mouseOver = mouseOver
                 }
             }
 
@@ -399,7 +406,7 @@ ApplicationWindow {
                 box.radius: 3
                 box.border.width: mouseOver || app.isPaused ? 1 : 0
                 colorNormal: !app.isPaused ? "#666666" : "transparent"
-                visible: slotListView.listItemCount > 0
+                visible: !window.isEmpty
                 onClicked: app.pause(!app.isPaused)
             }
 
@@ -420,7 +427,7 @@ ApplicationWindow {
                 box.radius: 3
                 box.border.width: 1
                 colorNormal: quickLaunchView.opened ? "#666666" : "transparent"
-                visible: slotListView.listItemCount > 0
+                visible: !window.isEmpty
                 onClicked: {
                     if (quickLaunchView.opened)
                         quickLaunchView.close()
@@ -455,7 +462,7 @@ ApplicationWindow {
                     else
                         return "transparent"
                 }
-                visible: slotListView.listItemCount > 0
+                visible: !window.isEmpty
                 onClicked: {
 
                     if (metronomeView.opened)
@@ -553,7 +560,7 @@ ApplicationWindow {
                     if (app.isRunning)
                         return Material.accent
                     else {
-                        if (slotListView.listItemCount === 0)
+                        if (window.isEmpty)
                             return "#484848"
                         else
                             return (blink.state ? Material.accent : "#484848")
@@ -590,7 +597,8 @@ ApplicationWindow {
 
                 CTipBubble {
                     text: "3"
-                    opacity: needShowTips ? 1 : 0
+                    opacity: window.isEmpty && slotListView.rectInstructions.highlighted ? 1 : 0
+                    onMouseOverChanged: if (window.isEmpty) parent.mouseOver = mouseOver
                 }
             }
         }
@@ -641,7 +649,8 @@ ApplicationWindow {
                 CTipBubble {
                     text: "1"
                     offset: 56
-                    opacity: needShowTips ? 1 : 0
+                    opacity: window.isEmpty && slotListView.rectInstructions.highlighted ? 1 : 0
+                    onMouseOverChanged: if (window.isEmpty) parent.mouseOver = mouseOver
                 }
 
                 Menu {
@@ -722,13 +731,14 @@ ApplicationWindow {
             anchors.verticalCenter: rectTopLeftBar.verticalCenter
             anchors.horizontalCenter: rectTopLeftBar.horizontalCenter
             source: "qrc:///images/logo.png"
-            anchors.horizontalCenterOffset: slotListView.listItemCount === 0 ? 0 : rectTopLeftBar.width / 2 + 175
+            anchors.horizontalCenterOffset: window.isEmpty ? 0 : rectTopLeftBar.width / 2 + 175
             z: 1
         }
 
         MwMetronomeView {
             id: metronomeView
             height: 0
+            clip: true
             anchors.top: rectTopLeftBar.bottom
             anchors.left: rectTopLeftBar.left
             anchors.right: rectTopLeftBar.right
@@ -737,6 +747,7 @@ ApplicationWindow {
         MwQuickLaunchView {
             id: quickLaunchView
             height: 0
+            clip: true
             anchors.top: metronomeView.bottom
             anchors.left: rectTopLeftBar.left
             anchors.right: rectTopLeftBar.right

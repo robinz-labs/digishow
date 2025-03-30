@@ -20,6 +20,8 @@ Item {
     property bool  shiftKeyHeld: false
     property bool  altKeyHeld: false
 
+    property alias rectInstructions: rectInstructions
+
     onHighlightedIndexChanged: currentIndex = highlightedIndex
     onCurrentIndexChanged: currentIndexVisual = getVisualItemIndex(currentIndex)
     onCurrentIndexVisualChanged: currentIndex = getDataItemIndex(currentIndexVisual)
@@ -982,7 +984,7 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: showSlotSelection ? 0 : -height
+            anchors.bottomMargin: listItemCount>0 && showSlotSelection ? 0 : -height
             clip: true
 
             Behavior on anchors.bottomMargin { NumberAnimation { duration: 120 } }
@@ -1136,6 +1138,10 @@ Item {
 
     Rectangle {
 
+        id: rectInstructions
+
+        property bool highlighted: false
+
         anchors.fill: parent
         color: "#111111"
         opacity: 0.8
@@ -1145,10 +1151,12 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 80
             anchors.right: parent.right
-            anchors.rightMargin: 280
+            anchors.rightMargin: text.length>250 ? 80 : 250
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 80
-            color: "#888888"
+            color: "#CCCCCC"
+            opacity: rectInstructions.highlighted ? 1.0 : 0.7
+
             text: qsTr("STEP") + " 1:  " +
                   qsTr("Open Interface Manager to configure your MIDI, DMX, OSC, Arduino and more device interfaces.") +
                   "\r\n\r\n" +
@@ -1159,13 +1167,15 @@ Item {
                   qsTr("Tap the play button to activate all signal links.")
 
             horizontalAlignment: Text.AlignLeft
-            font.pixelSize: 13
+            font.pixelSize: 16
             font.bold: false
-            lineHeight: 1.5
+            lineHeight: 1.2
             wrapMode: Text.WordWrap
 
+            Behavior on opacity { NumberAnimation { duration: 300 } }
+
             Rectangle {
-                width: 120
+                width: 150
                 height: 30
                 anchors.bottom: parent.top
                 anchors.bottomMargin: 50
@@ -1176,12 +1186,20 @@ Item {
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
-                    color: "#ffffff"
+                    color: "#cccccc"
                     text: qsTr("Instructions")
                     horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 12
+                    font.pixelSize: 14
                     font.bold: true
                 }
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                anchors.topMargin: -80
+                hoverEnabled: true
+                onEntered: rectInstructions.highlighted = true
+                onExited: rectInstructions.highlighted = false
             }
         }
     }
