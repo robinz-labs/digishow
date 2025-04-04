@@ -19,22 +19,27 @@
 #include "com_handler.h"
 #include "digishow_pixel_player.h"
 #include "digishow_environment.h"
-
 #include <QSerialPortInfo>
+#include <ftdi.h>
 
 // FTDI USB
-#define FTDI_VID 1027
-#define FTDI_PID 24577
+#define FTDI_VID 0x0403 // 1027
+#define FTDI_PID 0x6001 // 24577
 
 // digishow compatible widget USB
 #define DGSW_VID 0xF000
 #define DGSW_PID 0x1000
 
-#define DMX_OUT_FREQ 30
+#define ENTTEC_DMX_OUT_FREQ 30
+#define OPEN_DMX_OUT_FREQ   20
+
+#define ENTTEC_DMX_BAUDRATE 115200
+#define OPEN_DMX_BAUDRATE   250000
 
 DgsDmxInterface::DgsDmxInterface(QObject *parent) : DigishowInterface(parent)
 {
     m_interfaceOptions["type"] = "dmx";
+    m_ftdi = nullptr;
     m_com = nullptr;
     m_timer = nullptr;
 
@@ -56,9 +61,11 @@ int DgsDmxInterface::openInterface()
 
     // get com port configuration
     QString comPort = m_interfaceOptions.value("comPort").toString();
-    if (comPort.isEmpty()) comPort = ComHandler::findPort(DGSW_VID, DGSW_PID); // use default port
-    if (comPort.isEmpty()) comPort = ComHandler::findPort(FTDI_VID, FTDI_PID);
-    if (comPort.isEmpty()) return ERR_INVALID_OPTION;
+    if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_PRO) {
+        if (comPort.isEmpty()) comPort = ComHandler::findPort(DGSW_VID, DGSW_PID); // use default port
+        if (comPort.isEmpty()) comPort = ComHandler::findPort(FTDI_VID, FTDI_PID);
+        if (comPort.isEmpty()) return ERR_INVALID_OPTION;
+    }
 
     // get number of total dmx channels
     int channels = 0;
@@ -75,15 +82,18 @@ int DgsDmxInterface::openInterface()
     }
     channels = qMin(channels, 512);
 
-    // create a com handler for the serial communication with the device
-    bool done = false;
-    m_com = new ComHandler();
-
-    done = enttecDmxOpen(comPort, channels);
+    // open the communication with the dmx device
+    bool done = dmxOpen(comPort, channels);
 
     // create a timer for sending dmx frames at a particular frequency
     int frequency = m_interfaceOptions.value("frequency").toInt();
-    if (frequency == 0) frequency = DMX_OUT_FREQ;
+    if (frequency == 0) {
+        switch (m_interfaceInfo.mode) {
+        case INTERFACE_DMX_ENTTEC_PRO:  frequency = ENTTEC_DMX_OUT_FREQ; break;
+        case INTERFACE_DMX_ENTTEC_OPEN: frequency = OPEN_DMX_OUT_FREQ;   break;
+        default: frequency = 20;
+        }
+    }
 
     m_timer = new QTimer();
     connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimerFired()));
@@ -125,11 +135,8 @@ int DgsDmxInterface::closeInterface()
         m_timer = nullptr;
     }
 
-    if (m_com != nullptr) {
-        m_com->close();
-        delete m_com;
-        m_com = nullptr;
-    }
+    // close the communication with the dmx device
+    dmxClose();
 
     m_isInterfaceOpened = false;
     return ERR_NONE;
@@ -300,7 +307,13 @@ void DgsDmxInterface::setupPlayerPixelMapping(DigishowPixelPlayer *player, const
 
         int pixelMode = DigishowPixelPlayer::pixelMode(endpointOptions.value("mediaPixelMode").toString());
         if (pixelMode == DigishowPixelPlayer::PixelUnknown) continue;
-        int bytesPerPixel = (pixelMode == DigishowPixelPlayer::PixelMono ? 1 : 3);
+
+        int mappingPrefixChannels = endpointOptions.value("mediaMappingPrefixChannels").toInt();
+        int mappingSuffixChannels = endpointOptions.value("mediaMappingSuffixChannels").toInt();
+
+        int bytesPerPixel = mappingPrefixChannels +
+                            (pixelMode == DigishowPixelPlayer::PixelMono ? 1 : 3) +
+                            mappingSuffixChannels;
 
         int pixelCountX = endpointOptions.value("mediaPixelCountX").toInt();
         int pixelCountY = endpointOptions.value("mediaPixelCountY").toInt();
@@ -321,6 +334,8 @@ void DgsDmxInterface::setupPlayerPixelMapping(DigishowPixelPlayer *player, const
         mapping.pixelSpacingX = endpointOptions.value("mediaPixelSpacingX").toInt();
         mapping.pixelSpacingY = endpointOptions.value("mediaPixelSpacingY").toInt();
         mapping.mappingMode = endpointOptions.value("mediaMappingMode").toInt();
+        mapping.mappingPrefixChannels = mappingPrefixChannels;
+        mapping.mappingSuffixChannels = mappingSuffixChannels;
         mapping.dataOutPixelCount = pixelCount;
         mapping.pDataOut = (uint8_t*)m_data + channel;
         player->addPixelMapping(mapping);
@@ -340,12 +355,12 @@ void DgsDmxInterface::onTimerFired()
         }
 
         // send dmx data frame (modified)
-        enttecDmxSendDmxFrame(data);
+        dmxSendFrame(data);
 
     } else {
 
         // send dmx data frame (original)
-        enttecDmxSendDmxFrame(m_data);
+        dmxSendFrame(m_data);
     }
 }
 
@@ -357,20 +372,13 @@ void DgsDmxInterface::onPlayerFrameUpdated()
 
 bool DgsDmxInterface::enttecDmxOpen(const QString &port, int channels)
 {
+    if (m_com != nullptr) return false;
+    m_com = new ComHandler();
+
     // open serial port of the dmx adapter
     m_com->setAsyncReceiver(true);
 
-    bool done = false;
-    if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_PRO) {
-        done = m_com->open(port.toLocal8Bit(), 115200, CH_SETTING_8N1);
-    } else
-    if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_OPEN) {
-
-        // !!! experimental only !!!
-        // Need to use libFTDI/FTD2XX to replace QSerialPort for synchronous serial communication with Open DMX USB
-
-        done = m_com->open(port.toLocal8Bit(), 250000, CH_SETTING_8N2);
-    }
+    bool done = m_com->open(port.toLocal8Bit(), ENTTEC_DMX_BAUDRATE, CH_SETTING_8N1);
     if (!done) return false;
 
     // set DTR on
@@ -392,67 +400,121 @@ bool DgsDmxInterface::enttecDmxOpen(const QString &port, int channels)
     return true;
 }
 
-bool DgsDmxInterface::enttecDmxSendDmxFrame(unsigned char *data)
+bool DgsDmxInterface::enttecDmxSendFrame(unsigned char *data)
 {
     if (m_channels < 24 || m_channels > 512) return false;
 
     // send frame
     if (!m_com->isBusySending()) {
 
-        if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_PRO) {
+        // send an enttec pro frame
+        bool done = true;
 
-            // send an enttec pro frame
-            bool done = true;
+        int length = m_channels;
+        unsigned char head[] = {
+            0x7e, // 0  leading character
+            0x06, // 1  message type (6 = Output Only Send DMX Packet Request)
+            0x00, // 2  data length LSB
+            0x00, // 3  data length MSB
+            0x00  // 4  start code (always zero)
+        };
+        head[2] = static_cast<unsigned char>((length+1) & 0xff);
+        head[3] = static_cast<unsigned char>((length+1) >> 8);
 
-            int length = m_channels;
-            unsigned char head[] = {
-                0x7e, // 0  leading character
-                0x06, // 1  message type (6 = Output Only Send DMX Packet Request)
-                0x00, // 2  data length LSB
-                0x00, // 3  data length MSB
-                0x00  // 4  start code (always zero)
-            };
-            head[2] = static_cast<unsigned char>((length+1) & 0xff);
-            head[3] = static_cast<unsigned char>((length+1) >> 8);
+        unsigned char tail[] = { 0xe7 };
 
-            unsigned char tail[] = { 0xe7 };
+        done &= m_com->sendBytes((const char*)head, sizeof(head), false);
+        done &= m_com->sendBytes((const char*)data, length, false);
+        done &= m_com->sendBytes((const char*)tail, sizeof(tail));
 
-            done &= m_com->sendBytes((const char*)head, sizeof(head), false);
-            done &= m_com->sendBytes((const char*)data, length, false);
-            done &= m_com->sendBytes((const char*)tail, sizeof(tail));
-
-            return done;
-
-        } else if (m_interfaceInfo.mode == INTERFACE_DMX_ENTTEC_OPEN) {
-
-            // !!! experimental only !!!
-            // Need to use libFTDI/FTD2XX to replace QSerialPort for synchronous serial communication with Open DMX USB
-
-            // send an open dmx frame
-            bool done = true;
-
-            // The start-of-packet procedure is a logic zero for more than 22 bit periods (>88usec),
-            // followed by a logic 1 for more than 2 bit periods (>8usec).
-            m_com->serialPort()->setBreakEnabled(false);
-            QThread::usleep(88);
-            m_com->serialPort()->setBreakEnabled(true);
-            QThread::usleep(8);
-            m_com->serialPort()->setBreakEnabled(false);
-
-            m_com->serialPort()->setRequestToSend(true);
-            unsigned char head[] = { 0x00 };
-            done &= m_com->sendBytes((const char*)head, sizeof(head), false);
-            done &= m_com->sendBytes((const char*)data, 512, true);
-            m_com->serialPort()->setRequestToSend(false);
-
-            m_com->serialPort()->setBreakEnabled(true);
-
-            return done;
-        }
-
+        return done;
     }
 
     return false;
+}
+
+void DgsDmxInterface::enttecDmxClose()
+{
+    if (m_com != nullptr) {
+        m_com->close();
+        delete m_com;
+        m_com = nullptr;
+    }
+}
+
+bool DgsDmxInterface::openDmxOpen(const QString &port, int channels)
+{
+    Q_UNUSED(port) // port is not used
+
+    if (m_ftdi != nullptr) return false;
+
+    // create a FTDI handler
+    m_ftdi = ftdi_new();
+    if (!m_ftdi) return false;
+
+    // open the usb port
+    int ret = ftdi_usb_open(m_ftdi, FTDI_VID, FTDI_PID);
+    if (ret < 0) {
+        ftdi_free(m_ftdi);
+        m_ftdi = nullptr;
+        return false;
+    }
+
+    // Set baudrate
+    ftdi_set_baudrate(m_ftdi, OPEN_DMX_BAUDRATE);
+    // Set 8 data bits, 2 stop bits, no parity
+    ftdi_set_line_property(m_ftdi, BITS_8, STOP_BIT_2, NONE);
+    // Set flow control
+    ftdi_setflowctrl(m_ftdi, SIO_DISABLE_FLOW_CTRL);
+    // Clear buffers
+    ftdi_tcioflush(m_ftdi);
+
+    // clear dmx data buffer
+    //for (int n=0 ; n<512 ; n++) m_data[n]=0;
+    //m_master = 255;
+
+    // set number of channels
+    m_channels = (channels+7) / 8 * 8;
+    m_channels = qBound(24, m_channels, 512);
+
+    return true;
+}
+
+bool DgsDmxInterface::openDmxSendFrame(unsigned char *data)
+{
+    if (m_channels < 24 || m_channels > 512) return false;
+
+    // send frame
+    if (m_ftdi) {
+
+        ftdi_tcioflush(m_ftdi);
+
+        // Prepare DMX packet
+        QByteArray packet;
+        packet.append(char(0x00));  // Start code (0x00 for DMX512)
+        packet.append((const char *)data, m_channels); // DMX data
+
+        // Send Break
+        ftdi_set_line_property2(m_ftdi, BITS_8, STOP_BIT_2, NONE, BREAK_ON);
+        QThread::usleep(88);  // Break time at least 88 microseconds
+        ftdi_set_line_property2(m_ftdi, BITS_8, STOP_BIT_2, NONE, BREAK_OFF);
+        QThread::usleep(8);   // MAB time at least 8 microseconds
+
+        // Send data
+        int ret = ftdi_write_data(m_ftdi, (unsigned char*)packet.data(), packet.size());
+        return ret == packet.size();
+    }
+
+    return false;
+}
+
+void DgsDmxInterface::openDmxClose()
+{
+    if (m_ftdi) {
+        ftdi_usb_close(m_ftdi);
+        ftdi_free(m_ftdi);
+        m_ftdi = nullptr;
+    }
 }
 
 bool DgsDmxInterface::getUsbVidPid(int *vid, int *pid)

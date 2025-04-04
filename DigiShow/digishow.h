@@ -156,6 +156,10 @@
   + com/tcp/udp messenger interface
   ! improved ui
 
+  v1.6.6 20250401
+  + channel padding in dmx / artnet pixel mapping
+  ! rewrote the open dmx usb support with libFTDI
+
 */
 
 #ifndef DIGISHOW_H

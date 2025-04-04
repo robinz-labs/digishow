@@ -310,7 +310,13 @@ void DgsArtnetInterface::setupPlayerPixelMapping(DigishowPixelPlayer *player, co
 
         int pixelMode = DigishowPixelPlayer::pixelMode(endpointOptions.value("mediaPixelMode").toString());
         if (pixelMode == DigishowPixelPlayer::PixelUnknown) continue;
-        int bytesPerPixel = (pixelMode == DigishowPixelPlayer::PixelMono ? 1 : 3);
+
+        int mappingPrefixChannels = endpointOptions.value("mediaMappingPrefixChannels").toInt();
+        int mappingSuffixChannels = endpointOptions.value("mediaMappingSuffixChannels").toInt();
+
+        int bytesPerPixel = mappingPrefixChannels +
+                            (pixelMode == DigishowPixelPlayer::PixelMono ? 1 : 3) +
+                            mappingSuffixChannels;
 
         int pixelCountX = endpointOptions.value("mediaPixelCountX").toInt();
         int pixelCountY = endpointOptions.value("mediaPixelCountY").toInt();
@@ -340,6 +346,8 @@ void DgsArtnetInterface::setupPlayerPixelMapping(DigishowPixelPlayer *player, co
             mapping.pixelSpacingX = endpointOptions.value("mediaPixelSpacingX").toInt();
             mapping.pixelSpacingY = endpointOptions.value("mediaPixelSpacingY").toInt();
             mapping.mappingMode = endpointOptions.value("mediaMappingMode").toInt();
+            mapping.mappingPrefixChannels = mappingPrefixChannels;
+            mapping.mappingSuffixChannels = mappingSuffixChannels;
             mapping.dataInPixelOffset = pixelCountMapped;
             mapping.dataOutPixelCount = pixelCount;
             mapping.pDataOut = (uint8_t*)m_dataAll[universe].data() + channel;

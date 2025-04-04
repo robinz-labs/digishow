@@ -9,6 +9,9 @@
 *.so.*
 *.dll
 *.dylib
+*.lib
+*.pdb
+*.exp
 
 # Qt-es
 object_script.*.Release
@@ -54,8 +57,10 @@ compile_commands.json
 # macOS system files
 .DS_Store
 
+# vscode files
+.vscode
+
 # Untracked files in this project
-/rtmidi
 /tools
 /backup
 

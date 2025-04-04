@@ -301,7 +301,9 @@ int DigishowPixelPlayer::transferFramePixels(dppPixelMapping mapping)
     // copy mapped pixels
     uint8_t *pDataPixels = (uint8_t*)m_frameLatest.data();
     uint8_t *pDataBackup = (uint8_t*)m_frameBackup.data();
-    int bytesPerPixelInDataOut = (mapping.pixelMode == PixelMono ? 1 : 3);
+    int bytesPerPixelInDataOut = mapping.mappingPrefixChannels +
+                                 (mapping.pixelMode == PixelMono ? 1 : 3) +
+                                 mapping.mappingSuffixChannels;
 
     uint8_t* pDataOut = mapping.pDataOut;
     int idxByteIn = 0;
@@ -363,6 +365,8 @@ int DigishowPixelPlayer::transferFramePixels(dppPixelMapping mapping)
             uint8_t opacity = pDataPixels[idxByteIn+3]; // get the alpha byte
             if (opacity != 0) {
 
+                int idxByteOut1 = idxByteOut + mapping.mappingPrefixChannels; // index to valid bytes of the mapped pixel
+
                 if (m_fadein > 0 && m_elapsed->elapsed() < m_fadein) {
 
                     // with fade-in effect
@@ -370,9 +374,9 @@ int DigishowPixelPlayer::transferFramePixels(dppPixelMapping mapping)
                     // backup origin pixels
                     if (pDataBackup[idxByteIn+3] == 0) {
                         pDataBackup[idxByteIn+3] = 0xff; // mark as backed up
-                        pDataBackup[idxByteIn+2] = pDataOut[idxByteOut + rOffset];
-                        pDataBackup[idxByteIn+1] = pDataOut[idxByteOut + gOffset];
-                        pDataBackup[idxByteIn  ] = pDataOut[idxByteOut + bOffset];
+                        pDataBackup[idxByteIn+2] = pDataOut[idxByteOut1 + rOffset];
+                        pDataBackup[idxByteIn+1] = pDataOut[idxByteOut1 + gOffset];
+                        pDataBackup[idxByteIn  ] = pDataOut[idxByteOut1 + bOffset];
                     }
 
                     float fadingInPercent  = (float)m_elapsed->elapsed() / m_fadein;
@@ -380,11 +384,11 @@ int DigishowPixelPlayer::transferFramePixels(dppPixelMapping mapping)
 
                     // obtain new pixels
                     if (mapping.pixelMode == PixelMono) {
-                        pDataOut[idxByteOut] = pDataPixels[idxByteIn]*fadingInPercent + pDataBackup[idxByteIn]*fadingOutPercent;
+                        pDataOut[idxByteOut1] = pDataPixels[idxByteIn]*fadingInPercent + pDataBackup[idxByteIn]*fadingOutPercent;
                     } else {
-                        pDataOut[idxByteOut + rOffset] = pDataPixels[idxByteIn+2]*fadingInPercent + pDataBackup[idxByteIn+2]*fadingOutPercent;
-                        pDataOut[idxByteOut + gOffset] = pDataPixels[idxByteIn+1]*fadingInPercent + pDataBackup[idxByteIn+1]*fadingOutPercent;
-                        pDataOut[idxByteOut + bOffset] = pDataPixels[idxByteIn  ]*fadingInPercent + pDataBackup[idxByteIn  ]*fadingOutPercent;
+                        pDataOut[idxByteOut1 + rOffset] = pDataPixels[idxByteIn+2]*fadingInPercent + pDataBackup[idxByteIn+2]*fadingOutPercent;
+                        pDataOut[idxByteOut1 + gOffset] = pDataPixels[idxByteIn+1]*fadingInPercent + pDataBackup[idxByteIn+1]*fadingOutPercent;
+                        pDataOut[idxByteOut1 + bOffset] = pDataPixels[idxByteIn  ]*fadingInPercent + pDataBackup[idxByteIn  ]*fadingOutPercent;
                     }
 
                 } else {
@@ -393,11 +397,11 @@ int DigishowPixelPlayer::transferFramePixels(dppPixelMapping mapping)
 
                     // just copy new pixels
                     if (mapping.pixelMode == PixelMono) {
-                        pDataOut[idxByteOut] = pDataPixels[idxByteIn];
+                        pDataOut[idxByteOut1] = pDataPixels[idxByteIn];
                     } else {
-                        pDataOut[idxByteOut + rOffset] = pDataPixels[idxByteIn+2];
-                        pDataOut[idxByteOut + gOffset] = pDataPixels[idxByteIn+1];
-                        pDataOut[idxByteOut + bOffset] = pDataPixels[idxByteIn  ];
+                        pDataOut[idxByteOut1 + rOffset] = pDataPixels[idxByteIn+2];
+                        pDataOut[idxByteOut1 + gOffset] = pDataPixels[idxByteIn+1];
+                        pDataOut[idxByteOut1 + bOffset] = pDataPixels[idxByteIn  ];
                     }
                 }
             }

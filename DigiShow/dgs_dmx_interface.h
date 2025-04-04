@@ -47,17 +47,43 @@ public slots:
     void onPlayerFrameUpdated(); // for pixel player
 
 private:
-    ComHandler *m_com;
+    struct ftdi_context *m_ftdi; // for open dmx interface
+    ComHandler *m_com;           // for enttec dmx interface
     QTimer *m_timer;
 
     int m_channels; // number of channels
     unsigned char m_data[512];
     int m_master;
 
-    bool enttecDmxOpen(const QString &port, int channels = 512);
-    bool enttecDmxSendDmxFrame(unsigned char *data);
-    bool getUsbVidPid(int *vid, int *pid);
+    bool dmxOpen(const QString &port, int channels) {
+        switch (m_interfaceInfo.mode) {
+        case INTERFACE_DMX_ENTTEC_PRO:  return enttecDmxOpen(port, channels);
+        case INTERFACE_DMX_ENTTEC_OPEN: return openDmxOpen(port, channels);
+        }
+        return false;
+    }
+    bool dmxSendFrame(unsigned char *data) {
+        switch (m_interfaceInfo.mode) {
+        case INTERFACE_DMX_ENTTEC_PRO:  return enttecDmxSendFrame(data);
+        case INTERFACE_DMX_ENTTEC_OPEN: return openDmxSendFrame(data);
+        }
+        return false;
+    }
+    void dmxClose() {
+        switch (m_interfaceInfo.mode) {
+        case INTERFACE_DMX_ENTTEC_PRO:  enttecDmxClose(); return;
+        case INTERFACE_DMX_ENTTEC_OPEN: openDmxClose();   return;
+        }
+    }
 
+    bool enttecDmxOpen(const QString &port, int channels = 512);
+    bool enttecDmxSendFrame(unsigned char *data);
+    void enttecDmxClose();
+    bool openDmxOpen(const QString &port, int channels = 512);
+    bool openDmxSendFrame(unsigned char *data);
+    void openDmxClose();
+
+    bool getUsbVidPid(int *vid, int *pid);
 
     // pixel players hold all media
     QMap<QString, DigishowPixelPlayer*> m_players;

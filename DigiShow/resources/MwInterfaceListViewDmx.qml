@@ -104,12 +104,17 @@ MwInterfaceListView {
                             var modeEnttec  = { text: qsTr("Enttec DMX USB Pro"), value: 0, tag: "enttec" }
                             var modeOpenDmx = { text: qsTr("Open DMX USB"      ), value: 1, tag: "opendmx" }
 
-                            var items = [ modeEnttec ]
-                            if (digishow.appExperimental()) items.push( modeOpenDmx )
+                            //var items = [ modeEnttec ]
+                            //if (digishow.appExperimental()) items.push( modeOpenDmx )
+
+                            var items = [ modeEnttec, modeOpenDmx ]
                             return items
                         }
 
                         onOptionSelected: {
+
+                            if (menuDmxMode.selectedItemTag === "opendmx") menuDmxComPort.selectOptionWithTag("")
+
                             var options = {
                                 mode: selectedItemTag
                             }

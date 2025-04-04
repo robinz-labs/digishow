@@ -152,7 +152,7 @@ Item {
         id: popupMediaOptions
 
         width: 380
-        height: 660
+        height: 700
         x: 0
         y: -height-10
         transformOrigin: Popup.BottomRight
@@ -188,7 +188,7 @@ Item {
 
             COptionButton {
                 id: buttonMediaPixelMode
-                width: 85
+                width: 105
                 height: 28
                 anchors.left: parent.left
                 anchors.leftMargin: 145
@@ -214,6 +214,92 @@ Item {
                     font.pixelSize: 12
                     text: qsTr("Pixel Mode")
                 }
+            }
+
+            Item {
+
+                id: itemChannels
+                property bool canEdit: false
+
+                width: 180
+                height: 28
+                anchors.left: parent.left
+                anchors.leftMargin: 145
+
+                CSpinBox {
+                    id: spinMediaMappingPrefixChannels
+
+                    width: 70
+                    anchors.left: parent.left
+                    from: 0
+                    to: 99
+                    value: 0
+                    stepSize: 1
+                    visible: itemChannels.canEdit
+
+                    onValueModified: isModified = true
+                }
+
+                Rectangle {
+                    id: rectPixelChannels
+
+                    height: 28
+                    anchors.left: spinMediaMappingPrefixChannels.right
+                    anchors.leftMargin: itemChannels.canEdit ? 5 : -spinMediaMappingPrefixChannels.width
+                    anchors.right: spinMediaMappingSuffixChannels.left
+                    anchors.rightMargin: itemChannels.canEdit ? 5 : 80
+                    color: "#484848"
+                    border.color: "#383838"
+                    border.width: 1
+                    radius: 3
+
+                    Text {
+                        anchors.fill: parent
+                        color: "#ffffff"
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: 12
+                        font.bold: false
+                        text: menuMediaPixelMode.selectedItemTag === "mono" ? 1 : 3
+                    }
+                }
+
+                CSpinBox {
+                    id: spinMediaMappingSuffixChannels
+
+                    width: 70
+                    anchors.right: parent.right
+                    from: 0
+                    to: 99
+                    value: 0
+                    stepSize: 1
+                    visible: itemChannels.canEdit
+
+                    onValueModified: isModified = true
+                }
+
+                CButton {
+                    height: 28
+                    anchors.left: rectPixelChannels.right
+                    anchors.leftMargin: 5
+                    anchors.right: parent.right
+                    label.font.bold: false
+                    label.font.pixelSize: 11
+                    label.text: qsTr("Set Padding Channels ")
+                    box.radius: 3
+                    visible: !itemChannels.canEdit
+
+                    onClicked: itemChannels.canEdit = true
+                }
+
+                Text {
+                    anchors.right: parent.left
+                    anchors.rightMargin: 15
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: "#cccccc"
+                    font.pixelSize: 12
+                    text: qsTr("DMX Channels per Pixel")
+                }                
             }
 
             Item {
@@ -789,6 +875,11 @@ Item {
         v = options["mediaPixelSpacingX"]; spinMediaPixelSpacingX.value = (v === undefined ? 1 : v )
         v = options["mediaPixelSpacingY"]; spinMediaPixelSpacingY.value = (v === undefined ? 1 : v )
         v = options["mediaMappingMode"];   itemMediaMappingMode.value = (v === undefined ? 0 : v )
+
+        v = options["mediaMappingPrefixChannels"]; spinMediaMappingPrefixChannels.value = (v === undefined ? 0 : v )
+        v = options["mediaMappingSuffixChannels"]; spinMediaMappingSuffixChannels.value = (v === undefined ? 0 : v )
+
+        itemChannels.canEdit = (spinMediaMappingPrefixChannels.value>0 || spinMediaMappingSuffixChannels.value>0)
     }
 
     function getEndpointMediaOptions() {
@@ -809,7 +900,10 @@ Item {
             mediaPixelOffsetY:  spinMediaPixelOffsetY.value,
             mediaPixelSpacingX: spinMediaPixelSpacingX.value,
             mediaPixelSpacingY: spinMediaPixelSpacingY.value,
-            mediaMappingMode:   itemMediaMappingMode.value
+            mediaMappingMode:   itemMediaMappingMode.value,
+
+            mediaMappingPrefixChannels: spinMediaMappingPrefixChannels.value,
+            mediaMappingSuffixChannels: spinMediaMappingSuffixChannels.value
         }
 
         return options

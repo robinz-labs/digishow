@@ -35,6 +35,8 @@ typedef struct dppPixelMapping {
     int pixelSpacingX;
     int pixelSpacingY;
     int mappingMode;
+    int mappingPrefixChannels;  // number of junk channels before the valid channels of each pixel mapped
+    int mappingSuffixChannels;  // number of junk channels after the valid channels of each pixel mapped
 
     int dataInPixelOffset; // number of pixels in the input buffer to ignore
     int dataOutPixelCount; // number of pixels allowed in the data output buffer
@@ -50,6 +52,8 @@ typedef struct dppPixelMapping {
       pixelSpacingX(0),
       pixelSpacingY(0),
       mappingMode(0),
+      mappingPrefixChannels(0),
+      mappingSuffixChannels(0),
       dataInPixelOffset(0),
       dataOutPixelCount(0),
       pDataOut(nullptr)
@@ -79,10 +83,10 @@ public:
     Q_ENUM(PixelMode)
 
     enum MappingMode {
-        MappingByRowL2R = 0,
-        MappingByRowR2L = 1,
-        MappingByRowL2Z = 2,
-        MappingByRowR2Z = 3
+        MappingByRowL2R = 0, // mapping row by row, left to right in each row
+        MappingByRowR2L = 1, // mapping row by row, right to left in each row
+        MappingByRowL2Z = 2, // mapping row by row, left to right in the first row and zigzag in the following rows
+        MappingByRowR2Z = 3  // mapping row by row, right to left in the first row and zigzag in the following rows
     };
     Q_ENUM(MappingMode)
 

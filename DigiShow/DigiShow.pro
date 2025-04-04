@@ -152,6 +152,9 @@ include(modules/ableton/link.pri)
 # Qt QR Code library
 include(modules/qt-qrcode/qt-qrcode.pri)
 
+# libFTDI library
+include(modules/libftdi/libftdi.pri)
+
 # cloud implementation
 #include(digishow_cloud/cloud.pri)
 

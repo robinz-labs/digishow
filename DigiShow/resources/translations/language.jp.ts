@@ -17,13 +17,13 @@
 <context>
     <name>DgsArtnetInterface</name>
     <message>
-        <location filename="../../dgs_artnet_interface.cpp" line="513"/>
-        <location filename="../../dgs_artnet_interface.cpp" line="529"/>
+        <location filename="../../dgs_artnet_interface.cpp" line="521"/>
+        <location filename="../../dgs_artnet_interface.cpp" line="537"/>
         <source>ArtNet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_artnet_interface.cpp" line="563"/>
+        <location filename="../../dgs_artnet_interface.cpp" line="571"/>
         <source>Master</source>
         <translation>マスター</translation>
     </message>
@@ -56,13 +56,13 @@
 <context>
     <name>DgsDmxInterface</name>
     <message>
-        <location filename="../../dgs_dmx_interface.cpp" line="515"/>
-        <location filename="../../dgs_dmx_interface.cpp" line="529"/>
+        <location filename="../../dgs_dmx_interface.cpp" line="577"/>
+        <location filename="../../dgs_dmx_interface.cpp" line="591"/>
         <source>DMX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_dmx_interface.cpp" line="559"/>
+        <location filename="../../dgs_dmx_interface.cpp" line="621"/>
         <source>Master</source>
         <translation>マスター</translation>
     </message>
@@ -886,27 +886,27 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation>無題</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="324"/>
-        <location filename="../MainWindow.qml" line="859"/>
-        <location filename="../MainWindow.qml" line="872"/>
-        <location filename="../MainWindow.qml" line="918"/>
-        <location filename="../MainWindow.qml" line="939"/>
-        <location filename="../MainWindow.qml" line="951"/>
+        <location filename="../MainWindow.qml" line="330"/>
+        <location filename="../MainWindow.qml" line="870"/>
+        <location filename="../MainWindow.qml" line="883"/>
+        <location filename="../MainWindow.qml" line="929"/>
+        <location filename="../MainWindow.qml" line="950"/>
+        <location filename="../MainWindow.qml" line="962"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="938"/>
+        <location filename="../MainWindow.qml" line="949"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>アプリを閉じる前にすべてのデータを保存してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="302"/>
-        <location filename="../MainWindow.qml" line="859"/>
-        <location filename="../MainWindow.qml" line="872"/>
-        <location filename="../MainWindow.qml" line="918"/>
-        <location filename="../MainWindow.qml" line="939"/>
-        <location filename="../MainWindow.qml" line="951"/>
+        <location filename="../MainWindow.qml" line="308"/>
+        <location filename="../MainWindow.qml" line="870"/>
+        <location filename="../MainWindow.qml" line="883"/>
+        <location filename="../MainWindow.qml" line="929"/>
+        <location filename="../MainWindow.qml" line="950"/>
+        <location filename="../MainWindow.qml" line="962"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -921,100 +921,100 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation> ( 停止しました )</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="274"/>
+        <location filename="../MainWindow.qml" line="280"/>
         <source>New</source>
         <translation>新規</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="475"/>
+        <location filename="../MainWindow.qml" line="482"/>
         <source>Bookmarks</source>
         <translation>ブックマーク</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="799"/>
+        <location filename="../MainWindow.qml" line="810"/>
         <source>Open File</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="858"/>
+        <location filename="../MainWindow.qml" line="869"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>新規する前にすべてのデータを保存してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="859"/>
-        <location filename="../MainWindow.qml" line="872"/>
-        <location filename="../MainWindow.qml" line="918"/>
-        <location filename="../MainWindow.qml" line="939"/>
+        <location filename="../MainWindow.qml" line="870"/>
+        <location filename="../MainWindow.qml" line="883"/>
+        <location filename="../MainWindow.qml" line="929"/>
+        <location filename="../MainWindow.qml" line="950"/>
         <source>Don&apos;t Save</source>
         <translation>保存しない</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="281"/>
+        <location filename="../MainWindow.qml" line="287"/>
         <source>Open ...</source>
         <translation>開く ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="871"/>
+        <location filename="../MainWindow.qml" line="882"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>他のファイルを開く前にすべてのデータを保存してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="306"/>
+        <location filename="../MainWindow.qml" line="312"/>
         <source>Save As ...</source>
         <translation>名前を付けて保存 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="263"/>
+        <location filename="../MainWindow.qml" line="269"/>
         <source>New Instance</source>
         <translation>新しいインスタンス</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="265"/>
+        <location filename="../MainWindow.qml" line="271"/>
         <source>Starting a new DigiShow LINK instance ...</source>
         <translation>新しい DigiShow LINK インスタンスを開始 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="289"/>
+        <location filename="../MainWindow.qml" line="295"/>
         <source>Open Recent</source>
         <translation>最近使った項目を開く</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="291"/>
+        <location filename="../MainWindow.qml" line="297"/>
         <source>Clear Menu</source>
         <translation>メニューを消去</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="311"/>
+        <location filename="../MainWindow.qml" line="317"/>
         <source>Show File</source>
         <translation>ファイルを表示</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="341"/>
+        <location filename="../MainWindow.qml" line="347"/>
         <source>About DigiShow</source>
         <translation>DigiShow について</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="350"/>
+        <location filename="../MainWindow.qml" line="356"/>
         <source>https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="345"/>
+        <location filename="../MainWindow.qml" line="351"/>
         <source>Preferences ...</source>
         <translation>環境設定 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="331"/>
+        <location filename="../MainWindow.qml" line="337"/>
         <source>Exit Full Screen</source>
         <translation>全画面表示を終了</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="331"/>
+        <location filename="../MainWindow.qml" line="337"/>
         <source>Enter Full Screen</source>
         <translation>全画面表示に入る</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="360"/>
+        <location filename="../MainWindow.qml" line="366"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
@@ -1024,149 +1024,149 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="316"/>
+        <location filename="../MainWindow.qml" line="322"/>
         <source>Attached Script File ...</source>
         <translation>添付されたスクリプト ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="323"/>
+        <location filename="../MainWindow.qml" line="329"/>
         <source>Do you want to create an attached script file contains user-defined functions that will be called by signal expressions in the DigiShow project ?</source>
         <translation>ユーザー定義関数を含む追加のスクリプト ファイルを作成しますか? DigiShow プロジェクトの信号式は、これらの関数を呼び出すことができます。</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="324"/>
+        <location filename="../MainWindow.qml" line="330"/>
         <source>Create Script</source>
         <translation>スクリプトを作成</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="349"/>
+        <location filename="../MainWindow.qml" line="355"/>
         <source>Tutorials ...</source>
         <translation>チュートリアル ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="354"/>
+        <location filename="../MainWindow.qml" line="360"/>
         <source>Version Update ...</source>
         <translation>バージョンアップデート ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="355"/>
+        <location filename="../MainWindow.qml" line="361"/>
         <source>https://github.com/robinz-labs/digishow/releases/latest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="413"/>
+        <location filename="../MainWindow.qml" line="420"/>
         <source>Preset Launcher</source>
         <translation>プリセットランチャー</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="439"/>
+        <location filename="../MainWindow.qml" line="446"/>
         <source>Beat Maker</source>
         <translation>ビートメーカー</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="619"/>
+        <location filename="../MainWindow.qml" line="627"/>
         <source>Interface Manager</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="656"/>
+        <location filename="../MainWindow.qml" line="665"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="660"/>
+        <location filename="../MainWindow.qml" line="669"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="664"/>
+        <location filename="../MainWindow.qml" line="673"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="668"/>
+        <location filename="../MainWindow.qml" line="677"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="672"/>
+        <location filename="../MainWindow.qml" line="681"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="676"/>
+        <location filename="../MainWindow.qml" line="685"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="680"/>
+        <location filename="../MainWindow.qml" line="689"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="684"/>
+        <location filename="../MainWindow.qml" line="693"/>
         <source>Audio In ...</source>
         <translation>オーディオ入力 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="688"/>
+        <location filename="../MainWindow.qml" line="697"/>
         <source>Screen ...</source>
         <translation>スクリーン ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="692"/>
+        <location filename="../MainWindow.qml" line="701"/>
         <source>Messenger ...</source>
         <translation>メッセンジャー ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="696"/>
+        <location filename="../MainWindow.qml" line="705"/>
         <source>Virtual Pipe ...</source>
         <translation>バーチャルパイプ ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="701"/>
+        <location filename="../MainWindow.qml" line="710"/>
         <source>More</source>
         <translation>もっと</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="705"/>
+        <location filename="../MainWindow.qml" line="714"/>
         <source>Audio Player ...</source>
         <translation>オーディオプレーヤー ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="709"/>
+        <location filename="../MainWindow.qml" line="718"/>
         <source>MIDI Player ...</source>
         <translation>MIDI プレーヤー ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="802"/>
-        <location filename="../MainWindow.qml" line="819"/>
+        <location filename="../MainWindow.qml" line="813"/>
+        <location filename="../MainWindow.qml" line="830"/>
         <source>DigiShow files</source>
         <translation>DigiShow ファイル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="802"/>
-        <location filename="../MainWindow.qml" line="819"/>
+        <location filename="../MainWindow.qml" line="813"/>
+        <location filename="../MainWindow.qml" line="830"/>
         <source>All files</source>
         <translation>すべてのファイル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="802"/>
+        <location filename="../MainWindow.qml" line="813"/>
         <source>JSON files</source>
         <translation>JSON ファイル</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="816"/>
+        <location filename="../MainWindow.qml" line="827"/>
         <source>Save File</source>
         <translation>ファイルを保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="916"/>
+        <location filename="../MainWindow.qml" line="927"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>ファイル %1 を開く前に現在のデータを保存してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="950"/>
+        <location filename="../MainWindow.qml" line="961"/>
         <source>The attached script file will be saved in the same folder as the DigiShow project file, do you want to save the project and create the script file now ?</source>
         <translation>添付されたスクリプト ファイルは、DigiShow プロジェクト ファイルと同じフォルダーに保存されます。今すぐプロジェクトを保存してスクリプト ファイルを作成しますか?</translation>
     </message>
@@ -1557,22 +1557,27 @@ either express or implied.</source>
         <translation>画素モード</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="493"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="288"/>
+        <source>Set Padding Channels </source>
+        <translation>パディングチャンネル</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="579"/>
         <source>Playback Options</source>
         <translation>再生設定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="706"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="792"/>
         <source>Dimmer 16-bit</source>
         <translation>調光 16-bit</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="709"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="795"/>
         <source>Pixels</source>
         <translation>画素</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="513"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="599"/>
         <source>Play Alone</source>
         <translation>単独に再生</translation>
     </message>
@@ -1582,128 +1587,133 @@ either express or implied.</source>
         <translation>画像シーケンス</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="257"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="343"/>
         <source>Pixel Count X | Y</source>
         <translation>画素数 X | Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="300"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="386"/>
         <source>Pixel Offset X | Y</source>
         <translation>画素オフセット X | Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="342"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="428"/>
         <source>Pixel Spacing X | Y</source>
         <translation>画素間隔 X | Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="483"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="569"/>
         <source>To Universe | Channel</source>
         <translation>対象ユニバース | チャネル</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="443"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="529"/>
         <source>Address Mapping</source>
         <translation>アドレスマッピング</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="537"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="301"/>
+        <source>DMX Channels per Pixel</source>
+        <translation>画素毎のDMXチャネル数</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="623"/>
         <source>Fade In</source>
         <translation>フェードイン</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="561"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="647"/>
         <source>Volume</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="575"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="661"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="585"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="671"/>
         <source>Speed</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="599"/>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="623"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="685"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="709"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="609"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="695"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="633"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="719"/>
         <source>Duration</source>
         <translation>デュレーション</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="654"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="740"/>
         <source>Repeat</source>
         <translation>リピート</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="670"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="756"/>
         <source>Defaults</source>
         <translation>デフォルト</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="705"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="791"/>
         <source>Dimmer</source>
         <translation>調光</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="710"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="796"/>
         <source>Master</source>
         <translation>マスター</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="733"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="819"/>
         <source>Mono</source>
         <translation>モノクロ</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="734"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="820"/>
         <source>RGB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="735"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="821"/>
         <source>RBG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="736"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="822"/>
         <source>GRB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="737"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="823"/>
         <source>GBR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="738"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="824"/>
         <source>BRG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="739"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="825"/>
         <source>BGR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="866"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="960"/>
         <source>Please select a video clip file exists on your computer disks or enter a valid url of the video clip.</source>
         <translation>コンピュータのディスクに存在するビデオクリップファイルを選択するか、ビデオクリップの有効なURLを入力してください。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorArtnet.qml" line="866"/>
+        <location filename="../MwEndpointSelectorArtnet.qml" line="960"/>
         <source>OK</source>
         <translation></translation>
     </message>
@@ -1781,148 +1791,158 @@ either express or implied.</source>
         <translation>画素モード</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="240"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="271"/>
+        <source>Set Padding Channels </source>
+        <translation>パディングチャンネル</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorDmx.qml" line="326"/>
         <source>Pixel Count X | Y</source>
         <translation>画素数 X | Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="283"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="369"/>
         <source>Pixel Offset X | Y</source>
         <translation>画素オフセット X | Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="325"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="411"/>
         <source>Pixel Spacing X | Y</source>
         <translation>画素間隔 X | Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="454"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="540"/>
         <source>To DMX Channel</source>
         <translation>対象DMXチャネル</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="426"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="512"/>
         <source>Address Mapping</source>
         <translation>アドレスマッピング</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="464"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="284"/>
+        <source>DMX Channels per Pixel</source>
+        <translation>画素毎のDMXチャネル数</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorDmx.qml" line="550"/>
         <source>Playback Options</source>
         <translation>再生設定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="484"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="570"/>
         <source>Play Alone</source>
         <translation>単独に再生</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="508"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="594"/>
         <source>Fade In</source>
         <translation>フェードイン</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="532"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="618"/>
         <source>Volume</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="546"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="632"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="556"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="642"/>
         <source>Speed</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="570"/>
-        <location filename="../MwEndpointSelectorDmx.qml" line="594"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="656"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="680"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="580"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="666"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="604"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="690"/>
         <source>Duration</source>
         <translation>デュレーション</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="625"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="711"/>
         <source>Repeat</source>
         <translation>リピート</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="641"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="727"/>
         <source>Defaults</source>
         <translation>デフォルト</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="669"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="755"/>
         <source>Dimmer</source>
         <translation>調光</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="670"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="756"/>
         <source>Dimmer 16-bit</source>
         <translation>調光 16-bit</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="671"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="757"/>
         <source>Pixels</source>
         <translation>画素</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="672"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="758"/>
         <source>Master</source>
         <translation>マスター</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="694"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="780"/>
         <source>Mono</source>
         <translation>モノクロ</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="695"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="781"/>
         <source>RGB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="696"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="782"/>
         <source>RBG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="697"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="783"/>
         <source>GRB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="698"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="784"/>
         <source>GBR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="699"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="785"/>
         <source>BRG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="700"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="786"/>
         <source>BGR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="826"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="920"/>
         <source>Please select a video clip file exists on your computer disks or enter a valid url of the video clip.</source>
         <translation>コンピュータのディスクに存在するビデオクリップファイルを選択するか、ビデオクリップの有効なURLを入力してください。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorDmx.qml" line="826"/>
+        <location filename="../MwEndpointSelectorDmx.qml" line="920"/>
         <source>OK</source>
         <translation></translation>
     </message>
@@ -2641,7 +2661,7 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewDmx.qml" line="125"/>
+        <location filename="../MwInterfaceListViewDmx.qml" line="130"/>
         <source>Model</source>
         <translation>モデル</translation>
     </message>
@@ -3587,150 +3607,150 @@ Connection: %2</source>
 <context>
     <name>MwSlotListView</name>
     <message>
-        <location filename="../MwSlotListView.qml" line="94"/>
+        <location filename="../MwSlotListView.qml" line="96"/>
         <source>Rename</source>
         <translation>名前を変更</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="102"/>
+        <location filename="../MwSlotListView.qml" line="104"/>
         <source>Bookmark</source>
         <translation>ブックマークを追加</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="102"/>
+        <location filename="../MwSlotListView.qml" line="104"/>
         <source>Remove Bookmark</source>
         <translation>ブックマークを削除</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="108"/>
-        <location filename="../MwSlotListView.qml" line="1061"/>
-        <location filename="../MwSlotListView.qml" line="1431"/>
+        <location filename="../MwSlotListView.qml" line="110"/>
+        <location filename="../MwSlotListView.qml" line="1065"/>
+        <location filename="../MwSlotListView.qml" line="1451"/>
         <source>Duplicate</source>
         <translation>複製</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="115"/>
-        <location filename="../MwSlotListView.qml" line="1081"/>
-        <location filename="../MwSlotListView.qml" line="1463"/>
-        <location filename="../MwSlotListView.qml" line="1489"/>
+        <location filename="../MwSlotListView.qml" line="117"/>
+        <location filename="../MwSlotListView.qml" line="1085"/>
+        <location filename="../MwSlotListView.qml" line="1483"/>
+        <location filename="../MwSlotListView.qml" line="1509"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="124"/>
+        <location filename="../MwSlotListView.qml" line="126"/>
         <source>Deselect</source>
         <translation>選択を解除</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="124"/>
+        <location filename="../MwSlotListView.qml" line="126"/>
         <source>Select ...</source>
         <translation>選択 ...</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="139"/>
+        <location filename="../MwSlotListView.qml" line="141"/>
         <source>Paste</source>
         <translation>貼り付け</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="148"/>
+        <location filename="../MwSlotListView.qml" line="150"/>
         <source>Undo</source>
         <translation>元に戻す</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="156"/>
+        <location filename="../MwSlotListView.qml" line="158"/>
         <source>Redo</source>
         <translation>やり直し</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="223"/>
-        <location filename="../MwSlotListView.qml" line="1702"/>
+        <location filename="../MwSlotListView.qml" line="225"/>
+        <location filename="../MwSlotListView.qml" line="1722"/>
         <source>Untitled Link</source>
         <translation>無題のリンク</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1001"/>
+        <location filename="../MwSlotListView.qml" line="1005"/>
         <source>Select All</source>
         <translation>全選択</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1021"/>
+        <location filename="../MwSlotListView.qml" line="1025"/>
         <source>Select None</source>
         <translation>なしを選択</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1151"/>
+        <location filename="../MwSlotListView.qml" line="1161"/>
         <source>Open Interface Manager to configure your MIDI, DMX, OSC, Arduino and more device interfaces.</source>
         <translation>インターフェイス マネージャーを開いて、MIDI、DMX、OSC、Arduino などのデバイス インターフェイスを構成します。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1154"/>
+        <location filename="../MwSlotListView.qml" line="1164"/>
         <source>Tap the + button to add a new item to the signal link table, which is used to control and map the input/output signals of your devices.</source>
         <translation>+ ボタンをタップすると、デバイスの入力/出力信号を制御およびマッピングするために使用される信号リンク テーブルに新しい項目が追加されます。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1157"/>
+        <location filename="../MwSlotListView.qml" line="1167"/>
         <source>Tap the play button to activate all signal links.</source>
         <translation>再生ボタンをタップすると、すべての信号リンクがアクティブになります。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1178"/>
+        <location filename="../MwSlotListView.qml" line="1190"/>
         <source>Instructions</source>
         <translation>使用ガイドライン</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1274"/>
+        <location filename="../MwSlotListView.qml" line="1294"/>
         <source>IN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1282"/>
+        <location filename="../MwSlotListView.qml" line="1302"/>
         <source>OUT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="132"/>
-        <location filename="../MwSlotListView.qml" line="1041"/>
+        <location filename="../MwSlotListView.qml" line="134"/>
+        <location filename="../MwSlotListView.qml" line="1045"/>
         <source>Copy</source>
         <translation>コビー</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1101"/>
-        <location filename="../MwSlotListView.qml" line="1498"/>
+        <location filename="../MwSlotListView.qml" line="1105"/>
+        <location filename="../MwSlotListView.qml" line="1518"/>
         <source>Move</source>
         <translation>移動</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1150"/>
-        <location filename="../MwSlotListView.qml" line="1153"/>
-        <location filename="../MwSlotListView.qml" line="1156"/>
+        <location filename="../MwSlotListView.qml" line="1160"/>
+        <location filename="../MwSlotListView.qml" line="1163"/>
+        <location filename="../MwSlotListView.qml" line="1166"/>
         <source>STEP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1431"/>
+        <location filename="../MwSlotListView.qml" line="1451"/>
         <source>Do you want to duplicate all selected links ?</source>
         <translation>選択したすべてのリンクを複製してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1463"/>
+        <location filename="../MwSlotListView.qml" line="1483"/>
         <source>Do you want to delete the link ?</source>
         <translation>このリンクを削除してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1489"/>
+        <location filename="../MwSlotListView.qml" line="1509"/>
         <source>Do you want to delete all selected links ?</source>
         <translation>選択したすべてのリンクを削除してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1498"/>
+        <location filename="../MwSlotListView.qml" line="1518"/>
         <source>Do you want to move all selected links to the current cursor position ?</source>
         <translation>選択したすべてのリンクを現在のカーソル位置に移動してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1431"/>
-        <location filename="../MwSlotListView.qml" line="1463"/>
-        <location filename="../MwSlotListView.qml" line="1489"/>
-        <location filename="../MwSlotListView.qml" line="1498"/>
+        <location filename="../MwSlotListView.qml" line="1451"/>
+        <location filename="../MwSlotListView.qml" line="1483"/>
+        <location filename="../MwSlotListView.qml" line="1509"/>
+        <location filename="../MwSlotListView.qml" line="1518"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
