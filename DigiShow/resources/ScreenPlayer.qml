@@ -43,6 +43,8 @@ QtObject {
             anchors.fill: parent
             hoverEnabled: true
 
+            cursorShape: mouseArea.containsMouse && mouseArea.mouseIsMoving ? Qt.ArrowCursor : Qt.BlankCursor
+
             onMouseXChanged: {
                 lastMouseMovingTime = new Date().getTime()
             }

@@ -268,7 +268,7 @@ Item {
                     anchors.right: parent.right
                     label.font.bold: false
                     label.font.pixelSize: 11
-                    label.text: qsTr("Set Padding Channels ")
+                    label.text: qsTr("Set Padding Channels")
                     box.radius: 3
                     visible: !itemChannels.canEdit
 

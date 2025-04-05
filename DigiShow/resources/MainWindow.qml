@@ -26,6 +26,7 @@ ApplicationWindow {
     height: 800
     minimumWidth: 1280
     minimumHeight: 800
+    font.family: Qt.application.font.family
     flags: Qt.Window | Qt.WindowFullscreenButtonHint
     title: qsTr("DigiShow LINK - ") +
            (app.filepath==="" ? qsTr("Untitled") : utilities.getFileName(app.filepath)) +
