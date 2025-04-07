@@ -16,7 +16,7 @@ DEFINES += HAVE_LIBUSB_1_0
 
 macx {
     LIBS += -framework IOKit -framework CoreFoundation
-    LIBS += -L/opt/local/lib -lusb-1.0
+    LIBS += -L$$PWD/libusb/mac -lusb-1.0
 }
 
 win32 {
