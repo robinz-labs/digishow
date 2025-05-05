@@ -11,8 +11,10 @@ Item {
     id: quickLaunchView
 
     property string editingLaunchName: "" // name of the launch item that is being edited
+    property bool isEditing: editingLaunchName !== ""
     property bool opened: height > 0
     property alias dataModel: dataModel
+    property alias currentIndex: gridView.currentIndex
 
     width: 710
     height: 300
@@ -33,6 +35,7 @@ Item {
             title: ""
             color: "#000000"
             assigned: false
+            playing: false
         }
     }
 
@@ -59,6 +62,10 @@ Item {
                 id: buttonLaunch
 
                 property bool isEditing: model.name === editingLaunchName
+                property bool isPlaying: model.playing
+                property real progress: 0
+
+                onIsPlayingChanged: progress = 0
 
                 anchors.fill: parent
                 anchors.margins: 3
@@ -70,32 +77,50 @@ Item {
                 label.font.bold: model.assigned
                 label.text: model.title
                 label.visible: !textLaunchTitle.visible
-                opacity: model.assigned || isEditing ? 1.0 : 0.25
+                opacity: isEditing || model.assigned ? 1.0 : 0.25
                 supportLongPress: true
 
-                onLongPressed: {
-
-                    //gridView.currentIndex = model.index
-                    //popupOptions.open()
-
-                    gridView.currentIndex = model.index
-                    menu.x = mouseX
-                    menu.y = mouseY
-                    menu.open()
+                Timer {
+                    id: playingTimer
+                    interval: 100
+                    running: parent.isPlaying
+                    repeat: true
+                    onTriggered: {
+                        var player = cueManager.cuePlayer(model.name)
+                        parent.progress = player ? player.position() / player.duration() : 0
+                    }
                 }
 
-                onRightClicked: {
-
-                    gridView.currentIndex = model.index
-                    menu.x = mouseX
-                    menu.y = mouseY
-                    menu.open()
-                }
-
-                onClicked: {
-
-                    gridView.currentIndex = model.index
-                    app.startLaunch(model.name)
+                ProgressBar {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    anchors.leftMargin: 16
+                    anchors.rightMargin: 16
+                    anchors.bottomMargin: 6
+                    height: 6
+                    visible: parent.isPlaying
+                    opacity: 0.8
+                    value: parent.progress
+                    Material.accent: "#ffffff"
+                    Material.foreground: "#ffffff"
+                    background: Rectangle {
+                        implicitWidth: parent.width
+                        implicitHeight: parent.height
+                        color: "#333333"
+                        opacity: 0.5
+                        radius: height / 2
+                    }
+                    contentItem: Item {
+                        implicitWidth: parent.width
+                        implicitHeight: parent.height
+                        Rectangle {
+                            width: parent.width * parent.parent.visualPosition
+                            height: parent.height
+                            radius: height / 2
+                            color: "#ffffff"
+                        }
+                    }
                 }
 
                 TextInput {
@@ -139,9 +164,18 @@ Item {
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
                     CMenuItem {
+                        id: menuItemStop
+                        text: qsTr("Stop")
+                        onTriggered: {
+                            menu.close()
+                            cueManager.stopCue(model.name)
+                        }
+                    }
+                    CMenuItem {
                         text: model.assigned ? qsTr("Edit Preset") : qsTr("Create Preset")
                         onTriggered: {
                             menu.close()
+                            cueManager.stopAllCues()
                             popupOptions.open()
                         }
                     }
@@ -175,6 +209,15 @@ Item {
                             model.color = defaultItemColor(model.index)
                             app.deleteLaunch(model.name)
                             window.isModified = true
+
+                            if (app.cuePlayerExists(model.name)) {
+                                cueManager.stopCue(model.name)
+                                if (messageBox.showAndWait(
+                                    qsTr("Do you want to delete all cue player data attached to the preset ?"),
+                                    qsTr("Delete"), qsTr("Cancel")) === 1) {
+                                    app.deleteCuePlayer(model.name)
+                                }
+                            }
                         }
                     }
                     MenuSeparator {}
@@ -187,6 +230,27 @@ Item {
                             popupRemote.open()
                         }
                     }
+                }
+
+                onLongPressed: {
+                    showContextMenu(mouseX, mouseY)
+                }
+
+                onRightClicked: {
+                    showContextMenu(mouseX, mouseY)
+                }
+
+                onClicked: {
+                    gridView.currentIndex = model.index
+                    app.startLaunch(model.name)
+                }
+
+                function showContextMenu(mouseX, mouseY) {
+                    gridView.currentIndex = model.index
+                    menuItemStop.enabled = cueManager.isCuePlaying(model.name)
+                    menu.x = mouseX
+                    menu.y = mouseY
+                    menu.open()
                 }
             }
         }
@@ -325,8 +389,8 @@ Item {
         Popup {
             id: popupOptions
 
-            width: 320
-            height: 250
+            width: 450
+            height: 205
             anchors.centerIn: parent
             modal: false
             focus: true
@@ -344,19 +408,8 @@ Item {
                     var slotLaunchOptions = app.getSlotLaunchOptions(model.name)
                     slotListView.setSlotLaunchOptions(slotLaunchOptions)
 
-                    /*
-                    if (slotLaunchOptions.length > 0) {
-                        var rememberLink = false
-                        var rememberOutput = false
-                        for (var n=0 ; n<slotLaunchOptions.length ; n++) {
-                            var options = slotLaunchOptions[n]
-                            if (options["rememberLink"]) rememberLink = true
-                            if (options["rememberOutput"]) rememberOutput = true
-                        }
-                        //checkRememberLink.checked = rememberLink
-                        //checkRememberOutput.checked = rememberOutput
-                    }
-                    */
+                    var slotCuePlayerOptions = app.getSlotCuePlayerOptions(model.name)
+                    slotListView.setSlotCuePlayerOptions(slotCuePlayerOptions)
 
                 } else {
 
@@ -379,34 +432,120 @@ Item {
                 anchors.fill: parent
                 spacing: 10
 
-                Label {
-                    height: 80
-                    width: 300
-                    topPadding: 10
-                    leftPadding: 10
-                    rightPadding: 10
-                    bottomPadding: 5
-                    lineHeight: 1.5
-                    wrapMode: Text.WordWrap
-                    font.bold: false
-                    font.pixelSize: 12
-                    text: qsTr("Check the boxes next to the output faders and LINK buttons to memorize their values and states to the preset.")
+                Item {
+                    width: parent.width
+                    height: 55
+                    
+                    Label {
+                        id: firstLabel
+                        width: parent.width - buttonReset.width - 20
+                        height: 55
+                        anchors.left: parent.left
+                        topPadding: 10
+                        leftPadding: 10
+                        rightPadding: 10
+                        bottomPadding: 0
+                        lineHeight: 1.1
+                        wrapMode: Text.WordWrap
+                        font.bold: false
+                        font.pixelSize: 12
+                        color: "#cccccc"
+                        text: qsTr("Please check the relevant LINK buttons and output signal faders in the signal link table, then save their current states and values into the preset.")
+                    }
+
+                    CButton {
+                        id: buttonReset
+                        width: 60
+                        height: 28
+                        anchors.right: parent.right
+                        anchors.rightMargin: 10
+                        anchors.top: firstLabel.top
+                        anchors.topMargin: 10
+                        label.font.bold: false
+                        label.font.pixelSize: 11
+                        label.text: qsTr("Reset")
+                        box.border.width: 1
+                        colorNormal: "transparent"
+                        box.radius: 3
+
+                        onClicked: {
+                            slotListView.setSlotLaunchRememberAllLinks(false)
+                            slotListView.setSlotLaunchRememberAllOutputs(false)
+                        }
+                    }
                 }
 
                 Item {
-                    width: 220
+                    width: parent.width
+                    height: 55
+
+                    Label {
+                        id: secondLabel
+                        width: parent.width - buttonClear.width - 20
+                        height: 55
+                        topPadding: 10
+                        leftPadding: 10
+                        rightPadding: 10
+                        bottomPadding: 0
+                        lineHeight: 1.1
+                        wrapMode: Text.WordWrap
+                        font.bold: false
+                        font.pixelSize: 12
+                        color: "#cccccc"
+                        text: qsTr("You can also click the + Cue button below the output signal fader to design the playback curve of the output signal.")
+                    }
+
+                    CButton {
+                        id: buttonClear
+                        width: 60
+                        height: 28
+                        anchors.right: parent.right
+                        anchors.rightMargin: 10
+                        anchors.top: secondLabel.top
+                        anchors.topMargin: 10
+                        label.font.bold: false
+                        label.font.pixelSize: 11
+                        label.text: qsTr("Clear")
+                        box.border.width: 1
+                        colorNormal: "transparent"
+                        box.radius: 3
+
+                        onClicked: {
+                            var name = quickLaunchView.editingLaunchName
+                            if (app.cuePlayerExists(name)) {
+                                cueManager.stopCue(name)
+                                if (messageBox.showAndWait(
+                                    qsTr("Do you want to delete all cue player data attached to the preset ?"),
+                                    qsTr("Delete"), qsTr("Cancel")) === 1) {
+                                    app.deleteCuePlayer(name)
+                                    slotListView.setSlotCuePlayerOptions(app.getSlotCuePlayerOptions(name))
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Item {
+                    height: 5
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                }
+
+                Item {
                     height: 30
+                    anchors.left: parent.left
                     anchors.right: parent.right
 
                     CButton {
+                        id: buttonSave
 
                         property bool isFirstTime: true
 
                         width: 120
                         height: 28
-
                         anchors.top: parent.top
-                        anchors.left: parent.left
+                        anchors.right: buttonCanel.left
+                        anchors.rightMargin: 10
                         label.font.bold: true
                         label.font.pixelSize: 11
                         label.text: qsTr("Save Preset")
@@ -424,16 +563,17 @@ Item {
                             app.setLaunchOption(model.name, "color", model.color)
 
                             if (isFirstTime)
-                                messageBox.show(qsTr("Took a snapshot for all checked items, which has been saved in a preset. Now, you can tap the button anytime to launch the preset."), qsTr("OK"))
+                                messageBox.show(qsTr("All checked items in the signal link table have been saved in the preset. You can activate them anytime by tapping the preset button."), qsTr("OK"))
                             isFirstTime = false
                             window.isModified = true
                         }
                     }
 
                     CButton {
+                        id: buttonCanel
+
                         width: 80
                         height: 28
-
                         anchors.top: parent.top
                         anchors.right: parent.right
                         anchors.rightMargin: 10
@@ -447,109 +587,6 @@ Item {
                         }
                     }
                 }
-
-                Item {
-                    height: 30
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-
-                    Rectangle {
-                        height: 1
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        color: "#333333"
-                    }
-                }
-
-                Label {
-                    id: labelRememberOutput
-                    height: 22
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    leftPadding: 10
-                    verticalAlignment: Text.AlignVCenter
-                    font.pixelSize: 12
-                    color: "#999999"
-                    text: qsTr("Output faders")
-
-                    CButton {
-                        id: buttonRememberOutputNone
-
-                        width: 80
-                        height: 20
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-                        anchors.rightMargin: 10
-                        colorNormal: "black"
-                        box.radius: 3
-                        label.text: qsTr("Check None")
-                        label.font.bold: false
-                        label.font.pixelSize: 9
-                        onClicked: slotListView.setSlotLaunchRememberAllOutputs(false)
-                    }
-
-                    CButton {
-                        id: buttonRememberOutputAll
-
-                        width: 80
-                        height: 20
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: buttonRememberOutputNone.left
-                        anchors.rightMargin: 5
-                        //colorNormal: Material.accent
-                        box.radius: 3
-                        label.text: qsTr("Check All")
-                        label.font.bold: false
-                        label.font.pixelSize: 9
-                        onClicked: slotListView.setSlotLaunchRememberAllOutputs(true)
-                    }
-                }
-
-                Label {
-                    id: labelRememberLink
-                    height: 22
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    leftPadding: 10
-                    verticalAlignment: Text.AlignVCenter
-                    font.pixelSize: 12
-                    color: "#999999"
-                    text: qsTr("LINK buttons")
-
-                    CButton {
-                        id: buttonRememberLinkNone
-
-                        width: 80
-                        height: 20
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-                        anchors.rightMargin: 10
-                        colorNormal: "black"
-                        box.radius: 3
-                        label.text: qsTr("Check None")
-                        label.font.bold: false
-                        label.font.pixelSize: 9
-                        onClicked: slotListView.setSlotLaunchRememberAllLinks(false)
-                    }
-
-                    CButton {
-                        id: buttonRememberLinkAll
-
-                        width: 80
-                        height: 20
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: buttonRememberLinkNone.left
-                        anchors.rightMargin: 5
-                        //colorNormal: Material.accent
-                        box.radius: 3
-                        label.text: qsTr("Check All")
-                        label.font.bold: false
-                        label.font.pixelSize: 9
-                        onClicked: slotListView.setSlotLaunchRememberAllLinks(true)
-                    }
-                }
-
             }
         }
 
@@ -560,11 +597,22 @@ Item {
 
     Component.onCompleted: {
 
+        cueManager.statusUpdated.connect(function() {
+
+            // update playing status for each launch button
+            for (var i = 0; i < dataModel.count; i++) {
+                var item = dataModel.get(i)
+                item.playing = cueManager.isCuePlaying(item.name)
+            }
+        })
     }
 
     function open() { height = 300 }
 
-    function close() { if (!popupOptions.visible) height = 0 }
+    function close() {
+        if (popupOptions.visible) popupOptions.close()
+        height = 0
+    }
 
     function refresh() {
 
@@ -592,7 +640,8 @@ Item {
                 name: name,
                 title: title,
                 color: color,
-                assigned: assigned
+                assigned: assigned,
+                playing: false
             });
         }
 

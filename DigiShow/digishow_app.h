@@ -25,6 +25,7 @@
 
 class DigishowInterface;
 class DigishowSlot;
+class DigishowCueManager;
 class DigishowMetronome;
 class DigishowRemoteWeb;
 class DigishowScriptable;
@@ -96,17 +97,28 @@ public:
     Q_INVOKABLE QList<DigishowSlot*> slotList() { return m_slots; }
     Q_INVOKABLE int getSlotIndex(DigishowSlot *slot);
 
-    Q_INVOKABLE bool updateLaunch(const QString &launchName, const QVariantList &slotLaunchOptions);
-    Q_INVOKABLE bool deleteLaunch(const QString &launchName);
-    Q_INVOKABLE bool startLaunch(const QString &launchName);
-    Q_INVOKABLE QVariantMap getAllLaunchOptions();
-    Q_INVOKABLE QVariantMap getLaunchOptions(const QString &launchName);
-    Q_INVOKABLE bool setLaunchOption(const QString &launchName, const QString &optionName, const QVariant &optionValue);
-    Q_INVOKABLE QVariantList getSlotLaunchDetails(const QString &launchName);
-    Q_INVOKABLE QVariantList getSlotLaunchOptions(const QString &launchName);
+    Q_INVOKABLE bool updateLaunch(const QString &name, const QVariantList &slotLaunchOptions);
+    Q_INVOKABLE bool deleteLaunch(const QString &name);
+    Q_INVOKABLE bool startLaunch(const QString &name);
+
+    Q_INVOKABLE bool cuePlayerExists(const QString &name);
+    Q_INVOKABLE bool deleteCuePlayer(const QString &name);
+
+    Q_INVOKABLE QVariantMap getAllLaunchOptions() { return m_allLaunchOptions; }
+    Q_INVOKABLE QVariantMap getLaunchOptions(const QString &name);
+    Q_INVOKABLE bool setLaunchOption(const QString &name, const QString &optKey, const QVariant &optValue);
+    Q_INVOKABLE QVariantList getSlotLaunchDetails(const QString &name);
+    Q_INVOKABLE QVariantList getSlotLaunchOptions(const QString &name);
+
+    Q_INVOKABLE QVariantMap getAllCuePlayerOptions() { return m_allCuePlayerOptions; }
+    Q_INVOKABLE QVariantMap getCuePlayerOptions(const QString &name);
+    Q_INVOKABLE bool setCuePlayerOption(const QString &name, const QString &optKey, const QVariant &optValue);
+    Q_INVOKABLE QVariantList getSlotCuePlayerDetails(const QString &name);
+    Q_INVOKABLE QVariantList getSlotCuePlayerOptions(const QString &name);
 
     Q_INVOKABLE qint64 elapsed() { return m_elapsedTimer->elapsed(); }
 
+    Q_INVOKABLE DigishowCueManager *cueManager() { return m_cueManager; }
     Q_INVOKABLE DigishowMetronome *metronome() { return m_metronome; }
     Q_INVOKABLE DigishowRemoteWeb *remoteWeb() { return m_remoteWeb; }
     DigishowScriptable *scriptable() { return m_scriptable; }
@@ -146,7 +158,9 @@ private:
     QList<DigishowInterface*> m_interfaces;
     QList<DigishowSlot*> m_slots;
 
-    QVariantMap m_launches;
+    // preset launch and cue player options
+    QVariantMap m_allLaunchOptions;
+    QVariantMap m_allCuePlayerOptions;
 
     bool m_autostart;
     bool m_starting;
@@ -155,6 +169,9 @@ private:
 
     QTimer *m_timer;
     QElapsedTimer *m_elapsedTimer;
+
+    // cue manager
+    DigishowCueManager *m_cueManager;
 
     // metronome (beat maker)
     DigishowMetronome *m_metronome;

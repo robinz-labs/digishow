@@ -13,12 +13,14 @@ Item {
     property int   highlightedIndex: -1 // index to data modal
     property int   currentIndex: -1 // index to data modal
     property alias currentIndexVisual: listView.currentIndex // index to visual modal
-    property alias listItemCount: dataModel.count
+    property alias listItemCount: dataModel.count    
+    property alias dataModel: dataModel
 
     property bool  showSlotSelection: false
     property bool  hasBookmarks: false
     property bool  shiftKeyHeld: false
     property bool  altKeyHeld: false
+    property bool  ctrlKeyHeld: false
 
     property alias rectInstructions: rectInstructions
 
@@ -64,6 +66,12 @@ Item {
                         // select multiple
                         selectMultiple(highlightedIndex, index)
                         //highlightedIndex = index
+
+                    } else if (ctrlKeyHeld) {
+
+                        // invert selection
+                        invertSelection(index)
+                        highlightedIndex = index
 
                     } else {
 
@@ -168,8 +176,14 @@ Item {
                     id: content
                     anchors.fill: dragArea
                     border.width: 2
-                    border.color: highlightedIndex===index ? "#cccccc" : currentIndex===index ? "#666666" : color
-                    color: "#222222"
+                    border.color: {
+                        if (highlightedIndex===index) {
+                            return slotListView.showSlotSelection ? Material.accent : "#cccccc"
+                        } else {
+                            return currentIndex===index ? "#666666" : color
+                        }
+                    }
+                    color: model.slotSelected===true ? "#444444" : "#222222"
                     radius: 4
 
                     Drag.active: dragArea.held
@@ -220,7 +234,8 @@ Item {
                         anchors.topMargin: 8
                         horizontalAlignment: Text.AlignHCenter
 
-                        color: highlightedIndex===index ? "#cccccc" : "#666666"
+                        color: model.slotSelected===true ? "#ffffff" :
+                               highlightedIndex===index ? "#cccccc" : "#666666"
                         text: model.slotTitle === undefined || model.slotTitle === "" ?
                                   qsTr("Untitled Link") + " " + (index+1) :
                                   model.slotTitle
@@ -399,16 +414,16 @@ Item {
                     }
 
                     Rectangle {
-                        height: 36
+                        height: 31
                         anchors.left: buttonLink.left
                         anchors.right: buttonLink.right
                         anchors.verticalCenter: buttonLink.verticalCenter
-                        anchors.margins: -6
+                        anchors.margins: -4
                         anchors.rightMargin: -13
                         color: "transparent"
-                        border.color: Material.accent
-                        border.width: 1
-                        opacity: 0.7
+                        border.color: checkLaunchRememberLink.checked ? Material.accent : "#444444"
+                        border.width: 2
+                        opacity: 0.5
                         radius: 5
                         visible: checkLaunchRememberLink.visible
                     }
@@ -418,7 +433,7 @@ Item {
                         width: 18
                         anchors.verticalCenter: checkLaunchRememberLink.verticalCenter
                         anchors.horizontalCenter: checkLaunchRememberLink.horizontalCenter
-                        color: "#222222"
+                        color: content.color
                         radius: 2
                         visible: checkLaunchRememberLink.visible
                     }
@@ -429,9 +444,14 @@ Item {
                         anchors.left: buttonLink.right
                         anchors.leftMargin: -9
                         scale: 0.8
-                        visible: quickLaunchView.visible && quickLaunchView.editingLaunchName !== ""
+                        visible: quickLaunchView.visible && quickLaunchView.isEditing
                         checked: model.launchRememberLink
-                        onClicked: model.launchRememberLink = checked
+                        onClicked: {
+                            model.launchRememberLink = checked
+                            if (slotListView.showSlotSelection)
+                                for (var n=dataModel.count-1 ; n>=0 ; n--)
+                                    if (dataModel.get(n).slotSelected === true) dataModel.get(n).launchRememberLink = checked
+                        }
                     }
 
                     CButton {
@@ -451,6 +471,8 @@ Item {
 
                             model.slotLinked = !model.slotLinked
                             app.slotAt(index).setLinked(model.slotLinked)
+
+                            if (checkLaunchRememberLink.visible) model.launchRememberLink = true
 
                             if (isBlankSlot(index)) // the blank slot is regarded as a group header
                                 setGroupLinked(index, model.slotLinked)
@@ -664,16 +686,16 @@ Item {
                         }
 
                         Rectangle {
-                            height: 36
+                            height: 31
                             anchors.left: faderOutput.left
                             anchors.right: faderOutput.right
                             anchors.verticalCenter: faderOutput.verticalCenter
                             anchors.margins: -6
                             anchors.leftMargin: -13
                             color: "transparent"
-                            border.color: Material.accent
-                            border.width: 1
-                            opacity: 0.7
+                            border.color: model.launchRememberOutput || model.cuePlayerAttached ? Material.accent : "#444444"
+                            border.width: 2
+                            opacity: 0.5
                             radius: 5
                             visible: checkLaunchRememberOutput.visible
                         }
@@ -683,7 +705,7 @@ Item {
                             width: 18
                             anchors.verticalCenter: checkLaunchRememberOutput.verticalCenter
                             anchors.horizontalCenter: checkLaunchRememberOutput.horizontalCenter
-                            color: "#222222"
+                            color: content.color
                             radius: 2
                             visible: checkLaunchRememberOutput.visible
                         }
@@ -694,11 +716,34 @@ Item {
                             anchors.right: faderOutput.left
                             anchors.rightMargin: -9
                             scale: 0.8
-                            visible: quickLaunchView.visible && quickLaunchView.editingLaunchName !== ""
+                            visible: quickLaunchView.visible && quickLaunchView.isEditing
                             checked: model.launchRememberOutput
-                            onClicked: model.launchRememberOutput = checked
-
+                            onClicked: {
+                                model.launchRememberOutput = checked
+                                if (slotListView.showSlotSelection)
+                                   for (var n=dataModel.count-1 ; n>=0 ; n--)
+                                       if (dataModel.get(n).slotSelected === true) dataModel.get(n).launchRememberOutput = checked
+                            }
                         }
+
+                        CButton {
+                            width: 40
+                            height: 14
+                            anchors.top: faderOutput.bottom
+                            anchors.topMargin: 2
+                            anchors.horizontalCenter: faderOutput.horizontalCenter
+                            label.font.bold: true
+                            label.font.pixelSize: 10
+                            label.text: qsTr("+ cue")
+                            box.radius: 3
+                            colorNormal: model.cuePlayerAttached ? Material.accent : "#333333"
+                            visible: quickLaunchView.visible && quickLaunchView.isEditing
+                            onClicked: {
+                                dialogCuePlayer.preferredColor = model.epOutColor
+                                dialogCuePlayer.show(quickLaunchView.currentIndex, model.index)
+                            }
+                        }
+
 
                         CSlider {
                             id: faderOutput
@@ -721,6 +766,7 @@ Item {
 
                             onMoved: {
                                 if (model.epOutFaderHold) app.slotAt(index).setEndpointOutValue(faderOutput.value)
+                                if (checkLaunchRememberOutput.visible && !model.cuePlayerAttached) model.launchRememberOutput = true
                             }
 
                             onValueChanged: {
@@ -842,8 +888,9 @@ Item {
                 if (event.isAutoRepeat) return
 
                 switch(event.key) {
-                case Qt.Key_Shift: shiftKeyHeld = false; break
-                case Qt.Key_Alt:   altKeyHeld   = false; break
+                case Qt.Key_Shift:   shiftKeyHeld = false; break
+                case Qt.Key_Alt:     altKeyHeld   = false; break
+                case Qt.Key_Control: ctrlKeyHeld  = false; break
                 }
 
                 // slot actions
@@ -869,8 +916,9 @@ Item {
                 if (event.isAutoRepeat) return
 
                 switch(event.key) {
-                case Qt.Key_Shift: shiftKeyHeld = true; break
-                case Qt.Key_Alt:   altKeyHeld   = true; break
+                case Qt.Key_Shift:   shiftKeyHeld = true; break
+                case Qt.Key_Alt:     altKeyHeld   = true; break
+                case Qt.Key_Control: ctrlKeyHeld  = true; break
                 }
 
                 // slot actions
@@ -1401,7 +1449,8 @@ Item {
             errOutExp: errOutExp,
 
             launchRememberLink: false,
-            launchRememberOutput: false
+            launchRememberOutput: false,
+            cuePlayerAttached: false
         }
 
         dataModel.set(n, item)
@@ -1464,6 +1513,8 @@ Item {
 
     function deleteSlots() {
 
+        if (cueManager.isActivated()) cueManager.stopAllCues()
+
         if (slotListView.showSlotSelection)
             deleteSelection()
         else
@@ -1473,6 +1524,8 @@ Item {
     function deleteSlot(slotIndex, showMessageToConfirm) {
 
         if (showMessageToConfirm === undefined) showMessageToConfirm = true
+
+        if (cueManager.isActivated()) cueManager.stopAllCues()
 
         var deletedIndex = slotIndex
         if (deletedIndex !== -1) {
@@ -1561,6 +1614,13 @@ Item {
             app.slotAt(i).setSelected(slotSelected)
         }
 
+        showSlotSelection = true
+    }
+
+    function invertSelection(slotIndex) {
+        var model = dataModel.get(slotIndex)
+        model.slotSelected = !model.slotSelected
+        app.slotAt(slotIndex).setSelected(model.slotSelected)
         showSlotSelection = true
     }
 
@@ -1679,6 +1739,29 @@ Item {
         for (var n=0 ; n<dataModel.count ; n++) {
             dataModel.setProperty(n, "launchRememberLink", listOptions[n].rememberLink)
             dataModel.setProperty(n, "launchRememberOutput", listOptions[n].rememberOutput)
+        }
+    }
+
+    function getSlotCuePlayerOptions() {
+        var listOptions = []
+        for (var n=0 ; n<dataModel.count ; n++) {
+            var options = {
+                attached: dataModel.get(n).cuePlayerAttached
+            }
+            listOptions[n] = options
+        }
+        return listOptions;
+    }
+
+    function setSlotCuePlayerOptions(listOptions) {
+
+        if (listOptions.length !== dataModel.count) {
+            for (let n=0 ; n<dataModel.count ; n++) dataModel.setProperty(n, "cuePlayerAttached", false)
+            return;
+        }
+
+        for (var n=0 ; n<dataModel.count ; n++) {
+            dataModel.setProperty(n, "cuePlayerAttached", listOptions[n].attached)
         }
     }
 

@@ -129,6 +129,7 @@
         <file>MwAppOptionsDialog.qml</file>
         <file>MwInterfacesDialog.qml</file>
         <file>MwColorPickerDialog.qml</file>
+        <file>MwCuePlayerDialog.qml</file>
         <file>MwSlotOptionsView.qml</file>
         <file>MwQuickLaunchView.qml</file>
         <file>MwMetronomeView.qml</file>
@@ -158,5 +159,7 @@
         <file>SpAnimationFadeIn.qml</file>
         <file>DigishowScriptable.qml</file>
         <file>DigishowScriptableUserTemplate.txt</file>
+        <file>html/timeline.html</file>
+        <file>html/timeline.js.txt</file>
     </qresource>
 </RCC>

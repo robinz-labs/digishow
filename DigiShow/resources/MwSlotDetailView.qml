@@ -144,7 +144,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             color: "#555555"
-            text: qsTr("Please select a link item in left list")
+            text: qsTr("Please select an item in the signal link table \r\n on the left")
             visible: !window.isEmpty
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 14

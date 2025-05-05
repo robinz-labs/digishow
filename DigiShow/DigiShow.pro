@@ -45,6 +45,8 @@ SOURCES += \
     digishow_remote_web.cpp \
     digishow_scriptable.cpp \
     digishow_slot.cpp \
+    digishow_cue_manager.cpp \
+    digishow_cue_player.cpp \
     digishow_metronome.cpp \
     digishow_pixel_player.cpp \
     main.cpp
@@ -95,6 +97,8 @@ HEADERS += \
     digishow_remote_web.h \
     digishow_scriptable.h \
     digishow_slot.h \
+    digishow_cue_manager.h \
+    digishow_cue_player.h \
     digishow_metronome.h \
     digishow_pixel_player.h
 

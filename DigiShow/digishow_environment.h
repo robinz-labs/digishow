@@ -30,6 +30,7 @@ class DigishowEnvironment : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(DigishowApp *app READ app NOTIFY appChanged)
+    Q_PROPERTY(DigishowCueManager *cueManager READ cueManager NOTIFY cueManagerChanged)
     Q_PROPERTY(DigishowMetronome *metronome READ metronome NOTIFY metronomeChanged)
     Q_PROPERTY(DigishowRemoteWeb *remoteWeb READ remoteWeb NOTIFY remoteWebChanged)
     Q_PROPERTY(bool needLogs READ needLogs WRITE setNeedLogs NOTIFY needLogsChanged)
@@ -207,8 +208,9 @@ public:
     Q_INVOKABLE static bool appExperimental() { return g_experimental; }
 
     Q_INVOKABLE DigishowApp *app() { return g_app; }
-    Q_INVOKABLE DigishowMetronome *metronome() { return g_app->metronome(); }
-    Q_INVOKABLE DigishowRemoteWeb *remoteWeb() { return g_app->remoteWeb(); }
+    Q_INVOKABLE DigishowCueManager *cueManager() { return g_app->cueManager(); }
+    Q_INVOKABLE DigishowMetronome  *metronome()  { return g_app->metronome(); }
+    Q_INVOKABLE DigishowRemoteWeb  *remoteWeb()  { return g_app->remoteWeb(); }
 
     Q_INVOKABLE void setAppOptions(const QVariantMap &options);
     Q_INVOKABLE QVariantMap getAppOptions();
@@ -282,6 +284,7 @@ public:
 
 signals:
     void appChanged();
+    void cueManagerChanged();
     void metronomeChanged();
     void remoteWebChanged();
     void needLogsChanged();

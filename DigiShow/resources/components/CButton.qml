@@ -135,12 +135,10 @@ Item {
                 button.checked = !button.checked
             }
 
-            common.runLater(function(){
-                if (mouse.button === Qt.RightButton)
-                    button.rightClicked() // emit signal
-                else
-                    button.clicked() // emit signal
-            })
+            if (mouse.button === Qt.RightButton)
+                common.runLater(function(){ button.rightClicked() }) // emit signal
+            else
+                common.runLater(function(){ button.clicked() }) // emit signal
         }
         onPressAndHold: {
             if (supportLongPress) {

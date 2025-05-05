@@ -15,9 +15,10 @@ ApplicationWindow {
 
     property var listOnline: ({})
 
-    property alias app: digishow.app
-    property alias metronome: digishow.metronome
-    property alias remoteWeb: digishow.remoteWeb
+    property alias app:        digishow.app
+    property alias cueManager: digishow.cueManager
+    property alias metronome:  digishow.metronome
+    property alias remoteWeb:  digishow.remoteWeb
 
     property bool isEmpty: (slotListView.listItemCount === 0)
 
@@ -430,10 +431,11 @@ ApplicationWindow {
                 colorNormal: quickLaunchView.opened ? "#666666" : "transparent"
                 visible: !window.isEmpty
                 onClicked: {
-                    if (quickLaunchView.opened)
-                        quickLaunchView.close()
-                    else
+                    if (quickLaunchView.opened) {
+                        if (!quickLaunchView.isEditing) quickLaunchView.close()
+                    } else {
                         quickLaunchView.open()
+                    }
                 }
             }
 
@@ -569,7 +571,9 @@ ApplicationWindow {
                 }
                 visible: !app.isRunning
 
-                onClicked: app.start()
+                onClicked: {
+                    if (!quickLaunchView.isEditing) app.start()
+                }
 
                 Behavior on colorNormal { ColorAnimation { duration: 200 } }
 
@@ -835,6 +839,10 @@ ApplicationWindow {
                          slotListView.getVisualItemsIndexList())
             if (callbackAfterSaved !== null) callbackAfterSaved()
         }
+    }
+
+    MwCuePlayerDialog {
+        id: dialogCuePlayer
     }
 
     MwAboutDialog {

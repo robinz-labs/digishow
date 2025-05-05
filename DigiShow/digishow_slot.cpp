@@ -160,9 +160,9 @@ int DigishowSlot::setSlotOptions(const QVariantMap &options)
     return ERR_NONE;
 }
 
-int DigishowSlot::setSlotOption(const QString &name, const QVariant &value)
+int DigishowSlot::setSlotOption(const QString &name, const QVariant &value, bool isMap)
 {
-    m_slotOptions[name] = value;
+    m_slotOptions[name] = isMap ? value.toMap() : value;
     updateSlotInfoItem(name, value);
 
     return ERR_NONE;
