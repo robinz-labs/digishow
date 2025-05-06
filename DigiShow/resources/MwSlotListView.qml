@@ -65,7 +65,7 @@ Item {
 
                         // select multiple
                         selectMultiple(highlightedIndex, index)
-                        //highlightedIndex = index
+                        highlightedIndex = index
 
                     } else if (ctrlKeyHeld) {
 
@@ -1053,8 +1053,10 @@ Item {
                 label.text: qsTr("Select All")
                 label.font.bold: false
                 label.font.pixelSize: 11
+                label.color: Material.accent
                 box.radius: 3
                 box.border.width: 1
+                box.border.color: Material.accent
                 colorNormal: "black"
 
                 onClicked: {
@@ -1073,8 +1075,10 @@ Item {
                 label.text: qsTr("Select None")
                 label.font.bold: false
                 label.font.pixelSize: 11
+                label.color: Material.accent
                 box.radius: 3
                 box.border.width: 1
+                box.border.color: Material.accent
                 colorNormal: "black"
 
                 onClicked: {
@@ -1173,7 +1177,7 @@ Item {
                 icon.height: 20
                 icon.source: "qrc:///images/icon_close_black.png"
                 box.radius: 10
-                colorNormal: "white"
+                colorNormal: Material.accent
 
                 onClicked: {
                     showSlotSelection = false

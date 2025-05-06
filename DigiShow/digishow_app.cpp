@@ -38,9 +38,9 @@
 #include "dgs_hotkey_interface.h"
 #include "dgs_metronome_interface.h"
 #include "dgs_messenger_interface.h"
+#include "dgs_aplay_interface.h"
 
 #ifdef DIGISHOW_EXPERIMENTAL
-#include "dgs_aplay_interface.h"
 #include "dgs_mplay_interface.h"
 #endif
 
@@ -181,8 +181,8 @@ void DigishowApp::importData(const QVariantMap & data)
         else if (interfaceType=="hotkey"   ) interface = new DgsHotkeyInterface(this);
         else if (interfaceType=="metronome") interface = new DgsMetronomeInterface(this);
         else if (interfaceType=="messenger") interface = new DgsMessengerInterface(this);
-#ifdef DIGISHOW_EXPERIMENTAL
         else if (interfaceType=="aplay"    ) interface = new DgsAPlayInterface(this);
+#ifdef DIGISHOW_EXPERIMENTAL
         else if (interfaceType=="mplay"    ) interface = new DgsMPlayInterface(this);
 #endif
         else                                 interface = new DigishowInterface(this);
@@ -540,6 +540,7 @@ void DigishowApp::newShow()
     m_filepath.clear();
     emit filepathChanged();
 
+    newInterface("aplay");
     newInterface("metronome");
     newInterface("hotkey");
     newInterface("launch");
@@ -639,12 +640,12 @@ int DigishowApp::newInterface(const QString &interfaceType)
         endpointOptions["name"] = "player1";
         interface->addEndpoint(endpointOptions);
 
-#ifdef DIGISHOW_EXPERIMENTAL
-
     } else if (interfaceType=="aplay") {
 
         interface = new DgsAPlayInterface(this);
         interface->setInterfaceOption("mode", "");
+
+#ifdef DIGISHOW_EXPERIMENTAL
 
     } else if (interfaceType=="mplay") {
 

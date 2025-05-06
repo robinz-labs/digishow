@@ -35,6 +35,8 @@ SOURCES += \
     dgs_hotkey_interface.cpp \
     dgs_metronome_interface.cpp \
     dgs_messenger_interface.cpp \
+    dgs_aplay_interface.cpp \
+    dgs_aplayer.cpp \
     digishow.cpp \
     digishow_app.cpp \
     digishow_cloud_dummy.cpp \
@@ -87,6 +89,8 @@ HEADERS += \
     dgs_hotkey_interface.h \
     dgs_metronome_interface.h \
     dgs_messenger_interface.h \
+    dgs_aplay_interface.h \
+    dgs_aplayer.h \
     digishow.h \
     digishow_app.h \
     digishow_cloud_dummy.h \

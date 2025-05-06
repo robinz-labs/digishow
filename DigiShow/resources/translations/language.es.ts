@@ -4,12 +4,12 @@
 <context>
     <name>DgsAPlayInterface</name>
     <message>
-        <location filename="../../digishow_experimental/dgs_aplay_interface.cpp" line="192"/>
+        <location filename="../../dgs_aplay_interface.cpp" line="204"/>
         <source>Audio Player</source>
         <translation>Reproductor de audio</translation>
     </message>
     <message>
-        <location filename="../../digishow_experimental/dgs_aplay_interface.cpp" line="205"/>
+        <location filename="../../dgs_aplay_interface.cpp" line="216"/>
         <source>Audio Clip</source>
         <translation>Clip de audio</translation>
     </message>
@@ -424,7 +424,7 @@ asegúrate de que el programa RIOC esté cargado en Arduino.</translation>
         <translation>Se produjo un error al abrir la interfaz %1 .</translation>
     </message>
     <message>
-        <location filename="../../digishow_app.cpp" line="1201"/>
+        <location filename="../../digishow_app.cpp" line="1202"/>
         <source>%1 Error %2 :<byte value="xd"/>
 <byte value="xd"/>
 %3</source>
@@ -1593,12 +1593,12 @@ either express or implied.</source>
         <translation>Clip de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="435"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="441"/>
         <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
         <translation>Seleccione un archivo de clip de audio que exista en los discos de su computadora o ingrese una URL válida del clip de audio.</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="435"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="441"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
@@ -3711,155 +3711,155 @@ Connection: %2</source>
 <context>
     <name>MwSlotListView</name>
     <message>
-        <location filename="../MwSlotListView.qml" line="97"/>
+        <location filename="../MwSlotListView.qml" line="104"/>
         <source>Rename</source>
         <translation>Renombrar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="105"/>
+        <location filename="../MwSlotListView.qml" line="112"/>
         <source>Bookmark</source>
         <translation>Marcar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="105"/>
+        <location filename="../MwSlotListView.qml" line="112"/>
         <source>Remove Bookmark</source>
         <translation>Eliminar marcador</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="111"/>
-        <location filename="../MwSlotListView.qml" line="1099"/>
-        <location filename="../MwSlotListView.qml" line="1486"/>
+        <location filename="../MwSlotListView.qml" line="118"/>
+        <location filename="../MwSlotListView.qml" line="1117"/>
+        <location filename="../MwSlotListView.qml" line="1504"/>
         <source>Duplicate</source>
         <translation>Duplicar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="118"/>
-        <location filename="../MwSlotListView.qml" line="1119"/>
-        <location filename="../MwSlotListView.qml" line="1522"/>
-        <location filename="../MwSlotListView.qml" line="1548"/>
+        <location filename="../MwSlotListView.qml" line="125"/>
+        <location filename="../MwSlotListView.qml" line="1137"/>
+        <location filename="../MwSlotListView.qml" line="1540"/>
+        <location filename="../MwSlotListView.qml" line="1566"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="127"/>
+        <location filename="../MwSlotListView.qml" line="134"/>
         <source>Deselect</source>
         <translation>Deseleccionar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="127"/>
+        <location filename="../MwSlotListView.qml" line="134"/>
         <source>Select ...</source>
         <translation>Seleccionar ...</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="135"/>
-        <location filename="../MwSlotListView.qml" line="1079"/>
+        <location filename="../MwSlotListView.qml" line="142"/>
+        <location filename="../MwSlotListView.qml" line="1097"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="142"/>
+        <location filename="../MwSlotListView.qml" line="149"/>
         <source>Paste</source>
         <translation>Pegar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="151"/>
+        <location filename="../MwSlotListView.qml" line="158"/>
         <source>Undo</source>
         <translation>Deshacer</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="159"/>
+        <location filename="../MwSlotListView.qml" line="166"/>
         <source>Redo</source>
         <translation>Rehacer</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="228"/>
-        <location filename="../MwSlotListView.qml" line="1784"/>
+        <location filename="../MwSlotListView.qml" line="240"/>
+        <location filename="../MwSlotListView.qml" line="1809"/>
         <source>Untitled Link</source>
         <translation>Enlace sin título</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="725"/>
+        <location filename="../MwSlotListView.qml" line="737"/>
         <source>+ cue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1039"/>
+        <location filename="../MwSlotListView.qml" line="1053"/>
         <source>Select All</source>
         <translation>Todo</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1059"/>
+        <location filename="../MwSlotListView.qml" line="1075"/>
         <source>Select None</source>
         <translation>Ninguno</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1139"/>
-        <location filename="../MwSlotListView.qml" line="1557"/>
+        <location filename="../MwSlotListView.qml" line="1157"/>
+        <location filename="../MwSlotListView.qml" line="1575"/>
         <source>Move</source>
         <translation>Mover</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1194"/>
-        <location filename="../MwSlotListView.qml" line="1197"/>
-        <location filename="../MwSlotListView.qml" line="1200"/>
+        <location filename="../MwSlotListView.qml" line="1212"/>
+        <location filename="../MwSlotListView.qml" line="1215"/>
+        <location filename="../MwSlotListView.qml" line="1218"/>
         <source>STEP</source>
         <translation>Paso</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1195"/>
+        <location filename="../MwSlotListView.qml" line="1213"/>
         <source>Open Interface Manager to configure your MIDI, DMX, OSC, Arduino and more device interfaces.</source>
         <translation>Abra Interface Manager para configurar sus interfaces MIDI, DMX, OSC, Arduino y más dispositivos.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1198"/>
+        <location filename="../MwSlotListView.qml" line="1216"/>
         <source>Tap the + button to add a new item to the signal link table, which is used to control and map the input/output signals of your devices.</source>
         <translation>Haga clic en el botón + para agregar un nuevo elemento a la tabla de enlace de señal, que se utiliza para controlar y mapear las señales de entrada/salida de sus dispositivos.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1201"/>
+        <location filename="../MwSlotListView.qml" line="1219"/>
         <source>Tap the play button to activate all signal links.</source>
         <translation>Haga clic en el botón de reproducción para activar todos los enlaces de señal.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1224"/>
+        <location filename="../MwSlotListView.qml" line="1242"/>
         <source>Instructions</source>
         <translation>Instrucciones</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1328"/>
+        <location filename="../MwSlotListView.qml" line="1346"/>
         <source>IN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1336"/>
+        <location filename="../MwSlotListView.qml" line="1354"/>
         <source>OUT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1486"/>
+        <location filename="../MwSlotListView.qml" line="1504"/>
         <source>Do you want to duplicate all selected links ?</source>
         <translation>¿ Quieres duplicar todas los enlaces seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1486"/>
-        <location filename="../MwSlotListView.qml" line="1522"/>
-        <location filename="../MwSlotListView.qml" line="1548"/>
-        <location filename="../MwSlotListView.qml" line="1557"/>
+        <location filename="../MwSlotListView.qml" line="1504"/>
+        <location filename="../MwSlotListView.qml" line="1540"/>
+        <location filename="../MwSlotListView.qml" line="1566"/>
+        <location filename="../MwSlotListView.qml" line="1575"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1522"/>
+        <location filename="../MwSlotListView.qml" line="1540"/>
         <source>Do you want to delete the link ?</source>
         <translation>¿ Quieres eliminar el enlace ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1548"/>
+        <location filename="../MwSlotListView.qml" line="1566"/>
         <source>Do you want to delete all selected links ?</source>
         <translation>¿ Quieres eliminar todas los enlaces seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1557"/>
+        <location filename="../MwSlotListView.qml" line="1575"/>
         <source>Do you want to move all selected links to the current cursor position ?</source>
         <translation>¿ Quieres mover todas los enlaces seleccionadas a la posición actual del cursor ?</translation>
     </message>

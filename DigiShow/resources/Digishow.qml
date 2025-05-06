@@ -51,10 +51,9 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointAudioInPeakDb     : return CColor.Ocean
             case DigishowEnvironment.EndpointAudioInSpectrum   : return CColor.Lake
             case DigishowEnvironment.EndpointScreenLight       : return CColor.Lake
-            case DigishowEnvironment.EndpointScreenMedia       : return sig === DigishowEnvironment.SignalBinary ?
-                                                                        CColor.HotPink : CColor.Iris
+            case DigishowEnvironment.EndpointScreenMedia       : return sig === DigishowEnvironment.SignalBinary ? CColor.HotPink : CColor.Iris
             case DigishowEnvironment.EndpointScreenCanvas      : return CColor.Ocean
-            case DigishowEnvironment.EndpointAPlayMedia        : return CColor.HotPink
+            case DigishowEnvironment.EndpointAPlayMedia        : return sig === DigishowEnvironment.SignalBinary ? CColor.HotPink : CColor.Iris
             case DigishowEnvironment.EndpointMPlayMedia        : return CColor.HotPink
             case DigishowEnvironment.EndpointPipeAnalog        : return CColor.Sky
             case DigishowEnvironment.EndpointPipeBinary        : return CColor.RosePink
@@ -67,8 +66,8 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointMetronomeRun      : return CColor.Cherry
             case DigishowEnvironment.EndpointMetronomeLink     : return CColor.Cherry
             case DigishowEnvironment.EndpointMetronomeTap      : return CColor.Cherry
-            case DigishowEnvironment.EndpointMessengerText      : return CColor.HotPink
-            case DigishowEnvironment.EndpointMessengerHexCode   : return CColor.RosePink
+            case DigishowEnvironment.EndpointMessengerText     : return CColor.HotPink
+            case DigishowEnvironment.EndpointMessengerHexCode  : return CColor.RosePink
         }
 
         return "#666666";

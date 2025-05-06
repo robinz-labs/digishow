@@ -338,6 +338,8 @@ Item {
             v = DigishowEnvironment.ControlMediaStart;   items.push({ text: digishow.getMediaControlName(v), value: v })
             v = DigishowEnvironment.ControlMediaStop;    items.push({ text: digishow.getMediaControlName(v), value: v })
             v = DigishowEnvironment.ControlMediaStopAll; items.push({ text: digishow.getMediaControlName(v), value: v })
+            items.push({ text: "-", value: -1 })
+            v = DigishowEnvironment.ControlMediaVolume;  items.push({ text: digishow.getMediaControlName(v), value: v })
 
             menuMediaControl.optionItems = items
             menuMediaControl.selectedIndex = 0
@@ -359,6 +361,10 @@ Item {
                 mediaControl === DigishowEnvironment.ControlMediaStopAll) {
 
                 enables["optInitialB"] = true
+
+            } else {
+
+                enables["optInitialA"] = true
             }
         }
 
