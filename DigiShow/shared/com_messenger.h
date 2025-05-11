@@ -24,6 +24,7 @@
 
 #include "abstract_messenger.h"
 #include <QSerialPort>
+#include <QTimer>
 
 class ComMessenger : public AbstractMessenger
 {
@@ -54,8 +55,14 @@ private slots:
     void handleReadyRead();
 
 private:
+    // Serial port instance
     QSerialPort *m_serialPort;
+    // Buffer for processing subscribed messages
     QByteArray m_buffer;
+    // Buffer for learning mode
+    QByteArray m_rawDataBuffer;
+    // Timer to ensure complete message capture in learning mode
+    QTimer *m_rawDataTimer;
 };
 
 #endif // COM_MESSENGER_H

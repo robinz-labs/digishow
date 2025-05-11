@@ -390,7 +390,7 @@ Item {
             id: popupOptions
 
             width: 450
-            height: 205
+            height: 235
             anchors.centerIn: parent
             modal: false
             focus: true
@@ -430,18 +430,35 @@ Item {
 
             Column {
                 anchors.fill: parent
-                spacing: 10
+                spacing: 5
 
                 Item {
                     width: parent.width
-                    height: 55
+                    height: 80
                     
                     Label {
-                        id: firstLabel
+                        id: labelFirstTitle
                         width: parent.width - buttonReset.width - 20
-                        height: 55
+                        height: 20
                         anchors.left: parent.left
-                        topPadding: 10
+                        anchors.top: parent.top
+                        topPadding: 5
+                        leftPadding: 10
+                        rightPadding: 10
+                        bottomPadding: 0
+                        font.bold: true
+                        font.pixelSize: 13
+                        color: Material.accent
+                        text: qsTr("Preset Memory")
+                    }
+
+                    Label {
+                        id: labelFirst
+                        width: parent.width - buttonReset.width - 20
+                        height: 35
+                        anchors.left: parent.left
+                        anchors.top: labelFirstTitle.bottom
+                        topPadding: 5
                         leftPadding: 10
                         rightPadding: 10
                         bottomPadding: 0
@@ -459,8 +476,8 @@ Item {
                         height: 28
                         anchors.right: parent.right
                         anchors.rightMargin: 10
-                        anchors.top: firstLabel.top
-                        anchors.topMargin: 10
+                        anchors.top: labelFirst.top
+                        anchors.topMargin: 5
                         label.font.bold: false
                         label.font.pixelSize: 11
                         label.text: qsTr("Reset")
@@ -477,13 +494,29 @@ Item {
 
                 Item {
                     width: parent.width
-                    height: 55
+                    height: 75
 
                     Label {
-                        id: secondLabel
+                        id: labelSecondTitle
                         width: parent.width - buttonClear.width - 20
-                        height: 55
-                        topPadding: 10
+                        height: 20
+                        anchors.top: parent.top
+                        topPadding: 5
+                        leftPadding: 10
+                        rightPadding: 10
+                        bottomPadding: 0
+                        font.bold: true
+                        font.pixelSize: 13
+                        color: Material.accent
+                        text: qsTr("Attached Cue Player")
+                    }
+
+                    Label {
+                        id: labelSecond
+                        width: parent.width - buttonClear.width - 20
+                        height: 35
+                        anchors.top: labelSecondTitle.bottom
+                        topPadding: 5
                         leftPadding: 10
                         rightPadding: 10
                         bottomPadding: 0
@@ -492,7 +525,7 @@ Item {
                         font.bold: false
                         font.pixelSize: 12
                         color: "#cccccc"
-                        text: qsTr("You can also click the + Cue button below the output signal fader to design the playback curve of the output signal.")
+                        text: qsTr("You can also click the + CUE button below the output signal fader to design the playback curve of the output signal.")
                     }
 
                     CButton {
@@ -501,8 +534,8 @@ Item {
                         height: 28
                         anchors.right: parent.right
                         anchors.rightMargin: 10
-                        anchors.top: secondLabel.top
-                        anchors.topMargin: 10
+                        anchors.top: labelSecond.top
+                        anchors.topMargin: 5
                         label.font.bold: false
                         label.font.pixelSize: 11
                         label.text: qsTr("Clear")
@@ -544,7 +577,7 @@ Item {
                         width: 120
                         height: 28
                         anchors.top: parent.top
-                        anchors.right: buttonCanel.left
+                        anchors.right: buttonCancel.left
                         anchors.rightMargin: 10
                         label.font.bold: true
                         label.font.pixelSize: 11
@@ -554,23 +587,16 @@ Item {
 
                         onClicked: {
 
-                            popupOptions.close()
-
-                            var model = dataModel.get(gridView.currentIndex)
-                            model.assigned = true
-                            app.updateLaunch(model.name, slotListView.getSlotLaunchOptions())
-                            app.setLaunchOption(model.name, "title", model.title)
-                            app.setLaunchOption(model.name, "color", model.color)
+                            save()
 
                             if (isFirstTime)
                                 messageBox.show(qsTr("All checked items in the signal link table have been saved in the preset. You can activate them anytime by tapping the preset button."), qsTr("OK"))
                             isFirstTime = false
-                            window.isModified = true
                         }
                     }
 
                     CButton {
-                        id: buttonCanel
+                        id: buttonCancel
 
                         width: 80
                         height: 28
@@ -612,6 +638,34 @@ Item {
     function close() {
         if (popupOptions.visible) popupOptions.close()
         height = 0
+    }
+
+    function confirmEditing() {
+
+        if (!quickLaunchView.isEditing) return true
+
+        if (messageBox.showAndWait(
+             qsTr("You need to save the preset first, do you want to continue ?"),
+             qsTr("Continue"), qsTr("Cancel")) === 1) {
+
+            save()
+            return true
+        }
+
+        return false
+    }
+
+    function save() {
+
+        popupOptions.close()
+
+        var model = dataModel.get(gridView.currentIndex)
+        model.assigned = true
+        app.updateLaunch(model.name, slotListView.getSlotLaunchOptions())
+        app.setLaunchOption(model.name, "title", model.title)
+        app.setLaunchOption(model.name, "color", model.color)
+
+        window.isModified = true
     }
 
     function refresh() {

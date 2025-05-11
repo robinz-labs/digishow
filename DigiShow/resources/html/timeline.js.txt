@@ -16,7 +16,8 @@ class TimelineEditor {
             viewportDuration: 30,       // Current viewport duration in seconds
             minViewportDuration: 10,    // Minimum viewport range in seconds
             maxViewportDuration: 90,    // Maximum viewport range in seconds
-            lineColor: '#4CAF50'        // Line color
+            lineColor: '#4CAF50',       // Line color
+            valueRange: [0, 100]        // Value range
         };
 
         // Merge default options with user provided options
@@ -28,6 +29,7 @@ class TimelineEditor {
         this.minViewportDuration = mergedOptions.minViewportDuration;
         this.maxViewportDuration = mergedOptions.maxViewportDuration;
         this.lineColor = mergedOptions.lineColor;
+        this.valueRange = mergedOptions.valueRange;
 
         // Margin settings
         this.margin = {
@@ -83,7 +85,8 @@ class TimelineEditor {
 
         // Create Timeline custom event listeners for external callbacks
         this.eventListeners = {
-            'playheadTimeChange': []
+            'playheadTimeChange': [],
+            'pointsChange': []    // Event triggered when control points are modified
         };
 
         // Monitor playhead.time changes using Proxy
@@ -149,6 +152,7 @@ class TimelineEditor {
                         this.points.splice(index, 1);
                         this.selectedPoint = null;
                         this.saveToHistory();
+                        this.emit('pointsChange');
                     }
                 } else {
                     this.selectedPoint = point;
@@ -170,6 +174,7 @@ class TimelineEditor {
                 this.selectedPoint = newPoint;
                 this.isDragging = false;
                 this.saveToHistory();
+                this.emit('pointsChange');
                 this.draw();
                 return;
             }
@@ -259,6 +264,7 @@ class TimelineEditor {
                     const prevTime = this.points[this.points.length - 2].time;
                     this.selectedPoint.time = Math.max(prevTime + 1, Math.min(this.totalDuration, time));
                     this.selectedPoint.value = value;
+                    this.emit('pointsChange');
                 } else {
                     // Middle points can move within their neighbors
                     const time = this.viewportStart + (x - this.margin.left) * this.viewportDuration / chartWidth;
@@ -271,6 +277,7 @@ class TimelineEditor {
 
                     this.selectedPoint.time = Math.max(prevTime, Math.min(nextTime, time));
                     this.selectedPoint.value = value;
+                    this.emit('pointsChange');
                 }
                 this.draw();
             } else if (this.isDragging) {
@@ -448,6 +455,60 @@ class TimelineEditor {
         this.drawMarkers();
         this.drawPolyline();
         this.drawPlayhead();
+        this.drawPointLabel();
+    }
+
+    drawPointLabel() {
+        if (this.selectedPoint) {
+            const chartWidth = this.canvas.width - this.margin.left - this.margin.right;
+            const chartHeight = this.canvas.height - this.margin.top - this.margin.bottom;
+
+            // Calculate point position
+            const x = this.margin.left + ((this.selectedPoint.time - this.viewportStart) / this.viewportDuration) * chartWidth;
+            const y = this.margin.top + (1 - this.selectedPoint.value / 100) * chartHeight;
+
+            // Format label text
+            const timeText = `${this.selectedPoint.time.toFixed(1)}s`;
+            const percentText = `${this.selectedPoint.value.toFixed(1)}%`;
+            const hasCustomRange = this.valueRange[0] !== 0 || this.valueRange[1] !== 100;
+            const actualValue = hasCustomRange
+                ? Math.round(this.selectedPoint.value / 100 * (this.valueRange[1] - this.valueRange[0]) + this.valueRange[0])
+                : null;
+            const valueText = hasCustomRange ? `${actualValue}` : '';
+
+            // Calculate label dimensions
+            const labelTexts = [timeText, percentText, ...(hasCustomRange ? [valueText] : [])];
+            const labelWidth = Math.max(...labelTexts.map(text => this.ctx.measureText(text).width));
+            const lineHeight = 16;
+            const labelHeight = lineHeight * labelTexts.length;
+            const paddingX = 6;
+            const paddingY = 6;
+
+            // Determine label position based on point's proximity to top edge
+            const minTopSpace = labelHeight + 20; // Minimum space needed above point
+            const labelY = y - this.margin.top < minTopSpace ?
+                          y + labelHeight/2 + 15 : // Place below point
+                          y - labelHeight/2 - 15;  // Place above point
+
+            // Draw label background
+            this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+            this.ctx.fillRect(
+                x - labelWidth/2 - paddingX,
+                labelY - labelHeight/2 - paddingY,
+                labelWidth + paddingX * 2,
+                labelHeight + paddingY * 1.5
+            );
+
+            // Draw label text
+            this.ctx.font = '12px Arial';
+            this.ctx.textAlign = 'left';
+            this.ctx.textBaseline = 'middle';
+            labelTexts.forEach((text, index) => {
+                // Set color for time and value
+                this.ctx.fillStyle = hasCustomRange && index === 2 ? this.lineColor : '#ffffff';
+                this.ctx.fillText(text, x - labelWidth/2, labelY - labelHeight/2 + lineHeight * (index + 0.5));
+            });
+        }
     }
 
     drawPolyline() {

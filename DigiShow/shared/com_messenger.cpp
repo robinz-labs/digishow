@@ -25,7 +25,21 @@
 ComMessenger::ComMessenger(QObject *parent)
     : AbstractMessenger(parent)
     , m_serialPort(new QSerialPort(this))
+    , m_rawDataTimer(new QTimer(this))
 {
+    // Set timer for raw data buffering
+    m_rawDataTimer->setSingleShot(true);
+    m_rawDataTimer->setInterval(50);
+    
+    // Connect timer to emit raw data signal
+    connect(m_rawDataTimer, &QTimer::timeout, this, [this]() {
+        if (!m_rawDataBuffer.isEmpty()) {
+            emit rawDataReceived(m_rawDataBuffer);
+            m_rawDataBuffer.clear();
+        }
+    });
+
+    // Connect the signal to handle incoming data
     connect(m_serialPort, &QSerialPort::readyRead, this, &ComMessenger::handleReadyRead);
 }
 
@@ -110,9 +124,13 @@ bool ComMessenger::sendMessage(const QByteArray &message)
 // Handle incoming serial data
 void ComMessenger::handleReadyRead()
 {
+    // Accumulate received raw data in buffer
     QByteArray newData = m_serialPort->readAll();
-    emit rawDataReceived(newData);
+    m_rawDataBuffer.append(newData);
+    // Start timer to emit raw data signal after a delay for buffering the complete message
+    m_rawDataTimer->start(); 
     
+    // Process subscribed messages
     m_buffer.append(newData);
 
     bool found = true;

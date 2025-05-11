@@ -237,7 +237,7 @@ Item {
                         color: model.slotSelected===true ? "#ffffff" :
                                highlightedIndex===index ? "#cccccc" : "#666666"
                         text: model.slotTitle === undefined || model.slotTitle === "" ?
-                                  qsTr("Untitled Link") + " " + (index+1) :
+                                  qsTr("Signal Link") + " " + (index+1) :
                                   model.slotTitle
                         font.pixelSize: 11
                         font.bold: false
@@ -718,6 +718,7 @@ Item {
                             scale: 0.8
                             visible: quickLaunchView.visible && quickLaunchView.isEditing
                             checked: model.launchRememberOutput
+                            enabled: !model.cuePlayerAttached
                             onClicked: {
                                 model.launchRememberOutput = checked
                                 if (slotListView.showSlotSelection)
@@ -727,19 +728,20 @@ Item {
                         }
 
                         CButton {
-                            width: 40
+                            width: 46
                             height: 14
                             anchors.top: faderOutput.bottom
                             anchors.topMargin: 2
                             anchors.horizontalCenter: faderOutput.horizontalCenter
                             label.font.bold: true
                             label.font.pixelSize: 10
-                            label.text: qsTr("+ cue")
+                            label.text: qsTr("+ CUE")
                             box.radius: 3
                             colorNormal: model.cuePlayerAttached ? Material.accent : "#333333"
                             visible: quickLaunchView.visible && quickLaunchView.isEditing
                             onClicked: {
                                 dialogCuePlayer.preferredColor = model.epOutColor
+                                dialogCuePlayer.preferredRange = model.epOutRange
                                 dialogCuePlayer.show(quickLaunchView.currentIndex, model.index)
                             }
                         }
@@ -1501,7 +1503,7 @@ Item {
 
     function duplicateSelection() {
 
-        if (messageBox.showAndWait(qsTr("Do you want to duplicate all selected links ?"), qsTr("Duplicate"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Do you want to duplicate all selected signal links ?"), qsTr("Duplicate"), qsTr("Cancel")) !== 1) return
 
         var numAll = visualModel.items.count
         var n, i
@@ -1537,7 +1539,7 @@ Item {
             highlightedIndex = deletedIndex
 
             if (!showMessageToConfirm ||
-                messageBox.showAndWait(qsTr("Do you want to delete the link ?"), qsTr("Delete"), qsTr("Cancel")) === 1) {
+                messageBox.showAndWait(qsTr("Do you want to delete the signal links ?"), qsTr("Delete"), qsTr("Cancel")) === 1) {
 
                 highlightedIndex = -1
                 currentIndex = -1
@@ -1563,7 +1565,7 @@ Item {
 
     function deleteSelection() {
 
-        if (messageBox.showAndWait(qsTr("Do you want to delete all selected links ?"), qsTr("Delete"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Do you want to delete all selected signal links ?"), qsTr("Delete"), qsTr("Cancel")) !== 1) return
 
         for (var n=dataModel.count-1 ; n>=0 ; n--)
             if (dataModel.get(n).slotSelected === true) deleteSlot(n, false)
@@ -1572,7 +1574,7 @@ Item {
     function moveSelection() {
 
         if (currentIndexVisual === -1) return
-        if (messageBox.showAndWait(qsTr("Do you want to move all selected links to the current cursor position ?"), qsTr("Move"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Do you want to move all selected signal links to the current cursor position ?"), qsTr("Move"), qsTr("Cancel")) !== 1) return
 
         var numAll = visualModel.items.count
         var numMoved = 0
@@ -1806,7 +1808,7 @@ Item {
                 bookmarks.push({
                     value: n,
                     text:  model.slotTitle === undefined || model.slotTitle === "" ?
-                               qsTr("Untitled Link") + " " + (model.index+1) :
+                               qsTr("Signal Link") + " " + (model.index+1) :
                                model.slotTitle
                 })
             }

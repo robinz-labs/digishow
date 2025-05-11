@@ -15,10 +15,12 @@ Dialog {
     property int launchIndex: -1
     property int slotIndex: -1
     property alias preferredColor: timelineView.lineColor
+    property alias preferredRange: timelineView.valueRange
 
     width: parent.width - 100
     height: 440
-    anchors.centerIn: parent
+    x: (parent.width - width) / 2
+    y: (parent.height - height) / 2
     modal: true
     focus: true
     padding: 10
@@ -50,7 +52,20 @@ Dialog {
         box.border.color: "#cccccc"
         colorNormal: "#000000"
 
-        onClicked: dialog.close()
+        onClicked: {
+
+            if (!timelineView.isModified) {
+                close()
+                return
+            }
+
+            var buttonIndex = messageBox.showAndWait(qsTr("Do you want to save changes to the cue player before closing ?"),
+                                                     qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
+            switch (buttonIndex) {
+            case 1: save(); common.setTimeout(function(){ close() }, 500); break
+            case 2: close(); break
+            }
+        }
     }
 
     CButton {
@@ -142,7 +157,7 @@ Dialog {
     CButton {
         id: buttonSave
         height: 35
-        width: 60
+        width: 80
         anchors.top: parent.top
         anchors.right: buttonMenu.left
         anchors.topMargin: 0
@@ -195,7 +210,7 @@ Dialog {
                 color: "#666666"
                 font.bold: false
                 font.pixelSize: 14
-                text: qsTr("Track output to: ")
+                text: qsTr("Current track output to: ")
             }
 
             Text {
@@ -205,7 +220,7 @@ Dialog {
                 text: {
                     if (slotIndex === -1) return ""
                     var slotTitle = slotListView.dataModel.get(slotIndex).slotTitle
-                    if (slotTitle === "") slotTitle = qsTr("Untitled Link") + " " + (slotIndex+1)
+                    if (slotTitle === "") slotTitle = qsTr("Signal Link") + " " + (slotIndex+1)
                     return slotTitle
                 }
             }
@@ -214,7 +229,7 @@ Dialog {
         CButton {
             id: buttonCueOptions
 
-            width: 100
+            width: 130
             height: 28
             anchors.right: parent.right
             anchors.rightMargin: 10
@@ -377,9 +392,11 @@ Dialog {
         id: timelineView
 
         property string lineColor: "#4CAF50"
+        property int  valueRange: 100
         property real playheadTime: 0
         property real playheadValue: 0
         property bool isPlaying: false
+        property bool isModified: false
 
         height: 300
         anchors.left: parent.left
@@ -401,6 +418,13 @@ Dialog {
                           data.isPlaying);
                     });
                 `)
+
+                timelineView.runJavaScript(`
+                     timeline.addEventListener('pointsChange', function(data) {
+                         console.log("event.pointsChange:");
+                     });
+                 `)
+
             }
         }
 
@@ -422,6 +446,8 @@ Dialog {
                     if (range === 0) range = 1
                     slot.setEndpointOutValue(Math.round(timelineView.playheadValue/100*range))
                 }
+            } else if (level===0 && parts[0] === "event.pointsChange:" ) {
+                timelineView.isModified = true
             }
         }
 
@@ -431,6 +457,10 @@ Dialog {
 
         onLineColorChanged: {
             runJavaScript(`timeline.lineColor = '${lineColor}'; timeline.draw()`)
+        }
+
+        onValueRangeChanged: {
+            runJavaScript(`timeline.valueRange = [0,${valueRange}]`)
         }
 
         function blinking() {
@@ -500,6 +530,8 @@ Dialog {
             timelineView.importData(cuePlayerData)
             timelineView.resetHistory()
         }
+
+        timelineView.isModified = false
     }
 
     function save() {
@@ -518,6 +550,7 @@ Dialog {
             // update the slot list item display
             updateCuePlayerAttachedToSlot(true)
             window.isModified = true
+            timelineView.isModified = false
 
             // the timeline blinking, indicating that the data has been saved
             timelineView.blinking()

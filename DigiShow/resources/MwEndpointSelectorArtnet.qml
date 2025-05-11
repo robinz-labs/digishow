@@ -398,12 +398,15 @@ Item {
 
                     width: 85
                     anchors.left: parent.left
-                    from: 1
+                    from: -9999
                     to: 9999
-                    value: 0
+                    value: 1
                     stepSize: 1
 
-                    onValueModified: isModified = true
+                    onValueModified: {
+                        if (value === 0) value = 1
+                        isModified = true
+                    }
                 }
 
                 CSpinBox {
@@ -411,12 +414,15 @@ Item {
 
                     width: 85
                     anchors.right: parent.right
-                    from: 1
+                    from: -9999
                     to: 9999
-                    value: 0
+                    value: 1
                     stepSize: 1
 
-                    onValueModified: isModified = true
+                    onValueModified: {
+                        if (value === 0) value = 1
+                        isModified = true
+                    }
                 }
 
                 Text {

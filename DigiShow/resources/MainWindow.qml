@@ -572,7 +572,8 @@ ApplicationWindow {
                 visible: !app.isRunning
 
                 onClicked: {
-                    if (!quickLaunchView.isEditing) app.start()
+                    if (!quickLaunchView.confirmEditing()) return
+                    app.start()
                 }
 
                 Behavior on colorNormal { ColorAnimation { duration: 200 } }

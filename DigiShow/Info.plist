@@ -9,15 +9,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleGetInfoString</key>
-        <string>DigiShow 1.6</string>
+        <string>DigiShow 1.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleExecutable</key>
 	<string>DigiShow</string>
 	<key>CFBundleVersion</key>
-        <string>1.6</string>
+        <string>1.7</string>
 	<key>CFBundleShortVersionString</key>
-        <string>1.6</string>
+        <string>1.7</string>
 	<key>CFBundleName</key>
 	<string>DigiShow</string>
 	<key>CFBundleInfoDictionaryVersion</key>

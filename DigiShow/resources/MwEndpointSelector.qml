@@ -407,6 +407,7 @@ Item {
         visible: isModified && !isDetecting
 
         onClicked: {
+            if (!quickLaunchView.confirmEditing()) return
             if (menuInterface.selectedItemValue !== -1)
                 save()
             else

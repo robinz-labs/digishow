@@ -160,6 +160,13 @@
   + channel padding in dmx / artnet pixel mapping
   ! rewrote the open dmx usb support with libFTDI
 
+  v1.7 20250510
+  alpha release
+  + cue player attached to preset
+  + audio player interface
+  ! improved code learning from serial messenger
+  ! improved dmx/arntnet pixel mapping
+
 */
 
 #ifndef DIGISHOW_H
