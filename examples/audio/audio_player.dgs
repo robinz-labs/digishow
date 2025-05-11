@@ -1,0 +1,162 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "audio2",
+                    "mediaAlone": false,
+                    "mediaDuration": 0,
+                    "mediaPosition": 0,
+                    "mediaRepeat": false,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media5",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "audio3",
+                    "mediaAlone": false,
+                    "mediaDuration": 0,
+                    "mediaPosition": 0,
+                    "mediaRepeat": false,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media6",
+                    "type": "media"
+                },
+                {
+                    "control": 3,
+                    "enabled": true,
+                    "name": "media7",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "media": "audio1",
+                    "mediaAlone": false,
+                    "mediaDuration": 15000,
+                    "mediaPosition": 0,
+                    "mediaRepeat": true,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media2",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/ambient.wav",
+                    "name": "audio1",
+                    "type": "audio",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/audio/clips/ambient.wav"
+                },
+                {
+                    "file": "clips/boom.wav",
+                    "name": "audio2",
+                    "type": "audio",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/audio/clips/boom.wav"
+                },
+                {
+                    "file": "clips/gogogo.wav",
+                    "name": "audio3",
+                    "type": "audio",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/audio/clips/gogogo.wav"
+                }
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat1",
+                    "type": "beat"
+                }
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "Space",
+                    "enabled": true,
+                    "name": "press1",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 60,
+        "link": false,
+        "quantum": 4,
+        "run": true,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "aplay1/media2",
+            "linked": true,
+            "title": "Ambient"
+        },
+        {
+            "destination": "aplay1/media5",
+            "linked": true,
+            "source": "metronome1/beat1",
+            "title": "Boom"
+        },
+        {
+            "destination": "aplay1/media6",
+            "linked": true,
+            "source": "hotkey1/press1",
+            "title": "Go Go Go"
+        },
+        {
+            "destination": "aplay1/media7",
+            "linked": true,
+            "title": "STOP ALL"
+        }
+    ]
+}

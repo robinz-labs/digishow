@@ -1,0 +1,12 @@
+There is an OSC server for controlling lights, IP address: 127.0.0.1, port: 8000
+
+OSC addresses:
+/red	Controls red light brightness (value range 0 to 1.0)
+/green	Controls green light brightness (value range 0 to 1.0)
+/blue	Controls blue light brightness (value range 0 to 1.0)
+/white	Controls white light brightness (value range 0 to 1.0)
+
+Please use Python language to control the lights:
+- Create a 10-second light animation that plays in a loop
+- RGB three colors alternately appear with smooth gradients
+- White light flashes every 2 seconds

@@ -1,0 +1,1053 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7"
+    },
+    "cuePlayers": {
+        "launch1": {
+            "cueAlone": true,
+            "cueDuration": 0,
+            "cueRepeat": false
+        },
+        "launch2": {
+            "cueAlone": true,
+            "cueDuration": 0,
+            "cueRepeat": false
+        },
+        "launch3": {
+            "cueAlone": true,
+            "cueDuration": 15000,
+            "cueRepeat": true
+        },
+        "launch4": {
+            "cueAlone": true,
+            "cueDuration": 0,
+            "cueRepeat": false
+        }
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "audio2",
+                    "mediaAlone": false,
+                    "mediaDuration": 0,
+                    "mediaPosition": 0,
+                    "mediaRepeat": false,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media5",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "audio3",
+                    "mediaAlone": false,
+                    "mediaDuration": 0,
+                    "mediaPosition": 0,
+                    "mediaRepeat": false,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media6",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "media": "audio1",
+                    "mediaAlone": false,
+                    "mediaDuration": 15000,
+                    "mediaPosition": 0,
+                    "mediaRepeat": false,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media1",
+                    "type": "media"
+                },
+                {
+                    "control": 16,
+                    "enabled": true,
+                    "initial": -1,
+                    "media": "audio2",
+                    "name": "media3",
+                    "type": "media"
+                },
+                {
+                    "control": 16,
+                    "enabled": true,
+                    "media": "audio3",
+                    "name": "media2",
+                    "type": "media"
+                },
+                {
+                    "control": 3,
+                    "enabled": true,
+                    "name": "media4",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/ambient.wav",
+                    "name": "audio1",
+                    "type": "audio",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/audio/clips/ambient.wav"
+                },
+                {
+                    "file": "clips/boom.wav",
+                    "name": "audio2",
+                    "type": "audio",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/audio/clips/boom.wav"
+                },
+                {
+                    "file": "clips/gogogo.wav",
+                    "name": "audio3",
+                    "type": "audio",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/audio/clips/gogogo.wav"
+                }
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "name": "light1",
+                    "type": "light"
+                },
+                {
+                    "control": 2,
+                    "enabled": true,
+                    "name": "light2",
+                    "type": "light"
+                },
+                {
+                    "control": 3,
+                    "enabled": true,
+                    "name": "light3",
+                    "type": "light"
+                },
+                {
+                    "control": 4,
+                    "enabled": true,
+                    "name": "light4",
+                    "type": "light"
+                }
+            ],
+            "mode": "",
+            "name": "screen1",
+            "screen": -1,
+            "type": "screen"
+        }
+    ],
+    "launches": {
+        "launch1": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "CUE 1"
+        },
+        "launch2": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "CUE 2"
+        },
+        "launch3": {
+            "assigned": true,
+            "color": "#ff9900",
+            "title": "LOOP"
+        },
+        "launch4": {
+            "assigned": true,
+            "color": "#ee364e",
+            "title": "STOP"
+        }
+    },
+    "metronome": {
+        "bpm": 60,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "cuePlayerDetails": {
+                "launch1": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 1.0434782608695652,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 1.0434782608695652,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 2.0434782608695654,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch3": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 0.9908256880733946,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 0.9908256880733946,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1.9908256880733946,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "aplay1/media1",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                }
+            },
+            "linked": true,
+            "title": "Ambient"
+        },
+        {
+            "cuePlayerDetails": {
+                "launch1": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 5.021739130434782,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 5.021739130434782,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 5.956521739130435,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 5.956521739130435,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 6.956521739130435,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 4.021739130434782,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 4.021739130434782,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 5.021739130434782,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 5.021739130434782,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 8.043478260869565,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 8.043478260869565,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 8.978260869565217,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 8.978260869565217,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 9.978260869565217,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "aplay1/media5",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                }
+            },
+            "linked": true,
+            "source": "",
+            "title": "Boom"
+        },
+        {
+            "cuePlayerDetails": {
+                "launch1": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 1,
+                            "type": 0,
+                            "value": 100
+                        }
+                    ]
+                },
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 2.9565217391304346,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 4.456521739130435,
+                            "type": 1,
+                            "value": 84
+                        },
+                        {
+                            "time": 6.956521739130435,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 8.956521739130435,
+                            "type": 1,
+                            "value": 54.400000000000006
+                        },
+                        {
+                            "time": 15.020689655172413,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 16.02068965517241,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "aplay1/media3",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                }
+            },
+            "linked": true,
+            "title": "Boom Volume"
+        },
+        {
+            "cuePlayerDetails": {
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 0.9782608695652174,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 0.9782608695652174,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1.5137614678899083,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1.5137614678899083,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 2.4720816197405884,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 2.4720816197405884,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 2.9724770642201834,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 2.9724770642201834,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 3.9908256880733943,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 3.9908256880733943,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 6.018664979436887,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "aplay1/media6",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                }
+            },
+            "linked": true,
+            "source": "",
+            "title": "Go Go Go"
+        },
+        {
+            "cuePlayerDetails": {
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 0.4954128440366973,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 1.4862385321100917,
+                            "type": 0,
+                            "value": 58.80000000000001
+                        },
+                        {
+                            "time": 6.036697247706422,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "aplay1/media2",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                }
+            },
+            "linked": true,
+            "source": "",
+            "title": "Go Go Go Volume"
+        },
+        {
+            "cuePlayerDetails": {
+                "launch4": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 0.5229357798165137,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 0.5229357798165137,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "aplay1/media4",
+            "launchDetails": {
+                "launch3": {
+                },
+                "launch4": {
+                }
+            },
+            "linked": true,
+            "title": "STOP ALL"
+        },
+        {
+            "cuePlayerDetails": {
+                "launch1": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1.3478260869565217,
+                            "type": 1,
+                            "value": 50.8
+                        },
+                        {
+                            "time": 8.956521739130435,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 9.956521739130435,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 9.027522935779816,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 10.513761467889909,
+                            "type": 1,
+                            "value": 20.799999999999997
+                        },
+                        {
+                            "time": 14.972477064220184,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch3": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 2.532110091743119,
+                            "type": 1,
+                            "value": 45.199999999999996
+                        },
+                        {
+                            "time": 14.972477064220184,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch4": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "screen1/light1",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                }
+            },
+            "linked": true,
+            "title": "Red"
+        },
+        {
+            "cuePlayerDetails": {
+                "launch1": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0.44036697247706424,
+                            "type": 1,
+                            "value": 80
+                        },
+                        {
+                            "time": 1.4862385321100917,
+                            "type": 1,
+                            "value": 14.400000000000002
+                        },
+                        {
+                            "time": 1.761467889908257,
+                            "type": 1,
+                            "value": 38
+                        },
+                        {
+                            "time": 3.0275229357798166,
+                            "type": 1,
+                            "value": 14.000000000000002
+                        },
+                        {
+                            "time": 3.385321100917431,
+                            "type": 1,
+                            "value": 27.6
+                        },
+                        {
+                            "time": 6.065217391304348,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch3": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch4": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "screen1/light2",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                }
+            },
+            "linked": true,
+            "title": "Green"
+        },
+        {
+            "cuePlayerDetails": {
+                "launch1": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0.45652173913043476,
+                            "type": 1,
+                            "value": 100
+                        },
+                        {
+                            "time": 1.5412844036697249,
+                            "type": 1,
+                            "value": 52.400000000000006
+                        },
+                        {
+                            "time": 1.9783296425181904,
+                            "type": 1,
+                            "value": 74
+                        },
+                        {
+                            "time": 3.0275229357798166,
+                            "type": 1,
+                            "value": 40.400000000000006
+                        },
+                        {
+                            "time": 3.3819993672888327,
+                            "type": 1,
+                            "value": 55.2
+                        },
+                        {
+                            "time": 5.064220183486238,
+                            "type": 0,
+                            "value": 19.999999999999996
+                        },
+                        {
+                            "time": 8.917431192660551,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch3": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch4": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "screen1/light3",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                }
+            },
+            "linked": true,
+            "title": "Blue"
+        },
+        {
+            "cuePlayerDetails": {
+                "launch1": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 4.8478260869565215,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 5.3478260869565215,
+                            "type": 1,
+                            "value": 100
+                        },
+                        {
+                            "time": 7.913043478260869,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 10,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 3.9347826086956523,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 4.521739130434782,
+                            "type": 1,
+                            "value": 100
+                        },
+                        {
+                            "time": 6.782608695652174,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 7.869565217391305,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 8.630434782608695,
+                            "type": 1,
+                            "value": 40.400000000000006
+                        },
+                        {
+                            "time": 12.021739130434783,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 14.021739130434783,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch3": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch4": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "screen1/light4",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                },
+                "launch4": {
+                }
+            },
+            "linked": true,
+            "title": "White"
+        }
+    ]
+}
