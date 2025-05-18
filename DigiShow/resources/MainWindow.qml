@@ -543,7 +543,10 @@ ApplicationWindow {
                 icon.source: "qrc:///images/icon_stop_white.png"
                 colorNormal: Material.accent
                 visible: app.isRunning
-                onClicked: app.stop()
+                onClicked: {
+                    app.stop()
+                    if (cueManager.isActivated()) cueManager.stopAllCues()
+                }
             }
 
             CButton {

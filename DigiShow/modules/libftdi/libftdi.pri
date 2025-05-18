@@ -16,7 +16,12 @@ DEFINES += HAVE_LIBUSB_1_0
 
 macx {
     LIBS += -framework IOKit -framework CoreFoundation
-    LIBS += -L$$PWD/libusb/mac -lusb-1.0
+
+    contains(QT_ARCH, arm64) {
+        LIBS += -L$$PWD/libusb/mac-arm64 -lusb-1.0
+    } else {
+        LIBS += -L$$PWD/libusb/mac-x64 -lusb-1.0
+    }
 }
 
 win32 {

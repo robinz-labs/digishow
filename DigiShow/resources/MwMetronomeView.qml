@@ -131,7 +131,7 @@ Item {
                 anchors.left: buttonTap.right
                 anchors.leftMargin: 20
                 anchors.right: parent.right
-                anchors.rightMargin: 207
+                anchors.rightMargin: 217
                 color: "transparent"
                 border.color: "#383838"
                 border.width: 1
@@ -206,7 +206,7 @@ Item {
             CSpinBox {
                 id: spinQuantum
 
-                width: 65
+                width: 75
                 anchors.verticalCenter: textMetronome.verticalCenter
                 anchors.left: rectBeats.right
                 anchors.leftMargin: 5

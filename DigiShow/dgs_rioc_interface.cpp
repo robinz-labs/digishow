@@ -208,7 +208,7 @@ void DgsRiocInterface::onStartingTimeout()
     if  (m_startedUnitCount == 0) {
         emit errorDetected(
                     1,
-                    tr("DigiShow doesn't seem to work with your Arduino yet, \r\nmake sure the RIOC sketch is uploaded to the Arduino."));
+                    tr("DigiShow doesn't seem to work with your Arduino yet, \r\nmake sure the DigiShow RIOC sketch is uploaded to the Arduino."));
     }
 }
 

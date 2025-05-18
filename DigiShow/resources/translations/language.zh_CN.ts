@@ -254,23 +254,23 @@
 <context>
     <name>DgsOscInterface</name>
     <message>
-        <location filename="../../dgs_osc_interface.cpp" line="460"/>
-        <location filename="../../dgs_osc_interface.cpp" line="475"/>
+        <location filename="../../dgs_osc_interface.cpp" line="463"/>
+        <location filename="../../dgs_osc_interface.cpp" line="478"/>
         <source>OSC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_osc_interface.cpp" line="483"/>
+        <location filename="../../dgs_osc_interface.cpp" line="486"/>
         <source>Integer</source>
         <translation>整数</translation>
     </message>
     <message>
-        <location filename="../../dgs_osc_interface.cpp" line="490"/>
+        <location filename="../../dgs_osc_interface.cpp" line="493"/>
         <source>Float</source>
         <translation>浮点数</translation>
     </message>
     <message>
-        <location filename="../../dgs_osc_interface.cpp" line="496"/>
+        <location filename="../../dgs_osc_interface.cpp" line="499"/>
         <source>Bool</source>
         <translation>布尔值</translation>
     </message>
@@ -313,9 +313,9 @@
     <message>
         <location filename="../../dgs_rioc_interface.cpp" line="211"/>
         <source>DigiShow doesn&apos;t seem to work with your Arduino yet, <byte value="xd"/>
-make sure the RIOC sketch is uploaded to the Arduino.</source>
+make sure the DigiShow RIOC sketch is uploaded to the Arduino.</source>
         <translation>DigiShow 似乎还不能与你的 Arduino 配合使用，
-请确保 RIOC 程序已写入到 Arduino 上。</translation>
+请确保 DigiShow RIOC 程序已写入到 Arduino 上。</translation>
     </message>
     <message>
         <location filename="../../dgs_rioc_interface.cpp" line="610"/>
@@ -428,7 +428,7 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <source>%1 Error %2 :<byte value="xd"/>
 <byte value="xd"/>
 %3</source>
-        <translation>%1 错误 %2 :
+        <translation>%1 故障 %2 :
 
 %3</translation>
     </message>
@@ -888,11 +888,11 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="332"/>
-        <location filename="../MainWindow.qml" line="880"/>
-        <location filename="../MainWindow.qml" line="893"/>
-        <location filename="../MainWindow.qml" line="939"/>
-        <location filename="../MainWindow.qml" line="960"/>
-        <location filename="../MainWindow.qml" line="972"/>
+        <location filename="../MainWindow.qml" line="883"/>
+        <location filename="../MainWindow.qml" line="896"/>
+        <location filename="../MainWindow.qml" line="942"/>
+        <location filename="../MainWindow.qml" line="963"/>
+        <location filename="../MainWindow.qml" line="975"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
@@ -903,11 +903,11 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="310"/>
-        <location filename="../MainWindow.qml" line="880"/>
-        <location filename="../MainWindow.qml" line="893"/>
-        <location filename="../MainWindow.qml" line="939"/>
-        <location filename="../MainWindow.qml" line="960"/>
-        <location filename="../MainWindow.qml" line="972"/>
+        <location filename="../MainWindow.qml" line="883"/>
+        <location filename="../MainWindow.qml" line="896"/>
+        <location filename="../MainWindow.qml" line="942"/>
+        <location filename="../MainWindow.qml" line="963"/>
+        <location filename="../MainWindow.qml" line="975"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -932,12 +932,12 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation>打开 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="959"/>
+        <location filename="../MainWindow.qml" line="962"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>在关闭应用程序前是否需要将所有数据保存至文件 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="879"/>
+        <location filename="../MainWindow.qml" line="882"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>在创建新项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
@@ -957,15 +957,15 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation>http://digishow.cn</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="880"/>
-        <location filename="../MainWindow.qml" line="893"/>
-        <location filename="../MainWindow.qml" line="939"/>
-        <location filename="../MainWindow.qml" line="960"/>
+        <location filename="../MainWindow.qml" line="883"/>
+        <location filename="../MainWindow.qml" line="896"/>
+        <location filename="../MainWindow.qml" line="942"/>
+        <location filename="../MainWindow.qml" line="963"/>
         <source>Don&apos;t Save</source>
         <translation>不保存</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="892"/>
+        <location filename="../MainWindow.qml" line="895"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>在打开另一个项目前是否需要将所有数据保存至文件 ?</translation>
     </message>
@@ -1060,114 +1060,114 @@ make sure the RIOC sketch is uploaded to the Arduino.</source>
         <translation>节拍生成器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="633"/>
+        <location filename="../MainWindow.qml" line="636"/>
         <source>Interface Manager</source>
         <translation>接口管理器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="671"/>
+        <location filename="../MainWindow.qml" line="674"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="675"/>
+        <location filename="../MainWindow.qml" line="678"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="679"/>
+        <location filename="../MainWindow.qml" line="682"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="683"/>
+        <location filename="../MainWindow.qml" line="686"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="687"/>
+        <location filename="../MainWindow.qml" line="690"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="691"/>
+        <location filename="../MainWindow.qml" line="694"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="695"/>
+        <location filename="../MainWindow.qml" line="698"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="699"/>
+        <location filename="../MainWindow.qml" line="702"/>
         <source>Audio In ...</source>
         <translation>音频输入 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="707"/>
+        <location filename="../MainWindow.qml" line="710"/>
         <source>Messenger ...</source>
         <translation>消息收发器 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="711"/>
+        <location filename="../MainWindow.qml" line="714"/>
         <source>Virtual Pipe ...</source>
         <translation>虚拟管道 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="716"/>
+        <location filename="../MainWindow.qml" line="719"/>
         <source>More</source>
         <translation>更多</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="720"/>
+        <location filename="../MainWindow.qml" line="723"/>
         <source>Audio Player ...</source>
         <translation>音频播放器 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="724"/>
+        <location filename="../MainWindow.qml" line="727"/>
         <source>MIDI Player ...</source>
         <translation>MIDI 播放器 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="816"/>
+        <location filename="../MainWindow.qml" line="819"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="819"/>
+        <location filename="../MainWindow.qml" line="822"/>
         <source>JSON files</source>
         <translation>JSON 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="937"/>
+        <location filename="../MainWindow.qml" line="940"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>在打开文件 “ %1 ” 前是否需要保存当前数据 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="971"/>
+        <location filename="../MainWindow.qml" line="974"/>
         <source>The attached script file will be saved in the same folder as the DigiShow project file, do you want to save the project and create the script file now ?</source>
         <translation>附加的脚本文件将保存在与 DigiShow 工程文件相同的文件夹中，你要立即保存工程并创建脚本文件吗？</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="703"/>
+        <location filename="../MainWindow.qml" line="706"/>
         <source>Screen ...</source>
         <translation>屏幕 ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="819"/>
-        <location filename="../MainWindow.qml" line="836"/>
+        <location filename="../MainWindow.qml" line="822"/>
+        <location filename="../MainWindow.qml" line="839"/>
         <source>DigiShow files</source>
         <translation>DigiShow 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="819"/>
-        <location filename="../MainWindow.qml" line="836"/>
+        <location filename="../MainWindow.qml" line="822"/>
+        <location filename="../MainWindow.qml" line="839"/>
         <source>All files</source>
         <translation>所有文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="833"/>
+        <location filename="../MainWindow.qml" line="836"/>
         <source>Save File</source>
         <translation>保存文件</translation>
     </message>
@@ -3715,8 +3715,7 @@ Connection: %2</source>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="648"/>
         <source>You need to save the preset first, do you want to continue ?</source>
-        <translatorcomment>需要首选保存预设，是否继续 ?</translatorcomment>
-        <translation></translation>
+        <translation>需要先保存预设，是否继续 ?</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="649"/>

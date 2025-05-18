@@ -310,17 +310,20 @@ void DgsOscInterface::processOscMessageIn(tosc_message *osc)
                 data.aRange = m_endpointInfoList[n].range;
                 data.aValue = qBound(0, val.toInt(), data.aRange);
             }
+            break;
         case ENDPOINT_OSC_FLOAT:
             if (!val.isNull() && val.type() == QVariant::Double) {
                 data.signal = DATA_SIGNAL_ANALOG;
                 data.aRange = 1000000;
                 data.aValue = int(qBound(0.0, val.toDouble(), 1.0) * data.aRange);
             }
+            break;
         case ENDPOINT_OSC_BOOL:
             if (!val.isNull() && val.type() == QVariant::Bool) {
                 data.signal = DATA_SIGNAL_BINARY;
                 data.bValue = val.toBool();
             }
+            break;
         }
 
         // emit signal received event
