@@ -1268,49 +1268,49 @@ either express or implied.</source>
 <context>
     <name>MwCuePlayerDialog</name>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="128"/>
+        <location filename="../MwCuePlayerDialog.qml" line="140"/>
         <source>Reset</source>
         <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="133"/>
+        <location filename="../MwCuePlayerDialog.qml" line="146"/>
         <source>Undo</source>
         <translation>元に戻す</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="137"/>
+        <location filename="../MwCuePlayerDialog.qml" line="151"/>
         <source>Copy</source>
         <translation>コビー</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="141"/>
+        <location filename="../MwCuePlayerDialog.qml" line="156"/>
         <source>Paste</source>
         <translation>貼り付け</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="146"/>
+        <location filename="../MwCuePlayerDialog.qml" line="161"/>
         <source>Delete ...</source>
         <translation>削除 ...</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="150"/>
+        <location filename="../MwCuePlayerDialog.qml" line="165"/>
         <source>Do you want to delete this playback curve from the cue player ?</source>
         <translation>この再生カーブをCUEプレーヤーから削除しますか?</translation>
     </message>
     <message>
         <location filename="../MwCuePlayerDialog.qml" line="63"/>
-        <location filename="../MwCuePlayerDialog.qml" line="151"/>
+        <location filename="../MwCuePlayerDialog.qml" line="166"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="151"/>
+        <location filename="../MwCuePlayerDialog.qml" line="166"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
         <location filename="../MwCuePlayerDialog.qml" line="63"/>
-        <location filename="../MwCuePlayerDialog.qml" line="165"/>
+        <location filename="../MwCuePlayerDialog.qml" line="196"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -1325,52 +1325,52 @@ either express or implied.</source>
         <translation>保存しない</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="191"/>
+        <location filename="../MwCuePlayerDialog.qml" line="225"/>
         <source>Cue player attached to: </source>
         <translation>CUEプレーヤーのアタッチ先: </translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="213"/>
+        <location filename="../MwCuePlayerDialog.qml" line="247"/>
         <source>Current track output to: </source>
         <translation>現在のトラック出力先: </translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="223"/>
+        <location filename="../MwCuePlayerDialog.qml" line="257"/>
         <source>Signal Link</source>
         <translation>信号リンク</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="240"/>
+        <location filename="../MwCuePlayerDialog.qml" line="274"/>
         <source>Cue Options ...</source>
         <translation>CUE 設定 ...</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="279"/>
+        <location filename="../MwCuePlayerDialog.qml" line="313"/>
         <source>Cue Playback Options</source>
         <translation>CUE 再生設定</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="307"/>
+        <location filename="../MwCuePlayerDialog.qml" line="341"/>
         <source>Play Alone</source>
         <translation>単独に再生</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="321"/>
+        <location filename="../MwCuePlayerDialog.qml" line="355"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="334"/>
+        <location filename="../MwCuePlayerDialog.qml" line="368"/>
         <source>Duration</source>
         <translation>デュレーション</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="358"/>
+        <location filename="../MwCuePlayerDialog.qml" line="392"/>
         <source>Repeat</source>
         <translation>リピート</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="374"/>
+        <location filename="../MwCuePlayerDialog.qml" line="408"/>
         <source>Defaults</source>
         <translation>デフォルト</translation>
     </message>

@@ -157,9 +157,8 @@
         <file>SpImageView.qml</file>
         <file>SpWebView.qml</file>
         <file>SpAnimationFadeIn.qml</file>
+        <file>TimelineEditor.qml</file>
         <file>DigishowScriptable.qml</file>
         <file>DigishowScriptableUserTemplate.txt</file>
-        <file>html/timeline.html</file>
-        <file>html/timeline.js.txt</file>
     </qresource>
 </RCC>

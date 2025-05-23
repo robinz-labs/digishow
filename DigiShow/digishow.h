@@ -167,6 +167,14 @@
   ! improved code learning from serial messenger
   ! improved dmx/arntnet pixel mapping
 
+  v1.7.1
+  beta release
+
+  v1.7.2
+  beta release
+
+  ! rewrote the timeline editor UI using qml, deprecated the html version
+
 */
 
 #ifndef DIGISHOW_H

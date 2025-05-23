@@ -15,7 +15,7 @@ Dialog {
     property int launchIndex: -1
     property int slotIndex: -1
     property alias preferredColor: timelineView.lineColor
-    property alias preferredRange: timelineView.valueRange
+    property alias preferredRange: timelineView.actualValueRangeUpper
 
     width: parent.width - 100
     height: 440
@@ -62,7 +62,7 @@ Dialog {
             var buttonIndex = messageBox.showAndWait(qsTr("Do you want to save changes to the cue player before closing ?"),
                                                      qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
             switch (buttonIndex) {
-            case 1: save(); common.setTimeout(function(){ close() }, 500); break
+            case 1: save(); break
             case 2: close(); break
             }
         }
@@ -81,7 +81,12 @@ Dialog {
         icon.source: "qrc:///images/icon_play_white.png"
         colorNormal: timelineView.isPlaying ? preferredColor : "transparent"
 
-        onClicked: timelineView.play()
+        onClicked: {
+            if (timelineView.isPlaying)
+                timelineView.stop()
+            else
+                timelineView.play()
+        }
     }
 
     CButton {
@@ -97,7 +102,14 @@ Dialog {
         icon.source: "qrc:///images/icon_stop_white.png"
         colorNormal: "transparent"
 
-        onClicked: timelineView.stop()
+        onClicked: {
+            if (timelineView.isPlaying)
+                timelineView.stop()
+            else {
+                timelineView.viewportPosition = 0
+                timelineView.seek(0)
+            }
+        }
     }
 
     CButton {
@@ -130,14 +142,17 @@ Dialog {
             }
             MwMenuSeparator {}
             MenuItem {
+                id: menuItemUndo
                 text: qsTr("Undo")
                 onTriggered: undo()
             }
             MenuItem {
+                id: menuItemCopy
                 text: qsTr("Copy")
                 onTriggered: copy()
             }
             MenuItem {
+                id: menuItemPaste
                 text: qsTr("Paste")
                 onTriggered: paste()
             }
@@ -152,6 +167,22 @@ Dialog {
                 }
             }
         }
+        Shortcut {
+            sequences: [ StandardKey.Undo ]
+            enabled: dialog.visible
+            onActivated: menuItemUndo.triggered()
+        }
+        Shortcut {
+            sequences: [ StandardKey.Copy ]
+            enabled: dialog.visible
+            onActivated: menuItemCopy.triggered()
+        }
+        Shortcut {
+            sequences: [ StandardKey.Paste ]
+            enabled: dialog.visible
+            onActivated: menuItemPaste.triggered()
+        }
+
     }
 
     CButton {
@@ -164,7 +195,10 @@ Dialog {
         anchors.rightMargin: 10
         label.text: qsTr("Save")
         label.font.pixelSize: 14
-        onClicked: save()
+        onClicked: {
+            save()
+            timelineView.blinking() // indicating that the data has been saved
+        }
     }
 
     Rectangle {
@@ -387,15 +421,12 @@ Dialog {
         }
     }
 
-    WebEngineView {
+    TimelineEditor {
 
         id: timelineView
 
-        property string lineColor: "#4CAF50"
-        property int  valueRange: 100
-        property real playheadTime: 0
-        property real playheadValue: 0
-        property bool isPlaying: false
+        property real playheadValue: calculateValueAt(playheadTime)
+        property real playheadActualValue: calculateActualValue(playheadValue)
         property bool isModified: false
 
         height: 300
@@ -403,103 +434,30 @@ Dialog {
         anchors.right: parent.right
         anchors.bottom: rectCueOptions.top
         anchors.bottomMargin: 10
-
-        url: "qrc:///html/timeline.html"
-
-        onLoadingChanged: function(loadRequest) {
-            if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus) {
-
-               // Add event listener
-               timelineView.runJavaScript(`
-                    timeline.addEventListener('playheadTimeChange', function(data) {
-                        console.log("event.playheadTimeChange:",
-                          data.time.toFixed(2),
-                          data.value.toFixed(2),
-                          data.isPlaying);
-                    });
-                `)
-
-                timelineView.runJavaScript(`
-                     timeline.addEventListener('pointsChange', function(data) {
-                         console.log("event.pointsChange:");
-                     });
-                 `)
-
-            }
-        }
-
-        // Receive console output from WebView
-        onJavaScriptConsoleMessage: function(level, message, lineNumber, sourceId) {
-
-            // Split the message into parts
-            const parts = message.split(' ');
-
-            // Parse the message
-            if (level===0 && parts[0] === "event.playheadTimeChange:" && parts.length>3 ) {
-                timelineView.playheadTime = parseFloat(parts[1])
-                timelineView.playheadValue = parseFloat(parts[2])
-                timelineView.isPlaying = (parts[3] === "true")
-
-                if (timelineView.isPlaying) {
-                    let slot = app.slotAt(slotIndex)
-                    let range = slot.getEndpointOutRange()
-                    if (range === 0) range = 1
-                    slot.setEndpointOutValue(Math.round(timelineView.playheadValue/100*range))
-                }
-            } else if (level===0 && parts[0] === "event.pointsChange:" ) {
-                timelineView.isModified = true
-            }
-        }
+        backgroundColor: "#2d2d2d"
 
         onVisibleChanged: {
             if (!visible) timelineView.stop()
         }
 
-        onLineColorChanged: {
-            runJavaScript(`timeline.lineColor = '${lineColor}'; timeline.draw()`)
-        }
-
-        onValueRangeChanged: {
-            runJavaScript(`timeline.valueRange = [0,${valueRange}]`)
-        }
-
-        function blinking() {
-            let color = lineColor
-            let t = 0
-            for (let n=0 ; n<3 ; n++) {
-                common.setTimeout(function(){ lineColor = "#ffffff" }, 200*t); t++
-                common.setTimeout(function(){ lineColor = color     }, 200*t); t++
+        onPlayheadTimeChanged: {
+            if (timelineView.isPlaying) {
+                let slot = app.slotAt(slotIndex)
+                slot.setEndpointOutValue(playheadActualValue)
             }
         }
 
-        function reset() {
-            runJavaScript("timeline.reset()")
+        onHistoryChanged: {
+            if (historyStack.length > 0) timelineView.isModified = true
         }
 
-        function importData(data) {
-            runJavaScript(`timeline.importData(${JSON.stringify(data)})`)
+        function blinking() {
+            let t = 0
+            for (let n=0 ; n<3 ; n++) {
+                common.setTimeout(function(){ timelineView.backgroundColor = "#000000"; timelineView.paint() }, 200*t); t++
+                common.setTimeout(function(){ timelineView.backgroundColor = "#2d2d2d"; timelineView.paint() }, 200*t); t++
+            }
         }
-
-        function exportData(callback) {
-            runJavaScript("timeline.exportData()", function(data) { callback(data) })
-        }
-
-        function undo() {
-            runJavaScript("timeline.undo()")
-        }
-
-        function resetHistory() {
-            runJavaScript("timeline.resetHistory()")
-        }
-
-        function play() {
-            runJavaScript("if (!timeline.playhead.isPlaying) timeline.play(); else timeline.pause()")
-        }
-
-        function stop() {
-            runJavaScript("if (timeline.playhead.isPlaying) timeline.pause(); else { timeline.seek(0); timeline.viewportStart = 0 }")
-        }
-
     }
 
     Component.onCompleted: {
@@ -514,7 +472,7 @@ Dialog {
 
         // reset timeline view
         timelineView.reset()
-        timelineView.resetHistory()
+        timelineView.historyStack = []
 
         // load cue player options
         loadCuePlayerOptions()
@@ -528,33 +486,29 @@ Dialog {
         var cuePlayerData = cuePlayerDetails[launchName]
         if (cuePlayerData !== undefined) {
             timelineView.importData(cuePlayerData)
-            timelineView.resetHistory()
+            timelineView.historyStack = []
         }
 
         timelineView.isModified = false
     }
 
     function save() {
-        timelineView.exportData(function(data) {
+        var data = timelineView.exportData()
 
-            // save the timeline data
-            var cuePlayerDetails = app.slotAt(slotIndex).getSlotOptions()["cuePlayerDetails"]
-            if (cuePlayerDetails === undefined || cuePlayerDetails === null) cuePlayerDetails = ({})
+        // save the timeline data
+        var cuePlayerDetails = app.slotAt(slotIndex).getSlotOptions()["cuePlayerDetails"]
+        if (cuePlayerDetails === undefined || cuePlayerDetails === null) cuePlayerDetails = ({})
 
-            cuePlayerDetails[launchName] = data
-            app.slotAt(slotIndex).setSlotOption("cuePlayerDetails", cuePlayerDetails, true)
+        cuePlayerDetails[launchName] = data
+        app.slotAt(slotIndex).setSlotOption("cuePlayerDetails", cuePlayerDetails, true)
 
-            // save cue player options
-            saveCuePlayerOptions()
+        // save cue player options
+        saveCuePlayerOptions()
 
-            // update the slot list item display
-            updateCuePlayerAttachedToSlot(true)
-            window.isModified = true
-            timelineView.isModified = false
-
-            // the timeline blinking, indicating that the data has been saved
-            timelineView.blinking()
-        })
+        // update the slot list item display
+        updateCuePlayerAttachedToSlot(true)
+        window.isModified = true
+        timelineView.isModified = false
     }
 
     function reset() {
@@ -566,13 +520,13 @@ Dialog {
     }
 
     function copy() {
-        timelineView.exportData(function(data) {
-            utilities.copyJson(data, "application/vnd.digishow.cue.timeline")
-        })
+        var data = timelineView.exportData()
+        utilities.copyJson(data, "application/vnd.digishow.cue.timeline")
     }
 
     function paste() {
-        timelineView.importData(utilities.pasteJson("application/vnd.digishow.cue.timeline"))
+        var data = utilities.pasteJson("application/vnd.digishow.cue.timeline")
+        timelineView.importData(data)
     }
 
     function remove() {

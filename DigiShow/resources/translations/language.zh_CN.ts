@@ -954,7 +954,7 @@ make sure the DigiShow RIOC sketch is uploaded to the Arduino.</source>
     <message>
         <location filename="../MainWindow.qml" line="358"/>
         <source>https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md</source>
-        <translation>http://digishow.cn</translation>
+        <translation>http://cdn.digishow.cn</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="883"/>
@@ -1042,7 +1042,7 @@ make sure the DigiShow RIOC sketch is uploaded to the Arduino.</source>
     <message>
         <location filename="../MainWindow.qml" line="363"/>
         <source>https://github.com/robinz-labs/digishow/releases/latest</source>
-        <translation>http://digishow.cn/download.html</translation>
+        <translation>http://cdn.digishow.cn/download.html</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="368"/>
@@ -1271,49 +1271,49 @@ either express or implied.</source>
 <context>
     <name>MwCuePlayerDialog</name>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="128"/>
+        <location filename="../MwCuePlayerDialog.qml" line="140"/>
         <source>Reset</source>
         <translation>重置</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="133"/>
+        <location filename="../MwCuePlayerDialog.qml" line="146"/>
         <source>Undo</source>
         <translation>撤销</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="137"/>
+        <location filename="../MwCuePlayerDialog.qml" line="151"/>
         <source>Copy</source>
         <translation>拷贝</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="141"/>
+        <location filename="../MwCuePlayerDialog.qml" line="156"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="146"/>
+        <location filename="../MwCuePlayerDialog.qml" line="161"/>
         <source>Delete ...</source>
         <translation>删除 ...</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="150"/>
+        <location filename="../MwCuePlayerDialog.qml" line="165"/>
         <source>Do you want to delete this playback curve from the cue player ?</source>
         <translation>是否需要从 Cue 播放器中删除此播放曲线 ？</translation>
     </message>
     <message>
         <location filename="../MwCuePlayerDialog.qml" line="63"/>
-        <location filename="../MwCuePlayerDialog.qml" line="151"/>
+        <location filename="../MwCuePlayerDialog.qml" line="166"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="151"/>
+        <location filename="../MwCuePlayerDialog.qml" line="166"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
         <location filename="../MwCuePlayerDialog.qml" line="63"/>
-        <location filename="../MwCuePlayerDialog.qml" line="165"/>
+        <location filename="../MwCuePlayerDialog.qml" line="196"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -1328,52 +1328,52 @@ either express or implied.</source>
         <translation>不保存</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="191"/>
+        <location filename="../MwCuePlayerDialog.qml" line="225"/>
         <source>Cue player attached to: </source>
         <translation>将 Cue 播放器附加到: </translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="213"/>
+        <location filename="../MwCuePlayerDialog.qml" line="247"/>
         <source>Current track output to: </source>
         <translation>将当前轨道输出到: </translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="223"/>
+        <location filename="../MwCuePlayerDialog.qml" line="257"/>
         <source>Signal Link</source>
         <translation>信号链接</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="240"/>
+        <location filename="../MwCuePlayerDialog.qml" line="274"/>
         <source>Cue Options ...</source>
         <translation>Cue 选项 ...</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="279"/>
+        <location filename="../MwCuePlayerDialog.qml" line="313"/>
         <source>Cue Playback Options</source>
         <translation>Cue 播放选项</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="307"/>
+        <location filename="../MwCuePlayerDialog.qml" line="341"/>
         <source>Play Alone</source>
         <translation>单独播放</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="321"/>
+        <location filename="../MwCuePlayerDialog.qml" line="355"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="334"/>
+        <location filename="../MwCuePlayerDialog.qml" line="368"/>
         <source>Duration</source>
         <translation>时长</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="358"/>
+        <location filename="../MwCuePlayerDialog.qml" line="392"/>
         <source>Repeat</source>
         <translation>循环播放</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="374"/>
+        <location filename="../MwCuePlayerDialog.qml" line="408"/>
         <source>Defaults</source>
         <translation>恢复默认</translation>
     </message>
