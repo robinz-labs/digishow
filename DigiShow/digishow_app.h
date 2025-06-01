@@ -97,6 +97,7 @@ public:
     Q_INVOKABLE QList<DigishowSlot*> slotList() { return m_slots; }
     Q_INVOKABLE int getSlotIndex(DigishowSlot *slot);
 
+    // functions for preset launcher and cue player
     Q_INVOKABLE bool updateLaunch(const QString &name, const QVariantList &slotLaunchOptions);
     Q_INVOKABLE bool deleteLaunch(const QString &name);
     Q_INVOKABLE bool startLaunch(const QString &name);
@@ -106,15 +107,19 @@ public:
 
     Q_INVOKABLE QVariantMap getAllLaunchOptions() { return m_allLaunchOptions; }
     Q_INVOKABLE QVariantMap getLaunchOptions(const QString &name);
-    Q_INVOKABLE bool setLaunchOption(const QString &name, const QString &optKey, const QVariant &optValue);
     Q_INVOKABLE QVariantList getSlotLaunchDetails(const QString &name);
     Q_INVOKABLE QVariantList getSlotLaunchOptions(const QString &name);
+    Q_INVOKABLE bool setLaunchOption(const QString &name, const QString &optKey, const QVariant &optValue);
+    Q_INVOKABLE bool setLaunchOptions(const QString &name, const QVariantMap &options);
+    Q_INVOKABLE bool setSlotLaunchDetails(const QString &name, const QVariantList &details);
 
     Q_INVOKABLE QVariantMap getAllCuePlayerOptions() { return m_allCuePlayerOptions; }
     Q_INVOKABLE QVariantMap getCuePlayerOptions(const QString &name);
-    Q_INVOKABLE bool setCuePlayerOption(const QString &name, const QString &optKey, const QVariant &optValue);
     Q_INVOKABLE QVariantList getSlotCuePlayerDetails(const QString &name);
     Q_INVOKABLE QVariantList getSlotCuePlayerOptions(const QString &name);
+    Q_INVOKABLE bool setCuePlayerOption(const QString &name, const QString &optKey, const QVariant &optValue);
+    Q_INVOKABLE bool setCuePlayerOptions(const QString &name, const QVariantMap &options);
+    Q_INVOKABLE bool setSlotCuePlayerDetails(const QString &name, const QVariantList &details);
 
     Q_INVOKABLE qint64 elapsed() { return m_elapsedTimer->elapsed(); }
 

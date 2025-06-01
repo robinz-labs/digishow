@@ -172,6 +172,12 @@ bool AppUtilities::saveJsonToFile(const QVariantMap & data, const QString & file
     return (saveStringToFile(jsonDoc.toJson(), filepath));
 }
 
+bool AppUtilities::clipboardExists(const QString & mimeType)
+{
+    const QMimeData *mimeData = QGuiApplication::clipboard()->mimeData();
+    return mimeData->hasFormat(mimeType);
+}
+
 QVariantMap AppUtilities::pasteJson(const QString & mimeType)
 {
     const QMimeData *mimeData = QGuiApplication::clipboard()->mimeData();
@@ -620,6 +626,15 @@ void AppUtilities::setMacWindowWithoutTitlebar(QWindow *window)
 {
 #ifdef Q_OS_MAC
     MacUtilities::setWindowWithoutTitlebar(window);
+#else
+    Q_UNUSED(window)
+#endif
+}
+
+void AppUtilities::setMacWindowDarkTitlebar(QWindow *window)
+{
+#ifdef Q_OS_MAC
+    MacUtilities::setWindowDarkTitlebar(window);
 #else
     Q_UNUSED(window)
 #endif

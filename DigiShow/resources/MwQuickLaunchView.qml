@@ -204,21 +204,31 @@ Item {
                         enabled: model.assigned
                         onTriggered: {
                             menu.close()
+                            if (messageBox.showAndWait(
+                                qsTr("Do you want to delete the preset ?"),
+                                qsTr("Delete"), qsTr("Cancel")) !== 1) return
+
+                            cueManager.stopCue(model.name)
+                            app.deleteCuePlayer(model.name)
+                            app.deleteLaunch(model.name)
+
                             model.assigned = false
                             model.title = defaultItemTitle(model.index)
                             model.color = defaultItemColor(model.index)
-                            app.deleteLaunch(model.name)
-                            window.isModified = true
 
-                            if (app.cuePlayerExists(model.name)) {
-                                cueManager.stopCue(model.name)
-                                if (messageBox.showAndWait(
-                                    qsTr("Do you want to delete all cue player data attached to the preset ?"),
-                                    qsTr("Delete"), qsTr("Cancel")) === 1) {
-                                    app.deleteCuePlayer(model.name)
-                                }
-                            }
+                            window.isModified = true
+                            undoManager.archive()
                         }
+                    }
+                    MenuSeparator {}
+                    CMenuItem {
+                        text: qsTr("Copy")
+                        onTriggered: copyLaunch(model.name)
+                    }
+                    CMenuItem {
+                        id: menuItemPaste
+                        text: qsTr("Paste")
+                        onTriggered: pasteLaunch(model.name)
                     }
                     MenuSeparator {}
                     CMenuItem {
@@ -248,6 +258,7 @@ Item {
                 function showContextMenu(mouseX, mouseY) {
                     gridView.currentIndex = model.index
                     menuItemStop.enabled = cueManager.isCuePlaying(model.name)
+                    menuItemPaste.enabled = utilities.clipboardExists("application/vnd.digishow.launch") && !model.assigned
                     menu.x = mouseX
                     menu.y = mouseY
                     menu.open()
@@ -390,7 +401,7 @@ Item {
             id: popupOptions
 
             width: 450
-            height: 235
+            height: 240
             anchors.centerIn: parent
             modal: false
             focus: true
@@ -574,13 +585,13 @@ Item {
 
                         property bool isFirstTime: true
 
-                        width: 120
-                        height: 28
+                        width: 130
+                        height: 32
                         anchors.top: parent.top
                         anchors.right: buttonCancel.left
-                        anchors.rightMargin: 10
+                        anchors.rightMargin: 15
                         label.font.bold: true
-                        label.font.pixelSize: 11
+                        label.font.pixelSize: 12
                         label.text: qsTr("Save Preset")
                         colorNormal: Material.accent
                         box.radius: 3
@@ -590,7 +601,7 @@ Item {
                             save()
 
                             if (isFirstTime)
-                                messageBox.show(qsTr("All checked items in the signal link table have been saved in the preset. You can activate them anytime by tapping the preset button."), qsTr("OK"))
+                                messageBox.show("{left}" + qsTr("This saved preset contains:\r\n• The status of the checked items in the signal link table.\r\n• The playback curves of the signal output in the cue player.\r\n\r\nPlease activate them at any time by tapping on the preset button."), qsTr("OK"))
                             isFirstTime = false
                         }
                     }
@@ -599,12 +610,12 @@ Item {
                         id: buttonCancel
 
                         width: 80
-                        height: 28
+                        height: 32
                         anchors.top: parent.top
                         anchors.right: parent.right
                         anchors.rightMargin: 10
                         label.font.bold: true
-                        label.font.pixelSize: 11
+                        label.font.pixelSize: 12
                         label.text: qsTr("Cancel")
                         box.radius: 3
 
@@ -631,41 +642,6 @@ Item {
                 item.playing = cueManager.isCuePlaying(item.name)
             }
         })
-    }
-
-    function open() { height = 300 }
-
-    function close() {
-        if (popupOptions.visible) popupOptions.close()
-        height = 0
-    }
-
-    function confirmEditing() {
-
-        if (!quickLaunchView.isEditing) return true
-
-        if (messageBox.showAndWait(
-             qsTr("You need to save the preset first, do you want to continue ?"),
-             qsTr("Continue"), qsTr("Cancel")) === 1) {
-
-            save()
-            return true
-        }
-
-        return false
-    }
-
-    function save() {
-
-        popupOptions.close()
-
-        var model = dataModel.get(gridView.currentIndex)
-        model.assigned = true
-        app.updateLaunch(model.name, slotListView.getSlotLaunchOptions())
-        app.setLaunchOption(model.name, "title", model.title)
-        app.setLaunchOption(model.name, "color", model.color)
-
-        window.isModified = true
     }
 
     function refresh() {
@@ -715,6 +691,85 @@ Item {
 
     function defaultItemTitle(index) {
         return qsTr("Preset") + " " + (index + 1)
+    }
+
+    function open() { height = 300 }
+
+    function close() {
+        if (popupOptions.visible) popupOptions.close()
+        height = 0
+    }
+
+    function confirmEditing() {
+
+        // return values:
+        // true -  the preset editing was finished, and go ahead
+        // false - the user doesn't want to finish the editing
+
+        if (!quickLaunchView.isEditing) return true
+
+        if (messageBox.showAndWait(
+             qsTr("You need to save the preset first, do you want to continue ?"),
+             qsTr("Continue"), qsTr("Cancel")) === 1) {
+
+            save()
+            return true
+        }
+
+        return false
+    }
+
+    function save() {
+
+        popupOptions.close()
+
+        var model = dataModel.get(gridView.currentIndex)
+        model.assigned = true
+        app.updateLaunch(model.name, slotListView.getSlotLaunchOptions())
+        app.setLaunchOption(model.name, "title", model.title)
+        app.setLaunchOption(model.name, "color", model.color)
+
+        window.isModified = true
+        undoManager.archive()
+    }
+
+    function copyLaunch(name) {
+        var data = {
+            launchOptions: app.getLaunchOptions(name),
+            launchDetails: app.getSlotLaunchDetails(name),
+            cuePlayerOptions: app.getCuePlayerOptions(name),
+            cuePlayerDetails: app.getSlotCuePlayerDetails(name)
+        }
+        utilities.copyJson(data, "application/vnd.digishow.launch")
+    }
+
+    function pasteLaunch(name) {
+        var data = utilities.pasteJson("application/vnd.digishow.launch")
+
+        if (!data) return
+        var launchOptions = data.launchOptions
+        var launchDetails = data.launchDetails
+        var cuePlayerOptions = data.cuePlayerOptions
+        var cuePlayerDetails = data.cuePlayerDetails
+
+        // update the launch options and details
+        if (launchOptions) app.setLaunchOptions(name, launchOptions)
+        if (launchDetails) app.setSlotLaunchDetails(name, launchDetails)
+        if (cuePlayerOptions) app.setCuePlayerOptions(name, cuePlayerOptions)
+        if (cuePlayerDetails) app.setSlotCuePlayerDetails(name, cuePlayerDetails)
+
+        // look for the same name in the data model
+        for (var i=0 ; i<dataModel.count ; i++) {
+            var model = dataModel.get(i)
+            if (model.name === name) {
+                model.title = launchOptions.title
+                model.color = launchOptions.color
+                model.assigned = true
+            }
+        }
+        
+        window.isModified = true
+        undoManager.archive()
     }
 
 }

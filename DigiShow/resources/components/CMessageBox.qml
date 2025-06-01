@@ -97,7 +97,7 @@ Popup {
 
             CButton {
                 id: button1
-                width: 150
+                width: 170
                 height: 42
                 label.text: "Button 1"
                 onClicked: {
@@ -109,7 +109,7 @@ Popup {
 
             CButton {
                 id: button2
-                width: 150
+                width: 170
                 height: 42
                 label.text: "Button 2"
                 onClicked: {
@@ -121,7 +121,7 @@ Popup {
 
             CButton {
                 id: button3
-                width: 150
+                width: 170
                 height: 42
                 label.text: "Button 3"
                 onClicked: {
@@ -200,7 +200,14 @@ Popup {
         }
 
         qrCode.data = qrcode
-        labelMessage.text = message
+
+        if (message.startsWith("{left}")) {
+            labelMessage.text = message.substr(6)
+            labelMessage.horizontalAlignment = Text.AlignLeft
+        } else {
+            labelMessage.text = message
+            labelMessage.horizontalAlignment = Text.AlignHCenter
+        }
 
         timerToast.stop()
 

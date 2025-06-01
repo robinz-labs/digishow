@@ -67,6 +67,15 @@ void MacUtilities::setWindowWithoutTitlebar(QWindow *window)
     */
 }
 
+void MacUtilities::setWindowDarkTitlebar(QWindow* window)
+{
+    NSWindow *win = [(NSView *)window->winId() window];
+    if (@available(macOS 10.14, *)) {
+        [win setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameDarkAqua]];
+    }
+}
+
+
 bool MacUtilities::canAccessCamera()
 {
     if (@available(macOS 10.14, *)) {

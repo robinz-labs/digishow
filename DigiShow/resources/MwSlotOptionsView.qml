@@ -541,7 +541,10 @@ Item {
             box.radius: 3
 
             onClicked: {
-                if (!menuSlotOptionsMenu.visible) menuSlotOptionsMenu.open()
+                if (!menuSlotOptionsMenu.visible) {
+                    menuItemPaste.enabled = utilities.clipboardExists("application/vnd.digishow.options")
+                    menuSlotOptionsMenu.open()
+                }
                 else menuSlotOptionsMenu.close()
             }
 
@@ -566,6 +569,7 @@ Item {
                     }
                 }
                 CMenuItem {
+                    id: menuItemPaste
                     text: qsTr("Paste")
                     onTriggered: {
                         importSlotInfo(utilities.pasteJson("application/vnd.digishow.options"))

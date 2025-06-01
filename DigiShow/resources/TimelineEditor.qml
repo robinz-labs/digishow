@@ -25,14 +25,14 @@ Item {
     property color playheadColor: "#FFFFFF" // Color for the playhead
 
     // Playback properties
-    property real playheadTime: 5 // Current playhead position in seconds
+    property real playheadTime: 0 // Current playhead position in seconds
     property bool isPlaying: false // Whether playback is active
     property real playbackSpeed: 1.0 // Playback speed multiplier
 
     // Points array for curve control points
     property var points: [
-        { time: 0, value: 50, type: pointType.LINEAR },
-        { time: 30, value: 50, type: pointType.LINEAR }
+        { time: 0, value: 0, type: pointType.LINEAR },
+        { time: 30, value: 0, type: pointType.LINEAR }
     ]
 
     // History stack for undo operations
@@ -126,9 +126,10 @@ Item {
 
     // Function to reset the timeline to default state
     function reset() {
+        saveToHistory();
         points = [
-            { time: 0, value: 50, type: pointType.LINEAR },
-            { time: 30, value: 50, type: pointType.LINEAR }
+            { time: 0, value: 0, type: pointType.LINEAR },
+            { time: 30, value: 0, type: pointType.LINEAR }
         ];
         viewportPosition = 0;
         viewportTimeRange = 30;

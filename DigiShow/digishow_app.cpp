@@ -906,16 +906,6 @@ QVariantMap DigishowApp::getLaunchOptions(const QString &name)
     return m_allLaunchOptions.value(name).toMap();
 }
 
-bool DigishowApp::setLaunchOption(const QString &name, const QString &optKey, const QVariant &optValue)
-{
-    QVariantMap options;
-    if (m_allLaunchOptions.contains(name)) options = m_allLaunchOptions.value(name).toMap();
-    options[optKey] = optValue;
-    m_allLaunchOptions[name] = options;
-
-    return true;
-}
-
 QVariantList DigishowApp::getSlotLaunchDetails(const QString &name)
 {
     QVariantList listDetails;
@@ -953,20 +943,43 @@ QVariantList DigishowApp::getSlotLaunchOptions(const QString &name)
     return listOptions;
 }
 
+bool DigishowApp::setLaunchOption(const QString &name, const QString &optKey, const QVariant &optValue)
+{
+    QVariantMap options;
+    if (m_allLaunchOptions.contains(name)) options = m_allLaunchOptions.value(name).toMap();
+    options[optKey] = optValue;
+    m_allLaunchOptions[name] = options;
+
+    return true;
+}
+
+bool DigishowApp::setLaunchOptions(const QString &name, const QVariantMap &options)
+{
+    m_allLaunchOptions[name] = options;
+    return true;
+}
+
+bool DigishowApp::setSlotLaunchDetails(const QString &name, const QVariantList &details)
+{
+    if (details.length() != m_slots.length()) return false;
+
+    for (int n=0 ; n<m_slots.length() ; n++) {
+        DigishowSlot* slot = m_slots[n];
+
+        QVariantMap launchDetails;
+        if (slot->slotOptions()->contains("launchDetails"))
+            launchDetails = slot->slotOptions()->value("launchDetails").toMap();
+
+        launchDetails[name] = details[n];
+        slot->setSlotOption("launchDetails", launchDetails);
+    }
+    return true;
+}
+
 QVariantMap DigishowApp::getCuePlayerOptions(const QString &name)
 {
     if (!m_allCuePlayerOptions.contains(name)) return QVariantMap();
     return m_allCuePlayerOptions.value(name).toMap();
-}
-
-bool DigishowApp::setCuePlayerOption(const QString &name, const QString &optKey, const QVariant &optValue)
-{
-    QVariantMap options;
-    if (m_allCuePlayerOptions.contains(name)) options = m_allCuePlayerOptions.value(name).toMap();
-    options[optKey] = optValue;
-    m_allCuePlayerOptions[name] = options;
-
-    return true;
 }
 
 QVariantList DigishowApp::getSlotCuePlayerDetails(const QString &name)
@@ -1004,6 +1017,38 @@ QVariantList DigishowApp::getSlotCuePlayerOptions(const QString &name)
     return listOptions;
 }
 
+bool DigishowApp::setCuePlayerOption(const QString &name, const QString &optKey, const QVariant &optValue)
+{
+    QVariantMap options;
+    if (m_allCuePlayerOptions.contains(name)) options = m_allCuePlayerOptions.value(name).toMap();
+    options[optKey] = optValue;
+    m_allCuePlayerOptions[name] = options;
+
+    return true;
+}
+
+bool DigishowApp::setCuePlayerOptions(const QString &name, const QVariantMap &options)
+{
+    m_allCuePlayerOptions[name] = options;
+    return true;
+}
+
+bool DigishowApp::setSlotCuePlayerDetails(const QString &name, const QVariantList &details)
+{
+    if (details.length() != m_slots.length()) return false;
+
+    for (int n=0 ; n<m_slots.length() ; n++) {
+        DigishowSlot* slot = m_slots[n];
+
+        QVariantMap cuePlayerDetails;
+        if (slot->slotOptions()->contains("cuePlayerDetails"))
+            cuePlayerDetails = slot->slotOptions()->value("cuePlayerDetails").toMap();
+
+        cuePlayerDetails[name] = details[n];
+        slot->setSlotOption("cuePlayerDetails", cuePlayerDetails);
+    }
+    return true;
+}
 
 bool DigishowApp::findInterfaceAndEndpoint(const QString &name, int *pInterfaceIndex, int *pEndpointIndex)
 {

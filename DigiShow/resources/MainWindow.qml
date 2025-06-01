@@ -22,6 +22,11 @@ ApplicationWindow {
 
     property bool isEmpty: (slotListView.listItemCount === 0)
 
+    // key states
+    property bool shiftKeyHeld: false
+    property bool altKeyHeld: false
+    property bool ctrlKeyHeld: false
+
     visible: true
     width: 1280
     height: 800
@@ -46,6 +51,8 @@ ApplicationWindow {
         // force refresh window size
         width = minimumWidth
         height = minimumHeight
+
+        utilities.setMacWindowDarkTitlebar(window)
 
         // get info of online ports
         listOnline = digishow.listOnline()
@@ -210,10 +217,12 @@ ApplicationWindow {
 
     Shortcut {
         sequences: [ StandardKey.Copy ]
+        enabled: !quickLaunchView.isEditing
         onActivated: slotListView.copySlots()
     }
     Shortcut {
         sequences: [ StandardKey.Paste ]
+        enabled: !quickLaunchView.isEditing
         onActivated: slotListView.pasteSlots()
     }
     Shortcut {
@@ -223,10 +232,12 @@ ApplicationWindow {
 
     Shortcut {
         sequences: [ StandardKey.Undo ]
+        enabled: !quickLaunchView.isEditing
         onActivated: slotListView.undo()
     }
     Shortcut {
         sequences: [ StandardKey.Redo ]
+        enabled: !quickLaunchView.isEditing
         onActivated: slotListView.redo()
     }
 
@@ -234,6 +245,27 @@ ApplicationWindow {
         id: rectRoot
         color: "#111111"
         anchors.fill: parent
+
+        Keys.onPressed: {
+            //console.log("Keys.onPressed", event.key, event.isAutoRepeat)
+
+            switch(event.key) {
+            case Qt.Key_Shift:   shiftKeyHeld = true; break
+            case Qt.Key_Alt:     altKeyHeld   = true; break
+            case Qt.Key_Control: ctrlKeyHeld  = true; break
+            }
+
+        }
+
+        Keys.onReleased: {
+            //console.log("Keys.onReleased", event.key, event.isAutoRepeat)
+
+            switch(event.key) {
+            case Qt.Key_Shift:   shiftKeyHeld = false; break
+            case Qt.Key_Alt:     altKeyHeld   = false; break
+            case Qt.Key_Control: ctrlKeyHeld  = false; break
+            }
+        }
 
         Rectangle {
             id: rectTopLeftBar

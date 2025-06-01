@@ -60,9 +60,9 @@ Dialog {
             }
 
             var buttonIndex = messageBox.showAndWait(qsTr("Do you want to save changes to the cue player before closing ?"),
-                                                     qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
+                                                     qsTr("Save Changes"), qsTr("Discard Changes"), qsTr("Cancel"))
             switch (buttonIndex) {
-            case 1: save(); break
+            case 1: save(); close(); break
             case 2: close(); break
             }
         }
@@ -124,7 +124,10 @@ Dialog {
         icon.height: 24
         icon.source: "qrc:///images/icon_menu_white.png"
         onClicked: {
-            if (!menu.visible) menu.open()
+            if (!menu.visible) {
+                menuItemPaste.enabled = utilities.clipboardExists("application/vnd.digishow.cue.timeline")
+                menu.open()
+            }
             else menu.close()
         }
 
@@ -181,6 +184,11 @@ Dialog {
             sequences: [ StandardKey.Paste ]
             enabled: dialog.visible
             onActivated: menuItemPaste.triggered()
+        }
+        Shortcut {
+            sequence: "Space"
+            enabled: dialog.visible
+            onActivated: buttonPlay.clicked()
         }
 
     }

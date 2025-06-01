@@ -44,6 +44,7 @@ public:
     Q_INVOKABLE static QVariantMap loadJsonFromFile(const QString & filepath);
     Q_INVOKABLE static bool saveJsonToFile(const QVariantMap & data, const QString & filepath);
 
+    Q_INVOKABLE static bool clipboardExists(const QString & mimeType = "application/json");
     Q_INVOKABLE static QVariantMap pasteJson(const QString & mimeType = "application/json");
     Q_INVOKABLE static bool copyJson(const QVariantMap & data, const QString & mimeType = "application/json");
 
@@ -87,6 +88,7 @@ public:
     Q_INVOKABLE static void setMacWindowIsModified(QWindow *window, bool isModified);
     Q_INVOKABLE static void setMacWindowTitleWithFile(QWindow *window, const QString &filepath);
     Q_INVOKABLE static void setMacWindowWithoutTitlebar(QWindow *window);
+    Q_INVOKABLE static void setMacWindowDarkTitlebar(QWindow *window);
 
     Q_INVOKABLE static bool canAccessCamera();
     Q_INVOKABLE static bool canAccessMicrophone();

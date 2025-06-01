@@ -32,6 +32,7 @@ public:
     Q_INVOKABLE static void setWindowIsModified(QWindow *window, bool isModified);
     Q_INVOKABLE static void setWindowTitleWithFile(QWindow *window, const QString &filepath);
     Q_INVOKABLE static void setWindowWithoutTitlebar(QWindow *window);
+    Q_INVOKABLE static void setWindowDarkTitlebar(QWindow* window);
 
     Q_INVOKABLE static bool canAccessCamera();
     Q_INVOKABLE static bool canAccessMicrophone();

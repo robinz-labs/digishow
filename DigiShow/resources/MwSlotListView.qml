@@ -18,9 +18,6 @@ Item {
 
     property bool  showSlotSelection: false
     property bool  hasBookmarks: false
-    property bool  shiftKeyHeld: false
-    property bool  altKeyHeld: false
-    property bool  ctrlKeyHeld: false
 
     property alias rectInstructions: rectInstructions
 
@@ -28,7 +25,13 @@ Item {
     onCurrentIndexChanged: currentIndexVisual = getVisualItemIndex(currentIndex)
     onCurrentIndexVisualChanged: currentIndex = getDataItemIndex(currentIndexVisual)
 
-    onShowSlotSelectionChanged: if (!showSlotSelection) selectNone()
+    onShowSlotSelectionChanged: {
+        if (!showSlotSelection) {
+            selectNone()
+            shiftKeyHeld = false
+            ctrlKeyHeld  = false
+        }
+    }
 
     Rectangle {
 
@@ -116,6 +119,7 @@ Item {
                     }
                     CMenuItem {
                         text: qsTr("Duplicate")
+                        enabled: !quickLaunchView.isEditing
                         onTriggered: {
                             menuSlot.close()
                             duplicateSlots()
@@ -123,6 +127,7 @@ Item {
                     }
                     CMenuItem {
                         text: qsTr("Delete")
+                        enabled: !quickLaunchView.isEditing
                         onTriggered: {
                             menuSlot.close()
                             deleteSlots()
@@ -140,6 +145,7 @@ Item {
                     MenuSeparator {}
                     CMenuItem {
                         text: qsTr("Copy")
+                        enabled: !quickLaunchView.isEditing
                         onTriggered: {
                             menuSlot.close()
                             copySlots()
@@ -147,6 +153,7 @@ Item {
                     }
                     CMenuItem {
                         text: qsTr("Paste")
+                        enabled: !quickLaunchView.isEditing
                         onTriggered: {
                             menuSlot.close()
                             pasteSlots()
@@ -156,7 +163,8 @@ Item {
                     MenuSeparator {}
                     CMenuItem {
                         text: qsTr("Undo")
-                        enabled: undoManager.canUndo || slotDetailView.isEdited
+                        enabled: (undoManager.canUndo || slotDetailView.isEdited) &&
+                                 !quickLaunchView.isEditing
                         onTriggered: {
                             menuSlot.close()
                             undo()
@@ -164,7 +172,8 @@ Item {
                     }
                     CMenuItem {
                         text: qsTr("Redo")
-                        enabled: undoManager.canRedo && !slotDetailView.isEdited
+                        enabled: (undoManager.canRedo && !slotDetailView.isEdited) &&
+                                 !quickLaunchView.isEditing
                         onTriggered: {
                             menuSlot.close()
                             redo()
@@ -414,11 +423,11 @@ Item {
                     }
 
                     Rectangle {
-                        height: 31
+                        height: 39
                         anchors.left: buttonLink.left
                         anchors.right: buttonLink.right
                         anchors.verticalCenter: buttonLink.verticalCenter
-                        anchors.margins: -4
+                        anchors.margins: -8
                         anchors.rightMargin: -13
                         color: "transparent"
                         border.color: checkLaunchRememberLink.checked ? Material.accent : "#444444"
@@ -686,7 +695,7 @@ Item {
                         }
 
                         Rectangle {
-                            height: 31
+                            height: 39
                             anchors.left: faderOutput.left
                             anchors.right: faderOutput.right
                             anchors.verticalCenter: faderOutput.verticalCenter
@@ -716,14 +725,14 @@ Item {
                             anchors.right: faderOutput.left
                             anchors.rightMargin: -9
                             scale: 0.8
-                            visible: quickLaunchView.visible && quickLaunchView.isEditing
+                            visible: quickLaunchView.visible && quickLaunchView.isEditing && !model.cuePlayerAttached
                             checked: model.launchRememberOutput
-                            enabled: !model.cuePlayerAttached
                             onClicked: {
                                 model.launchRememberOutput = checked
                                 if (slotListView.showSlotSelection)
                                    for (var n=dataModel.count-1 ; n>=0 ; n--)
-                                       if (dataModel.get(n).slotSelected === true) dataModel.get(n).launchRememberOutput = checked
+                                       if (dataModel.get(n).slotSelected === true)
+                                           dataModel.get(n).launchRememberOutput = (dataModel.get(n).cuePlayerAttached ? false : checked)
                             }
                         }
 
@@ -731,14 +740,14 @@ Item {
                             width: 46
                             height: 14
                             anchors.top: faderOutput.bottom
-                            anchors.topMargin: 2
+                            anchors.topMargin: -3
                             anchors.horizontalCenter: faderOutput.horizontalCenter
                             label.font.bold: true
                             label.font.pixelSize: 10
                             label.text: qsTr("+ CUE")
                             box.radius: 3
                             colorNormal: model.cuePlayerAttached ? Material.accent : "#333333"
-                            visible: quickLaunchView.visible && quickLaunchView.isEditing
+                            visible: quickLaunchView.visible && quickLaunchView.isEditing && !checkLaunchRememberOutput.checked
                             onClicked: {
                                 dialogCuePlayer.preferredColor = model.epOutColor
                                 dialogCuePlayer.preferredRange = model.epOutRange
@@ -889,12 +898,6 @@ Item {
 
                 if (event.isAutoRepeat) return
 
-                switch(event.key) {
-                case Qt.Key_Shift:   shiftKeyHeld = false; break
-                case Qt.Key_Alt:     altKeyHeld   = false; break
-                case Qt.Key_Control: ctrlKeyHeld  = false; break
-                }
-
                 // slot actions
                 if (highlightedIndex !== -1) {
 
@@ -916,12 +919,6 @@ Item {
             Keys.onPressed: {
 
                 if (event.isAutoRepeat) return
-
-                switch(event.key) {
-                case Qt.Key_Shift:   shiftKeyHeld = true; break
-                case Qt.Key_Alt:     altKeyHeld   = true; break
-                case Qt.Key_Control: ctrlKeyHeld  = true; break
-                }
 
                 // slot actions
                 if (highlightedIndex !== -1) {
@@ -1020,7 +1017,7 @@ Item {
                 // delete the slot
                 if (event.key === Qt.Key_Delete) {
 
-                    deleteSlots()
+                    if (!quickLaunchView.isEditing) deleteSlots()
 
                     event.accepted = true
                     return
@@ -1102,6 +1099,7 @@ Item {
                 box.radius: 3
                 box.border.width: 1
                 colorNormal: "black"
+                visible: !quickLaunchView.isEditing
 
                 onClicked: {
                     copySlots()
@@ -1122,6 +1120,7 @@ Item {
                 box.radius: 3
                 box.border.width: 1
                 colorNormal: "black"
+                visible: !quickLaunchView.isEditing
 
                 onClicked: {
                     duplicateSelection()
@@ -1142,6 +1141,7 @@ Item {
                 box.radius: 3
                 box.border.width: 1
                 colorNormal: "black"
+                visible: !quickLaunchView.isEditing
 
                 onClicked: {
                     deleteSelection()
@@ -1162,6 +1162,7 @@ Item {
                 box.radius: 3
                 box.border.width: 1
                 colorNormal: "black"
+                visible: !quickLaunchView.isEditing
 
                 onClicked: {
                     moveSelection()
@@ -1481,7 +1482,7 @@ Item {
 
     function duplicateSlots() {
 
-        if (slotListView.showSlotSelection)
+        if (slotListView.showSlotSelection && hasSelection())
             duplicateSelection()
         else
             duplicateSlot(slotListView.currentIndex)
@@ -1503,7 +1504,7 @@ Item {
 
     function duplicateSelection() {
 
-        if (messageBox.showAndWait(qsTr("Do you want to duplicate all selected signal links ?"), qsTr("Duplicate"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Selection: %1 item(s)").arg(hasSelection()) + "\r\n\r\n" + qsTr("Do you want to duplicate all selected signal links ?"), qsTr("Duplicate"), qsTr("Cancel")) !== 1) return
 
         var numAll = visualModel.items.count
         var n, i
@@ -1521,7 +1522,7 @@ Item {
 
         if (cueManager.isActivated()) cueManager.stopAllCues()
 
-        if (slotListView.showSlotSelection)
+        if (slotListView.showSlotSelection && hasSelection())
             deleteSelection()
         else
             deleteSlot(slotListView.currentIndex)
@@ -1539,7 +1540,7 @@ Item {
             highlightedIndex = deletedIndex
 
             if (!showMessageToConfirm ||
-                messageBox.showAndWait(qsTr("Do you want to delete the signal links ?"), qsTr("Delete"), qsTr("Cancel")) === 1) {
+                messageBox.showAndWait(qsTr("Do you want to delete the signal link ?"), qsTr("Delete"), qsTr("Cancel")) === 1) {
 
                 highlightedIndex = -1
                 currentIndex = -1
@@ -1565,7 +1566,7 @@ Item {
 
     function deleteSelection() {
 
-        if (messageBox.showAndWait(qsTr("Do you want to delete all selected signal links ?"), qsTr("Delete"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Selection: %1 item(s)").arg(hasSelection()) + "\r\n\r\n" + qsTr("Do you want to delete all selected signal links ?"), qsTr("Delete"), qsTr("Cancel")) !== 1) return
 
         for (var n=dataModel.count-1 ; n>=0 ; n--)
             if (dataModel.get(n).slotSelected === true) deleteSlot(n, false)
@@ -1574,7 +1575,7 @@ Item {
     function moveSelection() {
 
         if (currentIndexVisual === -1) return
-        if (messageBox.showAndWait(qsTr("Do you want to move all selected signal links to the current cursor position ?"), qsTr("Move"), qsTr("Cancel")) !== 1) return
+        if (messageBox.showAndWait(qsTr("Selection: %1 item(s)").arg(hasSelection()) + "\r\n\r\n" + qsTr("Do you want to move all selected signal links to the current cursor position ?"), qsTr("Move"), qsTr("Cancel")) !== 1) return
 
         var numAll = visualModel.items.count
         var numMoved = 0
@@ -1586,6 +1587,14 @@ Item {
             }
         }
         visualModel.items.move(numAll-numMoved, currentIndexVisual+1, numMoved)
+    }
+
+    function hasSelection() {
+
+        var count = 0
+        for (var n=0; n<dataModel.count ; n++)
+            if (dataModel.get(n).slotSelected === true) count++
+        return count
     }
 
     function selectAll() {
@@ -1633,7 +1642,7 @@ Item {
     function copySlots() {
 
         // no slot selection, instead select the current slot to copy
-        var needCopyCurrentSlot = (!slotListView.showSlotSelection && currentIndex !== -1)
+        var needCopyCurrentSlot = ((!slotListView.showSlotSelection || slotListView.hasSelection()===0) && currentIndex !== -1)
         if (needCopyCurrentSlot) {
             selectNone()
             showSlotSelection = true
@@ -1710,12 +1719,24 @@ Item {
 
         if (slotDetailView.slotIndex !== -1 && slotDetailView.isEdited) undoManager.archive()
         undoManager.undo()
+
+        if (listItemCount > 0) {
+            listView.currentIndex = 0
+            highlightedIndex = currentIndex
+        }
+        listView.forceActiveFocus()
     }
 
     function redo() {
 
         if (slotDetailView.slotIndex !== -1 && slotDetailView.isEdited) return
         undoManager.redo()
+
+        if (listItemCount > 0) {
+            listView.currentIndex = 0
+            highlightedIndex = currentIndex
+        }
+        listView.forceActiveFocus()
     }
 
     function setSlotLaunchRememberAllLinks(value) {
