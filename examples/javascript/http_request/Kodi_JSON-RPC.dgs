@@ -1,0 +1,128 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.6.6"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "1",
+                    "enabled": true,
+                    "name": "press1",
+                    "type": "press"
+                },
+                {
+                    "address": "2",
+                    "enabled": true,
+                    "name": "press2",
+                    "type": "press"
+                },
+                {
+                    "address": "3",
+                    "enabled": true,
+                    "name": "press3",
+                    "type": "press"
+                },
+                {
+                    "address": "4",
+                    "enabled": true,
+                    "name": "press4",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "binary1",
+                    "type": "binary"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "binary2",
+                    "type": "binary"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "binary3",
+                    "type": "binary"
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "name": "binary4",
+                    "type": "binary"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/binary1",
+            "linked": true,
+            "outputExpression": "utilities.httpRequest('http://127.0.0.1:8080/jsonrpc', 'post', '{\"jsonrpc\": \"2.0\", \"method\": \"Player.Open\", \"params\": {\"item\": {\"file\": \"/Users/robin/Movies/1.mp4\"}}, \"id\": 1}'); value\n",
+            "source": "hotkey1/press1",
+            "title": "PLAY 1"
+        },
+        {
+            "destination": "pipe1/binary2",
+            "linked": true,
+            "outputExpression": "utilities.httpRequest('http://127.0.0.1:8080/jsonrpc', 'post', '{\"jsonrpc\": \"2.0\", \"method\": \"Player.Open\", \"params\": {\"item\": {\"file\": \"/Users/robin/Movies/2.mp4\"}}, \"id\": 1}'); value",
+            "source": "hotkey1/press2",
+            "title": "PLAY 2"
+        },
+        {
+            "destination": "pipe1/binary3",
+            "linked": true,
+            "outputExpression": "utilities.httpRequest('http://127.0.0.1:8080/jsonrpc', 'post', '{\"jsonrpc\": \"2.0\", \"method\": \"Player.Open\", \"params\": {\"item\": {\"file\": \"/Users/robin/Movies/3.mp4\"}}, \"id\": 1}'); value",
+            "source": "hotkey1/press3",
+            "title": "PLAY 3"
+        },
+        {
+            "destination": "pipe1/binary4",
+            "linked": true,
+            "outputExpression": "utilities.httpRequest('http://127.0.0.1:8080/jsonrpc', 'post', '{\"jsonrpc\": \"2.0\",\"method\": \"Player.Stop\", \"params\": {\"playerid\": 1},\"id\": 1}'); value",
+            "source": "hotkey1/press4",
+            "title": "STOP"
+        }
+    ]
+}

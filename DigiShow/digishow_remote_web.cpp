@@ -129,7 +129,7 @@ bool DigishowRemoteWeb::processHttpRequest(const QString &requestPath, const QSt
             DigishowScriptable* scriptable = g_app->scriptable();
             QVariant response = (context == "ui" ?
                                 scriptable->executeUI(script) :  // execute the script in the app ui context
-                                scriptable->execute(script));    // execute the script in the standalone context
+                                scriptable->execute(script));    // execute the script in the app core context
             data["script"] = script;
 
             if (response.canConvert<QJSValue>()) {

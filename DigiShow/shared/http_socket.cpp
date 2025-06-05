@@ -201,7 +201,7 @@ void HttpSocket::transferFile(QDataStream & out, const QString & strFilePath, co
     QString strHttpHeadFileType = (strFileType.isNull() ? "text/html" : strFileType);
     if (strHttpHeadFileType.startsWith("text/")) strHttpHeadFileType += "; charset=utf-8";
 
-    QString strHttpHead = "HTTP/1.0 200 OK\r\nContent-Type: " + strHttpHeadFileType + "\r\n\r\n";
+    QString strHttpHead = "HTTP/1.0 200 OK\r\nContent-Type: " + strHttpHeadFileType + "\r\nAccess-Control-Allow-Origin: *\r\n\r\n";
     QByteArray bytes = strHttpHead.toUtf8();
     out.writeRawData(bytes.constData(), bytes.size());
 
@@ -227,7 +227,7 @@ void HttpSocket::outputHttpHead(QDataStream & out, const QString & strFileType)
     QString strHttpHead =
             "HTTP/1.0 200 OK\r\nContent-Type: " +
             strHttpHeadFileType +
-            "\r\n\r\n";
+            "\r\nAccess-Control-Allow-Origin: *\r\n\r\n";
     QByteArray bytes = strHttpHead.toUtf8();
     out.writeRawData(bytes.constData(), bytes.size());
 }
@@ -240,7 +240,7 @@ void HttpSocket::outputHttpContent(QDataStream & out, const QByteArray &content)
 void HttpSocket::outputHttp404(QDataStream & out)
 {
     QString strHttpHead =
-            "HTTP/1.0 404 Not Found\r\nContent-Type: text/html\r\n\r\nHTTP 404";
+            "HTTP/1.0 404 Not Found\r\nContent-Type: text/html\r\nAccess-Control-Allow-Origin: *\r\n\r\nHTTP 404";
     QByteArray bytes = strHttpHead.toUtf8();
     out.writeRawData(bytes.constData(), bytes.size());
 }

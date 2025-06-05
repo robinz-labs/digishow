@@ -16,6 +16,7 @@
  */
 
 #include "digishow.h"
+#include "digishow_environment.h"
 #include "digishow_scriptable.h"
 #include "app_utilities.h"
 
@@ -25,6 +26,11 @@ DigishowScriptable::DigishowScriptable(QObject *parent)
     m_qmlEngine = new QQmlEngine();
     m_qmlComponent = nullptr;
     m_qmlObject = nullptr;
+
+    // ui scripts are disabled by default
+    m_uiScriptEnabled = false;
+    QVariantMap appOptions = DigishowEnvironment().getAppOptions();
+    m_uiScriptEnabled = appOptions.value("uiscript", false).toBool();
 }
 
 DigishowScriptable::~DigishowScriptable()
@@ -128,6 +134,7 @@ int DigishowScriptable::execute(const QString &expression, int inputValue, int i
 
 QVariant DigishowScriptable::executeUI(const QString &script)
 {
+    if (!m_uiScriptEnabled) return QVariant();
     if (g_engine == nullptr) return QVariant();
 
     QList<QObject*> qmlObjects = g_engine->rootObjects();

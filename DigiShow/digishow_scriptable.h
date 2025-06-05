@@ -40,7 +40,7 @@ public:
     int execute(const QString &expression, int inputValue, int inputRange, int lastValue, int slotIndex, int slotEnd, bool *ok = nullptr);
 
     // execute script in ui context
-    static QVariant executeUI(const QString &script);
+    QVariant executeUI(const QString &script);
 
 signals:
 
@@ -49,6 +49,7 @@ private:
     QQmlComponent *m_qmlComponent;
     QObject* m_qmlObject;
 
+    bool m_uiScriptEnabled;
 };
 
 #endif // DIGISHOWSCRIPTABLE_H

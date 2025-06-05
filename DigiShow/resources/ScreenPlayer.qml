@@ -28,7 +28,7 @@ QtObject {
 
         width: 800
         height: 450
-        flags: Qt.WindowFullscreenButtonHint //| Qt.MaximizeUsingFullscreenGeometryHint //| Qt.FramelessWindowHint
+        flags: Qt.Window | Qt.WindowResize | Qt.WindowTitleHint | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowFullscreenButtonHint
         color: "white"
 
         Utilities { id: utilities }
