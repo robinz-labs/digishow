@@ -583,27 +583,34 @@ Item {
                     CButton {
                         id: buttonSave
 
-                        property bool isFirstTime: true
-
                         width: 130
                         height: 32
                         anchors.top: parent.top
                         anchors.right: buttonCancel.left
-                        anchors.rightMargin: 15
+                        anchors.rightMargin: 18
                         label.font.bold: true
                         label.font.pixelSize: 12
                         label.text: qsTr("Save Preset")
                         colorNormal: Material.accent
                         box.radius: 3
 
-                        onClicked: {
+                        CButton {
+                            width: 18
+                            height: 18
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.right: parent.left
+                            anchors.rightMargin: 15
+                            label.text: "?"
+                            label.font.pixelSize: 11
+                            label.font.bold: true
+                            box.radius: 9
 
-                            save()
-
-                            if (isFirstTime)
-                                messageBox.show("{left}" + qsTr("This saved preset contains:\r\n• The status of the checked items in the signal link table.\r\n• The playback curves of the signal output in the cue player.\r\n\r\nPlease activate them at any time by tapping on the preset button."), qsTr("OK"))
-                            isFirstTime = false
+                            onClicked: {
+                                messageBox.show(qsTr("The saved preset contains:\r\n• The status of the checked items in the signal link table\r\n• The playback curves of the output signal in the cue player\r\n\r\nTap on the preset button to activate them."), qsTr("OK"))
+                            }
                         }
+
+                        onClicked: save()
                     }
 
                     CButton {

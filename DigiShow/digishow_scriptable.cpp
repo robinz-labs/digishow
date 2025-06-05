@@ -15,6 +15,7 @@
 
  */
 
+#include "digishow.h"
 #include "digishow_scriptable.h"
 #include "app_utilities.h"
 
@@ -28,24 +29,23 @@ DigishowScriptable::DigishowScriptable(QObject *parent)
 
 DigishowScriptable::~DigishowScriptable()
 {
-    if (m_qmlObject != nullptr) delete m_qmlObject;
-    if (m_qmlComponent != nullptr) delete m_qmlComponent;
+    engineOff();
     delete m_qmlEngine;
 }
 
 bool DigishowScriptable::start(const QString &filepath)
 {
-    if (m_qmlComponent != nullptr || m_qmlObject != nullptr) stop();
+    engineOff(); // force reset the engine
 
     m_qmlComponent = new QQmlComponent(m_qmlEngine);
 
     if (!filepath.isEmpty() && AppUtilities::fileExists(filepath)) {
-        // a user script
+        // with a user script
         QString qml = AppUtilities::loadStringFromFile(filepath);
         QUrl url = QUrl("qrc:///DigishowScriptableUser.qml");
         m_qmlComponent->setData(qml.toUtf8(), url);
     } else {
-        // the base script
+        // with the base script
         QUrl url = QUrl("qrc:///DigishowScriptable.qml");
         m_qmlComponent->loadUrl(url);
     }
@@ -53,22 +53,34 @@ bool DigishowScriptable::start(const QString &filepath)
     if (!m_qmlComponent->isReady()) return false;
     m_qmlObject = m_qmlComponent->create();
 
-    QVariant r;
-    QMetaObject::invokeMethod(
-                m_qmlObject, "onStart", Qt::DirectConnection,
-                Q_RETURN_ARG(QVariant, r));
+    // trigger the onStart callback
+    if (m_qmlObject != nullptr) {
+        QVariant r;
+        QMetaObject::invokeMethod(
+                    m_qmlObject, "onStart", Qt::DirectConnection,
+                    Q_RETURN_ARG(QVariant, r));
+    }
 
     return true;
 }
 
-void DigishowScriptable::stop()
+void DigishowScriptable::stop(bool engineOff)
 {
+    // trigger the onStop callback
     if (m_qmlObject != nullptr) {
         QVariant r;
         QMetaObject::invokeMethod(
                     m_qmlObject, "onStop", Qt::DirectConnection,
                     Q_RETURN_ARG(QVariant, r));
+    }
 
+    // stop the scriptable engine
+    if (engineOff) this->engineOff();
+}
+
+void DigishowScriptable::engineOff()
+{
+    if (m_qmlObject != nullptr) {
         delete m_qmlObject;
         m_qmlObject = nullptr;
     }
@@ -78,7 +90,6 @@ void DigishowScriptable::stop()
         m_qmlComponent = nullptr;
     }
 }
-
 
 QVariant DigishowScriptable::execute(const QString &script)
 {
@@ -113,5 +124,20 @@ int DigishowScriptable::execute(const QString &expression, int inputValue, int i
 
     if (ok != nullptr) *ok = true;
     return r.toInt();
+}
+
+QVariant DigishowScriptable::executeUI(const QString &script)
+{
+    if (g_engine == nullptr) return QVariant();
+
+    QList<QObject*> qmlObjects = g_engine->rootObjects();
+    QObject* qmlWindow = qmlObjects.first();
+
+    QVariant r;
+    QMetaObject::invokeMethod(
+                qmlWindow, "execute", Qt::DirectConnection,
+                Q_RETURN_ARG(QVariant, r),
+                Q_ARG(QVariant, script));
+    return r;
 }
 

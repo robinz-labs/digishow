@@ -816,6 +816,7 @@ QString DigishowEnvironment::getMediaControlName(int control, bool forScreen)
         case CONTROL_MEDIA_VOLUME:   return tr("Volume");
         case CONTROL_MEDIA_SPEED:    return tr("Speed");
         case CONTROL_MEDIA_POSITION: return tr("Position");
+        case CONTROL_MEDIA_MASTER:   return tr("Vol Master");
     }
     return "";
 }

@@ -269,6 +269,7 @@ bool DgsDmxInterface::initPlayer(const QVariantMap &mediaOptions)
         if (player->load(url, mediaType)) {
             m_players[name] = player;
             connect(player, SIGNAL(frameUpdated()), this, SLOT(onPlayerFrameUpdated()));
+            done = true;
         } else {
             delete player;
         }

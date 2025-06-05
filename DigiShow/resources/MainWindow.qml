@@ -1021,4 +1021,6 @@ ApplicationWindow {
         }
     }
 
+    // @disable-check M23
+    function execute(script) { return eval(script) }
 }

@@ -29,12 +29,18 @@ public:
     explicit DigishowScriptable(QObject *parent = nullptr);
     ~DigishowScriptable();
 
+    void reset() { start(); }
+
     bool start(const QString &filepath = QString());
-    void stop();
+    void stop(bool engineOff = true);
+
+    void engineOff();
 
     QVariant execute(const QString &script);
     int execute(const QString &expression, int inputValue, int inputRange, int lastValue, int slotIndex, int slotEnd, bool *ok = nullptr);
 
+    // execute script in ui context
+    static QVariant executeUI(const QString &script);
 
 signals:
 

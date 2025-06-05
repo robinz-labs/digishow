@@ -27,13 +27,7 @@ DigishowCueManager::DigishowCueManager(QObject *parent)
 DigishowCueManager::~DigishowCueManager()
 {
     // Clean up all cue players
-    for (DigishowCuePlayer* player : qAsConst(m_cuePlayers)) {
-        if (player) {
-            player->stop();
-            player->deleteLater();
-        }
-    }
-    m_cuePlayers.clear();
+    stopAllCues();
 }
 
 DigishowCuePlayer* DigishowCueManager::cuePlayer(const QString& name)

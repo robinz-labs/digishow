@@ -19,10 +19,14 @@
 #include "dgs_aplayer.h"
 #include "digishow_environment.h"
 
+#include <QAudioOutput>
+
 DgsAPlayInterface::DgsAPlayInterface(QObject *parent) : DigishowInterface(parent)
 {
     m_interfaceOptions["type"] = "aplay";
     m_players.clear();
+    m_volumes.clear();
+    m_volumeMaster = 1.0;
 }
 
 DgsAPlayInterface::~DgsAPlayInterface()
@@ -39,6 +43,8 @@ int DgsAPlayInterface::openInterface()
     if (m_interfaceInfo.mode==INTERFACE_APLAY_DEFAULT) {
 
         m_players.clear();
+        m_volumes.clear();
+        m_volumeMaster = 1.0;
 
         // load media and initialize players
         QVariantList mediaList = cleanMediaList();
@@ -65,6 +71,8 @@ int DgsAPlayInterface::closeInterface()
             m_players.remove(key);
         }
 
+        m_volumes.clear();
+        m_volumeMaster = 1.0;
     }
 
     m_isInterfaceOpened = false;
@@ -138,7 +146,24 @@ int DgsAPlayInterface::sendData(int endpointIndex, dgsSignalData data)
                 if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
 
                 double volume = (double)data.aValue / (double)data.aRange;
-                player->setVolume(volume);
+                player->setVolume(volume * m_volumeMaster);
+                m_volumes[media] = volume;
+
+                return ERR_NONE;
+
+            } else if (control == CONTROL_MEDIA_MASTER) {
+
+                if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+
+                m_volumeMaster = (double)data.aValue / (double)data.aRange;
+
+                QStringList playerNames = m_players.keys();
+                int playerCount = playerNames.length();
+                for (int n=0 ; n<playerCount ; n++) {
+                    QString key = playerNames[n];
+                    DgsAPlayer* player = m_players[key];
+                    player->setVolume(m_volumes[key] * m_volumeMaster);
+                }
 
                 return ERR_NONE;
             }
@@ -173,6 +198,8 @@ bool DgsAPlayInterface::initPlayer(const QVariantMap &mediaOptions)
         if (player->load(url)) {
             player->setPort(port);
             m_players[name] = player;
+            m_volumes[name] = 1.0;
+            done = true;
         } else {
             delete player;
         }
@@ -223,6 +250,7 @@ void DgsAPlayInterface::updateMetadata_()
                 endpointInfo.signal = DATA_SIGNAL_BINARY;
                 break;
             case CONTROL_MEDIA_VOLUME:
+            case CONTROL_MEDIA_MASTER:
                 endpointInfo.signal = DATA_SIGNAL_ANALOG;
                 endpointInfo.range  = 10000;
                 break;

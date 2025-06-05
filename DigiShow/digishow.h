@@ -167,13 +167,11 @@
   ! improved code learning from serial messenger
   ! improved dmx/arntnet pixel mapping
 
-  v1.7.1
+  v1.7.2 20250605
   beta release
-
-  v1.7.2
-  beta release
-
   ! rewrote the timeline editor UI using qml, deprecated the html version
+  ! improved present launcher
+  ! improved scriptable enviroment
 
 */
 
@@ -181,6 +179,7 @@
 #define DIGISHOW_H
 
 #include <QDebug>
+#include <QQmlApplicationEngine>
 #include "digishow_app.h"
 #include "digishow_common.h"
 #include "app_utilities.h"
@@ -193,6 +192,7 @@ extern QString g_serial;
 extern bool g_experimental;
 
 extern DigishowApp *g_app;
+extern QQmlApplicationEngine *g_engine;
 
 extern bool g_needLogCom;
 extern bool g_needLogCtl;

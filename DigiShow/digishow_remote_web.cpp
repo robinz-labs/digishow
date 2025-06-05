@@ -21,7 +21,6 @@
 #include "http_server.h"
 #include "http_socket.h"
 
-
 #define DRW_DEFAULT_PORT 8888
 
 DigishowRemoteWeb::DigishowRemoteWeb(QObject *parent)
@@ -109,7 +108,6 @@ bool DigishowRemoteWeb::processHttpRequest(const QString &requestPath, const QSt
 
     } else if (requestPath == "appexec") {
 
-
         QVariantMap data;
 
         // get parameter
@@ -125,10 +123,20 @@ bool DigishowRemoteWeb::processHttpRequest(const QString &requestPath, const QSt
 
         } else if (!script.isEmpty()) {
 
+            QString context = HttpSocket::getParameter(requestParameters, "context");
+
             // execute a script
             DigishowScriptable* scriptable = g_app->scriptable();
-            QVariant response = scriptable->execute(script);
+            QVariant response = (context == "ui" ?
+                                scriptable->executeUI(script) :  // execute the script in the app ui context
+                                scriptable->execute(script));    // execute the script in the standalone context
             data["script"] = script;
+
+            if (response.canConvert<QJSValue>()) {
+                QJSValue jsValue = response.value<QJSValue>();
+                if (jsValue.isArray() ) { response = response.toList(); } else // convert js array to qt list
+                if (jsValue.isObject()) { response = response.toMap();  }      // convert js object to qt map
+            }
             data["response"] = response;
         }
 

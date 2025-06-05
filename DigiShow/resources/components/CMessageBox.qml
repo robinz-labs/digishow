@@ -200,14 +200,7 @@ Popup {
         }
 
         qrCode.data = qrcode
-
-        if (message.startsWith("{left}")) {
-            labelMessage.text = message.substr(6)
-            labelMessage.horizontalAlignment = Text.AlignLeft
-        } else {
-            labelMessage.text = message
-            labelMessage.horizontalAlignment = Text.AlignHCenter
-        }
+        labelMessage.text = message
 
         timerToast.stop()
 

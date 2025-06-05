@@ -25,6 +25,7 @@ QString g_serial    = "";
 bool g_experimental = false;
 
 DigishowApp* g_app = nullptr;
+QQmlApplicationEngine *g_engine = nullptr;
 
 bool g_needLogCom  = false;
 bool g_needLogCtl  = false;

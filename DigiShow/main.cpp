@@ -227,22 +227,16 @@ int main(int argc, char *argv[])
 #ifndef DIGISHOW_NON_GUI
 
     // start main ui
-    QQmlApplicationEngine engine;
-
-    /*
-    QQmlComponent component(&engine);
-    component.loadUrl(QUrl("qrc:///Splash.qml"));
-    if (component.isReady()) component.create();
-    */
+    g_engine = new QQmlApplicationEngine();
 
     const QUrl url(QStringLiteral("qrc:///MainWindow.qml"));
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+    QObject::connect(g_engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-    engine.load(url);
-    app.setQmlRoot(engine.rootObjects()[0]);
+    g_engine->load(url);
+    app.setQmlRoot(g_engine->rootObjects()[0]);
 
     // window mode
     int windowMode = appOptions.value("window", 1).toInt();
@@ -268,7 +262,10 @@ int main(int argc, char *argv[])
 
     // start app runloop
     int r = app.exec();
-    delete(g_app);
+
+    if (g_app    != nullptr) delete(g_app);
+    if (g_engine != nullptr) delete(g_engine);
+
     return r;
 
 }

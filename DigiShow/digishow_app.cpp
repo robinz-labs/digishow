@@ -120,6 +120,12 @@ void DigishowApp::clear()
 
     // reset remote web parameters
     m_remoteWeb->reset();
+
+    // reset cue manager
+    m_cueManager->reset();
+
+    // reset scriptable engine
+    m_scriptable->reset();
 }
 
 void DigishowApp::importData(const QVariantMap & data)
@@ -1117,7 +1123,7 @@ bool DigishowApp::startScriptable()
 
 void DigishowApp::stopScriptable()
 {
-    m_scriptable->stop();
+    m_scriptable->stop(false); // run onStop routine but still keep the scriptable engine running
 }
 
 bool DigishowApp::startAddon()

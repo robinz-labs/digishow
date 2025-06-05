@@ -91,7 +91,8 @@ Item {
         text: "file://"
         //input.anchors.rightMargin: 30
         visible: menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayMedia &&
-                 menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll
+                 menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll &&
+                 menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaMaster
 
         onTextEdited: isModified = true
         onEditingFinished: if (text === "") text = "file://"
@@ -340,6 +341,7 @@ Item {
             v = DigishowEnvironment.ControlMediaStopAll; items.push({ text: digishow.getMediaControlName(v), value: v })
             items.push({ text: "-", value: -1 })
             v = DigishowEnvironment.ControlMediaVolume;  items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaMaster;  items.push({ text: digishow.getMediaControlName(v), value: v })
 
             menuMediaControl.optionItems = items
             menuMediaControl.selectedIndex = 0

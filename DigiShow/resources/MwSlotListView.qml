@@ -306,7 +306,7 @@ Item {
                     Rectangle {
                         id: rectEndpointIn
 
-                        width: 60
+                        width: 65
                         height: 60
                         anchors.left: parent.left
                         anchors.verticalCenter: parent.verticalCenter
@@ -353,7 +353,7 @@ Item {
                         width: 106
                         height: 12
                         anchors.left: rectEndpointIn.right
-                        anchors.leftMargin: 20
+                        anchors.leftMargin: 15
                         anchors.verticalCenter: rectEndpointIn.verticalCenter
                         radius: 6
                         color: "#333333"
@@ -537,7 +537,7 @@ Item {
                     Rectangle {
                         id: rectEndpointOut
 
-                        width: 60
+                        width: 65
                         height: 60
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
@@ -584,7 +584,7 @@ Item {
                         width: 106
                         height: 12
                         anchors.right: rectEndpointOut.left
-                        anchors.rightMargin: 20
+                        anchors.rightMargin: 15
                         anchors.verticalCenter: rectEndpointOut.verticalCenter
                         radius: 6
                         color: "#333333"

@@ -185,8 +185,8 @@ public:
         ControlMediaYOffset  = CONTROL_MEDIA_YOFFSET,
         ControlMediaVolume   = CONTROL_MEDIA_VOLUME,
         ControlMediaSpeed    = CONTROL_MEDIA_SPEED,
-        ControlMediaPosition = CONTROL_MEDIA_POSITION
-
+        ControlMediaPosition = CONTROL_MEDIA_POSITION,
+        ControlMediaMaster   = CONTROL_MEDIA_MASTER
     };
     Q_ENUM(MediaControl)
 

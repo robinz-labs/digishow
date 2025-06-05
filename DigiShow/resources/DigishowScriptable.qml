@@ -12,6 +12,9 @@ DigishowEnvironment {
     function toast(message) { app.messageNotify(message, DigishowApp.MsgToast) }
     function popup(message) { app.messageNotify(message, DigishowApp.MsgPopup) }
 
+    // @disable-check M23
     function execute(script) { return eval(script) }
+
+    // @disable-check M23
     function executeExpression(expression, value, range, lastValue, index, end) { var r = eval(expression); return (r === null ? -1 : r) }
 }

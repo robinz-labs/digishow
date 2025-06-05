@@ -29,6 +29,8 @@ public:
     explicit DigishowCueManager(QObject *parent = nullptr);
     ~DigishowCueManager();
 
+    Q_INVOKABLE void reset() { stopAllCues(); }
+
     Q_INVOKABLE DigishowCuePlayer* cuePlayer(const QString& name);
     Q_INVOKABLE bool playCue(const QString& name);
     Q_INVOKABLE void stopCue(const QString& name);
