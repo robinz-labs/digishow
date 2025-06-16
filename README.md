@@ -9,55 +9,86 @@ DigiShow is a lightweight cross-media control software designed for live perform
 - **Musicians:** Enhance live performances with DIY electronic instruments or automated lighting 
 - **Engineers & Makers:** Develop smart interactive projects like home automations 
 
-## Key Features:
-- **Multi-Protocol Support:** Supports MIDI, DMX, OSC, Modbus, Arduino, Hue, and other protocols for coordinated control of audio, lighting, screens, robotics, and more.
-- **Signal Mapping:** Converts MIDI notes, OSC control signals, etc., into lighting, servo motor, and media playback commands. Also transforms sensor inputs into MIDI/OSC signals for music software (e.g., Ableton Live, Logic Pro) and real-time visual creative tools (e.g., TouchDesigner, Unreal Engine).
-- **Interactive Control:** Ideal for DJ performances, stage or space lighting synchronization, experimental music, and interactive installations to enhance live engagement and visual effects.
+
+## Key Features
+
+- **Multi-Protocol Support** 
+
+	Supports MIDI, DMX, OSC, Modbus, Arduino, Hue, and other protocols for coordinated control of audio, lighting, screens, robotics, and more. 
+
+- **Signal Mapping**
+
+	Converts MIDI notes, OSC control signals, etc., into lighting, servo motor, and media playback commands. Also transforms sensor inputs into MIDI/OSC signals for music software (e.g., Ableton Live, Logic Pro) and real-time visual creative tools (e.g., TouchDesigner, Unreal Engine). 
+
+- **Interactive Control** 
+
+	Ideal for DJ performances, stage or space lighting synchronization, experimental music, and interactive installations to enhance live engagement and visual effects. 
 
 For a typical 'digital' show, requires some particular digital things working together, along with DigiShow LINK. 
 
 ![digishow_link](images/digishow_link.jpg)
 
+
 ## Technologies and Functions
-- **No-Coding Arduino:** Provides a ready-to-use sketch drives mapping sensors and actuators connected to Arduino as inputs and outputs used directly in the DigiShow.
-- **Cue Player:** Features a graphical interface for designing output curves for specific scenarios, which can be attached to presets for synchronized playback.
-- **Pixel Mapping:** Dynamically maps video or image pixels to lighting arrays for visual effects.
-- **Scripting Support:** Allows JavaScript/QML expressions and scripts for advanced interactive logic.
-- **Network Protocols:** Supports OSC and pipes over WebSocket for external extensions, as well as Art-Net for large-scale lighting control systems.
+
+- **No-Coding Arduino** 
+
+	Provides a ready-to-use sketch drives mapping sensors and actuators connected to Arduino as inputs and outputs used directly in the DigiShow. 
+
+- **Cue Player** 
+
+	Features a graphical interface for designing output curves for specific scenarios, which can be attached to presets for synchronized playback. 
+
+- **Pixel Mapping** 
+
+	Dynamically maps video or image pixels to lighting arrays for visual effects. 
+
+- **Scripting Support** 
+
+	Allows JavaScript/QML expressions and scripts for advanced interactive logic. 
+
+- **Network Protocols** 
+
+	Supports OSC and pipes over WebSocket for external extensions, as well as Art-Net for large-scale lighting control systems. 
 
 
 ## Screenshots
-![screenshot_main](images/screenshot_main.png)
+
+![screenshot_main](images/screenshot_main.png)  
 DigiShow main window: preset launcher, signal link table and signal mapping settings. 
  
-![screenshot_cue_player](images/screenshot_cue_player.png)
+![screenshot_cue_player](images/screenshot_cue_player.png)  
 Timeline Editor for Cue Player: design the output signal playback curve in the timeline. 
 
-![screenshot_cue_player](images/screenshot_presents.png)
-
-[Watch Video](https://www.youtube.com/@robinzlabs6390) 
+[DEMO VIDEO](https://www.youtube.com/@robinzlabs6390) 
 
 
-## DigiShow for Beginners:
+## DigiShow for Beginners
+
 1. **Configure Interfaces:** 
-Set up control interfaces (e.g., MIDI, DMX, Arduino) for audio, lighting, and interactive devices in the Interface Manager. 
+
+	Set up control interfaces (e.g., MIDI, DMX, Arduino) for audio, lighting, and interactive devices in the Interface Manager. 
 
 2. **Create Signal Links:** 
-Add signal bars in the Signal Link Table and assign specific outputs to them, where adjust output values in real time using faders. 
+
+	Add signal bars in the Signal Link Table and assign specific outputs to them, where adjust output values in real time using faders. 
 
 3. **Save Scenes:** 
-Save output values in the grouped signal bars as Presets for specific scenarios. Store timeline-based signal output curves in the Cue Player. 
+
+	Save output values in the grouped signal bars as Presets for specific scenarios. Store timeline-based signal output curves in the Cue Player. 
 
 4. **Switch Scenes (Manual):** 
-Activate the saved Presets and Cue Players by tapping the buttons in the Preset Launcher or a remote web page in another smart phone. 
+
+	Activate the saved Presets and Cue Players by tapping the buttons in the Preset Launcher or a remote web page in another smart phone. 
 
 5. **Trigger Scenes (Automatic):** 
-Alternatively, connects scene switching to specific sensor triggers, by selecting the sensors as inputs and Presets as outputs in the signal bars. 
+
+	Alternatively, connects scene switching to specific sensor triggers, by selecting the sensors as inputs and Presets as outputs in the signal bars. 
 
 With these steps, you can build a live audio-visual control console or an interactive art installation. 
 
-[Beginner’s Guide](https://github.com/robinz-labs/digishow/blob/master/guides/beginner.md) 
-
+[READ DETAILS](https://github.com/robinz-labs/digishow/blob/master/guides/beginner.md) 
+ 
 
 ## Release Downloads
 
@@ -91,23 +122,27 @@ It's also recommended to install loopMIDI and K-Lite Codec Pack to your Windows,
 
 ## Extra Downloads and Resources
 
-**Arduino** DigiShow RIOC library  
-Required to enable DigiShow LINK app to control sensors and actuators connected on your Arduino.  
-Find and install DigiShow RIOC in the library manager of Arduino IDE, or download it from github. 
-[download](https://github.com/robinz-labs/rioc-arduino/releases) 
+- **Arduino** DigiShow RIOC library 
 
-**MIDI** virtual MIDI bus drivers (IAC / loopMIDI)  
-In order to communicate with MIDI messages between DigiShow LINK and other software, users just need to setup a virtual MIDI bus in the operation system.  
-[learn IAC for Mac](https://help.ableton.com/hc/en-us/articles/209774225-How-to-setup-a-virtual-MIDI-bus)  
-[download loopMIDI for Windows](http://www.tobias-erichsen.de/software/loopmidi.html)  
+	Required to enable DigiShow LINK app to control sensors and actuators connected on your Arduino.  
+	Find and install DigiShow RIOC in the library manager of Arduino IDE, or download it from github.  
+	[download](https://github.com/robinz-labs/rioc-arduino/releases) 
 
-**DMX** ENTTEC DMX USB Pro driver (FTDI VCP)  
-Required to enable DigiShow LINK to control DMX lightings through an ENTTEC adapter.  
-[download](https://www.ftdichip.com/Drivers/VCP.htm) 
+- **MIDI** virtual MIDI bus drivers (IAC / loopMIDI) 
 
-**Screen** K-Lite Codec Pack (for windows)  
-Required to enable DigiShow LINK to play MP4, MOV video files on your Windows computer.  
-[download](https://www.codecguide.com/download_kl.htm) 
+	In order to communicate with MIDI messages between DigiShow LINK and other software, users just need to setup a virtual MIDI bus in the operation system.  
+	[learn IAC for Mac](https://help.ableton.com/hc/en-us/articles/209774225-How-to-setup-a-virtual-MIDI-bus)  
+	[download loopMIDI for Windows](http://www.tobias-erichsen.de/software/loopmidi.html)  
+
+- **DMX** ENTTEC DMX USB Pro driver (FTDI VCP) 
+
+	Required to enable DigiShow LINK to control DMX lightings through an ENTTEC adapter.  
+	[download](https://www.ftdichip.com/Drivers/VCP.htm) 
+
+- **Screen** K-Lite Codec Pack (for windows) 
+
+	Required to enable DigiShow LINK to play MP4, MOV video files on your Windows computer.  
+	[download](https://www.codecguide.com/download_kl.htm) 
 
 
 ## Developer Resources
