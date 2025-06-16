@@ -150,6 +150,16 @@ void DigishowMetronome::setQuantum(int quantum)
     m_mutex.unlock();
 }
 
+void DigishowMetronome::resetBeat()
+{
+    m_mutex.lock();
+    const auto time = m_link->clock().micros();
+    auto sessionState = m_link->captureAppSessionState();
+    sessionState.forceBeatAtTime(0.0, time, m_quantum); // set beat=0, phase=0
+    m_link->commitAppSessionState(sessionState);
+    m_mutex.unlock();
+}
+
 void DigishowMetronome::tap()
 {
     m_tapCount++;

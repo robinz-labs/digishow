@@ -1,0 +1,596 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.2"
+    },
+    "cuePlayers": {
+        "launch1": {
+            "cueAlone": true,
+            "cueDuration": 0,
+            "cueRepeat": true
+        },
+        "launch2": {
+            "cueAlone": true,
+            "cueDuration": 0,
+            "cueRepeat": false
+        },
+        "launch3": {
+            "cueAlone": true,
+            "cueDuration": 0,
+            "cueRepeat": false
+        }
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "audio1",
+                    "mediaAlone": true,
+                    "mediaDuration": 0,
+                    "mediaPosition": 0,
+                    "mediaRepeat": false,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media1",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/glass.wav",
+                    "name": "audio1",
+                    "type": "audio",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/beginner/clips/glass.wav"
+                }
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "A",
+                    "enabled": true,
+                    "name": "press1",
+                    "type": "press"
+                },
+                {
+                    "address": "B",
+                    "enabled": true,
+                    "name": "press2",
+                    "type": "press"
+                },
+                {
+                    "address": "C",
+                    "enabled": true,
+                    "name": "press4",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "preset1",
+                    "type": "preset"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "preset2",
+                    "type": "preset"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "preset3",
+                    "type": "preset"
+                }
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "name": "light1",
+                    "type": "light"
+                },
+                {
+                    "control": 2,
+                    "enabled": true,
+                    "name": "light2",
+                    "type": "light"
+                },
+                {
+                    "control": 3,
+                    "enabled": true,
+                    "name": "light3",
+                    "type": "light"
+                }
+            ],
+            "mode": "",
+            "name": "screen1",
+            "screen": -1,
+            "type": "screen"
+        }
+    ],
+    "launches": {
+        "launch1": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "Preset 1"
+        },
+        "launch2": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "Preset 2"
+        },
+        "launch3": {
+            "assigned": true,
+            "color": "#00a652",
+            "title": "Preset 3"
+        }
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "cuePlayerDetails": {
+                "launch1": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1.5968165887850443,
+                            "type": 1,
+                            "value": 100
+                        },
+                        {
+                            "time": 10.014164719626127,
+                            "type": 0,
+                            "value": 0.10020380434782608
+                        }
+                    ]
+                },
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 1.0166837032710352,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 4.094772196261682,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 5.003796728971996,
+                            "type": 1,
+                            "value": 59.791100543478116
+                        },
+                        {
+                            "time": 7.057206483644862,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 8.989266939252275,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 9.080388434579367,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 10.509747371495209,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 11.01978679906534,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch3": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0.4381936331775702,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "screen1/light1",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                }
+            },
+            "linked": true
+        },
+        {
+            "cuePlayerDetails": {
+                "launch1": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 5.052752628504703,
+                            "type": 1,
+                            "value": 50.66066576086947
+                        },
+                        {
+                            "time": 5.576482184579458,
+                            "type": 0,
+                            "value": 50.56555706521737
+                        },
+                        {
+                            "time": 6.9728752920561075,
+                            "type": 1,
+                            "value": 79.93716032608708
+                        },
+                        {
+                            "time": 10.014164719626127,
+                            "type": 0,
+                            "value": 0.10020380434782608
+                        }
+                    ]
+                },
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 1.0166837032710352,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 4.094772196261682,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 5.003796728971996,
+                            "type": 1,
+                            "value": 59.791100543478116
+                        },
+                        {
+                            "time": 7.057206483644862,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 8.989266939252275,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 9.035046728971892,
+                            "type": 0,
+                            "value": 70.14945652173873
+                        },
+                        {
+                            "time": 9.777708820093428,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 10.020735981308395,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch3": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0.4381936331775702,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "screen1/light2",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                }
+            },
+            "linked": true
+        },
+        {
+            "cuePlayerDetails": {
+                "launch1": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1.317647488317779,
+                            "type": 1,
+                            "value": 38.729619565217185
+                        },
+                        {
+                            "time": 3.081812207943925,
+                            "type": 0,
+                            "value": 23.88247282608694
+                        },
+                        {
+                            "time": 5.97711010514021,
+                            "type": 1,
+                            "value": 40.151154891304415
+                        },
+                        {
+                            "time": 6.641793224299082,
+                            "type": 0,
+                            "value": 40.18682065217393
+                        },
+                        {
+                            "time": 8.930344626168093,
+                            "type": 1,
+                            "value": 59.594089673912954
+                        },
+                        {
+                            "time": 10.014164719626127,
+                            "type": 0,
+                            "value": 0.10020380434782608
+                        }
+                    ]
+                },
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 1.0166837032710352,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1.455424941588785,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 5.003796728971996,
+                            "type": 1,
+                            "value": 59.791100543478116
+                        },
+                        {
+                            "time": 7.057206483644862,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 8.989266939252275,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 9.005914135513937,
+                            "type": 0,
+                            "value": 40.68783967391291
+                        },
+                        {
+                            "time": 9.777708820093428,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 10.020735981308395,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch3": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0.4381936331775702,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "screen1/light3",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                }
+            },
+            "linked": true
+        },
+        {
+            "cuePlayerDetails": {
+                "launch2": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 0.5520955023364528,
+                            "type": 0,
+                            "value": 100
+                        },
+                        {
+                            "time": 0.5520955023364528,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 1.0292786214952967,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                },
+                "launch3": {
+                    "points": [
+                        {
+                            "time": 0,
+                            "type": 0,
+                            "value": 0
+                        },
+                        {
+                            "time": 0.4381936331775702,
+                            "type": 0,
+                            "value": 0
+                        }
+                    ]
+                }
+            },
+            "destination": "aplay1/media1",
+            "launchDetails": {
+                "launch2": {
+                },
+                "launch3": {
+                }
+            },
+            "linked": true
+        },
+        {
+            "destination": "launch1/preset1",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                }
+            },
+            "linked": true,
+            "source": "hotkey1/press1"
+        },
+        {
+            "destination": "launch1/preset2",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                }
+            },
+            "linked": true,
+            "source": "hotkey1/press2"
+        },
+        {
+            "destination": "launch1/preset3",
+            "launchDetails": {
+                "launch1": {
+                },
+                "launch2": {
+                },
+                "launch3": {
+                }
+            },
+            "linked": true,
+            "source": "hotkey1/press4"
+        }
+    ]
+}

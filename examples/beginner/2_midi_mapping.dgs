@@ -1,0 +1,190 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.2"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "note1",
+                    "note": 36,
+                    "type": "note"
+                },
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "note2",
+                    "note": 42,
+                    "type": "note"
+                },
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "pitch1",
+                    "type": "pitch"
+                },
+                {
+                    "channel": 0,
+                    "control": 7,
+                    "enabled": true,
+                    "name": "control1",
+                    "type": "control"
+                }
+            ],
+            "mode": "input",
+            "name": "midi1",
+            "outputInterval": 20,
+            "port": "SMK25Mini Bluetooth",
+            "type": "midi"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "name": "light1",
+                    "type": "light"
+                },
+                {
+                    "control": 4,
+                    "enabled": true,
+                    "name": "light2",
+                    "type": "light"
+                },
+                {
+                    "control": 3,
+                    "enabled": true,
+                    "name": "light3",
+                    "type": "light"
+                },
+                {
+                    "control": 11,
+                    "enabled": true,
+                    "initial": 1,
+                    "media": "image1",
+                    "name": "media1",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 2500,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media3",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/logo.png",
+                    "name": "image1",
+                    "type": "image",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/beginner/clips/logo.png"
+                }
+            ],
+            "mode": "",
+            "name": "screen1",
+            "screen": -1,
+            "type": "screen"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "screen1/light1",
+            "envelopeAttack": 100,
+            "envelopeHold": 0,
+            "envelopeRelease": 900,
+            "linked": true,
+            "source": "midi1/note1"
+        },
+        {
+            "destination": "screen1/light2",
+            "envelopeHold": 40,
+            "envelopeRelease": 0,
+            "envelopeSustain": 0,
+            "linked": true,
+            "source": "midi1/note2"
+        },
+        {
+            "destination": "screen1/light3",
+            "inputLow": 0.50371,
+            "linked": true,
+            "source": "midi1/pitch1"
+        },
+        {
+            "destination": "screen1/media1",
+            "linked": true,
+            "source": "midi1/control1"
+        },
+        {
+            "destination": "screen1/media3",
+            "linked": true
+        }
+    ]
+}

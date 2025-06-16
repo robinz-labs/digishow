@@ -173,6 +173,13 @@
   ! improved present launcher
   ! improved scriptable enviroment
 
+  v1.7.3 20250616
+  final release
+  ! fixed master volume bug in audio player
+  + added beat count and reset signals in metronome
+  ! improved the ui of preset launcher
+  ! improved the ui of bookmarks
+
 */
 
 #ifndef DIGISHOW_H

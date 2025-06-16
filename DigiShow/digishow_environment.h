@@ -149,8 +149,10 @@ public:
         EndpointMetronomeRun      = ENDPOINT_METRONOME_RUN,
         EndpointMetronomeLink     = ENDPOINT_METRONOME_LINK,
         EndpointMetronomeTap      = ENDPOINT_METRONOME_TAP,
-        EndpointMessengerText      = ENDPOINT_MESSENGER_TEXT,
-        EndpointMessengerHexCode   = ENDPOINT_MESSENGER_HEXCODE
+        EndpointMetronomeCount    = ENDPOINT_METRONOME_COUNT,
+        EndpointMetronomeReset    = ENDPOINT_METRONOME_RESET,
+        EndpointMessengerText     = ENDPOINT_MESSENGER_TEXT,
+        EndpointMessengerHexCode  = ENDPOINT_MESSENGER_HEXCODE
     };
     Q_ENUM(EndpointType)
 

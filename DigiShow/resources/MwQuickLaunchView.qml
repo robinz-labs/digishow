@@ -12,6 +12,7 @@ Item {
 
     property string editingLaunchName: "" // name of the launch item that is being edited
     property bool isEditing: editingLaunchName !== ""
+    property bool isInUse: false
     property bool opened: height > 0
     property alias dataModel: dataModel
     property alias currentIndex: gridView.currentIndex
@@ -655,6 +656,7 @@ Item {
 
         // prepare launches data model
         dataModel.clear()
+        isInUse = false
         for (var n=0 ; n<50 ; n++) {
 
             // create default data
@@ -670,6 +672,8 @@ Item {
                 if (launch["assigned"] !== undefined) assigned = launch["assigned"]
                 if (launch["title"]    !== undefined) title    = launch["title"]
                 if (launch["color"]    !== undefined) color    = launch["color"]
+
+                isInUse = true
             }
 
             // make data model for the grid view
@@ -736,6 +740,7 @@ Item {
         app.setLaunchOption(model.name, "title", model.title)
         app.setLaunchOption(model.name, "color", model.color)
 
+        isInUse = true
         window.isModified = true
         undoManager.archive()
     }
@@ -775,6 +780,7 @@ Item {
             }
         }
         
+        isInUse = true
         window.isModified = true
         undoManager.archive()
     }

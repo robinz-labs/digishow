@@ -10,14 +10,12 @@ Item {
 
     COptionButton {
         id: buttonType
-        width: 130
+        width: 115
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
         text: menuType.selectedItemText
         onClicked: menuType.showOptions()
-
-        visible: forOutput
 
         COptionMenu {
             id: menuType
@@ -28,12 +26,13 @@ Item {
         id: buttonBeat
         width: 85
         height: 28
-        anchors.left: parent.left
+        anchors.left: buttonType.right
+        anchors.leftMargin: 10
         anchors.top: parent.top
         text: menuBeat.selectedItemText
         onClicked: menuBeat.showOptions()
 
-        visible: forInput
+        visible: menuType.selectedItemTag === "beat"
 
         COptionMenu {
             id: menuBeat
@@ -42,7 +41,7 @@ Item {
 
     COptionButton {
         id: buttonSustain
-        width: 115
+        width: 130
         height: 28
         anchors.left: buttonBeat.right
         anchors.leftMargin: 10
@@ -50,7 +49,7 @@ Item {
         text: menuSustain.selectedItemText
         onClicked: menuSustain.showOptions()
 
-        visible: forInput
+        visible: menuType.selectedItemTag === "beat"
 
         COptionMenu {
             id: menuSustain
@@ -65,11 +64,21 @@ Item {
         // init metronome type menu (for control output)
         if (menuType.count === 0) {
             items = []
-            items.push({ text: qsTr("BPM Change"    ), value: DigishowEnvironment.EndpointMetronomeBPM,     tag: "bpm" })
-            items.push({ text: qsTr("Quantum Change"), value: DigishowEnvironment.EndpointMetronomeQuantum, tag: "quantum" })
-            items.push({ text: qsTr("Run ON"        ), value: DigishowEnvironment.EndpointMetronomeRun,     tag: "run" })
-            items.push({ text: qsTr("Link ON"       ), value: DigishowEnvironment.EndpointMetronomeLink,    tag: "link" })
-            items.push({ text: qsTr("Tap"           ), value: DigishowEnvironment.EndpointMetronomeTap,     tag: "tap" })
+
+            if (forInput) {
+
+                items.push({ text: qsTr("Beat Trigger"  ), value: DigishowEnvironment.EndpointMetronomeBeat,    tag: "beat" })
+                items.push({ text: qsTr("Beat Count"    ), value: DigishowEnvironment.EndpointMetronomeCount,   tag: "count" })
+
+            } else if (forOutput) {
+
+                items.push({ text: qsTr("Reset"         ), value: DigishowEnvironment.EndpointMetronomeReset,   tag: "reset" })
+                items.push({ text: qsTr("BPM Change"    ), value: DigishowEnvironment.EndpointMetronomeBPM,     tag: "bpm" })
+                items.push({ text: qsTr("Quantum Change"), value: DigishowEnvironment.EndpointMetronomeQuantum, tag: "quantum" })
+                items.push({ text: qsTr("Run ON"        ), value: DigishowEnvironment.EndpointMetronomeRun,     tag: "run" })
+                items.push({ text: qsTr("Link ON"       ), value: DigishowEnvironment.EndpointMetronomeLink,    tag: "link" })
+                items.push({ text: qsTr("Tap"           ), value: DigishowEnvironment.EndpointMetronomeTap,     tag: "tap" })
+            }
 
             menuType.optionItems = items
             menuType.selectedIndex = 0
@@ -117,13 +126,12 @@ Item {
 
     function setEndpointOptions(endpointInfo, endpointOptions) {
 
-        if (forInput) {
+        var type = endpointInfo["type"]
+        menuType.selectOption(type)
+
+        if (type === "beat") {
             menuBeat.selectOption(endpointInfo["channel"])
             menuSustain.selectOption(endpointInfo["control"])
-        }
-
-        if (forOutput) {
-            menuType.selectOption(endpointInfo["type"])
         }
     }
 
@@ -131,14 +139,12 @@ Item {
 
         var options = {}
 
-        if (forInput) {
-            options["type"] = "beat"
+        var type = menuType.selectedItemTag
+        options["type"] = type
+
+        if (type === "beat") {
             options["channel"] = menuBeat.selectedItemValue
             options["control"] = menuSustain.selectedItemValue
-        }
-
-        if (forOutput) {
-            options["type"] = menuType.selectedItemTag
         }
 
         return options

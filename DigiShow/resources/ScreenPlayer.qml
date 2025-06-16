@@ -34,6 +34,12 @@ QtObject {
         Utilities { id: utilities }
         CCommon { id: common }
 
+        Component.onCompleted: {
+
+            utilities.setMacWindowDarkTitlebar(window)
+        }
+
+
         MouseArea {
             id: mouseArea
 

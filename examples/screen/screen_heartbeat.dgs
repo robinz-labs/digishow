@@ -1,0 +1,226 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.2_b"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat1",
+                    "type": "beat"
+                },
+                {
+                    "channel": 9,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat2",
+                    "type": "beat"
+                },
+                {
+                    "channel": 13,
+                    "control": 4,
+                    "enabled": true,
+                    "name": "beat3",
+                    "type": "beat"
+                },
+                {
+                    "channel": 1,
+                    "control": 8,
+                    "enabled": true,
+                    "name": "beat10",
+                    "type": "beat"
+                },
+                {
+                    "channel": 3,
+                    "control": 12,
+                    "enabled": true,
+                    "name": "beat5",
+                    "type": "beat"
+                }
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 2,
+                    "enabled": true,
+                    "media": "image2",
+                    "name": "media5",
+                    "type": "media"
+                },
+                {
+                    "control": 11,
+                    "enabled": true,
+                    "media": "image2",
+                    "name": "media7",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "name": "light1",
+                    "type": "light"
+                },
+                {
+                    "control": 3,
+                    "enabled": true,
+                    "name": "light2",
+                    "type": "light"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image2",
+                    "mediaAlone": false,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 2000,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media14",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "media": "image3",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 8000,
+                    "mediaPosition": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 10000,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5500,
+                    "name": "media2",
+                    "type": "media"
+                },
+                {
+                    "control": 12,
+                    "enabled": true,
+                    "media": "image2",
+                    "name": "media1",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/heart.png",
+                    "name": "image2",
+                    "type": "image",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/tutorials/examples/4 Common Operations/4_3_screen_heartbeat/clips/heart.png"
+                },
+                {
+                    "file": "clips/bubbles.jpg",
+                    "name": "image3",
+                    "type": "image",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/tutorials/examples/4 Common Operations/4_3_screen_heartbeat/clips/bubbles.jpg"
+                }
+            ],
+            "mode": "",
+            "name": "screen1",
+            "type": "screen"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 90,
+        "link": false,
+        "quantum": 4,
+        "run": true,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "screen1/media2",
+            "linked": true,
+            "title": "Background"
+        },
+        {
+            "destination": "screen1/media14",
+            "linked": true,
+            "source": "metronome1/beat1",
+            "title": "Show Heart"
+        },
+        {
+            "destination": "screen1/media5",
+            "linked": true,
+            "source": "metronome1/beat3",
+            "title": "Hide Heart"
+        },
+        {
+            "destination": "screen1/media7",
+            "envelopeAttack": 500,
+            "linked": true,
+            "outputInverted": true,
+            "source": "metronome1/beat2",
+            "title": "Fade Out"
+        },
+        {
+            "destination": "screen1/media1",
+            "envelopeAttack": 500,
+            "linked": true,
+            "outputHigh": 0.30304,
+            "outputInverted": false,
+            "outputLow": 0.2013,
+            "source": "metronome1/beat2",
+            "title": "Scale Up"
+        },
+        {
+            "destination": "screen1/light1",
+            "linked": true,
+            "outputSmoothing": 500,
+            "source": "metronome1/beat10",
+            "title": "Backlight - Red"
+        },
+        {
+            "destination": "screen1/light2",
+            "linked": true,
+            "outputHigh": 0.47187,
+            "outputSmoothing": 500,
+            "source": "metronome1/beat5",
+            "title": "Backlight - Blue"
+        }
+    ]
+}

@@ -60,6 +60,7 @@ int DgsMetronomeInterface::openInterface()
         }
     }
 
+    connect(m_metronome, SIGNAL(beatChanged()), this, SLOT(onBeatChanged()));
     connect(m_metronome, SIGNAL(quarterChanged()), this, SLOT(onQuarterChanged()));
 
     m_isInterfaceOpened = true;
@@ -85,7 +86,8 @@ int DgsMetronomeInterface::sendData(int endpointIndex, dgsSignalData data)
         (type == ENDPOINT_METRONOME_QUANTUM && data.signal != DATA_SIGNAL_ANALOG) ||
         (type == ENDPOINT_METRONOME_RUN     && data.signal != DATA_SIGNAL_BINARY) ||
         (type == ENDPOINT_METRONOME_LINK    && data.signal != DATA_SIGNAL_BINARY) ||
-        (type == ENDPOINT_METRONOME_TAP     && data.signal != DATA_SIGNAL_BINARY)) return ERR_INVALID_DATA;
+        (type == ENDPOINT_METRONOME_TAP     && data.signal != DATA_SIGNAL_BINARY) ||
+        (type == ENDPOINT_METRONOME_RESET   && data.signal != DATA_SIGNAL_BINARY)) return ERR_INVALID_DATA;
 
     switch (type) {
     case ENDPOINT_METRONOME_BPM:
@@ -103,9 +105,31 @@ int DgsMetronomeInterface::sendData(int endpointIndex, dgsSignalData data)
     case ENDPOINT_METRONOME_TAP:
         if (data.bValue) g_app->metronome()->tap();
         break;
+    case ENDPOINT_METRONOME_RESET:
+        if (data.bValue) g_app->metronome()->resetBeat();
+        break;
     }
 
     return ERR_NONE;
+}
+
+void DgsMetronomeInterface::onBeatChanged()
+{
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        int type  = m_endpointInfoList[n].type;
+        if (type == ENDPOINT_METRONOME_COUNT) {
+
+            int value = m_metronome->beat();
+            int range = m_endpointInfoList[n].range;
+
+            dgsSignalData data;
+            data.signal = DATA_SIGNAL_ANALOG;
+            data.aRange = range;
+            data.aValue = qBound<int>(0, value, range);
+            emit dataReceived(n, data);
+        }
+    }
 }
 
 void DgsMetronomeInterface::onQuarterChanged()
@@ -157,6 +181,8 @@ void DgsMetronomeInterface::updateMetadata_()
         else if (typeName == "run"    ) endpointInfo.type = ENDPOINT_METRONOME_RUN;
         else if (typeName == "link"   ) endpointInfo.type = ENDPOINT_METRONOME_LINK;
         else if (typeName == "tap"    ) endpointInfo.type = ENDPOINT_METRONOME_TAP;
+        else if (typeName == "count"  ) endpointInfo.type = ENDPOINT_METRONOME_COUNT;
+        else if (typeName == "reset"  ) endpointInfo.type = ENDPOINT_METRONOME_RESET;
 
         // Set endpoint properties based on type
         switch (endpointInfo.type) {
@@ -200,6 +226,19 @@ void DgsMetronomeInterface::updateMetadata_()
                 endpointInfo.output = true;
                 endpointInfo.labelEPT = tr("Beat Maker");
                 endpointInfo.labelEPI = tr("Tap");
+                break;
+            case ENDPOINT_METRONOME_COUNT:
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.input = true;
+                endpointInfo.range = 1000000;
+                endpointInfo.labelEPT = tr("Beat Maker");
+                endpointInfo.labelEPI = tr("Count");
+                break;
+            case ENDPOINT_METRONOME_RESET:
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.output = true;
+                endpointInfo.labelEPT = tr("Beat Maker");
+                endpointInfo.labelEPI = tr("Reset");
                 break;
         }
 

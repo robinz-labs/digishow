@@ -102,7 +102,10 @@ int DgsAPlayInterface::sendData(int endpointIndex, dgsSignalData data)
                 if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
                 if (data.bValue) {
 
-                    player->setVolume(endpointOptions.value("mediaVolume", QVariant(10000)).toInt() / 10000.0 * m_volumeMaster);
+                    double volume = endpointOptions.value("mediaVolume", QVariant(10000)).toInt() / 10000.0;
+                    m_volumes[media] = volume;
+
+                    player->setVolume(volume * m_volumeMaster);
                     player->setSpeed(endpointOptions.value("mediaSpeed", QVariant(10000)).toInt() / 10000.0);
                     player->setPosition(endpointOptions.value("mediaPosition").toInt());
                     player->setDuration(endpointOptions.value("mediaDuration").toInt());
@@ -146,8 +149,8 @@ int DgsAPlayInterface::sendData(int endpointIndex, dgsSignalData data)
                 if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
 
                 double volume = (double)data.aValue / (double)data.aRange;
-                player->setVolume(volume * m_volumeMaster);
                 m_volumes[media] = volume;
+                player->setVolume(volume * m_volumeMaster);
 
                 return ERR_NONE;
 

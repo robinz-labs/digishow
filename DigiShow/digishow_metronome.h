@@ -57,6 +57,7 @@ public:
     Q_INVOKABLE void tap();
     Q_INVOKABLE int tapCount() { return m_tapCount; }
 
+    Q_INVOKABLE void resetBeat();
 
     void run(); // called by the worker thread
 

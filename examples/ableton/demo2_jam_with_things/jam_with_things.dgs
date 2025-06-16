@@ -1,0 +1,354 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.2_b"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "enabled": true,
+                    "name": "tap1",
+                    "type": "tap"
+                }
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "note1",
+                    "type": "note"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "note3",
+                    "note": 67,
+                    "type": "note"
+                },
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "note4",
+                    "note": 74,
+                    "type": "note"
+                },
+                {
+                    "channel": 9,
+                    "enabled": true,
+                    "name": "note5",
+                    "note": 36,
+                    "type": "note"
+                },
+                {
+                    "channel": 9,
+                    "enabled": true,
+                    "name": "note21",
+                    "note": 46,
+                    "type": "note"
+                },
+                {
+                    "channel": 0,
+                    "enabled": true,
+                    "name": "note1",
+                    "note": 71,
+                    "type": "note"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "note7",
+                    "note": 55,
+                    "type": "note"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "note9",
+                    "note": 79,
+                    "type": "note"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "note15",
+                    "note": 74,
+                    "type": "note"
+                },
+                {
+                    "channel": 9,
+                    "enabled": true,
+                    "name": "note2",
+                    "note": 39,
+                    "type": "note"
+                }
+            ],
+            "mode": "output",
+            "name": "midi1",
+            "outputInterval": 20,
+            "port": "IAC Bus 1",
+            "type": "midi"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 28,
+                    "enabled": true,
+                    "name": "digital_in4",
+                    "optFilterLevel": 0,
+                    "optMode": 0,
+                    "optSamplingInterval": 0,
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 25,
+                    "enabled": true,
+                    "name": "digital_in5",
+                    "optFilterLevel": 0,
+                    "optMode": 0,
+                    "optSamplingInterval": 0,
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 26,
+                    "enabled": true,
+                    "name": "digital_in6",
+                    "optFilterLevel": 0,
+                    "optMode": 0,
+                    "optSamplingInterval": 0,
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 27,
+                    "enabled": true,
+                    "name": "digital_in7",
+                    "optFilterLevel": 0,
+                    "optMode": 0,
+                    "optSamplingInterval": 0,
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "pwm_out1",
+                    "type": "pwm_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 22,
+                    "enabled": true,
+                    "name": "digital_in1",
+                    "optFilterLevel": 0,
+                    "optMode": 0,
+                    "optSamplingInterval": 0,
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 29,
+                    "enabled": true,
+                    "name": "digital_in2",
+                    "optFilterLevel": 0,
+                    "optMode": 0,
+                    "optSamplingInterval": 0,
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 24,
+                    "enabled": true,
+                    "name": "digital_in3",
+                    "optFilterLevel": 0,
+                    "optMode": 0,
+                    "optSamplingInterval": 0,
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 30,
+                    "enabled": true,
+                    "name": "digital_in8",
+                    "optFilterLevel": 0,
+                    "optMode": 0,
+                    "optSamplingInterval": 0,
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 31,
+                    "enabled": true,
+                    "name": "digital_in10",
+                    "optFilterLevel": 0,
+                    "optMode": 0,
+                    "optSamplingInterval": 0,
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 32,
+                    "enabled": true,
+                    "name": "digital_in11",
+                    "optFilterLevel": 0,
+                    "optMode": 0,
+                    "optSamplingInterval": 0,
+                    "type": "digital_in",
+                    "unit": 1
+                }
+            ],
+            "mode": "aladdin",
+            "name": "rioc1",
+            "outputInterval": 20,
+            "type": "rioc"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 54,
+        "link": true,
+        "quantum": 4,
+        "run": true,
+        "sound": false
+    },
+    "slots": [
+        {
+            "bookmarked": true,
+            "linked": true,
+            "title": "Turntable Drums"
+        },
+        {
+            "destination": "midi1/note5",
+            "linked": true,
+            "source": "rioc1/digital_in2",
+            "title": "Kick"
+        },
+        {
+            "destination": "midi1/note2",
+            "linked": true,
+            "source": "rioc1/digital_in7",
+            "title": "Snare"
+        },
+        {
+            "destination": "midi1/note21",
+            "linked": true,
+            "source": "rioc1/digital_in4",
+            "title": "Open Hat"
+        },
+        {
+            "bookmarked": true,
+            "linked": true,
+            "title": "Turntable Melody"
+        },
+        {
+            "destination": "metronome1/tap1",
+            "linked": true,
+            "source": "rioc1/digital_in1",
+            "title": "Tap"
+        },
+        {
+            "destination": "midi1/note3",
+            "linked": true,
+            "source": "rioc1/digital_in3",
+            "title": "G"
+        },
+        {
+            "destination": "midi1/note1",
+            "linked": true,
+            "source": "rioc1/digital_in5",
+            "title": "B"
+        },
+        {
+            "destination": "midi1/note4",
+            "linked": true,
+            "source": "rioc1/digital_in6",
+            "title": "D"
+        },
+        {
+            "destination": "pipe1/note1",
+            "linked": true,
+            "source": "rioc1/digital_in3",
+            "title": "Note Light G"
+        },
+        {
+            "destination": "pipe1/note1",
+            "linked": true,
+            "outputHigh": 0.15066,
+            "source": "rioc1/digital_in5",
+            "title": "Note Light B"
+        },
+        {
+            "destination": "pipe1/note1",
+            "linked": true,
+            "outputHigh": 0.05044,
+            "source": "rioc1/digital_in6",
+            "title": "Note Light D"
+        },
+        {
+            "destination": "rioc1/pwm_out1",
+            "envelopeAttack": 0,
+            "envelopeRelease": 310,
+            "linked": true,
+            "source": "pipe1/note1",
+            "title": "Note Light"
+        },
+        {
+            "bookmarked": true,
+            "linked": true,
+            "title": "Eletric Fan"
+        },
+        {
+            "destination": "midi1/note7",
+            "inputInverted": false,
+            "linked": true,
+            "source": "rioc1/digital_in8",
+            "title": "Laser Note"
+        },
+        {
+            "destination": "midi1/note9",
+            "inputInverted": false,
+            "linked": true,
+            "outputHigh": 1,
+            "source": "rioc1/digital_in10",
+            "title": "Magnetic Note 1"
+        },
+        {
+            "destination": "midi1/note15",
+            "inputInverted": false,
+            "linked": true,
+            "source": "rioc1/digital_in11",
+            "title": "Magnetic Note 2"
+        }
+    ]
+}

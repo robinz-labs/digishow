@@ -1,0 +1,236 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.2_b"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "name": "analog1",
+                    "range": 255,
+                    "type": "analog"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaDuration": 0,
+                    "mediaFadeIn": 300,
+                    "mediaMappingMode": 0,
+                    "mediaPixelCountX": 170,
+                    "mediaPixelCountY": 2,
+                    "mediaPixelMode": "rgb",
+                    "mediaPixelOffsetX": 0,
+                    "mediaPixelOffsetY": 0,
+                    "mediaPixelSpacingX": 1,
+                    "mediaPixelSpacingY": 1,
+                    "mediaPosition": 0,
+                    "mediaRepeat": false,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media1",
+                    "type": "media",
+                    "unit": 0
+                },
+                {
+                    "channel": 0,
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image2",
+                    "mediaAlone": true,
+                    "mediaDuration": 0,
+                    "mediaFadeIn": 300,
+                    "mediaMappingMode": 0,
+                    "mediaPixelCountX": 170,
+                    "mediaPixelCountY": 2,
+                    "mediaPixelMode": "rgb",
+                    "mediaPixelOffsetX": 0,
+                    "mediaPixelOffsetY": 0,
+                    "mediaPixelSpacingX": 1,
+                    "mediaPixelSpacingY": 1,
+                    "mediaPosition": 0,
+                    "mediaRepeat": false,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media2",
+                    "type": "media",
+                    "unit": 0
+                },
+                {
+                    "channel": 0,
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image3",
+                    "mediaAlone": true,
+                    "mediaDuration": 0,
+                    "mediaFadeIn": 300,
+                    "mediaMappingMode": 0,
+                    "mediaPixelCountX": 170,
+                    "mediaPixelCountY": 2,
+                    "mediaPixelMode": "rgb",
+                    "mediaPixelOffsetX": 0,
+                    "mediaPixelOffsetY": 0,
+                    "mediaPixelSpacingX": 1,
+                    "mediaPixelSpacingY": 1,
+                    "mediaPosition": 0,
+                    "mediaRepeat": false,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media3",
+                    "type": "media",
+                    "unit": 0
+                },
+                {
+                    "channel": 0,
+                    "control": 1,
+                    "enabled": true,
+                    "media": "ini1",
+                    "mediaAlone": true,
+                    "mediaDuration": 10000,
+                    "mediaFadeIn": 300,
+                    "mediaMappingMode": 0,
+                    "mediaPixelCountX": 170,
+                    "mediaPixelCountY": 2,
+                    "mediaPixelMode": "rgb",
+                    "mediaPixelOffsetX": 0,
+                    "mediaPixelOffsetY": 0,
+                    "mediaPixelSpacingX": 1,
+                    "mediaPixelSpacingY": 1,
+                    "mediaPosition": 0,
+                    "mediaRepeat": true,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media5",
+                    "type": "media",
+                    "unit": 0
+                },
+                {
+                    "enabled": true,
+                    "name": "master1",
+                    "type": "master",
+                    "unit": 0
+                },
+                {
+                    "enabled": true,
+                    "name": "master2",
+                    "type": "master",
+                    "unit": 1
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/black_170.png",
+                    "name": "image1",
+                    "type": "image",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/Tutorials/5 Artistic Lighting Applications/clips/black_170.png"
+                },
+                {
+                    "file": "clips/white_170.png",
+                    "name": "image2",
+                    "type": "image",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/Tutorials/5 Artistic Lighting Applications/clips/white_170.png"
+                },
+                {
+                    "file": "clips/rainbow_170.png",
+                    "name": "image3",
+                    "type": "image",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/Tutorials/5 Artistic Lighting Applications/clips/rainbow_170.png"
+                },
+                {
+                    "file": "clips/animation_170/frames.ini",
+                    "name": "ini1",
+                    "type": "ini",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/Tutorials/5 Artistic Lighting Applications/clips/animation_170/frames.ini"
+                }
+            ],
+            "mode": "output",
+            "name": "artnet1",
+            "type": "artnet",
+            "udpHost": "127.0.0.1",
+            "udpPort": 6454
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "artnet1/media1",
+            "linked": true,
+            "title": "Black"
+        },
+        {
+            "destination": "artnet1/media2",
+            "linked": true,
+            "title": "White"
+        },
+        {
+            "destination": "artnet1/media3",
+            "linked": true,
+            "title": "Rainbow"
+        },
+        {
+            "destination": "artnet1/media5",
+            "linked": true,
+            "title": "Animation"
+        },
+        {
+            "destination": "pipe1/analog1",
+            "linked": true,
+            "title": "Master"
+        },
+        {
+            "destination": "artnet1/master1",
+            "linked": true,
+            "source": "pipe1/analog1",
+            "title": "Master U0"
+        },
+        {
+            "destination": "artnet1/master2",
+            "linked": true,
+            "source": "pipe1/analog1",
+            "title": "Master U1"
+        }
+    ]
+}

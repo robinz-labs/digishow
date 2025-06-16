@@ -1,0 +1,102 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.2_c"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "address": "/level1",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": 0.7000000000000001,
+                    "name": "float1",
+                    "type": "float"
+                },
+                {
+                    "address": "/level2",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": 0,
+                    "name": "int1",
+                    "range": 1000,
+                    "type": "int"
+                },
+                {
+                    "address": "/switch1",
+                    "channel": 0,
+                    "enabled": true,
+                    "initial": 1,
+                    "name": "bool1",
+                    "type": "bool"
+                }
+            ],
+            "mode": "output",
+            "name": "osc1",
+            "type": "osc",
+            "udpHost": "127.0.0.1",
+            "udpPort": 9000
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "osc1/float1",
+            "linked": true,
+            "source": ""
+        },
+        {
+            "destination": "osc1/int1",
+            "linked": true,
+            "source": ""
+        },
+        {
+            "destination": "osc1/bool1",
+            "linked": true,
+            "outputInverted": false,
+            "source": ""
+        }
+    ]
+}

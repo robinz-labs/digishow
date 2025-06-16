@@ -44,8 +44,8 @@ private:
 
     // players hold all media
     QMap<QString, DgsAPlayer*> m_players;
-    QMap<QString, double> m_volumes;
-    double m_volumeMaster;
+    QMap<QString, double> m_volumes; // 0 ~ 1.0
+    double m_volumeMaster; // 0 ~ 1.0
 
     bool initPlayer(const QVariantMap &mediaOptions);
     void stopAll();

@@ -460,7 +460,8 @@ ApplicationWindow {
                 icon.source: "qrc:///images/icon_pad_white.png"
                 box.radius: 3
                 box.border.width: 1
-                colorNormal: quickLaunchView.opened ? "#666666" : "transparent"
+                colorNormal: quickLaunchView.opened ? "#666666" :
+                             quickLaunchView.isInUse ? Material.accent : "transparent"
                 visible: !window.isEmpty
                 onClicked: {
                     if (quickLaunchView.opened) {
@@ -509,6 +510,9 @@ ApplicationWindow {
 
             CButton {
                 id: buttonGotoBookmark
+
+                property bool hasBookmarks: slotListView.hasBookmarks
+
                 width: 34
                 height: 28
                 anchors.left: buttonMetronome.right
@@ -520,24 +524,37 @@ ApplicationWindow {
                 icon.height: 24
                 icon.sourceSize.width: 48
                 icon.sourceSize.height: 48
-                icon.source: "qrc:///images/icon_goto_white.png"
+                icon.source: hasBookmarks && !blinkGotoBookmark.running ? "qrc:///images/icon_goto_red.png" : "qrc:///images/icon_goto_white.png"
                 box.radius: 3
                 box.border.width: 1
-                colorNormal: blinkGotoBookmark.state ? "darkRed" : "transparent"
-                visible: slotListView.hasBookmarks
-                onVisibleChanged: {
-                    if (visible) blinkGotoBookmark.start()
+                colorNormal: blinkGotoBookmark.state ? Material.accent : "transparent"
+                visible: !window.isEmpty
+                onHasBookmarksChanged: {
+                    if (hasBookmarks) blinkGotoBookmark.start()
                 }
                 onClicked: {
-                    menuGotoBookmark.optionItems = slotListView.getBookmarks()
+                    if (hasBookmarks) {
+                        menuGotoBookmark.optionItems = slotListView.getBookmarks()
+                    } else {
+                        menuGotoBookmark.optionItems = [ { value:-1, text:qsTr("No bookmark") } ]
+                        //menuGotoBookmark.itemAt(0).enabled = false
+                    }
+
                     menuGotoBookmark.showOptions()
                 }
 
                 COptionMenu {
                     id: menuGotoBookmark
-                    width: 160
+                    width: 150
                     onOptionClicked: {
-                        slotListView.gotoBookmark(value)
+                        if (value >=0 ) {
+                            slotListView.gotoBookmark(value)
+                        } else {
+                            messageBox.show(qsTr("How to add bookmarks ?") + "\r\n\r\n" +
+                                            qsTr("To bookmark an item in the signal link table, please right click on the signal bar and select Add Bookmark from the context menu."),
+                                            qsTr("OK"))
+                        }
+
                     }
                 }
 
@@ -627,7 +644,7 @@ ApplicationWindow {
                     }
                     onTriggered: {
                         step++
-                        if (step===10) {
+                        if (step===20) {
                             state = true
                             step = 0
                         } else {

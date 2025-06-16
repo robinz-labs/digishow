@@ -1,0 +1,148 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.5.2_b"
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 9,
+                    "enabled": true,
+                    "name": "digital_out5",
+                    "type": "digital_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 10,
+                    "enabled": true,
+                    "name": "digital_out6",
+                    "type": "digital_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 11,
+                    "enabled": true,
+                    "name": "digital_out7",
+                    "type": "digital_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 12,
+                    "enabled": true,
+                    "name": "digital_out8",
+                    "type": "digital_out",
+                    "unit": 1
+                }
+            ],
+            "mode": "arduino_uno",
+            "name": "rioc1",
+            "outputInterval": 20,
+            "type": "rioc"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 0,
+                    "control": 21,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "control1",
+                    "type": "control"
+                },
+                {
+                    "channel": 0,
+                    "control": 22,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "control2",
+                    "type": "control"
+                },
+                {
+                    "channel": 0,
+                    "control": 23,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "control3",
+                    "type": "control"
+                },
+                {
+                    "channel": 0,
+                    "control": 24,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "control4",
+                    "type": "control"
+                }
+            ],
+            "mode": "input",
+            "name": "midi1",
+            "outputInterval": 20,
+            "port": "IAC Bus 2",
+            "type": "midi"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "slots": [
+        {
+            "destination": "rioc1/digital_out5",
+            "inputLow": 0.50022,
+            "linked": true,
+            "source": "midi1/control1",
+            "title": "electromagnet 1"
+        },
+        {
+            "destination": "rioc1/digital_out6",
+            "inputHigh": 1,
+            "inputInverted": false,
+            "inputLow": 0.50022,
+            "linked": true,
+            "outputInverted": false,
+            "source": "midi1/control2",
+            "title": "electromagnet 2"
+        },
+        {
+            "destination": "rioc1/digital_out7",
+            "inputHigh": 1,
+            "inputInverted": false,
+            "inputLow": 0.50022,
+            "linked": true,
+            "outputInverted": false,
+            "source": "midi1/control3",
+            "title": "electromagnet 3"
+        },
+        {
+            "destination": "rioc1/digital_out8",
+            "inputHigh": 1,
+            "inputInverted": false,
+            "inputLow": 0.50022,
+            "linked": true,
+            "outputInverted": false,
+            "source": "midi1/control4",
+            "title": "electromagnet 4"
+        }
+    ]
+}

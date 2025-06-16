@@ -4,12 +4,12 @@
 <context>
     <name>DgsAPlayInterface</name>
     <message>
-        <location filename="../../dgs_aplay_interface.cpp" line="231"/>
+        <location filename="../../dgs_aplay_interface.cpp" line="234"/>
         <source>Audio Player</source>
         <translation>Reproductor de audio</translation>
     </message>
     <message>
-        <location filename="../../dgs_aplay_interface.cpp" line="243"/>
+        <location filename="../../dgs_aplay_interface.cpp" line="246"/>
         <source>Audio Clip</source>
         <translation>Clip de audio</translation>
     </message>
@@ -151,45 +151,57 @@
 <context>
     <name>DgsMetronomeInterface</name>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="146"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="167"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="176"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="183"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="189"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="195"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="201"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="170"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="193"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="202"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="209"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="215"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="221"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="227"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="234"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="240"/>
         <source>Beat Maker</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="168"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="194"/>
         <source>Beat %1</source>
-        <translation>Latido %1</translation>
+        <translation>Tiempo %1</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="177"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="203"/>
         <source>BPM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="184"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="210"/>
         <source>Quantum</source>
         <translation>Cuantía</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="190"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="216"/>
         <source>Run</source>
         <translation>Ejecutar</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="196"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="222"/>
         <source>Link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="202"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="228"/>
         <source>Tap</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_metronome_interface.cpp" line="235"/>
+        <source>Count</source>
+        <translation>Conteo</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_metronome_interface.cpp" line="241"/>
+        <source>Reset</source>
+        <translation>Reiniciar</translation>
     </message>
 </context>
 <context>
@@ -424,7 +436,7 @@ asegúrate de que el programa DigiShow RIOC esté cargado en Arduino.</translati
         <translation>Se produjo un error al abrir la interfaz %1 .</translation>
     </message>
     <message>
-        <location filename="../../digishow_app.cpp" line="1253"/>
+        <location filename="../../digishow_app.cpp" line="1274"/>
         <source>%1 Error %2 :<byte value="xd"/>
 <byte value="xd"/>
 %3</source>
@@ -933,11 +945,11 @@ asegúrate de que el programa DigiShow RIOC esté cargado en Arduino.</translati
     </message>
     <message>
         <location filename="../MainWindow.qml" line="342"/>
-        <location filename="../MainWindow.qml" line="915"/>
-        <location filename="../MainWindow.qml" line="928"/>
-        <location filename="../MainWindow.qml" line="974"/>
-        <location filename="../MainWindow.qml" line="995"/>
-        <location filename="../MainWindow.qml" line="1007"/>
+        <location filename="../MainWindow.qml" line="932"/>
+        <location filename="../MainWindow.qml" line="945"/>
+        <location filename="../MainWindow.qml" line="991"/>
+        <location filename="../MainWindow.qml" line="1012"/>
+        <location filename="../MainWindow.qml" line="1024"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
@@ -982,12 +994,13 @@ asegúrate de que el programa DigiShow RIOC esté cargado en Arduino.</translati
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="517"/>
+        <location filename="../MainWindow.qml" line="521"/>
         <source>Bookmarks</source>
         <translation>Marcadores</translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="139"/>
+        <location filename="../MainWindow.qml" line="555"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
@@ -1027,152 +1040,167 @@ asegúrate de que el programa DigiShow RIOC esté cargado en Arduino.</translati
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="481"/>
+        <location filename="../MainWindow.qml" line="482"/>
         <source>Beat Maker</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="668"/>
+        <location filename="../MainWindow.qml" line="539"/>
+        <source>No bookmark</source>
+        <translation>Sin marcador</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="553"/>
+        <source>How to add bookmarks ?</source>
+        <translation>Agregar marcadores ?</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="554"/>
+        <source>To bookmark an item in the signal link table, please right click on the signal bar and select Add Bookmark from the context menu.</source>
+        <translation>Para marcar un elemento en la tabla de enlaces de señales, haga clic derecho en la barra de señal y seleccione Agregar marcador en el menú contextual.</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.qml" line="685"/>
         <source>Interface Manager</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="706"/>
+        <location filename="../MainWindow.qml" line="723"/>
         <source>MIDI ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="710"/>
+        <location filename="../MainWindow.qml" line="727"/>
         <source>DMX ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="714"/>
+        <location filename="../MainWindow.qml" line="731"/>
         <source>OSC ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="718"/>
+        <location filename="../MainWindow.qml" line="735"/>
         <source>ArtNet ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="722"/>
+        <location filename="../MainWindow.qml" line="739"/>
         <source>Modbus ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="726"/>
+        <location filename="../MainWindow.qml" line="743"/>
         <source>Arduino ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="730"/>
+        <location filename="../MainWindow.qml" line="747"/>
         <source>Hue ...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="734"/>
+        <location filename="../MainWindow.qml" line="751"/>
         <source>Audio In ...</source>
         <translation>Entrada de audio ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="738"/>
+        <location filename="../MainWindow.qml" line="755"/>
         <source>Screen ...</source>
         <translation>Pantalla ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="742"/>
+        <location filename="../MainWindow.qml" line="759"/>
         <source>Messenger ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="746"/>
+        <location filename="../MainWindow.qml" line="763"/>
         <source>Virtual Pipe ...</source>
         <translation>Tubería virtual ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="751"/>
+        <location filename="../MainWindow.qml" line="768"/>
         <source>More</source>
         <translation>Más</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="755"/>
+        <location filename="../MainWindow.qml" line="772"/>
         <source>Audio Player ...</source>
         <translation>Reproductor de audio ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="759"/>
+        <location filename="../MainWindow.qml" line="776"/>
         <source>MIDI Player ...</source>
         <translation>Reproductor MIDI ...</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="851"/>
+        <location filename="../MainWindow.qml" line="868"/>
         <source>Open File</source>
         <translation>Abrir archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="854"/>
         <location filename="../MainWindow.qml" line="871"/>
+        <location filename="../MainWindow.qml" line="888"/>
         <source>DigiShow files</source>
         <translation>Archivos DigiShow</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="854"/>
+        <location filename="../MainWindow.qml" line="871"/>
         <source>JSON files</source>
         <translation>Archivos JSON</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="854"/>
         <location filename="../MainWindow.qml" line="871"/>
+        <location filename="../MainWindow.qml" line="888"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="868"/>
+        <location filename="../MainWindow.qml" line="885"/>
         <source>Save File</source>
         <translation>Guardar archivo</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="914"/>
+        <location filename="../MainWindow.qml" line="931"/>
         <source>Do you want to save all data to a file before create a new ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de crear uno nuevo ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="915"/>
-        <location filename="../MainWindow.qml" line="928"/>
-        <location filename="../MainWindow.qml" line="974"/>
-        <location filename="../MainWindow.qml" line="995"/>
+        <location filename="../MainWindow.qml" line="932"/>
+        <location filename="../MainWindow.qml" line="945"/>
+        <location filename="../MainWindow.qml" line="991"/>
+        <location filename="../MainWindow.qml" line="1012"/>
         <source>Don&apos;t Save</source>
         <translation>No guardar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="1006"/>
+        <location filename="../MainWindow.qml" line="1023"/>
         <source>The attached script file will be saved in the same folder as the DigiShow project file, do you want to save the project and create the script file now ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MainWindow.qml" line="364"/>
-        <location filename="../MainWindow.qml" line="915"/>
-        <location filename="../MainWindow.qml" line="928"/>
-        <location filename="../MainWindow.qml" line="974"/>
-        <location filename="../MainWindow.qml" line="995"/>
-        <location filename="../MainWindow.qml" line="1007"/>
+        <location filename="../MainWindow.qml" line="932"/>
+        <location filename="../MainWindow.qml" line="945"/>
+        <location filename="../MainWindow.qml" line="991"/>
+        <location filename="../MainWindow.qml" line="1012"/>
+        <location filename="../MainWindow.qml" line="1024"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="927"/>
+        <location filename="../MainWindow.qml" line="944"/>
         <source>Do you want to save all data to a file before open another ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de abrir otro ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="972"/>
+        <location filename="../MainWindow.qml" line="989"/>
         <source>Do you want to save current data before open file %1 ?</source>
         <translation>¿ Quieres guardar los datos actuales antes de abrir el archivo %1 ?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.qml" line="994"/>
+        <location filename="../MainWindow.qml" line="1011"/>
         <source>Do you want to save all data to a file before close the app ?</source>
         <translation>¿ Quieres guardar todos los datos en un archivo antes de cerrar la aplicación ?</translation>
     </message>
@@ -2220,47 +2248,62 @@ You can enter any hex code, for example: </source>
 <context>
     <name>MwEndpointSelectorMetronome</name>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="68"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="70"/>
+        <source>Beat Trigger</source>
+        <translation>Disparador de</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="71"/>
+        <source>Beat Count</source>
+        <translation>Conteo de tiempos</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="75"/>
+        <source>Reset</source>
+        <translation>Reiniciar</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="76"/>
         <source>BPM Change</source>
         <translation>Cambio de BPM</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="69"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="77"/>
         <source>Quantum Change</source>
         <translation>Cambio de cantidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="70"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="78"/>
         <source>Run ON</source>
         <translation>Ejecutar ON</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="71"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="79"/>
         <source>Link ON</source>
         <translation>Link ON</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="72"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="80"/>
         <source>Tap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="84"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="93"/>
         <source>Beat %1</source>
-        <translation>Latido %1</translation>
+        <translation>Tiempo %1</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="98"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="107"/>
         <source>beat</source>
-        <translation>latido</translation>
+        <translation>tiempo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="98"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="107"/>
         <source>beats</source>
-        <translation>latidos</translation>
+        <translation>tiempos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="101"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="110"/>
         <source>Sustain %1</source>
         <translation>Sostener %1</translation>
     </message>
@@ -3573,7 +3616,7 @@ Connection: %2</source>
     <message>
         <location filename="../MwMetronomeView.qml" line="146"/>
         <source>Beats</source>
-        <translation>Latidos</translation>
+        <translation>Tiempos</translation>
     </message>
     <message>
         <location filename="../MwMetronomeView.qml" line="256"/>
@@ -3588,7 +3631,7 @@ Connection: %2</source>
     <message>
         <location filename="../MwMetronomeView.qml" line="299"/>
         <source>Enable &apos;Link&apos; to use Ableton&apos;s technology for synchronizing beats with other music / DJ apps and devices.</source>
-        <translation>Habilite &apos;Link&apos; para usar la tecnología de Ableton para sincronizar latidos con otras aplicaciones y dispositivos de música/DJ.</translation>
+        <translation>Habilite &apos;Link&apos; para usar la tecnología de Ableton para sincronizar ritmos con otras aplicaciones y dispositivos de música/DJ.</translation>
     </message>
     <message>
         <location filename="../MwMetronomeView.qml" line="300"/>
@@ -3604,119 +3647,119 @@ Connection: %2</source>
 <context>
     <name>MwQuickLaunchView</name>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="700"/>
+        <location filename="../MwQuickLaunchView.qml" line="704"/>
         <source>Preset</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="175"/>
+        <location filename="../MwQuickLaunchView.qml" line="176"/>
         <source>Edit Preset</source>
         <translation>Editar preset</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="175"/>
+        <location filename="../MwQuickLaunchView.qml" line="176"/>
         <source>Create Preset</source>
         <translation>Crear preset</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="183"/>
+        <location filename="../MwQuickLaunchView.qml" line="184"/>
         <source>Rename</source>
         <translation>Renombrar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="190"/>
+        <location filename="../MwQuickLaunchView.qml" line="191"/>
         <source>Set Color</source>
         <translation>Asignar color</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="203"/>
-        <location filename="../MwQuickLaunchView.qml" line="209"/>
-        <location filename="../MwQuickLaunchView.qml" line="563"/>
+        <location filename="../MwQuickLaunchView.qml" line="204"/>
+        <location filename="../MwQuickLaunchView.qml" line="210"/>
+        <location filename="../MwQuickLaunchView.qml" line="564"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="562"/>
+        <location filename="../MwQuickLaunchView.qml" line="563"/>
         <source>Do you want to delete all cue player data attached to the preset ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="225"/>
+        <location filename="../MwQuickLaunchView.qml" line="226"/>
         <source>Copy</source>
         <translation type="unfinished">Copiar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="208"/>
+        <location filename="../MwQuickLaunchView.qml" line="209"/>
         <source>Do you want to delete the preset ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="230"/>
+        <location filename="../MwQuickLaunchView.qml" line="231"/>
         <source>Paste</source>
         <translation type="unfinished">Pegar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="236"/>
+        <location filename="../MwQuickLaunchView.qml" line="237"/>
         <source>Remote Control ...</source>
         <translation>Control remoto ...</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="316"/>
+        <location filename="../MwQuickLaunchView.qml" line="317"/>
         <source>Enable DigiShow built-in web service, and you can remotely operate the Preset Launcher through a web browser on your smart phone or mobile tablet. Please enter the service port number and click the Start button.</source>
         <translation>Habilite el servicio web integrado DigiShow y podrá operar de forma remota el Preset Launcher a través de un navegador web en su teléfono inteligente o tableta móvil. Ingrese el número de puerto de servicio y haga clic en el botón Iniciar.</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="355"/>
+        <location filename="../MwQuickLaunchView.qml" line="356"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="371"/>
+        <location filename="../MwQuickLaunchView.qml" line="372"/>
         <source>Please scan the QR code with your smartphone:</source>
         <translation>Por favor escanee el código QR con su teléfono inteligente:</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="372"/>
+        <location filename="../MwQuickLaunchView.qml" line="373"/>
         <source>Preview in Web</source>
         <translation>Vista previa en web</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="372"/>
+        <location filename="../MwQuickLaunchView.qml" line="373"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="463"/>
+        <location filename="../MwQuickLaunchView.qml" line="464"/>
         <source>Preset Memory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="481"/>
+        <location filename="../MwQuickLaunchView.qml" line="482"/>
         <source>Please check the relevant LINK buttons and output signal faders in the signal link table, then save their current states and values into the preset.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="494"/>
+        <location filename="../MwQuickLaunchView.qml" line="495"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="522"/>
+        <location filename="../MwQuickLaunchView.qml" line="523"/>
         <source>Attached Cue Player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="539"/>
+        <location filename="../MwQuickLaunchView.qml" line="540"/>
         <source>You can also click the + CUE button below the output signal fader to design the playback curve of the output signal.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="552"/>
+        <location filename="../MwQuickLaunchView.qml" line="553"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="609"/>
+        <location filename="../MwQuickLaunchView.qml" line="610"/>
         <source>The saved preset contains:<byte value="xd"/>
 • The status of the checked items in the signal link table<byte value="xd"/>
 • The playback curves of the output signal in the cue player<byte value="xd"/>
@@ -3725,36 +3768,36 @@ Tap on the preset button to activate them.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="719"/>
+        <location filename="../MwQuickLaunchView.qml" line="723"/>
         <source>You need to save the preset first, do you want to continue ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="720"/>
+        <location filename="../MwQuickLaunchView.qml" line="724"/>
         <source>Continue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="168"/>
-        <location filename="../MwQuickLaunchView.qml" line="387"/>
+        <location filename="../MwQuickLaunchView.qml" line="169"/>
+        <location filename="../MwQuickLaunchView.qml" line="388"/>
         <source>Stop</source>
         <translation>Detener</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="593"/>
+        <location filename="../MwQuickLaunchView.qml" line="594"/>
         <source>Save Preset</source>
         <translation>Guardar preset</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="609"/>
+        <location filename="../MwQuickLaunchView.qml" line="610"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="209"/>
-        <location filename="../MwQuickLaunchView.qml" line="563"/>
-        <location filename="../MwQuickLaunchView.qml" line="626"/>
-        <location filename="../MwQuickLaunchView.qml" line="720"/>
+        <location filename="../MwQuickLaunchView.qml" line="210"/>
+        <location filename="../MwQuickLaunchView.qml" line="564"/>
+        <location filename="../MwQuickLaunchView.qml" line="627"/>
+        <location filename="../MwQuickLaunchView.qml" line="724"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -3765,7 +3808,8 @@ Tap on the preset button to activate them.</source>
         <location filename="../MwSlotDetailView.qml" line="147"/>
         <source>Please select an item in the signal link table <byte value="xd"/>
  on the left</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seleccione un elemento en la tabla de enlaces de señales 
+de la izquierda.</translation>
     </message>
 </context>
 <context>
@@ -3776,157 +3820,157 @@ Tap on the preset button to activate them.</source>
         <translation>Renombrar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="115"/>
-        <source>Bookmark</source>
-        <translation>Marcar</translation>
+        <location filename="../MwSlotListView.qml" line="116"/>
+        <source>Add Bookmark</source>
+        <translation>Agregar marcador</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="115"/>
+        <location filename="../MwSlotListView.qml" line="116"/>
         <source>Remove Bookmark</source>
         <translation>Eliminar marcador</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="121"/>
-        <location filename="../MwSlotListView.qml" line="1117"/>
-        <location filename="../MwSlotListView.qml" line="1507"/>
+        <location filename="../MwSlotListView.qml" line="153"/>
+        <location filename="../MwSlotListView.qml" line="1149"/>
+        <location filename="../MwSlotListView.qml" line="1539"/>
         <source>Duplicate</source>
         <translation>Duplicar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="129"/>
-        <location filename="../MwSlotListView.qml" line="1138"/>
-        <location filename="../MwSlotListView.qml" line="1543"/>
-        <location filename="../MwSlotListView.qml" line="1569"/>
+        <location filename="../MwSlotListView.qml" line="161"/>
+        <location filename="../MwSlotListView.qml" line="1170"/>
+        <location filename="../MwSlotListView.qml" line="1575"/>
+        <location filename="../MwSlotListView.qml" line="1601"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="139"/>
+        <location filename="../MwSlotListView.qml" line="171"/>
         <source>Deselect</source>
         <translation>Deseleccionar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="139"/>
+        <location filename="../MwSlotListView.qml" line="171"/>
         <source>Select ...</source>
         <translation>Seleccionar ...</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="147"/>
-        <location filename="../MwSlotListView.qml" line="1096"/>
+        <location filename="../MwSlotListView.qml" line="179"/>
+        <location filename="../MwSlotListView.qml" line="1128"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="155"/>
+        <location filename="../MwSlotListView.qml" line="187"/>
         <source>Paste</source>
         <translation>Pegar</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="165"/>
+        <location filename="../MwSlotListView.qml" line="197"/>
         <source>Undo</source>
         <translation>Deshacer</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="174"/>
+        <location filename="../MwSlotListView.qml" line="206"/>
         <source>Redo</source>
         <translation>Rehacer</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="249"/>
-        <location filename="../MwSlotListView.qml" line="1832"/>
+        <location filename="../MwSlotListView.qml" line="281"/>
+        <location filename="../MwSlotListView.qml" line="1864"/>
         <source>Signal Link</source>
         <translation>Enlace de señal</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="747"/>
+        <location filename="../MwSlotListView.qml" line="779"/>
         <source>+ CUE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1507"/>
+        <location filename="../MwSlotListView.qml" line="1539"/>
         <source>Do you want to duplicate all selected signal links ?</source>
         <translation>¿ Quieres duplicar todas los enlaces de señal seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1507"/>
-        <location filename="../MwSlotListView.qml" line="1569"/>
-        <location filename="../MwSlotListView.qml" line="1578"/>
+        <location filename="../MwSlotListView.qml" line="1539"/>
+        <location filename="../MwSlotListView.qml" line="1601"/>
+        <location filename="../MwSlotListView.qml" line="1610"/>
         <source>Selection: %1 item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Selección: %1 elemento(s)</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1543"/>
+        <location filename="../MwSlotListView.qml" line="1575"/>
         <source>Do you want to delete the signal link ?</source>
         <translation>¿ Quieres eliminar el enlace de señal ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1569"/>
+        <location filename="../MwSlotListView.qml" line="1601"/>
         <source>Do you want to delete all selected signal links ?</source>
         <translation>¿ Quieres eliminar todas los enlaces de señal seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1578"/>
+        <location filename="../MwSlotListView.qml" line="1610"/>
         <source>Do you want to move all selected signal links to the current cursor position ?</source>
         <translation>¿ Quieres mover todas los enlaces de señal seleccionadas a la posición actual del cursor ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1052"/>
+        <location filename="../MwSlotListView.qml" line="1084"/>
         <source>Select All</source>
         <translation>Todo</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1074"/>
+        <location filename="../MwSlotListView.qml" line="1106"/>
         <source>Select None</source>
         <translation>Ninguno</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1159"/>
-        <location filename="../MwSlotListView.qml" line="1578"/>
+        <location filename="../MwSlotListView.qml" line="1191"/>
+        <location filename="../MwSlotListView.qml" line="1610"/>
         <source>Move</source>
         <translation>Mover</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1215"/>
-        <location filename="../MwSlotListView.qml" line="1218"/>
-        <location filename="../MwSlotListView.qml" line="1221"/>
+        <location filename="../MwSlotListView.qml" line="1247"/>
+        <location filename="../MwSlotListView.qml" line="1250"/>
+        <location filename="../MwSlotListView.qml" line="1253"/>
         <source>STEP</source>
         <translation>Paso</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1216"/>
+        <location filename="../MwSlotListView.qml" line="1248"/>
         <source>Open Interface Manager to configure your MIDI, DMX, OSC, Arduino and more device interfaces.</source>
         <translation>Abra Interface Manager para configurar sus interfaces MIDI, DMX, OSC, Arduino y más dispositivos.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1219"/>
+        <location filename="../MwSlotListView.qml" line="1251"/>
         <source>Tap the + button to add a new item to the signal link table, which is used to control and map the input/output signals of your devices.</source>
         <translation>Haga clic en el botón + para agregar un nuevo elemento a la tabla de enlace de señal, que se utiliza para controlar y mapear las señales de entrada/salida de sus dispositivos.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1222"/>
+        <location filename="../MwSlotListView.qml" line="1254"/>
         <source>Tap the play button to activate all signal links.</source>
         <translation>Haga clic en el botón de reproducción para activar todos los enlaces de señal.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1245"/>
+        <location filename="../MwSlotListView.qml" line="1277"/>
         <source>Instructions</source>
         <translation>Instrucciones</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1349"/>
+        <location filename="../MwSlotListView.qml" line="1381"/>
         <source>IN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1357"/>
+        <location filename="../MwSlotListView.qml" line="1389"/>
         <source>OUT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1507"/>
-        <location filename="../MwSlotListView.qml" line="1543"/>
-        <location filename="../MwSlotListView.qml" line="1569"/>
-        <location filename="../MwSlotListView.qml" line="1578"/>
+        <location filename="../MwSlotListView.qml" line="1539"/>
+        <location filename="../MwSlotListView.qml" line="1575"/>
+        <location filename="../MwSlotListView.qml" line="1601"/>
+        <location filename="../MwSlotListView.qml" line="1610"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>

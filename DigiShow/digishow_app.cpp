@@ -817,10 +817,20 @@ bool DigishowApp::updateLaunch(const QString &name, const QVariantList &slotLaun
         // make launch detail for the slot
         QVariantMap launchDetail;
         bool optRememberLink = slotLaunchOptions[n].toMap().value("rememberLink").toBool();
-        if (optRememberLink) launchDetail["linked"] = slot->isLinked();
+        if (optRememberLink) {
+            launchDetail["linked"] = slot->isLinked();
+        }
 
         bool optRememberOutput = slotLaunchOptions[n].toMap().value("rememberOutput").toBool();
-        if (optRememberOutput) launchDetail["outputValue"] = slot->getEndpointOutValue(true);
+        if (optRememberOutput) {
+
+            int value = slot->getEndpointOutValue(true);
+            int range = slot->getEndpointOutRange();
+            if (range == 0) range = 1;
+
+            launchDetail["outputValue"] = value;
+            launchDetail["outputRange"] = range;
+        }
 
         // write launch details into the slot
         QVariantMap launchDetails;
@@ -870,8 +880,19 @@ bool DigishowApp::startLaunch(const QString &name)
                     slot->setLinked(launchDetail.value("linked").toBool());
                 }
                 if (launchDetail.contains("outputValue")) {
-                    int value = launchDetail.value("outputValue").toInt();
-                    if (value >= 0) slot->setEndpointOutValue(value);
+
+                    int value = launchDetail.value("outputValue", 0).toInt();
+                    int range = launchDetail.value("outputRange", 0).toInt();
+
+                    int epOutValue = value;
+                    int epOutRange = slot->getEndpointOutRange();
+                    if (epOutRange == 0) epOutRange = 1;
+
+                    if (range > 0 && range != epOutRange) {
+                        epOutValue = round((double)value / (double)range * (double)epOutRange);
+                    }
+
+                    slot->setEndpointOutValue(qBound<int>(0, epOutValue, epOutRange));
                 }
             }
         }

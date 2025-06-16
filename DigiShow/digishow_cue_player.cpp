@@ -18,7 +18,7 @@
 #include "digishow_cue_player.h"
 #include "digishow_slot.h"
 
-#define CUE_PLAYER_FREQ 40
+#define CUE_PLAYER_FREQ 50
 
 DigishowCuePlayer::DigishowCuePlayer(QObject *parent)
     : QObject{parent}
@@ -64,6 +64,10 @@ void DigishowCuePlayer::setCueData(const QVariantMap& options, const QVariantLis
         // Convert seconds to milliseconds
         m_duration = static_cast<int>(maxTime * 1000);
     }
+
+    // set custom frequency
+    int frequency = options.value("cueFrequency", 0).toInt();
+    if (frequency>0) m_timer->setInterval(1000/frequency);
 }
 
 // Start playing the cue

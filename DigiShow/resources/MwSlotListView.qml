@@ -112,9 +112,41 @@ Item {
                         }
                     }
                     CMenuItem {
-                        text: !model.slotBookmarked ? qsTr("Bookmark") : qsTr("Remove Bookmark")
+                        id: menuItemBookmark
+                        text: !model.slotBookmarked ? qsTr("Add Bookmark") : qsTr("Remove Bookmark")
                         onTriggered: {
                             bookmarkSlot(currentIndex, !model.slotBookmarked)
+                        }
+                        contentItem: Row {
+                            spacing: 8
+                            Text {
+                                id: textMenuItemBookmark
+                                text: menuItemBookmark.text
+                                font: menuItemBookmark.font
+                                color: menuItemBookmark.highlighted ?
+                                    Material.primaryHighlightedTextColor :
+                                    Material.foreground
+                                horizontalAlignment: Text.AlignLeft
+                                verticalAlignment: Text.AlignVCenter
+                                elide: Text.ElideRight
+                            }
+                            /*
+                            Image {
+                                width: 24
+                                height: 16
+                                anchors.verticalCenter: textMenuItemBookmark.verticalCenter
+                                source: "qrc:///images/icon_goto_menu.png"
+                                visible: !model.slotBookmarked
+                            }
+                            */
+                            Rectangle {
+                                width: 6
+                                height: 6
+                                radius: 3
+                                anchors.verticalCenter: textMenuItemBookmark.verticalCenter
+                                color: "red"
+                                visible: !model.slotBookmarked
+                            }
                         }
                     }
                     CMenuItem {
@@ -331,7 +363,7 @@ Item {
                             anchors.topMargin: 20
                             color: "#ffffff"
                             text: model.epInLabelEPI
-                            font.pixelSize: 9
+                            font.pixelSize: 10
                             font.bold: true
                         }
 
@@ -562,7 +594,7 @@ Item {
                             anchors.topMargin: 20
                             color: "#ffffff"
                             text: model.epOutLabelEPI
-                            font.pixelSize: 9
+                            font.pixelSize: 10
                             font.bold: true
                         }
 
@@ -728,11 +760,25 @@ Item {
                             visible: quickLaunchView.visible && quickLaunchView.isEditing && !model.cuePlayerAttached
                             checked: model.launchRememberOutput
                             onClicked: {
-                                model.launchRememberOutput = checked
-                                if (slotListView.showSlotSelection)
-                                   for (var n=dataModel.count-1 ; n>=0 ; n--)
-                                       if (dataModel.get(n).slotSelected === true)
-                                           dataModel.get(n).launchRememberOutput = (dataModel.get(n).cuePlayerAttached ? false : checked)
+
+                                function checkOne(model, index, checked) {
+                                    model.launchRememberOutput = (model.cuePlayerAttached ? false : checked)
+                                    if (model.launchRememberOutput) {
+                                        model.epOutFaderHold = true
+                                        if (!model.epOutPreAvailable) app.slotAt(index).setEndpointOutValue(model.epOutFaderValue)
+                                    }
+                                }
+
+                                // check current
+                                checkOne(model, index, checked)
+
+                                // check others in selection
+                                for (var n=0 ; n<dataModel.count ; n++) {
+                                   let model1 = dataModel.get(n)
+                                   if (model1.slotSelected === true && n !== index) {
+                                       checkOne(model1, n, checked)
+                                   }
+                                }
                             }
                         }
 
@@ -777,7 +823,10 @@ Item {
 
                             onMoved: {
                                 if (model.epOutFaderHold) app.slotAt(index).setEndpointOutValue(faderOutput.value)
-                                if (checkLaunchRememberOutput.visible && !model.cuePlayerAttached) model.launchRememberOutput = true
+                                if (checkLaunchRememberOutput.visible && !model.cuePlayerAttached) {
+                                    model.epOutFaderHold = true
+                                    model.launchRememberOutput = true
+                                }
                             }
 
                             onValueChanged: {
