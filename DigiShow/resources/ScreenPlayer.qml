@@ -36,7 +36,7 @@ QtObject {
 
         Component.onCompleted: {
 
-            utilities.setMacWindowDarkTitlebar(window)
+            utilities.setWindowDarkTitlebar(window)
         }
 
 

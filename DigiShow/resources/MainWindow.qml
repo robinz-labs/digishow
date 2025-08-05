@@ -52,7 +52,7 @@ ApplicationWindow {
         width = minimumWidth
         height = minimumHeight
 
-        utilities.setMacWindowDarkTitlebar(window)
+        utilities.setWindowDarkTitlebar(window)
 
         // get info of online ports
         listOnline = digishow.listOnline()

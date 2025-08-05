@@ -35,6 +35,10 @@
 #include "mac_utilities.h"
 #endif
 
+#ifdef Q_OS_WIN
+#include <dwmapi.h>
+#endif
+
 AppUtilities::AppUtilities(QObject *parent) : QObject(parent)
 {
 
@@ -602,6 +606,22 @@ void AppUtilities::newAppInstance()
     QProcess::startDetached(exeFilePath, QStringList());
 }
 
+void AppUtilities::setWindowDarkTitlebar(QWindow *window)
+{
+#if defined(Q_OS_WIN) && (_WIN32_WINNT >= 0x0A00)
+    if (window && window->handle()) {
+        HWND hwnd = (HWND)window->winId();
+        BOOL value = TRUE;
+        DwmSetWindowAttribute(hwnd, 20, &value, sizeof(value)); // DWMWA_USE_IMMERSIVE_DARK_MODE
+    }
+#elif defined(Q_OS_MAC)
+    MacUtilities::setWindowDarkTitlebar(window);
+#else
+    Q_UNUSED(window)
+#endif
+
+}
+
 void AppUtilities::setMacWindowIsModified(QWindow *window, bool isModified)
 {
 #ifdef Q_OS_MAC
@@ -626,15 +646,6 @@ void AppUtilities::setMacWindowWithoutTitlebar(QWindow *window)
 {
 #ifdef Q_OS_MAC
     MacUtilities::setWindowWithoutTitlebar(window);
-#else
-    Q_UNUSED(window)
-#endif
-}
-
-void AppUtilities::setMacWindowDarkTitlebar(QWindow *window)
-{
-#ifdef Q_OS_MAC
-    MacUtilities::setWindowDarkTitlebar(window);
 #else
     Q_UNUSED(window)
 #endif
@@ -675,4 +686,5 @@ bool AppUtilities::requestAccessMicrophone()
     return false;
 #endif
 }
+
 

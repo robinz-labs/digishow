@@ -25,7 +25,7 @@ DigishowInterface::DigishowInterface(QObject *parent) : QObject(parent)
     m_interfaceInfo = dgsInterfaceInfo();
 
 #ifdef QT_DEBUG
-    qDebug() << "interface created";
+    qDebug() << "interface created" << this;
 #endif
 }
 
@@ -33,7 +33,7 @@ DigishowInterface::~DigishowInterface()
 {
 
 #ifdef QT_DEBUG
-    qDebug() << "interface released";
+    qDebug() << "interface released" << this;
 #endif
 }
 

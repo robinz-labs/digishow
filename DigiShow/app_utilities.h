@@ -85,10 +85,11 @@ public:
     Q_INVOKABLE static void openFileInShell(const QString & path);
     Q_INVOKABLE static void newAppInstance();
 
+    Q_INVOKABLE static void setWindowDarkTitlebar(QWindow *window);
+
     Q_INVOKABLE static void setMacWindowIsModified(QWindow *window, bool isModified);
     Q_INVOKABLE static void setMacWindowTitleWithFile(QWindow *window, const QString &filepath);
     Q_INVOKABLE static void setMacWindowWithoutTitlebar(QWindow *window);
-    Q_INVOKABLE static void setMacWindowDarkTitlebar(QWindow *window);
 
     Q_INVOKABLE static bool canAccessCamera();
     Q_INVOKABLE static bool canAccessMicrophone();

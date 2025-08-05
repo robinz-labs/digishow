@@ -116,6 +116,7 @@ win32-msvc*: {
 }
 
 win32: {
+    LIBS += -ldwmapi
     RC_ICONS = $$PWD/icons/icon.ico
 }
 unix:!macx {

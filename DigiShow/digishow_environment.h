@@ -53,7 +53,7 @@ public:
         InterfaceLaunch    = INTERFACE_LAUNCH,
         InterfaceHotkey    = INTERFACE_HOTKEY,
         InterfaceMetronome = INTERFACE_METRONOME,
-        InterfaceMessenger  = INTERFACE_MESSENGER
+        InterfaceMessenger = INTERFACE_MESSENGER
     };
     Q_ENUM(InterfaceType)
 
