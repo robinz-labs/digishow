@@ -795,8 +795,6 @@ Item {
                             colorNormal: model.cuePlayerAttached ? Material.accent : "#333333"
                             visible: quickLaunchView.visible && quickLaunchView.isEditing && !checkLaunchRememberOutput.checked
                             onClicked: {
-                                dialogCuePlayer.preferredColor = model.epOutColor
-                                dialogCuePlayer.preferredRange = model.epOutRange
                                 dialogCuePlayer.show(quickLaunchView.currentIndex, model.index)
                             }
                         }

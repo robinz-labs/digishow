@@ -230,6 +230,7 @@ Dialog {
                 color: "#666666"
                 font.bold: false
                 font.pixelSize: 14
+                anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("Cue player attached to: ")
             }
 
@@ -237,6 +238,7 @@ Dialog {
                 color: "#ffffff"
                 font.bold: false
                 font.pixelSize: 14
+                anchors.verticalCenter: parent.verticalCenter
                 text: {
                     if (launchIndex === -1) return ""
                     return quickLaunchView.dataModel.get(launchIndex).title
@@ -252,20 +254,47 @@ Dialog {
                 color: "#666666"
                 font.bold: false
                 font.pixelSize: 14
+                anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("Current track output to: ")
             }
 
-            Text {
-                color: "#ffffff"
-                font.bold: false
-                font.pixelSize: 14
-                text: {
-                    if (slotIndex === -1) return ""
-                    var slotTitle = slotListView.dataModel.get(slotIndex).slotTitle
-                    if (slotTitle === "") slotTitle = qsTr("Signal Link") + " " + (slotIndex+1)
-                    return slotTitle
+            COptionButton {
+                id: buttonSlot
+                width: 260
+                height: 28
+                anchors.verticalCenter: parent.verticalCenter
+                text: menuSlot.selectedItemText
+                onClicked: menuSlot.showOptions()
+                onVisibleChanged: if (visible) menuSlot.refresh()
+
+                COptionMenu {
+                    id: menuSlot
+
+                    onOptionClicked: {
+
+                        if (timelineView.isModified) save()
+
+                        var slotIndex = menuSlot.selectedItemValue
+                        show(dialog.launchIndex, slotIndex)
+                    }
+
+                    function refresh() {
+                        var items = []
+                        for (var i=0 ; i<slotListView.dataModel.count ; i++) {
+                            var slotModel = slotListView.dataModel.get(i)
+                            if (slotModel.cuePlayerAttached || i === dialog.slotIndex) {
+                                var slotTitle = slotModel.slotTitle
+                                if (slotTitle === "") slotTitle = qsTr("Signal Link") + " " + (i+1)
+                                items.push({ text: slotTitle, value: i })
+                            }
+                        }
+                        menuSlot.optionItems = items
+                        menuSlot.selectOption(dialog.slotIndex)
+                    }
                 }
+
             }
+
         }
 
         CButton {
@@ -474,18 +503,27 @@ Dialog {
 
     function show(launchIndex, slotIndex) {
 
+        // set dialog properties
         dialog.launchIndex = launchIndex
-        dialog.slotIndex = slotIndex
         dialog.launchName = quickLaunchView.dataModel.get(launchIndex).name
 
-        // reset timeline view
-        timelineView.reset()
-        timelineView.historyStack = []
+        dialog.slotIndex = slotIndex
+        var slotModel = slotListView.dataModel.get(slotIndex)
+        dialog.preferredColor = slotModel.epOutColor
+        dialog.preferredRange = slotModel.epOutRange
 
-        // load cue player options
-        loadCuePlayerOptions()
+        // initilize and show dialog
+        if (!dialog.visible) {
 
-        dialog.open()
+            // reset timeline view
+            timelineView.reset()
+            timelineView.historyStack = []
+
+            // load cue player options
+            loadCuePlayerOptions()
+
+            dialog.open()
+        }
 
         // load the data into the timeline view
         var cuePlayerDetails = app.slotAt(slotIndex).getSlotOptions()["cuePlayerDetails"]
