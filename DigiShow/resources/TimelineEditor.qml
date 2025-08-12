@@ -23,17 +23,22 @@ Item {
     property color lineColor: "#4CAF50" // Color for the curve and control points
     property color backgroundColor: "#2D2D2D" // Background color
     property color playheadColor: "#FFFFFF" // Color for the playhead
-
+    property color markerColor: "#8B0000" // Dark red color for markers
+    
     // Playback properties
     property real playheadTime: 0 // Current playhead position in seconds
     property bool isPlaying: false // Whether playback is active
     property real playbackSpeed: 1.0 // Playback speed multiplier
-
+    
     // Points array for curve control points
     property var points: [
         { time: 0, value: 0, type: pointType.LINEAR },
         { time: 30, value: 0, type: pointType.LINEAR }
     ]
+    
+    // Markers array for time markers
+    property var markers: [] // Array of time positions for markers
+    property bool isMarkersModified: false
 
     // History stack for undo operations
     property var historyStack: []
@@ -162,14 +167,16 @@ Item {
         }
     }
 
-    // Playback control methods
+    // Function to play
     function play() {
         if (!isPlaying) {
+            if (playheadTime >= points[points.length - 1].time) playheadTime = 0;
             isPlaying = true;
             playbackTimer.start();
         }
     }
 
+    // Function to stop
     function stop() {
         if (isPlaying) {
             isPlaying = false;
@@ -177,11 +184,13 @@ Item {
         }
     }
 
+    // Function to seek to a specific time
     function seek(time) {
         playheadTime = Math.max(0, Math.min(totalTimeRange, time));
         gridCanvas.requestPaint();
     }
 
+    // Function to toggle playback (play/pause)
     function togglePlayback() {
         if (isPlaying) {
             stop();
@@ -190,6 +199,61 @@ Item {
         }
     }
 
+    // Function to import the data of markers
+    function importMarkers(data) {
+        console.log("Importing markers");
+        if (!data || !data.markers || !Array.isArray(data.markers)) return false;
+        
+        // Create a deep copy of imported markers
+        var importedMarkers = JSON.parse(JSON.stringify(data.markers));
+        
+        // Replace current markers with imported markers
+        markers = importedMarkers;
+        isMarkersModified = false;
+        
+        // Request repaint to show the imported markers
+        gridCanvas.requestPaint();
+        return true;
+    }
+    
+    // Function to export the data of markers
+    function exportMarkers() {
+        // Create a deep copy of current markers
+        var currentMarkers = JSON.parse(JSON.stringify(markers));
+        
+        return {
+            markers: currentMarkers
+        };
+    }
+    
+    // Function to add a marker at specified time
+    function addMarker(time) {
+        console.log("Adding marker at time:", time);
+        
+        // Check if marker already exists at this time
+        for (var i = 0; i < markers.length; i++) {
+            if (Math.abs(markers[i] - time) < 0.01) return false; // Avoid duplicates
+        }
+        
+        // Add marker to array
+        markers.push(time);
+        markers.sort(function(a, b) { return a - b; }); // Sort markers by time
+        isMarkersModified = true;
+
+        // Request repaint to show the new marker
+        gridCanvas.requestPaint();
+        return true;
+    }
+    
+    // Function to clear all markers
+    function clearMarkers() {
+        console.log("Clearing all markers");
+        markers = [];
+        isMarkersModified = true;
+        gridCanvas.requestPaint();
+    }
+
+    // Function to force repaint
     function paint() {
         gridCanvas.requestPaint();
     }
@@ -286,7 +350,7 @@ Item {
                 id: gridCanvas
                 anchors.fill: parent
                 property real gridOpacity: 0.3
-                property real padding: 20
+                property real padding: 30
 
                 onPaint: {
                     var ctx = getContext("2d")
@@ -294,9 +358,48 @@ Item {
 
                     drawHorizontalGrid(ctx)
                     drawVerticalGrid(ctx)
+                    drawMarkers(ctx) // Draw markers behind the curve
                     drawCurve(ctx)
                     drawControlPoints(ctx)
                     drawPlayhead(ctx)
+                }
+                
+                // Helper function to draw markers
+                function drawMarkers(ctx) {
+                    // Set marker style
+                    ctx.strokeStyle = markerColor
+                    ctx.lineWidth = 1
+                    
+                    // Draw each marker as a vertical line
+                    for (var i = 0; i < markers.length; i++) {
+                        var markerTime = markers[i];
+                        var x = gridCanvas.padding + (markerTime - viewportPosition) * (width - 2 * gridCanvas.padding) / viewportTimeRange;
+                        
+                        // Only draw if marker is within viewport
+                        if (x >= gridCanvas.padding && x <= width - gridCanvas.padding) {
+                            // Draw solid vertical line
+                            ctx.beginPath();
+                            ctx.setLineDash([]); // Solid line
+                            ctx.moveTo(x, gridCanvas.padding - 10);
+                            ctx.lineTo(x, height - gridCanvas.padding);
+                            ctx.stroke();
+                            
+                            // Draw label with dark red background and white text
+                            var timeText = markerTime.toFixed(1);
+                            var textWidth = ctx.measureText(timeText).width;
+                            var labelWidth = textWidth + 8; // Add some padding
+                            var labelHeight = 16;
+                            
+                            // Draw background rectangle
+                            ctx.fillStyle = markerColor;
+                            ctx.fillRect(x - labelWidth/2, gridCanvas.padding - labelHeight - 10, labelWidth, labelHeight);
+                            
+                            // Draw text
+                            ctx.fillStyle = "white";
+                            ctx.font = "10px Arial";
+                            ctx.fillText(timeText, x - textWidth/2, gridCanvas.padding - 14);
+                        }
+                    }
                 }
 
                 // Helper function to draw curve segments
@@ -516,9 +619,11 @@ Item {
         property real dragThreshold: 1  // Minimum pixels to trigger drag
         property int draggingPointIndex: -1  // Index of currently dragged point (-1 means none)
         property int clickedPointIndex: -1 // Index of clicked point for double click detection
+        property int clickedMarkerIndex: -1 // Index of clicked marker for double click detection
         property bool isDoubleClick: false // Flag to indicate double click
         property real curveClickThreshold: 5 // Maximum distance from curve to register a click
         property bool isDraggingPlayhead: false // Flag to indicate if playhead is being dragged
+        property int draggingMarkerIndex: -1 // Index of currently dragged marker (-1 means none)
 
         // Helper function to check if click is on curve
         function isClickOnCurve(mouseX, mouseY) {
@@ -616,14 +721,36 @@ Item {
             // Reset double click flag
             isDoubleClick = false;
             clickedPointIndex = -1;
+            clickedMarkerIndex = -1;
 
             // Check if clicked on playhead triangle
             var playheadX = gridCanvas.padding + (playheadTime - viewportPosition) * (width - 2 * gridCanvas.padding) / viewportTimeRange;
             var triangleSize = 7.5;
-            if (Math.abs(mouse.x - playheadX) < triangleSize && mouse.y < gridCanvas.padding) {
+            if (Math.abs(mouse.x - playheadX) < triangleSize && mouse.y < gridCanvas.padding && mouse.y > 20) {
                 isDraggingPlayhead = true;
                 lastPos = Qt.point(mouse.x, mouse.y);
                 return;
+            }
+
+            // Check if clicked on a marker label
+            for (var i = 0; i < markers.length; i++) {
+                var markerTime = markers[i];
+                var x = gridCanvas.padding + (markerTime - viewportPosition) * (width - 2 * gridCanvas.padding) / viewportTimeRange;
+                
+                // Check if click is on the marker label (at the top)
+                var timeText = markerTime.toFixed(1);
+                var textWidth = timeText.length * 6; // Estimate text width
+                var labelWidth = textWidth + 8; // Same as in drawMarkers
+                var labelHeight = 16; // Same as in drawMarkers
+                
+                if (mouse.x >= x - labelWidth/2 && mouse.x <= x + labelWidth/2 && 
+                    mouse.y >= 0 && mouse.y <= gridCanvas.padding) {
+                    console.log("Clicked on marker label", i);
+                    draggingMarkerIndex = i;
+                    clickedMarkerIndex = i;
+                    lastPos = Qt.point(mouse.x, mouse.y);
+                    return;
+                }
             }
 
             // Check if clicked on a control point
@@ -683,6 +810,24 @@ Item {
 
         // Handle double click to delete point or set playhead position
         onDoubleClicked: {
+            // Check if double clicked on a marker label
+            if (clickedMarkerIndex >= 0 && clickedMarkerIndex < markers.length) {
+                console.log("Double clicked on marker", clickedMarkerIndex);
+                
+                // Remove the marker at the clicked index
+                markers.splice(clickedMarkerIndex, 1);
+                isMarkersModified = true;
+                
+                // Reset the clicked marker index
+                clickedMarkerIndex = -1;
+                draggingMarkerIndex = -1;
+                
+                // Request repaint to update the canvas
+                gridCanvas.requestPaint();
+                return;
+            }
+            
+            // Check if double clicked on a control point
             if (clickedPointIndex >= 0 && clickedPointIndex < points.length) {
                 // Don't allow deleting the first point or last point
                 if (clickedPointIndex > 0 && clickedPointIndex < points.length - 1) {
@@ -713,7 +858,12 @@ Item {
         onReleased: {
             isDraggingPlayhead = false;
             timelineMouseArea.draggingPointIndex = -1;
+            draggingMarkerIndex = -1;
             pointInfoLabel.visible = false;
+        }
+
+        onPressAndHold: {
+            positionChanged(mouse);
         }
 
         onPositionChanged: {
@@ -723,6 +873,21 @@ Item {
                     var timeDelta = dx * viewportTimeRange / (width - 2 * gridCanvas.padding);
                     var newPosition = Math.max(0, Math.min(totalTimeRange, playheadTime + timeDelta));
                     playheadTime = newPosition;
+                    lastPos = Qt.point(mouseX, mouseY);
+                    gridCanvas.requestPaint();
+                } else if (draggingMarkerIndex >= 0) {
+                    // Dragging a marker
+                    var timeDelta = (mouse.x - lastPos.x) * viewportTimeRange / (width - 2 * gridCanvas.padding);
+                    var newTime = Math.max(0, Math.min(totalTimeRange, markers[draggingMarkerIndex] + timeDelta));
+                    
+                    // Update the marker position
+                    markers[draggingMarkerIndex] = newTime;                    
+                    markers.sort(function(a, b) { return a - b; }); // Sort markers by time
+                    isMarkersModified = true;
+                    
+                    // Update draggingMarkerIndex to match the new position in the sorted array
+                    draggingMarkerIndex = markers.indexOf(newTime);
+                    
                     lastPos = Qt.point(mouseX, mouseY);
                     gridCanvas.requestPaint();
                 } else if (timelineMouseArea.draggingPointIndex >= 0) {
@@ -846,4 +1011,5 @@ Item {
         gridCanvas.requestPaint()
     }
     onHeightChanged: gridCanvas.requestPaint()
+    
 }

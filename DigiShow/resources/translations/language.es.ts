@@ -436,7 +436,7 @@ asegúrate de que el programa DigiShow RIOC esté cargado en Arduino.</translati
         <translation>Se produjo un error al abrir la interfaz %1 .</translation>
     </message>
     <message>
-        <location filename="../../digishow_app.cpp" line="1274"/>
+        <location filename="../../digishow_app.cpp" line="1273"/>
         <source>%1 Error %2 :<byte value="xd"/>
 <byte value="xd"/>
 %3</source>
@@ -1302,38 +1302,38 @@ either express or implied.</source>
 <context>
     <name>MwCuePlayerDialog</name>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="143"/>
+        <location filename="../MwCuePlayerDialog.qml" line="193"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reiniciar</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="149"/>
+        <location filename="../MwCuePlayerDialog.qml" line="199"/>
         <source>Undo</source>
         <translation type="unfinished">Deshacer</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="154"/>
+        <location filename="../MwCuePlayerDialog.qml" line="204"/>
         <source>Copy</source>
         <translation type="unfinished">Copiar</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="159"/>
+        <location filename="../MwCuePlayerDialog.qml" line="209"/>
         <source>Paste</source>
         <translation type="unfinished">Pegar</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="164"/>
+        <location filename="../MwCuePlayerDialog.qml" line="214"/>
         <source>Delete ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="168"/>
+        <location filename="../MwCuePlayerDialog.qml" line="218"/>
         <source>Do you want to delete this playback curve from the cue player ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwCuePlayerDialog.qml" line="63"/>
-        <location filename="../MwCuePlayerDialog.qml" line="169"/>
+        <location filename="../MwCuePlayerDialog.qml" line="219"/>
         <source>Cancel</source>
         <translation type="unfinished">Cancelar</translation>
     </message>
@@ -1348,12 +1348,22 @@ either express or implied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="169"/>
+        <location filename="../MwCuePlayerDialog.qml" line="128"/>
+        <source>+ Marker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwCuePlayerDialog.qml" line="138"/>
+        <source>Click the button or press M key to add a marker at the playhead position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwCuePlayerDialog.qml" line="219"/>
         <source>Delete</source>
         <translation type="unfinished">Eliminar</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="204"/>
+        <location filename="../MwCuePlayerDialog.qml" line="259"/>
         <source>Save</source>
         <translation type="unfinished">Guardar</translation>
     </message>
@@ -1363,54 +1373,76 @@ either express or implied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="233"/>
+        <location filename="../MwCuePlayerDialog.qml" line="155"/>
+        <source>• Double click the timeline background ​​to jump playhead<byte value="xd"/>
+• Drag the playhead cap to scrub through timeline<byte value="xd"/>
+• Click + Marker button to add a marker at the playhead position<byte value="xd"/>
+• Drag the marker cap to move, or double click it to delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwCuePlayerDialog.qml" line="155"/>
+        <location filename="../MwCuePlayerDialog.qml" line="546"/>
+        <source>OK</source>
+        <translation type="unfinished">Aceptar</translation>
+    </message>
+    <message>
+        <location filename="../MwCuePlayerDialog.qml" line="289"/>
         <source>Cue player attached to: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="255"/>
+        <location filename="../MwCuePlayerDialog.qml" line="313"/>
         <source>Current track output to: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="265"/>
+        <location filename="../MwCuePlayerDialog.qml" line="342"/>
         <source>Signal Link</source>
         <translation>Enlace de señal</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="282"/>
+        <location filename="../MwCuePlayerDialog.qml" line="366"/>
         <source>Cue Options ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="321"/>
+        <location filename="../MwCuePlayerDialog.qml" line="405"/>
         <source>Cue Playback Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="349"/>
+        <location filename="../MwCuePlayerDialog.qml" line="433"/>
         <source>Play Alone</source>
         <translation type="unfinished">Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="363"/>
+        <location filename="../MwCuePlayerDialog.qml" line="447"/>
         <source>ms</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="376"/>
+        <location filename="../MwCuePlayerDialog.qml" line="460"/>
         <source>Duration</source>
         <translation type="unfinished">Duración</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="400"/>
+        <location filename="../MwCuePlayerDialog.qml" line="484"/>
         <source>Repeat</source>
         <translation type="unfinished">Repetir</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="416"/>
+        <location filename="../MwCuePlayerDialog.qml" line="500"/>
         <source>Defaults</source>
         <translation type="unfinished">Predeterminados</translation>
+    </message>
+    <message>
+        <location filename="../MwCuePlayerDialog.qml" line="546"/>
+        <source>• Left click on the line to add a polyline control point<byte value="xd"/>
+• Right click on the line to add a curve control point<byte value="xd"/>
+• Drag the control point to move, or double click it to delete<byte value="xd"/>
+• Drag the background to pan, or scroll mouse wheel to zoom</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3741,7 +3773,7 @@ Connection: %2</source>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="495"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reiniciar</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="523"/>
@@ -3831,16 +3863,16 @@ de la izquierda.</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="153"/>
-        <location filename="../MwSlotListView.qml" line="1149"/>
-        <location filename="../MwSlotListView.qml" line="1539"/>
+        <location filename="../MwSlotListView.qml" line="1164"/>
+        <location filename="../MwSlotListView.qml" line="1554"/>
         <source>Duplicate</source>
         <translation>Duplicar</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="161"/>
-        <location filename="../MwSlotListView.qml" line="1170"/>
-        <location filename="../MwSlotListView.qml" line="1575"/>
-        <location filename="../MwSlotListView.qml" line="1601"/>
+        <location filename="../MwSlotListView.qml" line="1185"/>
+        <location filename="../MwSlotListView.qml" line="1590"/>
+        <location filename="../MwSlotListView.qml" line="1616"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
@@ -3856,7 +3888,7 @@ de la izquierda.</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="179"/>
-        <location filename="../MwSlotListView.qml" line="1128"/>
+        <location filename="../MwSlotListView.qml" line="1143"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
@@ -3877,100 +3909,100 @@ de la izquierda.</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="281"/>
-        <location filename="../MwSlotListView.qml" line="1864"/>
+        <location filename="../MwSlotListView.qml" line="1879"/>
         <source>Signal Link</source>
         <translation>Enlace de señal</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="779"/>
+        <location filename="../MwSlotListView.qml" line="793"/>
         <source>+ CUE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1539"/>
+        <location filename="../MwSlotListView.qml" line="1554"/>
         <source>Do you want to duplicate all selected signal links ?</source>
         <translation>¿ Quieres duplicar todas los enlaces de señal seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1539"/>
-        <location filename="../MwSlotListView.qml" line="1601"/>
-        <location filename="../MwSlotListView.qml" line="1610"/>
+        <location filename="../MwSlotListView.qml" line="1554"/>
+        <location filename="../MwSlotListView.qml" line="1616"/>
+        <location filename="../MwSlotListView.qml" line="1625"/>
         <source>Selection: %1 item(s)</source>
         <translation>Selección: %1 elemento(s)</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1575"/>
+        <location filename="../MwSlotListView.qml" line="1590"/>
         <source>Do you want to delete the signal link ?</source>
         <translation>¿ Quieres eliminar el enlace de señal ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1601"/>
+        <location filename="../MwSlotListView.qml" line="1616"/>
         <source>Do you want to delete all selected signal links ?</source>
         <translation>¿ Quieres eliminar todas los enlaces de señal seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1610"/>
+        <location filename="../MwSlotListView.qml" line="1625"/>
         <source>Do you want to move all selected signal links to the current cursor position ?</source>
         <translation>¿ Quieres mover todas los enlaces de señal seleccionadas a la posición actual del cursor ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1084"/>
+        <location filename="../MwSlotListView.qml" line="1099"/>
         <source>Select All</source>
         <translation>Todo</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1106"/>
+        <location filename="../MwSlotListView.qml" line="1121"/>
         <source>Select None</source>
         <translation>Ninguno</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1191"/>
-        <location filename="../MwSlotListView.qml" line="1610"/>
+        <location filename="../MwSlotListView.qml" line="1206"/>
+        <location filename="../MwSlotListView.qml" line="1625"/>
         <source>Move</source>
         <translation>Mover</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1247"/>
-        <location filename="../MwSlotListView.qml" line="1250"/>
-        <location filename="../MwSlotListView.qml" line="1253"/>
+        <location filename="../MwSlotListView.qml" line="1262"/>
+        <location filename="../MwSlotListView.qml" line="1265"/>
+        <location filename="../MwSlotListView.qml" line="1268"/>
         <source>STEP</source>
         <translation>Paso</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1248"/>
+        <location filename="../MwSlotListView.qml" line="1263"/>
         <source>Open Interface Manager to configure your MIDI, DMX, OSC, Arduino and more device interfaces.</source>
         <translation>Abra Interface Manager para configurar sus interfaces MIDI, DMX, OSC, Arduino y más dispositivos.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1251"/>
+        <location filename="../MwSlotListView.qml" line="1266"/>
         <source>Tap the + button to add a new item to the signal link table, which is used to control and map the input/output signals of your devices.</source>
         <translation>Haga clic en el botón + para agregar un nuevo elemento a la tabla de enlace de señal, que se utiliza para controlar y mapear las señales de entrada/salida de sus dispositivos.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1254"/>
+        <location filename="../MwSlotListView.qml" line="1269"/>
         <source>Tap the play button to activate all signal links.</source>
         <translation>Haga clic en el botón de reproducción para activar todos los enlaces de señal.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1277"/>
+        <location filename="../MwSlotListView.qml" line="1292"/>
         <source>Instructions</source>
         <translation>Instrucciones</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1381"/>
+        <location filename="../MwSlotListView.qml" line="1396"/>
         <source>IN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1389"/>
+        <location filename="../MwSlotListView.qml" line="1404"/>
         <source>OUT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1539"/>
-        <location filename="../MwSlotListView.qml" line="1575"/>
-        <location filename="../MwSlotListView.qml" line="1601"/>
-        <location filename="../MwSlotListView.qml" line="1610"/>
+        <location filename="../MwSlotListView.qml" line="1554"/>
+        <location filename="../MwSlotListView.qml" line="1590"/>
+        <location filename="../MwSlotListView.qml" line="1616"/>
+        <location filename="../MwSlotListView.qml" line="1625"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -4181,7 +4213,7 @@ de la izquierda.</translation>
 <context>
     <name>ScreenPlayer</name>
     <message>
-        <location filename="../ScreenPlayer.qml" line="126"/>
+        <location filename="../ScreenPlayer.qml" line="132"/>
         <source>Screen</source>
         <translation>Pantalla</translation>
     </message>

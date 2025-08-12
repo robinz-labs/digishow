@@ -1044,13 +1044,12 @@ QVariantList DigishowApp::getSlotCuePlayerOptions(const QString &name)
     return listOptions;
 }
 
-bool DigishowApp::setCuePlayerOption(const QString &name, const QString &optKey, const QVariant &optValue)
+bool DigishowApp::setCuePlayerOption(const QString &name, const QString &optKey, const QVariant &optValue, bool isMap)
 {
     QVariantMap options;
     if (m_allCuePlayerOptions.contains(name)) options = m_allCuePlayerOptions.value(name).toMap();
-    options[optKey] = optValue;
+    options[optKey] = isMap ? optValue.toMap() : optValue;
     m_allCuePlayerOptions[name] = options;
-
     return true;
 }
 

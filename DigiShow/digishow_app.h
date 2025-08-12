@@ -117,7 +117,7 @@ public:
     Q_INVOKABLE QVariantMap getCuePlayerOptions(const QString &name);
     Q_INVOKABLE QVariantList getSlotCuePlayerDetails(const QString &name);
     Q_INVOKABLE QVariantList getSlotCuePlayerOptions(const QString &name);
-    Q_INVOKABLE bool setCuePlayerOption(const QString &name, const QString &optKey, const QVariant &optValue);
+    Q_INVOKABLE bool setCuePlayerOption(const QString &name, const QString &optKey, const QVariant &optValue, bool isMap = false);
     Q_INVOKABLE bool setCuePlayerOptions(const QString &name, const QVariantMap &options);
     Q_INVOKABLE bool setSlotCuePlayerDetails(const QString &name, const QVariantList &details);
 

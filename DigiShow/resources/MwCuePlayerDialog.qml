@@ -24,7 +24,7 @@ Dialog {
     modal: true
     focus: true
     padding: 10
-    closePolicy: Popup.CloseOnEscape
+    closePolicy: Popup.NoAutoClose
 
     background: Rectangle {
         anchors.fill: parent
@@ -113,6 +113,56 @@ Dialog {
     }
 
     CButton {
+        id: buttonMarker
+        height: 35
+        width: 100
+        anchors.top: parent.top
+        anchors.topMargin: 0
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        icon.width: 24
+        icon.height: 24
+        icon.source: "qrc:///images/icon_marker_white.png"
+        icon.anchors.horizontalCenterOffset: 30
+        label.anchors.horizontalCenterOffset: -14
+        label.text: qsTr("+ Marker")
+        label.font.bold: false
+        label.font.pixelSize: 12
+
+        toolTip.delay: 0
+        toolTip.font.pixelSize: 12
+        toolTip.background: Rectangle {
+            color: Material.accent
+            radius: 3
+        }
+        toolTipText: qsTr("Click the button or press M key to add a marker at the playhead position")
+
+        colorActivated: Material.accent
+        visible: timelineView.playheadTime > 0
+
+        CButton {
+            width: 18
+            height: 18
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.right
+            anchors.leftMargin: 15
+            label.text: "?"
+            label.font.pixelSize: 11
+            label.font.bold: true
+            box.radius: 9
+
+            onClicked: {
+                messageBox.show(qsTr("• Double click the timeline background ​​to jump playhead\r\n• Drag the playhead cap to scrub through timeline\r\n• Click + Marker button to add a marker at the playhead position\r\n• Drag the marker cap to move, or double click it to delete"), qsTr("OK"))
+            }
+        }
+
+        onClicked: {
+            timelineView.addMarker(timelineView.playheadTime)
+        }
+    }
+
+
+    CButton {
         id: buttonMenu
         height: 35
         width: 40
@@ -189,6 +239,11 @@ Dialog {
             sequence: "Space"
             enabled: dialog.visible
             onActivated: buttonPlay.clicked()
+        }
+        Shortcut {
+            sequence: "M"
+            enabled: dialog.visible
+            onActivated: buttonMarker.clicked()
         }
 
     }
@@ -300,7 +355,7 @@ Dialog {
         CButton {
             id: buttonCueOptions
 
-            width: 130
+            width: 100
             height: 28
             anchors.right: parent.right
             anchors.rightMargin: 10
@@ -472,6 +527,25 @@ Dialog {
         anchors.bottom: rectCueOptions.top
         anchors.bottomMargin: 10
         backgroundColor: "#2d2d2d"
+        markerColor: Material.accent
+
+        CButton {
+            width: 18
+            height: 18
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 16
+            anchors.left: parent.left
+            anchors.leftMargin: 20
+            label.text: "?"
+            label.font.pixelSize: 11
+            label.font.bold: true
+            colorNormal: preferredColor
+            box.radius: 9
+
+            onClicked: {
+                messageBox.show(qsTr("• Left click on the line to add a polyline control point\r\n• Right click on the line to add a curve control point\r\n• Drag the control point to move, or double click it to delete\r\n• Drag the background to pan, or scroll mouse wheel to zoom"), qsTr("OK"))
+            }
+        }
 
         onVisibleChanged: {
             if (!visible) timelineView.stop()
@@ -486,6 +560,10 @@ Dialog {
 
         onHistoryChanged: {
             if (historyStack.length > 0) timelineView.isModified = true
+        }
+
+        onIsMarkersModifiedChanged: {
+            if (isMarkersModified) timelineView.isModified = true
         }
 
         function blinking() {
@@ -521,6 +599,7 @@ Dialog {
 
             // load cue player options
             loadCuePlayerOptions()
+            loadCuePlayerMarkers()
 
             dialog.open()
         }
@@ -550,6 +629,7 @@ Dialog {
 
         // save cue player options
         saveCuePlayerOptions()
+        saveCuePlayerMarkers()
 
         // update the slot list item display
         updateCuePlayerAttachedToSlot(true)
@@ -596,6 +676,16 @@ Dialog {
         app.setCuePlayerOption(launchName, "cueAlone"   , checkCueAlone.checked)
         app.setCuePlayerOption(launchName, "cueDuration", spinCueDuration.value)
         app.setCuePlayerOption(launchName, "cueRepeat"  , checkCueRepeat.checked)
+    }
+
+    function loadCuePlayerMarkers() {
+        var options = app.getCuePlayerOptions(launchName)
+        var v = options["cueMarkers"];
+        timelineView.importMarkers(v === undefined ? { markers:[] } : v )
+    }
+
+    function saveCuePlayerMarkers() {
+        app.setCuePlayerOption(launchName, "cueMarkers" , timelineView.exportMarkers(), true)
     }
 
     function updateCuePlayerAttachedToSlot(attached) {

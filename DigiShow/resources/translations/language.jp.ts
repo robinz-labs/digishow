@@ -435,7 +435,7 @@ make sure the DigiShow RIOC sketch is uploaded to the Arduino.</source>
         <translation>インターフェイス %1 を開くときにエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../../digishow_app.cpp" line="1274"/>
+        <location filename="../../digishow_app.cpp" line="1273"/>
         <source>%1 Error %2 :<byte value="xd"/>
 <byte value="xd"/>
 %3</source>
@@ -1301,38 +1301,38 @@ either express or implied.</source>
 <context>
     <name>MwCuePlayerDialog</name>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="143"/>
+        <location filename="../MwCuePlayerDialog.qml" line="193"/>
         <source>Reset</source>
         <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="149"/>
+        <location filename="../MwCuePlayerDialog.qml" line="199"/>
         <source>Undo</source>
         <translation>元に戻す</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="154"/>
+        <location filename="../MwCuePlayerDialog.qml" line="204"/>
         <source>Copy</source>
         <translation>コビー</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="159"/>
+        <location filename="../MwCuePlayerDialog.qml" line="209"/>
         <source>Paste</source>
         <translation>貼り付け</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="164"/>
+        <location filename="../MwCuePlayerDialog.qml" line="214"/>
         <source>Delete ...</source>
         <translation>削除 ...</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="168"/>
+        <location filename="../MwCuePlayerDialog.qml" line="218"/>
         <source>Do you want to delete this playback curve from the cue player ?</source>
         <translation>この再生カーブをCUEプレーヤーから削除しますか?</translation>
     </message>
     <message>
         <location filename="../MwCuePlayerDialog.qml" line="63"/>
-        <location filename="../MwCuePlayerDialog.qml" line="169"/>
+        <location filename="../MwCuePlayerDialog.qml" line="219"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
@@ -1347,12 +1347,22 @@ either express or implied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="169"/>
+        <location filename="../MwCuePlayerDialog.qml" line="128"/>
+        <source>+ Marker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwCuePlayerDialog.qml" line="138"/>
+        <source>Click the button or press M key to add a marker at the playhead position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwCuePlayerDialog.qml" line="219"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="204"/>
+        <location filename="../MwCuePlayerDialog.qml" line="259"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -1362,54 +1372,76 @@ either express or implied.</source>
         <translation>閉じる前にCUEプレーヤーへの変更を保存しますか？</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="233"/>
+        <location filename="../MwCuePlayerDialog.qml" line="155"/>
+        <source>• Double click the timeline background ​​to jump playhead<byte value="xd"/>
+• Drag the playhead cap to scrub through timeline<byte value="xd"/>
+• Click + Marker button to add a marker at the playhead position<byte value="xd"/>
+• Drag the marker cap to move, or double click it to delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwCuePlayerDialog.qml" line="155"/>
+        <location filename="../MwCuePlayerDialog.qml" line="546"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwCuePlayerDialog.qml" line="289"/>
         <source>Cue player attached to: </source>
         <translation>CUEプレーヤーのアタッチ先: </translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="255"/>
+        <location filename="../MwCuePlayerDialog.qml" line="313"/>
         <source>Current track output to: </source>
         <translation>現在のトラック出力先: </translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="265"/>
+        <location filename="../MwCuePlayerDialog.qml" line="342"/>
         <source>Signal Link</source>
         <translation>信号リンク</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="282"/>
+        <location filename="../MwCuePlayerDialog.qml" line="366"/>
         <source>Cue Options ...</source>
         <translation>CUE 設定 ...</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="321"/>
+        <location filename="../MwCuePlayerDialog.qml" line="405"/>
         <source>Cue Playback Options</source>
         <translation>CUE 再生設定</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="349"/>
+        <location filename="../MwCuePlayerDialog.qml" line="433"/>
         <source>Play Alone</source>
         <translation>単独に再生</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="363"/>
+        <location filename="../MwCuePlayerDialog.qml" line="447"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="376"/>
+        <location filename="../MwCuePlayerDialog.qml" line="460"/>
         <source>Duration</source>
         <translation>デュレーション</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="400"/>
+        <location filename="../MwCuePlayerDialog.qml" line="484"/>
         <source>Repeat</source>
         <translation>リピート</translation>
     </message>
     <message>
-        <location filename="../MwCuePlayerDialog.qml" line="416"/>
+        <location filename="../MwCuePlayerDialog.qml" line="500"/>
         <source>Defaults</source>
         <translation>デフォルト</translation>
+    </message>
+    <message>
+        <location filename="../MwCuePlayerDialog.qml" line="546"/>
+        <source>• Left click on the line to add a polyline control point<byte value="xd"/>
+• Right click on the line to add a curve control point<byte value="xd"/>
+• Drag the control point to move, or double click it to delete<byte value="xd"/>
+• Drag the background to pan, or scroll mouse wheel to zoom</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3833,16 +3865,16 @@ Tap on the preset button to activate them.</source>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="153"/>
-        <location filename="../MwSlotListView.qml" line="1149"/>
-        <location filename="../MwSlotListView.qml" line="1539"/>
+        <location filename="../MwSlotListView.qml" line="1164"/>
+        <location filename="../MwSlotListView.qml" line="1554"/>
         <source>Duplicate</source>
         <translation>複製</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="161"/>
-        <location filename="../MwSlotListView.qml" line="1170"/>
-        <location filename="../MwSlotListView.qml" line="1575"/>
-        <location filename="../MwSlotListView.qml" line="1601"/>
+        <location filename="../MwSlotListView.qml" line="1185"/>
+        <location filename="../MwSlotListView.qml" line="1590"/>
+        <location filename="../MwSlotListView.qml" line="1616"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
@@ -3872,107 +3904,107 @@ Tap on the preset button to activate them.</source>
         <translation>やり直し</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="779"/>
+        <location filename="../MwSlotListView.qml" line="793"/>
         <source>+ CUE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1539"/>
+        <location filename="../MwSlotListView.qml" line="1554"/>
         <source>Do you want to duplicate all selected signal links ?</source>
         <translation>選択したすべての信号リンクを複製してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1539"/>
-        <location filename="../MwSlotListView.qml" line="1601"/>
-        <location filename="../MwSlotListView.qml" line="1610"/>
+        <location filename="../MwSlotListView.qml" line="1554"/>
+        <location filename="../MwSlotListView.qml" line="1616"/>
+        <location filename="../MwSlotListView.qml" line="1625"/>
         <source>Selection: %1 item(s)</source>
         <translation>選択: %1 項目</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1575"/>
+        <location filename="../MwSlotListView.qml" line="1590"/>
         <source>Do you want to delete the signal link ?</source>
         <translation>この信号リンクを削除してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1601"/>
+        <location filename="../MwSlotListView.qml" line="1616"/>
         <source>Do you want to delete all selected signal links ?</source>
         <translation>選択したすべての信号リンクを削除してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1610"/>
+        <location filename="../MwSlotListView.qml" line="1625"/>
         <source>Do you want to move all selected signal links to the current cursor position ?</source>
         <translation>選択したすべての信号リンクを現在のカーソル位置に移動してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1084"/>
+        <location filename="../MwSlotListView.qml" line="1099"/>
         <source>Select All</source>
         <translation>全選択</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1106"/>
+        <location filename="../MwSlotListView.qml" line="1121"/>
         <source>Select None</source>
         <translation>なしを選択</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1248"/>
+        <location filename="../MwSlotListView.qml" line="1263"/>
         <source>Open Interface Manager to configure your MIDI, DMX, OSC, Arduino and more device interfaces.</source>
         <translation>インターフェイス マネージャーを開いて、MIDI、DMX、OSC、Arduino などのデバイス インターフェイスを構成します。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1251"/>
+        <location filename="../MwSlotListView.qml" line="1266"/>
         <source>Tap the + button to add a new item to the signal link table, which is used to control and map the input/output signals of your devices.</source>
         <translation>+ ボタンをタップすると、デバイスの入力/出力信号を制御およびマッピングするために使用される信号リンク テーブルに新しい項目が追加されます。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1254"/>
+        <location filename="../MwSlotListView.qml" line="1269"/>
         <source>Tap the play button to activate all signal links.</source>
         <translation>再生ボタンをタップすると、すべての信号リンクがアクティブになります。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1277"/>
+        <location filename="../MwSlotListView.qml" line="1292"/>
         <source>Instructions</source>
         <translation>使用ガイドライン</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1381"/>
+        <location filename="../MwSlotListView.qml" line="1396"/>
         <source>IN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1389"/>
+        <location filename="../MwSlotListView.qml" line="1404"/>
         <source>OUT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="179"/>
-        <location filename="../MwSlotListView.qml" line="1128"/>
+        <location filename="../MwSlotListView.qml" line="1143"/>
         <source>Copy</source>
         <translation>コビー</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="281"/>
-        <location filename="../MwSlotListView.qml" line="1864"/>
+        <location filename="../MwSlotListView.qml" line="1879"/>
         <source>Signal Link</source>
         <translation>信号リンク</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1191"/>
-        <location filename="../MwSlotListView.qml" line="1610"/>
+        <location filename="../MwSlotListView.qml" line="1206"/>
+        <location filename="../MwSlotListView.qml" line="1625"/>
         <source>Move</source>
         <translation>移動</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1247"/>
-        <location filename="../MwSlotListView.qml" line="1250"/>
-        <location filename="../MwSlotListView.qml" line="1253"/>
+        <location filename="../MwSlotListView.qml" line="1262"/>
+        <location filename="../MwSlotListView.qml" line="1265"/>
+        <location filename="../MwSlotListView.qml" line="1268"/>
         <source>STEP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1539"/>
-        <location filename="../MwSlotListView.qml" line="1575"/>
-        <location filename="../MwSlotListView.qml" line="1601"/>
-        <location filename="../MwSlotListView.qml" line="1610"/>
+        <location filename="../MwSlotListView.qml" line="1554"/>
+        <location filename="../MwSlotListView.qml" line="1590"/>
+        <location filename="../MwSlotListView.qml" line="1616"/>
+        <location filename="../MwSlotListView.qml" line="1625"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
@@ -4183,7 +4215,7 @@ Tap on the preset button to activate them.</source>
 <context>
     <name>ScreenPlayer</name>
     <message>
-        <location filename="../ScreenPlayer.qml" line="126"/>
+        <location filename="../ScreenPlayer.qml" line="132"/>
         <source>Screen</source>
         <translation>スクリーン</translation>
     </message>

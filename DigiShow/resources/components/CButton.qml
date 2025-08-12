@@ -19,6 +19,7 @@ Item {
     property alias label: buttonLabel
     property alias labelChecked: buttonLabelChecked
 
+    property alias toolTip: toolTip
     property alias toolTipText: toolTip.text
     property bool  toolTipVisible: true
 
