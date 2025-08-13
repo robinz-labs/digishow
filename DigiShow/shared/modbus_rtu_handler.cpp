@@ -480,6 +480,53 @@ bool ModbusRtuHandler::writeSingleRegister(uint8_t device_address, uint16_t regi
     return false;
 }
 
+bool ModbusRtuHandler::writeMultipleRegisters(uint8_t device_address, uint16_t register_address, uint8_t quantity, uint16_t* pdata)
+{
+    // example:
+    //  0     1     2     3     4     5     6     7     8     9     10    11    12
+
+    // {0x01, 0x10, 0x00, 0x01, 0x00, 0x02, 0x04, 0xff, 0xff, 0xff, 0xff, 0x??, 0x??}; // command
+    //  unit  fc    address     quantity    bytes data
+
+    // {0x01, 0x10, 0x00, 0x01, 0x00, 0x02, 0x??, 0x??}; // response
+    //  unit  fc    address     quantity
+
+    int lenBytes = quantity*2;
+    int lenCmd = 9+lenBytes;
+    uint8_t *cmd = new uint8_t[lenCmd];
+    cmd[0] = device_address;
+    cmd[1] = 0x10; // function 16 - Write Multiple Registers
+    cmd[2] = register_address >> 8;   // high byte of the register address
+    cmd[3] = register_address & 0xff; // low  byte of the register address
+    cmd[4]= 0x00;
+    cmd[5]= quantity; // quantity of registers
+    cmd[6]= lenBytes; // length of bytes
+
+    // dynamic data
+    int i = 6;
+    for (int n=0 ; n<quantity ; n++) {
+        i++; cmd[i] = pdata[n] >> 8;
+        i++; cmd[i] = pdata[n] & 0xff;
+    }
+
+    // make crc-16
+    uint16_t crc = crc16(cmd, lenCmd-2);
+    cmd[lenCmd-2] = crc >> 8;   //high byte of crc16
+    cmd[lenCmd-1] = crc & 0xff; //low byte of crc16
+
+    // send command and receive response
+    uint8_t rsp[8];
+    bool done = false;
+    if (this->sendAndReceiveBytes((const char*)cmd, lenCmd, (char*)rsp, sizeof(rsp), NULL, 0.2, NULL) == sizeof(rsp) &&
+        memcmp(cmd,rsp,sizeof(rsp))==0) {
+
+        done = true;
+    }
+
+    delete [] cmd;
+    return done;
+}
+
 int ModbusRtuHandler::sendAndReceiveBytes(const char* bufSend, int lenBufSend,
                         char* bufReceive, int lenBufReceive,
                         const char* szEnding, double timeout,

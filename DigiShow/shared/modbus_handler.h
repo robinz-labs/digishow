@@ -102,6 +102,11 @@ public:
         if (_tcp != nullptr) return _tcp->writeSingleRegister(device_address, register_address, data); else return false;
     }
 
+    bool writeMultipleRegisters(uint8_t device_address, uint16_t register_address, uint8_t quantity, uint16_t* pdata) {
+        if (_rtu != nullptr) return _rtu->writeMultipleRegisters(device_address, register_address, quantity, pdata); else
+        if (_tcp != nullptr) return _tcp->writeMultipleRegisters(device_address, register_address, quantity, pdata); else return false;
+    }
+
 signals:
 
 public slots:

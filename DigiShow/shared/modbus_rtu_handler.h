@@ -45,6 +45,7 @@ public:
     bool readHoldingRegisters(uint8_t device_address, uint16_t register_address, uint8_t quantity, uint16_t* pdata);
     bool readInputRegisters(uint8_t device_address, uint16_t register_address, uint8_t quantity, uint16_t* pdata);
     bool writeSingleRegister(uint8_t device_address, uint16_t register_address, uint16_t data);
+    bool writeMultipleRegisters(uint8_t device_address, uint16_t register_address, uint8_t quantity, uint16_t* pdata);
 
 signals:
 
