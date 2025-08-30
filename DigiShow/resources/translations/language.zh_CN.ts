@@ -1381,9 +1381,9 @@ either express or implied.</source>
 • Click + Marker button to add a marker at the playhead position<byte value="xd"/>
 • Drag the marker cap to move, or double click it to delete</source>
         <translation>• 双击时间线背景可快速跳转播放指针
-• 拖动播放指针顶帽可将其在时间线中移动
+• 拖拽播放指针顶帽可将其在时间线中移动
 • 点击“+ 标记”按钮可在播放指针位置处添加标记
-• 拖动标记顶帽可对其移动，双击可将其删除</translation>
+• 拖拽标记顶帽可将其移动，双击可将其删除</translation>
     </message>
     <message>
         <location filename="../MwCuePlayerDialog.qml" line="155"/>
@@ -1449,8 +1449,8 @@ either express or implied.</source>
 • Drag the background to pan, or scroll mouse wheel to zoom</source>
         <translation>• 左键单击线条可添加折线控制点
 • 右键单击线条可添加曲线控制点
-• 拖动控制点可对其移动，双击可将其删除
-• 拖动背景可平移时间线，滚动鼠标滚轮可缩放</translation>
+• 拖拽控制点可将其移动，双击可将其删除
+• 拖拽背景可平移时间线，滚动鼠标滚轮可缩放</translation>
     </message>
 </context>
 <context>

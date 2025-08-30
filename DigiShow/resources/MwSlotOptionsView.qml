@@ -667,8 +667,8 @@ Item {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.top: labelMapping.bottom
-                    anchors.topMargin: 66
-                    spacing: 84
+                    anchors.topMargin: 65
+                    spacing: 95
 
                     CRangeSlider {
                         id: sliderMappingInputRange
@@ -679,36 +679,62 @@ Item {
                         second.value: 1.0
                         color: Material.accent
 
-                        first.onMoved: setSlotOption("inputLow", parseFloat(first.value.toFixed(5)))
-                        second.onMoved: setSlotOption("inputHigh", parseFloat(second.value.toFixed(5)))
-
-                        Text {
-                            anchors.left: parent.left
-                            anchors.top: parent.bottom
-                            anchors.topMargin: 15
-                            color: "#cccccc"
-                            font.pixelSize: 12
-                            text: Math.round(parent.first.value*100) + " % - " +
-                                  Math.round(parent.second.value*100) + " %"
-                        }
-
-                        Text {
-                            anchors.right: parent.right
-                            anchors.top: parent.bottom
-                            anchors.topMargin: 15
-                            color: "#cccccc"
-                            font.pixelSize: 12
-                            text: Math.round(parent.first.value*inputFullRange) + " - " +
-                                  Math.round(parent.second.value*inputFullRange)
-                        }
+                        first.onMoved: setSlotOption("inputLow", parseFloat(first.value.toFixed(10)))
+                        second.onMoved: setSlotOption("inputHigh", parseFloat(second.value.toFixed(10)))
 
                         Text {
                             anchors.left: parent.left
                             anchors.bottom: parent.top
-                            anchors.bottomMargin: 15
+                            anchors.bottomMargin: 13
                             color: "#cccccc"
                             font.pixelSize: 12
                             text: qsTr("Input Range")
+                        }
+
+                        Text {
+                            anchors.right: parent.right
+                            anchors.bottom: parent.top
+                            anchors.bottomMargin: 13
+                            color: Material.accent
+                            font.pixelSize: 12
+                            text: Math.round(parent.first.value*100) + " - " +
+                                  Math.round(parent.second.value*100) + " %"
+                        }
+
+                        CSpinBox {
+                            id: spinInputRangeLower
+                            width: Math.min(parent.width / 2 - 15, 140)
+                            anchors.left: parent.left
+                            anchors.leftMargin: -3
+                            anchors.top: parent.bottom
+                            anchors.topMargin: 14
+                            from: 0
+                            to: Math.round(parent.second.value*inputFullRange)
+                            value: Math.round(parent.first.value*inputFullRange)
+                            stepSize: 1
+
+                            onValueModified: {
+                                parent.first.value = value / inputFullRange
+                                value = Qt.binding(function() { return Math.round(parent.first.value*inputFullRange) })
+                            }
+                        }
+
+                        CSpinBox {
+                            id: spinInputRangeUpper
+                            width: Math.min(parent.width / 2 - 15, 140)
+                            anchors.right: parent.right
+                            anchors.rightMargin: -3
+                            anchors.top: parent.bottom
+                            anchors.topMargin: 14
+                            from: Math.round(parent.first.value*inputFullRange)
+                            to: inputFullRange
+                            value: Math.round(parent.second.value*inputFullRange)
+                            stepSize: 1
+
+                            onValueModified: {
+                                parent.second.value = value / inputFullRange
+                                value = Qt.binding(function() { return Math.round(parent.second.value*inputFullRange) })
+                            }
                         }
                     }
 
@@ -721,38 +747,63 @@ Item {
                         second.value: 1.0
                         color: Material.accent
 
-                        first.onMoved: setSlotOption("outputLow", parseFloat(first.value.toFixed(5)))
-                        second.onMoved: setSlotOption("outputHigh", parseFloat(second.value.toFixed(5)))
-
-                        Text {
-                            anchors.left: parent.left
-                            anchors.top: parent.bottom
-                            anchors.topMargin: 15
-                            color: "#cccccc"
-                            font.pixelSize: 12
-                            text: Math.round(parent.first.value*100) + " % - " +
-                                  Math.round(parent.second.value*100) + " %"
-                        }
-
-                        Text {
-                            anchors.right: parent.right
-                            anchors.top: parent.bottom
-                            anchors.topMargin: 15
-                            color: "#cccccc"
-                            font.pixelSize: 12
-                            text: Math.round(parent.first.value*outputFullRange) + " - " +
-                                  Math.round(parent.second.value*outputFullRange)
-                        }
+                        first.onMoved: setSlotOption("outputLow", parseFloat(first.value.toFixed(10)))
+                        second.onMoved: setSlotOption("outputHigh", parseFloat(second.value.toFixed(10)))
 
                         Text {
                             anchors.left: parent.left
                             anchors.bottom: parent.top
-                            anchors.bottomMargin: 15
+                            anchors.bottomMargin: 13
                             color: "#cccccc"
                             font.pixelSize: 12
                             text: qsTr("Output Range")
                         }
 
+                        Text {
+                            anchors.right: parent.right
+                            anchors.bottom: parent.top
+                            anchors.bottomMargin: 13
+                            color: Material.accent
+                            font.pixelSize: 12
+                            text: Math.round(parent.first.value*100) + " - " +
+                                  Math.round(parent.second.value*100) + " %"
+                        }
+
+                        CSpinBox {
+                            id: spiOutnputRangeLower
+                            width: Math.min(parent.width / 2 - 15, 140)
+                            anchors.left: parent.left
+                            anchors.leftMargin: -3
+                            anchors.top: parent.bottom
+                            anchors.topMargin: 14
+                            from: 0
+                            to: Math.round(parent.second.value*outputFullRange)
+                            value: Math.round(parent.first.value*outputFullRange)
+                            stepSize: 1
+
+                            onValueModified: {
+                                parent.first.value = value / outputFullRange
+                                value = Qt.binding(function() { return Math.round(parent.first.value*outputFullRange) })
+                            }
+                        }
+
+                        CSpinBox {
+                            id: spiOutnputRangeUpper
+                            width: Math.min(parent.width / 2 - 15, 140)
+                            anchors.right: parent.right
+                            anchors.rightMargin: -3
+                            anchors.top: parent.bottom
+                            anchors.topMargin: 14
+                            from: Math.round(parent.first.value*outputFullRange)
+                            to: outputFullRange
+                            value: Math.round(parent.second.value*outputFullRange)
+                            stepSize: 1
+
+                            onValueModified: {
+                                parent.second.value = value / outputFullRange
+                                value = Qt.binding(function() { return Math.round(parent.second.value*outputFullRange) })
+                            }
+                        }
                     }
                 }
             }
@@ -1276,8 +1327,8 @@ Item {
                 item.second.value = 1
                 item.first.value = value1
                 item.second.value = value2
-                setSlotOption(key1, parseFloat(value1.toFixed(5)))
-                setSlotOption(key2, parseFloat(value2.toFixed(5)))
+                setSlotOption(key1, parseFloat(value1.toFixed(10)))
+                setSlotOption(key2, parseFloat(value2.toFixed(10)))
             }
         }
 
