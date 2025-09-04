@@ -146,7 +146,7 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
         // write pfm out channel
         if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
         int range = m_endpointInfoList[endpointIndex].range;
-        int value = (long)range * data.aValue / (data.aRange==0 ? range : data.aRange);
+        int value = (qint64)range * data.aValue / (data.aRange==0 ? range : data.aRange);
         if (value<0 || value>range) return ERR_INVALID_DATA;
         if (value>0)
             m_rioc->tonePlay(unit, channel, value);
@@ -166,7 +166,7 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
         // write stepper out channel
         if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
         int range = m_endpointInfoList[endpointIndex].range;
-        int value = (long)range * data.aValue / (data.aRange==0 ? range : data.aRange);
+        int value = (qint64)range * data.aValue / (data.aRange==0 ? range : data.aRange);
         if (value<0 || value>range) return ERR_INVALID_DATA;
         m_rioc->stepperGoto(unit, channel, value);
 
@@ -175,7 +175,7 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
         // write encoder (set encoder value)
         if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
         int range = m_endpointInfoList[endpointIndex].range;
-        int value = (long)range * data.aValue / (data.aRange==0 ? range : data.aRange);
+        int value = (qint64)range * data.aValue / (data.aRange==0 ? range : data.aRange);
         if (value<0 || value>range) return ERR_INVALID_DATA;
         m_rioc->encoderWrite(unit, channel, value);
 
@@ -184,7 +184,7 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
         // write user channel
         if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
         int range = m_endpointInfoList[endpointIndex].range;
-        int value = (long)range * data.aValue / (data.aRange==0 ? range : data.aRange);
+        int value = (qint64)range * data.aValue / (data.aRange==0 ? range : data.aRange);
         if (value<0 || value>range) return ERR_INVALID_DATA;
         m_rioc->userChannelWrite(unit, channel, value);
     }
