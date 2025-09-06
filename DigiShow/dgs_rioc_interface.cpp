@@ -113,12 +113,13 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
     if  (r != ERR_NONE) return r;
 
     // confirm the endpoint is ready
-    if (m_endpointInfoList[endpointIndex].ready == false) return ERR_DEVICE_NOT_READY;
+    dgsEndpointInfo endpointInfo = m_endpointInfoList[endpointIndex];
+    if (endpointInfo.ready == false) return ERR_DEVICE_NOT_READY;
 
-    unsigned char unit = static_cast<unsigned char>(m_endpointInfoList[endpointIndex].unit);
-    unsigned char channel = static_cast<unsigned char>(m_endpointInfoList[endpointIndex].channel);
+    unsigned char unit = static_cast<unsigned char>(endpointInfo.unit);
+    unsigned char channel = static_cast<unsigned char>(endpointInfo.channel);
 
-    int type = m_endpointInfoList[endpointIndex].type;
+    int type = endpointInfo.type;
     if (type == ENDPOINT_RIOC_DIGITAL_OUT) {
 
         // write digital out channel
@@ -145,7 +146,7 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
 
         // write pfm out channel
         if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
-        int range = m_endpointInfoList[endpointIndex].range;
+        int range = endpointInfo.range;
         int value = (qint64)range * data.aValue / (data.aRange==0 ? range : data.aRange);
         if (value<0 || value>range) return ERR_INVALID_DATA;
         if (value>0)
@@ -165,16 +166,34 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
 
         // write stepper out channel
         if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
-        int range = m_endpointInfoList[endpointIndex].range;
+        int range = endpointInfo.range;
         int value = (qint64)range * data.aValue / (data.aRange==0 ? range : data.aRange);
         if (value<0 || value>range) return ERR_INVALID_DATA;
         m_rioc->stepperGoto(unit, channel, value);
+
+    } else if (type == ENDPOINT_RIOC_STEPPER_SET) {
+
+        // set stepper parameters
+        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+        int range = endpointInfo.range;
+        int control = endpointInfo.control;
+        int value = (qint64)range * data.aValue / (data.aRange==0 ? range : data.aRange);
+        if (value<0 || value>range) return ERR_INVALID_DATA;
+
+        switch (control) {
+        case CONTROL_MOTION_POSITION:
+            m_rioc->stepperSetPosition(unit, channel, value);
+            break;
+        case CONTROL_MOTION_SPEED:
+            m_rioc->stepperSetSpeed(unit, channel, value);
+            break;
+        }
 
     } else if (type == ENDPOINT_RIOC_ENCODER_IN) {
 
         // write encoder (set encoder value)
         if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
-        int range = m_endpointInfoList[endpointIndex].range;
+        int range = endpointInfo.range;
         int value = (qint64)range * data.aValue / (data.aRange==0 ? range : data.aRange);
         if (value<0 || value>range) return ERR_INVALID_DATA;
         m_rioc->encoderWrite(unit, channel, value);
@@ -183,7 +202,7 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
 
         // write user channel
         if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
-        int range = m_endpointInfoList[endpointIndex].range;
+        int range = endpointInfo.range;
         int value = (qint64)range * data.aValue / (data.aRange==0 ? range : data.aRange);
         if (value<0 || value>range) return ERR_INVALID_DATA;
         m_rioc->userChannelWrite(unit, channel, value);
@@ -390,6 +409,11 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                 if (position > 0) {
                     done = m_rioc->stepperSetPosition(unit, channel, position, true);
                 }
+
+            } else if (type==ENDPOINT_RIOC_STEPPER_SET) {
+
+                // no more setup for the stepper parameter settings
+                done = true;
 
             } else if (type==ENDPOINT_RIOC_USER_CHANNEL) {
 
@@ -634,11 +658,14 @@ void DgsRiocInterface::updateMetadata_()
         else if (typeName == "encoder_in" ) endpointInfo.type = ENDPOINT_RIOC_ENCODER_IN;
         else if (typeName == "rudder_out" ) endpointInfo.type = ENDPOINT_RIOC_RUDDER_OUT;
         else if (typeName == "stepper_out") endpointInfo.type = ENDPOINT_RIOC_STEPPER_OUT;
+        else if (typeName == "stepper_set") endpointInfo.type = ENDPOINT_RIOC_STEPPER_SET;
         else if (typeName == "user_channel")endpointInfo.type = ENDPOINT_RIOC_USER_CHANNEL;
 
-        // Set endpoint properties based on type
+        // Set common label format for most RIOC endpoints
         QString pinName = DigishowEnvironment::getRiocPinName(m_interfaceInfo.mode, endpointInfo.channel);
+        endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(pinName);
 
+        // Set endpoint properties based on type
         switch (endpointInfo.type) {
             case ENDPOINT_RIOC_DIGITAL_IN:
                 endpointInfo.signal = DATA_SIGNAL_BINARY;
@@ -680,6 +707,7 @@ void DgsRiocInterface::updateMetadata_()
                 endpointInfo.input  = true;
                 endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
                 endpointInfo.labelEPT = tr("Encoder");
+                endpointInfo.labelEPI += " +";
                 break;
             case ENDPOINT_RIOC_RUDDER_OUT:
                 endpointInfo.signal = DATA_SIGNAL_ANALOG;
@@ -692,6 +720,14 @@ void DgsRiocInterface::updateMetadata_()
                 endpointInfo.output = true;
                 endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
                 endpointInfo.labelEPT = tr("Stepper");
+                endpointInfo.labelEPI += " +";
+                break;
+            case ENDPOINT_RIOC_STEPPER_SET:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.output = true;
+                endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
+                endpointInfo.labelEPT = DigishowEnvironment::getMotionControlName(endpointInfo.control);
+                endpointInfo.labelEPI += " +";
                 break;
             case ENDPOINT_RIOC_USER_CHANNEL:
                 endpointInfo.signal = DATA_SIGNAL_ANALOG;
@@ -701,11 +737,6 @@ void DgsRiocInterface::updateMetadata_()
                 endpointInfo.labelEPT = tr("Channel");
                 endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(endpointInfo.channel);
                 break;
-        }
-
-        // Set common label format for most RIOC endpoints
-        if (endpointInfo.type != ENDPOINT_RIOC_USER_CHANNEL) {
-            endpointInfo.labelEPI = QString("%1 : %2").arg(endpointInfo.unit).arg(pinName);
         }
 
         m_endpointInfoList.append(endpointInfo);

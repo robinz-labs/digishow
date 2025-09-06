@@ -323,74 +323,74 @@
 <context>
     <name>DgsRiocInterface</name>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="211"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="230"/>
         <source>DigiShow doesn&apos;t seem to work with your Arduino yet, <byte value="xd"/>
 make sure the DigiShow RIOC sketch is uploaded to the Arduino.</source>
         <translation>DigiShow 似乎还不能与你的 Arduino 配合使用，
 请确保 DigiShow RIOC 程序已写入到 Arduino 上。</translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="610"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="634"/>
         <source>Aladdin</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="614"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="638"/>
         <source>Arduino PLC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="617"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="641"/>
         <source>Arduino</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="646"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="671"/>
         <source>Digital In</source>
         <translation>数字输入</translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="651"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="676"/>
         <source>Digital Out</source>
         <translation>数字输出</translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="657"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="682"/>
         <source>Analog In</source>
         <translation>模拟输入</translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="663"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="688"/>
         <source>Analog Out</source>
         <translation>模拟输出</translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="669"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="694"/>
         <source>PWM Out</source>
         <translation>PWM 输出</translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="675"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="700"/>
         <source>Freq Out</source>
         <translation>频率输出</translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="682"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="707"/>
         <source>Encoder</source>
         <translation>编码器</translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="688"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="713"/>
         <source>Servo</source>
         <translation>舵机</translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="694"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="719"/>
         <source>Stepper</source>
         <translation>步进电机</translation>
     </message>
     <message>
-        <location filename="../../dgs_rioc_interface.cpp" line="701"/>
+        <location filename="../../dgs_rioc_interface.cpp" line="732"/>
         <source>Channel</source>
         <translation>通道</translation>
     </message>
@@ -554,11 +554,13 @@ make sure the DigiShow RIOC sketch is uploaded to the Arduino.</source>
     </message>
     <message>
         <location filename="../../digishow_environment.cpp" line="817"/>
+        <location filename="../../digishow_environment.cpp" line="828"/>
         <source>Speed</source>
         <translation>速度</translation>
     </message>
     <message>
         <location filename="../../digishow_environment.cpp" line="818"/>
+        <location filename="../../digishow_environment.cpp" line="827"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
@@ -568,227 +570,227 @@ make sure the DigiShow RIOC sketch is uploaded to the Arduino.</source>
         <translation>总音量</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="839"/>
+        <location filename="../../digishow_environment.cpp" line="848"/>
         <source>Volume </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="865"/>
+        <location filename="../../digishow_environment.cpp" line="874"/>
         <source>Mid C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="866"/>
+        <location filename="../../digishow_environment.cpp" line="875"/>
         <source>Kick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="867"/>
+        <location filename="../../digishow_environment.cpp" line="876"/>
         <source>Side Stick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="868"/>
+        <location filename="../../digishow_environment.cpp" line="877"/>
         <source>Snare 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="877"/>
+        <location filename="../../digishow_environment.cpp" line="886"/>
         <source>Mid Tom 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="878"/>
+        <location filename="../../digishow_environment.cpp" line="887"/>
         <source>High Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="879"/>
+        <location filename="../../digishow_environment.cpp" line="888"/>
         <source>Crash</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="880"/>
+        <location filename="../../digishow_environment.cpp" line="889"/>
         <source>High Tom 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="881"/>
+        <location filename="../../digishow_environment.cpp" line="890"/>
         <source>Ride</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="921"/>
+        <location filename="../../digishow_environment.cpp" line="930"/>
         <source>Sub-bass perception</source>
         <translation>超低频感知区</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="922"/>
+        <location filename="../../digishow_environment.cpp" line="931"/>
         <source>Ultra-low bass</source>
         <translation>最低低音区</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="923"/>
+        <location filename="../../digishow_environment.cpp" line="932"/>
         <source>Subwoofer main</source>
         <translation>低音炮主频区</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="924"/>
+        <location filename="../../digishow_environment.cpp" line="933"/>
         <source>Bass fundamental 1</source>
         <translation>贝斯基频区1</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="925"/>
+        <location filename="../../digishow_environment.cpp" line="934"/>
         <source>Bass fundamental 2</source>
         <translation>贝斯基频区2</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="926"/>
+        <location filename="../../digishow_environment.cpp" line="935"/>
         <source>Bass playing range 1</source>
         <translation>贝斯主要演奏区1</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="927"/>
+        <location filename="../../digishow_environment.cpp" line="936"/>
         <source>Bass playing range 2</source>
         <translation>贝斯主要演奏区2</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="928"/>
+        <location filename="../../digishow_environment.cpp" line="937"/>
         <source>Kick drum main</source>
         <translation>低音鼓主频区</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="929"/>
+        <location filename="../../digishow_environment.cpp" line="938"/>
         <source>Low vocals</source>
         <translation>低音声部区域</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="930"/>
+        <location filename="../../digishow_environment.cpp" line="939"/>
         <source>Male bass voice</source>
         <translation>男低音区域</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="931"/>
+        <location filename="../../digishow_environment.cpp" line="940"/>
         <source>Male tenor</source>
         <translation>男中音区域</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="932"/>
+        <location filename="../../digishow_environment.cpp" line="941"/>
         <source>Middle C range (261.6Hz)</source>
         <translation>中央C区域（261.6Hz）</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="933"/>
+        <location filename="../../digishow_environment.cpp" line="942"/>
         <source>Female alto</source>
         <translation>女中音区域</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="934"/>
+        <location filename="../../digishow_environment.cpp" line="943"/>
         <source>Violin G string</source>
         <translation>小提琴G弦区域</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="935"/>
+        <location filename="../../digishow_environment.cpp" line="944"/>
         <source>Vocal main 1</source>
         <translation>人声主要区域1</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="936"/>
+        <location filename="../../digishow_environment.cpp" line="945"/>
         <source>Vocal main 2</source>
         <translation>人声主要区域2</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="937"/>
+        <location filename="../../digishow_environment.cpp" line="946"/>
         <source>Vocal main 3</source>
         <translation>人声主要区域3</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="938"/>
+        <location filename="../../digishow_environment.cpp" line="947"/>
         <source>Vocal harmonics 1</source>
         <translation>人声泛音区1</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="939"/>
+        <location filename="../../digishow_environment.cpp" line="948"/>
         <source>Vocal harmonics 2</source>
         <translation>人声泛音区2</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="940"/>
+        <location filename="../../digishow_environment.cpp" line="949"/>
         <source>Presence range</source>
         <translation>清晰度区域</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="941"/>
+        <location filename="../../digishow_environment.cpp" line="950"/>
         <source>High detail 1</source>
         <translation>高频细节区1</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="942"/>
+        <location filename="../../digishow_environment.cpp" line="951"/>
         <source>High detail 2</source>
         <translation>高频细节区2</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="943"/>
+        <location filename="../../digishow_environment.cpp" line="952"/>
         <source>Brilliance</source>
         <translation>高频亮度区</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="944"/>
+        <location filename="../../digishow_environment.cpp" line="953"/>
         <source>Air band</source>
         <translation>空气感区域</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="1049"/>
+        <location filename="../../digishow_environment.cpp" line="1058"/>
         <source>Remote</source>
         <translation>远程</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="1050"/>
+        <location filename="../../digishow_environment.cpp" line="1059"/>
         <source>Cloud</source>
         <translation>云端</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="1051"/>
+        <location filename="../../digishow_environment.cpp" line="1060"/>
         <source>Pipe</source>
         <translation>管道</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="869"/>
+        <location filename="../../digishow_environment.cpp" line="878"/>
         <source>Clap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="870"/>
+        <location filename="../../digishow_environment.cpp" line="879"/>
         <source>Snare 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="871"/>
+        <location filename="../../digishow_environment.cpp" line="880"/>
         <source>Low Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="872"/>
+        <location filename="../../digishow_environment.cpp" line="881"/>
         <source>Closed Hat</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="873"/>
+        <location filename="../../digishow_environment.cpp" line="882"/>
         <source>Low Tom 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="874"/>
+        <location filename="../../digishow_environment.cpp" line="883"/>
         <source>Pedal Hat</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="875"/>
+        <location filename="../../digishow_environment.cpp" line="884"/>
         <source>Mid Tom 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="876"/>
+        <location filename="../../digishow_environment.cpp" line="885"/>
         <source>Open Hat</source>
         <translation></translation>
     </message>
@@ -818,62 +820,62 @@ make sure the DigiShow RIOC sketch is uploaded to the Arduino.</source>
         <translation>停止全部</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="835"/>
+        <location filename="../../digishow_environment.cpp" line="844"/>
         <source>Bank</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="836"/>
+        <location filename="../../digishow_environment.cpp" line="845"/>
         <source>Modulation</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="837"/>
+        <location filename="../../digishow_environment.cpp" line="846"/>
         <source>Foot Pedal</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="838"/>
+        <location filename="../../digishow_environment.cpp" line="847"/>
         <source>Data Entry</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="841"/>
+        <location filename="../../digishow_environment.cpp" line="850"/>
         <source>Expression</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="842"/>
+        <location filename="../../digishow_environment.cpp" line="851"/>
         <source>Bank (LSB)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="843"/>
+        <location filename="../../digishow_environment.cpp" line="852"/>
         <source>Sustain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="845"/>
+        <location filename="../../digishow_environment.cpp" line="854"/>
         <source>Resonance</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="846"/>
+        <location filename="../../digishow_environment.cpp" line="855"/>
         <source>Cutoff</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="847"/>
+        <location filename="../../digishow_environment.cpp" line="856"/>
         <source>Reverb</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="848"/>
+        <location filename="../../digishow_environment.cpp" line="857"/>
         <source>Chorus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="844"/>
+        <location filename="../../digishow_environment.cpp" line="853"/>
         <source>Portamento</source>
         <translation></translation>
     </message>
@@ -883,7 +885,7 @@ make sure the DigiShow RIOC sketch is uploaded to the Arduino.</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../../digishow_environment.cpp" line="840"/>
+        <location filename="../../digishow_environment.cpp" line="849"/>
         <source>Pan</source>
         <translation></translation>
     </message>
@@ -2477,64 +2479,66 @@ You can enter any hex code, for example: </source>
         <translation>设备号</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="72"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="88"/>
         <source>Digital In</source>
         <translation>数字输入</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="73"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="89"/>
         <source>Digital Out</source>
         <translation>数字输出</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="74"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="90"/>
         <source>Analog In</source>
         <translation>模拟输入</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="76"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="92"/>
         <source>PWM Out</source>
         <translation>PWM 输出</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="77"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="93"/>
         <source>Frequency Out</source>
         <translation>频率输出</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="78"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="94"/>
         <source>Servo</source>
         <translation>舵机</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="79"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="95"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="96"/>
         <source>Stepper</source>
         <translation>步进电机</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="80"/>
-        <location filename="../MwEndpointSelectorRioc.qml" line="81"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="98"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="99"/>
         <source>Encoder</source>
         <translation>编码器</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="81"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="96"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="99"/>
         <source>(SET)</source>
         <translation>(设定)</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="83"/>
-        <location filename="../MwEndpointSelectorRioc.qml" line="84"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="101"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="102"/>
         <source>User Channel</source>
         <translation>用户通道</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="110"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="138"/>
         <source>Ch</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorRioc.qml" line="113"/>
+        <location filename="../MwEndpointSelectorRioc.qml" line="141"/>
         <source>Pin</source>
         <translation>引脚</translation>
     </message>
@@ -4068,12 +4072,12 @@ Tap on the preset button to activate them.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1366"/>
+        <location filename="../MwSlotOptionsView.qml" line="1417"/>
         <source>The expression can reference the input or output value of any other signal link, for example:</source>
         <translation>表达式可以引用任何其他信号链接的输入或输出值，例如：</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1374"/>
+        <location filename="../MwSlotOptionsView.qml" line="1425"/>
         <source>The expression can contain common JavaScript statements and functions, for example:</source>
         <translation>表达式可以包含常见的 JavaScript 语句和函数，例如：</translation>
     </message>
@@ -4104,111 +4108,111 @@ Tap on the preset button to activate them.</source>
         <translation>输入输出信号量映射</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="711"/>
+        <location filename="../MwSlotOptionsView.qml" line="691"/>
         <source>Input Range</source>
         <translation>输入信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="753"/>
+        <location filename="../MwSlotOptionsView.qml" line="759"/>
         <source>Output Range</source>
         <translation>输出信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="774"/>
+        <location filename="../MwSlotOptionsView.qml" line="825"/>
         <source>Output Envelope</source>
         <translation>输出信号包络参数</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="838"/>
+        <location filename="../MwSlotOptionsView.qml" line="889"/>
         <source>On Delay</source>
         <translation>On 延时</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="987"/>
+        <location filename="../MwSlotOptionsView.qml" line="1038"/>
         <source>Off Delay</source>
         <translation>Off 延时</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="866"/>
+        <location filename="../MwSlotOptionsView.qml" line="917"/>
         <source>Attack</source>
         <translation>Attack 渐入</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1352"/>
+        <location filename="../MwSlotOptionsView.qml" line="1403"/>
         <source>expression.md</source>
         <translation>expression.zh_CN.md</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1358"/>
+        <location filename="../MwSlotOptionsView.qml" line="1409"/>
         <source>Write a JavaScript expression to dynamically change the signal value, for example:</source>
         <translation>可以编写一个 JavaScript 表达式来动态改变信号的数值，例如：</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1359"/>
-        <location filename="../MwSlotOptionsView.qml" line="1367"/>
-        <location filename="../MwSlotOptionsView.qml" line="1375"/>
+        <location filename="../MwSlotOptionsView.qml" line="1410"/>
+        <location filename="../MwSlotOptionsView.qml" line="1418"/>
+        <location filename="../MwSlotOptionsView.qml" line="1426"/>
         <source>Try It</source>
         <translation>试一下</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1359"/>
-        <location filename="../MwSlotOptionsView.qml" line="1367"/>
-        <location filename="../MwSlotOptionsView.qml" line="1375"/>
+        <location filename="../MwSlotOptionsView.qml" line="1410"/>
+        <location filename="../MwSlotOptionsView.qml" line="1418"/>
+        <location filename="../MwSlotOptionsView.qml" line="1426"/>
         <source>Next</source>
         <translation>继续学习</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1359"/>
-        <location filename="../MwSlotOptionsView.qml" line="1367"/>
-        <location filename="../MwSlotOptionsView.qml" line="1375"/>
-        <location filename="../MwSlotOptionsView.qml" line="1383"/>
-        <location filename="../MwSlotOptionsView.qml" line="1390"/>
+        <location filename="../MwSlotOptionsView.qml" line="1410"/>
+        <location filename="../MwSlotOptionsView.qml" line="1418"/>
+        <location filename="../MwSlotOptionsView.qml" line="1426"/>
+        <location filename="../MwSlotOptionsView.qml" line="1434"/>
+        <location filename="../MwSlotOptionsView.qml" line="1441"/>
         <source>Reference ...</source>
         <translation>参考资料 ...</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1382"/>
+        <location filename="../MwSlotOptionsView.qml" line="1433"/>
         <source>The expression can also call user-defined functions, now you can create your functions in the attached script file.</source>
         <translation>表达式还可以调用用户自定义的函数，现在你可以在附加的脚本文件中创建你自己的函数。</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1383"/>
+        <location filename="../MwSlotOptionsView.qml" line="1434"/>
         <source>Show Script</source>
         <translation>查看脚本</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1383"/>
-        <location filename="../MwSlotOptionsView.qml" line="1390"/>
+        <location filename="../MwSlotOptionsView.qml" line="1434"/>
+        <location filename="../MwSlotOptionsView.qml" line="1441"/>
         <source>Done</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1389"/>
+        <location filename="../MwSlotOptionsView.qml" line="1440"/>
         <source>The expression can also call user-defined functions, now you can create an attached script file contains your functions.</source>
         <translation>表达式还可以调用用户自定义的函数，现在你就可以创建一个附加的脚本文件来存放你自己的函数。</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1390"/>
+        <location filename="../MwSlotOptionsView.qml" line="1441"/>
         <source>Create Script</source>
         <translation>创建脚本</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="889"/>
+        <location filename="../MwSlotOptionsView.qml" line="940"/>
         <source>Hold</source>
         <translation>Hold 保持</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="912"/>
+        <location filename="../MwSlotOptionsView.qml" line="963"/>
         <source>Decay</source>
         <translation>Decay 衰减</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="936"/>
+        <location filename="../MwSlotOptionsView.qml" line="987"/>
         <source>Sustain</source>
         <translation>Sustain 延持</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="959"/>
+        <location filename="../MwSlotOptionsView.qml" line="1010"/>
         <source>Release</source>
         <translation>Release 渐出</translation>
     </message>

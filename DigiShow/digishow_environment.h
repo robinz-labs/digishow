@@ -108,6 +108,7 @@ public:
         EndpointRiocEncoderIn     = ENDPOINT_RIOC_ENCODER_IN,
         EndpointRiocRudderOut     = ENDPOINT_RIOC_RUDDER_OUT,
         EndpointRiocStepperOut    = ENDPOINT_RIOC_STEPPER_OUT,
+        EndpointRiocStepperSet    = ENDPOINT_RIOC_STEPPER_SET,
         EndpointRiocUserChannel   = ENDPOINT_RIOC_USER_CHANNEL,
         EndpointModbusDiscreteIn  = ENDPOINT_MODBUS_DISCRETE_IN,
         EndpointModbusCoilOut     = ENDPOINT_MODBUS_COIL_OUT,
@@ -192,6 +193,12 @@ public:
     };
     Q_ENUM(MediaControl)
 
+    enum MotionControl {
+        ControlMotionPosition = CONTROL_MOTION_POSITION,
+        ControlMotionSpeed    = CONTROL_MOTION_SPEED
+    };
+    Q_ENUM(MotionControl)
+
     explicit DigishowEnvironment(QObject *parent = nullptr);
 
     Q_INVOKABLE static QString appName()      { return g_appname; }
@@ -274,6 +281,7 @@ public:
 
     Q_INVOKABLE static QString getLightControlName(int control, bool shortName = false);
     Q_INVOKABLE static QString getMediaControlName(int control, bool forScreen = false);
+    Q_INVOKABLE static QString getMotionControlName(int control);
     Q_INVOKABLE static QString getMidiControlName(int control);
     Q_INVOKABLE static QString getMidiNoteName(int noteNumber, bool longName = false);
     Q_INVOKABLE static QString getSpectrumBandName(int band, bool longName = false);

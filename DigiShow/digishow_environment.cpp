@@ -821,6 +821,15 @@ QString DigishowEnvironment::getMediaControlName(int control, bool forScreen)
     return "";
 }
 
+QString DigishowEnvironment::getMotionControlName(int control)
+{
+    switch(control) {
+        case CONTROL_MOTION_POSITION: return tr("Position");
+        case CONTROL_MOTION_SPEED:    return tr("Speed");
+    }
+    return "";
+}
+
 QString DigishowEnvironment::getMidiControlName(int control)
 {
     // undefined midi cc

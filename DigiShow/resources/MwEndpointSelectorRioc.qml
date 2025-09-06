@@ -43,10 +43,26 @@ Item {
     }
 
     COptionButton {
+        id: buttonControl
+        width: 70
+        height: 28
+        anchors.left: buttonType.right
+        anchors.leftMargin: 10
+        anchors.top: parent.top
+        text: menuControl.selectedItemText
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointRiocStepperSet
+        onClicked: menuControl.showOptions()
+
+        COptionMenu {
+            id: menuControl
+        }
+    }
+
+    COptionButton {
         id: buttonChannel
         width: 80
         height: 28
-        anchors.left: buttonType.right
+        anchors.left: buttonControl.visible ? buttonControl.right : buttonType.right
         anchors.leftMargin: 10
         anchors.top: parent.top
         text: menuChannel.selectedItemText
@@ -59,7 +75,7 @@ Item {
 
     function refresh() {
         var items
-        var n
+        var v
 
         // init rioc unit option spinbox
         spinUnit.from = 1
@@ -77,6 +93,8 @@ Item {
             if (forOutput) items.push({ text: qsTr("Frequency Out"),  value: DigishowEnvironment.EndpointRiocPfmOut,     tag: "pfm_out"     })
             if (forOutput) items.push({ text: qsTr("Servo"),          value: DigishowEnvironment.EndpointRiocRudderOut,  tag: "rudder_out"  })
             if (forOutput) items.push({ text: qsTr("Stepper"),        value: DigishowEnvironment.EndpointRiocStepperOut, tag: "stepper_out" })
+            if (forOutput) items.push({ text: qsTr("Stepper") + " " + qsTr("(SET)"),
+                                                                      value: DigishowEnvironment.EndpointRiocStepperSet, tag: "stepper_set" })
             if (forInput ) items.push({ text: qsTr("Encoder"),        value: DigishowEnvironment.EndpointRiocEncoderIn,  tag: "encoder_in"  })
             if (forOutput) items.push({ text: qsTr("Encoder") + " " + qsTr("(SET)"),
                                                                       value: DigishowEnvironment.EndpointRiocEncoderIn,  tag: "encoder_in"  })
@@ -90,6 +108,16 @@ Item {
         // init rioc channel option menu
         if (menuChannel.count === 0) {
             refreshMenuChannel()
+        }
+
+        // init stepper control option menu
+        if (menuControl.count === 0) {
+            items = []
+            v = DigishowEnvironment.ControlMotionSpeed;    items.push({ text: digishow.getMotionControlName(v), value: v })
+            v = DigishowEnvironment.ControlMotionPosition; items.push({ text: digishow.getMotionControlName(v), value: v })
+
+            menuControl.optionItems = items
+            menuControl.selectedIndex = 0
         }
 
         // init more options
@@ -142,7 +170,8 @@ Item {
                      endpointType===DigishowEnvironment.EndpointRiocPwmOut ||
                      endpointType===DigishowEnvironment.EndpointRiocPfmOut ||
                      endpointType===DigishowEnvironment.EndpointRiocRudderOut ||
-                     endpointType===DigishowEnvironment.EndpointRiocStepperOut
+                     endpointType===DigishowEnvironment.EndpointRiocStepperOut ||
+                     endpointType===DigishowEnvironment.EndpointRiocStepperSet
                     )) ||
                     (name.startsWith("ADC") &&
                      endpointType===DigishowEnvironment.EndpointRiocAnalogIn
@@ -171,7 +200,7 @@ Item {
 
             if (endpointType === DigishowEnvironment.EndpointRiocDigitalOut) {
                 enables["optInitialB"] = true
-            } else {
+            } else if (endpointType !== DigishowEnvironment.EndpointRiocStepperSet) {
                 enables["optInitialA"] = true
             }
         }
@@ -207,6 +236,10 @@ Item {
             enables["optModeStepper"] = true
         }
 
+        if (endpointType === DigishowEnvironment.EndpointRiocStepperSet) {
+            enables["optRangeSteps"] = true
+        }
+
         if (endpointType === DigishowEnvironment.EndpointRiocUserChannel) {
             enables["optRangeInt"] = true
         }
@@ -221,6 +254,10 @@ Item {
         spinUnit.value = endpointInfo["unit"]
         menuType.selectOption(endpointInfo["type"])
         menuChannel.selectOption(endpointInfo["channel"])
+
+        if (buttonControl.visible) {
+            menuControl.selectOption(endpointInfo["control"])
+        }
     }
 
     function getEndpointOptions() {
@@ -229,6 +266,10 @@ Item {
         options["unit"] = spinUnit.value
         options["type"] = menuType.selectedItemTag
         options["channel"] = menuChannel.selectedItemValue
+
+        if (buttonControl.visible) {
+            options["control"] = menuControl.selectedItemValue
+        }
 
         return options
     }
