@@ -826,6 +826,7 @@ QString DigishowEnvironment::getMotionControlName(int control)
     switch(control) {
         case CONTROL_MOTION_POSITION: return tr("Position");
         case CONTROL_MOTION_SPEED:    return tr("Speed");
+        case CONTROL_MOTION_STOP:     return tr("Stop");
     }
     return "";
 }

@@ -55,6 +55,10 @@ Item {
 
         COptionMenu {
             id: menuControl
+
+            onOptionSelected: {
+                refreshMoreOptions()
+            }
         }
     }
 
@@ -115,6 +119,7 @@ Item {
             items = []
             v = DigishowEnvironment.ControlMotionSpeed;    items.push({ text: digishow.getMotionControlName(v), value: v })
             v = DigishowEnvironment.ControlMotionPosition; items.push({ text: digishow.getMotionControlName(v), value: v })
+            v = DigishowEnvironment.ControlMotionStop;     items.push({ text: digishow.getMotionControlName(v), value: v })
 
             menuControl.optionItems = items
             menuControl.selectedIndex = 0
@@ -196,11 +201,12 @@ Item {
         var enables = {}
 
         if (endpointType !== DigishowEnvironment.EndpointRiocDigitalIn &&
-            endpointType !== DigishowEnvironment.EndpointRiocAnalogIn) {
+            endpointType !== DigishowEnvironment.EndpointRiocAnalogIn &&
+            endpointType !== DigishowEnvironment.EndpointRiocStepperSet) {
 
             if (endpointType === DigishowEnvironment.EndpointRiocDigitalOut) {
                 enables["optInitialB"] = true
-            } else if (endpointType !== DigishowEnvironment.EndpointRiocStepperSet) {
+            } else {
                 enables["optInitialA"] = true
             }
         }
@@ -236,7 +242,8 @@ Item {
             enables["optModeStepper"] = true
         }
 
-        if (endpointType === DigishowEnvironment.EndpointRiocStepperSet) {
+        if (endpointType === DigishowEnvironment.EndpointRiocStepperSet &&
+            menuControl.selectedItemValue !== DigishowEnvironment.ControlMotionStop) {
             enables["optRangeSteps"] = true
         }
 

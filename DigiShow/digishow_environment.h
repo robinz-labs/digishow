@@ -195,7 +195,8 @@ public:
 
     enum MotionControl {
         ControlMotionPosition = CONTROL_MOTION_POSITION,
-        ControlMotionSpeed    = CONTROL_MOTION_SPEED
+        ControlMotionSpeed    = CONTROL_MOTION_SPEED,
+        ControlMotionStop     = CONTROL_MOTION_STOP
     };
     Q_ENUM(MotionControl)
 

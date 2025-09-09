@@ -178,6 +178,7 @@
 // motion control numbers
 #define CONTROL_MOTION_POSITION   1
 #define CONTROL_MOTION_SPEED      2
+#define CONTROL_MOTION_STOP       3
 
 // signal data package struct
 typedef struct dgsSignalData {

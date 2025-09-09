@@ -25,7 +25,7 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointRiocEncoderIn     : return CColor.Royal
             case DigishowEnvironment.EndpointRiocRudderOut     : return CColor.Royal
             case DigishowEnvironment.EndpointRiocStepperOut    : return CColor.Royal
-            case DigishowEnvironment.EndpointRiocStepperSet    : return CColor.Royal
+            case DigishowEnvironment.EndpointRiocStepperSet    : return sig === DigishowEnvironment.SignalBinary ? CColor.HotPink : CColor.Royal
             case DigishowEnvironment.EndpointRiocUserChannel   : return CColor.Royal
             case DigishowEnvironment.EndpointModbusDiscreteIn  : return CColor.Cherry
             case DigishowEnvironment.EndpointModbusCoilOut     : return CColor.Cherry

@@ -173,20 +173,29 @@ int DgsRiocInterface::sendData(int endpointIndex, dgsSignalData data)
 
     } else if (type == ENDPOINT_RIOC_STEPPER_SET) {
 
-        // set stepper parameters
-        if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
-        int range = endpointInfo.range;
         int control = endpointInfo.control;
-        int value = (qint64)range * data.aValue / (data.aRange==0 ? range : data.aRange);
-        if (value<0 || value>range) return ERR_INVALID_DATA;
+        if (control == CONTROL_MOTION_STOP) {
 
-        switch (control) {
-        case CONTROL_MOTION_POSITION:
-            m_rioc->stepperSetPosition(unit, channel, value);
-            break;
-        case CONTROL_MOTION_SPEED:
-            m_rioc->stepperSetSpeed(unit, channel, value);
-            break;
+            // stop stepper running
+            if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
+            if (data.bValue) m_rioc->stepperStop(unit, channel);
+
+        } else {
+
+            // set stepper parameters
+            if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+            int range = endpointInfo.range;
+            int value = (qint64)range * data.aValue / (data.aRange==0 ? range : data.aRange);
+            if (value<0 || value>range) return ERR_INVALID_DATA;
+
+            switch (control) {
+            case CONTROL_MOTION_POSITION:
+                m_rioc->stepperSetPosition(unit, channel, value);
+                break;
+            case CONTROL_MOTION_SPEED:
+                m_rioc->stepperSetSpeed(unit, channel, value);
+                break;
+            }
         }
 
     } else if (type == ENDPOINT_RIOC_ENCODER_IN) {
@@ -723,9 +732,13 @@ void DgsRiocInterface::updateMetadata_()
                 endpointInfo.labelEPI += " +";
                 break;
             case ENDPOINT_RIOC_STEPPER_SET:
-                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                if (endpointInfo.control == CONTROL_MOTION_STOP) {
+                    endpointInfo.signal = DATA_SIGNAL_BINARY;
+                } else {
+                    endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                    endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
+                }
                 endpointInfo.output = true;
-                endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000);
                 endpointInfo.labelEPT = DigishowEnvironment::getMotionControlName(endpointInfo.control);
                 endpointInfo.labelEPI += " +";
                 break;
