@@ -51,6 +51,8 @@ Dialog {
         box.border.width: 2
         box.border.color: "#cccccc"
         colorNormal: "#000000"
+        enabled: !buttonTest.checked
+        opacity: enabled ? 1 : 0.3
 
         onClicked: {
 
@@ -80,6 +82,8 @@ Dialog {
         icon.height: 24
         icon.source: "qrc:///images/icon_play_white.png"
         colorNormal: timelineView.isPlaying ? preferredColor : "transparent"
+        enabled: !buttonTest.checked
+        opacity: enabled ? 1 : 0.3
 
         onClicked: {
             if (timelineView.isPlaying)
@@ -101,14 +105,13 @@ Dialog {
         icon.height: 24
         icon.source: "qrc:///images/icon_stop_white.png"
         colorNormal: "transparent"
+        enabled: !buttonTest.checked
+        opacity: enabled ? 1 : 0.3
 
         onClicked: {
-            if (timelineView.isPlaying)
-                timelineView.stop()
-            else {
-                timelineView.viewportPosition = 0
-                timelineView.seek(0)
-            }
+            if (timelineView.isPlaying) timelineView.stop()
+            timelineView.viewportPosition = 0
+            timelineView.seek(0)
         }
     }
 
@@ -173,6 +176,9 @@ Dialog {
         icon.width: 24
         icon.height: 24
         icon.source: "qrc:///images/icon_menu_white.png"
+        enabled: !buttonTest.checked
+        opacity: enabled ? 1 : 0.3
+
         onClicked: {
             if (!menu.visible) {
                 menuItemPaste.enabled = utilities.clipboardExists("application/vnd.digishow.cue.timeline")
@@ -238,7 +244,19 @@ Dialog {
         Shortcut {
             sequence: "Space"
             enabled: dialog.visible
-            onActivated: buttonPlay.clicked()
+            onActivated: if (buttonPlay.enabled) {
+                             buttonPlay.clicked()
+                         }
+        }
+        Shortcut {
+            sequence: "Esc"
+            enabled: dialog.visible
+            onActivated: if (buttonStop.enabled) {
+                             buttonStop.clicked()
+                         } else if (buttonTest.checked) {
+                             buttonTest.checked = false
+                             buttonTest.clicked()
+                         }
         }
         Shortcut {
             sequence: "M"
@@ -258,6 +276,9 @@ Dialog {
         anchors.rightMargin: 10
         label.text: qsTr("Save")
         label.font.pixelSize: 14
+        enabled: !buttonTest.checked
+        opacity: enabled ? 1 : 0.3
+
         onClicked: {
             save()
             timelineView.blinking() // indicating that the data has been saved
@@ -350,6 +371,67 @@ Dialog {
 
             }
 
+        }
+
+        CButton {
+            id: buttonTest
+
+            width: 80
+            height: 28
+            anchors.right: buttonCueOptions.left
+            anchors.rightMargin: 10
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 10
+            label.font.bold: false
+            label.font.pixelSize: 11
+            label.text: checked ? qsTr("Stop") : qsTr("Cue Test")
+            box.radius: 3
+            enabled: app.isRunning
+            opacity: enabled ? 1 : 0.3
+            checkable: true
+            colorChecked: Material.accent
+
+            onClicked: {
+                var name = quickLaunchView.editingLaunchName
+                if (checked) {
+                    timelineView.stop()
+                    cueManager.playCue(name)
+                } else {
+                    cueManager.stopCue(name)
+                }
+            }
+
+            Timer {
+                id: playingTimer
+                interval: 30
+                running: parent.checked
+                repeat: true
+                onTriggered: {
+                    var name = quickLaunchView.editingLaunchName
+                    var player = cueManager.cuePlayer(name)
+                    if (player) {
+                        // update cue playing position
+                        var position = player.position()
+                        timelineView.seek(position / 1000)
+                    } else {
+                        // cue playing is finished
+                        parent.checked = false
+                    }
+                }
+            }
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                horizontalAlignment: Text.AlignRight
+                color: "#999999"
+                font.family: "Monaco, Consolas, Monospace, Courier New"
+                font.bold: false
+                font.pixelSize: 12
+                text: timelineView.playheadTime.toFixed(1)
+                visible: parent.checked
+            }
         }
 
         CButton {

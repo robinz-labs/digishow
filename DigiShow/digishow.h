@@ -180,6 +180,11 @@
   ! improved the ui of preset launcher
   ! improved the ui of bookmarks
 
+  v1.7.4 20250913
+  ! improved arduino stepper control
+  ! improved cue player and preset launcher
+
+
 */
 
 #ifndef DIGISHOW_H

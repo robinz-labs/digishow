@@ -78,7 +78,8 @@ Item {
                 label.font.bold: model.assigned
                 label.text: model.title
                 label.visible: !textLaunchTitle.visible
-                opacity: isEditing || model.assigned ? 1.0 : 0.25
+                box.opacity: isEditing || model.assigned ? 1.0 : 0.25
+                label.opacity: box.opacity
                 supportLongPress: true
 
                 Timer {
@@ -156,6 +157,39 @@ Item {
                         app.setLaunchOption(model.name, "title", title)
                         textLaunchTitle.visible = false
                         window.isModified = true
+                    }
+                }
+
+                CButton {
+                    id: buttonLaunchMenu
+                    width: 18
+                    height: 18
+                    anchors.right: parent.right
+                    anchors.rightMargin: 0
+                    anchors.top: parent.top
+                    anchors.topMargin: 0
+                    colorNormal: buttonLaunch.colorNormal
+                    icon.width: 10
+                    icon.height: 10
+                    icon.source: "qrc:///images/icon_arrow_down_white.png"
+                    icon.anchors.verticalCenterOffset: 2
+                    box.border.width: 1
+                    box.border.color: "white"
+                    box.radius: 0
+                    visible: buttonLaunch.mouseOver || menu.visible
+
+                    onMouseOverChanged: {
+                        buttonLaunch.mouseOver = mouseOver
+                    }
+
+                    onClicked: {
+                        if (menu.visible) {
+                            menu.close
+                        } else {
+                            var x = buttonLaunch.width - 18
+                            var y = 18
+                            buttonLaunch.showContextMenu(x, y)
+                        }
                     }
                 }
 
@@ -252,6 +286,7 @@ Item {
                 }
 
                 onClicked: {
+                    buttonLaunch.mouseOver = false
                     gridView.currentIndex = model.index
                     app.startLaunch(model.name)
                 }

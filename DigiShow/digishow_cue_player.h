@@ -35,8 +35,7 @@ public:
     Q_INVOKABLE void setCueData(const QVariantMap& options, const QVariantList& details);
     Q_INVOKABLE bool play();
     Q_INVOKABLE void stop();
-    Q_INVOKABLE bool isPlaying() const;
-
+    Q_INVOKABLE bool isPlaying(){ return m_isPlaying; }
     Q_INVOKABLE int  position() { return m_position; }
     Q_INVOKABLE int  duration() { return m_duration; }
     Q_INVOKABLE bool repeat()   { return m_repeat; }

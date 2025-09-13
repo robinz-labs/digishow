@@ -92,12 +92,6 @@ void DigishowCuePlayer::stop()
     }
 }
 
-// Check if the cue is currently playing
-bool DigishowCuePlayer::isPlaying() const
-{
-    return m_isPlaying;
-}
-
 void DigishowCuePlayer::onTimerFired()
 {
     if (!m_isPlaying) return;
