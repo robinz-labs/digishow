@@ -716,6 +716,7 @@ Item {
                             onValueModified: {
                                 parent.first.value = value / inputFullRange
                                 value = Qt.binding(function() { return Math.round(parent.first.value*inputFullRange) })
+                                parent.first.moved()
                             }
                         }
 
@@ -734,6 +735,7 @@ Item {
                             onValueModified: {
                                 parent.second.value = value / inputFullRange
                                 value = Qt.binding(function() { return Math.round(parent.second.value*inputFullRange) })
+                                parent.second.moved()
                             }
                         }
                     }
@@ -770,7 +772,7 @@ Item {
                         }
 
                         CSpinBox {
-                            id: spiOutnputRangeLower
+                            id: spinOutnputRangeLower
                             width: Math.min(parent.width / 2 - 15, 140)
                             anchors.left: parent.left
                             anchors.leftMargin: -3
@@ -784,11 +786,12 @@ Item {
                             onValueModified: {
                                 parent.first.value = value / outputFullRange
                                 value = Qt.binding(function() { return Math.round(parent.first.value*outputFullRange) })
+                                parent.first.moved()
                             }
                         }
 
                         CSpinBox {
-                            id: spiOutnputRangeUpper
+                            id: spinOutnputRangeUpper
                             width: Math.min(parent.width / 2 - 15, 140)
                             anchors.right: parent.right
                             anchors.rightMargin: -3
@@ -802,6 +805,7 @@ Item {
                             onValueModified: {
                                 parent.second.value = value / outputFullRange
                                 value = Qt.binding(function() { return Math.round(parent.second.value*outputFullRange) })
+                                parent.second.moved()
                             }
                         }
                     }

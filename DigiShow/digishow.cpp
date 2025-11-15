@@ -22,6 +22,7 @@ QString g_fullname  = "";
 QString g_version   = "1.7.4";
 QString g_copyright = "";
 QString g_serial    = "";
+QString g_language  = "";
 bool g_experimental = false;
 
 DigishowApp* g_app = nullptr;

@@ -207,6 +207,7 @@ public:
     Q_INVOKABLE static QString appVersion()   { return g_version; }
     Q_INVOKABLE static QString appCopyright() { return g_copyright; }
     Q_INVOKABLE static QString appSerial()    { return g_serial; }
+    Q_INVOKABLE static QString appLanguage()  { return g_language; }
 
     Q_INVOKABLE static QString appDataPath(const QString &filename = QString());
     Q_INVOKABLE static QString appExecPath(const QString &filename = QString());

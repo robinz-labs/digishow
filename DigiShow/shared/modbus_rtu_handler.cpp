@@ -518,7 +518,7 @@ bool ModbusRtuHandler::writeMultipleRegisters(uint8_t device_address, uint16_t r
     uint8_t rsp[8];
     bool done = false;
     if (this->sendAndReceiveBytes((const char*)cmd, lenCmd, (char*)rsp, sizeof(rsp), NULL, 0.2, NULL) == sizeof(rsp) &&
-        memcmp(cmd,rsp,sizeof(rsp))==0) {
+        memcmp(cmd,rsp,sizeof(rsp)-2)==0) {
 
         done = true;
     }

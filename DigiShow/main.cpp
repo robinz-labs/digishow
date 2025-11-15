@@ -188,9 +188,12 @@ int main(int argc, char *argv[])
     }
 
     QTranslator qtTranslator;
-    if (!appLanguage.isEmpty())
-        if (qtTranslator.load(":translations/language." + appLanguage + ".qm"))
+    if (!appLanguage.isEmpty()) {
+        if (qtTranslator.load(":translations/language." + appLanguage + ".qm")) {
             app.installTranslator(&qtTranslator);
+            g_language = appLanguage;
+        }
+    }
 
     // set app font
     QString appFontName = appOptions.value("font").toString();

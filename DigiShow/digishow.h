@@ -201,6 +201,7 @@ extern QString g_fullname;
 extern QString g_version;
 extern QString g_copyright;
 extern QString g_serial;
+extern QString g_language;
 extern bool g_experimental;
 
 extern DigishowApp *g_app;

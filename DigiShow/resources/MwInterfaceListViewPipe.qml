@@ -54,11 +54,15 @@ MwInterfaceListView {
                     COptionMenu {
                         id: menuMode
 
-                        optionItems: [
-                            { text: qsTr("Local Pipe" ), value: 0, tag: "local" },
-                            { text: qsTr("Remote Pipe"), value: 1, tag: "remote" },
-                            { text: qsTr("Cloud Pipe" ), value: 2, tag: "cloud" }
-                        ]
+                        optionItems: {
+                            var items = [
+                                { text: qsTr("Local Pipe" ), value: 0, tag: "local" },
+                                { text: qsTr("Remote Pipe"), value: 1, tag: "remote" }]
+                            var itemCloud =
+                                { text: qsTr("Cloud Pipe" ), value: 2, tag: "cloud" }
+                            if (cloudIsReady()) items.push(itemCloud)
+                            return items
+                        }
 
                         onOptionClicked: {
                             var options = { mode: selectedItemTag }
@@ -341,6 +345,14 @@ MwInterfaceListView {
 
     }
 
+    function cloudIsReady() {
+        var appOptions = digishow.getAppOptions()
+        if (appOptions["cloud"] !== undefined || appOptions["cloudSession"] !== undefined)
+            return true
+        else
+            return false
+    }
+
     function cloudSignIn() {
 
         var sessionInfo = cloud.getSessionInfo()
@@ -353,14 +365,14 @@ MwInterfaceListView {
 
             var r = messageBox.showQrAndWait(
                         cloud.getSignInCode(),
-                        qsTr("Please scan the QR code with the DigiShow Outlet app on your smartphone to sign in to the cloud service:"),
+                        qsTr("Please scan the QR code with the Digishow app on your smartphone to sign in to the cloud service:"),
                         qsTr("Not Now"))
 
             timerCloudCheckSignIn.stop()
 
             switch (r) {
-            case 2: messageBox.show(qsTr("Succeeded to sign in to DigiShow Outlet cloud service."    ), qsTr("OK")); break
-            case 3: messageBox.show(qsTr("Can't connect or sign in to DigiShow Outlet cloud service."), qsTr("OK")); break
+            case 2: messageBox.show(qsTr("Succeeded to sign in to Digishow cloud service."    ), qsTr("OK")); break
+            case 3: messageBox.show(qsTr("Can't connect or sign in to Digishow cloud service."), qsTr("OK")); break
             }
 
         } else {
@@ -368,7 +380,7 @@ MwInterfaceListView {
             // the client has already signed in
 
             if (messageBox.showAndWait(
-                    qsTr("The computer has signed in to DigiShow Outlet cloud service.\r\n\r\nUser: %1\r\nConnection: %2")
+                    qsTr("The computer has signed in to Digishow cloud service.\r\n\r\nUser: %1\r\nConnection: %2")
                         .arg(sessionInfo["userName"]).arg(sessionInfo["clientName"]),
                     qsTr("Sign Out"),
                     qsTr("Cancel")) === 1) {

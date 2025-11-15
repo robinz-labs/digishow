@@ -176,7 +176,7 @@ Item {
                     box.border.width: 1
                     box.border.color: "white"
                     box.radius: 0
-                    visible: buttonLaunch.mouseOver || menu.visible
+                    visible: (menu.visible && menu.isDropdown) || (!menu.visible && buttonLaunch.mouseOver)
 
                     onMouseOverChanged: {
                         buttonLaunch.mouseOver = mouseOver
@@ -186,15 +186,16 @@ Item {
                         if (menu.visible) {
                             menu.close
                         } else {
-                            var x = buttonLaunch.width - 18
-                            var y = 18
-                            buttonLaunch.showContextMenu(x, y)
+                            buttonLaunch.showDropdownMenu()
                         }
                     }
                 }
 
                 CMenu {
                     id: menu
+
+                    property bool isDropdown: false
+
                     width: 160
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
@@ -297,7 +298,15 @@ Item {
                     menuItemPaste.enabled = utilities.clipboardExists("application/vnd.digishow.launch") && !model.assigned
                     menu.x = mouseX
                     menu.y = mouseY
+                    menu.isDropdown = false
                     menu.open()
+                }
+
+                function showDropdownMenu() {
+                    var x = buttonLaunch.width - 18
+                    var y = 18
+                    buttonLaunch.showContextMenu(x, y)
+                    menu.isDropdown = true
                 }
             }
         }

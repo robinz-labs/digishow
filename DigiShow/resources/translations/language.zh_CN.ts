@@ -3237,115 +3237,115 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
 <context>
     <name>MwInterfaceListViewPipe</name>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="58"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="59"/>
         <source>Local Pipe</source>
         <translation>本地管道</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="59"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="60"/>
         <source>Remote Pipe</source>
         <translation>远程管道</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="60"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="62"/>
         <source>Cloud Pipe</source>
         <translation>云端管道</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="100"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="104"/>
         <source>Mode</source>
         <translation>模式</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="130"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="134"/>
         <source>Remote IP</source>
         <translation>远程 IP</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="161"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="165"/>
         <source>TCP Port</source>
         <translation>TCP 端口</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="184"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="188"/>
         <source>Disabled (default)</source>
         <translation>不启用 (默认)</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="185"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="189"/>
         <source>Enabled</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="186"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="190"/>
         <source>Enabled (multiple)</source>
         <translation>启用 (多连接)</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="212"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="216"/>
         <source>Remote Link Service</source>
         <translation>远程连接服务</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="225"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="229"/>
         <source>Sign In ...</source>
         <translation>登录 ...</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="286"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="290"/>
         <source>Pipe ID</source>
         <translation>管道 ID</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="311"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="315"/>
         <source>Comment</source>
         <translation>描述</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="356"/>
-        <source>Please scan the QR code with the DigiShow Outlet app on your smartphone to sign in to the cloud service:</source>
-        <translation>请使用你手机上的 DigiShow Outlet 小程序
+        <location filename="../MwInterfaceListViewPipe.qml" line="368"/>
+        <source>Please scan the QR code with the Digishow app on your smartphone to sign in to the cloud service:</source>
+        <translation>请使用你手机上的 Digishow 小程序
 扫描此二维码来登录云服务：</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="357"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="369"/>
         <source>Not Now</source>
         <translation>暂不</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="362"/>
-        <source>Succeeded to sign in to DigiShow Outlet cloud service.</source>
-        <translation>已成功登录到 DigiShow Outlet 云服务。</translation>
+        <location filename="../MwInterfaceListViewPipe.qml" line="374"/>
+        <source>Succeeded to sign in to Digishow cloud service.</source>
+        <translation>已成功登录到 Digishow 云服务。</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="363"/>
-        <source>Can&apos;t connect or sign in to DigiShow Outlet cloud service.</source>
-        <translation>无法连接或登录 DigiShow Outlet 云服务。</translation>
+        <location filename="../MwInterfaceListViewPipe.qml" line="375"/>
+        <source>Can&apos;t connect or sign in to Digishow cloud service.</source>
+        <translation>无法连接或登录 Digishow 云服务。</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="371"/>
-        <source>The computer has signed in to DigiShow Outlet cloud service.<byte value="xd"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="383"/>
+        <source>The computer has signed in to Digishow cloud service.<byte value="xd"/>
 <byte value="xd"/>
 User: %1<byte value="xd"/>
 Connection: %2</source>
-        <translation>该电脑已登录到 DigiShow Outlet 云服务。
+        <translation>该电脑已登录到 Digishow 云服务。
 
 用户：%1
 连接：%2</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="362"/>
-        <location filename="../MwInterfaceListViewPipe.qml" line="363"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="374"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="375"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="373"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="385"/>
         <source>Sign Out</source>
         <translation>退出登录</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="374"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="386"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
@@ -3687,79 +3687,79 @@ Connection: %2</source>
 <context>
     <name>MwQuickLaunchView</name>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="176"/>
+        <location filename="../MwQuickLaunchView.qml" line="211"/>
         <source>Edit Preset</source>
         <translation>编辑预设</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="176"/>
+        <location filename="../MwQuickLaunchView.qml" line="211"/>
         <source>Create Preset</source>
         <translation>创建预设</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="184"/>
+        <location filename="../MwQuickLaunchView.qml" line="219"/>
         <source>Rename</source>
         <translation>修改名称</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="191"/>
+        <location filename="../MwQuickLaunchView.qml" line="226"/>
         <source>Set Color</source>
         <translation>修改颜色</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="204"/>
-        <location filename="../MwQuickLaunchView.qml" line="210"/>
-        <location filename="../MwQuickLaunchView.qml" line="564"/>
+        <location filename="../MwQuickLaunchView.qml" line="239"/>
+        <location filename="../MwQuickLaunchView.qml" line="245"/>
+        <location filename="../MwQuickLaunchView.qml" line="608"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="563"/>
+        <location filename="../MwQuickLaunchView.qml" line="607"/>
         <source>Do you want to delete all cue player data attached to the preset ?</source>
         <translation>你是否需要删除附加到该预设中的所有 Cue 播放器数据 ？</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="226"/>
+        <location filename="../MwQuickLaunchView.qml" line="261"/>
         <source>Copy</source>
         <translation>拷贝</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="231"/>
+        <location filename="../MwQuickLaunchView.qml" line="266"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="237"/>
+        <location filename="../MwQuickLaunchView.qml" line="272"/>
         <source>Remote Control ...</source>
         <translation>远程遥控 ...</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="317"/>
+        <location filename="../MwQuickLaunchView.qml" line="361"/>
         <source>Enable DigiShow built-in web service, and you can remotely operate the Preset Launcher through a web browser on your smart phone or mobile tablet. Please enter the service port number and click the Start button.</source>
         <translation>启动 DigiShow 内置的 Web 服务，你就可以通过手机或移动平板电脑上的 Web 浏览器来远程遥控预设启动器。请输入服务端口号，然后点击“启动”按钮。不想使用此功能，请点击“停止”按钮。</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="356"/>
+        <location filename="../MwQuickLaunchView.qml" line="400"/>
         <source>Start</source>
         <translation>启动</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="372"/>
+        <location filename="../MwQuickLaunchView.qml" line="416"/>
         <source>Please scan the QR code with your smartphone:</source>
         <translation>请用你的手机扫描此处的二维码：</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="373"/>
+        <location filename="../MwQuickLaunchView.qml" line="417"/>
         <source>Preview in Web</source>
         <translation>Web 预览</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="373"/>
+        <location filename="../MwQuickLaunchView.qml" line="417"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="610"/>
+        <location filename="../MwQuickLaunchView.qml" line="654"/>
         <source>The saved preset contains:<byte value="xd"/>
 • The status of the checked items in the signal link table<byte value="xd"/>
 • The playback curves of the output signal in the cue player<byte value="xd"/>
@@ -3771,76 +3771,76 @@ Tap on the preset button to activate them.</source>
 点击预设按钮即可随时激活。</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="169"/>
-        <location filename="../MwQuickLaunchView.qml" line="388"/>
+        <location filename="../MwQuickLaunchView.qml" line="204"/>
+        <location filename="../MwQuickLaunchView.qml" line="432"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="209"/>
+        <location filename="../MwQuickLaunchView.qml" line="244"/>
         <source>Do you want to delete the preset ?</source>
         <translation>你是否需要删除该预设 ？</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="464"/>
+        <location filename="../MwQuickLaunchView.qml" line="508"/>
         <source>Preset Memory</source>
         <translation>预设状态记忆</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="482"/>
+        <location filename="../MwQuickLaunchView.qml" line="526"/>
         <source>Please check the relevant LINK buttons and output signal faders in the signal link table, then save their current states and values into the preset.</source>
         <translation>请在信号链接表中勾选相关的LINK按钮和输出信号推子，然后就可以将它们的当前状态和数值保存到预设中。</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="495"/>
+        <location filename="../MwQuickLaunchView.qml" line="539"/>
         <source>Reset</source>
         <translation>重置</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="523"/>
+        <location filename="../MwQuickLaunchView.qml" line="567"/>
         <source>Attached Cue Player</source>
         <translation>附加 Cue 播放器</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="540"/>
+        <location filename="../MwQuickLaunchView.qml" line="584"/>
         <source>You can also click the + CUE button below the output signal fader to design the playback curve of the output signal.</source>
         <translation>你还可以点击输出信号推子下方的 + CUE 按钮来设计输出信号的播放曲线。</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="553"/>
+        <location filename="../MwQuickLaunchView.qml" line="597"/>
         <source>Clear</source>
         <translation>清除</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="594"/>
+        <location filename="../MwQuickLaunchView.qml" line="638"/>
         <source>Save Preset</source>
         <translation>保存预设</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="723"/>
+        <location filename="../MwQuickLaunchView.qml" line="767"/>
         <source>You need to save the preset first, do you want to continue ?</source>
         <translation>需要先保存预设，是否继续 ?</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="724"/>
+        <location filename="../MwQuickLaunchView.qml" line="768"/>
         <source>Continue</source>
         <translation>继续</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="704"/>
+        <location filename="../MwQuickLaunchView.qml" line="748"/>
         <source>Preset</source>
         <translation>预设</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="610"/>
+        <location filename="../MwQuickLaunchView.qml" line="654"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="210"/>
-        <location filename="../MwQuickLaunchView.qml" line="564"/>
-        <location filename="../MwQuickLaunchView.qml" line="627"/>
-        <location filename="../MwQuickLaunchView.qml" line="724"/>
+        <location filename="../MwQuickLaunchView.qml" line="245"/>
+        <location filename="../MwQuickLaunchView.qml" line="608"/>
+        <location filename="../MwQuickLaunchView.qml" line="671"/>
+        <location filename="../MwQuickLaunchView.qml" line="768"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
@@ -4062,12 +4062,12 @@ Tap on the preset button to activate them.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1417"/>
+        <location filename="../MwSlotOptionsView.qml" line="1421"/>
         <source>The expression can reference the input or output value of any other signal link, for example:</source>
         <translation>表达式可以引用任何其他信号链接的输入或输出值，例如：</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1425"/>
+        <location filename="../MwSlotOptionsView.qml" line="1429"/>
         <source>The expression can contain common JavaScript statements and functions, for example:</source>
         <translation>表达式可以包含常见的 JavaScript 语句和函数，例如：</translation>
     </message>
@@ -4103,106 +4103,106 @@ Tap on the preset button to activate them.</source>
         <translation>输入信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="759"/>
+        <location filename="../MwSlotOptionsView.qml" line="761"/>
         <source>Output Range</source>
         <translation>输出信号量范围</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="825"/>
+        <location filename="../MwSlotOptionsView.qml" line="829"/>
         <source>Output Envelope</source>
         <translation>输出信号包络参数</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="889"/>
+        <location filename="../MwSlotOptionsView.qml" line="893"/>
         <source>On Delay</source>
-        <translation>On 延时</translation>
+        <translation>On Delay 延开</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1038"/>
+        <location filename="../MwSlotOptionsView.qml" line="1042"/>
         <source>Off Delay</source>
-        <translation>Off 延时</translation>
+        <translation>Off Delay 延关</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="917"/>
+        <location filename="../MwSlotOptionsView.qml" line="921"/>
         <source>Attack</source>
         <translation>Attack 渐入</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1403"/>
+        <location filename="../MwSlotOptionsView.qml" line="1407"/>
         <source>expression.md</source>
         <translation>expression.zh_CN.md</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1409"/>
+        <location filename="../MwSlotOptionsView.qml" line="1413"/>
         <source>Write a JavaScript expression to dynamically change the signal value, for example:</source>
         <translation>可以编写一个 JavaScript 表达式来动态改变信号的数值，例如：</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1410"/>
-        <location filename="../MwSlotOptionsView.qml" line="1418"/>
-        <location filename="../MwSlotOptionsView.qml" line="1426"/>
+        <location filename="../MwSlotOptionsView.qml" line="1414"/>
+        <location filename="../MwSlotOptionsView.qml" line="1422"/>
+        <location filename="../MwSlotOptionsView.qml" line="1430"/>
         <source>Try It</source>
         <translation>试一下</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1410"/>
-        <location filename="../MwSlotOptionsView.qml" line="1418"/>
-        <location filename="../MwSlotOptionsView.qml" line="1426"/>
+        <location filename="../MwSlotOptionsView.qml" line="1414"/>
+        <location filename="../MwSlotOptionsView.qml" line="1422"/>
+        <location filename="../MwSlotOptionsView.qml" line="1430"/>
         <source>Next</source>
         <translation>继续学习</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1410"/>
-        <location filename="../MwSlotOptionsView.qml" line="1418"/>
-        <location filename="../MwSlotOptionsView.qml" line="1426"/>
-        <location filename="../MwSlotOptionsView.qml" line="1434"/>
-        <location filename="../MwSlotOptionsView.qml" line="1441"/>
+        <location filename="../MwSlotOptionsView.qml" line="1414"/>
+        <location filename="../MwSlotOptionsView.qml" line="1422"/>
+        <location filename="../MwSlotOptionsView.qml" line="1430"/>
+        <location filename="../MwSlotOptionsView.qml" line="1438"/>
+        <location filename="../MwSlotOptionsView.qml" line="1445"/>
         <source>Reference ...</source>
         <translation>参考资料 ...</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1433"/>
+        <location filename="../MwSlotOptionsView.qml" line="1437"/>
         <source>The expression can also call user-defined functions, now you can create your functions in the attached script file.</source>
         <translation>表达式还可以调用用户自定义的函数，现在你可以在附加的脚本文件中创建你自己的函数。</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1434"/>
+        <location filename="../MwSlotOptionsView.qml" line="1438"/>
         <source>Show Script</source>
         <translation>查看脚本</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1434"/>
-        <location filename="../MwSlotOptionsView.qml" line="1441"/>
+        <location filename="../MwSlotOptionsView.qml" line="1438"/>
+        <location filename="../MwSlotOptionsView.qml" line="1445"/>
         <source>Done</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1440"/>
+        <location filename="../MwSlotOptionsView.qml" line="1444"/>
         <source>The expression can also call user-defined functions, now you can create an attached script file contains your functions.</source>
         <translation>表达式还可以调用用户自定义的函数，现在你就可以创建一个附加的脚本文件来存放你自己的函数。</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1441"/>
+        <location filename="../MwSlotOptionsView.qml" line="1445"/>
         <source>Create Script</source>
         <translation>创建脚本</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="940"/>
+        <location filename="../MwSlotOptionsView.qml" line="944"/>
         <source>Hold</source>
         <translation>Hold 保持</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="963"/>
+        <location filename="../MwSlotOptionsView.qml" line="967"/>
         <source>Decay</source>
         <translation>Decay 衰减</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="987"/>
+        <location filename="../MwSlotOptionsView.qml" line="991"/>
         <source>Sustain</source>
         <translation>Sustain 延持</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1010"/>
+        <location filename="../MwSlotOptionsView.qml" line="1014"/>
         <source>Release</source>
         <translation>Release 渐出</translation>
     </message>

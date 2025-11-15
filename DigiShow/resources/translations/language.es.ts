@@ -3227,111 +3227,111 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
 <context>
     <name>MwInterfaceListViewPipe</name>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="58"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="59"/>
         <source>Local Pipe</source>
         <translation>Tubería local</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="59"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="60"/>
         <source>Remote Pipe</source>
         <translation>Tubería remota</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="60"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="62"/>
         <source>Cloud Pipe</source>
         <translation>Tubería de nube</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="100"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="104"/>
         <source>Mode</source>
         <translation>Modo</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="130"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="134"/>
         <source>Remote IP</source>
         <translation>IP remota</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="161"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="165"/>
         <source>TCP Port</source>
         <translation>Puerto TCP</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="184"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="188"/>
         <source>Disabled (default)</source>
         <translation>Deshabilitado</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="185"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="189"/>
         <source>Enabled</source>
         <translation>Habilitado</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="186"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="190"/>
         <source>Enabled (multiple)</source>
         <translation>Habilitado (múltiple)</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="212"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="216"/>
         <source>Remote Link Service</source>
         <translation>Servicio de enlace remoto</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="225"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="229"/>
         <source>Sign In ...</source>
         <translation>Iniciar sesión ...</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="286"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="290"/>
         <source>Pipe ID</source>
         <translation>ID de tubería</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="311"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="315"/>
         <source>Comment</source>
         <translation>Comentario</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="356"/>
-        <source>Please scan the QR code with the DigiShow Outlet app on your smartphone to sign in to the cloud service:</source>
+        <location filename="../MwInterfaceListViewPipe.qml" line="368"/>
+        <source>Please scan the QR code with the Digishow app on your smartphone to sign in to the cloud service:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="357"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="369"/>
         <source>Not Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="362"/>
-        <source>Succeeded to sign in to DigiShow Outlet cloud service.</source>
+        <location filename="../MwInterfaceListViewPipe.qml" line="374"/>
+        <source>Succeeded to sign in to Digishow cloud service.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="363"/>
-        <source>Can&apos;t connect or sign in to DigiShow Outlet cloud service.</source>
+        <location filename="../MwInterfaceListViewPipe.qml" line="375"/>
+        <source>Can&apos;t connect or sign in to Digishow cloud service.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="371"/>
-        <source>The computer has signed in to DigiShow Outlet cloud service.<byte value="xd"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="383"/>
+        <source>The computer has signed in to Digishow cloud service.<byte value="xd"/>
 <byte value="xd"/>
 User: %1<byte value="xd"/>
 Connection: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="362"/>
-        <location filename="../MwInterfaceListViewPipe.qml" line="363"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="374"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="375"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="373"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="385"/>
         <source>Sign Out</source>
         <translation>Cerrar sesión</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewPipe.qml" line="374"/>
+        <location filename="../MwInterfaceListViewPipe.qml" line="386"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -3673,119 +3673,119 @@ Connection: %2</source>
 <context>
     <name>MwQuickLaunchView</name>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="704"/>
+        <location filename="../MwQuickLaunchView.qml" line="748"/>
         <source>Preset</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="176"/>
+        <location filename="../MwQuickLaunchView.qml" line="211"/>
         <source>Edit Preset</source>
         <translation>Editar preset</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="176"/>
+        <location filename="../MwQuickLaunchView.qml" line="211"/>
         <source>Create Preset</source>
         <translation>Crear preset</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="184"/>
+        <location filename="../MwQuickLaunchView.qml" line="219"/>
         <source>Rename</source>
         <translation>Renombrar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="191"/>
+        <location filename="../MwQuickLaunchView.qml" line="226"/>
         <source>Set Color</source>
         <translation>Asignar color</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="204"/>
-        <location filename="../MwQuickLaunchView.qml" line="210"/>
-        <location filename="../MwQuickLaunchView.qml" line="564"/>
+        <location filename="../MwQuickLaunchView.qml" line="239"/>
+        <location filename="../MwQuickLaunchView.qml" line="245"/>
+        <location filename="../MwQuickLaunchView.qml" line="608"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="563"/>
+        <location filename="../MwQuickLaunchView.qml" line="607"/>
         <source>Do you want to delete all cue player data attached to the preset ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="226"/>
+        <location filename="../MwQuickLaunchView.qml" line="261"/>
         <source>Copy</source>
         <translation type="unfinished">Copiar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="209"/>
+        <location filename="../MwQuickLaunchView.qml" line="244"/>
         <source>Do you want to delete the preset ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="231"/>
+        <location filename="../MwQuickLaunchView.qml" line="266"/>
         <source>Paste</source>
         <translation type="unfinished">Pegar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="237"/>
+        <location filename="../MwQuickLaunchView.qml" line="272"/>
         <source>Remote Control ...</source>
         <translation>Control remoto ...</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="317"/>
+        <location filename="../MwQuickLaunchView.qml" line="361"/>
         <source>Enable DigiShow built-in web service, and you can remotely operate the Preset Launcher through a web browser on your smart phone or mobile tablet. Please enter the service port number and click the Start button.</source>
         <translation>Habilite el servicio web integrado DigiShow y podrá operar de forma remota el Preset Launcher a través de un navegador web en su teléfono inteligente o tableta móvil. Ingrese el número de puerto de servicio y haga clic en el botón Iniciar.</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="356"/>
+        <location filename="../MwQuickLaunchView.qml" line="400"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="372"/>
+        <location filename="../MwQuickLaunchView.qml" line="416"/>
         <source>Please scan the QR code with your smartphone:</source>
         <translation>Por favor escanee el código QR con su teléfono inteligente:</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="373"/>
+        <location filename="../MwQuickLaunchView.qml" line="417"/>
         <source>Preview in Web</source>
         <translation>Vista previa en web</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="373"/>
+        <location filename="../MwQuickLaunchView.qml" line="417"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="464"/>
+        <location filename="../MwQuickLaunchView.qml" line="508"/>
         <source>Preset Memory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="482"/>
+        <location filename="../MwQuickLaunchView.qml" line="526"/>
         <source>Please check the relevant LINK buttons and output signal faders in the signal link table, then save their current states and values into the preset.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="495"/>
+        <location filename="../MwQuickLaunchView.qml" line="539"/>
         <source>Reset</source>
         <translation type="unfinished">Reiniciar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="523"/>
+        <location filename="../MwQuickLaunchView.qml" line="567"/>
         <source>Attached Cue Player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="540"/>
+        <location filename="../MwQuickLaunchView.qml" line="584"/>
         <source>You can also click the + CUE button below the output signal fader to design the playback curve of the output signal.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="553"/>
+        <location filename="../MwQuickLaunchView.qml" line="597"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="610"/>
+        <location filename="../MwQuickLaunchView.qml" line="654"/>
         <source>The saved preset contains:<byte value="xd"/>
 • The status of the checked items in the signal link table<byte value="xd"/>
 • The playback curves of the output signal in the cue player<byte value="xd"/>
@@ -3794,36 +3794,36 @@ Tap on the preset button to activate them.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="723"/>
+        <location filename="../MwQuickLaunchView.qml" line="767"/>
         <source>You need to save the preset first, do you want to continue ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="724"/>
+        <location filename="../MwQuickLaunchView.qml" line="768"/>
         <source>Continue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="169"/>
-        <location filename="../MwQuickLaunchView.qml" line="388"/>
+        <location filename="../MwQuickLaunchView.qml" line="204"/>
+        <location filename="../MwQuickLaunchView.qml" line="432"/>
         <source>Stop</source>
         <translation>Detener</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="594"/>
+        <location filename="../MwQuickLaunchView.qml" line="638"/>
         <source>Save Preset</source>
         <translation>Guardar preset</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="610"/>
+        <location filename="../MwQuickLaunchView.qml" line="654"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="210"/>
-        <location filename="../MwQuickLaunchView.qml" line="564"/>
-        <location filename="../MwQuickLaunchView.qml" line="627"/>
-        <location filename="../MwQuickLaunchView.qml" line="724"/>
+        <location filename="../MwQuickLaunchView.qml" line="245"/>
+        <location filename="../MwQuickLaunchView.qml" line="608"/>
+        <location filename="../MwQuickLaunchView.qml" line="671"/>
+        <location filename="../MwQuickLaunchView.qml" line="768"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -4026,61 +4026,61 @@ de la izquierda.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1410"/>
-        <location filename="../MwSlotOptionsView.qml" line="1418"/>
-        <location filename="../MwSlotOptionsView.qml" line="1426"/>
+        <location filename="../MwSlotOptionsView.qml" line="1414"/>
+        <location filename="../MwSlotOptionsView.qml" line="1422"/>
+        <location filename="../MwSlotOptionsView.qml" line="1430"/>
         <source>Try It</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1410"/>
-        <location filename="../MwSlotOptionsView.qml" line="1418"/>
-        <location filename="../MwSlotOptionsView.qml" line="1426"/>
+        <location filename="../MwSlotOptionsView.qml" line="1414"/>
+        <location filename="../MwSlotOptionsView.qml" line="1422"/>
+        <location filename="../MwSlotOptionsView.qml" line="1430"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1410"/>
-        <location filename="../MwSlotOptionsView.qml" line="1418"/>
-        <location filename="../MwSlotOptionsView.qml" line="1426"/>
-        <location filename="../MwSlotOptionsView.qml" line="1434"/>
-        <location filename="../MwSlotOptionsView.qml" line="1441"/>
+        <location filename="../MwSlotOptionsView.qml" line="1414"/>
+        <location filename="../MwSlotOptionsView.qml" line="1422"/>
+        <location filename="../MwSlotOptionsView.qml" line="1430"/>
+        <location filename="../MwSlotOptionsView.qml" line="1438"/>
+        <location filename="../MwSlotOptionsView.qml" line="1445"/>
         <source>Reference ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1417"/>
+        <location filename="../MwSlotOptionsView.qml" line="1421"/>
         <source>The expression can reference the input or output value of any other signal link, for example:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1425"/>
+        <location filename="../MwSlotOptionsView.qml" line="1429"/>
         <source>The expression can contain common JavaScript statements and functions, for example:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1433"/>
+        <location filename="../MwSlotOptionsView.qml" line="1437"/>
         <source>The expression can also call user-defined functions, now you can create your functions in the attached script file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1434"/>
+        <location filename="../MwSlotOptionsView.qml" line="1438"/>
         <source>Show Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1434"/>
-        <location filename="../MwSlotOptionsView.qml" line="1441"/>
+        <location filename="../MwSlotOptionsView.qml" line="1438"/>
+        <location filename="../MwSlotOptionsView.qml" line="1445"/>
         <source>Done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1440"/>
+        <location filename="../MwSlotOptionsView.qml" line="1444"/>
         <source>The expression can also call user-defined functions, now you can create an attached script file contains your functions.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1441"/>
+        <location filename="../MwSlotOptionsView.qml" line="1445"/>
         <source>Create Script</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4136,57 +4136,57 @@ de la izquierda.</translation>
         <translation>Rango de entrada</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="759"/>
+        <location filename="../MwSlotOptionsView.qml" line="761"/>
         <source>Output Range</source>
         <translation>Rango de salida</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="825"/>
+        <location filename="../MwSlotOptionsView.qml" line="829"/>
         <source>Output Envelope</source>
         <translation>Envolvente de salida</translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="889"/>
+        <location filename="../MwSlotOptionsView.qml" line="893"/>
         <source>On Delay</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1038"/>
+        <location filename="../MwSlotOptionsView.qml" line="1042"/>
         <source>Off Delay</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1403"/>
+        <location filename="../MwSlotOptionsView.qml" line="1407"/>
         <source>expression.md</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1409"/>
+        <location filename="../MwSlotOptionsView.qml" line="1413"/>
         <source>Write a JavaScript expression to dynamically change the signal value, for example:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="917"/>
+        <location filename="../MwSlotOptionsView.qml" line="921"/>
         <source>Attack</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="940"/>
+        <location filename="../MwSlotOptionsView.qml" line="944"/>
         <source>Hold</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="963"/>
+        <location filename="../MwSlotOptionsView.qml" line="967"/>
         <source>Decay</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="987"/>
+        <location filename="../MwSlotOptionsView.qml" line="991"/>
         <source>Sustain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotOptionsView.qml" line="1010"/>
+        <location filename="../MwSlotOptionsView.qml" line="1014"/>
         <source>Release</source>
         <translation></translation>
     </message>
