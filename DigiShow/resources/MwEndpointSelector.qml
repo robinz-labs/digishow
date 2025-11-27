@@ -130,7 +130,7 @@ Item {
                 itemLaunch   .visible = false
                 itemHotkey   .visible = false
                 itemMetronome.visible = false
-                itemMessenger .visible = false
+                itemMessenger.visible = false
 
                 popupMoreOptions.resetOptions()
                 popupMoreOptions.enableOptions({})
@@ -156,7 +156,7 @@ Item {
                     case DigishowEnvironment.InterfaceLaunch:    itemLaunch   .visible = true; itemLaunch   .refresh(); break
                     case DigishowEnvironment.InterfaceHotkey:    itemHotkey   .visible = true; itemHotkey   .refresh(); break
                     case DigishowEnvironment.InterfaceMetronome: itemMetronome.visible = true; itemMetronome.refresh(); break
-                    case DigishowEnvironment.InterfaceMessenger:  itemMessenger .visible = true; itemMessenger .refresh(); break
+                    case DigishowEnvironment.InterfaceMessenger: itemMessenger.visible = true; itemMessenger.refresh(); break
 
                     }
                     interfaceType = config["interfaceOptions"]["type"];

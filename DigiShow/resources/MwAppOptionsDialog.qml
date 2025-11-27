@@ -81,7 +81,7 @@ Dialog {
 
         COptionSpinBox {
             id: spinOptionScale
-            from: screen.devicePixelRatio >= 2 ? 50 : 100
+            from: 50
             to: 200
             value: 100
             stepSize: 5

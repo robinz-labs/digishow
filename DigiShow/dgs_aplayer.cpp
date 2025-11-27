@@ -78,6 +78,13 @@ void DgsAPlayer::play()
     if (m_isPlaying) stop();
     m_isPlaying = true;
 
+    // automatically set the playback duration of specified media
+    qint64 mediaDuration = m_player->duration();
+    qreal  mediaPlayRate = m_player->playbackRate();
+    if (m_duration == 0 && mediaDuration > m_position && mediaPlayRate > 0) {
+        m_duration = (mediaDuration - m_position) / mediaPlayRate;
+    }
+
     // start timer
     if (m_duration > 0) {
         m_timer->setInterval(m_duration);

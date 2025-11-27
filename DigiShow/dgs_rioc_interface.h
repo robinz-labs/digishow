@@ -35,6 +35,7 @@ public:
     int init() override;
     int sendData(int endpointIndex, dgsSignalData data) override;
 
+    static bool isRiocUserDevice(int mode); // is aladdin, plc or other user device
     static QVariantList listOnline();
 
 signals:

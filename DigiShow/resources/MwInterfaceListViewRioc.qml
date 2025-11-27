@@ -104,9 +104,15 @@ MwInterfaceListView {
                             { text:  qsTr("General"),              value: 0, tag: "general" },
                             { text:  qsTr("Arduino UNO / Nano"),   value: 1, tag: "arduino_uno" },
                             { text:  qsTr("Arduino MEGA"),         value: 2, tag: "arduino_mega" },
-                            { text:  qsTr("Aladdin"),              value: 3, tag: "aladdin" },
-                            { text:  qsTr("Arduino PLC Model 1"),  value: 4, tag: "plc1" },
-                            { text:  qsTr("Arduino PLC Model 2"),  value: 5, tag: "plc2" }
+                            { text:  qsTr("Arduino Leonardo / Micro"),
+                                                                   value: 3, tag: "arduino_micro" },
+                            { text:  "-",                          value:-1 },
+                            { text:  qsTr("Aladdin Micro"),        value: 4, tag: "aladdin1" },
+                            { text:  qsTr("Aladdin MEGA"),         value: 5, tag: "aladdin2" },
+                            { text:  qsTr("Aladdin ESP32"),        value: 6, tag: "aladdin3" },
+                            { text:  qsTr("Aladdin"),              value: 7, tag: "aladdin" },
+                            { text:  qsTr("Arduino PLC Model 1"),  value: 8, tag: "plc1" },
+                            { text:  qsTr("Arduino PLC Model 2"),  value: 9, tag: "plc2" }
                         ]
 
                         onOptionSelected: {

@@ -27,6 +27,8 @@
 #include "dgs_messenger_interface.h"
 #include "rioc_aladdin2560_def.h"
 
+#define LEN(array) (sizeof(array) / sizeof((array)[0]))
+
 DigishowEnvironment::DigishowEnvironment(QObject *parent) : QObject(parent)
 {
 
@@ -958,68 +960,65 @@ QString DigishowEnvironment::getSpectrumBandName(int band, bool longName)
     return name + (longName ? "  " + description : "");
 }
 
+bool DigishowEnvironment::isRiocUserDevice(int mode)
+{
+    return DgsRiocInterface::isRiocUserDevice(mode);
+}
+
 QString DigishowEnvironment::getRiocPinName(int mode, int pinNumber)
 {
-    if (mode == INTERFACE_RIOC_ARDUINO_UNO) {
+    if (mode == INTERFACE_RIOC_PLC1) {
 
-        if (pinNumber>=14 && pinNumber<=21)
-            return "A" + QString::number(pinNumber-14);
-        else
-            return "D" + QString::number(pinNumber);
-
-    } else if (mode == INTERFACE_RIOC_ARDUINO_MEGA) {
-
-        if (pinNumber>=54 && pinNumber<=69)
-            return "A" + QString::number(pinNumber-54);
-        else
-            return "D" + QString::number(pinNumber);
-
-    } else if (mode == INTERFACE_RIOC_ALADDIN) {
-
-        for (int n=0 ; n<16 ; n++)
-            if (pinNumber==PIN_UD_DI[n]) return "DI" + QString::number(n);
-
-        for (int n=0 ; n<8 ; n++)
-            if (pinNumber==PIN_UD_DO[n]) return "DO" + QString::number(n);
-
-        for (int n=0 ; n<4 ; n++)
-            if (pinNumber==PIN_UD_ADC[n]) return "ADC" + QString::number(n);
-
-    } else if (mode == INTERFACE_RIOC_PLC1) {
-
-        for (int n=0 ; n<8 ; n++)
-            if (pinNumber==PIN_PLC1_X[n]) return "X" + QString::number(n);
-        for (int n=0 ; n<8 ; n++)
-            if (pinNumber==PIN_PLC1_X[n+8]) return "X" + QString::number(n+10);
-
-        for (int n=0 ; n<8 ; n++)
-            if (pinNumber==PIN_PLC1_Y[n]) return "Y" + QString::number(n);
-        for (int n=0 ; n<4 ; n++)
-            if (pinNumber==PIN_PLC1_Y[n+8]) return "Y" + QString::number(n+10);
+        for (int n=0 ; n<8 ; n++) if (pinNumber==PIN_PLC1_X[n]  ) return "X " + QString::number(n);
+        for (int n=0 ; n<8 ; n++) if (pinNumber==PIN_PLC1_X[n+8]) return "X " + QString::number(n+10);
+        for (int n=0 ; n<8 ; n++) if (pinNumber==PIN_PLC1_Y[n]  ) return "Y " + QString::number(n);
+        for (int n=0 ; n<4 ; n++) if (pinNumber==PIN_PLC1_Y[n+8]) return "Y " + QString::number(n+10);
 
         switch (pinNumber) {
         case PIN_PLC1_LED_RUN: return "LED RUN";
         case PIN_PLC1_LED_ERR: return "LED ERR";
-        case PIN_PLC1_SWITCH : return "SW1";
+        case PIN_PLC1_SWITCH : return "SW ";
         }
 
     } else if (mode == INTERFACE_RIOC_PLC2) {
 
-        for (int n=0 ; n<8 ; n++)
-            if (pinNumber==PIN_PLC2_X[n]) return "X" + QString::number(n);
-        for (int n=0 ; n<7 ; n++)
-            if (pinNumber==PIN_PLC2_X[n+8]) return "X" + QString::number(n+10);
-
-        for (int n=0 ; n<8 ; n++)
-            if (pinNumber==PIN_PLC2_Y[n]) return "Y" + QString::number(n);
-        for (int n=0 ; n<2 ; n++)
-            if (pinNumber==PIN_PLC2_Y[n+8]) return "Y" + QString::number(n+10);
+        for (int n=0 ; n<8 ; n++) if (pinNumber==PIN_PLC2_X[n]  ) return "X " + QString::number(n);
+        for (int n=0 ; n<7 ; n++) if (pinNumber==PIN_PLC2_X[n+8]) return "X " + QString::number(n+10);
+        for (int n=0 ; n<8 ; n++) if (pinNumber==PIN_PLC2_Y[n]  ) return "Y " + QString::number(n);
+        for (int n=0 ; n<2 ; n++) if (pinNumber==PIN_PLC2_Y[n+8]) return "Y " + QString::number(n+10);
 
         switch (pinNumber) {
         case PIN_PLC2_LED_RUN: return "LED RUN";
         case PIN_PLC2_LED_ERR: return "LED ERR";
-        case PIN_PLC2_SWITCH : return "SW1";
+        case PIN_PLC2_SWITCH : return "SW ";
         }
+
+    } else if (mode != INTERFACE_RIOC_GENERAL) {
+
+        // other arduino and aladdin models
+
+        QList<int> pinDI = getRiocPinList(mode, PIN_TYPE_DI);
+        for (int n=0 ; n<pinDI.length() ; n++) if (pinNumber==pinDI[n]) return "X " + QString::number(n);
+
+        QList<int> pinDO = getRiocPinList(mode, PIN_TYPE_DO);
+        for (int n=0 ; n<pinDO.length() ; n++) if (pinNumber==pinDO[n]) return "Y " + QString::number(n);
+
+        QList<int> pinDIO = getRiocPinList(mode, PIN_TYPE_DIO);
+        for (int n=0 ; n<pinDIO.length() ; n++) if (pinNumber==pinDIO[n]) return "D " + QString::number(n);
+
+        QList<int> pinAI = getRiocPinList(mode, PIN_TYPE_AI);
+        for (int n=0 ; n<pinAI.length() ; n++) if (pinNumber==pinAI[n]) return "A " + QString::number(n);
+
+        QList<int> pinAO = getRiocPinList(mode, PIN_TYPE_AO);
+        for (int n=0 ; n<pinAO.length() ; n++) if (pinNumber==pinAO[n]) return "DAC " + QString::number(n);
+
+        QList<int> pinLED = getRiocPinList(mode, PIN_TYPE_LED);
+        for (int n=0 ; n<pinLED.length() ; n++) if (pinNumber==pinLED[n]) return "LED " + QString::number(n);
+
+        QList<int> pinSW = getRiocPinList(mode, PIN_TYPE_SW);
+        for (int n=0 ; n<pinSW.length() ; n++) if (pinNumber==pinSW[n]) return "SW " + QString::number(n);
+
+        return "D " + QString::number(pinNumber); // here show the origin gpio pin number
     }
 
     return QString::number(pinNumber);
@@ -1028,27 +1027,75 @@ QString DigishowEnvironment::getRiocPinName(int mode, int pinNumber)
 QList<int> DigishowEnvironment::getRiocPinList(int mode, int types)
 {
     QList<int> list;
-    int len;
+    int n;
+
+    const int *PIN_DI   = nullptr; int COUNT_DI   = 0;
+    const int *PIN_DO   = nullptr; int COUNT_DO   = 0;
+    const int *PIN_DIO  = nullptr; int COUNT_DIO  = 0;
+    const int *PIN_AI   = nullptr; int COUNT_AI   = 0;
+    const int *PIN_AO   = nullptr; int COUNT_AO   = 0;
+    const int *PIN_LED  = nullptr; int COUNT_LED  = 0;
+    const int *PIN_SW   = nullptr; int COUNT_SW   = 0;
+    const int *PIN_GPIO = nullptr; int COUNT_GPIO = 0;
 
     switch (mode) {
+    case INTERFACE_RIOC_ARDUINO_UNO:
+        PIN_AI  = PIN_UNO_ADC; COUNT_AI  = LEN(PIN_UNO_ADC);
+        PIN_GPIO= PIN_UNO_DIO; COUNT_GPIO= LEN(PIN_UNO_DIO);
+        break;
+    case INTERFACE_RIOC_ARDUINO_MEGA:
+        PIN_AI  = PIN_MEGA_ADC; COUNT_AI  = LEN(PIN_MEGA_ADC);
+        PIN_GPIO= PIN_MEGA_DIO; COUNT_GPIO= LEN(PIN_MEGA_DIO);
+        break;
+    case INTERFACE_RIOC_ARDUINO_MICRO:
+        PIN_AI  = PIN_MICRO_ADC; COUNT_AI  = LEN(PIN_MICRO_ADC);
+        PIN_GPIO= PIN_MICRO_DIO; COUNT_GPIO= LEN(PIN_MICRO_DIO);
+        break;
     case INTERFACE_RIOC_ALADDIN:
-        if (types & PIN_TYPE_DI ) { len = sizeof(PIN_UD_DI )/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_UD_DI[n]; }
-        if (types & PIN_TYPE_DO ) { len = sizeof(PIN_UD_DO )/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_UD_DO[n]; }
-        if (types & PIN_TYPE_AI ) { len = sizeof(PIN_UD_ADC)/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_UD_ADC[n]; }
+        PIN_DI = PIN_UD_DI;  COUNT_DI = LEN(PIN_UD_DI);
+        PIN_DO = PIN_UD_DO;  COUNT_DO = LEN(PIN_UD_DO);
+        PIN_AI = PIN_UD_ADC; COUNT_AI = LEN(PIN_UD_ADC);
         break;
     case INTERFACE_RIOC_PLC1:
-        if (types & PIN_TYPE_DI ) { len = sizeof(PIN_PLC1_X)/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_PLC1_X[n]; }
-        if (types & PIN_TYPE_DO ) { len = sizeof(PIN_PLC1_Y)/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_PLC1_Y[n]; }
-        if (types & PIN_TYPE_LED) { list << PIN_PLC1_LED_RUN << PIN_PLC1_LED_ERR; }
-        if (types & PIN_TYPE_SW ) { list << PIN_PLC1_SWITCH; }
+        PIN_DI  = PIN_PLC1_X;   COUNT_DI  = LEN(PIN_PLC1_X);
+        PIN_DO  = PIN_PLC1_Y;   COUNT_DO  = LEN(PIN_PLC1_Y);
+        PIN_LED = PIN_PLC1_LED; COUNT_LED = LEN(PIN_PLC1_LED);
+        PIN_SW  = PIN_PLC1_SW;  COUNT_SW  = LEN(PIN_PLC1_SW);
         break;
     case INTERFACE_RIOC_PLC2:
-        if (types & PIN_TYPE_DI ) { len = sizeof(PIN_PLC2_X)/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_PLC2_X[n]; }
-        if (types & PIN_TYPE_DO ) { len = sizeof(PIN_PLC2_Y)/sizeof(int); for (int n=0 ; n<len; n++) list << PIN_PLC2_Y[n]; }
-        if (types & PIN_TYPE_LED) { list << PIN_PLC2_LED_RUN << PIN_PLC2_LED_ERR; }
-        if (types & PIN_TYPE_SW ) { list << PIN_PLC2_SWITCH; }
+        PIN_DI  = PIN_PLC2_X;   COUNT_DI  = LEN(PIN_PLC2_X);
+        PIN_DO  = PIN_PLC2_Y;   COUNT_DO  = LEN(PIN_PLC2_Y);
+        PIN_LED = PIN_PLC2_LED; COUNT_LED = LEN(PIN_PLC2_LED);
+        PIN_SW  = PIN_PLC2_SW;  COUNT_SW  = LEN(PIN_PLC2_SW);
+        break;
+    case INTERFACE_RIOC_ALADDIN1:
+        PIN_DI  = PIN_UD1_X;    COUNT_DI  = LEN(PIN_UD1_X);
+        PIN_DO  = PIN_UD1_Y;    COUNT_DO  = LEN(PIN_UD1_Y);
+        PIN_AI  = PIN_UD1_ADC;  COUNT_AI  = LEN(PIN_UD1_ADC);
+        PIN_GPIO= PIN_UD1_DIO;  COUNT_GPIO= LEN(PIN_UD1_DIO);
+        break;
+    case INTERFACE_RIOC_ALADDIN2:
+        PIN_DI  = PIN_UD2_X;    COUNT_DI  = LEN(PIN_UD2_X);
+        PIN_DO  = PIN_UD2_Y;    COUNT_DO  = LEN(PIN_UD2_Y);
+        PIN_AI  = PIN_UD2_ADC;  COUNT_AI  = LEN(PIN_UD2_ADC);
+        PIN_GPIO= PIN_UD2_DIO;  COUNT_GPIO= LEN(PIN_UD2_DIO);
+        break;
+    case INTERFACE_RIOC_ALADDIN3:
+        PIN_DI  = PIN_UD3_X;    COUNT_DI  = LEN(PIN_UD3_X);
+        PIN_DO  = PIN_UD3_Y;    COUNT_DO  = LEN(PIN_UD3_Y);
+        PIN_DIO = PIN_UD3_DIO;  COUNT_DIO = LEN(PIN_UD3_DIO);
+        PIN_AI  = PIN_UD3_ADC;  COUNT_AI  = LEN(PIN_UD3_ADC);
         break;
     }
+
+    if (PIN_DI   && (types & PIN_TYPE_DI)  ) { for (n=0 ; n<COUNT_DI;   n++) list << PIN_DI  [n]; }
+    if (PIN_DO   && (types & PIN_TYPE_DO)  ) { for (n=0 ; n<COUNT_DO;   n++) list << PIN_DO  [n]; }
+    if (PIN_DIO  && (types & PIN_TYPE_DIO) ) { for (n=0 ; n<COUNT_DIO;  n++) list << PIN_DIO [n]; }
+    if (PIN_AI   && (types & PIN_TYPE_AI)  ) { for (n=0 ; n<COUNT_AI;   n++) list << PIN_AI  [n]; }
+    if (PIN_AO   && (types & PIN_TYPE_AO)  ) { for (n=0 ; n<COUNT_AO;   n++) list << PIN_AO  [n]; }
+    if (PIN_LED  && (types & PIN_TYPE_LED) ) { for (n=0 ; n<COUNT_LED;  n++) list << PIN_LED [n]; }
+    if (PIN_SW   && (types & PIN_TYPE_SW)  ) { for (n=0 ; n<COUNT_SW;   n++) list << PIN_SW  [n]; }
+    if (PIN_GPIO && (types & PIN_TYPE_GPIO)) { for (n=0 ; n<COUNT_GPIO; n++) list << PIN_GPIO[n]; }
 
     return list;
 }

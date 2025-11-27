@@ -110,9 +110,9 @@ Item {
         }
 
         // init rioc channel option menu
-        if (menuChannel.count === 0) {
+        //if (menuChannel.count === 0) {
             refreshMenuChannel()
-        }
+        //}
 
         // init stepper control option menu
         if (menuControl.count === 0) {
@@ -139,38 +139,26 @@ Item {
         var endpointType = menuType.selectedItemValue
 
         if (endpointType===DigishowEnvironment.EndpointRiocUserChannel) {
-            for (n=0 ; n<256 ; n++)
+
+            for (n=0 ; n<128 ; n++)
                 items.push({ text: qsTr("Ch") + " " + n, value: n })
+
         } else if (interfaceMode === undefined || interfaceMode === DigishowEnvironment.InterfaceRiocGeneral) {
+
             for (n=0 ; n<128 ; n++)
                 items.push({ text: qsTr("Pin") + " " + n, value: n })
-        } else if (interfaceMode === DigishowEnvironment.InterfaceRiocArduinoUno) {
-            for (n=2 ; n<22 ; n++) {
-                name = digishow.getRiocPinName(interfaceMode, n)
-                if ((name.startsWith("A") && endpointType===DigishowEnvironment.EndpointRiocAnalogIn) ||
-                    (name.startsWith("D") && endpointType!==DigishowEnvironment.EndpointRiocAnalogIn))
-                    items.push({ text: name, value: n })
-            }
-        } else if (interfaceMode === DigishowEnvironment.InterfaceRiocArduinoMega) {
-            for (n=2 ; n<70 ; n++) if (n<14 || n>19) {
-                name = digishow.getRiocPinName(interfaceMode, n)
-                if ((name.startsWith("A") && endpointType===DigishowEnvironment.EndpointRiocAnalogIn) ||
-                    (name.startsWith("D") && endpointType!==DigishowEnvironment.EndpointRiocAnalogIn))
-                    items.push({ text: name, value: n })
-            }
-        } else if (interfaceMode === DigishowEnvironment.InterfaceRiocAladdin ||
-                   interfaceMode === DigishowEnvironment.InterfaceRiocPlc1 ||
-                   interfaceMode === DigishowEnvironment.InterfaceRiocPlc2 ) {
+
+        } else {
 
             var pins = digishow.getRiocPinList(interfaceMode)
             for (var i=0 ; i<pins.length ; i++) {
                 n = pins[i]
                 name = digishow.getRiocPinName(interfaceMode, n)
-                if (((name.startsWith("DI") || name.startsWith("X")) && (
+                if (((name.startsWith("X ") || name.startsWith("D ")) && (
                      endpointType===DigishowEnvironment.EndpointRiocDigitalIn ||
                      endpointType===DigishowEnvironment.EndpointRiocEncoderIn
                     )) ||
-                    ((name.startsWith("DO") || name.startsWith("Y")) && (
+                    ((name.startsWith("Y ") || name.startsWith("D ")) && (
                      endpointType===DigishowEnvironment.EndpointRiocDigitalOut ||
                      endpointType===DigishowEnvironment.EndpointRiocPwmOut ||
                      endpointType===DigishowEnvironment.EndpointRiocPfmOut ||
@@ -178,20 +166,24 @@ Item {
                      endpointType===DigishowEnvironment.EndpointRiocStepperOut ||
                      endpointType===DigishowEnvironment.EndpointRiocStepperSet
                     )) ||
-                    (name.startsWith("ADC") &&
+                    (name.startsWith("A ") &&
                      endpointType===DigishowEnvironment.EndpointRiocAnalogIn
                     ) ||
-                    (name.startsWith("LED") &&
+                    (name.startsWith("LED ") &&
                      endpointType===DigishowEnvironment.EndpointRiocDigitalOut
                     ) ||
-                    (name.startsWith("SW") &&
+                    (name.startsWith("SW ") &&
                      endpointType===DigishowEnvironment.EndpointRiocDigitalIn
                     )
                 ) items.push({ text: name, value: n })
             }
         }
-        menuChannel.optionItems = items
-        menuChannel.selectedIndex = (items.length > 0 ? 0 : -1)
+
+        // update the options menu as needed
+        if (JSON.stringify(items) != JSON.stringify(menuChannel.optionItems)) {
+            menuChannel.optionItems = items
+            menuChannel.selectedIndex = (items.length > 0 ? 0 : -1)
+        }
 
     }
 

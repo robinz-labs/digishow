@@ -184,6 +184,9 @@
   ! improved arduino stepper control
   ! improved cue player and preset launcher
 
+  v1.7.5 20251128
+  + added support for more Arduino / Aladdin PLC models
+  ! fixed audio playback duration setting problem
 
 */
 

@@ -329,11 +329,10 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
 
                 int pins = 2;
                 unsigned char pin[2] = { 0, 0 };
-                if (m_interfaceInfo.mode == INTERFACE_RIOC_ALADDIN ||
-                    m_interfaceInfo.mode == INTERFACE_RIOC_PLC1 ||
-                    m_interfaceInfo.mode == INTERFACE_RIOC_PLC2 ) {
+
+                if (isRiocUserDevice(m_interfaceInfo.mode)) {
                     // aladdin or plc pins
-                    QList<int>dinPinList = DigishowEnvironment::getRiocPinList(m_interfaceInfo.mode, PIN_TYPE_DI);
+                    QList<int>dinPinList = DigishowEnvironment::getRiocPinList(m_interfaceInfo.mode, PIN_TYPE_DI | PIN_TYPE_DIO | PIN_TYPE_GPIO);
                     for (int p=0 ; p<=(dinPinList.length()-pins) ; p++) {
                         if (dinPinList[p] == channel) {
                             for (int i=0 ; i<pins ; i++) pin[i] = dinPinList[p+i];
@@ -389,11 +388,10 @@ void DgsRiocInterface::onUnitStarted(unsigned char unit)
                 // mode 2: 2 pins (PUL- and DIR-)
                 int pins = (mode == 0 ? 4 : 2);
                 unsigned char pin[4] = { 0, 0, 0, 0 };
-                if (m_interfaceInfo.mode == INTERFACE_RIOC_ALADDIN ||
-                    m_interfaceInfo.mode == INTERFACE_RIOC_PLC1 ||
-                    m_interfaceInfo.mode == INTERFACE_RIOC_PLC2 ) {
+
+                if (isRiocUserDevice(m_interfaceInfo.mode)) {
                     // aladdin or plc pins
-                    QList<int>doutPinList = DigishowEnvironment::getRiocPinList(m_interfaceInfo.mode, PIN_TYPE_DO);
+                    QList<int>doutPinList = DigishowEnvironment::getRiocPinList(m_interfaceInfo.mode, PIN_TYPE_DO | PIN_TYPE_DIO | PIN_TYPE_GPIO);
                     for (int p=0 ; p<=(doutPinList.length()-pins) ; p++) {
                         if (doutPinList[p] == channel) {
                             for (int i=0 ; i<pins ; i++) pin[i] = doutPinList[p+i];
@@ -533,6 +531,11 @@ void DgsRiocInterface::onUserChannelValueUpdated(unsigned char unit, unsigned ch
     emit dataReceived(endpointIndex, data);
 }
 
+bool DgsRiocInterface::isRiocUserDevice(int mode)
+{
+    return (mode >= INTERFACE_RIOC_ALADDIN);
+}
+
 QVariantList DgsRiocInterface::listOnline()
 {
 
@@ -626,12 +629,16 @@ void DgsRiocInterface::updateMetadata_()
 
     // Set interface mode
     QString modeName = m_interfaceOptions.value("mode").toString();
-    if      (modeName == "general"     ) m_interfaceInfo.mode = INTERFACE_RIOC_GENERAL;
-    else if (modeName == "arduino_uno" ) m_interfaceInfo.mode = INTERFACE_RIOC_ARDUINO_UNO;
-    else if (modeName == "arduino_mega") m_interfaceInfo.mode = INTERFACE_RIOC_ARDUINO_MEGA;
-    else if (modeName == "aladdin"     ) m_interfaceInfo.mode = INTERFACE_RIOC_ALADDIN;
-    else if (modeName == "plc1"        ) m_interfaceInfo.mode = INTERFACE_RIOC_PLC1;
-    else if (modeName == "plc2"        ) m_interfaceInfo.mode = INTERFACE_RIOC_PLC2;
+    if      (modeName == "general"      ) m_interfaceInfo.mode = INTERFACE_RIOC_GENERAL;
+    else if (modeName == "arduino_uno"  ) m_interfaceInfo.mode = INTERFACE_RIOC_ARDUINO_UNO;
+    else if (modeName == "arduino_mega" ) m_interfaceInfo.mode = INTERFACE_RIOC_ARDUINO_MEGA;
+    else if (modeName == "arduino_micro") m_interfaceInfo.mode = INTERFACE_RIOC_ARDUINO_MICRO;
+    else if (modeName == "aladdin"      ) m_interfaceInfo.mode = INTERFACE_RIOC_ALADDIN;
+    else if (modeName == "plc1"         ) m_interfaceInfo.mode = INTERFACE_RIOC_PLC1;
+    else if (modeName == "plc2"         ) m_interfaceInfo.mode = INTERFACE_RIOC_PLC2;
+    else if (modeName == "aladdin1"     ) m_interfaceInfo.mode = INTERFACE_RIOC_ALADDIN1;
+    else if (modeName == "aladdin2"     ) m_interfaceInfo.mode = INTERFACE_RIOC_ALADDIN2;
+    else if (modeName == "aladdin3"     ) m_interfaceInfo.mode = INTERFACE_RIOC_ALADDIN3;
 
     // Set interface input/output flags
     m_interfaceInfo.input = true;
@@ -640,6 +647,9 @@ void DgsRiocInterface::updateMetadata_()
     // Set interface label
     switch (m_interfaceInfo.mode) {
         case INTERFACE_RIOC_ALADDIN:
+        case INTERFACE_RIOC_ALADDIN1:
+        case INTERFACE_RIOC_ALADDIN2:
+        case INTERFACE_RIOC_ALADDIN3:
             m_interfaceInfo.label = tr("Aladdin");
             break;
         case INTERFACE_RIOC_PLC1:
