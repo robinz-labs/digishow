@@ -85,8 +85,8 @@ private:
                                 // and uses getReceivedBytes() to read the data in buffer later
 
     char* _bufferReceived;      // pointer to the buffer for storing received bytes
-    int _lboundReceived;        // the beginning postion of the received bytes in the buffer
-    int _uboundReceived;        // the end postion of the received bytes in the buffer
+    int _lboundReceived;        // the beginning position of the received bytes in the buffer
+    int _uboundReceived;        // the end position of the received bytes in the buffer
 
     QElapsedTimer _elapsedTimer;
     double getCurrentSecond();

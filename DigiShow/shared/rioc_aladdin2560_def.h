@@ -81,7 +81,7 @@ const int PIN_MEGA_DIO[46] = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
 #define PIN_MICRO_A11 29
 
 const int PIN_MICRO_ADC[12] = { PIN_MICRO_A0, PIN_MICRO_A1, PIN_MICRO_A2, PIN_MICRO_A3, PIN_MICRO_A4, PIN_MICRO_A5, PIN_MICRO_A6, PIN_MICRO_A7, PIN_MICRO_A8, PIN_MICRO_A9, PIN_MICRO_A10, PIN_MICRO_A11 };
-const int PIN_MICRO_DIO[15] = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+const int PIN_MICRO_DIO[17] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
 
 
 // pins on aladdin 2560 board (UD)

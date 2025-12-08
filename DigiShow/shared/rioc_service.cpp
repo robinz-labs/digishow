@@ -50,8 +50,7 @@ bool RiocService::addSerialConnection(const QString & serialPort, int serialBaud
         return false;
     }
 
-    // set DTR on
-    serial->serialPort()->setDataTerminalReady(true);
+    serial->serialPort()->clear(QSerialPort::Input); // clear input buffer
 
     connect(serial, SIGNAL(bytesReceived(ComHandler*)), this, SLOT(handleSerialBytesReceived(ComHandler*)));
     _serials.append(serial);

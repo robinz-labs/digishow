@@ -25,7 +25,7 @@
 ComHandler::ComHandler(QObject *parent) :
     QObject(parent)
 {
-    // init vars
+    // initialize serial
     _serial = new QSerialPort();
     _connected = false;
     _isAsyncReceiver = true;
@@ -36,12 +36,28 @@ ComHandler::ComHandler(QObject *parent) :
     _uboundReceived = 0;
 
     _elapsedTimer.start();
+
+    // set up for port reconnection
+    _serialPort = "";
+    _serialBaud = 0;
+    _serialSetting = 0;
+    connect(_serial, &QSerialPort::errorOccurred, this, &ComHandler::handleSerialError); // to detect connection loss
+
+    _isAutoReconnectionEnabled = true;
+    _timerReconnectionPolling = new QTimer();
+    _timerReconnectionPolling->setSingleShot(false);
+    _timerReconnectionPolling->setInterval(1500);
+    connect(_timerReconnectionPolling, &QTimer::timeout, this, &ComHandler::handleReconnectionPolling); // to detect connection ready again
+
 }
 
 ComHandler::~ComHandler()
 {
+    // stop reconnection polling timer
+    delete _timerReconnectionPolling;
+
     // force to close port
-    close();
+    if (_connected) close();
     delete _serial;
 
     // delete buffer for receiving bytes
@@ -50,6 +66,8 @@ ComHandler::~ComHandler()
 
 bool ComHandler::open(const char* port, int baud, int setting)
 {
+    if (g_needLogCtl) qDebug() << "serial open" << port;
+
     // if connection already exists
     if (_connected) {
         this->close();
@@ -65,6 +83,8 @@ bool ComHandler::open(const char* port, int baud, int setting)
         // serial port settings
         _serial->setBaudRate(baud);
         _serial->setFlowControl(QSerialPort::NoFlowControl);
+        _serial->setDataTerminalReady(true);
+
         switch (setting) {
         case CH_SETTING_8N1:
             _serial->setDataBits(QSerialPort::Data8);
@@ -105,6 +125,11 @@ bool ComHandler::open(const char* port, int baud, int setting)
             connect(_serial, SIGNAL(readyRead()), this, SLOT(readData()));
         }
 
+        // store serial port connection parameters
+        _serialPort = port;
+        _serialBaud = baud;
+        _serialSetting = setting;
+
         return true;
     }
 
@@ -113,6 +138,8 @@ bool ComHandler::open(const char* port, int baud, int setting)
 
 void ComHandler::close()
 {
+    if (g_needLogCtl) qDebug() << "serial close";
+
     _serial->close();
     _connected = false;
 
@@ -134,6 +161,10 @@ void ComHandler::setAsyncReceiver(bool isAsync)
     _isAsyncReceiver = isAsync;
 }
 
+void ComHandler::setAutoReconnection(bool enabled)
+{
+    _isAutoReconnectionEnabled = enabled;
+}
 
 bool ComHandler::sendBytes(const char* buffer, int length, bool flush)
 {
@@ -497,6 +528,35 @@ void ComHandler::readData()
         //qDebug("received length = %d (%d ~ %d) %s", numberOfReceivedBytes(), _lboundReceived, _uboundReceived, _bufferReceived + _uboundReceived - len);
 
         emit bytesReceived(this);
+    }
+}
+
+void ComHandler::handleSerialError(QSerialPort::SerialPortError error)
+{
+    if (g_needLogCtl) qDebug() << "serial error" << error;
+
+    if (_serial->isOpen() && (
+        error == QSerialPort::ResourceError ||
+        error == QSerialPort::PermissionError ||
+        error == QSerialPort::DeviceNotFoundError)) {
+
+        close();
+
+        if (_isAutoReconnectionEnabled) _timerReconnectionPolling->start();
+    }
+}
+
+void ComHandler::handleReconnectionPolling()
+{
+    if (!_isAutoReconnectionEnabled || _serialPort.isEmpty()) return;
+
+    foreach (const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()) {
+        if (serialPortInfo.portName() == _serialPort && !serialPortInfo.isBusy()) {
+            if (open(_serialPort.toUtf8(), _serialBaud, _serialSetting)) {
+                _timerReconnectionPolling->stop();
+            }
+            break;
+        }
     }
 }
 

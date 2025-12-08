@@ -66,7 +66,7 @@ int DgsRiocInterface::openInterface()
         m_timerStarting = new QTimer();
         connect(m_timerStarting, SIGNAL(timeout()), this, SLOT(onStartingTimeout()));
         m_timerStarting->setSingleShot(true);
-        m_timerStarting->setInterval(6000);
+        m_timerStarting->setInterval(8000);
         m_timerStarting->start();
         m_startedUnitCount = 0;
 

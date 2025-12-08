@@ -20,6 +20,7 @@
 
 #include <QObject>
 #include <QSerialPort>
+#include <QTimer>
 #include <QElapsedTimer>
 #include <inttypes.h>
 
@@ -50,6 +51,7 @@ public:
     void close();
 
     void setAsyncReceiver(bool isAsync);
+    void setAutoReconnection(bool enabled);
 
     // asynchronize receiver
     bool sendBytes(const char* buffer, int length, bool flush = true);
@@ -84,6 +86,8 @@ signals:
 
 private slots:
     void readData();
+    void handleSerialError(QSerialPort::SerialPortError error);
+    void handleReconnectionPolling();
 
 private:
 
@@ -94,11 +98,19 @@ private:
                                 // and uses getReceivedBytes() to read the data in buffer later
 
     char* _bufferReceived;      // pointer to the buffer for storing received bytes
-    int _lboundReceived;        // the beginning postion of the received bytes in the buffer
-    int _uboundReceived;        // the end postion of the received bytes in the buffer
+    int _lboundReceived;        // the beginning position of the received bytes in the buffer
+    int _uboundReceived;        // the end position of the received bytes in the buffer
+
+    QString _serialPort;        // serial connection parameters
+    int _serialBaud;            // for port reconnection
+    int _serialSetting;
+
+    bool _isAutoReconnectionEnabled;   // flag that enables automatic serial port reconnection upon link loss
+    QTimer* _timerReconnectionPolling; // timer that polls the serial port status and handles reconnection
 
     QElapsedTimer _elapsedTimer;
     double getCurrentSecond();
+
 };
 
 
