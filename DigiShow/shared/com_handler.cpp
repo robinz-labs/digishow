@@ -43,18 +43,19 @@ ComHandler::ComHandler(QObject *parent) :
     _serialSetting = 0;
     connect(_serial, &QSerialPort::errorOccurred, this, &ComHandler::handleSerialError); // to detect connection loss
 
-    _isAutoReconnectionEnabled = true;
-    _timerReconnectionPolling = new QTimer();
-    _timerReconnectionPolling->setSingleShot(false);
-    _timerReconnectionPolling->setInterval(1500);
-    connect(_timerReconnectionPolling, &QTimer::timeout, this, &ComHandler::handleReconnectionPolling); // to detect connection ready again
+    _isAutoReconnectEnabled = true;
+    _timerTryReconnect = new QTimer();
+    _timerTryReconnect->setSingleShot(false);
+    _timerTryReconnect->setInterval(1500);
+    _timeLastTryReconnect = 0;
+    connect(_timerTryReconnect, &QTimer::timeout, this, &ComHandler::tryReconnect); // to detect connection ready again
 
 }
 
 ComHandler::~ComHandler()
 {
     // stop reconnection polling timer
-    delete _timerReconnectionPolling;
+    delete _timerTryReconnect;
 
     // force to close port
     if (_connected) close();
@@ -161,9 +162,9 @@ void ComHandler::setAsyncReceiver(bool isAsync)
     _isAsyncReceiver = isAsync;
 }
 
-void ComHandler::setAutoReconnection(bool enabled)
+void ComHandler::setAutoReconnect(bool enabled)
 {
-    _isAutoReconnectionEnabled = enabled;
+    _isAutoReconnectEnabled = enabled;
 }
 
 bool ComHandler::sendBytes(const char* buffer, int length, bool flush)
@@ -404,6 +405,7 @@ int ComHandler::sendAndReceiveBytes(const char* bufSend, int lenBufSend,
                                       const char* szEnding, double timeout,
                                       int* err)
 {
+  if (!_connected) tryReconnect();
   if (!_connected) return -1;
 
   // drop incoming bytes before sending command
@@ -542,18 +544,22 @@ void ComHandler::handleSerialError(QSerialPort::SerialPortError error)
 
         close();
 
-        if (_isAutoReconnectionEnabled) _timerReconnectionPolling->start();
+        if (_isAutoReconnectEnabled) _timerTryReconnect->start();
     }
 }
 
-void ComHandler::handleReconnectionPolling()
+void ComHandler::tryReconnect()
 {
-    if (!_isAutoReconnectionEnabled || _serialPort.isEmpty()) return;
+    if (!_isAutoReconnectEnabled || _serialPort.isEmpty()) return;
+
+    double now = getCurrentSecond();
+    if (now - _timeLastTryReconnect < 1.0) return;
+    _timeLastTryReconnect = now;
 
     foreach (const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()) {
         if (serialPortInfo.portName() == _serialPort && !serialPortInfo.isBusy()) {
             if (open(_serialPort.toUtf8(), _serialBaud, _serialSetting)) {
-                _timerReconnectionPolling->stop();
+                _timerTryReconnect->stop();
             }
             break;
         }

@@ -51,7 +51,7 @@ public:
     void close();
 
     void setAsyncReceiver(bool isAsync);
-    void setAutoReconnection(bool enabled);
+    void setAutoReconnect(bool enabled);
 
     // asynchronize receiver
     bool sendBytes(const char* buffer, int length, bool flush = true);
@@ -87,7 +87,7 @@ signals:
 private slots:
     void readData();
     void handleSerialError(QSerialPort::SerialPortError error);
-    void handleReconnectionPolling();
+    void tryReconnect();
 
 private:
 
@@ -105,8 +105,9 @@ private:
     int _serialBaud;            // for port reconnection
     int _serialSetting;
 
-    bool _isAutoReconnectionEnabled;   // flag that enables automatic serial port reconnection upon link loss
-    QTimer* _timerReconnectionPolling; // timer that polls the serial port status and handles reconnection
+    bool _isAutoReconnectEnabled;  // flag that enables automatic serial port reconnection upon link loss
+    QTimer* _timerTryReconnect;    // timer that polls the serial port status and handles reconnection
+    double _timeLastTryReconnect;
 
     QElapsedTimer _elapsedTimer;
     double getCurrentSecond();
