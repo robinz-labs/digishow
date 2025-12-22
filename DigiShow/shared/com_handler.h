@@ -50,6 +50,8 @@ public:
     bool open(const char* port, int baud = 9600, int setting = CH_SETTING_8N1);
     void close();
 
+    bool isConnected() { return _connected; }
+
     void setAsyncReceiver(bool isAsync);
     void setAutoReconnect(bool enabled);
 

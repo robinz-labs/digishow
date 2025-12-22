@@ -35,6 +35,7 @@ public:
     bool addSerialConnection(const QString & serialPort, int serialBaud = 9600);
     void clearSerialConnections();
     int getSerialCount();
+    int getConnectedSerialCount();
 
     void sendRiocMessage(unsigned char fromID, unsigned char toID, const QByteArray & data);
     bool sendRiocMessageAndWaitResponse(unsigned char fromID, unsigned char toID,

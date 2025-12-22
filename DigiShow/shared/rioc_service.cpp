@@ -50,7 +50,9 @@ bool RiocService::addSerialConnection(const QString & serialPort, int serialBaud
         return false;
     }
 
-    serial->serialPort()->clear(QSerialPort::Input); // clear input buffer
+    // clear the input buffer after the port is opened
+    QThread::msleep(100);
+    serial->serialPort()->clear(QSerialPort::Input);
 
     connect(serial, SIGNAL(bytesReceived(ComHandler*)), this, SLOT(handleSerialBytesReceived(ComHandler*)));
     _serials.append(serial);
@@ -71,6 +73,15 @@ void RiocService::clearSerialConnections()
 int RiocService::getSerialCount()
 {
     return _serials.size();
+}
+
+int RiocService::getConnectedSerialCount()
+{
+    int count = 0;
+    for (int n=0 ; n<_serials.size() ; n++) {
+        if (_serials[n]->isConnected()) count++;
+    }
+    return count;
 }
 
 void RiocService::sendSerialMessage(const QByteArray & message)
@@ -135,12 +146,19 @@ bool RiocService::sendRiocMessageAndWaitResponse(unsigned char fromID, unsigned 
     sendRiocMessage(fromID, toID, dataOut);
 
     // wait and receive response
-    double begin = getCurrentSecond();
-    while (!_isSpecificIncomingMessageReceived && getCurrentSecond()-begin<timeout) {
-        for (int n=0 ; n<_serials.size() ; n++) {
-            _serials[n]->checkReceivedBytes(); // 处理所有接收到的数据（功能与异步接收相同）
+    if (getConnectedSerialCount() > 0) {
+
+        // waiting for the expected response data until received
+        double begin = getCurrentSecond();
+        while (!_isSpecificIncomingMessageReceived && getCurrentSecond()-begin<timeout) {
+
+            // and processing all received data from all serial ports during the meantime
+            // (same as asynchronous reception)
+            for (int n=0 ; n<_serials.size() ; n++) {
+                _serials[n]->checkReceivedBytes();
+            }
+            //delay(50);
         }
-        //delay(50);
     }
 
     if (_isSpecificIncomingMessageReceived) {
@@ -154,7 +172,7 @@ bool RiocService::sendRiocMessageAndWaitResponse(unsigned char fromID, unsigned 
 
 void RiocService::handleSerialBytesReceived(ComHandler* serial)
 {
-    //qDebug("buffer size = %d", _serial->numberOfReceivedBytes());
+    //qDebug("buffer size = %d", serial->numberOfReceivedBytes());
 
     char buf[14];
     int len;

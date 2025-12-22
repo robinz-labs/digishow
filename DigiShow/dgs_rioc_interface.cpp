@@ -242,12 +242,13 @@ void DgsRiocInterface::onStartingTimeout()
 
 void DgsRiocInterface::onUnitStarted(unsigned char unit)
 {
-    //qDebug() << "DgsRiocInterface::onUnitStarted" << unit;
+    qDebug() << "DgsRiocInterface::onUnitStarted" << unit;
 
     m_startedUnitCount++;
 
     // dynamically configure all channels when the unit started
     for (int n=0 ; n<m_endpointOptionsList.length() ; n++) {
+
         if (m_endpointInfoList[n].unit == unit &&
             m_endpointInfoList[n].enabled) {
 
