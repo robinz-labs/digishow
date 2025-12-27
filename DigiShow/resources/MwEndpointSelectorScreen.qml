@@ -584,12 +584,12 @@ Item {
             v = DigishowEnvironment.ControlMediaXOffset;  items.push({ text: digishow.getMediaControlName(v), value: v })
             v = DigishowEnvironment.ControlMediaYOffset;  items.push({ text: digishow.getMediaControlName(v), value: v })
 
-            if (digishow.appExperimental()) {
-                items.push({ text: "-", value: -1 })
-                v = DigishowEnvironment.ControlMediaVolume;   items.push({ text: digishow.getMediaControlName(v), value: v })
-                v = DigishowEnvironment.ControlMediaSpeed;    items.push({ text: digishow.getMediaControlName(v), value: v })
-                v = DigishowEnvironment.ControlMediaPosition; items.push({ text: digishow.getMediaControlName(v), value: v })
-            }
+            //if (digishow.appExperimental()) {
+            items.push({ text: "-", value: -1 })
+            v = DigishowEnvironment.ControlMediaVolume;   items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaSpeed;    items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaPosition; items.push({ text: digishow.getMediaControlName(v), value: v })
+            //}
 
             menuMediaControl.optionItems = items
             menuMediaControl.selectedIndex = 0
