@@ -6,6 +6,8 @@ DEFINES -= QT_DEPRECATED_WARNINGS
 DEFINES += QT_NO_DEPRECATED_WARNINGS
 
 SOURCES += \
+    $$PWD/shared/aes.c \
+    $$PWD/shared/encryption.cpp \
     $$PWD/shared/md5.cpp \
     $$PWD/shared/tcp_handler.cpp \
     $$PWD/shared/com_handler.cpp \
@@ -54,6 +56,9 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
+    $$PWD/shared/aes.h \
+    $$PWD/shared/aes.hpp \
+    $$PWD/shared/encryption.h \
     $$PWD/shared/md5.h \
     $$PWD/shared/tcp_handler.h \
     $$PWD/shared/com_handler.h \

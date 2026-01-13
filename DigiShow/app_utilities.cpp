@@ -132,6 +132,31 @@ QString AppUtilities::encodeCStyleEscapes(const QByteArray &rawData)
     return result;
 }
 
+QByteArray AppUtilities::loadDataFromFile(const QString & filepath)
+{
+    QByteArray data;
+    QFile file(filepath);
+    if (file.open(QIODevice::ReadOnly)) {
+        QDataStream stream(&file);
+        stream >> data;
+        file.close();
+    }
+
+    return data;
+}
+
+bool AppUtilities::saveDataToFile(const QByteArray & data, const QString & filepath)
+{
+    QFile file(filepath);
+    if (file.open(QIODevice::WriteOnly)) {
+        QDataStream stream(&file);
+        stream << data;
+        file.close();
+        return true;
+    }
+    return false;
+}
+
 QString AppUtilities::loadStringFromFile(const QString & filepath)
 {
     QString data;

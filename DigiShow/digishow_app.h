@@ -58,8 +58,12 @@ public:
     Q_INVOKABLE void importData(const QVariantMap & data);
     Q_INVOKABLE QVariantMap exportData(const QList<int> & slotListOrder = QList<int>(), bool onlySelection = false);
 
-    Q_INVOKABLE bool loadFile(const QString & filepath);
-    Q_INVOKABLE bool saveFile(const QString & filepath = QString(), const QList<int> & slotListOrder = QList<int>(), bool onlySelection = false);
+    Q_INVOKABLE bool loadFile(const QString & filepath,
+                              const QVariantMap & decryption = QVariantMap());
+    Q_INVOKABLE bool saveFile(const QString & filepath = QString(),
+                              const QList<int> & slotListOrder = QList<int>(),
+                              bool onlySelection = false,
+                              const QVariantMap & encryption = QVariantMap());
 
     Q_INVOKABLE QString scriptableFilePath();
     Q_INVOKABLE bool    scriptableFileExists();

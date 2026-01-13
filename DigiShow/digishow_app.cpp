@@ -41,6 +41,7 @@
 #include "dgs_aplay_interface.h"
 
 #ifdef DIGISHOW_EXPERIMENTAL
+#include "digishow_experimental.h"
 #include "dgs_mplay_interface.h"
 #endif
 
@@ -313,7 +314,7 @@ QVariantMap DigishowApp::exportData(const QList<int> & slotListOrder, bool onlyS
     return data;
 }
 
-bool DigishowApp::loadFile(const QString & filepath)
+bool DigishowApp::loadFile(const QString & filepath, const QVariantMap & decryption)
 {
     // confirm the system is not running
     if (m_running) return false;
@@ -322,7 +323,14 @@ bool DigishowApp::loadFile(const QString & filepath)
     if (!AppUtilities::fileExists(filepath)) return false;
 
     // load data from the file
-    QVariantMap data = AppUtilities::loadJsonFromFile(filepath);
+    QVariantMap data;
+    if (decryption.isEmpty()) {
+        data = AppUtilities::loadJsonFromFile(filepath);
+    } else {
+#ifdef DIGISHOW_EXPERIMENTAL
+        data = DigishowExperimental::loadJsonFromEncryptedFile(filepath, decryption);
+#endif
+    }
     if (!data.contains("interfaces") || !data.contains("slots")) return false;
 
     m_filepath = filepath;
@@ -342,7 +350,7 @@ bool DigishowApp::loadFile(const QString & filepath)
     return true;
 }
 
-bool DigishowApp::saveFile(const QString & filepath, const QList<int> & slotListOrder, bool onlySelection)
+bool DigishowApp::saveFile(const QString & filepath, const QList<int> & slotListOrder, bool onlySelection, const QVariantMap & encryption)
 {
     // confirm filepath is set
     QString filepath1 = (filepath.isEmpty() ? m_filepath : filepath);
@@ -359,7 +367,15 @@ bool DigishowApp::saveFile(const QString & filepath, const QList<int> & slotList
     data["appInfo"        ] = info;
 
     // save data to file
-    if (!AppUtilities::saveJsonToFile(data, filepath1)) return false;
+    bool done = false;
+    if (encryption.isEmpty()) {
+        done = AppUtilities::saveJsonToFile(data, filepath1);
+    } else {
+#ifdef DIGISHOW_EXPERIMENTAL
+        done = DigishowExperimental::saveJsonToEncryptedFile(data, filepath1, encryption);
+#endif
+    }
+    if (!done) return false;
 
     m_filepath = filepath1;
     emit filepathChanged();

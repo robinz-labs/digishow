@@ -60,7 +60,7 @@ Item {
                     anchors.right = parent.right
                 }
 
-                onPressed: held = true
+                onPressed: if (highlightedIndex===index) held = true
                 onReleased: held = false
                 onClicked: {
 
@@ -177,7 +177,7 @@ Item {
                     MenuSeparator {}
                     CMenuItem {
                         text: qsTr("Copy")
-                        enabled: !quickLaunchView.isEditing
+                        enabled: !quickLaunchView.isEditing && !window.isLocked
                         onTriggered: {
                             menuSlot.close()
                             copySlots()
@@ -185,7 +185,7 @@ Item {
                     }
                     CMenuItem {
                         text: qsTr("Paste")
-                        enabled: !quickLaunchView.isEditing
+                        enabled: !quickLaunchView.isEditing && !window.isLocked
                         onTriggered: {
                             menuSlot.close()
                             pasteSlots()
@@ -1146,7 +1146,7 @@ Item {
                 box.radius: 3
                 box.border.width: 1
                 colorNormal: "black"
-                visible: !quickLaunchView.isEditing
+                visible: !quickLaunchView.isEditing && !window.isLocked
 
                 onClicked: {
                     copySlots()

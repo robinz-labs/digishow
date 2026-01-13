@@ -38,6 +38,9 @@ public:
     Q_INVOKABLE static QString txt2hex(const QString &txt) { return decodeCStyleEscapes(txt).toHex(' ').toUpper(); }
     Q_INVOKABLE static QString hex2txt(const QString &hex) { return encodeCStyleEscapes(QByteArray::fromHex(hex.toUtf8())); }
 
+    Q_INVOKABLE static QByteArray loadDataFromFile(const QString & filepath);
+    Q_INVOKABLE static bool saveDataToFile(const QByteArray & data, const QString & filepath);
+
     Q_INVOKABLE static QString loadStringFromFile(const QString & filepath);
     Q_INVOKABLE static bool saveStringToFile(const QString & data, const QString & filepath);
 

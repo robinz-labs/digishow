@@ -21,6 +21,7 @@ ApplicationWindow {
     property alias remoteWeb:  digishow.remoteWeb
 
     property bool isEmpty: (slotListView.listItemCount === 0)
+    property bool isLocked: app.filepath.endsWith(".dgsx")
 
     // key states
     property bool shiftKeyHeld: false
@@ -183,7 +184,7 @@ ApplicationWindow {
         onDropped: {
             if (drop.hasUrls) {
                 var fileUrl = drop.urls[0]
-                if (fileUrl.startsWith("file://") && fileUrl.endsWith(".dgs")) {
+                if (fileUrl.startsWith("file://") && (fileUrl.endsWith(".dgs") || fileUrl.endsWith(".dgsx"))) {
                     drop.acceptProposedAction()
                     common.runLater(function() {
                         fileOpen(utilities.fileUrlPath(fileUrl))
@@ -203,10 +204,12 @@ ApplicationWindow {
         onActivated: open()
     }
     Shortcut {
+        enabled: !window.isLocked
         sequences: [ StandardKey.Save ]
         onActivated: save()
     }
     Shortcut {
+        enabled: !window.isLocked
         sequences: [ StandardKey.SaveAs ]
         onActivated: saveAs()
     }
@@ -217,12 +220,12 @@ ApplicationWindow {
 
     Shortcut {
         sequences: [ StandardKey.Copy ]
-        enabled: !quickLaunchView.isEditing
+        enabled: !quickLaunchView.isEditing && !window.isLocked
         onActivated: slotListView.copySlots()
     }
     Shortcut {
         sequences: [ StandardKey.Paste ]
-        enabled: !quickLaunchView.isEditing
+        enabled: !quickLaunchView.isEditing && !window.isLocked
         onActivated: slotListView.pasteSlots()
     }
     Shortcut {
@@ -339,10 +342,12 @@ ApplicationWindow {
                         }
                     }
                     MenuItem {
+                        enabled: !window.isLocked
                         text: qsTr("Save")
                         onTriggered: save()
                     }
                     MenuItem {
+                        enabled: !window.isLocked
                         text: qsTr("Save As ...")
                         onTriggered: saveAs()
                     }
@@ -780,6 +785,19 @@ ApplicationWindow {
 
                 }
             }
+
+            Image {
+                width: 20
+                height: 20
+                anchors.verticalCenter: buttonInterfaceSettings.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.horizontalCenterOffset: 55
+                source: "qrc:///images/icon_lock_red.png"
+                sourceSize.width: 40
+                sourceSize.height: 40
+                visible: window.isLocked
+                opacity: 0.5
+            }
         }
 
         Image {
@@ -788,8 +806,9 @@ ApplicationWindow {
             height: 25
             anchors.verticalCenter: rectTopLeftBar.verticalCenter
             anchors.horizontalCenter: rectTopLeftBar.horizontalCenter
-            source: "qrc:///images/logo.png"
+            anchors.verticalCenterOffset: 3
             anchors.horizontalCenterOffset: window.isEmpty ? 0 : rectTopLeftBar.width / 2 + 175
+            source: "qrc:///images/logo.png"
             z: 1
         }
 
@@ -864,17 +883,31 @@ ApplicationWindow {
     }
 
     MwFileDialog {
+
+        property var callbackAfterLoaded: null
+
         id: dialogLoadFile
         title: qsTr("Open File")
         folder: shortcuts.home
         selectExisting: true
-        nameFilters: [ qsTr("DigiShow files") + " (*.dgs)", qsTr("JSON files")  + " (*.json)", qsTr("All files") + " (*)" ]
+        nameFilters: digishow.appExperimental()
+                     ? [ qsTr("DigiShow files") + " (*.dgs)", qsTr("DigiShow encrypted files") + " (*.dgsx)", qsTr("JSON files")  + " (*.json)", qsTr("All files") + " (*)" ]
+                     : [ qsTr("DigiShow files") + " (*.dgs)", qsTr("JSON files")  + " (*.json)", qsTr("All files") + " (*)" ]
         onAccepted: {
-            console.log("load file: " + dialogLoadFile.fileUrl)
 
             if (app.isRunning) app.stop();
-            app.loadFile(utilities.fileUrlPath(dialogLoadFile.fileUrl))
+
+            var filepath = utilities.fileUrlPath(dialogLoadFile.fileUrl)
+            window.loadFile(filepath, callbackAfterLoaded)
         }
+    }
+
+    MwDecryptionDialog {
+
+        property var callback: null
+
+        id: dialogDecryption
+        onAccepted: if (callback !== null) callback()
     }
 
     MwFileDialog {
@@ -885,13 +918,21 @@ ApplicationWindow {
         title: qsTr("Save File")
         folder: shortcuts.home
         selectExisting: false
-        nameFilters: [ qsTr("DigiShow files") + " (*.dgs)", qsTr("All files") + " (*)" ]
+        nameFilters: digishow.appExperimental() && app.filepath!==""
+                     ? [ qsTr("DigiShow files") + " (*.dgs)", qsTr("DigiShow encrypted files") + " (*.dgsx)", qsTr("All files") + " (*)" ]
+                     : [ qsTr("DigiShow files") + " (*.dgs)", qsTr("All files") + " (*)" ]
         onAccepted: {
-            console.log("save file: " + dialogSaveFile.fileUrl)
-            app.saveFile(utilities.fileUrlPath(dialogSaveFile.fileUrl),
-                         slotListView.getVisualItemsIndexList())
-            if (callbackAfterSaved !== null) callbackAfterSaved()
+            var filepath = utilities.fileUrlPath(dialogSaveFile.fileUrl)
+            window.saveFile(filepath, callbackAfterSaved)
         }
+    }
+
+    MwEncryptionDialog {
+
+        property var callback: null
+
+        id: dialogEncryption
+        onAccepted: if (callback !== null) callback()
     }
 
     MwCuePlayerDialog {
@@ -962,11 +1003,11 @@ ApplicationWindow {
 
     function saveAndDo(callback) {
 
-        if (app.filepath !== "") {
+        if (app.filepath !== "" && !app.filepath.endsWith(".dgsx")) {
             // save data to the current file
             app.saveFile("", slotListView.getVisualItemsIndexList())
             if (callback !== null) callback()
-        } else {
+        } else if (app.filepath ==="") {
             // save data to a new file
             dialogSaveFile.callbackAfterSaved = callback
             dialogSaveFile.open()
@@ -978,23 +1019,68 @@ ApplicationWindow {
     function fileOpen(filepath) {
 
         if (messageBox.visible) return
-
+        if (menu.visible) menu.close()
         if (app.isRunning) app.stop()
 
-        if (menu.visible) menu.close()
-
         if (!isModified) {
-            app.loadFile(filepath)
+            window.loadFile(filepath)
         } else {
             var buttonIndex = messageBox.showAndWait(qsTr("Do you want to save current data before open file %1 ?")
                                                         .arg(utilities.getFileName(filepath)),
                                                      qsTr("Save"), qsTr("Don't Save"), qsTr("Cancel"))
             switch (buttonIndex) {
-            case 1: saveAndDo(function(){ app.loadFile(filepath) }); break
-            case 2: app.loadFile(filepath); break
+            case 1: saveAndDo(function(){ window.loadFile(filepath) }); break
+            case 2: window.loadFile(filepath); break
             }
         }
     }
+
+
+    function loadFile(filepath, callback) {
+        console.log("load file: " + filepath)
+
+        if (callback === undefined) callback = null
+
+        if (filepath.endsWith(".dgsx")) {
+
+            // try to open dgsx without key
+            if (app.loadFile(filepath, { fileKey:"" })) {
+                if (callback !== null) callback()
+            } else {
+                // ask for the decryption parameters and open dgsx file
+                dialogDecryption.show()
+                dialogDecryption.callback = function() {
+                    var done = app.loadFile(filepath, dialogDecryption.getValues())
+                    if (!done) messageBox.show(qsTr("Failed to open the encrypted file."), qsTr("OK"))
+                    if (callback !== null) callback()
+                }
+            }
+        } else {
+            // open dgs file
+            app.loadFile(filepath)
+            if (callback !== null) callback()
+        }
+    }
+
+    function saveFile(filepath, callback) {
+        console.log("save file: " + filepath)
+
+        if (callback === undefined) callback = null
+
+        if (filepath.endsWith(".dgsx")) {
+            // ask for the encryption parameters and save dgsx file
+            dialogEncryption.show()
+            dialogEncryption.callback = function() {
+                app.saveFile(filepath, slotListView.getVisualItemsIndexList(), false, dialogEncryption.getValues())
+                if (callback !== null) callback()
+            }
+        } else {
+            // save dgs file
+            app.saveFile(filepath, slotListView.getVisualItemsIndexList())
+            if (callback !== null) callback()
+        }
+    }
+
 
     // the function is prepared for calling by c++
     // when the app main program received an app close event

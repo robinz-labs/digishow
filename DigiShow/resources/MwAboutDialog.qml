@@ -38,7 +38,7 @@ Dialog {
             if (digishow.appCopyright() !== "")
                 textCopyright.text = digishow.appCopyright()
             else
-                textCopyright.text = qsTr("© 2020-2025 Robin Zhang & Labs") + "\r\n\r\n" + qsTr("The software is provided on an 'AS IS' \r\nBASIS, WITHOUT WARRANTIES \r\nOR CONDITIONS OF ANY KIND, \r\neither express or implied.")
+                textCopyright.text = qsTr("© 2020-2026 Robin Zhang & Labs") + "\r\n\r\n" + qsTr("The software is provided on an 'AS IS' \r\nBASIS, WITHOUT WARRANTIES \r\nOR CONDITIONS OF ANY KIND, \r\neither express or implied.")
         }
     }
 

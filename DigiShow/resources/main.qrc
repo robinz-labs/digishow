@@ -32,6 +32,8 @@
         <file>images/icon_metro_white.png</file>
         <file>images/icon_links_white.png</file>
         <file>images/icon_port_white.png</file>
+        <file>images/icon_lock_white.png</file>
+        <file>images/icon_lock_red.png</file>
         <file>images/icon_signal_analog_white.png</file>
         <file>images/icon_signal_binary_white.png</file>
         <file>images/icon_signal_code_white.png</file>
@@ -130,6 +132,8 @@
         <file>MwInterfaceListViewAPlay.qml</file>
         <file>MwAboutDialog.qml</file>
         <file>MwAppOptionsDialog.qml</file>
+        <file>MwEncryptionDialog.qml</file>
+        <file>MwDecryptionDialog.qml</file>
         <file>MwInterfacesDialog.qml</file>
         <file>MwColorPickerDialog.qml</file>
         <file>MwCuePlayerDialog.qml</file>
