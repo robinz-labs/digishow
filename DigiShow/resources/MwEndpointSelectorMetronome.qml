@@ -129,7 +129,7 @@ Item {
         var type = endpointInfo["type"]
         menuType.selectOption(type)
 
-        if (type === "beat") {
+        if (type === DigishowEnvironment.EndpointMetronomeBeat) {
             menuBeat.selectOption(endpointInfo["channel"])
             menuSustain.selectOption(endpointInfo["control"])
         }
@@ -139,10 +139,10 @@ Item {
 
         var options = {}
 
-        var type = menuType.selectedItemTag
-        options["type"] = type
+        var type = menuType.selectedItemValue
+        options["type"] = menuType.selectedItemTag
 
-        if (type === "beat") {
+        if (type === DigishowEnvironment.EndpointMetronomeBeat) {
             options["channel"] = menuBeat.selectedItemValue
             options["control"] = menuSustain.selectedItemValue
         }
