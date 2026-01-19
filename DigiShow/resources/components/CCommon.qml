@@ -27,4 +27,19 @@ QtObject {
             itemObject = itemObject.parent
         }
     }
+
+    function isDescendantOf(item, parentItem) {
+        if (!item || !parentItem) {
+            return false;
+        }
+
+        var current = item.parent;
+        while (current) {
+            if (current === parentItem) {
+                return true;
+            }
+            current = current.parent;
+        }
+        return false;
+    }
 }

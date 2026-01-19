@@ -33,6 +33,31 @@ Item {
         }
     }
 
+    // key states
+    property bool shiftKeyHeld: false
+    property bool altKeyHeld: false
+    property bool ctrlKeyHeld: false
+
+    Keys.onPressed: {
+        //console.log("Keys.onPressed", event.key, event.isAutoRepeat)
+        //if (common.isDescendantOf(window.activeFocusItem, slotListView))
+        switch(event.key) {
+        case Qt.Key_Shift:   shiftKeyHeld = true; break
+        case Qt.Key_Alt:     altKeyHeld   = true; break
+        case Qt.Key_Control: ctrlKeyHeld  = true; break
+        }
+    }
+
+    Keys.onReleased: {
+        //console.log("Keys.onReleased", event.key, event.isAutoRepeat)
+        //if (common.isDescendantOf(window.activeFocusItem, slotListView))
+        switch(event.key) {
+        case Qt.Key_Shift:   shiftKeyHeld = false; break
+        case Qt.Key_Alt:     altKeyHeld   = false; break
+        case Qt.Key_Control: ctrlKeyHeld  = false; break
+        }
+    }
+
     Rectangle {
 
         anchors.fill: parent
