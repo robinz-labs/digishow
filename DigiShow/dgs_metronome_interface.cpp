@@ -228,7 +228,7 @@ void DgsMetronomeInterface::updateMetadata_()
                 endpointInfo.labelEPI = tr("Tap");
                 break;
             case ENDPOINT_METRONOME_COUNT:
-                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
                 endpointInfo.input = true;
                 endpointInfo.range = 1000000;
                 endpointInfo.labelEPT = tr("Beat Maker");

@@ -22,6 +22,17 @@ Item {
         }
     }
 
+    Text {
+        anchors.left: buttonType.right
+        anchors.leftMargin: 10
+        anchors.verticalCenter: buttonType.verticalCenter
+        font.pixelSize: 12
+        font.bold: false
+        text: "1 ~ 1000000"
+        color: "#666"
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointMetronomeCount
+    }
+
     COptionButton {
         id: buttonBeat
         width: 85
