@@ -43,6 +43,12 @@ Item {
             // A-B loop
             if (videoView.positionB > 0 && videoPlayer.position >= videoView.positionB) {
                 seek(videoView.positionA)
+                return
+            }
+
+            // frozen at the last second
+            if (!videoView.repeat && videoPlayer.duration > 0 && videoPlayer.position >= videoPlayer.duration-1000) {
+                pause()
             }
         }
     }
