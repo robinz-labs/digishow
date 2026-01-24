@@ -9,12 +9,31 @@ Item {
     id: itemLaunch
 
     COptionButton {
-        id: buttonChannel
-        width: 210
+        id: buttonControl
+        width: 100
         height: 28
         anchors.left: parent.left
         anchors.top: parent.top
+        text: menuControl.selectedItemText
+        onClicked: menuControl.showOptions()
+
+        COptionMenu {
+            id: menuControl
+
+            onOptionSelected: refreshMoreOptions()
+        }
+    }
+
+    COptionButton {
+        id: buttonChannel
+        width: 200
+        height: 28
+        anchors.left: buttonControl.right
+        anchors.leftMargin: 10
+        anchors.top: parent.top
         text: menuChannel.selectedItemText
+        visible: menuControl.selectedItemValue === DigishowEnvironment.ControlMediaStart ||
+                 menuControl.selectedItemValue === DigishowEnvironment.ControlMediaStop
         onClicked: menuChannel.showOptions()
 
         COptionMenu {
@@ -25,9 +44,24 @@ Item {
 
     function refresh() {
 
-        // init launch channel option menu
-        var items = []
+        var items
         var n
+        var v
+
+        // init control option menu
+        if (menuControl.count === 0) {
+            items = []
+
+            v = DigishowEnvironment.ControlMediaStart;   items.push({ text: qsTr("Launch"),   value: v })
+            v = DigishowEnvironment.ControlMediaStop;    items.push({ text: qsTr("Stop"),     value: v })
+            v = DigishowEnvironment.ControlMediaStopAll; items.push({ text: qsTr("Stop All"), value: v })
+
+            menuControl.optionItems = items
+            menuControl.selectedIndex = 0
+        }
+
+        // init channel option menu
+        items = []
         var count = quickLaunchView.dataModel.count
         for (n=1 ; n<=count ; n++) {
             var title = quickLaunchView.dataModel.get(n-1).title
@@ -53,6 +87,8 @@ Item {
 
     function setEndpointOptions(endpointInfo, endpointOptions) {
 
+        var control = endpointInfo["control"]
+        menuControl.selectOption(control !== 0 ? control : DigishowEnvironment.ControlMediaStart)
         menuChannel.selectOption(endpointInfo["channel"])
     }
 
@@ -60,6 +96,7 @@ Item {
 
         var options = {}
         options["type"] = "preset"
+        options["control"] = menuControl.selectedItemValue
         options["channel"] = menuChannel.selectedItemValue
 
         return options

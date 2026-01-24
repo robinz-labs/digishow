@@ -16,6 +16,7 @@
  */
 
 #include "dgs_launch_interface.h"
+#include "digishow_cue_manager.h"
 
 DgsLaunchInterface::DgsLaunchInterface(QObject *parent) : DigishowInterface(parent)
 {
@@ -50,8 +51,17 @@ int DgsLaunchInterface::sendData(int endpointIndex, dgsSignalData data)
 
     if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
     if (data.bValue) {
+        int control = m_endpointInfoList[endpointIndex].control;
         int channel = m_endpointInfoList[endpointIndex].channel;
-        g_app->startLaunch("launch" + QString::number(channel));
+
+        if (control == 0 || // control is not set in early version
+            control == CONTROL_MEDIA_START) {
+            g_app->startLaunch("launch" + QString::number(channel));
+        } else if  (control == CONTROL_MEDIA_STOP) {
+            g_app->cueManager()->stopCue("launch" + QString::number(channel));
+        } else if  (control == CONTROL_MEDIA_STOP_ALL) {
+            g_app->cueManager()->stopAllCues();
+        }
     }
 
     return ERR_NONE;
@@ -80,8 +90,19 @@ void DgsLaunchInterface::updateMetadata_()
         // Set endpoint properties
         endpointInfo.signal = DATA_SIGNAL_BINARY;
         endpointInfo.output = true;
-        endpointInfo.labelEPT = tr("Launcher");
-        endpointInfo.labelEPI = tr("Preset") + " " + QString::number(endpointInfo.channel);
+        endpointInfo.labelEPT = tr("Preset");
+        switch (endpointInfo.control) {
+        case 0:
+        case CONTROL_MEDIA_START:
+            endpointInfo.labelEPI = tr("Launch") + " " + QString::number(endpointInfo.channel);
+            break;
+        case CONTROL_MEDIA_STOP:
+            endpointInfo.labelEPI = tr("Stop") + " " + QString::number(endpointInfo.channel);
+            break;
+        case CONTROL_MEDIA_STOP_ALL:
+            endpointInfo.labelEPI = tr("Stop All");
+            break;
+        }
 
         m_endpointInfoList.append(endpointInfo);
     }
