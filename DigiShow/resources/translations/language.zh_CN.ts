@@ -2809,67 +2809,72 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>删除接口</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="105"/>
+        <location filename="../MwInterfaceListItem.qml" line="69"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListItem.qml" line="106"/>
         <source>MIDI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="106"/>
+        <location filename="../MwInterfaceListItem.qml" line="107"/>
         <source>DMX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="107"/>
+        <location filename="../MwInterfaceListItem.qml" line="108"/>
         <source>OSC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="108"/>
+        <location filename="../MwInterfaceListItem.qml" line="109"/>
         <source>ArtNet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="109"/>
+        <location filename="../MwInterfaceListItem.qml" line="110"/>
         <source>Modbus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="110"/>
+        <location filename="../MwInterfaceListItem.qml" line="111"/>
         <source>Arduino</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="111"/>
+        <location filename="../MwInterfaceListItem.qml" line="112"/>
         <source>Hue</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="112"/>
+        <location filename="../MwInterfaceListItem.qml" line="113"/>
         <source>Audio In</source>
         <translation>音频输入</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="114"/>
+        <location filename="../MwInterfaceListItem.qml" line="115"/>
         <source>Messenger</source>
         <translation>消息收发器</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="115"/>
+        <location filename="../MwInterfaceListItem.qml" line="116"/>
         <source>Virtual Pipe</source>
         <translation>虚拟管道</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="116"/>
+        <location filename="../MwInterfaceListItem.qml" line="117"/>
         <source>Audio Player</source>
         <translation>音频播放器</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="117"/>
+        <location filename="../MwInterfaceListItem.qml" line="118"/>
         <source>MIDI Player</source>
         <translation>MIDI 播放器</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="113"/>
+        <location filename="../MwInterfaceListItem.qml" line="114"/>
         <source>Screen</source>
         <translation>屏幕</translation>
     </message>

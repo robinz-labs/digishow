@@ -60,17 +60,17 @@ Rectangle {
     }
 
     CButton {
-        width: 24
+        width: 60
         height: 24
-        anchors.top: parent.top
+        anchors.verticalCenter: imageIcon.verticalCenter
         anchors.right: parent.right
-        anchors.margins: -4
-        icon.width: 24
-        icon.height: 24
-        icon.source: "qrc:///images/icon_close_white.png"
-        box.radius: 12
-        box.border.width: 0
-        colorNormal: Material.accent
+        anchors.rightMargin: 20
+        label.text: qsTr("Delete")
+        label.font.pixelSize: 12
+        label.font.bold: false
+        box.radius: 4
+        //box.border.width: 0
+        //colorNormal: Material.accent
 
         visible: model.name !== "_new" &&  gridView.currentIndex === model.index
 
@@ -80,6 +80,7 @@ Rectangle {
     }
 
     Image {
+        id: imageIcon
         width: 32
         height: 32
         anchors.top: parent.top

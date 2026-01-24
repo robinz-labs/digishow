@@ -2799,67 +2799,72 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
         <translation>Eliminar interfaz</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="105"/>
+        <location filename="../MwInterfaceListItem.qml" line="69"/>
+        <source>Delete</source>
+        <translation>Eliminar</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListItem.qml" line="106"/>
         <source>MIDI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="106"/>
+        <location filename="../MwInterfaceListItem.qml" line="107"/>
         <source>DMX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="107"/>
+        <location filename="../MwInterfaceListItem.qml" line="108"/>
         <source>OSC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="108"/>
+        <location filename="../MwInterfaceListItem.qml" line="109"/>
         <source>ArtNet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="109"/>
+        <location filename="../MwInterfaceListItem.qml" line="110"/>
         <source>Modbus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="110"/>
+        <location filename="../MwInterfaceListItem.qml" line="111"/>
         <source>Arduino</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="111"/>
+        <location filename="../MwInterfaceListItem.qml" line="112"/>
         <source>Hue</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="112"/>
+        <location filename="../MwInterfaceListItem.qml" line="113"/>
         <source>Audio In</source>
         <translation>Entrada de audio</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="113"/>
+        <location filename="../MwInterfaceListItem.qml" line="114"/>
         <source>Screen</source>
         <translation>Pantalla</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="114"/>
+        <location filename="../MwInterfaceListItem.qml" line="115"/>
         <source>Messenger</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="115"/>
+        <location filename="../MwInterfaceListItem.qml" line="116"/>
         <source>Virtual Pipe</source>
         <translation>Tubería virtual</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="116"/>
+        <location filename="../MwInterfaceListItem.qml" line="117"/>
         <source>Audio Player</source>
         <translation>Reproductor de audio</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListItem.qml" line="117"/>
+        <location filename="../MwInterfaceListItem.qml" line="118"/>
         <source>MIDI Player</source>
         <translation>Reproductor MIDI</translation>
     </message>
