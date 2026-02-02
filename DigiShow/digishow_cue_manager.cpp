@@ -47,9 +47,18 @@ bool DigishowCueManager::playCue(const QString& name)
     QVariantMap options = g_app->getCuePlayerOptions(name);
     QVariantList details = g_app->getSlotCuePlayerDetails(name);
 
-    // Stop all cues if the Cue Alone option is enabled
     if (options.value("cueAlone").toBool()) {
+        // Stop all cues if the Cue Alone option is enabled
         stopAllCues();
+    } else {
+        // Disable all mutual exclusive tracks of active cues
+        for (int index = 0; index < details.size(); index++) {
+            if (!details[index].toMap().isEmpty()) {
+                disableTrack(index);
+            }
+        }
+        // Stop cues where tracks have been completely disabled
+        stopDisabledCues();
     }
     
     // Get or create a cue player for this name
@@ -115,6 +124,31 @@ bool DigishowCueManager::isCuePlaying(const QString& name)
         return player->isPlaying();
     }
     return false;
+}
+
+// Disable a specific track index for all active cues
+void DigishowCueManager::disableTrack(int index)
+{
+    for (DigishowCuePlayer* player : qAsConst(m_cuePlayers)) {
+        if (player) {
+            player->setTrackEnabled(index, false);
+        }
+    }
+}
+
+// Stop cues where tracks are completely disabled
+void DigishowCueManager::stopDisabledCues()
+{
+    QStringList names = m_cuePlayers.keys();
+    for (QString name : names) {
+        DigishowCuePlayer* player = m_cuePlayers.value(name);
+        if (player && player->checkAllTracksDisabled()) {
+            player->stop();
+            player->deleteLater();
+            m_cuePlayers.remove(name);
+            emit statusUpdated();
+        }
+    }
 }
 
 // Handle cue finished signal

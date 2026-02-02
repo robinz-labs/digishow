@@ -897,6 +897,10 @@ bool DigishowApp::startLaunch(const QString &name)
                 }
                 if (launchDetail.contains("outputValue")) {
 
+                    // Disable the mutual exclusive track of other active cues
+                    m_cueManager->disableTrack(n); 
+
+                    // Set the endpoint output value
                     int value = launchDetail.value("outputValue", 0).toInt();
                     int range = launchDetail.value("outputRange", 0).toInt();
 
@@ -913,6 +917,9 @@ bool DigishowApp::startLaunch(const QString &name)
             }
         }
     }
+
+    // Stop cues where tracks have been completely disabled
+    m_cueManager->stopDisabledCues();
 
     // start the attached cue player with the same name
     if (cuePlayerExists(name)) m_cueManager->playCue(name);

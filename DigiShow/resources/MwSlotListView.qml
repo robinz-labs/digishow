@@ -808,7 +808,7 @@ Item {
                         }
 
                         CButton {
-                            width: 46
+                            width: 52
                             height: 14
                             anchors.top: faderOutput.bottom
                             anchors.topMargin: -3
@@ -816,6 +816,13 @@ Item {
                             label.font.bold: true
                             label.font.pixelSize: 10
                             label.text: qsTr("+ CUE")
+                            label.anchors.horizontalCenterOffset: -6
+                            icon.width: 12
+                            icon.height: 12
+                            icon.sourceSize.width: 24
+                            icon.sourceSize.height: 24
+                            icon.source: "qrc:///images/icon_play_white.png"
+                            icon.anchors.horizontalCenterOffset: 16
                             box.radius: 3
                             colorNormal: model.cuePlayerAttached ? Material.accent : "#333333"
                             visible: quickLaunchView.visible && quickLaunchView.isEditing && !checkLaunchRememberOutput.checked

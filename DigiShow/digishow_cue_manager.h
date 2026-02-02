@@ -38,6 +38,10 @@ public:
     Q_INVOKABLE bool isCuePlaying(const QString& name);
     Q_INVOKABLE bool isActivated() { return m_cuePlayers.size() > 0; }
 
+    Q_INVOKABLE void disableTrack(int index);
+    Q_INVOKABLE void stopDisabledCues();
+
+
 signals:
     void statusUpdated();
 

@@ -32,14 +32,19 @@ public:
     explicit DigishowCuePlayer(QObject *parent = nullptr);
     ~DigishowCuePlayer();
 
+    // Set cue data and enable/disable tracks
     Q_INVOKABLE void setCueData(const QVariantMap& options, const QVariantList& details);
+    Q_INVOKABLE void setTrackEnabled(int index, bool enabled);
+    Q_INVOKABLE bool isTrackEnabled(int index) { return m_enabled[index]; }
+    Q_INVOKABLE bool checkAllTracksDisabled();
+
+    // Playback control
     Q_INVOKABLE bool play();
     Q_INVOKABLE void stop();
     Q_INVOKABLE bool isPlaying(){ return m_isPlaying; }
     Q_INVOKABLE int  position() { return m_position; }
     Q_INVOKABLE int  duration() { return m_duration; }
     Q_INVOKABLE bool repeat()   { return m_repeat; }
-
 
 signals:
     void cueFinished();
@@ -54,7 +59,9 @@ private:
     bool m_repeat;    // Repeat flag
 
     QVariantMap m_options;  // Cue options (such as duration, repeat flag)
-    QVariantList m_details; // Cue details (playback curve control points)
+    QVariantList m_details; // Cue details (playback curve control points of each track)
+    QList<bool> m_enabled;  // Enabled flags of each track
+
     QTimer* m_timer;  // Timer for playback control
     QElapsedTimer m_elapsedTimer;  // Timer for tracking elapsed time
 

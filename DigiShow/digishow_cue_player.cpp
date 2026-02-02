@@ -48,6 +48,12 @@ void DigishowCuePlayer::setCueData(const QVariantMap& options, const QVariantLis
     m_options = options;
     m_details = details;
 
+    // Enable tracks by default
+    m_enabled.clear();
+    for (int n=0 ; n<m_details.size() ; n++) {
+        m_enabled.append(!m_details[n].toMap().isEmpty());
+    }
+
     m_duration = options["cueDuration"].toInt();
     m_repeat = options["cueRepeat"].toBool();
 
@@ -68,6 +74,23 @@ void DigishowCuePlayer::setCueData(const QVariantMap& options, const QVariantLis
     // set custom frequency
     int frequency = options.value("cueFrequency", 0).toInt();
     if (frequency>0) m_timer->setInterval(1000/frequency);
+}
+
+// Set enabled state of a track
+void DigishowCuePlayer::setTrackEnabled(int index, bool enabled)
+{
+    if (index >= 0 && index < m_enabled.size()) {
+        m_enabled[index] = enabled;
+    }
+}
+
+// Check if all tracks are disabled
+bool DigishowCuePlayer::checkAllTracksDisabled()
+{
+    for (bool enabled : m_enabled) {
+        if (enabled) return false;
+    }
+    return true;
 }
 
 // Start playing the cue
@@ -114,12 +137,13 @@ void DigishowCuePlayer::onTimerFired()
 
     // Process each curve in m_details
     for (int n=0 ; n<m_details.size() ; n++) {
+        // Skip disabled track
+        if (!m_enabled[n]) continue;
 
         // variable n is the index of the slot for value output
-        
         QVariantMap detailMap = m_details[n].toMap();
         if (detailMap.isEmpty()) continue;
-        
+
         QVariantList points = detailMap["points"].toList();
         if (points.isEmpty()) continue;
         
