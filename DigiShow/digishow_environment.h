@@ -182,6 +182,7 @@ public:
 
     enum MediaControl {
         ControlMediaStart    = CONTROL_MEDIA_START,
+        ControlMediaRestart  = CONTROL_MEDIA_RESTART,
         ControlMediaStop     = CONTROL_MEDIA_STOP,
         ControlMediaStopAll  = CONTROL_MEDIA_STOP_ALL,
 

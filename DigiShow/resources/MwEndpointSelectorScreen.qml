@@ -109,8 +109,9 @@ Item {
         label.font.pixelSize: 11
         label.text: qsTr("Options ...")
         box.radius: 3
-        visible: textMediaUrl.visible &&
-                 menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart
+        visible: textMediaUrl.visible && (
+                 menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart ||
+                 menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaRestart)
 
         onClicked: popupMediaOptions.open()
     }
@@ -573,6 +574,7 @@ Item {
             items = []
 
             v = DigishowEnvironment.ControlMediaStart;    items.push({ text: digishow.getMediaControlName(v, true), value: v })
+            v = DigishowEnvironment.ControlMediaRestart;  items.push({ text: digishow.getMediaControlName(v, true), value: v })
             v = DigishowEnvironment.ControlMediaStop;     items.push({ text: digishow.getMediaControlName(v, true), value: v })
             v = DigishowEnvironment.ControlMediaStopAll;  items.push({ text: digishow.getMediaControlName(v, true), value: v })
 
@@ -592,7 +594,7 @@ Item {
             //}
 
             menuMediaControl.optionItems = items
-            menuMediaControl.selectedIndex = 0
+            menuMediaControl.selectedIndex = 1
         }
 
         // init more options
@@ -614,6 +616,7 @@ Item {
         } else if (endpointType === DigishowEnvironment.EndpointScreenMedia) {
 
             if (mediaControl === DigishowEnvironment.ControlMediaStart ||
+                mediaControl === DigishowEnvironment.ControlMediaRestart ||
                 mediaControl === DigishowEnvironment.ControlMediaStop ||
                 mediaControl === DigishowEnvironment.ControlMediaStopAll) {
 
@@ -734,7 +737,8 @@ Item {
 
                 if (mediaIndex !== -1) {
                     options["media"] = digishow.getMediaName(interfaceIndex, mediaIndex)
-                    if (menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart)
+                    if (menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart ||
+                        menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaRestart)
                         options = utilities.merge(options, getEndpointMediaOptions())
                 } else {
                     messageBox.show(qsTr("Please select a media clip file exists on your computer disks or enter a valid url of the media clip."), qsTr("OK"))

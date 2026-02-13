@@ -16,6 +16,7 @@
  */
 
 #include "dgs_screen_interface.h"
+#include "QtCore/qobjectdefs.h"
 #include "digishow_environment.h"
 #include <QJsonDocument>
 #include <QtQuick/QQuickWindow>
@@ -165,7 +166,7 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
             int control = m_endpointInfoList[endpointIndex].control;
             QString media = m_endpointOptionsList[endpointIndex].value("media").toString();
 
-            if (control == CONTROL_MEDIA_START) {
+            if (control == CONTROL_MEDIA_START || control == CONTROL_MEDIA_RESTART) {
 
                 if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
                 if (data.bValue) {
@@ -174,7 +175,8 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
                                 m_player, "showMedia", Qt::DirectConnection,
                                 Q_RETURN_ARG(QVariant, r),
                                 Q_ARG(QVariant, media),
-                                Q_ARG(QVariant, m_endpointOptionsList[endpointIndex]));
+                                Q_ARG(QVariant, m_endpointOptionsList[endpointIndex]),
+                                Q_ARG(QVariant, control == CONTROL_MEDIA_RESTART));
                 }
 
                 return ERR_NONE;
@@ -357,6 +359,7 @@ void DgsScreenInterface::updateMetadata_()
 
                 switch (endpointInfo.control) {
                     case CONTROL_MEDIA_START:
+                    case CONTROL_MEDIA_RESTART:
                     case CONTROL_MEDIA_STOP:
                     case CONTROL_MEDIA_STOP_ALL:
                         endpointInfo.signal = DATA_SIGNAL_BINARY;

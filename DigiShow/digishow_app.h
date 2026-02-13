@@ -104,7 +104,7 @@ public:
     // functions for preset launcher and cue player
     Q_INVOKABLE bool updateLaunch(const QString &name, const QVariantList &slotLaunchOptions);
     Q_INVOKABLE bool deleteLaunch(const QString &name);
-    Q_INVOKABLE bool startLaunch(const QString &name);
+    Q_INVOKABLE bool startLaunch(const QString &name, bool replayMode = true);
 
     Q_INVOKABLE bool cuePlayerExists(const QString &name);
     Q_INVOKABLE bool deleteCuePlayer(const QString &name);

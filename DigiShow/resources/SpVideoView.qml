@@ -11,6 +11,7 @@ Item {
     property real yOffset: 0.5  // 0 ~ 1.0
 
     property alias player: videoPlayer
+    property bool playing: videoPlayer.playbackState === MediaPlayer.PlayingState
 
     property bool repeat: false
     property real volume: 1.0

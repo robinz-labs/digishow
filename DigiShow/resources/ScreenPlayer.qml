@@ -228,12 +228,14 @@ QtObject {
         }
     }
 
-    function showMedia(mediaName, options) {
+    function showMedia(mediaName, options, replayMode) {
 
         // take media to front
 
         var view = getMediaViewByName(mediaName)
         if (view !== null) {
+
+            if (view.mediaType === "video" && !replayMode && view.playing) return
 
             mediaShowAlone = true
             var v

@@ -112,7 +112,12 @@ void DgsAPlayer::onTimerFired()
     m_player->stop();
 
     if (m_repeat) {
+        // repeat playing
         if (m_position > 0) m_player->setPosition(m_position);
         m_player->play();
+    } else {
+        // finish playing
+        m_timer->stop();
+        m_isPlaying = false;
     }
 }

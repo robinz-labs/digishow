@@ -33,6 +33,7 @@ Item {
         anchors.top: parent.top
         text: menuChannel.selectedItemText
         visible: menuControl.selectedItemValue === DigishowEnvironment.ControlMediaStart ||
+                 menuControl.selectedItemValue === DigishowEnvironment.ControlMediaRestart ||
                  menuControl.selectedItemValue === DigishowEnvironment.ControlMediaStop
         onClicked: menuChannel.showOptions()
 
@@ -52,12 +53,13 @@ Item {
         if (menuControl.count === 0) {
             items = []
 
-            v = DigishowEnvironment.ControlMediaStart;   items.push({ text: qsTr("Launch"),   value: v })
-            v = DigishowEnvironment.ControlMediaStop;    items.push({ text: qsTr("Stop"),     value: v })
-            v = DigishowEnvironment.ControlMediaStopAll; items.push({ text: qsTr("Stop All"), value: v })
+            v = DigishowEnvironment.ControlMediaStart;   items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaRestart; items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaStop;    items.push({ text: digishow.getMediaControlName(v), value: v })
+            v = DigishowEnvironment.ControlMediaStopAll; items.push({ text: digishow.getMediaControlName(v), value: v })
 
             menuControl.optionItems = items
-            menuControl.selectedIndex = 0
+            menuControl.selectedIndex = 1
         }
 
         // init channel option menu
@@ -87,8 +89,7 @@ Item {
 
     function setEndpointOptions(endpointInfo, endpointOptions) {
 
-        var control = endpointInfo["control"]
-        menuControl.selectOption(control !== 0 ? control : DigishowEnvironment.ControlMediaStart)
+        menuControl.selectOption(endpointInfo["control"])
         menuChannel.selectOption(endpointInfo["channel"])
     }
 

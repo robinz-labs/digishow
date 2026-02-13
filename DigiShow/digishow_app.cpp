@@ -878,11 +878,14 @@ bool DigishowApp::deleteLaunch(const QString &name)
     return true;
 }
 
-bool DigishowApp::startLaunch(const QString &name)
+bool DigishowApp::startLaunch(const QString &name, bool replayMode)
 {
     if (!m_allLaunchOptions.contains(name)) return false;
 
-    // restore launch item details in slots
+    // ignore if the cue is already playing
+    if (!replayMode && m_cueManager->isCuePlaying(name)) return true;
+
+    // restore preset memory (launch item details stored in slots)
     for (int n=0 ; n<m_slots.length() ; n++) {
 
         DigishowSlot* slot = m_slots[n];

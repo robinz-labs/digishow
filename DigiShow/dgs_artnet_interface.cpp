@@ -203,10 +203,12 @@ int DgsArtnetInterface::sendData(int endpointIndex, dgsSignalData data)
         QVariantMap endpointOptions = m_endpointOptionsList[endpointIndex];
         QString media = endpointOptions.value("media").toString();
 
-        if (control == CONTROL_MEDIA_START) {
+        if (control == CONTROL_MEDIA_START || control == CONTROL_MEDIA_RESTART) {
 
             DigishowPixelPlayer *player = m_players.value(media, nullptr);
             if (player == nullptr) return ERR_DEVICE_NOT_READY;
+
+            if (control == CONTROL_MEDIA_START && player->isPlaying()) return ERR_NONE;
 
             if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
             if (data.bValue) {
@@ -302,8 +304,8 @@ void DgsArtnetInterface::setupPlayerPixelMapping(DigishowPixelPlayer *player, co
         QVariantMap endpointOptions = m_endpointOptionsList[n];
 
         // look for all endpoints with the specified media
-        if (endpointInfo.type != ENDPOINT_ARTNET_MEDIA ||
-            endpointInfo.control != CONTROL_MEDIA_START ||
+        if (endpointInfo.type != ENDPOINT_ARTNET_MEDIA || (
+            endpointInfo.control != CONTROL_MEDIA_START && endpointInfo.control != CONTROL_MEDIA_RESTART) ||
             endpointOptions.value("media") != mediaName) continue;
 
         QString endpointName = endpointOptions.value("name").toString();
@@ -558,6 +560,7 @@ void DgsArtnetInterface::updateMetadata_()
                 endpointInfo.output = true;
                 switch (endpointInfo.control) {
                     case CONTROL_MEDIA_START:
+                    case CONTROL_MEDIA_RESTART:
                     case CONTROL_MEDIA_STOP:
                     case CONTROL_MEDIA_STOP_ALL:
                         endpointInfo.signal = DATA_SIGNAL_BINARY;

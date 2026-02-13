@@ -94,10 +94,12 @@ int DgsAPlayInterface::sendData(int endpointIndex, dgsSignalData data)
             QVariantMap endpointOptions = m_endpointOptionsList[endpointIndex];
             QString media = endpointOptions.value("media").toString();
 
-            if (control == CONTROL_MEDIA_START) {
+            if (control == CONTROL_MEDIA_START || control == CONTROL_MEDIA_RESTART) {
 
                 DgsAPlayer *player = m_players.value(media, nullptr);
                 if (player == nullptr) return ERR_DEVICE_NOT_READY;
+
+                if (control == CONTROL_MEDIA_START && player->isPlaying()) return ERR_NONE;
 
                 if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
                 if (data.bValue) {
@@ -113,6 +115,7 @@ int DgsAPlayInterface::sendData(int endpointIndex, dgsSignalData data)
 
                     if (endpointOptions.value("mediaAlone", QVariant(true)).toBool()) stopAll();
                     player->play();
+
                 }
 
                 return ERR_NONE;
@@ -248,6 +251,7 @@ void DgsAPlayInterface::updateMetadata_()
 
         switch (endpointInfo.control) {
             case CONTROL_MEDIA_START:
+            case CONTROL_MEDIA_RESTART:
             case CONTROL_MEDIA_STOP:
             case CONTROL_MEDIA_STOP_ALL:
                 endpointInfo.signal = DATA_SIGNAL_BINARY;

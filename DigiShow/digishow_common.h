@@ -165,7 +165,8 @@
 #define CONTROL_LIGHT_CT   8  // color temperature
 
 // media control numbers
-#define CONTROL_MEDIA_START      1
+#define CONTROL_MEDIA_START      0
+#define CONTROL_MEDIA_RESTART    1
 #define CONTROL_MEDIA_STOP       2
 #define CONTROL_MEDIA_STOP_ALL   3
 
