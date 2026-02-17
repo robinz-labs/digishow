@@ -1,5 +1,5 @@
 /*
-    Copyright 2021 Robin Zhang & Labs
+    Copyright 2021-2026 Robin Zhang & Labs
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -154,7 +154,7 @@ private:
     qint64 m_envelopeTimeOn;
     qint64 m_envelopeTimeOff;
     qint64 m_envelopeTimeLastUpdated;
-    double m_envelopeRatio;
+    double m_envelopeFactor; // normalized value in 0 ~ 1.0
     dgsSignalData m_envelopeDataIn;
 
     void envelopeStart(dgsSignalData dataIn);
