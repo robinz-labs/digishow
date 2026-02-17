@@ -188,6 +188,14 @@
   + added support for more Arduino / Aladdin PLC models
   ! fixed audio playback duration setting problem
 
+  v1.7.6 20250214
+  + auto serial reconnection
+  + more video playback controls
+  + file encryption support (experimental)
+  + playback control of mutual exclusive cue tracks
+  + both Play and Launch controls for media or cue players
+  ! bug fixes
+
 */
 
 #ifndef DIGISHOW_H

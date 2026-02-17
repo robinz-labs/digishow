@@ -2627,7 +2627,7 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="152"/>
-        <location filename="../MwEndpointSelectorScreen.qml" line="744"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="842"/>
         <source>OK</source>
         <translation></translation>
     </message>
@@ -2652,112 +2652,129 @@ JPG、PNG、SVG画像、MP4ビデオ、およびオンラインまたはロー�
         <translation>すべてのファイル</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="206"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="210"/>
         <source>Media Clip Display Options</source>
         <translation>メディアの表示設定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="226"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="230"/>
         <source>Show Alone</source>
         <translation>単独に再生</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="250"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="254"/>
         <source>Fade In</source>
         <translation>フェードイン</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="275"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="278"/>
         <source>Opacity</source>
         <translation>不透明さ</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="299"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="302"/>
         <source>Scale</source>
         <translation>スケール</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="323"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="326"/>
         <source>Rotation</source>
         <translation>ローテーション</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="347"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="350"/>
         <source>X Offset</source>
         <translation>X オフセット</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="371"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="374"/>
         <source>Y Offset</source>
         <translation>Y オフセット</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="381"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="418"/>
         <source>Options for Video Clip Only</source>
         <translation>ビデオの設定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="401"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="438"/>
         <source>Repeat</source>
         <translation>リピート</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="425"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="462"/>
         <source>Volume</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="439"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="476"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="449"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="486"/>
         <source>Speed</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="463"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="500"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="551"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="577"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="473"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="510"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="483"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="384"/>
         <source>Options for Web Clip Only</source>
         <translation>Webクリップの設定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="502"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="403"/>
         <source>Run Java Script</source>
         <translation>JavaScriptを実行</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="518"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="537"/>
+        <source>A-B Repeat</source>
+        <translation>A-B リピート</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="563"/>
+        <source>Starting Point A</source>
+        <translation>開始点 A</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="589"/>
+        <source>Ending Point B</source>
+        <translation>終了点 B</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="605"/>
         <source>Defaults</source>
         <translation>デフォルト</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="540"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="628"/>
         <source>Backlight</source>
         <translation>バックライト</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="541"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="629"/>
         <source>Media Clip</source>
         <translation>メディアクリップ</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="542"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="630"/>
         <source>Canvas</source>
         <translation>カンバス</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="744"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="842"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation>コンピュータのディスクに存在するメディアクリップファイルを選択するか、メディアクリップの有効なURLを入力してください。</translation>
     </message>

@@ -2638,7 +2638,7 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
     </message>
     <message>
         <location filename="../MwEndpointSelectorScreen.qml" line="152"/>
-        <location filename="../MwEndpointSelectorScreen.qml" line="744"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="842"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
@@ -2663,112 +2663,129 @@ JPG、PNG、SVG 格式的图片和 MP4 格式的视频，以及任何在线或�
         <translation>所有文件</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="206"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="210"/>
         <source>Media Clip Display Options</source>
         <translation>媒体素材显示选项</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="226"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="230"/>
         <source>Show Alone</source>
         <translation>单独显示</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="250"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="254"/>
         <source>Fade In</source>
         <translation>淡入时长</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="275"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="278"/>
         <source>Opacity</source>
         <translation>半透明度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="299"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="302"/>
         <source>Scale</source>
         <translation>缩放比例</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="323"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="326"/>
         <source>Rotation</source>
         <translation>旋转角度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="347"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="350"/>
         <source>X Offset</source>
         <translation>X 位移</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="371"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="374"/>
         <source>Y Offset</source>
         <translation>Y 位移</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="381"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="418"/>
         <source>Options for Video Clip Only</source>
         <translation>仅用于视频素材的选项</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="401"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="438"/>
         <source>Repeat</source>
         <translation>循环播放</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="425"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="462"/>
         <source>Volume</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="439"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="476"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="449"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="486"/>
         <source>Speed</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="463"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="500"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="551"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="577"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="473"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="510"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="483"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="384"/>
         <source>Options for Web Clip Only</source>
         <translation>仅用于网页素材的选项</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="502"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="403"/>
         <source>Run Java Script</source>
         <translation>运行 Java Script</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="518"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="537"/>
+        <source>A-B Repeat</source>
+        <translation>A-B 段落循环</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="563"/>
+        <source>Starting Point A</source>
+        <translation>循环开始点 A</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="589"/>
+        <source>Ending Point B</source>
+        <translation>循环结束点 B</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="605"/>
         <source>Defaults</source>
         <translation>恢复默认</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="540"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="628"/>
         <source>Backlight</source>
         <translation>背光灯</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="541"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="629"/>
         <source>Media Clip</source>
         <translation>媒体素材</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="542"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="630"/>
         <source>Canvas</source>
         <translation>画布</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="744"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="842"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation>请选择一个已存在于你的电脑磁盘中的媒体素材文件，或输入该媒体素材的有效 URL。</translation>
     </message>

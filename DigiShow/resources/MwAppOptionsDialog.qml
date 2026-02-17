@@ -178,6 +178,7 @@ Dialog {
         label.font.pixelSize: 12
         label.text: qsTr("Save")
         box.radius: 3
+        colorNormal: Material.accent
         onClicked: {
 
             saveAppOptions()

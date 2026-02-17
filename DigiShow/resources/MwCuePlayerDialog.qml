@@ -455,7 +455,7 @@ Dialog {
             id: popupCueOptions
 
             width: 280
-            height: 250
+            height: 245
             x: parent.width - this.width  - 10
             y: parent.height - this.height - 48
             transformOrigin: Popup.BottomRight
@@ -472,6 +472,22 @@ Dialog {
 
             // @disable-check M16
             Overlay.modal: Item {}
+
+            CButton {
+                width: 20
+                height: 20
+                anchors.top: parent.top
+                anchors.topMargin: -8
+                anchors.right: parent.right
+                anchors.rightMargin: -8
+                icon.width: 16
+                icon.height: 16
+                icon.source: "qrc:///images/icon_close_white.png"
+                box.radius: 3
+                colorNormal: "#484848"
+
+                onClicked: popupCueOptions.close()
+            }
 
             Column {
                 anchors.fill: parent

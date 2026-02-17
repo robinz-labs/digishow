@@ -40,16 +40,25 @@ Item {
         volume: videoView.volume
         playbackRate: videoView.speed
 
-        onPositionChanged: {
+        //onPositionChanged: {}
+    }
+
+    Timer {
+        interval: 50
+        running: videoPlayer.playbackState === MediaPlayer.PlayingState
+        repeat: true
+
+        onTriggered: {
+
             // A-B loop
             if (videoView.positionB > 0 && videoPlayer.position >= videoView.positionB) {
-                seek(videoView.positionA)
+                videoPlayer.seek(videoView.positionA)
                 return
             }
 
             // frozen at the last second
-            if (!videoView.repeat && videoPlayer.duration > 0 && videoPlayer.position >= videoPlayer.duration-1000) {
-                pause()
+            if (!videoView.repeat && videoPlayer.duration > 0 && videoPlayer.position >= videoPlayer.duration-500) {
+                videoPlayer.pause()
             }
         }
     }

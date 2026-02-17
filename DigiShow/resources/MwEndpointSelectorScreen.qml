@@ -171,9 +171,9 @@ Item {
     Popup {
         id: popupMediaOptions
 
-        width: 280
-        height: 655
-        x: 100
+        width: 530
+        height: 400
+        x: -64
         y: -height-10
         transformOrigin: Popup.BottomRight
         modal: true
@@ -192,340 +192,444 @@ Item {
         // @disable-check M16
         Overlay.modal: Item {}
 
-        Column {
+        CButton {
+            width: 20
+            height: 20
+            anchors.top: parent.top
+            anchors.topMargin: -8
+            anchors.right: parent.right
+            anchors.rightMargin: -8
+            icon.width: 16
+            icon.height: 16
+            icon.source: "qrc:///images/icon_close_white.png"
+            box.radius: 3
+            colorNormal: "#484848"
+
+            onClicked: popupMediaOptions.close()
+        }
+
+        Row {
             anchors.fill: parent
             anchors.leftMargin: 16
-            spacing: 10
+            spacing: 0
 
-            Text {
-                height: 25
-                verticalAlignment: Text.AlignBottom
-                color: "#cccccc"
-                font.pixelSize: 12
-                font.bold: true
-                text: qsTr("Media Clip Display Options")
-            }
-
-            CheckBox {
-                id: checkMediaAlone
-
-                height: 28
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                padding: 0
-                checked: true
-
-                onClicked: isModified = true
+            Column {
+                width: 250
+                spacing: 10
 
                 Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
+                    height: 25
+                    verticalAlignment: Text.AlignBottom
                     color: "#cccccc"
                     font.pixelSize: 12
-                    text: qsTr("Show Alone")
+                    font.bold: true
+                    text: qsTr("Media Clip Display Options")
                 }
-            }
 
-            CSpinBox {
-                id: spinMediaFadeIn
+                CheckBox {
+                    id: checkMediaAlone
 
-                width: 120
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: 0
-                to: 5000
-                value: 300
-                stepSize: 10
-                unit: "ms"
+                    height: 28
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    padding: 0
+                    checked: true
 
-                onValueModified: isModified = true
+                    onClicked: isModified = true
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Show Alone")
+                    }
+                }
+
+                CSpinBox {
+                    id: spinMediaFadeIn
+
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    from: 0
+                    to: 5000
+                    value: 300
+                    stepSize: 10
+                    unit: "ms"
+
+                    onValueModified: isModified = true
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Fade In")
+                    }
+                }
+
+                CSpinBox {
+                    id: spinMediaOpacity
+
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    from: 0
+                    to: 100
+                    value: 100
+                    stepSize: 5
+                    unit: "%"
+
+                    onValueModified: isModified = true
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Opacity")
+                    }
+                }
+
+                CSpinBox {
+                    id: spinMediaScale
+
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    from: 0
+                    to: 100
+                    value: 50
+                    stepSize: 5
+                    unit: "%"
+
+                    onValueModified: isModified = true
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Scale")
+                    }
+                }
+
+                CSpinBox {
+                    id: spinMediaRotation
+
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    from: 0
+                    to: 360
+                    value: 0
+                    stepSize: 1
+                    unit: "º"
+
+                    onValueModified: isModified = true
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Rotation")
+                    }
+                }
+
+                CSpinBox {
+                    id: spinMediaXOffset
+
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    from: 0
+                    to: 100
+                    value: 50
+                    stepSize: 1
+                    unit: "%"
+
+                    onValueModified: isModified = true
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("X Offset")
+                    }
+                }
+
+                CSpinBox {
+                    id: spinMediaYOffset
+
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    from: 0
+                    to: 100
+                    value: 50
+                    stepSize: 1
+                    unit: "%"
+
+                    onValueModified: isModified = true
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Y Offset")
+                    }
+                }
 
                 Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
+                    height: 30
+                    verticalAlignment: Text.AlignBottom
                     color: "#cccccc"
                     font.pixelSize: 12
-                    text: qsTr("Fade In")
+                    font.bold: true
+                    text: qsTr("Options for Web Clip Only")
+                }
+
+                CTextInputBox {
+                    id: textWebJavascript
+
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    text: ""
+
+                    onTextEdited: isModified = true
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Run Java Script")
+                    }
                 }
             }
 
-
-            CSpinBox {
-                id: spinMediaOpacity
-
-                width: 120
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: 0
-                to: 100
-                value: 100
-                stepSize: 5
-                unit: "%"
-
-                onValueModified: isModified = true
+            Column {
+                width: 250
+                spacing: 10
 
                 Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
+                    height: 30
+                    verticalAlignment: Text.AlignBottom
                     color: "#cccccc"
                     font.pixelSize: 12
-                    text: qsTr("Opacity")
+                    font.bold: true
+                    text: qsTr("Options for Video Clip Only")
                 }
-            }
 
-            CSpinBox {
-                id: spinMediaScale
+                CheckBox {
+                    id: checkVideoRepeat
 
-                width: 120
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: 0
-                to: 100
-                value: 50
-                stepSize: 5
-                unit: "%"
+                    height: 28
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    padding: 0
+                    checked: true
 
-                onValueModified: isModified = true
+                    onClicked: isModified = true
 
-                Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: "#cccccc"
-                    font.pixelSize: 12
-                    text: qsTr("Scale")
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Repeat")
+                    }
                 }
-            }
 
-            CSpinBox {
-                id: spinMediaRotation
+                CSpinBox {
+                    id: spinVideoVolume
 
-                width: 120
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: 0
-                to: 360
-                value: 0
-                stepSize: 1
-                unit: "º"
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    from: 0
+                    to: 100
+                    value: 100
+                    stepSize: 5
+                    unit: "%"
 
-                onValueModified: isModified = true
+                    onValueModified: isModified = true
 
-                Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: "#cccccc"
-                    font.pixelSize: 12
-                    text: qsTr("Rotation")
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Volume")
+                    }
                 }
-            }
 
-            CSpinBox {
-                id: spinMediaXOffset
+                CSpinBox {
+                    id: spinVideoSpeed
 
-                width: 120
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: 0
-                to: 100
-                value: 50
-                stepSize: 1
-                unit: "%"
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    from: 10
+                    to: 400
+                    value: 100
+                    stepSize: 5
+                    unit: qsTr("%")
 
-                onValueModified: isModified = true
+                    onValueModified: isModified = true
 
-                Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: "#cccccc"
-                    font.pixelSize: 12
-                    text: qsTr("X Offset")
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Speed")
+                    }
                 }
-            }
 
-            CSpinBox {
-                id: spinMediaYOffset
+                CSpinBox {
+                    id: spinVideoPosition
 
-                width: 120
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: 0
-                to: 100
-                value: 50
-                stepSize: 1
-                unit: "%"
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    from: 0
+                    to: 99999000
+                    value: 0
+                    stepSize: 1000
+                    unit: qsTr("ms")
 
-                onValueModified: isModified = true
+                    onValueModified: isModified = true
 
-                Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: "#cccccc"
-                    font.pixelSize: 12
-                    text: qsTr("Y Offset")
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Position")
+                    }
                 }
-            }
 
-            Text {
-                height: 30
-                verticalAlignment: Text.AlignBottom
-                color: "#cccccc"
-                font.pixelSize: 12
-                font.bold: true
-                text: qsTr("Options for Video Clip Only")
-            }
+                CheckBox {
+                    id: checkVideoABRepeat
 
-            CheckBox {
-                id: checkVideoRepeat
+                    height: 28
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    padding: 0
+                    checked: false
 
-                height: 28
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                padding: 0
-                checked: true
+                    onClicked: {
+                        if (!checked) {
+                            spinVideoPositionA.value = 0
+                            spinVideoPositionB.value = 0
+                            isModified = true
+                        }
+                    }
 
-                onClicked: isModified = true
-
-                Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: "#cccccc"
-                    font.pixelSize: 12
-                    text: qsTr("Repeat")
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("A-B Repeat")
+                    }
                 }
-            }
 
-            CSpinBox {
-                id: spinVideoVolume
+                CSpinBox {
+                    id: spinVideoPositionA
 
-                width: 120
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: 0
-                to: 100
-                value: 100
-                stepSize: 5
-                unit: "%"
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    from: 0
+                    to: 99999000
+                    value: 0
+                    stepSize: 1000
+                    unit: qsTr("ms")
 
-                onValueModified: isModified = true
+                    visible: checkVideoABRepeat.checked
 
-                Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: "#cccccc"
-                    font.pixelSize: 12
-                    text: qsTr("Volume")
+                    onValueModified: isModified = true
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Starting Point A")
+                    }
                 }
-            }
 
-            CSpinBox {
-                id: spinVideoSpeed
+                CSpinBox {
+                    id: spinVideoPositionB
 
-                width: 120
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: 10
-                to: 400
-                value: 100
-                stepSize: 5
-                unit: qsTr("%")
+                    width: 120
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    from: 0
+                    to: 99999000
+                    value: 0
+                    stepSize: 1000
+                    unit: qsTr("ms")
 
-                onValueModified: isModified = true
+                    visible: checkVideoABRepeat.checked
 
-                Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: "#cccccc"
-                    font.pixelSize: 12
-                    text: qsTr("Speed")
+                    onValueModified: isModified = true
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 15
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        text: qsTr("Ending Point B")
+                    }
                 }
-            }
 
-            CSpinBox {
-                id: spinVideoPosition
-
-                width: 120
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                from: 0
-                to: 99999000
-                value: 0
-                stepSize: 1000
-                unit: qsTr("ms")
-
-                onValueModified: isModified = true
-
-                Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: "#cccccc"
-                    font.pixelSize: 12
-                    text: qsTr("Position")
+                Item {
+                    width: 5
+                    height: checkVideoABRepeat.checked ? 20 : 96
                 }
-            }
 
-            Text {
-                height: 30
-                verticalAlignment: Text.AlignBottom
-                color: "#cccccc"
-                font.pixelSize: 12
-                font.bold: true
-                text: qsTr("Options for Web Clip Only")
-            }
+                CButton {
+                    width: 100
+                    height: 28
+                    anchors.left: parent.left
+                    anchors.leftMargin: 105
+                    label.font.bold: false
+                    label.font.pixelSize: 11
+                    label.text: qsTr("Defaults")
+                    box.radius: 3
 
-            CTextInputBox {
-                id: textWebJavascript
-
-                width: 120
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                text: ""
-
-                onTextEdited: isModified = true
-
-                Text {
-                    anchors.right: parent.left
-                    anchors.rightMargin: 15
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: "#cccccc"
-                    font.pixelSize: 12
-                    text: qsTr("Run Java Script")
+                    onClicked: {
+                        setEndpointMediaOptions({})
+                        isModified = true
+                    }
                 }
-            }
 
-            Item {
-                width: 5
-                height: 5
-            }
-
-            CButton {
-                width: 100
-                height: 28
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                label.font.bold: false
-                label.font.pixelSize: 11
-                label.text: qsTr("Defaults")
-                box.radius: 3
-
-                onClicked: {
-                    setEndpointMediaOptions({})
-                    isModified = true
-                }
             }
 
         }
-
     }
 
     function refresh() {
@@ -663,6 +767,11 @@ Item {
         v = options["mediaSpeed"];         if (v !== undefined) spinVideoSpeed.value = v / 100
         v = options["mediaPosition"];      if (v !== undefined) spinVideoPosition.value = v
         v = options["mediaScript"];        if (v !== undefined) textWebJavascript.text =  v
+
+        v = options["mediaPositionA"];     spinVideoPositionA.value = (v === undefined ? 0    : v )
+        v = options["mediaPositionB"];     spinVideoPositionB.value = (v === undefined ? 0    : v )
+
+        checkVideoABRepeat.checked = (spinVideoPositionA.value>0 || spinVideoPositionB.value>0)
     }
 
     function getEndpointMediaOptions() {
@@ -680,6 +789,14 @@ Item {
             mediaSpeed:     spinVideoSpeed.value * 100,
             mediaPosition:  spinVideoPosition.value,
             mediaScript:    textWebJavascript.text
+        }
+
+        if (checkVideoABRepeat.checked) {
+            options["mediaPositionA"] = spinVideoPositionA.value
+            options["mediaPositionB"] = spinVideoPositionB.value
+        } else {
+            options["mediaPositionA"] = 0
+            options["mediaPositionB"] = 0
         }
 
         return options

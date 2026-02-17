@@ -235,7 +235,7 @@ QtObject {
         var view = getMediaViewByName(mediaName)
         if (view !== null) {
 
-            if (view.mediaType === "video" && !replayMode && view.playing) return
+            if (!replayMode && view.visible) return // not need to replay the media if it's already visible
 
             mediaShowAlone = true
             var v

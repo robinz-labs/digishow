@@ -173,6 +173,22 @@ Item {
         // @disable-check M16
         Overlay.modal: Item {}
 
+        CButton {
+            width: 20
+            height: 20
+            anchors.top: parent.top
+            anchors.topMargin: -8
+            anchors.right: parent.right
+            anchors.rightMargin: -8
+            icon.width: 16
+            icon.height: 16
+            icon.source: "qrc:///images/icon_close_white.png"
+            box.radius: 3
+            colorNormal: "#484848"
+
+            onClicked: popupMediaOptions.close()
+        }
+
         Column {
             anchors.fill: parent
             anchors.leftMargin: 16
