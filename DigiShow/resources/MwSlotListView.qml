@@ -305,7 +305,7 @@ Item {
                         text: model.slotTitle === undefined || model.slotTitle === "" ?
                                   qsTr("Signal Link") + " " + (index+1) :
                                   model.slotTitle
-                        font.pixelSize: 11
+                        font.pixelSize: 12
                         font.bold: false
                         visible: !textSlotTitle.visible
 
@@ -432,13 +432,14 @@ Item {
 
                         Text {
                             anchors.top: parent.bottom
-                            anchors.topMargin: 6
+                            anchors.topMargin: 8
                             anchors.left: parent.left
                             anchors.leftMargin: 4
                             color: "#dddddd"
                             text: "IN"
-                            font.pixelSize: 9
+                            font.pixelSize: 10
                             font.bold: true
+                            font.family: "Arial"
                         }
 
                         Image {
@@ -459,11 +460,12 @@ Item {
                             anchors.left: parent.left
                             anchors.leftMargin: 4
                             color: "#dddddd"
-                            font.pixelSize: 9
+                            font.pixelSize: 10
                             font.bold: false
+                            font.family: "Arial"
 
                             text: model.epInSignal === DigishowEnvironment.SignalBinary ?
-                                    (model.epInValue ? "on" : "off") :
+                                    (model.epInValue ? "ON" : "OFF") :
                                     Math.round(100 * model.epInValue / model.epInRange) + "%"
                         }
 
@@ -474,8 +476,9 @@ Item {
                             anchors.rightMargin: 4
                             color: "#dddddd"
                             text: model.epInAvailable ? model.epInValue.toString() : "- -"
-                            font.pixelSize: 9
+                            font.pixelSize: 10
                             font.bold: false
+                            font.family: "Arial"
                         }
                     }
 
@@ -664,13 +667,14 @@ Item {
 
                         Text {
                             anchors.top: parent.bottom
-                            anchors.topMargin: 6
+                            anchors.topMargin: 8
                             anchors.left: parent.left
                             anchors.leftMargin: 4
                             color: "#dddddd"
                             text: "OUT"
-                            font.pixelSize: 9
+                            font.pixelSize: 10
                             font.bold: true
+                            font.family: "Arial"
                         }
 
                         Text {
@@ -679,11 +683,12 @@ Item {
                             anchors.left: parent.left
                             anchors.leftMargin: 4
                             color: "#dddddd"
-                            font.pixelSize: 9
+                            font.pixelSize: 10
                             font.bold: false
+                            font.family: "Arial"
 
                             text: model.epOutSignal === DigishowEnvironment.SignalBinary ?
-                                      (model.epOutValue ? "on" : "off") :
+                                      (model.epOutValue ? "ON" : "OFF") :
                                       Math.round(100 * model.epOutValue / model.epOutRange) + "%"
                         }
 
@@ -694,8 +699,9 @@ Item {
                             anchors.rightMargin: 4
                             color: "#dddddd"
                             text: model.epOutAvailable ? model.epOutValue.toString() : "- -"
-                            font.pixelSize: 9
+                            font.pixelSize: 10
                             font.bold: false
+                            font.family: "Arial"
                         }
 
                         CButton {

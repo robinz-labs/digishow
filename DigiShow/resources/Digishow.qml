@@ -50,27 +50,37 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointAudioInLevelDb    : return CColor.Ocean
             case DigishowEnvironment.EndpointAudioInPeak       : return CColor.Ocean
             case DigishowEnvironment.EndpointAudioInPeakDb     : return CColor.Ocean
-            case DigishowEnvironment.EndpointAudioInSpectrum   : return CColor.Lake
+            case DigishowEnvironment.EndpointAudioInSpectrum   : return CColor.Lake                
+            case DigishowEnvironment.EndpointHotkeyPress       : return CColor.HotPink
+            case DigishowEnvironment.EndpointMessengerText     : return CColor.HotPink
+            case DigishowEnvironment.EndpointMessengerHexCode  : return CColor.RosePink
+
             case DigishowEnvironment.EndpointScreenLight       : return CColor.Lake
             case DigishowEnvironment.EndpointScreenMedia       : return sig === DigishowEnvironment.SignalBinary ? CColor.HotPink : CColor.Iris
             case DigishowEnvironment.EndpointScreenCanvas      : return CColor.Ocean
             case DigishowEnvironment.EndpointAPlayMedia        : return sig === DigishowEnvironment.SignalBinary ? CColor.HotPink : CColor.Iris
             case DigishowEnvironment.EndpointMPlayMedia        : return CColor.HotPink
+
             case DigishowEnvironment.EndpointPipeAnalog        : return CColor.Sky
             case DigishowEnvironment.EndpointPipeBinary        : return CColor.RosePink
             case DigishowEnvironment.EndpointPipeNote          : return CColor.Mint
             case DigishowEnvironment.EndpointLaunchPreset      : return CColor.Cherry
-            case DigishowEnvironment.EndpointHotkeyPress       : return CColor.HotPink
+            case DigishowEnvironment.EndpointLfoValue          : return CColor.Ocean
+            case DigishowEnvironment.EndpointLfoTime           : return CColor.Ocean
+            case DigishowEnvironment.EndpointLfoReset          : return CColor.HotPink
+            case DigishowEnvironment.EndpointLfoRun            : return CColor.Cherry
+            case DigishowEnvironment.EndpointLfoPeriod         : return CColor.Ocean
+            case DigishowEnvironment.EndpointLfoPhase          : return CColor.Ocean
+            case DigishowEnvironment.EndpointLfoAmplitude      : return CColor.Ocean
+            case DigishowEnvironment.EndpointLfoSample         : return CColor.Ocean
             case DigishowEnvironment.EndpointMetronomeBeat     : return CColor.Mint
-            case DigishowEnvironment.EndpointMetronomeBPM      : return CColor.Ocean
-            case DigishowEnvironment.EndpointMetronomeQuantum  : return CColor.Ocean
-            case DigishowEnvironment.EndpointMetronomeRun      : return CColor.Cherry
-            case DigishowEnvironment.EndpointMetronomeLink     : return CColor.Cherry
-            case DigishowEnvironment.EndpointMetronomeTap      : return CColor.HotPink
             case DigishowEnvironment.EndpointMetronomeCount    : return CColor.Ocean
             case DigishowEnvironment.EndpointMetronomeReset    : return CColor.HotPink
-            case DigishowEnvironment.EndpointMessengerText     : return CColor.HotPink
-            case DigishowEnvironment.EndpointMessengerHexCode  : return CColor.RosePink
+            case DigishowEnvironment.EndpointMetronomeRun      : return CColor.Cherry
+            case DigishowEnvironment.EndpointMetronomeBPM      : return CColor.Ocean
+            case DigishowEnvironment.EndpointMetronomeQuantum  : return CColor.Ocean
+            case DigishowEnvironment.EndpointMetronomeLink     : return CColor.Cherry
+            case DigishowEnvironment.EndpointMetronomeTap      : return CColor.HotPink            
         }
 
         return "#666666";

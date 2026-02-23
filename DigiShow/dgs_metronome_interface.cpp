@@ -126,7 +126,7 @@ void DgsMetronomeInterface::onBeatChanged()
             dgsSignalData data;
             data.signal = DATA_SIGNAL_ANALOG;
             data.aRange = range;
-            data.aValue = qBound<int>(0, value, range);
+            data.aValue = qMin<int>(value, range);
             emit dataReceived(n, data);
         }
     }
@@ -176,13 +176,13 @@ void DgsMetronomeInterface::updateMetadata_()
         // Set endpoint type
         QString typeName = m_endpointOptionsList[n].value("type").toString();
         if      (typeName == "beat"   ) endpointInfo.type = ENDPOINT_METRONOME_BEAT;
-        else if (typeName == "bpm"    ) endpointInfo.type = ENDPOINT_METRONOME_BPM;
-        else if (typeName == "quantum") endpointInfo.type = ENDPOINT_METRONOME_QUANTUM;
-        else if (typeName == "run"    ) endpointInfo.type = ENDPOINT_METRONOME_RUN;
-        else if (typeName == "link"   ) endpointInfo.type = ENDPOINT_METRONOME_LINK;
-        else if (typeName == "tap"    ) endpointInfo.type = ENDPOINT_METRONOME_TAP;
         else if (typeName == "count"  ) endpointInfo.type = ENDPOINT_METRONOME_COUNT;
         else if (typeName == "reset"  ) endpointInfo.type = ENDPOINT_METRONOME_RESET;
+        else if (typeName == "run"    ) endpointInfo.type = ENDPOINT_METRONOME_RUN;
+        else if (typeName == "bpm"    ) endpointInfo.type = ENDPOINT_METRONOME_BPM;
+        else if (typeName == "quantum") endpointInfo.type = ENDPOINT_METRONOME_QUANTUM;
+        else if (typeName == "link"   ) endpointInfo.type = ENDPOINT_METRONOME_LINK;
+        else if (typeName == "tap"    ) endpointInfo.type = ENDPOINT_METRONOME_TAP;
 
         // Set endpoint properties based on type
         switch (endpointInfo.type) {
@@ -194,6 +194,25 @@ void DgsMetronomeInterface::updateMetadata_()
                 endpointInfo.labelEPI = tr("Beat %1").arg((endpointInfo.channel-1) / 4 + 1);
                 if ((endpointInfo.channel-1) % 4 != 0)
                     endpointInfo.labelEPI += QString(".%1").arg((endpointInfo.channel-1) % 4 + 1);
+                break;
+            case ENDPOINT_METRONOME_COUNT:
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.input = true;
+                endpointInfo.range = (endpointInfo.range ? endpointInfo.range : 1000000);
+                endpointInfo.labelEPT = tr("Beat Maker");
+                endpointInfo.labelEPI = tr("Count");
+                break;
+            case ENDPOINT_METRONOME_RESET:
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.output = true;
+                endpointInfo.labelEPT = tr("Beat Maker");
+                endpointInfo.labelEPI = tr("Reset");
+                break;
+            case ENDPOINT_METRONOME_RUN:
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.output = true;
+                endpointInfo.labelEPT = tr("Beat Maker");
+                endpointInfo.labelEPI = tr("Run");
                 break;
             case ENDPOINT_METRONOME_BPM:
                 endpointInfo.signal = DATA_SIGNAL_ANALOG;
@@ -209,12 +228,6 @@ void DgsMetronomeInterface::updateMetadata_()
                 endpointInfo.labelEPT = tr("Beat Maker");
                 endpointInfo.labelEPI = tr("Quantum");
                 break;
-            case ENDPOINT_METRONOME_RUN:
-                endpointInfo.signal = DATA_SIGNAL_BINARY;
-                endpointInfo.output = true;
-                endpointInfo.labelEPT = tr("Beat Maker");
-                endpointInfo.labelEPI = tr("Run");
-                break;
             case ENDPOINT_METRONOME_LINK:
                 endpointInfo.signal = DATA_SIGNAL_BINARY;
                 endpointInfo.output = true;
@@ -226,19 +239,6 @@ void DgsMetronomeInterface::updateMetadata_()
                 endpointInfo.output = true;
                 endpointInfo.labelEPT = tr("Beat Maker");
                 endpointInfo.labelEPI = tr("Tap");
-                break;
-            case ENDPOINT_METRONOME_COUNT:
-                endpointInfo.signal = DATA_SIGNAL_ANALOG;
-                endpointInfo.input = true;
-                endpointInfo.range = 1000000;
-                endpointInfo.labelEPT = tr("Beat Maker");
-                endpointInfo.labelEPI = tr("Count");
-                break;
-            case ENDPOINT_METRONOME_RESET:
-                endpointInfo.signal = DATA_SIGNAL_BINARY;
-                endpointInfo.output = true;
-                endpointInfo.labelEPT = tr("Beat Maker");
-                endpointInfo.labelEPI = tr("Reset");
                 break;
         }
 

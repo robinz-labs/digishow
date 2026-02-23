@@ -19,18 +19,9 @@ Item {
 
         COptionMenu {
             id: menuType
-        }
-    }
 
-    Text {
-        anchors.left: buttonType.right
-        anchors.leftMargin: 10
-        anchors.verticalCenter: buttonType.verticalCenter
-        font.pixelSize: 12
-        font.bold: false
-        text: "1 ~ 1000000"
-        color: "#666"
-        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointMetronomeCount
+            onOptionSelected: refreshMoreOptions()
+        }
     }
 
     COptionButton {
@@ -72,7 +63,7 @@ Item {
         var items
         var n
 
-        // init metronome type menu (for control output)
+        // init metronome type menu
         if (menuType.count === 0) {
             items = []
 
@@ -84,9 +75,9 @@ Item {
             } else if (forOutput) {
 
                 items.push({ text: qsTr("Reset"         ), value: DigishowEnvironment.EndpointMetronomeReset,   tag: "reset" })
+                items.push({ text: qsTr("Run ON"        ), value: DigishowEnvironment.EndpointMetronomeRun,     tag: "run" })
                 items.push({ text: qsTr("BPM Change"    ), value: DigishowEnvironment.EndpointMetronomeBPM,     tag: "bpm" })
                 items.push({ text: qsTr("Quantum Change"), value: DigishowEnvironment.EndpointMetronomeQuantum, tag: "quantum" })
-                items.push({ text: qsTr("Run ON"        ), value: DigishowEnvironment.EndpointMetronomeRun,     tag: "run" })
                 items.push({ text: qsTr("Link ON"       ), value: DigishowEnvironment.EndpointMetronomeLink,    tag: "link" })
                 items.push({ text: qsTr("Tap"           ), value: DigishowEnvironment.EndpointMetronomeTap,     tag: "tap" })
             }
@@ -130,9 +121,16 @@ Item {
 
     function refreshMoreOptions() {
 
+        var endpointType = menuType.selectedItemValue
+        var enables = {}
+
+        if (endpointType === DigishowEnvironment.EndpointMetronomeCount) {
+            enables["optRangeInt"] = true
+        }
+
         popupMoreOptions.resetOptions()
-        popupMoreOptions.enableOptions({})
-        buttonMoreOptions.visible = false
+        popupMoreOptions.enableOptions(enables)
+        buttonMoreOptions.visible = (Object.keys(enables).length > 0)
     }
 
     function setEndpointOptions(endpointInfo, endpointOptions) {

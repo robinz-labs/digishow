@@ -34,6 +34,7 @@
 #include "dgs_audioin_interface.h"
 #include "dgs_screen_interface.h"
 #include "dgs_pipe_interface.h"
+#include "dgs_lfo_interface.h"
 #include "dgs_launch_interface.h"
 #include "dgs_hotkey_interface.h"
 #include "dgs_metronome_interface.h"
@@ -184,6 +185,7 @@ void DigishowApp::importData(const QVariantMap & data)
         else if (interfaceType=="audioin"  ) interface = new DgsAudioinInterface(this);
         else if (interfaceType=="screen"   ) interface = new DgsScreenInterface(this);
         else if (interfaceType=="pipe"     ) interface = new DgsPipeInterface(this);
+        else if (interfaceType=="lfo"      ) interface = new DgsLfoInterface(this);
         else if (interfaceType=="launch"   ) interface = new DgsLaunchInterface(this);
         else if (interfaceType=="hotkey"   ) interface = new DgsHotkeyInterface(this);
         else if (interfaceType=="metronome") interface = new DgsMetronomeInterface(this);
@@ -192,7 +194,11 @@ void DigishowApp::importData(const QVariantMap & data)
 #ifdef DIGISHOW_EXPERIMENTAL
         else if (interfaceType=="mplay"    ) interface = new DgsMPlayInterface(this);
 #endif
-        else                                 interface = new DigishowInterface(this);
+        // else interface = new DigishowInterface(this);
+        else {
+            messageNotify(tr("Unable to handle the unspported interface type '%1'. \r\nPlease try again with the latest version of the application.").arg(interfaceType));
+            continue;
+        }
 
         interface->setInterfaceOptions(dataInterface);
         for (int m=0 ; m<dataEndpoints.length() ; m++) {
@@ -562,10 +568,11 @@ void DigishowApp::newShow()
     m_filepath.clear();
     emit filepathChanged();
 
-    newInterface("aplay");
-    newInterface("metronome");
     newInterface("hotkey");
+    newInterface("aplay");
     newInterface("launch");
+    newInterface("metronome");
+    newInterface("lfo");
     newInterface("pipe");
     emit interfaceListChanged();
 }
@@ -623,6 +630,11 @@ int DigishowApp::newInterface(const QString &interfaceType)
 
         interface = new DgsPipeInterface(this);
         interface->setInterfaceOption("mode", "local");
+
+    } else if (interfaceType=="lfo") {
+
+        interface = new DgsLfoInterface(this);
+        interface->setInterfaceOption("mode", "");
 
     } else if (interfaceType=="launch") {
 

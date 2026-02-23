@@ -33,6 +33,7 @@ SOURCES += \
     dgs_audioin_interface.cpp \
     dgs_screen_interface.cpp \
     dgs_pipe_interface.cpp \
+    dgs_lfo_interface.cpp \
     dgs_launch_interface.cpp \
     dgs_hotkey_interface.cpp \
     dgs_metronome_interface.cpp \
@@ -53,6 +54,7 @@ SOURCES += \
     digishow_cue_player.cpp \
     digishow_metronome.cpp \
     digishow_pixel_player.cpp \
+    digishow_lfo.cpp \
     main.cpp
 
 HEADERS += \
@@ -90,6 +92,7 @@ HEADERS += \
     dgs_audioin_interface.h \
     dgs_screen_interface.h \
     dgs_pipe_interface.h \
+    dgs_lfo_interface.h \
     dgs_launch_interface.h \
     dgs_hotkey_interface.h \
     dgs_metronome_interface.h \
@@ -109,7 +112,8 @@ HEADERS += \
     digishow_cue_manager.h \
     digishow_cue_player.h \
     digishow_metronome.h \
-    digishow_pixel_player.h
+    digishow_pixel_player.h \
+    digishow_lfo.h
 
 RESOURCES += $$PWD/resources/main.qrc
 

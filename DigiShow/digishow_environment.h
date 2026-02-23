@@ -46,14 +46,17 @@ public:
         InterfaceArtnet    = INTERFACE_ARTNET,
         InterfaceOsc       = INTERFACE_OSC,
         InterfaceAudioIn   = INTERFACE_AUDIOIN,
+        InterfaceHotkey    = INTERFACE_HOTKEY,
+        InterfaceMessenger = INTERFACE_MESSENGER,
+
         InterfaceScreen    = INTERFACE_SCREEN,
         InterfaceAPlay     = INTERFACE_APLAY,
         InterfaceMPlay     = INTERFACE_MPLAY,
+
         InterfacePipe      = INTERFACE_PIPE,
+        InterfaceLfo       = INTERFACE_LFO,
         InterfaceLaunch    = INTERFACE_LAUNCH,
-        InterfaceHotkey    = INTERFACE_HOTKEY,
-        InterfaceMetronome = INTERFACE_METRONOME,
-        InterfaceMessenger = INTERFACE_MESSENGER
+        InterfaceMetronome = INTERFACE_METRONOME
     };
     Q_ENUM(InterfaceType)
 
@@ -81,19 +84,22 @@ public:
         InterfaceOscInput         = INTERFACE_OSC_INPUT,
         InterfaceOscOutput        = INTERFACE_OSC_OUTPUT,
         InterfaceAudioInDefault   = INTERFACE_AUDIOIN_DEFAULT,
+        InterfaceHotkeyDefault    = INTERFACE_HOTKEY_DEFAULT,
+        InterfaceMessengerCom     = INTERFACE_MESSENGER_COM,
+        InterfaceMessengerTcp     = INTERFACE_MESSENGER_TCP,
+        InterfaceMessengerUdpIn   = INTERFACE_MESSENGER_UDP_IN,
+        InterfaceMessengerUdpOut  = INTERFACE_MESSENGER_UDP_OUT,
+
         InterfaceScreenDefault    = INTERFACE_SCREEN_DEFAULT,
         InterfaceAPlayDefault     = INTERFACE_APLAY_DEFAULT,
         InterfaceMPlayDefault     = INTERFACE_MPLAY_DEFAULT,
+
         InterfacePipeLocal        = INTERFACE_PIPE_LOCAL,
         InterfacePipeRemote       = INTERFACE_PIPE_REMOTE,
         InterfacePipeCloud        = INTERFACE_PIPE_CLOUD,
+        InterfaceLfoDefault       = INTERFACE_LFO_DEFAULT,
         InterfaceLaunchDefault    = INTERFACE_LAUNCH_DEFAULT,
-        InterfaceHotkeyDefault    = INTERFACE_HOTKEY_DEFAULT,
-        InterfaceMetronomeDefault = INTERFACE_METRONOME_DEFAULT,
-        InterfaceMessengerCom      = INTERFACE_MESSENGER_COM,
-        InterfaceMessengerTcp      = INTERFACE_MESSENGER_TCP,
-        InterfaceMessengerUdpIn    = INTERFACE_MESSENGER_UDP_IN,
-        InterfaceMessengerUdpOut   = INTERFACE_MESSENGER_UDP_OUT
+        InterfaceMetronomeDefault = INTERFACE_METRONOME_DEFAULT
     };
     Q_ENUM(InterfaceMode)
 
@@ -138,26 +144,36 @@ public:
         EndpointAudioInPeak       = ENDPOINT_AUDIOIN_PEAK,
         EndpointAudioInPeakDb     = ENDPOINT_AUDIOIN_PEAK_DB,
         EndpointAudioInSpectrum   = ENDPOINT_AUDIOIN_SPECTRUM,
+        EndpointHotkeyPress       = ENDPOINT_HOTKEY_PRESS,
+        EndpointMessengerText     = ENDPOINT_MESSENGER_TEXT,
+        EndpointMessengerHexCode  = ENDPOINT_MESSENGER_HEXCODE,
+
         EndpointScreenLight       = ENDPOINT_SCREEN_LIGHT,
         EndpointScreenMedia       = ENDPOINT_SCREEN_MEDIA,
         EndpointScreenCanvas      = ENDPOINT_SCREEN_CANVAS,
         EndpointAPlayMedia        = ENDPOINT_APLAY_MEDIA,
         EndpointMPlayMedia        = ENDPOINT_MPLAY_MEDIA,
+
         EndpointPipeAnalog        = ENDPOINT_PIPE_ANALOG,
         EndpointPipeBinary        = ENDPOINT_PIPE_BINARY,
         EndpointPipeNote          = ENDPOINT_PIPE_NOTE,
+        EndpointLfoValue          = ENDPOINT_LFO_VALUE,
+        EndpointLfoTime           = ENDPOINT_LFO_TIME,
+        EndpointLfoReset          = ENDPOINT_LFO_RESET,
+        EndpointLfoRun            = ENDPOINT_LFO_RUN,
+        EndpointLfoPeriod         = ENDPOINT_LFO_PERIOD,
+        EndpointLfoPhase          = ENDPOINT_LFO_PHASE,
+        EndpointLfoAmplitude      = ENDPOINT_LFO_AMPLITUDE,
+        EndpointLfoSample         = ENDPOINT_LFO_SAMPLE,
         EndpointLaunchPreset      = ENDPOINT_LAUNCH_PRESET,
-        EndpointHotkeyPress       = ENDPOINT_HOTKEY_PRESS,
         EndpointMetronomeBeat     = ENDPOINT_METRONOME_BEAT,
-        EndpointMetronomeBPM      = ENDPOINT_METRONOME_BPM,
-        EndpointMetronomeQuantum  = ENDPOINT_METRONOME_QUANTUM,
-        EndpointMetronomeRun      = ENDPOINT_METRONOME_RUN,
-        EndpointMetronomeLink     = ENDPOINT_METRONOME_LINK,
-        EndpointMetronomeTap      = ENDPOINT_METRONOME_TAP,
         EndpointMetronomeCount    = ENDPOINT_METRONOME_COUNT,
         EndpointMetronomeReset    = ENDPOINT_METRONOME_RESET,
-        EndpointMessengerText     = ENDPOINT_MESSENGER_TEXT,
-        EndpointMessengerHexCode  = ENDPOINT_MESSENGER_HEXCODE
+        EndpointMetronomeRun      = ENDPOINT_METRONOME_RUN,
+        EndpointMetronomeBPM      = ENDPOINT_METRONOME_BPM,
+        EndpointMetronomeQuantum  = ENDPOINT_METRONOME_QUANTUM,
+        EndpointMetronomeLink     = ENDPOINT_METRONOME_LINK,
+        EndpointMetronomeTap      = ENDPOINT_METRONOME_TAP
     };
     Q_ENUM(EndpointType)
 

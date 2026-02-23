@@ -89,6 +89,23 @@ Item {
         ToolTip.text: qsTr("Endpoint ID: ") + endpointIdentification
     }
 
+    Text {
+        anchors.top: iconInterfaceType.bottom
+        anchors.topMargin: 18
+        anchors.horizontalCenter: iconInterfaceType.horizontalCenter
+        color: "#dddddd"
+        text: {
+            if (forInput && !forOutput)
+                return "IN"
+            else if (!forInput && forOutput)
+                return "OUT"
+        }
+        font.pixelSize: 10
+        font.bold: true
+        font.family: "Arial"
+        visible: iconInterfaceType.visible
+    }
+
     COptionButton {
         id: buttonInterface
 
@@ -127,6 +144,7 @@ Item {
                 itemAPlay    .visible = false
                 itemMPlay    .visible = false
                 itemPipe     .visible = false
+                itemLFO      .visible = false
                 itemLaunch   .visible = false
                 itemHotkey   .visible = false
                 itemMetronome.visible = false
@@ -153,6 +171,7 @@ Item {
                     case DigishowEnvironment.InterfaceAPlay:     itemAPlay    .visible = true; itemAPlay    .refresh(); break
                     case DigishowEnvironment.InterfaceMPlay:     itemMPlay    .visible = true; itemMPlay    .refresh(); break
                     case DigishowEnvironment.InterfacePipe:      itemPipe     .visible = true; itemPipe     .refresh(); break
+                    case DigishowEnvironment.InterfaceLfo:       itemLFO      .visible = true; itemLFO      .refresh(); break
                     case DigishowEnvironment.InterfaceLaunch:    itemLaunch   .visible = true; itemLaunch   .refresh(); break
                     case DigishowEnvironment.InterfaceHotkey:    itemHotkey   .visible = true; itemHotkey   .refresh(); break
                     case DigishowEnvironment.InterfaceMetronome: itemMetronome.visible = true; itemMetronome.refresh(); break
@@ -347,6 +366,16 @@ Item {
         visible: false
     }
 
+    MwEndpointSelectorLFO {
+
+        id: itemLFO
+
+        anchors.left: buttonInterface.left
+        anchors.top: buttonInterface.bottom
+        anchors.topMargin: 10
+        visible: false
+    }
+
     MwEndpointSelectorLaunch {
 
         id: itemLaunch
@@ -477,10 +506,11 @@ Item {
             case DigishowEnvironment.InterfaceAPlay:     itemEndpoint = itemAPlay;     break
             case DigishowEnvironment.InterfaceMPlay:     itemEndpoint = itemMPlay;     break
             case DigishowEnvironment.InterfacePipe:      itemEndpoint = itemPipe;      break
+            case DigishowEnvironment.InterfaceLfo:       itemEndpoint = itemLFO;       break
             case DigishowEnvironment.InterfaceLaunch:    itemEndpoint = itemLaunch;    break
             case DigishowEnvironment.InterfaceHotkey:    itemEndpoint = itemHotkey;    break
             case DigishowEnvironment.InterfaceMetronome: itemEndpoint = itemMetronome; break
-            case DigishowEnvironment.InterfaceMessenger:  itemEndpoint = itemMessenger;  break
+            case DigishowEnvironment.InterfaceMessenger: itemEndpoint = itemMessenger; break
 
             }
             if (itemEndpoint !== null)
@@ -521,10 +551,11 @@ Item {
         case DigishowEnvironment.InterfaceAPlay:     itemEndpoint = itemAPlay;     break
         case DigishowEnvironment.InterfaceMPlay:     itemEndpoint = itemMPlay;     break
         case DigishowEnvironment.InterfacePipe:      itemEndpoint = itemPipe;      break
+        case DigishowEnvironment.InterfaceLfo:       itemEndpoint = itemLFO;       needRestartInterface = true; break
         case DigishowEnvironment.InterfaceLaunch:    itemEndpoint = itemLaunch;    break
         case DigishowEnvironment.InterfaceHotkey:    itemEndpoint = itemHotkey;    needRestartInterface = true; break
         case DigishowEnvironment.InterfaceMetronome: itemEndpoint = itemMetronome; needRestartInterface = true; break
-        case DigishowEnvironment.InterfaceMessenger:  itemEndpoint = itemMessenger;  needRestartInterface = forInput; break
+        case DigishowEnvironment.InterfaceMessenger: itemEndpoint = itemMessenger; needRestartInterface = forInput; break
         }
         if (itemEndpoint !== null)
             newEndpointOptions = itemEndpoint.getEndpointOptions()

@@ -25,7 +25,7 @@ Item {
 
         Text {
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: -24
+            anchors.verticalCenterOffset: -10
             anchors.horizontalCenter: parent.horizontalCenter
             color: "#dddddd"
             font.pixelSize: 16
@@ -35,7 +35,7 @@ Item {
 
         Text {
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: 20
+            anchors.verticalCenterOffset:30
             anchors.horizontalCenter: parent.horizontalCenter
             color: "#999999"
             font.pixelSize: 14

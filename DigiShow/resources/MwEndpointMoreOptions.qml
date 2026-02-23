@@ -199,7 +199,7 @@ Popup {
             anchors.left: parent.left
             anchors.leftMargin: 120
             from: 1
-            to: 10000000
+            to: 0x7fffffff
             stepSize: 1
             unit: ""
             visible: enabled
@@ -247,13 +247,13 @@ Popup {
         CSpinBox {
             id: spinOptRangeMSec
 
-            property int defaultValue: 100000
+            property int defaultValue: 1000000000
 
             width: 120
             anchors.left: parent.left
             anchors.leftMargin: 120
             from: 1
-            to: 99999000
+            to: 2000000000
             stepSize: 1000
             unit: ""
             visible: enabled
@@ -508,6 +508,138 @@ Popup {
             }
         }
 
+        CheckBox {
+            id: checkOptRun
+
+            property bool defaultValue: true
+
+            height: 28
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            padding: 0
+            visible: enabled
+
+
+            onClicked: isModified = true
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Run")
+            }
+        }
+
+        CSpinBox {
+            id: spinOptPeriod
+
+            property int defaultValue: 1000
+
+            width: 120
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            from: 100
+            to: 60000
+            stepSize: 100
+            unit: "ms"
+            visible: enabled
+
+
+            onValueModified: isModified = true
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Period")
+            }
+        }
+
+        CSpinBox {
+            id: spinOptPhase
+
+            property int defaultValue: 0
+
+            width: 120
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            from: 0
+            to: 100
+            stepSize: 5
+            unit: "%"
+            visible: enabled
+
+
+            onValueModified: isModified = true
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Phase")
+            }
+        }
+
+        CSpinBox {
+            id: spinOptAmplitude
+
+            property int defaultValue: 100
+
+            width: 120
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            from: 0
+            to: 100
+            stepSize: 5
+            unit: "%"
+            visible: enabled
+
+
+            onValueModified: isModified = true
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Amplitude")
+            }
+        }
+
+        CSpinBox {
+            id: spinOptSample
+
+            property int defaultValue: 20
+
+            width: 120
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            from: 10
+            to: 60000
+            stepSize: 10
+            unit: "ms"
+            visible: enabled
+
+
+            onValueModified: isModified = true
+
+            Text {
+                anchors.right: parent.left
+                anchors.rightMargin: 15
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#cccccc"
+                font.pixelSize: 12
+                text: qsTr("Sample Interval")
+            }
+        }
+
     }
 
     function show() {
@@ -551,17 +683,25 @@ Popup {
         spinOptInitialB        .enabled = (enables["optInitialB"        ] === true)
         spinOptInitialMidi     .enabled = (enables["optInitialMidi"     ] === true)
         spinOptInitialDmx      .enabled = (enables["optInitialDmx"      ] === true)
+
         spinOptRange           .enabled = (enables["optRange"           ] === true)
         spinOptRangeInt        .enabled = (enables["optRangeInt"        ] === true)
         spinOptRangeMSec       .enabled = (enables["optRangeMSec"       ] === true)
         spinOptRangeSteps      .enabled = (enables["optRangeSteps"      ] === true)
         spinOptRangeFrequency  .enabled = (enables["optRangeFrequency"  ] === true)
+
         spinOptFilterLevel     .enabled = (enables["optFilterLevel"     ] === true)
         spinOptSamplingInterval.enabled = (enables["optSamplingInterval"] === true)
         spinOptSpeed           .enabled = (enables["optSpeed"           ] === true)
         spinOptPosition        .enabled = (enables["optPosition"        ] === true)
         buttonOptModeStepper   .enabled = (enables["optModeStepper"     ] === true)
         buttonOptModePuPd      .enabled = (enables["optModePuPd"        ] === true)
+
+        checkOptRun            .enabled = (enables["optRun"             ] === true)
+        spinOptPeriod          .enabled = (enables["optPeriod"          ] === true)
+        spinOptPhase           .enabled = (enables["optPhase"           ] === true)
+        spinOptAmplitude       .enabled = (enables["optAmplitude"       ] === true)
+        spinOptSample          .enabled = (enables["optSample"          ] === true)
 
         checkOptInitialize     .enabled = (spinOptInitialA.enabled ||
                                            spinOptInitialB.enabled ||
@@ -576,17 +716,25 @@ Popup {
         spinOptInitialB        .value   = spinOptInitialB        .defaultValue
         spinOptInitialMidi     .value   = spinOptInitialMidi     .defaultValue
         spinOptInitialDmx      .value   = spinOptInitialDmx      .defaultValue
+
         spinOptRange           .value   = spinOptRange           .defaultValue
         spinOptRangeInt        .value   = spinOptRangeInt        .defaultValue
         spinOptRangeMSec       .value   = spinOptRangeMSec       .defaultValue
         spinOptRangeSteps      .value   = spinOptRangeSteps      .defaultValue
         spinOptRangeFrequency  .value   = spinOptRangeFrequency  .defaultValue
+
         spinOptFilterLevel     .value   = spinOptFilterLevel     .defaultValue
         spinOptSamplingInterval.value   = spinOptSamplingInterval.defaultValue
         spinOptSpeed           .value   = spinOptSpeed           .defaultValue
         spinOptPosition        .value   = spinOptPosition        .defaultValue
         menuOptModeStepper     .selectOption(menuOptModeStepper  .defaultValue)
         menuOptModePuPd        .selectOption(menuOptModePuPd     .defaultValue)
+
+        checkOptRun            .checked = checkOptRun            .defaultValue
+        spinOptPeriod          .value   = spinOptPeriod          .defaultValue
+        spinOptPhase           .value   = spinOptPhase           .defaultValue
+        spinOptAmplitude       .value   = spinOptAmplitude       .defaultValue
+        spinOptSample          .value   = spinOptSample          .defaultValue
 
         isDefault = true
         isRevealed = false
@@ -670,6 +818,30 @@ Popup {
             if (menuOptModePuPd.selectedItemValue !== menuOptModePuPd.defaultValue) isDefault = false
         }
 
+        if (checkOptRun.enabled) {
+            checkOptRun.checked = getOptionValue("optRun", checkOptRun.defaultValue)
+            if (checkOptRun.checked !== checkOptRun.defaultValue) isDefault = false
+        }
+
+        if (spinOptPeriod.enabled) {
+            spinOptPeriod.value = getOptionValue("optPeriod", spinOptPeriod.defaultValue)
+            if (spinOptPeriod.value !== spinOptPeriod.defaultValue) isDefault = false
+        }
+
+        if (spinOptPhase.enabled) {
+            spinOptPhase.value = getOptionValue("optPhase", spinOptPhase.defaultValue * 0.01) * 100
+            if (spinOptPhase.value !== spinOptPhase.defaultValue) isDefault = false
+        }
+
+        if (spinOptAmplitude.enabled) {
+            spinOptAmplitude.value = getOptionValue("optAmplitude", spinOptAmplitude.defaultValue * 0.01) * 100
+            if (spinOptAmplitude.value !== spinOptAmplitude.defaultValue) isDefault = false
+        }
+
+        if (spinOptSample.enabled) {
+            spinOptSample.value = getOptionValue("optSample", spinOptSample.defaultValue)
+            if (spinOptSample.value !== spinOptSample.defaultValue) isDefault = false
+        }
     }
 
     function getOptions() {
@@ -706,6 +878,12 @@ Popup {
 
         if (buttonOptModeStepper.enabled) options["optMode"] = menuOptModeStepper.selectedItemValue
         if (buttonOptModePuPd.enabled) options["optMode"] = menuOptModePuPd.selectedItemValue
+
+        if (checkOptRun.enabled) options["optRun"] = checkOptRun.checked
+        if (spinOptPeriod.enabled) options["optPeriod"] = spinOptPeriod.value
+        if (spinOptPhase.enabled) options["optPhase"] = spinOptPhase.value * 0.01
+        if (spinOptAmplitude.enabled) options["optAmplitude"] = spinOptAmplitude.value * 0.01
+        if (spinOptSample.enabled) options["optSample"] = spinOptSample.value
 
         return options
     }

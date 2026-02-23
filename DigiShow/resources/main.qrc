@@ -63,6 +63,7 @@
         <file>images/icon_interface_aplay_white.png</file>
         <file>images/icon_interface_mplay_white.png</file>
         <file>images/icon_interface_pipe_white.png</file>
+        <file>images/icon_interface_lfo_white.png</file>
         <file>images/icon_interface_launch_white.png</file>
         <file>images/icon_interface_hotkey_white.png</file>
         <file>images/icon_interface_metronome_white.png</file>
@@ -79,6 +80,7 @@
         <file>images/icon_interface_aplay_white@2x.png</file>
         <file>images/icon_interface_mplay_white@2x.png</file>
         <file>images/icon_interface_pipe_white@2x.png</file>
+        <file>images/icon_interface_lfo_white@2x.png</file>
         <file>images/icon_interface_launch_white@2x.png</file>
         <file>images/icon_interface_hotkey_white@2x.png</file>
         <file>images/icon_interface_metronome_white@2x.png</file>
@@ -124,6 +126,7 @@
         <file>MwEndpointSelectorAPlay.qml</file>
         <file>MwEndpointSelectorMPlay.qml</file>
         <file>MwEndpointSelectorPipe.qml</file>
+        <file>MwEndpointSelectorLFO.qml</file>
         <file>MwEndpointSelectorLaunch.qml</file>
         <file>MwEndpointSelectorHotkey.qml</file>
         <file>MwEndpointSelectorMetronome.qml</file>

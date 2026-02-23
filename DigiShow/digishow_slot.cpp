@@ -101,7 +101,7 @@ int DigishowSlot::setSource(DigishowInterface *interface, int endpointIndex)
     }
 
     // create new source connection
-    if (interface != nullptr) {
+    if (interface != nullptr && endpointIndex < interface->endpointCount()) {
         m_sourceInterface = interface;
         m_sourceEndpointIndex = endpointIndex;
         m_slotInfo.inputSignal = interface->endpointInfoList()->at(endpointIndex).signal;
@@ -130,7 +130,7 @@ int DigishowSlot::setDestination(DigishowInterface *interface, int endpointIndex
     }
 
     // create new destination connection
-    if (interface != nullptr) {
+    if (interface != nullptr && endpointIndex < interface->endpointCount()) {
         m_destinationInterface = interface;
         m_destinationEndpointIndex = endpointIndex;
         m_slotInfo.outputSignal = interface->endpointInfoList()->at(endpointIndex).signal;

@@ -36,6 +36,7 @@
 #include "digishow_cue_manager.h"
 #include "digishow_cue_player.h"
 #include "digishow_metronome.h"
+#include "digishow_lfo.h"
 #include "digishow_pixel_player.h"
 #include "digishow_remote_web.h"
 
@@ -142,6 +143,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<DigishowCueManager> ("DigiShow", 1, 0, "DigishowCueManager");
     qmlRegisterType<DigishowCuePlayer>  ("DigiShow", 1, 0, "DigishowCuePlayer");
     qmlRegisterType<DigishowMetronome>  ("DigiShow", 1, 0, "DigishowMetronome");
+    qmlRegisterType<DigishowLFO>        ("DigiShow", 1, 0, "DigishowLFO");
     qmlRegisterType<DigishowPixelPlayer>("DigiShow", 1, 0, "DigishowPixelPlayer");
     qmlRegisterType<DigishowRemoteWeb>  ("DigiShow", 1, 0, "DigishowRemoteWeb");
     qmlRegisterType<DigishowCloud>      ("DigiShow", 1, 0, "DigishowCloud");
