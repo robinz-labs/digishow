@@ -4,14 +4,24 @@
 <context>
     <name>DgsAPlayInterface</name>
     <message>
-        <location filename="../../dgs_aplay_interface.cpp" line="237"/>
+        <location filename="../../dgs_aplay_interface.cpp" line="310"/>
         <source>Audio Player</source>
         <translation>Reproductor de audio</translation>
     </message>
     <message>
-        <location filename="../../dgs_aplay_interface.cpp" line="249"/>
+        <location filename="../../dgs_aplay_interface.cpp" line="323"/>
         <source>Audio Clip</source>
         <translation>Clip de audio</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_aplay_interface.cpp" line="346"/>
+        <source>Playing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_aplay_interface.cpp" line="352"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -101,90 +111,103 @@
 <context>
     <name>DgsLaunchInterface</name>
     <message>
-        <location filename="../../dgs_launch_interface.cpp" line="82"/>
+        <location filename="../../dgs_launch_interface.cpp" line="106"/>
         <source>Preset Launcher</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_launch_interface.cpp" line="95"/>
+        <location filename="../../dgs_launch_interface.cpp" line="128"/>
+        <location filename="../../dgs_launch_interface.cpp" line="132"/>
+        <location filename="../../dgs_launch_interface.cpp" line="140"/>
+        <location filename="../../dgs_launch_interface.cpp" line="147"/>
         <source>Preset</source>
         <translation>Preset</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_launch_interface.cpp" line="141"/>
+        <source>Playing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_launch_interface.cpp" line="148"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DgsLfoInterface</name>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="183"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="181"/>
         <source>LFO</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="200"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="198"/>
         <source>LFO %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="214"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="212"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="219"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="217"/>
         <source>Reset</source>
         <translation type="unfinished">Reiniciar</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="224"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="222"/>
         <source>Run</source>
         <translation type="unfinished">Ejecutar</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="230"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="228"/>
         <source>Period</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="236"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="234"/>
         <source>Phase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="242"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="240"/>
         <source>Amplitude</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="248"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="246"/>
         <source>Sample</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="259"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="257"/>
         <source>Sine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="260"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="258"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="261"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="259"/>
         <source>Sawtooth</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="262"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="260"/>
         <source>Triangle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="263"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="261"/>
         <source>Random</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="264"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="262"/>
         <source>None</source>
         <translation type="unfinished">Ninguno</translation>
     </message>
@@ -224,55 +247,55 @@
 <context>
     <name>DgsMetronomeInterface</name>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="170"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="193"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="202"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="208"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="214"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="221"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="228"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="234"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="240"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="171"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="194"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="203"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="209"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="215"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="222"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="229"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="235"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="241"/>
         <source>Beat Maker</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="194"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="195"/>
         <source>Beat %1</source>
         <translation>Tiempo %1</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="222"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="223"/>
         <source>BPM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="229"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="230"/>
         <source>Quantum</source>
         <translation>Cuantía</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="215"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="216"/>
         <source>Run</source>
         <translation>Ejecutar</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="235"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="236"/>
         <source>Link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="241"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="242"/>
         <source>Tap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="203"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="204"/>
         <source>Count</source>
         <translation>Conteo</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="209"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="210"/>
         <source>Reset</source>
         <translation>Reiniciar</translation>
     </message>
@@ -500,8 +523,8 @@ asegúrate de que el programa DigiShow RIOC esté cargado en Arduino.</translati
     <name>DigishowApp</name>
     <message>
         <location filename="../../digishow_app.cpp" line="199"/>
-        <source>Unable to handle the unspported interface type &apos;%1&apos;. <byte value="xd"/>
-Please use the latest version app and try again.</source>
+        <source>Unable to handle the unsupported interface type &apos;%1&apos;. <byte value="xd"/>
+Please try again with the latest version of the application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1765,7 +1788,7 @@ either express or implied.</source>
         <translation>Ninguno</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="474"/>
+        <location filename="../MwEndpointSelector.qml" line="477"/>
         <source>More ...</source>
         <translation>Más ...</translation>
     </message>
@@ -1773,93 +1796,104 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorAPlay</name>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="55"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="71"/>
         <source>File ...</source>
         <translation>Archivo ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="74"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="90"/>
         <source>Options ...</source>
         <translation>Opciones ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="104"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="123"/>
         <source>Select Audio File</source>
         <translation>Seleccionar archivo de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="107"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="126"/>
         <source>Audio files</source>
         <translation>Archivos de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="108"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="127"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="167"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="186"/>
         <source>Audio Clip Playback Options</source>
         <translation>Opciones de reproducción de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="192"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="211"/>
         <source>Play Alone</source>
         <translation>Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="216"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="235"/>
         <source>Volume</source>
         <translation>Volumen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="230"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="249"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="240"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="259"/>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="254"/>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="278"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="37"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="273"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="297"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="264"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="283"/>
         <source>Position</source>
         <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="288"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="307"/>
         <source>Duration</source>
         <translation>Duración</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="309"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="328"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="325"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="344"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="347"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="367"/>
+        <source>Playing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="368"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="370"/>
         <source>Audio Clip</source>
         <translation>Clip de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="463"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="482"/>
         <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
         <translation>Seleccione un archivo de clip de audio que exista en los discos de su computadora o ingrese una URL válida del clip de audio.</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="463"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="482"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
@@ -2422,6 +2456,24 @@ either express or implied.</source>
     </message>
 </context>
 <context>
+    <name>MwEndpointSelectorLaunch</name>
+    <message>
+        <location filename="../MwEndpointSelectorLaunch.qml" line="54"/>
+        <source>ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorLaunch.qml" line="89"/>
+        <source>Playing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorLaunch.qml" line="92"/>
+        <source>Preset</source>
+        <translation type="unfinished">Preset</translation>
+    </message>
+</context>
+<context>
     <name>MwEndpointSelectorMPlay</name>
     <message>
         <location filename="../MwEndpointSelectorMPlay.qml" line="55"/>
@@ -2548,62 +2600,62 @@ You can enter any hex code, for example: </source>
 <context>
     <name>MwEndpointSelectorMetronome</name>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="81"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="72"/>
         <source>Beat Trigger</source>
         <translation>Disparador de</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="82"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="73"/>
         <source>Beat Count</source>
         <translation>Conteo de tiempos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="86"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="77"/>
         <source>Reset</source>
         <translation>Reiniciar</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="88"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="79"/>
         <source>BPM Change</source>
         <translation>Cambio de BPM</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="89"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="80"/>
         <source>Quantum Change</source>
         <translation>Cambio de cantidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="87"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="78"/>
         <source>Run ON</source>
         <translation>Ejecutar ON</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="90"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="81"/>
         <source>Link ON</source>
         <translation>Link ON</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="91"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="82"/>
         <source>Tap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="104"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="95"/>
         <source>Beat %1</source>
         <translation>Tiempo %1</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="118"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="109"/>
         <source>beat</source>
         <translation>tiempo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="118"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="109"/>
         <source>beats</source>
         <translation>tiempos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="121"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="112"/>
         <source>Sustain %1</source>
         <translation>Sostener %1</translation>
     </message>

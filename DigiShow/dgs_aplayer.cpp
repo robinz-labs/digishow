@@ -26,6 +26,9 @@ DgsAPlayer::DgsAPlayer(QObject *parent) : QObject(parent)
     m_repeat = false;
 
     m_player = new QMediaPlayer();
+    m_player->setNotifyInterval(100);
+    connect(m_player, SIGNAL(positionChanged(qint64)), this, SLOT(onPositionChanged(qint64)));
+
     m_timer = new QTimer();
     connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimerFired()));
 }
@@ -50,6 +53,7 @@ bool DgsAPlayer::load(const QString &strUrl)
 
     m_player->setMedia(content);
     m_isLoaded = true;
+
     return true;
 }
 
@@ -76,7 +80,6 @@ void DgsAPlayer::play()
     if (!m_isLoaded) return;
 
     if (m_isPlaying) stop();
-    m_isPlaying = true;
 
     // automatically set the playback duration of specified media
     qint64 mediaDuration = m_player->duration();
@@ -96,6 +99,8 @@ void DgsAPlayer::play()
     if (m_position > 0) m_player->setPosition(m_position);
     m_player->play();
 
+    m_isPlaying = true;
+    emit playingChanged(m_isPlaying);
 }
 
 void DgsAPlayer::stop()
@@ -104,7 +109,9 @@ void DgsAPlayer::stop()
 
     m_player->stop();
     m_timer->stop();
+
     m_isPlaying = false;
+    emit playingChanged(m_isPlaying);
 }
 
 void DgsAPlayer::onTimerFired()
@@ -118,6 +125,13 @@ void DgsAPlayer::onTimerFired()
     } else {
         // finish playing
         m_timer->stop();
+
         m_isPlaying = false;
+        emit playingChanged(m_isPlaying);
     }
+}
+
+void DgsAPlayer::onPositionChanged(qint64 position)
+{
+    emit timeChanged(position);
 }

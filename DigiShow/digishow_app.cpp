@@ -196,7 +196,7 @@ void DigishowApp::importData(const QVariantMap & data)
 #endif
         // else interface = new DigishowInterface(this);
         else {
-            messageNotify(tr("Unable to handle the unspported interface type '%1'. \r\nPlease try again with the latest version of the application.").arg(interfaceType));
+            messageNotify(tr("Unable to handle the unsupported interface type '%1'. \r\nPlease try again with the latest version of the application.").arg(interfaceType));
             continue;
         }
 

@@ -142,8 +142,14 @@
 #define ENDPOINT_SCREEN_LIGHT       801001
 #define ENDPOINT_SCREEN_MEDIA       801002
 #define ENDPOINT_SCREEN_CANVAS      801003
+#define ENDPOINT_SCREEN_PLAYING     801004
+#define ENDPOINT_SCREEN_TIME        801005
 #define ENDPOINT_APLAY_MEDIA        802001
+#define ENDPOINT_APLAY_PLAYING      802002
+#define ENDPOINT_APLAY_TIME         802003
 #define ENDPOINT_MPLAY_MEDIA        803001
+#define ENDPOINT_MPLAY_PLAYING      803002
+#define ENDPOINT_MPLAY_TIME         803003
 
 #define ENDPOINT_PIPE_ANALOG        901001
 #define ENDPOINT_PIPE_BINARY        901002
@@ -157,6 +163,8 @@
 #define ENDPOINT_LFO_AMPLITUDE      902007
 #define ENDPOINT_LFO_SAMPLE         902008
 #define ENDPOINT_LAUNCH_PRESET      903001
+#define ENDPOINT_LAUNCH_PLAYING     903002
+#define ENDPOINT_LAUNCH_TIME        903003
 #define ENDPOINT_METRONOME_BEAT     904001
 #define ENDPOINT_METRONOME_COUNT    904002
 #define ENDPOINT_METRONOME_RESET    904003
@@ -224,11 +232,14 @@ typedef struct dgsSignalData {
 // interface info struct
 typedef struct dgsInterfaceInfo {
 
-    int type;           // interface type id
-    int mode;           // interface mode id
-    bool output;        // can output signal
-    bool input;         // can input signal
-    QString label;      // a label describes the interface
+    int type;             // interface type id
+    int mode;             // interface mode id
+    bool output;          // can output signal
+    bool input;           // can input signal
+    bool outputSecondary; // output signal is secondary
+    bool inputSecondary;  // input signal is secondary
+
+    QString label;        // a label describes the interface
 
     // defaults
     dgsInterfaceInfo() :
@@ -236,6 +247,8 @@ typedef struct dgsInterfaceInfo {
       mode(0),
       output(false),
       input(false),
+      outputSecondary(false),
+      inputSecondary(false),
       label("")
     {}
 

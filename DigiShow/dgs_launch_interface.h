@@ -32,6 +32,9 @@ public:
     int closeInterface() override;
     int sendData(int endpointIndex, dgsSignalData data) override;
 
+public slots:
+    void onStatusUpdated();
+
 private:
     void updateMetadata_() override;
 };

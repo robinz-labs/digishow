@@ -12,6 +12,8 @@ Menu {
     readonly property string selectedItemTag:   (selectedIndex === -1 || optionItems[selectedIndex].tag   === undefined) ? "" : optionItems[selectedIndex].tag
     readonly property string selectedItemText:  (selectedIndex === -1 || optionItems[selectedIndex].text  === undefined) ? "" : optionItems[selectedIndex].text
 
+    property bool showIcons: false
+
     signal optionSelected(int value) // option item selection changed by code or mouse-clicking
     signal optionClicked(int value)  // option item selection changed by mouse-clicking
 
@@ -26,8 +28,8 @@ Menu {
     background: Rectangle {
         color: "#484848"
         radius: 3
-        //border.color: "#666666"
-        //border.width: 1
+        border.color: "#80666666"
+        border.width: 1
     }
 
     contentItem: ListView {
@@ -70,6 +72,8 @@ Menu {
                 var menuItem = Qt.createQmlObject("COptionMenuItem {}", this)
                 menuItem.index = n
                 menuItem.text = optionItems[n].text
+                menuItem.secondary = (optionItems[n].secondary === true)
+                menuItem.showIcon = optionItems[n].value !== -1 && showIcons
                 menuItem.itemSelected.connect(function(index) {
 
                     if (selectedIndex === index) return

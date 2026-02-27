@@ -37,20 +37,16 @@ DgsAPlayInterface::~DgsAPlayInterface()
 int DgsAPlayInterface::openInterface()
 {
     if (m_isInterfaceOpened) return ERR_DEVICE_BUSY;
-
+    
     updateMetadata();
 
-    if (m_interfaceInfo.mode==INTERFACE_APLAY_DEFAULT) {
+    m_players.clear();
+    m_volumes.clear();
+    m_volumeMaster = 1.0;
 
-        m_players.clear();
-        m_volumes.clear();
-        m_volumeMaster = 1.0;
-
-        // load media and initialize players
-        QVariantList mediaList = cleanMediaList();
-        for (int n=0 ; n<mediaList.length() ; n++) initPlayer(mediaList[n].toMap());
-
-    }
+    // load media and initialize players
+    QVariantList mediaList = cleanMediaList();
+    for (int n=0 ; n<mediaList.length() ; n++) initPlayer(mediaList[n].toMap());
 
     m_isInterfaceOpened = true;
     return ERR_NONE;
@@ -58,22 +54,19 @@ int DgsAPlayInterface::openInterface()
 
 int DgsAPlayInterface::closeInterface()
 {
-    if (m_interfaceInfo.mode==INTERFACE_APLAY_DEFAULT) {
-
-        // release players
-        QStringList playerNames = m_players.keys();
-        int playerCount = playerNames.length();
-        for (int n=0 ; n<playerCount ; n++) {
-            QString key = playerNames[n];
-            DgsAPlayer* player = m_players[key];
-            player->stop();
-            delete player;
-            m_players.remove(key);
-        }
-
-        m_volumes.clear();
-        m_volumeMaster = 1.0;
+    // release players
+    QStringList playerNames = m_players.keys();
+    int playerCount = playerNames.length();
+    for (int n=0 ; n<playerCount ; n++) {
+        QString key = playerNames[n];
+        DgsAPlayer* player = m_players[key];
+        player->stop();
+        delete player;
+        m_players.remove(key);
     }
+
+    m_volumes.clear();
+    m_volumeMaster = 1.0;
 
     m_isInterfaceOpened = false;
     return ERR_NONE;
@@ -84,95 +77,92 @@ int DgsAPlayInterface::sendData(int endpointIndex, dgsSignalData data)
     int r = DigishowInterface::sendData(endpointIndex, data);
     if ( r != ERR_NONE) return r;
 
-    if (m_interfaceInfo.mode==INTERFACE_APLAY_DEFAULT) {
+    if (m_endpointInfoList[endpointIndex].type == ENDPOINT_APLAY_MEDIA) {
 
-        if (m_endpointInfoList[endpointIndex].type == ENDPOINT_APLAY_MEDIA) {
+        // play or stop media playback
 
-            // play or stop media playback
+        int control = m_endpointInfoList[endpointIndex].control;
+        QVariantMap endpointOptions = m_endpointOptionsList[endpointIndex];
+        QString media = endpointOptions.value("media").toString();
 
-            int control = m_endpointInfoList[endpointIndex].control;
-            QVariantMap endpointOptions = m_endpointOptionsList[endpointIndex];
-            QString media = endpointOptions.value("media").toString();
+        if (control == CONTROL_MEDIA_START || control == CONTROL_MEDIA_RESTART) {
 
-            if (control == CONTROL_MEDIA_START || control == CONTROL_MEDIA_RESTART) {
+            DgsAPlayer *player = m_players.value(media, nullptr);
+            if (player == nullptr) return ERR_DEVICE_NOT_READY;
 
-                DgsAPlayer *player = m_players.value(media, nullptr);
-                if (player == nullptr) return ERR_DEVICE_NOT_READY;
+            if (control == CONTROL_MEDIA_START && player->isPlaying()) return ERR_NONE;
 
-                if (control == CONTROL_MEDIA_START && player->isPlaying()) return ERR_NONE;
+            if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
+            if (data.bValue) {
 
-                if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
-                if (data.bValue) {
-
-                    double volume = endpointOptions.value("mediaVolume", QVariant(10000)).toInt() / 10000.0;
-                    m_volumes[media] = volume;
-
-                    player->setVolume(volume * m_volumeMaster);
-                    player->setSpeed(endpointOptions.value("mediaSpeed", QVariant(10000)).toInt() / 10000.0);
-                    player->setPosition(endpointOptions.value("mediaPosition").toInt());
-                    player->setDuration(endpointOptions.value("mediaDuration").toInt());
-                    player->setRepeat(endpointOptions.value("mediaRepeat").toBool());
-
-                    if (endpointOptions.value("mediaAlone", QVariant(true)).toBool()) stopAll();
-                    player->play();
-
-                }
-
-                return ERR_NONE;
-
-            } else if (control == CONTROL_MEDIA_STOP) {
-
-                DgsAPlayer *player = m_players.value(media, nullptr);
-                if (player == nullptr) return ERR_DEVICE_NOT_READY;
-
-                if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
-                if (data.bValue) {
-
-                    player->stop();
-                }
-
-                return ERR_NONE;
-
-            } else if (control == CONTROL_MEDIA_STOP_ALL) {
-
-                if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
-                if (data.bValue) {
-
-                    // stop all players
-                    stopAll();
-                }
-
-                return ERR_NONE;
-
-            } else if (control == CONTROL_MEDIA_VOLUME) {
-
-                DgsAPlayer *player = m_players.value(media, nullptr);
-                if (player == nullptr) return ERR_DEVICE_NOT_READY;
-
-                if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
-
-                double volume = (double)data.aValue / (double)data.aRange;
+                double volume = endpointOptions.value("mediaVolume", QVariant(10000)).toInt() / 10000.0;
                 m_volumes[media] = volume;
+
                 player->setVolume(volume * m_volumeMaster);
+                player->setSpeed(endpointOptions.value("mediaSpeed", QVariant(10000)).toInt() / 10000.0);
+                player->setPosition(endpointOptions.value("mediaPosition").toInt());
+                player->setDuration(endpointOptions.value("mediaDuration").toInt());
+                player->setRepeat(endpointOptions.value("mediaRepeat").toBool());
 
-                return ERR_NONE;
-
-            } else if (control == CONTROL_MEDIA_MASTER) {
-
-                if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
-
-                m_volumeMaster = (double)data.aValue / (double)data.aRange;
-
-                QStringList playerNames = m_players.keys();
-                int playerCount = playerNames.length();
-                for (int n=0 ; n<playerCount ; n++) {
-                    QString key = playerNames[n];
-                    DgsAPlayer* player = m_players[key];
-                    player->setVolume(m_volumes[key] * m_volumeMaster);
-                }
-
-                return ERR_NONE;
+                if (endpointOptions.value("mediaAlone", QVariant(true)).toBool()) stopAll();
+                setPlayerCallback(media);
+                player->play();
             }
+
+            return ERR_NONE;
+
+        } else if (control == CONTROL_MEDIA_STOP) {
+
+            DgsAPlayer *player = m_players.value(media, nullptr);
+            if (player == nullptr) return ERR_DEVICE_NOT_READY;
+
+            if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
+            if (data.bValue) {
+
+                player->stop();
+            }
+
+            return ERR_NONE;
+
+        } else if (control == CONTROL_MEDIA_STOP_ALL) {
+
+            if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
+            if (data.bValue) {
+
+                // stop all players
+                stopAll();
+            }
+
+            return ERR_NONE;
+
+        } else if (control == CONTROL_MEDIA_VOLUME) {
+
+            DgsAPlayer *player = m_players.value(media, nullptr);
+            if (player == nullptr) return ERR_DEVICE_NOT_READY;
+
+            if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+
+            double volume = (double)data.aValue / (double)data.aRange;
+            m_volumes[media] = volume;
+            player->setVolume(volume * m_volumeMaster);
+
+            return ERR_NONE;
+
+        } else if (control == CONTROL_MEDIA_MASTER) {
+
+            if (data.signal != DATA_SIGNAL_ANALOG) return ERR_INVALID_DATA;
+
+            m_volumeMaster = (double)data.aValue / (double)data.aRange;
+
+            QStringList playerNames = m_players.keys();
+            int playerCount = playerNames.length();
+            for (int n=0 ; n<playerCount ; n++) {
+                QString key = playerNames[n];
+                DgsAPlayer* player = m_players[key];
+                player->setVolume(m_volumes[key] * m_volumeMaster);
+            }
+
+            return ERR_NONE;
         }
     }
 
@@ -214,6 +204,29 @@ bool DgsAPlayInterface::initPlayer(const QVariantMap &mediaOptions)
     return done;
 }
 
+void DgsAPlayInterface::setPlayerCallback(const QString &mediaName)
+{
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        if (endpointInfo.type == ENDPOINT_APLAY_PLAYING || endpointInfo.type == ENDPOINT_APLAY_TIME) {
+
+            QVariantMap endpointOptions = m_endpointOptionsList[n];
+            QString endpointMedia = endpointOptions.value("media").toString();
+            if (endpointMedia != mediaName) continue;
+
+            DgsAPlayer* player = m_players.value(mediaName, nullptr);
+            if (player == nullptr) continue;
+
+            if (endpointInfo.type == ENDPOINT_APLAY_PLAYING) {
+                connect(player, &DgsAPlayer::playingChanged, this, &DgsAPlayInterface::onPlayingChanged, Qt::UniqueConnection);
+            } else if (endpointInfo.type == ENDPOINT_APLAY_TIME) {
+                connect(player, &DgsAPlayer::timeChanged, this, &DgsAPlayInterface::onTimeChanged, Qt::UniqueConnection);
+            }
+        }
+    }
+}
+
+
 void DgsAPlayInterface::stopAll()
 {
     QStringList playerNames = m_players.keys();
@@ -224,6 +237,65 @@ void DgsAPlayInterface::stopAll()
     }
 }
 
+void DgsAPlayInterface::onPlayingChanged(bool playing)
+{
+    // obtain the player object
+    DgsAPlayer *player = qobject_cast<DgsAPlayer*>(sender());
+    if (player == nullptr) return;
+
+    // find matched media
+    QString media = m_players.key(player);
+    if (media.isEmpty()) return;
+
+    // find matched endpoint
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        if (endpointInfo.type == ENDPOINT_APLAY_PLAYING) {
+            
+            QVariantMap endpointOptions = m_endpointOptionsList[n];
+            QString endpointMedia = endpointOptions.value("media").toString();
+            if (endpointMedia == media) {
+                // emit playing change event
+                dgsSignalData data;
+                data.signal = DATA_SIGNAL_BINARY;
+                data.bValue = playing;
+                emit dataReceived(n, data);
+            }
+        }
+    }
+}
+
+void DgsAPlayInterface::onTimeChanged(int msec)
+{
+    // obtain the player object
+    DgsAPlayer *player = qobject_cast<DgsAPlayer*>(sender());
+    if (player == nullptr) return;
+
+    // find matched media
+    QString media = m_players.key(player);
+    if (media.isEmpty()) return;
+
+    // find matched endpoint
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        if (endpointInfo.type == ENDPOINT_APLAY_TIME) {
+            
+            QVariantMap endpointOptions = m_endpointOptionsList[n];
+            QString endpointMedia = endpointOptions.value("media").toString();
+            if (endpointMedia == media) {
+                // emit time change event
+                dgsSignalData data;
+                data.signal = DATA_SIGNAL_ANALOG;
+                data.aValue = qMin<int>(msec, endpointInfo.range);
+                data.aRange = endpointInfo.range; 
+                emit dataReceived(n, data);
+            }
+        }
+    }
+}
+
 void DgsAPlayInterface::updateMetadata_()
 {
     m_interfaceInfo.type = INTERFACE_APLAY;
@@ -231,7 +303,8 @@ void DgsAPlayInterface::updateMetadata_()
     // Set interface mode and flags
     m_interfaceInfo.mode = INTERFACE_APLAY_DEFAULT;
     m_interfaceInfo.output = true;
-    m_interfaceInfo.input = false;
+    m_interfaceInfo.input = true;
+    m_interfaceInfo.inputSecondary = true;
 
     // Set interface label
     m_interfaceInfo.label = tr("Audio Player") + " " + m_interfaceOptions.value("port").toString();
@@ -242,25 +315,43 @@ void DgsAPlayInterface::updateMetadata_()
 
         // Set endpoint type
         QString typeName = m_endpointOptionsList[n].value("type").toString();
-        if (typeName == "media") endpointInfo.type = ENDPOINT_APLAY_MEDIA;
+        if      (typeName == "media"  ) endpointInfo.type = ENDPOINT_APLAY_MEDIA;
+        else if (typeName == "playing") endpointInfo.type = ENDPOINT_APLAY_PLAYING;
+        else if (typeName == "time"   ) endpointInfo.type = ENDPOINT_APLAY_TIME;
 
-        // Set endpoint properties
-        endpointInfo.output = true;
+        // Set endpoint properties based on type
         endpointInfo.labelEPT = tr("Audio Clip");
-        endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control);
 
-        switch (endpointInfo.control) {
-            case CONTROL_MEDIA_START:
-            case CONTROL_MEDIA_RESTART:
-            case CONTROL_MEDIA_STOP:
-            case CONTROL_MEDIA_STOP_ALL:
-                endpointInfo.signal = DATA_SIGNAL_BINARY;
-                break;
-            case CONTROL_MEDIA_VOLUME:
-            case CONTROL_MEDIA_MASTER:
-                endpointInfo.signal = DATA_SIGNAL_ANALOG;
-                endpointInfo.range  = 10000;
-                break;
+        if (endpointInfo.type == ENDPOINT_APLAY_MEDIA) {
+            
+            endpointInfo.output = true;
+            endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control);
+
+            switch (endpointInfo.control) {
+                case CONTROL_MEDIA_START:
+                case CONTROL_MEDIA_RESTART:
+                case CONTROL_MEDIA_STOP:
+                case CONTROL_MEDIA_STOP_ALL:
+                    endpointInfo.signal = DATA_SIGNAL_BINARY;
+                    break;
+                case CONTROL_MEDIA_VOLUME:
+                case CONTROL_MEDIA_MASTER:
+                    endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                    endpointInfo.range  = 10000;
+                    break;
+            }
+        } else if (endpointInfo.type == ENDPOINT_APLAY_PLAYING) {
+
+            endpointInfo.input = true;
+            endpointInfo.labelEPI = tr("Playing");
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+
+        } else if (endpointInfo.type == ENDPOINT_APLAY_TIME) {
+
+            endpointInfo.input = true;
+            endpointInfo.labelEPI = tr("Time");
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000000000); // millisecond
         }
 
         m_endpointInfoList.append(endpointInfo);

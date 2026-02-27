@@ -35,12 +35,16 @@ int DgsLaunchInterface::openInterface()
 
     updateMetadata();
 
+    connect(g_app->cueManager(), &DigishowCueManager::statusUpdated, this, &DgsLaunchInterface::onStatusUpdated);
+
     m_isInterfaceOpened = true;
     return ERR_NONE;
 }
 
 int DgsLaunchInterface::closeInterface()
 {
+    disconnect(g_app->cueManager(), nullptr, this, nullptr);
+
     m_isInterfaceOpened = false;
     return ERR_NONE;
 }
@@ -69,6 +73,25 @@ int DgsLaunchInterface::sendData(int endpointIndex, dgsSignalData data)
     return ERR_NONE;
 }
 
+void DgsLaunchInterface::onStatusUpdated()
+{
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        if (endpointInfo.type == ENDPOINT_LAUNCH_PLAYING) {
+
+            int channel = endpointInfo.channel;
+            bool playing = g_app->cueManager()->isCuePlaying("launch" + QString::number(channel));
+
+            // emit playing change event
+            dgsSignalData data;
+            data.signal = DATA_SIGNAL_BINARY;
+            data.bValue = playing;
+            emit dataReceived(n, data);
+        }
+    }
+}
+
 void DgsLaunchInterface::updateMetadata_()
 {
     m_interfaceInfo.type = INTERFACE_LAUNCH;
@@ -76,7 +99,8 @@ void DgsLaunchInterface::updateMetadata_()
     // Set interface mode and flags
     m_interfaceInfo.mode = INTERFACE_LAUNCH_DEFAULT;
     m_interfaceInfo.output = true;
-    m_interfaceInfo.input = false;
+    m_interfaceInfo.input = true;
+    m_interfaceInfo.inputSecondary = true;
 
     // Set interface label
     m_interfaceInfo.label = tr("Preset Launcher");
@@ -87,23 +111,43 @@ void DgsLaunchInterface::updateMetadata_()
 
         // Set endpoint type
         QString typeName = m_endpointOptionsList[n].value("type").toString();
-        if (typeName == "preset") endpointInfo.type = ENDPOINT_LAUNCH_PRESET;
+        if      (typeName == "preset") endpointInfo.type = ENDPOINT_LAUNCH_PRESET;
+        else if (typeName == "playing") endpointInfo.type = ENDPOINT_LAUNCH_PLAYING;
+        else if (typeName == "time") endpointInfo.type = ENDPOINT_LAUNCH_TIME;
 
-        // Set endpoint properties
-        endpointInfo.signal = DATA_SIGNAL_BINARY;
-        endpointInfo.output = true;
-        endpointInfo.labelEPT = tr("Preset");
+        // Set endpoint type based on type
+        if (endpointInfo.type == ENDPOINT_LAUNCH_PRESET) {
+            
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.output = true;
+        
+            switch (endpointInfo.control) {
+            case CONTROL_MEDIA_START:
+            case CONTROL_MEDIA_RESTART:
+            case CONTROL_MEDIA_STOP:
+                endpointInfo.labelEPT = tr("Preset") + " " + QString::number(endpointInfo.channel);
+                endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control) ;
+                break;
+            case CONTROL_MEDIA_STOP_ALL:
+                endpointInfo.labelEPT = tr("Preset");
+                endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control);
+                break;
+            }
+            
+        } else if (endpointInfo.type == ENDPOINT_LAUNCH_PLAYING) {
+            
+            endpointInfo.input = true;
+            endpointInfo.labelEPT = tr("Preset") + " " + QString::number(endpointInfo.channel);
+            endpointInfo.labelEPI = tr("Playing");
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
 
-        switch (endpointInfo.control) {
-        case CONTROL_MEDIA_START:
-        case CONTROL_MEDIA_RESTART:
-        case CONTROL_MEDIA_STOP:
-            endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control) + " " +
-                                    QString::number(endpointInfo.channel);
-            break;
-        case CONTROL_MEDIA_STOP_ALL:
-            endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control);
-            break;
+        } else if (endpointInfo.type == ENDPOINT_LAUNCH_TIME) {
+            
+            endpointInfo.input = true;
+            endpointInfo.labelEPT = tr("Preset") + " " + QString::number(endpointInfo.channel);
+            endpointInfo.labelEPI = tr("Time");
+            endpointInfo.signal = DATA_SIGNAL_ANALOG;
+            endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000000000); // millisecond
         }
 
         m_endpointInfoList.append(endpointInfo);

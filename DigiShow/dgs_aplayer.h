@@ -42,8 +42,13 @@ public:
     bool isLoaded() { return m_isLoaded; }
     bool isPlaying() { return m_isPlaying; }
 
+signals:
+    void playingChanged(bool playing);
+    void timeChanged(int msec);
+
 private slots:
     void onTimerFired();
+    void onPositionChanged(qint64 position);
 
 private:
     QMediaPlayer *m_player;

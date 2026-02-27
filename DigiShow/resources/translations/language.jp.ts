@@ -4,14 +4,24 @@
 <context>
     <name>DgsAPlayInterface</name>
     <message>
-        <location filename="../../dgs_aplay_interface.cpp" line="237"/>
+        <location filename="../../dgs_aplay_interface.cpp" line="310"/>
         <source>Audio Player</source>
         <translation>オーディオプレーヤー</translation>
     </message>
     <message>
-        <location filename="../../dgs_aplay_interface.cpp" line="249"/>
+        <location filename="../../dgs_aplay_interface.cpp" line="323"/>
         <source>Audio Clip</source>
         <translation>オーディオ</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_aplay_interface.cpp" line="346"/>
+        <source>Playing</source>
+        <translation>再生中</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_aplay_interface.cpp" line="352"/>
+        <source>Time</source>
+        <translation>時間</translation>
     </message>
 </context>
 <context>
@@ -101,92 +111,105 @@
 <context>
     <name>DgsLaunchInterface</name>
     <message>
-        <location filename="../../dgs_launch_interface.cpp" line="82"/>
+        <location filename="../../dgs_launch_interface.cpp" line="106"/>
         <source>Preset Launcher</source>
         <translation>プリセットランチャー</translation>
     </message>
     <message>
-        <location filename="../../dgs_launch_interface.cpp" line="95"/>
+        <location filename="../../dgs_launch_interface.cpp" line="128"/>
+        <location filename="../../dgs_launch_interface.cpp" line="132"/>
+        <location filename="../../dgs_launch_interface.cpp" line="140"/>
+        <location filename="../../dgs_launch_interface.cpp" line="147"/>
         <source>Preset</source>
         <translation>プリセット</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_launch_interface.cpp" line="141"/>
+        <source>Playing</source>
+        <translation>再生中</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_launch_interface.cpp" line="148"/>
+        <source>Time</source>
+        <translation>時間</translation>
     </message>
 </context>
 <context>
     <name>DgsLfoInterface</name>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="183"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="181"/>
         <source>LFO</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="200"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="198"/>
         <source>LFO %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="214"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="212"/>
         <source>Time</source>
-        <translation type="unfinished"></translation>
+        <translation>時間</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="219"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="217"/>
         <source>Reset</source>
-        <translation type="unfinished">リセット</translation>
+        <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="224"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="222"/>
         <source>Run</source>
-        <translation type="unfinished">実行</translation>
+        <translation>実行</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="230"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="228"/>
         <source>Period</source>
-        <translation type="unfinished"></translation>
+        <translation>周期</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="236"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="234"/>
         <source>Phase</source>
-        <translation type="unfinished"></translation>
+        <translation>位相</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="242"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="240"/>
         <source>Amplitude</source>
-        <translation type="unfinished"></translation>
+        <translation>振幅</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="248"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="246"/>
         <source>Sample</source>
-        <translation type="unfinished"></translation>
+        <translation>サンプリング</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_lfo_interface.cpp" line="257"/>
+        <source>Sine</source>
+        <translation>正弦波</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_lfo_interface.cpp" line="258"/>
+        <source>Square</source>
+        <translation>方形波</translation>
     </message>
     <message>
         <location filename="../../dgs_lfo_interface.cpp" line="259"/>
-        <source>Sine</source>
-        <translation type="unfinished"></translation>
+        <source>Sawtooth</source>
+        <translation>のこぎり波</translation>
     </message>
     <message>
         <location filename="../../dgs_lfo_interface.cpp" line="260"/>
-        <source>Square</source>
-        <translation type="unfinished"></translation>
+        <source>Triangle</source>
+        <translation>三角波</translation>
     </message>
     <message>
         <location filename="../../dgs_lfo_interface.cpp" line="261"/>
-        <source>Sawtooth</source>
-        <translation type="unfinished"></translation>
+        <source>Random</source>
+        <translation>ランダム</translation>
     </message>
     <message>
         <location filename="../../dgs_lfo_interface.cpp" line="262"/>
-        <source>Triangle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="263"/>
-        <source>Random</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="264"/>
         <source>None</source>
-        <translation type="unfinished">なし</translation>
+        <translation>なし</translation>
     </message>
 </context>
 <context>
@@ -224,55 +247,55 @@
 <context>
     <name>DgsMetronomeInterface</name>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="170"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="193"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="202"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="208"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="214"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="221"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="228"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="234"/>
-        <location filename="../../dgs_metronome_interface.cpp" line="240"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="171"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="194"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="203"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="209"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="215"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="222"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="229"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="235"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="241"/>
         <source>Beat Maker</source>
         <translation>ビートメーカー</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="194"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="195"/>
         <source>Beat %1</source>
         <translation>ビート %1</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="222"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="223"/>
         <source>BPM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="229"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="230"/>
         <source>Quantum</source>
         <translation>拍数</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="215"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="216"/>
         <source>Run</source>
         <translation>実行</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="235"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="236"/>
         <source>Link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="241"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="242"/>
         <source>Tap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="203"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="204"/>
         <source>Count</source>
         <translation>カウント</translation>
     </message>
     <message>
-        <location filename="../../dgs_metronome_interface.cpp" line="209"/>
+        <location filename="../../dgs_metronome_interface.cpp" line="210"/>
         <source>Reset</source>
         <translation>リセット</translation>
     </message>
@@ -499,8 +522,8 @@ make sure the DigiShow RIOC sketch is uploaded to the Arduino.</source>
     <name>DigishowApp</name>
     <message>
         <location filename="../../digishow_app.cpp" line="199"/>
-        <source>Unable to handle the unspported interface type &apos;%1&apos;. <byte value="xd"/>
-Please use the latest version app and try again.</source>
+        <source>Unable to handle the unsupported interface type &apos;%1&apos;. <byte value="xd"/>
+Please try again with the latest version of the application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1683,27 +1706,27 @@ either express or implied.</source>
     <message>
         <location filename="../MwEndpointMoreOptions.qml" line="531"/>
         <source>Run</source>
-        <translation type="unfinished">実行</translation>
+        <translation>実行</translation>
     </message>
     <message>
         <location filename="../MwEndpointMoreOptions.qml" line="558"/>
         <source>Period</source>
-        <translation type="unfinished"></translation>
+        <translation>周期</translation>
     </message>
     <message>
         <location filename="../MwEndpointMoreOptions.qml" line="585"/>
         <source>Phase</source>
-        <translation type="unfinished"></translation>
+        <translation>位相</translation>
     </message>
     <message>
         <location filename="../MwEndpointMoreOptions.qml" line="612"/>
         <source>Amplitude</source>
-        <translation type="unfinished"></translation>
+        <translation>振幅</translation>
     </message>
     <message>
         <location filename="../MwEndpointMoreOptions.qml" line="639"/>
         <source>Sample Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>サンプル間隔</translation>
     </message>
     <message>
         <location filename="../MwEndpointMoreOptions.qml" line="405"/>
@@ -1764,7 +1787,7 @@ either express or implied.</source>
         <translation>なし</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelector.qml" line="474"/>
+        <location filename="../MwEndpointSelector.qml" line="477"/>
         <source>More ...</source>
         <translation>もっと ...</translation>
     </message>
@@ -1772,93 +1795,104 @@ either express or implied.</source>
 <context>
     <name>MwEndpointSelectorAPlay</name>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="55"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="71"/>
         <source>File ...</source>
         <translation>ファイル ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="74"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="90"/>
         <source>Options ...</source>
         <translation>設定 ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="104"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="123"/>
         <source>Select Audio File</source>
         <translation>オーディオファイルを選択</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="107"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="126"/>
         <source>Audio files</source>
         <translation>オーディオファイル</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="108"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="127"/>
         <source>All files</source>
         <translation>すべてのファイル</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="167"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="186"/>
         <source>Audio Clip Playback Options</source>
         <translation>オーディオ再生設定</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="192"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="211"/>
         <source>Play Alone</source>
         <translation>単独に再生</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="216"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="235"/>
         <source>Volume</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="230"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="249"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="240"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="259"/>
         <source>Speed</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="254"/>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="278"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="37"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="273"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="297"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="264"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="283"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="288"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="307"/>
         <source>Duration</source>
         <translation>デュレーション</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="309"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="328"/>
         <source>Repeat</source>
         <translation>リピート</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="325"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="344"/>
         <source>Defaults</source>
         <translation>デフォルト</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="347"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="367"/>
+        <source>Playing</source>
+        <translation>再生中</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="368"/>
+        <source>Time</source>
+        <translation>時間</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="370"/>
         <source>Audio Clip</source>
         <translation>オーディオ</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="463"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="482"/>
         <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
         <translation>コンピュータのディスクに存在するオーディオクリップファイルを選択するか、オーディオクリップの有効なURLを入力してください。</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="463"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="482"/>
         <source>OK</source>
         <translation></translation>
     </message>
@@ -2337,87 +2371,105 @@ either express or implied.</source>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="17"/>
         <source>LFO</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="53"/>
         <source>ms</source>
-        <translation type="unfinished"></translation>
+        <translation>ミリ秒</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="56"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="91"/>
         <source>Value</source>
-        <translation type="unfinished">値</translation>
+        <translation>値</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="92"/>
         <source>Time</source>
-        <translation type="unfinished"></translation>
+        <translation>時間</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="96"/>
         <source>Reset</source>
-        <translation type="unfinished">リセット</translation>
+        <translation>リセット</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="97"/>
         <source>Run ON</source>
-        <translation type="unfinished">実行ON</translation>
+        <translation>実行ON</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="98"/>
         <source>Period Change</source>
-        <translation type="unfinished"></translation>
+        <translation>周期変更</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="99"/>
         <source>Phase Change</source>
-        <translation type="unfinished"></translation>
+        <translation>位相変更</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="100"/>
         <source>Amplitude Change</source>
-        <translation type="unfinished"></translation>
+        <translation>振幅変更</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="101"/>
         <source>Sample Interval Change</source>
-        <translation type="unfinished"></translation>
+        <translation>サンプル間隔変更</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="111"/>
         <source>None</source>
-        <translation type="unfinished">なし</translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="112"/>
         <source>Sine</source>
-        <translation type="unfinished"></translation>
+        <translation>正弦波</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="113"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>方形波</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="114"/>
         <source>Sawtooth</source>
-        <translation type="unfinished"></translation>
+        <translation>のこぎり波</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="115"/>
         <source>Triangle</source>
-        <translation type="unfinished"></translation>
+        <translation>三角波</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="116"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>ランダム</translation>
+    </message>
+</context>
+<context>
+    <name>MwEndpointSelectorLaunch</name>
+    <message>
+        <location filename="../MwEndpointSelectorLaunch.qml" line="54"/>
+        <source>ms</source>
+        <translation>ミリ秒</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorLaunch.qml" line="89"/>
+        <source>Playing</source>
+        <translation>再生中</translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorLaunch.qml" line="92"/>
+        <source>Preset</source>
+        <translation>プリセット</translation>
     </message>
 </context>
 <context>
@@ -2547,62 +2599,62 @@ You can enter any hex code, for example: </source>
 <context>
     <name>MwEndpointSelectorMetronome</name>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="81"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="72"/>
         <source>Beat Trigger</source>
         <translation>ビートトリガー</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="82"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="73"/>
         <source>Beat Count</source>
         <translation>ビートカウント</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="86"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="77"/>
         <source>Reset</source>
         <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="88"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="79"/>
         <source>BPM Change</source>
         <translation>BPM変更</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="89"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="80"/>
         <source>Quantum Change</source>
         <translation>拍数変更</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="87"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="78"/>
         <source>Run ON</source>
         <translation>実行ON</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="90"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="81"/>
         <source>Link ON</source>
         <translation>Link ON</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="91"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="82"/>
         <source>Tap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="104"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="95"/>
         <source>Beat %1</source>
         <translation>ビート %1</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="118"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="109"/>
         <source>beat</source>
         <translation>ビート</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="118"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="109"/>
         <source>beats</source>
         <translation>ビート</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorMetronome.qml" line="121"/>
+        <location filename="../MwEndpointSelectorMetronome.qml" line="112"/>
         <source>Sustain %1</source>
         <translation>%1 持続</translation>
     </message>
@@ -3664,22 +3716,22 @@ Connection: %2</source>
     <message>
         <location filename="../MwInterfaceListViewRioc.qml" line="107"/>
         <source>Arduino Leonardo / Micro</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../MwInterfaceListViewRioc.qml" line="110"/>
         <source>Aladdin Micro</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../MwInterfaceListViewRioc.qml" line="111"/>
         <source>Aladdin MEGA</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../MwInterfaceListViewRioc.qml" line="112"/>
         <source>Aladdin ESP32</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../MwInterfaceListViewRioc.qml" line="113"/>

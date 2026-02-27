@@ -61,6 +61,8 @@ QVariantMap DigishowInterface::getInterfaceInfo()
     info["mode"  ] = m_interfaceInfo.mode;
     info["output"] = m_interfaceInfo.output;
     info["input" ] = m_interfaceInfo.input;
+    info["outputSecondary"] = m_interfaceInfo.outputSecondary;
+    info["inputSecondary" ] = m_interfaceInfo.inputSecondary;
     info["label" ] = m_interfaceInfo.label;
 
     return info;

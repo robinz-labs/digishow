@@ -25,6 +25,22 @@ Item {
         }
     }
 
+    Text {
+        anchors.left: buttonType.right
+        anchors.leftMargin: 10
+        anchors.verticalCenter: buttonType.verticalCenter
+        font.pixelSize: 12
+        font.bold: false
+        text: {
+            switch (menuType.selectedItemValue) {
+            case DigishowEnvironment.EndpointAPlayTime:
+                return qsTr("ms")
+            }
+            return ""
+        }
+        color: "#666"
+    }
+
     COptionButton {
         id: buttonMediaControl
         width: 100
@@ -73,7 +89,8 @@ Item {
         label.font.pixelSize: 11
         label.text: qsTr("Options ...")
         box.radius: 3
-        visible: textMediaUrl.visible && (
+        visible: textMediaUrl.visible && 
+                 menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayMedia && (
                  menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart ||
                  menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaRestart)
 
@@ -88,13 +105,15 @@ Item {
         anchors.bottomMargin: 10
         anchors.left: buttonMediaSelect.left
         anchors.right: parent.right
-        anchors.rightMargin: 38
+        anchors.rightMargin: buttonMoreOptions.visible ? 38 : 0
         text: "file://"
         //input.anchors.rightMargin: 30
-        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayMedia &&
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayPlaying ||
+                 menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayTime || (
+                 menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayMedia &&
                  menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll &&
-                 menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaMaster
-
+                 menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaMaster)
+                
         onTextEdited: isModified = true
         onEditingFinished: if (text === "") text = "file://"
     }
@@ -344,7 +363,12 @@ Item {
         // init type option menu
         if (menuType.count === 0) {
             items = []
-            items.push({ text: qsTr("Audio Clip"), value: DigishowEnvironment.EndpointAPlayMedia,  tag:"media" })
+            if (forInput) {
+                items.push({ text: qsTr("Playing"), value: DigishowEnvironment.EndpointAPlayPlaying, tag:"playing" })
+                items.push({ text: qsTr("Time"), value: DigishowEnvironment.EndpointAPlayTime,  tag:"time" })
+            } else if (forOutput) {
+                items.push({ text: qsTr("Audio Clip"), value: DigishowEnvironment.EndpointAPlayMedia, tag:"media" })
+            }
             menuType.optionItems = items
             menuType.selectedIndex = 0
         }
@@ -382,11 +406,11 @@ Item {
                 mediaControl === DigishowEnvironment.ControlMediaStopAll) {
 
                 enables["optInitialB"] = true
-
             } else {
-
                 enables["optInitialA"] = true
             }
+        } else if (endpointType === DigishowEnvironment.EndpointAPlayTime) {
+            enables["optRangeMSec"] = true
         }
 
         popupMoreOptions.resetOptions()
@@ -423,21 +447,18 @@ Item {
 
         menuType.selectOption(endpointInfo["type"])
 
-        switch (endpointInfo["type"]) {
-        case DigishowEnvironment.EndpointAPlayMedia:
+        if (menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayMedia)
             menuMediaControl.selectOption(endpointInfo["control"])
 
-            var mediaName = endpointOptions["media"]
-            var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
-            var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
-            var mediaUrl = "file://"
-            if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
-            textMediaUrl.text = mediaUrl
+        var mediaName = endpointOptions["media"]
+        var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
+        var mediaOptions = digishow.getMediaOptions(interfaceIndex, mediaIndex)
+        var mediaUrl = "file://"
+        if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
+        textMediaUrl.text = mediaUrl
 
+        if (buttonMediaOptions.visible)
             setEndpointMediaOptions(endpointOptions)
-
-            break
-        }
     }
 
     function getEndpointOptions() {
@@ -445,25 +466,21 @@ Item {
         var options = {}
         options["type"] = menuType.selectedItemTag
 
-        switch (menuType.selectedItemValue) {
-        case DigishowEnvironment.EndpointAPlayMedia:
+        if (menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayMedia)
             options["control"] = menuMediaControl.selectedItemValue
 
-            if (textMediaUrl.visible) {
-                var interfaceIndex = menuInterface.selectedItemValue
-                var mediaUrl = textMediaUrl.text
-                var mediaIndex = digishow.makeMedia(interfaceIndex, mediaUrl, "audio")
+        if (textMediaUrl.visible) {
+            var interfaceIndex = menuInterface.selectedItemValue
+            var mediaUrl = textMediaUrl.text
+            var mediaIndex = digishow.makeMedia(interfaceIndex, mediaUrl, "audio")
 
-                if (mediaIndex !== -1) {
-                    options["media"] = digishow.getMediaName(interfaceIndex, mediaIndex)
-                    if (menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart ||
-                        menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaRestart)
-                        options = utilities.merge(options, getEndpointMediaOptions())
-                } else {
-                    messageBox.show(qsTr("Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip."), qsTr("OK"))
-                }
+            if (mediaIndex !== -1) {
+                options["media"] = digishow.getMediaName(interfaceIndex, mediaIndex)
+                if (buttonMediaOptions.visible)
+                    options = utilities.merge(options, getEndpointMediaOptions())
+            } else {
+                messageBox.show(qsTr("Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip."), qsTr("OK"))
             }
-            break
         }
 
         return options

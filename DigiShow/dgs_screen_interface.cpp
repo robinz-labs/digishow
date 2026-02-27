@@ -379,7 +379,7 @@ void DgsScreenInterface::updateMetadata_()
                         break;
                     case CONTROL_MEDIA_POSITION:
                         endpointInfo.signal = DATA_SIGNAL_ANALOG;
-                        endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 100000);
+                        endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000000000);
                         break;
                 }
                 break;

@@ -165,6 +165,7 @@ void DgsMetronomeInterface::updateMetadata_()
     m_interfaceInfo.mode = INTERFACE_METRONOME_DEFAULT;
     m_interfaceInfo.output = true;
     m_interfaceInfo.input = true;
+    m_interfaceInfo.outputSecondary = true;
 
     // Set interface label
     m_interfaceInfo.label = tr("Beat Maker");

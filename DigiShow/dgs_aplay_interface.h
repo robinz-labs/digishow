@@ -39,6 +39,8 @@ public:
 signals:
 
 public slots:
+    void onPlayingChanged(bool playing);
+    void onTimeChanged(int msec);
 
 private:
 
@@ -48,9 +50,11 @@ private:
     double m_volumeMaster; // 0 ~ 1.0
 
     bool initPlayer(const QVariantMap &mediaOptions);
+    void setPlayerCallback(const QString &mediaName);
     void stopAll();
 
     void updateMetadata_() override;
+
 };
 
 #endif // DGSAPLAYINTERFACE_H

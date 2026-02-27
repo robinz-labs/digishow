@@ -130,7 +130,7 @@ Item {
 
         COptionMenu {
             id: menuInterface
-
+            showIcons: true
             onOptionSelected: {
                 itemMidi     .visible = false
                 itemDmx      .visible = false
@@ -462,10 +462,13 @@ Item {
         for (n=0 ; n<interfaceCount ; n++) {
 
             var config = digishow.getInterfaceConfiguration(n)
+            var interfaceInfo = config["interfaceInfo"]
 
-            if ((forInput  && config["interfaceInfo"]["input"]) ||
-                (forOutput && config["interfaceInfo"]["output"])) {
-                items.push({ text:config["interfaceInfo"]["label"], value: n })
+            if ((forInput  && interfaceInfo["input"]) ||
+                (forOutput && interfaceInfo["output"])) {
+                var secondary = (forInput  && interfaceInfo["inputSecondary"]) ||
+                                (forOutput && interfaceInfo["outputSecondary"])
+                items.push({ text:interfaceInfo["label"], value: n, secondary: secondary })
             }
         }
         menuInterface.optionItems = items

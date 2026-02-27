@@ -24,7 +24,7 @@ Item {
 
     COptionButton {
         id: buttonType
-        width: forOutput ? 200 : 100
+        width: forOutput ? 160 : 100
         height: 28
         anchors.left: buttonChannel.right
         anchors.leftMargin: 10

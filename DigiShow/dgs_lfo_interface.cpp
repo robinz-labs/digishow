@@ -75,18 +75,15 @@ int DgsLfoInterface::openInterface()
 
 int DgsLfoInterface::closeInterface()
 {
-    if (m_interfaceInfo.mode==INTERFACE_LFO_DEFAULT) {
-
-        // release LFOs
-        QList<int> keys = m_lfos.keys();
-        int lfoCount = keys.length();
-        for (int n=0 ; n<lfoCount ; n++) {
-            int key = keys[n];
-            DigishowLFO* lfo = m_lfos[key];
-            lfo->stop();
-            delete lfo;
-            m_lfos.remove(key);
-        }
+    // release LFOs
+    QList<int> keys = m_lfos.keys();
+    int lfoCount = keys.length();
+    for (int n=0 ; n<lfoCount ; n++) {
+        int key = keys[n];
+        DigishowLFO* lfo = m_lfos[key];
+        lfo->stop();
+        delete lfo;
+        m_lfos.remove(key);
     }
 
     m_isInterfaceOpened = false;
@@ -164,7 +161,7 @@ void DgsLfoInterface::onValueChanged(double value)
             dgsSignalData data;
             data.signal = DATA_SIGNAL_ANALOG;
             data.aRange = endpointInfo.range;
-            data.aValue = qMin<int>(lfo->timeElapsed(), endpointInfo.range);;
+            data.aValue = qMin<int>(lfo->timeElapsed(), endpointInfo.range);
             emit dataReceived(n, data);
         }
     }
@@ -178,6 +175,7 @@ void DgsLfoInterface::updateMetadata_()
     m_interfaceInfo.mode = INTERFACE_LFO_DEFAULT;
     m_interfaceInfo.output = true;
     m_interfaceInfo.input = true;
+    m_interfaceInfo.outputSecondary = true;
 
     // Set interface label
     m_interfaceInfo.label = tr("LFO");
