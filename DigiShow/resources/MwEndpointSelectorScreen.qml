@@ -25,6 +25,22 @@ Item {
         }
     }
 
+    Text {
+        anchors.left: buttonType.right
+        anchors.leftMargin: 10
+        anchors.verticalCenter: buttonType.verticalCenter
+        font.pixelSize: 12
+        font.bold: false
+        text: {
+            switch (menuType.selectedItemValue) {
+            case DigishowEnvironment.EndpointScreenTimecode:
+                return qsTr("ms ")
+            }
+            return ""
+        }
+        color: "#666"
+    }
+
     COptionButton {
         id: buttonLightControl
         width: 100
@@ -109,7 +125,8 @@ Item {
         label.font.pixelSize: 11
         label.text: qsTr("Options ...")
         box.radius: 3
-        visible: textMediaUrl.visible && (
+        visible: textMediaUrl.visible &&
+                 menuType.selectedItemValue === DigishowEnvironment.EndpointScreenMedia && (
                  menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart ||
                  menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaRestart)
 
@@ -124,11 +141,13 @@ Item {
         anchors.bottomMargin: 10
         anchors.left: buttonMediaSelect.left
         anchors.right: parent.right
-        anchors.rightMargin: 38
+        anchors.rightMargin: buttonMoreOptions.visible ? 38 : 0
         text: "file://"
         input.anchors.rightMargin: 30
-        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointScreenMedia &&
-                 menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll
+        visible: menuType.selectedItemValue === DigishowEnvironment.EndpointScreenPlaying ||
+                 menuType.selectedItemValue === DigishowEnvironment.EndpointScreenTimecode || (
+                 menuType.selectedItemValue === DigishowEnvironment.EndpointScreenMedia &&
+                 menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll)
 
         onTextEdited: isModified = true
         onEditingFinished: if (text === "") text = "file://"
@@ -641,9 +660,14 @@ Item {
         // init screen type option menu
         if (menuType.count === 0) {
             items = []
-            items.push({ text: qsTr("Backlight" ), value: DigishowEnvironment.EndpointScreenLight,  tag:"light" })
-            items.push({ text: qsTr("Media Clip"), value: DigishowEnvironment.EndpointScreenMedia,  tag:"media" })
-            items.push({ text: qsTr("Canvas"    ), value: DigishowEnvironment.EndpointScreenCanvas, tag:"canvas" })
+            if (forInput) {
+                items.push({ text: qsTr("Playing"   ), value: DigishowEnvironment.EndpointScreenPlaying,  tag:"playing" })
+                items.push({ text: qsTr("Timecode"  ), value: DigishowEnvironment.EndpointScreenTimecode, tag:"timecode" })
+            } else if (forOutput) {
+                items.push({ text: qsTr("Backlight" ), value: DigishowEnvironment.EndpointScreenLight,  tag:"light" })
+                items.push({ text: qsTr("Media Clip"), value: DigishowEnvironment.EndpointScreenMedia,  tag:"media" })
+                items.push({ text: qsTr("Canvas"    ), value: DigishowEnvironment.EndpointScreenCanvas, tag:"canvas" })
+            }
             menuType.optionItems = items
             menuType.selectedIndex = 0
         }
@@ -735,6 +759,10 @@ Item {
 
                 enables["optInitialA"] = true
             }
+
+        } else if (endpointType === DigishowEnvironment.EndpointScreenTimecode) {
+
+            enables["optRangeMSec"] = true
         }
 
         popupMoreOptions.resetOptions()
@@ -816,6 +844,8 @@ Item {
             setEndpointMediaOptions({}) // clear media options
             break
         case DigishowEnvironment.EndpointScreenMedia:
+        case DigishowEnvironment.EndpointScreenPlaying:
+        case DigishowEnvironment.EndpointScreenTimecode:
             menuMediaControl.selectOption(endpointInfo["control"])
 
             var mediaName = endpointOptions["media"]
@@ -826,7 +856,6 @@ Item {
             textMediaUrl.text = mediaUrl
 
             setEndpointMediaOptions(endpointOptions)
-
             break
         }
     }
@@ -844,7 +873,11 @@ Item {
             options["control"] = menuCanvasControl.selectedItemValue
             break
         case DigishowEnvironment.EndpointScreenMedia:
-            options["control"] = menuMediaControl.selectedItemValue
+        case DigishowEnvironment.EndpointScreenPlaying:
+        case DigishowEnvironment.EndpointScreenTimecode:
+
+            if (buttonMediaControl.visible)
+                options["control"] = menuMediaControl.selectedItemValue
 
             if (textMediaUrl.visible) {
                 var interfaceIndex = menuInterface.selectedItemValue
@@ -854,8 +887,7 @@ Item {
 
                 if (mediaIndex !== -1) {
                     options["media"] = digishow.getMediaName(interfaceIndex, mediaIndex)
-                    if (menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaStart ||
-                        menuMediaControl.selectedItemValue === DigishowEnvironment.ControlMediaRestart)
+                    if (buttonMediaOptions.visible)
                         options = utilities.merge(options, getEndpointMediaOptions())
                 } else {
                     messageBox.show(qsTr("Please select a media clip file exists on your computer disks or enter a valid url of the media clip."), qsTr("OK"))

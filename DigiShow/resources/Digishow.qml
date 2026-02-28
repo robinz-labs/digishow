@@ -59,22 +59,22 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointScreenMedia       : return sig === DigishowEnvironment.SignalBinary ? CColor.HotPink : CColor.Iris
             case DigishowEnvironment.EndpointScreenCanvas      : return CColor.Ocean
             case DigishowEnvironment.EndpointScreenPlaying     : return CColor.HotPink
-            case DigishowEnvironment.EndpointScreenTime        : return CColor.Ocean
+            case DigishowEnvironment.EndpointScreenTimecode    : return CColor.Ocean
             case DigishowEnvironment.EndpointAPlayMedia        : return sig === DigishowEnvironment.SignalBinary ? CColor.HotPink : CColor.Iris
             case DigishowEnvironment.EndpointAPlayPlaying      : return CColor.HotPink
-            case DigishowEnvironment.EndpointAPlayTime         : return CColor.Ocean
+            case DigishowEnvironment.EndpointAPlayTimecode     : return CColor.Ocean
             case DigishowEnvironment.EndpointMPlayMedia        : return sig === DigishowEnvironment.SignalBinary ? CColor.HotPink : CColor.Iris
             case DigishowEnvironment.EndpointMPlayPlaying      : return CColor.HotPink
-            case DigishowEnvironment.EndpointMPlayTime         : return CColor.Ocean
+            case DigishowEnvironment.EndpointMPlayTimecode     : return CColor.Ocean
 
             case DigishowEnvironment.EndpointPipeAnalog        : return CColor.Sky
             case DigishowEnvironment.EndpointPipeBinary        : return CColor.RosePink
             case DigishowEnvironment.EndpointPipeNote          : return CColor.Mint
             case DigishowEnvironment.EndpointLaunchPreset      : return CColor.Cherry
             case DigishowEnvironment.EndpointLaunchPlaying     : return CColor.Cherry
-            case DigishowEnvironment.EndpointLaunchTime        : return CColor.Ocean
+            case DigishowEnvironment.EndpointLaunchTimecode    : return CColor.Ocean
             case DigishowEnvironment.EndpointLfoValue          : return CColor.Ocean
-            case DigishowEnvironment.EndpointLfoTime           : return CColor.Ocean
+            case DigishowEnvironment.EndpointLfoTimecode       : return CColor.Ocean
             case DigishowEnvironment.EndpointLfoReset          : return CColor.HotPink
             case DigishowEnvironment.EndpointLfoRun            : return CColor.Cherry
             case DigishowEnvironment.EndpointLfoPeriod         : return CColor.Ocean

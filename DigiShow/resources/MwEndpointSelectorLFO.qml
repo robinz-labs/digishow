@@ -47,10 +47,10 @@ Item {
         font.bold: false
         text: {
             switch (menuType.selectedItemValue) {
-            case DigishowEnvironment.EndpointLfoTime:
+            case DigishowEnvironment.EndpointLfoTimecode:
             case DigishowEnvironment.EndpointLfoPeriod:
             case DigishowEnvironment.EndpointLfoSample:
-                return qsTr("ms")
+                return qsTr("ms ")
             case DigishowEnvironment.EndpointLfoPhase:
             case DigishowEnvironment.EndpointLfoAmplitude:
                 return qsTr("%")
@@ -89,7 +89,7 @@ Item {
             if  (forInput) {
 
                 items.push({ text: qsTr("Value"                 ), value: DigishowEnvironment.EndpointLfoValue,     tag: "value" })
-                items.push({ text: qsTr("Time"                  ), value: DigishowEnvironment.EndpointLfoTime,      tag: "time" })
+                items.push({ text: qsTr("Timecode"              ), value: DigishowEnvironment.EndpointLfoTimecode,  tag: "timecode" })
 
             } else if (forOutput) {
 
@@ -140,7 +140,7 @@ Item {
             enables["optPhase"] = true
             enables["optAmplitude"] = true
             enables["optSample"] = true
-        } else if (endpointType === DigishowEnvironment.EndpointLfoTime) {
+        } else if (endpointType === DigishowEnvironment.EndpointLfoTimecode) {
             enables["optRangeMSec"] = true
         }
 

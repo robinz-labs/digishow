@@ -459,6 +459,7 @@ Item {
         items.push({ text: qsTr("None"), value: -1 })
 
         var interfaceCount = app.interfaceCount()
+        var i = 0
         for (n=0 ; n<interfaceCount ; n++) {
 
             var config = digishow.getInterfaceConfiguration(n)
@@ -468,11 +469,18 @@ Item {
                 (forOutput && interfaceInfo["output"])) {
                 var secondary = (forInput  && interfaceInfo["inputSecondary"]) ||
                                 (forOutput && interfaceInfo["outputSecondary"])
-                items.push({ text:interfaceInfo["label"], value: n, secondary: secondary })
+                var item = { text:interfaceInfo["label"], value: n, secondary: secondary }
+                if (secondary) {
+                    items.push(item)
+                } else {
+                    i++
+                    items.splice(i,0,item)
+                }
             }
         }
         menuInterface.optionItems = items
 
+        /*
         var menuItemMore = Qt.createQmlObject("import \"components\"; COptionMenuItem {}", menuInterface)
         menuItemMore.text = qsTr("More ...")
         menuItemMore.triggered.connect(function() {
@@ -481,6 +489,7 @@ Item {
             dialogInterfaces.show()
         })
         menuInterface.addItem(menuItemMore)
+        */
 
         // select the specified interface
         // to show the particular endpoint options

@@ -50,8 +50,8 @@ Item {
         font.bold: false
         text: {
             switch (menuType.selectedItemValue) {
-            case DigishowEnvironment.EndpointLaunchTime:
-                return qsTr("ms")
+            case DigishowEnvironment.EndpointLaunchTimecode:
+                return qsTr("ms ")
             }
             return ""
         }
@@ -86,10 +86,10 @@ Item {
         if (menuType.count === 0) {
             items = []
             if (forInput) {
-                items.push({ text: qsTr("Playing"), value: DigishowEnvironment.EndpointLaunchPlaying, tag:"playing" })
-                //items.push({ text: qsTr("Time"), value: DigishowEnvironment.EndpointLaunchTime, tag:"time" })
+                items.push({ text: qsTr("Playing" ), value: DigishowEnvironment.EndpointLaunchPlaying,  tag:"playing" })
+             // items.push({ text: qsTr("Timecode"), value: DigishowEnvironment.EndpointLaunchTimecode, tag:"timecode" })
             } else if (forOutput) {
-                items.push({ text: qsTr("Preset"), value: DigishowEnvironment.EndpointLaunchPreset, tag:"preset" })
+                items.push({ text: qsTr("Preset"  ), value: DigishowEnvironment.EndpointLaunchPreset,   tag:"preset" })
             }
             menuType.optionItems = items
             menuType.selectedIndex = 0
@@ -130,7 +130,7 @@ Item {
 
         if (endpointType === DigishowEnvironment.EndpointLaunchPreset) {
             enables["optInitialB"] = true
-        } else if (endpointType === DigishowEnvironment.EndpointLaunchTime) {
+        } else if (endpointType === DigishowEnvironment.EndpointLaunchTimecode) {
             enables["optRangeMSec"] = true
         }
 

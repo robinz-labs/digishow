@@ -42,9 +42,11 @@ public:
     bool isLoaded() { return m_isLoaded; }
     bool isPlaying() { return m_isPlaying; }
 
+    void setTimecodeEnabled(bool enabled) { m_timecodeEnabled = enabled; }
+
 signals:
     void playingChanged(bool playing);
-    void timeChanged(int msec);
+    void timecodeChanged(int timecode);
 
 private slots:
     void onTimerFired();
@@ -58,6 +60,7 @@ private:
     int m_position; // millisecond
     int m_duration; // millisecond
     bool m_repeat;
+    bool m_timecodeEnabled;
 };
 
 #endif // DGSAPLAYER_H

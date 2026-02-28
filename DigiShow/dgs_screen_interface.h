@@ -43,11 +43,16 @@ signals:
 
 public slots:
 
+    void onMediaPlayingChanged(const QString &name, bool playing);
+    void onMediaTimecodeChanged(const QString &name, int timecode);
+
 private:
 
     QQmlEngine *m_qmlEngine;
     QQmlComponent *m_qmlComponentPlayer;
     QObject* m_player;
+
+    void enableMediaTimecode(const QString &mediaName);
 
     static QString getPropertyName(int control);
     static double  getPropertyValue(int control, dgsSignalData data);

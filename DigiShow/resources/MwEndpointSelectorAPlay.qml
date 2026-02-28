@@ -33,8 +33,8 @@ Item {
         font.bold: false
         text: {
             switch (menuType.selectedItemValue) {
-            case DigishowEnvironment.EndpointAPlayTime:
-                return qsTr("ms")
+            case DigishowEnvironment.EndpointAPlayTimecode:
+                return qsTr("ms ")
             }
             return ""
         }
@@ -109,7 +109,7 @@ Item {
         text: "file://"
         //input.anchors.rightMargin: 30
         visible: menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayPlaying ||
-                 menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayTime || (
+                 menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayTimecode || (
                  menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayMedia &&
                  menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll &&
                  menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaMaster)
@@ -364,10 +364,10 @@ Item {
         if (menuType.count === 0) {
             items = []
             if (forInput) {
-                items.push({ text: qsTr("Playing"), value: DigishowEnvironment.EndpointAPlayPlaying, tag:"playing" })
-                items.push({ text: qsTr("Time"), value: DigishowEnvironment.EndpointAPlayTime,  tag:"time" })
+                items.push({ text: qsTr("Playing"   ), value: DigishowEnvironment.EndpointAPlayPlaying,  tag:"playing" })
+                items.push({ text: qsTr("Timecode"  ), value: DigishowEnvironment.EndpointAPlayTimecode, tag:"timecode" })
             } else if (forOutput) {
-                items.push({ text: qsTr("Audio Clip"), value: DigishowEnvironment.EndpointAPlayMedia, tag:"media" })
+                items.push({ text: qsTr("Audio Clip"), value: DigishowEnvironment.EndpointAPlayMedia,    tag:"media" })
             }
             menuType.optionItems = items
             menuType.selectedIndex = 0
@@ -409,7 +409,7 @@ Item {
             } else {
                 enables["optInitialA"] = true
             }
-        } else if (endpointType === DigishowEnvironment.EndpointAPlayTime) {
+        } else if (endpointType === DigishowEnvironment.EndpointAPlayTimecode) {
             enables["optRangeMSec"] = true
         }
 
@@ -447,8 +447,7 @@ Item {
 
         menuType.selectOption(endpointInfo["type"])
 
-        if (menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayMedia)
-            menuMediaControl.selectOption(endpointInfo["control"])
+        menuMediaControl.selectOption(endpointInfo["control"])
 
         var mediaName = endpointOptions["media"]
         var mediaIndex = digishow.findMediaWithName(interfaceIndex, mediaName)
@@ -457,8 +456,7 @@ Item {
         if (mediaOptions["url"] !== undefined) mediaUrl = mediaOptions["url"]
         textMediaUrl.text = mediaUrl
 
-        if (buttonMediaOptions.visible)
-            setEndpointMediaOptions(endpointOptions)
+        setEndpointMediaOptions(endpointOptions)
     }
 
     function getEndpointOptions() {
@@ -466,7 +464,7 @@ Item {
         var options = {}
         options["type"] = menuType.selectedItemTag
 
-        if (menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayMedia)
+        if (buttonMediaControl.visible)
             options["control"] = menuMediaControl.selectedItemValue
 
         if (textMediaUrl.visible) {

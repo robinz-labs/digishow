@@ -4,23 +4,23 @@
 <context>
     <name>DgsAPlayInterface</name>
     <message>
-        <location filename="../../dgs_aplay_interface.cpp" line="310"/>
+        <location filename="../../dgs_aplay_interface.cpp" line="313"/>
         <source>Audio Player</source>
         <translation>Reproductor de audio</translation>
     </message>
     <message>
-        <location filename="../../dgs_aplay_interface.cpp" line="323"/>
+        <location filename="../../dgs_aplay_interface.cpp" line="326"/>
         <source>Audio Clip</source>
         <translation>Clip de audio</translation>
     </message>
     <message>
-        <location filename="../../dgs_aplay_interface.cpp" line="346"/>
+        <location filename="../../dgs_aplay_interface.cpp" line="349"/>
         <source>Playing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_aplay_interface.cpp" line="352"/>
-        <source>Time</source>
+        <location filename="../../dgs_aplay_interface.cpp" line="355"/>
+        <source>Timecode</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -130,7 +130,7 @@
     </message>
     <message>
         <location filename="../../dgs_launch_interface.cpp" line="148"/>
-        <source>Time</source>
+        <source>Timecode</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -148,7 +148,7 @@
     </message>
     <message>
         <location filename="../../dgs_lfo_interface.cpp" line="212"/>
-        <source>Time</source>
+        <source>Timecode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -494,29 +494,41 @@ asegúrate de que el programa DigiShow RIOC esté cargado en Arduino.</translati
 <context>
     <name>DgsScreenInterface</name>
     <message>
-        <location filename="../../dgs_screen_interface.cpp" line="329"/>
+        <location filename="../../dgs_screen_interface.cpp" line="403"/>
         <source>(Preview Window)</source>
         <translation>(Ventana de vista previa)</translation>
     </message>
     <message>
-        <location filename="../../dgs_screen_interface.cpp" line="333"/>
+        <location filename="../../dgs_screen_interface.cpp" line="407"/>
         <source>Screen</source>
         <translation>Pantalla</translation>
     </message>
     <message>
-        <location filename="../../dgs_screen_interface.cpp" line="351"/>
+        <location filename="../../dgs_screen_interface.cpp" line="427"/>
         <source>Backlight</source>
         <translation>Luz de fondo</translation>
     </message>
     <message>
-        <location filename="../../dgs_screen_interface.cpp" line="357"/>
+        <location filename="../../dgs_screen_interface.cpp" line="433"/>
+        <location filename="../../dgs_screen_interface.cpp" line="485"/>
+        <location filename="../../dgs_screen_interface.cpp" line="492"/>
         <source>Media Clip</source>
         <translation>Clip multimedia</translation>
     </message>
     <message>
-        <location filename="../../dgs_screen_interface.cpp" line="389"/>
+        <location filename="../../dgs_screen_interface.cpp" line="465"/>
         <source>Canvas</source>
         <translation>Lienzo</translation>
+    </message>
+    <message>
+        <location filename="../../dgs_screen_interface.cpp" line="486"/>
+        <source>Playing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../dgs_screen_interface.cpp" line="493"/>
+        <source>Timecode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1787,11 +1799,6 @@ either express or implied.</source>
         <source>None</source>
         <translation>Ninguno</translation>
     </message>
-    <message>
-        <location filename="../MwEndpointSelector.qml" line="477"/>
-        <source>More ...</source>
-        <translation>Más ...</translation>
-    </message>
 </context>
 <context>
     <name>MwEndpointSelectorAPlay</name>
@@ -1846,11 +1853,20 @@ either express or implied.</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="37"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="368"/>
+        <source>Timecode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MwEndpointSelectorAPlay.qml" line="273"/>
         <location filename="../MwEndpointSelectorAPlay.qml" line="297"/>
         <source>ms</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="37"/>
+        <source>ms </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorAPlay.qml" line="283"/>
@@ -1878,22 +1894,17 @@ either express or implied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="368"/>
-        <source>Time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../MwEndpointSelectorAPlay.qml" line="370"/>
         <source>Audio Clip</source>
         <translation>Clip de audio</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="482"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="480"/>
         <source>Please select an audio clip file exists on your computer disks or enter a valid url of the audio clip.</source>
         <translation>Seleccione un archivo de clip de audio que exista en los discos de su computadora o ingrese una URL válida del clip de audio.</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorAPlay.qml" line="482"/>
+        <location filename="../MwEndpointSelectorAPlay.qml" line="480"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
@@ -2376,7 +2387,7 @@ either express or implied.</source>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="53"/>
-        <source>ms</source>
+        <source>ms </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2391,7 +2402,7 @@ either express or implied.</source>
     </message>
     <message>
         <location filename="../MwEndpointSelectorLFO.qml" line="92"/>
-        <source>Time</source>
+        <source>Timecode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2459,7 +2470,7 @@ either express or implied.</source>
     <name>MwEndpointSelectorLaunch</name>
     <message>
         <location filename="../MwEndpointSelectorLaunch.qml" line="54"/>
-        <source>ms</source>
+        <source>ms </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2854,177 +2865,192 @@ You can enter any hex code, for example: </source>
 <context>
     <name>MwEndpointSelectorScreen</name>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="91"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="107"/>
         <source>File ...</source>
         <translation>Archivo ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="110"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="126"/>
         <source>Options ...</source>
         <translation>Opciones ...</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="146"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="165"/>
         <source>?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="151"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="170"/>
         <source>Media Clip<byte value="xd"/>
 JPG, PNG, SVG pictures and MP4 videos, as well as any online or local web pages can be presented dynamically on the screen. Please enter the url of your online media file, or click button &apos;File...&apos; to select a local media file.</source>
         <translation>Clip multimedia
 Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web local o en línea, se pueden presentar de forma dinámica en la pantalla. Ingrese la URL de su archivo multimedia en línea o haga clic en el botón &apos;Archivo ...&apos; para seleccionar un archivo multimedia local.</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="152"/>
-        <location filename="../MwEndpointSelectorScreen.qml" line="861"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="171"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="893"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="158"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="177"/>
         <source>Select Media File</source>
         <translation>Seleccionar archivo multimedia</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="161"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="180"/>
         <source>Video and picture</source>
         <translation>Video e imagen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="162"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="181"/>
         <source>Web page file</source>
         <translation>Archivo de página web</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="163"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="182"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="226"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="245"/>
         <source>Media Clip Display Options</source>
         <translation>Opciones de visualización</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="246"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="265"/>
         <source>Show Alone</source>
         <translation>Reproduce solo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="270"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="289"/>
         <source>Fade In</source>
         <translation>Fundido</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="294"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="313"/>
         <source>Opacity</source>
         <translation>Opacidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="318"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="337"/>
         <source>Scale</source>
         <translation>Escala</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="342"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="361"/>
         <source>Rotation</source>
         <translation>Rotación</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="366"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="385"/>
         <source>X Offset</source>
         <translation>X</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="390"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="409"/>
         <source>Y Offset</source>
         <translation>Y</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="434"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="453"/>
         <source>Options for Video Clip Only</source>
         <translation>Opciones para el videoclip</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="454"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="473"/>
         <source>Repeat</source>
         <translation>Repetir</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="478"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="497"/>
         <source>Volume</source>
         <translation>Volumen</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="492"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="511"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="502"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="521"/>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="516"/>
-        <location filename="../MwEndpointSelectorScreen.qml" line="567"/>
-        <location filename="../MwEndpointSelectorScreen.qml" line="593"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="535"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="586"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="612"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="526"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="545"/>
         <source>Position</source>
         <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="400"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="419"/>
         <source>Options for Web Clip Only</source>
         <translation>Opciones para el clip web</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="419"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="37"/>
+        <source>ms </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="438"/>
         <source>Run Java Script</source>
         <translation>Java Script</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="553"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="572"/>
         <source>A-B Repeat</source>
         <translation>Repetición A-B</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="579"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="598"/>
         <source>Starting Point A</source>
         <translation>Punto A (Inicio)</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="605"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="624"/>
         <source>Ending Point B</source>
         <translation>Punto B (Final)</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="621"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="640"/>
         <source>Defaults</source>
         <translation>Predeterminados</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="644"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="664"/>
+        <source>Playing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="665"/>
+        <source>Timecode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwEndpointSelectorScreen.qml" line="667"/>
         <source>Backlight</source>
         <translation>Luz de fondo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="645"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="668"/>
         <source>Media Clip</source>
         <translation>Clip multimedia</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="646"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="669"/>
         <source>Canvas</source>
         <translation>Lienzo</translation>
     </message>
     <message>
-        <location filename="../MwEndpointSelectorScreen.qml" line="861"/>
+        <location filename="../MwEndpointSelectorScreen.qml" line="893"/>
         <source>Please select a media clip file exists on your computer disks or enter a valid url of the media clip.</source>
         <translation>Seleccione un archivo de clip multimedia que exista en los discos de su computadora o ingrese una URL válida del clip multimedia.</translation>
     </message>
@@ -4577,7 +4603,7 @@ de la izquierda.</translation>
 <context>
     <name>ScreenPlayer</name>
     <message>
-        <location filename="../ScreenPlayer.qml" line="132"/>
+        <location filename="../ScreenPlayer.qml" line="135"/>
         <source>Screen</source>
         <translation>Pantalla</translation>
     </message>

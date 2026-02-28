@@ -24,6 +24,7 @@ DgsAPlayer::DgsAPlayer(QObject *parent) : QObject(parent)
     m_position = 0;
     m_duration = 0;
     m_repeat = false;
+    m_timecodeEnabled = false;
 
     m_player = new QMediaPlayer();
     m_player->setNotifyInterval(100);
@@ -133,5 +134,5 @@ void DgsAPlayer::onTimerFired()
 
 void DgsAPlayer::onPositionChanged(qint64 position)
 {
-    emit timeChanged(position);
+    if (m_timecodeEnabled) emit timecodeChanged(position);
 }

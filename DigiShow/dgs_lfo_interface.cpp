@@ -155,7 +155,7 @@ void DgsLfoInterface::onValueChanged(double value)
             data.aValue = (int)(value * (double)data.aRange);
             emit dataReceived(n, data);
 
-        } else if (endpointInfo.type == ENDPOINT_LFO_TIME && endpointInfo.channel == channel) {
+        } else if (endpointInfo.type == ENDPOINT_LFO_TIMECODE && endpointInfo.channel == channel) {
             
             // emit time elapsed event
             dgsSignalData data;
@@ -187,7 +187,7 @@ void DgsLfoInterface::updateMetadata_()
         // Set endpoint type
         QString typeName = m_endpointOptionsList[n].value("type").toString();
         if      (typeName == "value"    ) endpointInfo.type = ENDPOINT_LFO_VALUE;
-        else if (typeName == "time"     ) endpointInfo.type = ENDPOINT_LFO_TIME;
+        else if (typeName == "timecode" ) endpointInfo.type = ENDPOINT_LFO_TIMECODE;
         else if (typeName == "reset"    ) endpointInfo.type = ENDPOINT_LFO_RESET;
         else if (typeName == "run"      ) endpointInfo.type = ENDPOINT_LFO_RUN;
         else if (typeName == "period"   ) endpointInfo.type = ENDPOINT_LFO_PERIOD;
@@ -205,11 +205,11 @@ void DgsLfoInterface::updateMetadata_()
                 endpointInfo.range = (endpointInfo.range ? endpointInfo.range : 65535);
                 endpointInfo.labelEPI = getFunctionName(m_endpointOptionsList[n].value("optFunction").toString());
                 break;
-            case ENDPOINT_LFO_TIME:
+            case ENDPOINT_LFO_TIMECODE:
                 endpointInfo.signal = DATA_SIGNAL_ANALOG;
                 endpointInfo.input = true;
                 endpointInfo.range = (endpointInfo.range ? endpointInfo.range : 1000000000); // millisecond
-                endpointInfo.labelEPI = tr("Time");
+                endpointInfo.labelEPI = tr("Timecode");
                 break;
             case ENDPOINT_LFO_RESET:
                 endpointInfo.signal = DATA_SIGNAL_BINARY;

@@ -22,6 +22,9 @@ QtObject {
     property var  frontMediaView: null // the media view shown on the top level on the screen
     property real topZ:           100  // z order number of the top-level media view
 
+    signal mediaPlayingChanged(string name, bool playing)
+    signal mediaTimecodeChanged(string name, int timecode)
+
     property Window playerWindow: Window {
 
         id: window
@@ -177,6 +180,13 @@ QtObject {
 
             view = Qt.createQmlObject("SpVideoView {}", canvas)
             view.player.source = url
+            view.playingChanged.connect(function() {
+                mediaPlayingChanged(name, view.playing) // emit signal
+            })
+            view.timecodeChanged.connect(function() {
+                mediaTimecodeChanged(name, view.timecode)
+            })
+
 
         } else if (type === "image") {
 
@@ -225,6 +235,13 @@ QtObject {
 
             if (propertyName === "opacity") view.stopFadeIn()
             view[propertyName] = propertyValue
+        }
+    }
+
+    function setMediaTimecodeEnabled(mediaName, enabled) {
+        var view = getMediaViewByName(mediaName)
+        if (view !== null) {
+            view.timecodeEnabled = enabled
         }
     }
 

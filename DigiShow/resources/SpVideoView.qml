@@ -20,6 +20,9 @@ Item {
     property int  positionA: 0 // A-B loop
     property int  positionB: 0
 
+    property bool timecodeEnabled: false
+    property int  timecode: 0
+
     onPositionChanged: videoPlayer.seek(videoView.position)
 
     width: parent.width
@@ -60,6 +63,10 @@ Item {
             if (!videoView.repeat && videoPlayer.duration > 0 && videoPlayer.position >= videoPlayer.duration-500) {
                 videoPlayer.pause()
             }
+
+            // timecode change
+            if (timecodeEnabled && Math.trunc(videoPlayer.position/200) !== Math.trunc(timecode/200))
+                timecode = videoPlayer.position
         }
     }
 

@@ -69,6 +69,10 @@ int DgsScreenInterface::openInterface()
         // make player (based on qml)
         if (!m_qmlComponentPlayer->isReady()) return ERR_DEVICE_NOT_READY;
         m_player = m_qmlComponentPlayer->create();
+        QObject::connect(m_player, SIGNAL(mediaPlayingChanged(QString, bool)),
+                        this, SLOT(onMediaPlayingChanged(QString, bool)));
+        QObject::connect(m_player, SIGNAL(mediaTimecodeChanged(QString, int)),
+                        this, SLOT(onMediaTimecodeChanged(QString, int)));
 
         // show player
         QVariant r;
@@ -170,6 +174,9 @@ int DgsScreenInterface::sendData(int endpointIndex, dgsSignalData data)
 
                 if (data.signal != DATA_SIGNAL_BINARY) return ERR_INVALID_DATA;
                 if (data.bValue) {
+
+                    enableMediaTimecode(media); // enable timecode feedback as needed
+
                     QVariant r;
                     QMetaObject::invokeMethod(
                                 m_player, "showMedia", Qt::DirectConnection,
@@ -240,6 +247,72 @@ int DgsScreenInterface::loadMedia(const QVariantMap &mediaOptions)
                 Q_RETURN_ARG(QVariant, rr), Q_ARG(QVariant, mediaOptions));
 
     return ERR_NONE;
+}
+
+void DgsScreenInterface::enableMediaTimecode(const QString &mediaName)
+{
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        if (endpointInfo.type == ENDPOINT_SCREEN_TIMECODE) {
+
+            QVariantMap endpointOptions = m_endpointOptionsList[n];
+            QString endpointMedia = endpointOptions.value("media").toString();
+            if (endpointMedia != mediaName) continue;
+
+            QVariant r;
+            QMetaObject::invokeMethod(
+                        m_player, "setMediaTimecodeEnabled", Qt::DirectConnection,
+                        Q_RETURN_ARG(QVariant, r),
+                        Q_ARG(QVariant, mediaName),
+                        Q_ARG(QVariant, true));
+            break;
+        }
+    }
+}
+
+void DgsScreenInterface::onMediaPlayingChanged(const QString &name, bool playing)
+{
+    // find matched endpoint
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        if (endpointInfo.type == ENDPOINT_SCREEN_PLAYING) {
+
+            QVariantMap endpointOptions = m_endpointOptionsList[n];
+            QString endpointMedia = endpointOptions.value("media").toString();
+            if (endpointMedia == name) {
+                // emit playing change event
+                dgsSignalData data;
+                data.signal = DATA_SIGNAL_BINARY;
+                data.bValue = playing;
+                emit dataReceived(n, data);
+                break;
+            }
+        }
+    }
+}
+
+void DgsScreenInterface::onMediaTimecodeChanged(const QString &name, int timecode)
+{
+    // find matched endpoint
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        if (endpointInfo.type == ENDPOINT_SCREEN_TIMECODE) {
+
+            QVariantMap endpointOptions = m_endpointOptionsList[n];
+            QString endpointMedia = endpointOptions.value("media").toString();
+            if (endpointMedia == name) {
+                // emit timecode update event
+                dgsSignalData data;
+                data.signal = DATA_SIGNAL_ANALOG;
+                data.aValue = qMin<int>(timecode, endpointInfo.range);
+                data.aRange = endpointInfo.range;
+                emit dataReceived(n, data);
+                break;
+            }
+        }
+    }
 }
 
 QVariantList DgsScreenInterface::listOnline()
@@ -321,7 +394,8 @@ void DgsScreenInterface::updateMetadata_()
     // Set interface mode and flags
     m_interfaceInfo.mode = INTERFACE_SCREEN_DEFAULT;
     m_interfaceInfo.output = true;
-    m_interfaceInfo.input = false;
+    m_interfaceInfo.input = true;
+    m_interfaceInfo.inputSecondary = true;
 
     // Set interface label
     QString labelIdentity;
@@ -338,9 +412,11 @@ void DgsScreenInterface::updateMetadata_()
 
         // Set endpoint type
         QString typeName = m_endpointOptionsList[n].value("type").toString();
-        if      (typeName == "light" ) endpointInfo.type = ENDPOINT_SCREEN_LIGHT;
-        else if (typeName == "media" ) endpointInfo.type = ENDPOINT_SCREEN_MEDIA;
-        else if (typeName == "canvas") endpointInfo.type = ENDPOINT_SCREEN_CANVAS;
+        if      (typeName == "light"   ) endpointInfo.type = ENDPOINT_SCREEN_LIGHT;
+        else if (typeName == "media"   ) endpointInfo.type = ENDPOINT_SCREEN_MEDIA;
+        else if (typeName == "canvas"  ) endpointInfo.type = ENDPOINT_SCREEN_CANVAS;
+        else if (typeName == "playing" ) endpointInfo.type = ENDPOINT_SCREEN_PLAYING;
+        else if (typeName == "timecode") endpointInfo.type = ENDPOINT_SCREEN_TIMECODE;
 
         // Set endpoint properties based on type
         switch (endpointInfo.type) {
@@ -403,6 +479,22 @@ void DgsScreenInterface::updateMetadata_()
                         break;
                 }
                 break;
+
+            case ENDPOINT_SCREEN_PLAYING:
+                endpointInfo.input = true;
+                endpointInfo.labelEPT = tr("Media Clip");
+                endpointInfo.labelEPI = tr("Playing");
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                break;
+
+            case ENDPOINT_SCREEN_TIMECODE:
+                endpointInfo.input = true;
+                endpointInfo.labelEPT = tr("Media Clip");
+                endpointInfo.labelEPI = tr("Timecode");
+                endpointInfo.signal = DATA_SIGNAL_ANALOG;
+                endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000000000); // millisecond
+                break;
+
         }
 
         m_endpointInfoList.append(endpointInfo);

@@ -111,9 +111,9 @@ void DgsLaunchInterface::updateMetadata_()
 
         // Set endpoint type
         QString typeName = m_endpointOptionsList[n].value("type").toString();
-        if      (typeName == "preset") endpointInfo.type = ENDPOINT_LAUNCH_PRESET;
-        else if (typeName == "playing") endpointInfo.type = ENDPOINT_LAUNCH_PLAYING;
-        else if (typeName == "time") endpointInfo.type = ENDPOINT_LAUNCH_TIME;
+        if      (typeName == "preset"  ) endpointInfo.type = ENDPOINT_LAUNCH_PRESET;
+        else if (typeName == "playing" ) endpointInfo.type = ENDPOINT_LAUNCH_PLAYING;
+        else if (typeName == "timecode") endpointInfo.type = ENDPOINT_LAUNCH_TIMECODE;
 
         // Set endpoint type based on type
         if (endpointInfo.type == ENDPOINT_LAUNCH_PRESET) {
@@ -141,11 +141,11 @@ void DgsLaunchInterface::updateMetadata_()
             endpointInfo.labelEPI = tr("Playing");
             endpointInfo.signal = DATA_SIGNAL_BINARY;
 
-        } else if (endpointInfo.type == ENDPOINT_LAUNCH_TIME) {
+        } else if (endpointInfo.type == ENDPOINT_LAUNCH_TIMECODE) {
             
             endpointInfo.input = true;
             endpointInfo.labelEPT = tr("Preset") + " " + QString::number(endpointInfo.channel);
-            endpointInfo.labelEPI = tr("Time");
+            endpointInfo.labelEPI = tr("Timecode");
             endpointInfo.signal = DATA_SIGNAL_ANALOG;
             endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000000000); // millisecond
         }
