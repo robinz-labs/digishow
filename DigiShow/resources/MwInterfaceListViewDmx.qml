@@ -90,6 +90,7 @@ MwInterfaceListView {
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
                     anchors.margins: 20
+                    anchors.rightMargin: buttonDmxModelHelp.visible ? 50 : 20
                     text: menuDmxMode.findOptionTextByTag(model.mode)
 
                     onClicked: {
@@ -123,12 +124,34 @@ MwInterfaceListView {
                     }
 
                     Label {
+                        id: labelDmxModel
                         anchors.left: parent.left
                         anchors.bottom: parent.top
                         anchors.bottomMargin: 10
                         font.pixelSize: 11
                         text: qsTr("Model")
+                    }
 
+                    CButton {
+                        id: buttonDmxModelHelp
+                        width: 18
+                        height: 18
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.right
+                        anchors.leftMargin: 10
+                        label.text: "?"
+                        label.font.pixelSize: 11
+                        label.font.bold: true
+                        box.radius: 9
+                        visible: menuDmxMode.selectedItemTag === "opendmx" && utilities.isWindows()
+
+                        onClicked: {
+                            if (messageBox.showAndWait(
+                                    qsTr("Please download Zadig and select the WinUSB driver to install."),
+                                    qsTr("OK"), qsTr("Download ...")) === 2) {
+                                Qt.openUrlExternally("https://zadig.akeo.ie/")
+                            }
+                        }
                     }
                 }
             }

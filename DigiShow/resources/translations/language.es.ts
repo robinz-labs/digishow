@@ -3216,19 +3216,34 @@ Las imágenes JPG, PNG, SVG y los videos MP4, así como cualquier página web lo
         <translation>Puerto serial USB</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewDmx.qml" line="104"/>
+        <location filename="../MwInterfaceListViewDmx.qml" line="105"/>
         <source>Enttec DMX USB Pro</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewDmx.qml" line="105"/>
+        <location filename="../MwInterfaceListViewDmx.qml" line="106"/>
         <source>Open DMX USB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewDmx.qml" line="130"/>
+        <location filename="../MwInterfaceListViewDmx.qml" line="132"/>
         <source>Model</source>
         <translation>Modelo</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewDmx.qml" line="150"/>
+        <source>Please download Zadig and select the WinUSB driver to install.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewDmx.qml" line="151"/>
+        <source>OK</source>
+        <translation type="unfinished">Aceptar</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewDmx.qml" line="151"/>
+        <source>Download ...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
