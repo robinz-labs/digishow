@@ -79,6 +79,7 @@ public:
     Q_INVOKABLE void newShow();
 
     Q_INVOKABLE int newInterface(const QString &interfaceType);
+    Q_INVOKABLE int findInterface(const QString &interfaceType);
     Q_INVOKABLE bool deleteInterface(int interfaceIndex);
 
     Q_INVOKABLE int newSlot();

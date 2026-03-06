@@ -344,6 +344,14 @@ bool DigishowApp::loadFile(const QString & filepath, const QVariantMap & decrypt
     // process the data
     importData(data);
 
+    // when opening an old .dgs file, all necessary interfaces need to be added
+    QString type;
+    type = "hotkey";    if (findInterface(type) == -1)  newInterface(type);
+    type = "aplay";     if (findInterface(type) == -1)  newInterface(type);
+    type = "launch";    if (findInterface(type) == -1)  newInterface(type);
+    type = "metronome"; if (findInterface(type) == -1)  newInterface(type);
+    type = "lfo";       if (findInterface(type) == -1)  newInterface(type);
+
     emit filepathChanged();
 
     // auto start
@@ -709,6 +717,13 @@ int DigishowApp::newInterface(const QString &interfaceType)
     connect(interface, SIGNAL(errorDetected(int, QString)), this, SLOT(onInterfaceErrorDetected(int, QString)));
     m_interfaces.append(interface);
     return m_interfaces.length()-1; // return new interface index
+}
+
+int DigishowApp::findInterface(const QString &interfaceType)
+{
+    for (int n=0 ; n<m_interfaces.length() ; n++)
+        if (m_interfaces[n]->interfaceOptions()->value("type") == interfaceType) return n;
+    return -1; // not found
 }
 
 bool DigishowApp::deleteInterface(int interfaceIndex)
