@@ -381,6 +381,8 @@ QtObject {
             var view1 = mediaViewList[n]
             if (view1 !== view) view1.visible = false
         }
+
+        if (view !== null) view.visible = true
     }
 
     function pauseAllVideoViewsExcept(view) {
