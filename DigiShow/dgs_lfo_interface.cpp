@@ -213,6 +213,7 @@ void DgsLfoInterface::updateMetadata_()
                 break;
             case ENDPOINT_LFO_RESET:
                 endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.pulse = true;
                 endpointInfo.output = true;
                 endpointInfo.labelEPI = tr("Reset");
                 break;

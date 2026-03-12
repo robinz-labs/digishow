@@ -94,9 +94,13 @@ DigishowEnvironment {
         return "#666666";
     }
 
-    function getSignalIcon(sig) {
+    function getSignalIcon(sig, pulse) {
 
-        if (sig === DigishowEnvironment.SignalAnalog) {
+        if (pulse) {
+
+            return "qrc:///images/icon_signal_pulse_white.png"
+
+        } else if (sig === DigishowEnvironment.SignalAnalog) {
 
             return "qrc:///images/icon_signal_analog_white.png"
 

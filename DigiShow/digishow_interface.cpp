@@ -113,6 +113,7 @@ QVariantMap DigishowInterface::getEndpointInfoAt(int index)
         info["signal"  ] = m_endpointInfoList[index].signal;
         info["output"  ] = m_endpointInfoList[index].output;
         info["input"   ] = m_endpointInfoList[index].input;
+        info["pulse"   ] = m_endpointInfoList[index].pulse;
         info["range"   ] = m_endpointInfoList[index].range;
         info["ready"   ] = m_endpointInfoList[index].ready;
         info["initial" ] = m_endpointInfoList[index].initial;

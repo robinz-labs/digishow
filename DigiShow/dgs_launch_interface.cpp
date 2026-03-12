@@ -119,6 +119,7 @@ void DgsLaunchInterface::updateMetadata_()
         if (endpointInfo.type == ENDPOINT_LAUNCH_PRESET) {
             
             endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.pulse = true;
             endpointInfo.output = true;
         
             switch (endpointInfo.control) {

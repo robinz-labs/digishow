@@ -614,6 +614,7 @@ void DgsDmxInterface::updateMetadata_()
                     case CONTROL_MEDIA_STOP:
                     case CONTROL_MEDIA_STOP_ALL:
                         endpointInfo.signal = DATA_SIGNAL_BINARY;
+                        endpointInfo.pulse = true;
                         break;
                 }
                 endpointInfo.labelEPI = DigishowEnvironment::getMediaControlName(endpointInfo.control);

@@ -267,6 +267,7 @@ typedef struct dgsEndpointInfo {
     char signal;        // signal data type
     bool output;        // is output signal
     bool input;         // is input signal
+    bool pulse;         // is pulse signal
     int range;          // data range of the analog signal (optional)
     bool ready;         // is ready to work with the endpoint (optional)
     double initial;     // initial singal value rate 0 ~ 1.0 (optional)
@@ -289,6 +290,7 @@ typedef struct dgsEndpointInfo {
       signal(0),
       output(false),
       input(false),
+      pulse(false),
       range(0),
       ready(false),
       initial(-1),

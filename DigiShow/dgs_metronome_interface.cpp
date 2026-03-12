@@ -205,6 +205,7 @@ void DgsMetronomeInterface::updateMetadata_()
                 break;
             case ENDPOINT_METRONOME_RESET:
                 endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.pulse = true;
                 endpointInfo.output = true;
                 endpointInfo.labelEPT = tr("Beat Maker");
                 endpointInfo.labelEPI = tr("Reset");

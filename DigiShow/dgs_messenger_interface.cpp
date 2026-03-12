@@ -273,6 +273,7 @@ void DgsMessengerInterface::updateMetadata_()
 
         // Set endpoint properties
         endpointInfo.signal = DATA_SIGNAL_BINARY;
+        endpointInfo.pulse = true;
         if (m_endpointOptionsList[n].value("subscribed").toBool())
             endpointInfo.input = true;
         else

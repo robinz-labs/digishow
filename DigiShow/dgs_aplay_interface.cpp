@@ -336,6 +336,7 @@ void DgsAPlayInterface::updateMetadata_()
                 case CONTROL_MEDIA_STOP:
                 case CONTROL_MEDIA_STOP_ALL:
                     endpointInfo.signal = DATA_SIGNAL_BINARY;
+                    endpointInfo.pulse = true;
                     break;
                 case CONTROL_MEDIA_VOLUME:
                 case CONTROL_MEDIA_MASTER:

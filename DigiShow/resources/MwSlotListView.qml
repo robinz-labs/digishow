@@ -717,6 +717,7 @@ Item {
                             box.radius: 3
                             box.border.width: 1
                             colorNormal: "transparent"
+                            colorActivated: model.epOutPulse ? model.epOutColor : "#666666"
                             mouseDown: model.epOutTap
                             onPressed: {
                                 model.epOutFaderHold = false
@@ -1433,6 +1434,7 @@ Item {
         var epInIcon = "qrc:///images/icon_ep_in_white.png"
         var epInLabelEPT = qsTr("IN")
         var epInLabelEPI = ""
+        var epInPulse = false
         var epInRange = 1
 
         var epOutSignal = 0
@@ -1441,29 +1443,30 @@ Item {
         var epOutIcon = "qrc:///images/icon_ep_out_white.png"
         var epOutLabelEPT = qsTr("OUT")
         var epOutLabelEPI = ""
+        var epOutPulse = false
         var epOutRange = 1
 
         var epInInfo = config["epInInfo"]
         if (epInInfo!== undefined) {
             epInSignal = epInInfo["signal"]
+            epInPulse = epInInfo["pulse"]
             epInType = epInInfo["type"]
             epInColor = digishow.getEndpointColor(epInType, epInSignal)
-            epInIcon = digishow.getSignalIcon(epInSignal)
+            epInIcon = digishow.getSignalIcon(epInSignal, epInPulse)
             epInLabelEPT = epInInfo["labelEPT"]
             epInLabelEPI = epInInfo["labelEPI"]
-
             if (epInInfo["range"]>0) epInRange = epInInfo["range"]
         }
 
         var epOutInfo = config["epOutInfo"]
         if (epOutInfo !== undefined) {
             epOutSignal = epOutInfo["signal"]
+            epOutPulse = epOutInfo["pulse"]
             epOutType = epOutInfo["type"]
             epOutColor = digishow.getEndpointColor(epOutType, epOutSignal)
-            epOutIcon = digishow.getSignalIcon(epOutSignal)
+            epOutIcon = digishow.getSignalIcon(epOutSignal, epOutPulse)
             epOutLabelEPT = epOutInfo["labelEPT"]
             epOutLabelEPI = epOutInfo["labelEPI"]
-
             if (epOutInfo["range"]>0) epOutRange = epOutInfo["range"]
         }
 
@@ -1509,11 +1512,13 @@ Item {
             slotOutInverted: slotOutInverted,
 
             epInSignal: epInSignal,
+
             epInColor: epInColor,
             epInIcon: epInIcon,
             epInLabelEPT: epInLabelEPT,
             epInLabelEPI: epInLabelEPI,
 
+            epInPulse: epInPulse,
             epInRange: epInRange,
             epInValue: epInValue,
             epInBusy: epInBusy,
@@ -1525,6 +1530,7 @@ Item {
             epOutLabelEPT: epOutLabelEPT,
             epOutLabelEPI: epOutLabelEPI,
 
+            epOutPulse: epOutPulse,
             epOutRange: epOutRange,
             epOutValue: epOutValue,
             epOutPreValue: epOutPreValue,
