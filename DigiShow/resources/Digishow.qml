@@ -58,20 +58,24 @@ DigishowEnvironment {
             case DigishowEnvironment.EndpointScreenLight       : return CColor.Lake
             case DigishowEnvironment.EndpointScreenMedia       : return sig === DigishowEnvironment.SignalBinary ? CColor.HotPink : CColor.Iris
             case DigishowEnvironment.EndpointScreenCanvas      : return CColor.Ocean
-            case DigishowEnvironment.EndpointScreenPlaying     : return CColor.HotPink
+            case DigishowEnvironment.EndpointScreenPlaying     : return CColor.RosePink
+            case DigishowEnvironment.EndpointScreenEnd         : return CColor.RosePink
             case DigishowEnvironment.EndpointScreenTimecode    : return CColor.Ocean
             case DigishowEnvironment.EndpointAPlayMedia        : return sig === DigishowEnvironment.SignalBinary ? CColor.HotPink : CColor.Iris
-            case DigishowEnvironment.EndpointAPlayPlaying      : return CColor.HotPink
+            case DigishowEnvironment.EndpointAPlayPlaying      : return CColor.RosePink
+            case DigishowEnvironment.EndpointAPlayEnd          : return CColor.RosePink
             case DigishowEnvironment.EndpointAPlayTimecode     : return CColor.Ocean
             case DigishowEnvironment.EndpointMPlayMedia        : return sig === DigishowEnvironment.SignalBinary ? CColor.HotPink : CColor.Iris
-            case DigishowEnvironment.EndpointMPlayPlaying      : return CColor.HotPink
+            case DigishowEnvironment.EndpointMPlayPlaying      : return CColor.RosePink
+            case DigishowEnvironment.EndpointMPlayEnd          : return CColor.RosePink
             case DigishowEnvironment.EndpointMPlayTimecode     : return CColor.Ocean
 
             case DigishowEnvironment.EndpointPipeAnalog        : return CColor.Sky
             case DigishowEnvironment.EndpointPipeBinary        : return CColor.RosePink
             case DigishowEnvironment.EndpointPipeNote          : return CColor.Mint
             case DigishowEnvironment.EndpointLaunchPreset      : return CColor.Cherry
-            case DigishowEnvironment.EndpointLaunchPlaying     : return CColor.Cherry
+            case DigishowEnvironment.EndpointLaunchPlaying     : return CColor.RosePink
+            case DigishowEnvironment.EndpointLaunchEnd         : return CColor.RosePink
             case DigishowEnvironment.EndpointLaunchTimecode    : return CColor.Ocean
             case DigishowEnvironment.EndpointLfoValue          : return CColor.Ocean
             case DigishowEnvironment.EndpointLfoTimecode       : return CColor.Ocean

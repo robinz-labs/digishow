@@ -23,6 +23,8 @@ Item {
     property bool timecodeEnabled: false
     property int  timecode: 0
 
+    signal playbackEnded()
+
     onPositionChanged: videoPlayer.seek(videoView.position)
 
     width: parent.width
@@ -62,6 +64,7 @@ Item {
             // frozen at the last second
             if (!videoView.repeat && videoPlayer.duration > 0 && videoPlayer.position >= videoPlayer.duration-500) {
                 videoPlayer.pause()
+                playbackEnded() // emit signal
             }
 
             // timecode change

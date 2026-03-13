@@ -199,6 +199,7 @@ bool DgsAPlayInterface::initPlayer(const QVariantMap &mediaOptions)
 
             connect(player, &DgsAPlayer::playingChanged, this, &DgsAPlayInterface::onPlayingChanged);
             connect(player, &DgsAPlayer::timecodeChanged, this, &DgsAPlayInterface::onTimecodeChanged);
+            connect(player, &DgsAPlayer::playbackEnded, this, &DgsAPlayInterface::onPlaybackEnded);
             done = true;
         } else {
             delete player;
@@ -299,6 +300,44 @@ void DgsAPlayInterface::onTimecodeChanged(int timecode)
     }
 }
 
+void DgsAPlayInterface::onPlaybackEnded()
+{
+    // obtain the player object
+    DgsAPlayer *player = qobject_cast<DgsAPlayer*>(sender());
+    if (player == nullptr) return;
+
+    // find matched media
+    QString media = m_players.key(player);
+    if (media.isEmpty()) return;
+
+    // find matched endpoint
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        if (endpointInfo.type == ENDPOINT_APLAY_END) {
+
+            QVariantMap endpointOptions = m_endpointOptionsList[n];
+            QString endpointMedia = endpointOptions.value("media").toString();
+            if (endpointMedia == media) {
+                // emit playback ended event
+                int epIndex = n;
+                dgsSignalData data;
+                data.signal = DATA_SIGNAL_BINARY;
+                data.bValue = true;
+                emit dataReceived(epIndex, data);
+
+                QTimer::singleShot(300, this, [this, epIndex]() {
+                    dgsSignalData data;
+                    data.signal = DATA_SIGNAL_BINARY;
+                    data.bValue = false;
+                    emit dataReceived(epIndex, data);
+                });
+                break;
+            }
+        }
+    }
+}
+
 void DgsAPlayInterface::updateMetadata_()
 {
     m_interfaceInfo.type = INTERFACE_APLAY;
@@ -320,6 +359,7 @@ void DgsAPlayInterface::updateMetadata_()
         QString typeName = m_endpointOptionsList[n].value("type").toString();
         if      (typeName == "media"   ) endpointInfo.type = ENDPOINT_APLAY_MEDIA;
         else if (typeName == "playing" ) endpointInfo.type = ENDPOINT_APLAY_PLAYING;
+        else if (typeName == "end"     ) endpointInfo.type = ENDPOINT_APLAY_END;
         else if (typeName == "timecode") endpointInfo.type = ENDPOINT_APLAY_TIMECODE;
 
         // Set endpoint properties based on type
@@ -349,6 +389,13 @@ void DgsAPlayInterface::updateMetadata_()
             endpointInfo.input = true;
             endpointInfo.labelEPI = tr("Playing");
             endpointInfo.signal = DATA_SIGNAL_BINARY;
+
+        } else if (endpointInfo.type == ENDPOINT_APLAY_END) {
+
+            endpointInfo.input = true;
+            endpointInfo.labelEPI = tr("End");
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.pulse = true;
 
         } else if (endpointInfo.type == ENDPOINT_APLAY_TIMECODE) {
 

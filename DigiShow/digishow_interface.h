@@ -102,6 +102,9 @@ protected:
     // only for the interface that contains a media list
     QVariantList cleanMediaList();
 
+    // get options of a specified media
+    QVariantMap getMediaOptions(const QString &mediaName);
+
     // helper function to initialize endpoint info
     // used in updateMetadata_()
     dgsEndpointInfo initializeEndpointInfo(int index);

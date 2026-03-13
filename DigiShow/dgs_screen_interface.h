@@ -45,6 +45,7 @@ public slots:
 
     void onMediaPlayingChanged(const QString &name, bool playing);
     void onMediaTimecodeChanged(const QString &name, int timecode);
+    void onMediaPlaybackEnded(const QString &name);
 
 private:
 

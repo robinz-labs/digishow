@@ -109,6 +109,7 @@ Item {
         text: "file://"
         //input.anchors.rightMargin: 30
         visible: menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayPlaying ||
+                 menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayEnd ||
                  menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayTimecode || (
                  menuType.selectedItemValue === DigishowEnvironment.EndpointAPlayMedia &&
                  menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll &&
@@ -365,6 +366,7 @@ Item {
             items = []
             if (forInput) {
                 items.push({ text: qsTr("Playing"   ), value: DigishowEnvironment.EndpointAPlayPlaying,  tag:"playing" })
+                items.push({ text: qsTr("End"       ), value: DigishowEnvironment.EndpointAPlayEnd,      tag:"end" })
                 items.push({ text: qsTr("Timecode"  ), value: DigishowEnvironment.EndpointAPlayTimecode, tag:"timecode" })
             } else if (forOutput) {
                 items.push({ text: qsTr("Audio Clip"), value: DigishowEnvironment.EndpointAPlayMedia,    tag:"media" })

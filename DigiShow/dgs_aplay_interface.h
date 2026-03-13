@@ -41,6 +41,7 @@ signals:
 public slots:
     void onPlayingChanged(bool playing);
     void onTimecodeChanged(int timecode);
+    void onPlaybackEnded();
 
 private:
 

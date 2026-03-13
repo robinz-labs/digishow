@@ -47,6 +47,7 @@ public:
 signals:
     void playingChanged(bool playing);
     void timecodeChanged(int timecode);
+    void playbackEnded();
 
 private slots:
     void onTimerFired();

@@ -129,6 +129,7 @@ void DgsAPlayer::onTimerFired()
 
         m_isPlaying = false;
         emit playingChanged(m_isPlaying);
+        emit playbackEnded();
     }
 }
 

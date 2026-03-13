@@ -145,6 +145,7 @@ Item {
         text: "file://"
         input.anchors.rightMargin: 30
         visible: menuType.selectedItemValue === DigishowEnvironment.EndpointScreenPlaying ||
+                 menuType.selectedItemValue === DigishowEnvironment.EndpointScreenEnd ||
                  menuType.selectedItemValue === DigishowEnvironment.EndpointScreenTimecode || (
                  menuType.selectedItemValue === DigishowEnvironment.EndpointScreenMedia &&
                  menuMediaControl.selectedItemValue !== DigishowEnvironment.ControlMediaStopAll)
@@ -662,6 +663,7 @@ Item {
             items = []
             if (forInput) {
                 items.push({ text: qsTr("Playing"   ), value: DigishowEnvironment.EndpointScreenPlaying,  tag:"playing" })
+                items.push({ text: qsTr("End"       ), value: DigishowEnvironment.EndpointScreenEnd,      tag:"end" })
                 items.push({ text: qsTr("Timecode"  ), value: DigishowEnvironment.EndpointScreenTimecode, tag:"timecode" })
             } else if (forOutput) {
                 items.push({ text: qsTr("Backlight" ), value: DigishowEnvironment.EndpointScreenLight,  tag:"light" })
@@ -845,6 +847,7 @@ Item {
             break
         case DigishowEnvironment.EndpointScreenMedia:
         case DigishowEnvironment.EndpointScreenPlaying:
+        case DigishowEnvironment.EndpointScreenEnd:
         case DigishowEnvironment.EndpointScreenTimecode:
             menuMediaControl.selectOption(endpointInfo["control"])
 
@@ -874,6 +877,7 @@ Item {
             break
         case DigishowEnvironment.EndpointScreenMedia:
         case DigishowEnvironment.EndpointScreenPlaying:
+        case DigishowEnvironment.EndpointScreenEnd:
         case DigishowEnvironment.EndpointScreenTimecode:
 
             if (buttonMediaControl.visible)

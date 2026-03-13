@@ -24,6 +24,7 @@ QtObject {
 
     signal mediaPlayingChanged(string name, bool playing)
     signal mediaTimecodeChanged(string name, int timecode)
+    signal mediaPlaybackEnded(string name)
 
     property Window playerWindow: Window {
 
@@ -186,7 +187,9 @@ QtObject {
             view.timecodeChanged.connect(function() {
                 mediaTimecodeChanged(name, view.timecode)
             })
-
+            view.playbackEnded.connect(function() {
+                mediaPlaybackEnded(name)
+            })
 
         } else if (type === "image") {
 

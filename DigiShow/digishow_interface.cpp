@@ -259,5 +259,17 @@ QVariantList DigishowInterface::cleanMediaList()
     return mediaList;
 }
 
+QVariantMap DigishowInterface::getMediaOptions(const QString &mediaName)
+{
+    QVariantList mediaList = m_interfaceOptions.value("media").toList();
+    for (const QVariant &media : mediaList) {
+        QVariantMap mediaOptions = media.toMap();
+        if (mediaOptions.value("name") == mediaName) {
+            return mediaOptions;
+        }
+    }
+    return QVariantMap();
+}
+
 
 

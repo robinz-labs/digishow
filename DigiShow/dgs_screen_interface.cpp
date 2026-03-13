@@ -73,6 +73,8 @@ int DgsScreenInterface::openInterface()
                         this, SLOT(onMediaPlayingChanged(QString, bool)));
         QObject::connect(m_player, SIGNAL(mediaTimecodeChanged(QString, int)),
                         this, SLOT(onMediaTimecodeChanged(QString, int)));
+        QObject::connect(m_player, SIGNAL(mediaPlaybackEnded(QString)),
+                        this, SLOT(onMediaPlaybackEnded(QString)));
 
         // show player
         QVariant r;
@@ -315,6 +317,36 @@ void DgsScreenInterface::onMediaTimecodeChanged(const QString &name, int timecod
     }
 }
 
+void DgsScreenInterface::onMediaPlaybackEnded(const QString &name)
+{
+    // find matched endpoint
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        if (endpointInfo.type == ENDPOINT_SCREEN_END) {
+
+            QVariantMap endpointOptions = m_endpointOptionsList[n];
+            QString endpointMedia = endpointOptions.value("media").toString();
+            if (endpointMedia == name) {
+                // emit playback ended event
+                int epIndex = n;
+                dgsSignalData data;
+                data.signal = DATA_SIGNAL_BINARY;
+                data.bValue = true;
+                emit dataReceived(epIndex, data);
+
+                QTimer::singleShot(300, this, [this, epIndex]() {
+                    dgsSignalData data;
+                    data.signal = DATA_SIGNAL_BINARY;
+                    data.bValue = false;
+                    emit dataReceived(epIndex, data);
+                });
+                break;
+            }
+        }
+    }
+}
+
 QVariantList DgsScreenInterface::listOnline()
 {
     QVariantList list;
@@ -416,6 +448,7 @@ void DgsScreenInterface::updateMetadata_()
         else if (typeName == "media"   ) endpointInfo.type = ENDPOINT_SCREEN_MEDIA;
         else if (typeName == "canvas"  ) endpointInfo.type = ENDPOINT_SCREEN_CANVAS;
         else if (typeName == "playing" ) endpointInfo.type = ENDPOINT_SCREEN_PLAYING;
+        else if (typeName == "end"     ) endpointInfo.type = ENDPOINT_SCREEN_END;
         else if (typeName == "timecode") endpointInfo.type = ENDPOINT_SCREEN_TIMECODE;
 
         // Set endpoint properties based on type
@@ -486,6 +519,14 @@ void DgsScreenInterface::updateMetadata_()
                 endpointInfo.labelEPT = tr("Media Clip");
                 endpointInfo.labelEPI = tr("Playing");
                 endpointInfo.signal = DATA_SIGNAL_BINARY;
+                break;
+
+            case ENDPOINT_SCREEN_END:
+                endpointInfo.input = true;
+                endpointInfo.labelEPT = tr("Media Clip");
+                endpointInfo.labelEPI = tr("End");
+                endpointInfo.signal = DATA_SIGNAL_BINARY;
+                endpointInfo.pulse = true;
                 break;
 
             case ENDPOINT_SCREEN_TIMECODE:
