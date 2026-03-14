@@ -278,11 +278,10 @@ Item {
                     Text {
                         id: labelSlotNumber
 
+                        width: contentWidth
                         anchors.left: parent.left
                         anchors.leftMargin: 8
-                        anchors.top: parent.bottom
-                        anchors.topMargin: 8
-                        horizontalAlignment: Text.AlignHCenter
+                        anchors.verticalCenter: labelSlotTitle.verticalCenter
                         color: "#ffffff"
                         text: index+1
                         font.pixelSize: 11
@@ -290,14 +289,91 @@ Item {
                         visible: altKeyHeld
                     }
 
+                    Rectangle {
+
+                        id: rectLabelEndpointIn
+
+                        visible: labelEndpointIn.text.length > 0
+
+                        width: labelEndpointIn.width + 8
+                        height: 18
+                        anchors.left: parent.left
+                        anchors.leftMargin: labelSlotNumber.visible ? labelSlotNumber.width + 16 : 6
+                        anchors.verticalCenter: labelSlotTitle.verticalCenter
+                        radius: 2
+                        color: highlightedIndex===index ? "#cccccc" : "transparent"
+                        border.width: 1
+                        border.color: highlightedIndex===index ? "#cccccc" : "#333333"
+
+                        Text {
+                            id: labelEndpointIn
+
+                            width: contentWidth
+                            anchors.centerIn: parent
+                            color: highlightedIndex===index ? "#000000" : "#666666"
+                            font.pixelSize: 11
+                            font.bold: false
+                            text: {
+                                var strAddress = model.epInAddress
+                                var strLabel
+                                if (model.epInType === DigishowEnvironment.EndpointHotkeyPress)
+                                    strLabel = ""
+                                else if (strAddress.startsWith("file://"))
+                                    strLabel = utilities.getFileName(strAddress)
+                                else
+                                    strLabel = strAddress
+
+                                if (strLabel.length > 30) strLabel = strLabel.substr(0,30) + " ..."
+                                return strLabel
+                            }
+                        }
+                    }
+
+                    Rectangle {
+
+                        id: rectLabelEndpointOut
+
+                        visible: labelEndpointOut.text.length > 0
+
+                        width: labelEndpointOut.width + 8
+                        height: 18
+                        anchors.right: parent.right
+                        anchors.rightMargin: 6
+                        anchors.verticalCenter: labelSlotTitle.verticalCenter
+                        radius: 2
+                        color: highlightedIndex===index ? "#cccccc" : "transparent"
+                        border.width: 1
+                        border.color: highlightedIndex===index ? "#cccccc" : "#333333"
+
+                        Text {
+                            id: labelEndpointOut
+
+                            width: contentWidth
+                            anchors.centerIn: parent
+                            color: highlightedIndex===index ? "#000000" : "#666666"
+                            font.pixelSize: 11
+                            font.bold: false
+                            text: {
+                                var strAddress = model.epOutAddress
+                                var strLabel
+                                if (strAddress.startsWith("file://"))
+                                    strLabel = utilities.getFileName(strAddress)
+                                else
+                                    strLabel = strAddress
+
+                                if (strLabel.length > 30) strLabel = strLabel.substr(0,30) + " ..."
+                                return strLabel
+                            }
+                        }
+                    }
+
                     Text {
                         id: labelSlotTitle
 
-                        anchors.left: parent.left
-                        //anchors.leftMargin: 260
-                        anchors.right: parent.right
+                        anchors.left: rectLabelEndpointIn.right
+                        anchors.right: rectLabelEndpointOut.left
                         anchors.top: parent.bottom
-                        anchors.topMargin: 8
+                        anchors.topMargin: 7
                         horizontalAlignment: Text.AlignHCenter
 
                         color: model.slotSelected===true ? "#ffffff" :
@@ -305,7 +381,7 @@ Item {
                         text: model.slotTitle === undefined || model.slotTitle === "" ?
                                   qsTr("Signal Link") + " " + (index+1) :
                                   model.slotTitle
-                        font.pixelSize: 12
+                        font.pixelSize: 11
                         font.bold: false
                         visible: !textSlotTitle.visible
 
@@ -1434,6 +1510,7 @@ Item {
         var epInIcon = "qrc:///images/icon_ep_in_white.png"
         var epInLabelEPT = qsTr("IN")
         var epInLabelEPI = ""
+        var epInAddress = ""
         var epInPulse = false
         var epInRange = 1
 
@@ -1443,6 +1520,7 @@ Item {
         var epOutIcon = "qrc:///images/icon_ep_out_white.png"
         var epOutLabelEPT = qsTr("OUT")
         var epOutLabelEPI = ""
+        var epOutAddress = ""
         var epOutPulse = false
         var epOutRange = 1
 
@@ -1455,6 +1533,7 @@ Item {
             epInIcon = digishow.getSignalIcon(epInSignal, epInPulse)
             epInLabelEPT = epInInfo["labelEPT"]
             epInLabelEPI = epInInfo["labelEPI"]
+            epInAddress = epInInfo["address"]
             if (epInInfo["range"]>0) epInRange = epInInfo["range"]
         }
 
@@ -1467,6 +1546,7 @@ Item {
             epOutIcon = digishow.getSignalIcon(epOutSignal, epOutPulse)
             epOutLabelEPT = epOutInfo["labelEPT"]
             epOutLabelEPI = epOutInfo["labelEPI"]
+            epOutAddress = epOutInfo["address"]
             if (epOutInfo["range"]>0) epOutRange = epOutInfo["range"]
         }
 
@@ -1512,11 +1592,12 @@ Item {
             slotOutInverted: slotOutInverted,
 
             epInSignal: epInSignal,
-
+            epInType: epInType,
             epInColor: epInColor,
             epInIcon: epInIcon,
             epInLabelEPT: epInLabelEPT,
             epInLabelEPI: epInLabelEPI,
+            epInAddress: epInAddress,
 
             epInPulse: epInPulse,
             epInRange: epInRange,
@@ -1525,10 +1606,12 @@ Item {
             epInAvailable: epInAvailable,
 
             epOutSignal: epOutSignal,
+            epOutType: epOutType,
             epOutColor: epOutColor,
             epOutIcon: epOutIcon,
             epOutLabelEPT: epOutLabelEPT,
             epOutLabelEPI: epOutLabelEPI,
+            epOutAddress: epOutAddress,
 
             epOutPulse: epOutPulse,
             epOutRange: epOutRange,

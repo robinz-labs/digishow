@@ -280,6 +280,7 @@ void DgsMessengerInterface::updateMetadata_()
             endpointInfo.output = true;
         endpointInfo.labelEPT = labelType;
         endpointInfo.labelEPI = m_endpointOptionsList[n].value("message").toString().left(8);
+        //endpointInfo.address = m_endpointOptionsList[n].value("message").toString();
 
         m_endpointInfoList.append(endpointInfo);
     }

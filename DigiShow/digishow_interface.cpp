@@ -183,6 +183,19 @@ void DigishowInterface::updateMetadata()
     // the implementation for the specific interface
     updateMetadata_();
 
+    // assign the media url to the endpoint address if necessary
+    for (int n=0 ; n<m_endpointOptionsList.length() ; n++) {
+        QString mediaName = m_endpointOptionsList[n].value("media").toString();
+        QVariantMap mediaOptions = getMediaOptions(mediaName);
+        if (mediaOptions.contains("url")) {
+            dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+            if (endpointInfo.address.isEmpty()) {
+                endpointInfo.address = mediaOptions.value("url").toString();
+                m_endpointInfoList[n] = endpointInfo;
+            }
+        }
+    }
+
     // remove the space at the end of the label
     m_interfaceInfo.label = m_interfaceInfo.label.trimmed();
 
