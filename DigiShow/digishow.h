@@ -196,6 +196,12 @@
   + both Play and Launch controls for media or cue players
   ! bug fixes
 
+  v1.7.7 20250315
+  + LFO interface
+  + playing feedback signals for audio / video players
+  + display media filenames and osc address in the slot list
+  + pulse signal defination
+
 */
 
 #ifndef DIGISHOW_H

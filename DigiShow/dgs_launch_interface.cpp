@@ -99,8 +99,10 @@ void DgsLaunchInterface::updateMetadata_()
     // Set interface mode and flags
     m_interfaceInfo.mode = INTERFACE_LAUNCH_DEFAULT;
     m_interfaceInfo.output = true;
-    m_interfaceInfo.input = true;
-    m_interfaceInfo.inputSecondary = true;
+    m_interfaceInfo.input = false;
+
+    //m_interfaceInfo.input = true;
+    //m_interfaceInfo.inputSecondary = true;
 
     // Set interface label
     m_interfaceInfo.label = tr("Preset Launcher");
@@ -113,7 +115,6 @@ void DgsLaunchInterface::updateMetadata_()
         QString typeName = m_endpointOptionsList[n].value("type").toString();
         if      (typeName == "preset"  ) endpointInfo.type = ENDPOINT_LAUNCH_PRESET;
         else if (typeName == "playing" ) endpointInfo.type = ENDPOINT_LAUNCH_PLAYING;
-        else if (typeName == "timecode") endpointInfo.type = ENDPOINT_LAUNCH_TIMECODE;
 
         // Set endpoint type based on type
         if (endpointInfo.type == ENDPOINT_LAUNCH_PRESET) {
@@ -141,14 +142,6 @@ void DgsLaunchInterface::updateMetadata_()
             endpointInfo.labelEPT = tr("Preset") + " " + QString::number(endpointInfo.channel);
             endpointInfo.labelEPI = tr("Playing");
             endpointInfo.signal = DATA_SIGNAL_BINARY;
-
-        } else if (endpointInfo.type == ENDPOINT_LAUNCH_TIMECODE) {
-            
-            endpointInfo.input = true;
-            endpointInfo.labelEPT = tr("Preset") + " " + QString::number(endpointInfo.channel);
-            endpointInfo.labelEPI = tr("Timecode");
-            endpointInfo.signal = DATA_SIGNAL_ANALOG;
-            endpointInfo.range  = (endpointInfo.range ? endpointInfo.range : 1000000000); // millisecond
         }
 
         m_endpointInfoList.append(endpointInfo);
