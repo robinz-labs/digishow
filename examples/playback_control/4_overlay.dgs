@@ -1,0 +1,373 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "address": "Space",
+                    "enabled": true,
+                    "name": "press5",
+                    "type": "press"
+                },
+                {
+                    "address": "Return",
+                    "enabled": true,
+                    "name": "press6",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "name": "binary1",
+                    "type": "binary"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": -1,
+                    "name": "analog1",
+                    "range": 10,
+                    "type": "analog"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 5000,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media6",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "video1",
+                    "mediaAlone": false,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": false,
+                    "mediaRotation": 0,
+                    "mediaScale": 1500,
+                    "mediaScript": "",
+                    "mediaSpeed": 3000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 3700,
+                    "name": "media1",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "video2",
+                    "mediaAlone": false,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": false,
+                    "mediaRotation": 0,
+                    "mediaScale": 1500,
+                    "mediaScript": "",
+                    "mediaSpeed": 3000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 3700,
+                    "name": "media2",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "video3",
+                    "mediaAlone": false,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": false,
+                    "mediaRotation": 0,
+                    "mediaScale": 1500,
+                    "mediaScript": "",
+                    "mediaSpeed": 3000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 3700,
+                    "name": "media3",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "video4",
+                    "mediaAlone": false,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": false,
+                    "mediaRotation": 0,
+                    "mediaScale": 1500,
+                    "mediaScript": "",
+                    "mediaSpeed": 3000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 3700,
+                    "name": "media4",
+                    "type": "media"
+                },
+                {
+                    "enabled": true,
+                    "media": "video1",
+                    "name": "end1",
+                    "type": "end"
+                },
+                {
+                    "enabled": true,
+                    "media": "video2",
+                    "name": "end2",
+                    "type": "end"
+                },
+                {
+                    "enabled": true,
+                    "media": "video3",
+                    "name": "end3",
+                    "type": "end"
+                },
+                {
+                    "enabled": true,
+                    "media": "video4",
+                    "name": "end4",
+                    "type": "end"
+                },
+                {
+                    "control": 2,
+                    "enabled": true,
+                    "media": "video1",
+                    "name": "media7",
+                    "type": "media"
+                },
+                {
+                    "control": 2,
+                    "enabled": true,
+                    "media": "video2",
+                    "name": "media8",
+                    "type": "media"
+                },
+                {
+                    "control": 2,
+                    "enabled": true,
+                    "media": "video3",
+                    "name": "media9",
+                    "type": "media"
+                },
+                {
+                    "control": 2,
+                    "enabled": true,
+                    "media": "video4",
+                    "name": "media10",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/1.mp4",
+                    "name": "video1",
+                    "type": "video",
+                    "url": "file:///Users/robin/Desktop/examples/playback_control/clips/1.mp4"
+                },
+                {
+                    "file": "clips/2.mp4",
+                    "name": "video2",
+                    "type": "video",
+                    "url": "file:///Users/robin/Desktop/examples/playback_control/clips/2.mp4"
+                },
+                {
+                    "file": "clips/3.mp4",
+                    "name": "video3",
+                    "type": "video",
+                    "url": "file:///Users/robin/Desktop/examples/playback_control/clips/3.mp4"
+                },
+                {
+                    "file": "clips/4.mp4",
+                    "name": "video4",
+                    "type": "video",
+                    "url": "file:///Users/robin/Desktop/examples/playback_control/clips/4.mp4"
+                },
+                {
+                    "file": "clips/random_play.jpg",
+                    "name": "image1",
+                    "type": "image",
+                    "url": "file:///Users/robin/Desktop/examples/playback_control/clips/random_play.jpg"
+                }
+            ],
+            "mode": "",
+            "name": "screen1",
+            "screen": 0,
+            "type": "screen"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "screen1/media6",
+            "envelopeHold": 200,
+            "linked": true,
+            "source": "pipe1/binary1",
+            "title": "Display standby screen on startup"
+        },
+        {
+            "destination": "pipe1/analog1",
+            "linked": true,
+            "outputExpression": "value > 0 ? (lastValue >= 4 ? 1 : lastValue + 1) : null",
+            "outputInverted": false,
+            "source": "hotkey1/press6",
+            "title": "Press RETURN to play next"
+        },
+        {
+            "destination": "pipe1/analog1",
+            "linked": true,
+            "outputExpression": "var newValue = null\nif (value>0) {\n\twhile (newValue == null || newValue == lastValue ) {\n\t\tnewValue = Math.floor(Math.random() * 4) + 1\n\t}\n}\nnewValue",
+            "outputInverted": false,
+            "source": "hotkey1/press5",
+            "title": "Press SPACE bar to play random"
+        },
+        {
+            "destination": "screen1/media1",
+            "inputHigh": 0.1,
+            "inputInverted": false,
+            "inputLow": 0.1,
+            "linked": true,
+            "outputInverted": false,
+            "source": "pipe1/analog1",
+            "title": "( play program 1 )"
+        },
+        {
+            "destination": "screen1/media2",
+            "inputHigh": 0.2,
+            "inputLow": 0.2,
+            "linked": true,
+            "source": "pipe1/analog1",
+            "title": "( play program 2 )"
+        },
+        {
+            "destination": "screen1/media3",
+            "inputHigh": 0.3,
+            "inputLow": 0.3,
+            "linked": true,
+            "source": "pipe1/analog1",
+            "title": "( play program 3 )"
+        },
+        {
+            "destination": "screen1/media4",
+            "inputHigh": 0.4,
+            "inputLow": 0.4,
+            "linked": true,
+            "source": "pipe1/analog1",
+            "title": "( play program 4 )"
+        },
+        {
+            "destination": "screen1/media7",
+            "linked": true,
+            "source": "screen1/end1",
+            "title": "Hide program 1 after playback ends"
+        },
+        {
+            "destination": "screen1/media8",
+            "linked": true,
+            "source": "screen1/end2",
+            "title": "Hide program 2 after playback ends"
+        },
+        {
+            "destination": "screen1/media9",
+            "linked": true,
+            "source": "screen1/end3",
+            "title": "Hide program 3 after playback ends"
+        },
+        {
+            "destination": "screen1/media10",
+            "linked": true,
+            "source": "screen1/end4",
+            "title": "Hide program 4 after playback ends"
+        }
+    ]
+}

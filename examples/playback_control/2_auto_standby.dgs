@@ -1,0 +1,323 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "address": "A",
+                    "enabled": true,
+                    "name": "press1",
+                    "type": "press"
+                },
+                {
+                    "address": "B",
+                    "enabled": true,
+                    "name": "press2",
+                    "type": "press"
+                },
+                {
+                    "address": "C",
+                    "enabled": true,
+                    "name": "press3",
+                    "type": "press"
+                },
+                {
+                    "address": "D",
+                    "enabled": true,
+                    "name": "press4",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "name": "binary1",
+                    "type": "binary"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 0,
+                    "enabled": true,
+                    "media": "video1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": false,
+                    "mediaRotation": 0,
+                    "mediaScale": 5000,
+                    "mediaScript": "",
+                    "mediaSpeed": 5000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media11",
+                    "type": "media"
+                },
+                {
+                    "control": 0,
+                    "enabled": true,
+                    "media": "video2",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": false,
+                    "mediaRotation": 0,
+                    "mediaScale": 5000,
+                    "mediaScript": "",
+                    "mediaSpeed": 5000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media12",
+                    "type": "media"
+                },
+                {
+                    "control": 0,
+                    "enabled": true,
+                    "media": "video3",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": false,
+                    "mediaRotation": 0,
+                    "mediaScale": 5000,
+                    "mediaScript": "",
+                    "mediaSpeed": 5000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media13",
+                    "type": "media"
+                },
+                {
+                    "control": 0,
+                    "enabled": true,
+                    "media": "video4",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": false,
+                    "mediaRotation": 0,
+                    "mediaScale": 5000,
+                    "mediaScript": "",
+                    "mediaSpeed": 5000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media14",
+                    "type": "media"
+                },
+                {
+                    "control": 0,
+                    "enabled": true,
+                    "media": "image2",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 5000,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media3",
+                    "type": "media"
+                },
+                {
+                    "enabled": true,
+                    "media": "video1",
+                    "name": "end1",
+                    "type": "end"
+                },
+                {
+                    "enabled": true,
+                    "media": "video2",
+                    "name": "end2",
+                    "type": "end"
+                },
+                {
+                    "enabled": true,
+                    "media": "video3",
+                    "name": "end3",
+                    "type": "end"
+                },
+                {
+                    "enabled": true,
+                    "media": "video4",
+                    "name": "end4",
+                    "type": "end"
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/1.mp4",
+                    "name": "video1",
+                    "type": "video",
+                    "url": "file:///Users/robin/Desktop/examples/playback_control/clips/1.mp4"
+                },
+                {
+                    "file": "clips/2.mp4",
+                    "name": "video2",
+                    "type": "video",
+                    "url": "file:///Users/robin/Desktop/examples/playback_control/clips/2.mp4"
+                },
+                {
+                    "file": "clips/3.mp4",
+                    "name": "video3",
+                    "type": "video",
+                    "url": "file:///Users/robin/Desktop/examples/playback_control/clips/3.mp4"
+                },
+                {
+                    "file": "clips/4.mp4",
+                    "name": "video4",
+                    "type": "video",
+                    "url": "file:///Users/robin/Desktop/examples/playback_control/clips/4.mp4"
+                },
+                {
+                    "file": "clips/auto_standby.jpg",
+                    "name": "image2",
+                    "type": "image",
+                    "url": "file:///Users/robin/Desktop/examples/playback_control/clips/auto_standby.jpg"
+                }
+            ],
+            "mode": "",
+            "name": "screen1",
+            "screen": 0,
+            "type": "screen"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "screen1/media3",
+            "envelopeHold": 200,
+            "linked": true,
+            "source": "pipe1/binary1",
+            "title": "Show standby screen on startup"
+        },
+        {
+            "destination": "screen1/media11",
+            "linked": true,
+            "source": "hotkey1/press1",
+            "title": "Press A to play program 1"
+        },
+        {
+            "destination": "screen1/media12",
+            "linked": true,
+            "source": "hotkey1/press2",
+            "title": "Press B to play program 2"
+        },
+        {
+            "destination": "screen1/media13",
+            "linked": true,
+            "source": "hotkey1/press3",
+            "title": "Press C to play program 3"
+        },
+        {
+            "destination": "screen1/media14",
+            "linked": true,
+            "source": "hotkey1/press4",
+            "title": "Press D to play program 4"
+        },
+        {
+            "destination": "screen1/media3",
+            "linked": true,
+            "source": "screen1/end1",
+            "title": "Show standby screen after program 1 ends"
+        },
+        {
+            "destination": "screen1/media3",
+            "linked": true,
+            "source": "screen1/end2",
+            "title": "Show standby screen after program 2 ends"
+        },
+        {
+            "destination": "screen1/media3",
+            "linked": true,
+            "source": "screen1/end3",
+            "title": "Show standby screen after program 3 ends"
+        },
+        {
+            "destination": "screen1/media3",
+            "linked": true,
+            "source": "screen1/end4",
+            "title": "Show standby screen after program 4 ends"
+        }
+    ]
+}

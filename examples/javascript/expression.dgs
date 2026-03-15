@@ -2,7 +2,9 @@
     "appInfo": {
         "appExperimental": true,
         "appName": "DigiShow LINK",
-        "appVersion": "1.5.1_d"
+        "appVersion": "1.7.6"
+    },
+    "cuePlayers": {
     },
     "interfaces": [
         {
@@ -24,6 +26,12 @@
                     "address": "F2",
                     "enabled": true,
                     "name": "press4",
+                    "type": "press"
+                },
+                {
+                    "address": "F3",
+                    "enabled": true,
+                    "name": "press1",
                     "type": "press"
                 }
             ],
@@ -93,6 +101,10 @@
         "run": false,
         "sound": false
     },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
     "slots": [
         {
             "destination": "pipe1/analog1",
@@ -110,6 +122,14 @@
             "outputSmoothing": 0,
             "source": "hotkey1/press4",
             "title": "mode switch button"
+        },
+        {
+            "destination": "pipe1/analog2",
+            "linked": true,
+            "outputExpression": "var newValue = null\nif (value>0) {\n\twhile (newValue == null || newValue == lastValue ) {\n\t\tnewValue = Math.floor(Math.random() * 4) + 1\n\t}\n}\nnewValue",
+            "outputSmoothing": 0,
+            "source": "hotkey1/press1",
+            "title": "random switch button"
         },
         {
             "destination": "pipe1/binary1",
