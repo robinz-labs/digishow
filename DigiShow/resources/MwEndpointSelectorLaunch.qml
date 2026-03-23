@@ -86,9 +86,10 @@ Item {
         if (menuType.count === 0) {
             items = []
             if (forInput) {
-                items.push({ text: qsTr("Playing" ), value: DigishowEnvironment.EndpointLaunchPlaying, tag:"playing" })
+                items.push({ text: qsTr("Playing"), value: DigishowEnvironment.EndpointLaunchPlaying, tag:"playing" })
+                items.push({ text: qsTr("End"    ), value: DigishowEnvironment.EndpointLaunchEnd, tag:"end" })
             } else if (forOutput) {
-                items.push({ text: qsTr("Preset"  ), value: DigishowEnvironment.EndpointLaunchPreset, tag:"preset" })
+                items.push({ text: qsTr("Preset" ), value: DigishowEnvironment.EndpointLaunchPreset, tag:"preset" })
             }
             menuType.optionItems = items
             menuType.selectedIndex = 0

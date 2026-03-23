@@ -36,6 +36,7 @@ int DgsLaunchInterface::openInterface()
     updateMetadata();
 
     connect(g_app->cueManager(), &DigishowCueManager::statusUpdated, this, &DgsLaunchInterface::onStatusUpdated);
+    connect(g_app->cueManager(), &DigishowCueManager::cueFinished, this, &DgsLaunchInterface::onCueFinished);
 
     m_isInterfaceOpened = true;
     return ERR_NONE;
@@ -92,6 +93,37 @@ void DgsLaunchInterface::onStatusUpdated()
     }
 }
 
+void DgsLaunchInterface::onCueFinished(const QString &name)
+{
+    // find matched endpoint
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+        if (endpointInfo.type == ENDPOINT_LAUNCH_END) {
+
+            QVariantMap endpointOptions = m_endpointOptionsList[n];
+            QString endpointCueName = "launch" + QString::number(endpointInfo.channel);
+            if (endpointCueName == name) {
+                // emit playback ended event
+                int epIndex = n;
+                dgsSignalData data;
+                data.signal = DATA_SIGNAL_BINARY;
+                data.bValue = true;
+                emit dataReceived(epIndex, data);
+
+                QTimer::singleShot(300, this, [this, epIndex]() {
+                    dgsSignalData data;
+                    data.signal = DATA_SIGNAL_BINARY;
+                    data.bValue = false;
+                    emit dataReceived(epIndex, data);
+                });
+                break;
+            }
+        }
+    }
+
+}
+
 void DgsLaunchInterface::updateMetadata_()
 {
     m_interfaceInfo.type = INTERFACE_LAUNCH;
@@ -99,10 +131,8 @@ void DgsLaunchInterface::updateMetadata_()
     // Set interface mode and flags
     m_interfaceInfo.mode = INTERFACE_LAUNCH_DEFAULT;
     m_interfaceInfo.output = true;
-    m_interfaceInfo.input = false;
-
-    //m_interfaceInfo.input = true;
-    //m_interfaceInfo.inputSecondary = true;
+    m_interfaceInfo.input = true;
+    m_interfaceInfo.inputSecondary = true;
 
     // Set interface label
     m_interfaceInfo.label = tr("Preset Launcher");
@@ -115,6 +145,7 @@ void DgsLaunchInterface::updateMetadata_()
         QString typeName = m_endpointOptionsList[n].value("type").toString();
         if      (typeName == "preset"  ) endpointInfo.type = ENDPOINT_LAUNCH_PRESET;
         else if (typeName == "playing" ) endpointInfo.type = ENDPOINT_LAUNCH_PLAYING;
+        else if (typeName == "end"     ) endpointInfo.type = ENDPOINT_LAUNCH_END;
 
         // Set endpoint type based on type
         if (endpointInfo.type == ENDPOINT_LAUNCH_PRESET) {
@@ -142,6 +173,14 @@ void DgsLaunchInterface::updateMetadata_()
             endpointInfo.labelEPT = tr("Preset") + " " + QString::number(endpointInfo.channel);
             endpointInfo.labelEPI = tr("Playing");
             endpointInfo.signal = DATA_SIGNAL_BINARY;
+
+        } else if (endpointInfo.type == ENDPOINT_LAUNCH_END) {
+
+            endpointInfo.input = true;
+            endpointInfo.labelEPT = tr("Preset") + " " + QString::number(endpointInfo.channel);
+            endpointInfo.labelEPI = tr("End");
+            endpointInfo.signal = DATA_SIGNAL_BINARY;
+            endpointInfo.pulse = true;
         }
 
         m_endpointInfoList.append(endpointInfo);

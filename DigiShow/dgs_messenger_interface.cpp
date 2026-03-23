@@ -278,9 +278,14 @@ void DgsMessengerInterface::updateMetadata_()
             endpointInfo.input = true;
         else
             endpointInfo.output = true;
+
         endpointInfo.labelEPT = labelType;
-        endpointInfo.labelEPI = m_endpointOptionsList[n].value("message").toString().left(8);
-        //endpointInfo.address = m_endpointOptionsList[n].value("message").toString();
+        if (endpointInfo.type == ENDPOINT_MESSENGER_TEXT)
+            endpointInfo.labelEPI = tr("Text");
+        else if (endpointInfo.type == ENDPOINT_MESSENGER_HEXCODE)
+            endpointInfo.labelEPI = tr("Hex Code");
+
+        endpointInfo.address = m_endpointOptionsList[n].value("message").toString();
 
         m_endpointInfoList.append(endpointInfo);
     }

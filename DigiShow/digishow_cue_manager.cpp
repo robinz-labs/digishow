@@ -163,7 +163,7 @@ void DigishowCueManager::onCueFinished()
     if (!name.isEmpty()) {
         m_cuePlayers.remove(name);
         player->deleteLater();
-
+        emit cueFinished(name);
         emit statusUpdated();
     }
 }

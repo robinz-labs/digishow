@@ -44,6 +44,7 @@ public:
 
 signals:
     void statusUpdated();
+    void cueFinished(const QString &name);
 
 public slots:
     void onCueFinished();

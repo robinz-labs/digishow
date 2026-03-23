@@ -34,6 +34,7 @@ public:
 
 public slots:
     void onStatusUpdated();
+    void onCueFinished(const QString &name);
 
 private:
     void updateMetadata_() override;
