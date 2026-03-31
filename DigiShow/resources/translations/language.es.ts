@@ -1820,6 +1820,11 @@ either express or implied.</source>
         <source>None</source>
         <translation>Ninguno</translation>
     </message>
+    <message>
+        <location filename="../MwEndpointSelector.qml" line="484"/>
+        <source>More ...</source>
+        <translation>Más ...</translation>
+    </message>
 </context>
 <context>
     <name>MwEndpointSelectorAPlay</name>
@@ -4152,6 +4157,16 @@ Connection: %2</source>
         <translation>Eliminar</translation>
     </message>
     <message>
+        <location filename="../MwQuickLaunchView.qml" line="508"/>
+        <source>Preset Memory ( Snapshot )</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="567"/>
+        <source>Cue Player ( Timeline )</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MwQuickLaunchView.qml" line="607"/>
         <source>Do you want to delete all cue player data attached to the preset ?</source>
         <translation type="unfinished"></translation>
@@ -4202,11 +4217,6 @@ Connection: %2</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="508"/>
-        <source>Preset Memory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../MwQuickLaunchView.qml" line="526"/>
         <source>Please check the relevant LINK buttons and output signal faders in the signal link table, then save their current states and values into the preset.</source>
         <translation type="unfinished"></translation>
@@ -4217,13 +4227,8 @@ Connection: %2</source>
         <translation type="unfinished">Reiniciar</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="567"/>
-        <source>Attached Cue Player</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../MwQuickLaunchView.qml" line="584"/>
-        <source>You can also click the + CUE button below the output signal fader to design the playback curve of the output signal.</source>
+        <source>You can also click the + CUE button below the output signal fader to design the playback curve of the output signal on the timeline.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

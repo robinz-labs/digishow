@@ -480,16 +480,15 @@ Item {
         }
         menuInterface.optionItems = items
 
-        /*
         var menuItemMore = Qt.createQmlObject("import \"components\"; COptionMenuItem {}", menuInterface)
         menuItemMore.text = qsTr("More ...")
+        menuItemMore.secondary = true
         menuItemMore.triggered.connect(function() {
 
             menuInterface.close()
             dialogInterfaces.show()
         })
         menuInterface.addItem(menuItemMore)
-        */
 
         // select the specified interface
         // to show the particular endpoint options

@@ -2,7 +2,9 @@
     "appInfo": {
         "appExperimental": true,
         "appName": "DigiShow LINK",
-        "appVersion": "1.5.2_b"
+        "appVersion": "1.7.7"
+    },
+    "cuePlayers": {
     },
     "interfaces": [
         {
@@ -49,30 +51,30 @@
             "endpoints": [
                 {
                     "channel": 1,
+                    "control": 1,
                     "enabled": true,
-                    "initial": -1,
-                    "name": "preset1",
-                    "type": "preset"
-                },
-                {
-                    "channel": 3,
-                    "enabled": true,
-                    "initial": -1,
-                    "name": "preset2",
+                    "name": "preset5",
                     "type": "preset"
                 },
                 {
                     "channel": 2,
+                    "control": 1,
                     "enabled": true,
-                    "initial": -1,
-                    "name": "preset3",
+                    "name": "preset6",
+                    "type": "preset"
+                },
+                {
+                    "channel": 3,
+                    "control": 1,
+                    "enabled": true,
+                    "name": "preset7",
                     "type": "preset"
                 },
                 {
                     "channel": 4,
+                    "control": 1,
                     "enabled": true,
-                    "initial": -1,
-                    "name": "preset4",
+                    "name": "preset8",
                     "type": "preset"
                 }
             ],
@@ -113,31 +115,43 @@
         },
         {
             "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
                 {
-                    "channel": 0,
+                    "control": 1,
                     "enabled": true,
-                    "initial": -1,
-                    "name": "dimmer1",
-                    "type": "dimmer"
+                    "name": "light1",
+                    "type": "light"
                 },
                 {
-                    "channel": 1,
+                    "control": 2,
                     "enabled": true,
-                    "initial": -1,
-                    "name": "dimmer2",
-                    "type": "dimmer"
+                    "name": "light2",
+                    "type": "light"
                 },
                 {
-                    "channel": 2,
+                    "control": 3,
                     "enabled": true,
-                    "initial": -1,
-                    "name": "dimmer3",
-                    "type": "dimmer"
+                    "name": "light3",
+                    "type": "light"
                 }
             ],
-            "mode": "enttec",
-            "name": "dmx1",
-            "type": "dmx"
+            "mode": "",
+            "name": "screen1",
+            "screen": -1,
+            "type": "screen"
         }
     ],
     "launches": {
@@ -208,6 +222,10 @@
         "quantum": 4,
         "run": true,
         "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
     },
     "slots": [
         {
@@ -319,7 +337,7 @@
             "title": "Blue"
         },
         {
-            "destination": "dmx1/dimmer1",
+            "destination": "screen1/light1",
             "launchDetails": {
                 "launch1": {
                 },
@@ -352,7 +370,7 @@
             "title": "LED R"
         },
         {
-            "destination": "dmx1/dimmer2",
+            "destination": "screen1/light2",
             "launchDetails": {
                 "launch1": {
                 },
@@ -385,7 +403,7 @@
             "title": "LED G"
         },
         {
-            "destination": "dmx1/dimmer3",
+            "destination": "screen1/light3",
             "launchDetails": {
                 "launch1": {
                 },
@@ -418,7 +436,7 @@
             "title": "LED B"
         },
         {
-            "destination": "launch1/preset1",
+            "destination": "launch1/preset5",
             "launchDetails": {
                 "launch1": {
                 },
@@ -452,7 +470,7 @@
             "title": "Motion 1"
         },
         {
-            "destination": "launch1/preset3",
+            "destination": "launch1/preset6",
             "launchDetails": {
                 "launch1": {
                 },
@@ -486,7 +504,7 @@
             "title": "Motion 2"
         },
         {
-            "destination": "launch1/preset3",
+            "destination": "launch1/preset6",
             "launchDetails": {
                 "launch1": {
                 },
@@ -520,7 +538,7 @@
             "title": "Motion 3"
         },
         {
-            "destination": "launch1/preset2",
+            "destination": "launch1/preset7",
             "launchDetails": {
                 "launch1": {
                 },
@@ -554,7 +572,7 @@
             "title": "Motion 4"
         },
         {
-            "destination": "launch1/preset4",
+            "destination": "launch1/preset8",
             "launchDetails": {
                 "launch1": {
                 },

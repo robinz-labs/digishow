@@ -2,7 +2,7 @@
     "appInfo": {
         "appExperimental": true,
         "appName": "DigiShow LINK",
-        "appVersion": "1.7.2"
+        "appVersion": "1.7.7"
     },
     "cuePlayers": {
         "launch1": {
@@ -43,7 +43,7 @@
                     "file": "clips/glass.wav",
                     "name": "audio1",
                     "type": "audio",
-                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/beginner/clips/glass.wav"
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/basic/clips/glass.wav"
                 }
             ],
             "mode": "",
@@ -86,20 +86,23 @@
             "endpoints": [
                 {
                     "channel": 1,
+                    "control": 1,
                     "enabled": true,
-                    "name": "preset1",
+                    "name": "preset4",
                     "type": "preset"
                 },
                 {
                     "channel": 2,
+                    "control": 1,
                     "enabled": true,
-                    "name": "preset2",
+                    "name": "preset5",
                     "type": "preset"
                 },
                 {
                     "channel": 3,
+                    "control": 1,
                     "enabled": true,
-                    "name": "preset3",
+                    "name": "preset6",
                     "type": "preset"
                 }
             ],
@@ -139,6 +142,13 @@
             "name": "screen1",
             "screen": -1,
             "type": "screen"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
         }
     ],
     "launches": {
@@ -554,7 +564,7 @@
             "linked": true
         },
         {
-            "destination": "launch1/preset1",
+            "destination": "launch1/preset4",
             "launchDetails": {
                 "launch1": {
                 },
@@ -567,7 +577,7 @@
             "source": "hotkey1/press1"
         },
         {
-            "destination": "launch1/preset2",
+            "destination": "launch1/preset5",
             "launchDetails": {
                 "launch1": {
                 },
@@ -580,7 +590,7 @@
             "source": "hotkey1/press2"
         },
         {
-            "destination": "launch1/preset3",
+            "destination": "launch1/preset6",
             "launchDetails": {
                 "launch1": {
                 },

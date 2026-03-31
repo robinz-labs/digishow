@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smile Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Load face-api.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Smile Finder 😊</h1>
+        <div class="video-container">
+            <video id="video" width="720" height="560" autoplay muted playsinline></video>
+            <canvas id="overlay"></canvas>
+        </div>
+        <div id="status" class="status-box">Loading models...</div>
+    </div>
+</body>
+</html>

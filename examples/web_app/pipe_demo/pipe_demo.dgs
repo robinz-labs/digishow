@@ -1,0 +1,269 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "acceptRemote": 2,
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "analog1",
+                    "type": "analog"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "analog2",
+                    "type": "analog"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "analog3",
+                    "type": "analog"
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "name": "analog4",
+                    "type": "analog"
+                },
+                {
+                    "channel": 5,
+                    "enabled": true,
+                    "name": "analog5",
+                    "type": "analog"
+                },
+                {
+                    "channel": 6,
+                    "enabled": true,
+                    "name": "analog6",
+                    "type": "analog"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "binary1",
+                    "type": "binary"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "binary2",
+                    "type": "binary"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "binary3",
+                    "type": "binary"
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "name": "binary4",
+                    "type": "binary"
+                },
+                {
+                    "channel": 5,
+                    "enabled": true,
+                    "name": "binary5",
+                    "type": "binary"
+                },
+                {
+                    "channel": 6,
+                    "enabled": true,
+                    "name": "binary6",
+                    "type": "binary"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "note1",
+                    "type": "note"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "note2",
+                    "type": "note"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "note3",
+                    "type": "note"
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "name": "note4",
+                    "type": "note"
+                },
+                {
+                    "channel": 5,
+                    "enabled": true,
+                    "name": "note5",
+                    "type": "note"
+                },
+                {
+                    "channel": 6,
+                    "enabled": true,
+                    "name": "note6",
+                    "type": "note"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "outputInterval": 20,
+            "tcpPort": 50000,
+            "type": "pipe"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "pipe1/binary1",
+            "linked": true,
+            "source": "pipe1/analog1"
+        },
+        {
+            "destination": "pipe1/binary2",
+            "linked": true,
+            "source": "pipe1/analog2"
+        },
+        {
+            "destination": "pipe1/binary3",
+            "linked": true,
+            "source": "pipe1/analog3"
+        },
+        {
+            "destination": "pipe1/binary4",
+            "linked": true,
+            "source": "pipe1/analog4"
+        },
+        {
+            "destination": "pipe1/binary5",
+            "linked": true,
+            "source": "pipe1/analog5"
+        },
+        {
+            "destination": "pipe1/binary6",
+            "linked": true,
+            "source": "pipe1/analog6"
+        },
+        {
+            "destination": "pipe1/note1",
+            "linked": true,
+            "source": "pipe1/binary1"
+        },
+        {
+            "destination": "pipe1/note2",
+            "linked": true,
+            "source": "pipe1/binary2"
+        },
+        {
+            "destination": "pipe1/note3",
+            "linked": true,
+            "source": "pipe1/binary3"
+        },
+        {
+            "destination": "pipe1/note4",
+            "linked": true,
+            "source": "pipe1/binary4"
+        },
+        {
+            "destination": "pipe1/note5",
+            "linked": true,
+            "source": "pipe1/binary5"
+        },
+        {
+            "destination": "pipe1/note6",
+            "linked": true,
+            "source": "pipe1/binary6"
+        },
+        {
+            "destination": "pipe1/analog1",
+            "linked": true,
+            "source": "pipe1/note1"
+        },
+        {
+            "destination": "pipe1/analog2",
+            "linked": true,
+            "source": "pipe1/note2"
+        },
+        {
+            "destination": "pipe1/analog3",
+            "linked": true,
+            "source": "pipe1/note3"
+        },
+        {
+            "destination": "pipe1/analog4",
+            "linked": true,
+            "source": "pipe1/note4"
+        },
+        {
+            "destination": "pipe1/analog5",
+            "linked": true,
+            "source": "pipe1/note5"
+        },
+        {
+            "destination": "pipe1/analog6",
+            "linked": true,
+            "source": "pipe1/note6"
+        }
+    ]
+}

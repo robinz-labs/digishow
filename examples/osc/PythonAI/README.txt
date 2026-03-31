@@ -1,6 +1,7 @@
 Using AI to Control Lights in DigiShow
+======================================
 
-This project demonstrates how to use AI programming tools (such as Cursor, Trae, etc.) to generate Python scripts that control lights in DigiShow through the OSC protocol.
+This project demonstrates how to use AI agents or vibe coding tools to generate Python scripts that control lights in DigiShow through the OSC protocol.
 
 
 Project Files:
@@ -14,11 +15,11 @@ Demonstration Steps:
 2. Input the prompts from AI_prompt.txt into the AI tool, save the generated Python script as light_animation.py
 3. Run the generated Python script through command line:
 
-python3 light_animation.py
+python light_animation.py
 
 
 Note: To use OSC functionality in Python scripts, you typically need to install additional packages (such as python-osc):
 
-pip3 install python-osc
+pip install python-osc
 
 Please refer to the AI conversation for details

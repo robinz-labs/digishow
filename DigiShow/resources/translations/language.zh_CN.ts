@@ -1829,6 +1829,11 @@ either express or implied.</source>
         <source>None</source>
         <translation>无</translation>
     </message>
+    <message>
+        <location filename="../MwEndpointSelector.qml" line="484"/>
+        <source>More ...</source>
+        <translation>更多 ...</translation>
+    </message>
 </context>
 <context>
     <name>MwEndpointSelectorAPlay</name>
@@ -4207,6 +4212,16 @@ Connection: %2</source>
         <translation>关闭</translation>
     </message>
     <message>
+        <location filename="../MwQuickLaunchView.qml" line="508"/>
+        <source>Preset Memory ( Snapshot )</source>
+        <translation>预设状态记忆 ( 快照 )</translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="567"/>
+        <source>Cue Player ( Timeline )</source>
+        <translation>Cue 播放器 ( 时间线 )</translation>
+    </message>
+    <message>
         <location filename="../MwQuickLaunchView.qml" line="654"/>
         <source>The saved preset contains:<byte value="xd"/>
 • The status of the checked items in the signal link table<byte value="xd"/>
@@ -4215,7 +4230,7 @@ Connection: %2</source>
 Tap on the preset button to activate them.</source>
         <translation>保存的预设中包含：
 • 信号链接表中已勾选项目的状态
-• Cue 播放器中输出信号的播放曲线
+• Cue 播放器中输出信号的回放曲线
 点击预设按钮即可随时激活。</translation>
     </message>
     <message>
@@ -4230,9 +4245,8 @@ Tap on the preset button to activate them.</source>
         <translation>你是否需要删除该预设 ？</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="508"/>
         <source>Preset Memory</source>
-        <translation>预设状态记忆</translation>
+        <translation type="vanished">预设状态记忆</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="526"/>
@@ -4245,14 +4259,13 @@ Tap on the preset button to activate them.</source>
         <translation>重置</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="567"/>
         <source>Attached Cue Player</source>
-        <translation>附加 Cue 播放器</translation>
+        <translation type="vanished">附加 Cue 播放器</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="584"/>
-        <source>You can also click the + CUE button below the output signal fader to design the playback curve of the output signal.</source>
-        <translation>你还可以点击输出信号推子下方的 + CUE 按钮来设计输出信号的播放曲线。</translation>
+        <source>You can also click the + CUE button below the output signal fader to design the playback curve of the output signal on the timeline.</source>
+        <translation>你还可以点击输出信号推子下方的 + CUE 按钮, 就能在时间线上设计输出信号的回放曲线。</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="597"/>

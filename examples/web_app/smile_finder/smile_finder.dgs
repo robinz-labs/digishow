@@ -1,0 +1,104 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 0,
+                    "enabled": true,
+                    "media": "audio1",
+                    "mediaAlone": true,
+                    "mediaDuration": 0,
+                    "mediaPosition": 0,
+                    "mediaRepeat": false,
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "name": "media1",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "evil-laugh.wav",
+                    "name": "audio1",
+                    "type": "audio",
+                    "url": "file:///Users/robin/Desktop/temp/test/DigiShowWebPipe/smile_finder/evil-laugh.wav"
+                }
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "acceptRemote": 2,
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "binary1",
+                    "type": "binary"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "outputInterval": 20,
+            "tcpPort": 50000,
+            "type": "pipe"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "aplay1/media1",
+            "linked": true,
+            "source": "pipe1/binary1",
+            "title": ""
+        }
+    ]
+}

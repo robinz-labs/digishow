@@ -505,7 +505,7 @@ Item {
                         font.bold: true
                         font.pixelSize: 13
                         color: Material.accent
-                        text: qsTr("Preset Memory")
+                        text: qsTr("Preset Memory ( Snapshot )")
                     }
 
                     Label {
@@ -564,7 +564,7 @@ Item {
                         font.bold: true
                         font.pixelSize: 13
                         color: Material.accent
-                        text: qsTr("Attached Cue Player")
+                        text: qsTr("Cue Player ( Timeline )")
                     }
 
                     Label {
@@ -581,7 +581,7 @@ Item {
                         font.bold: false
                         font.pixelSize: 12
                         color: "#cccccc"
-                        text: qsTr("You can also click the + CUE button below the output signal fader to design the playback curve of the output signal.")
+                        text: qsTr("You can also click the + CUE button below the output signal fader to design the playback curve of the output signal on the timeline.")
                     }
 
                     CButton {

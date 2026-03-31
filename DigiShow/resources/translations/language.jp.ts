@@ -1819,6 +1819,11 @@ either express or implied.</source>
         <source>None</source>
         <translation>なし</translation>
     </message>
+    <message>
+        <location filename="../MwEndpointSelector.qml" line="484"/>
+        <source>More ...</source>
+        <translation>もっと ...</translation>
+    </message>
 </context>
 <context>
     <name>MwEndpointSelectorAPlay</name>
@@ -4146,6 +4151,16 @@ Connection: %2</source>
         <translation>削除</translation>
     </message>
     <message>
+        <location filename="../MwQuickLaunchView.qml" line="508"/>
+        <source>Preset Memory ( Snapshot )</source>
+        <translation>プリセットメモリー ( Snapshot )</translation>
+    </message>
+    <message>
+        <location filename="../MwQuickLaunchView.qml" line="567"/>
+        <source>Cue Player ( Timeline )</source>
+        <translation>CUEプレーヤー ( Timeline )</translation>
+    </message>
+    <message>
         <location filename="../MwQuickLaunchView.qml" line="607"/>
         <source>Do you want to delete all cue player data attached to the preset ?</source>
         <translation>プリセットに添付されているCUEプレーヤーのデータをすべて削除しますか?</translation>
@@ -4202,9 +4217,8 @@ Connection: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="508"/>
         <source>Preset Memory</source>
-        <translation>プリセットメモリー</translation>
+        <translation type="vanished">プリセットメモリー</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="526"/>
@@ -4217,13 +4231,12 @@ Connection: %2</source>
         <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../MwQuickLaunchView.qml" line="567"/>
         <source>Attached Cue Player</source>
-        <translation>付属のCUEプレーヤー</translation>
+        <translation type="vanished">付属のCUEプレーヤー</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="584"/>
-        <source>You can also click the + CUE button below the output signal fader to design the playback curve of the output signal.</source>
+        <source>You can also click the + CUE button below the output signal fader to design the playback curve of the output signal on the timeline.</source>
         <translation>出力信号フェーダー下の + CUE ボタンからも、出力信号の再生カーブを設計できます。</translation>
     </message>
     <message>

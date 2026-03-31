@@ -2,7 +2,7 @@
     "appInfo": {
         "appExperimental": true,
         "appName": "DigiShow LINK",
-        "appVersion": "1.7.2"
+        "appVersion": "1.7.7"
     },
     "cuePlayers": {
     },
@@ -109,12 +109,13 @@
                 {
                     "control": 1,
                     "enabled": true,
-                    "initial": 1,
                     "media": "image1",
                     "mediaAlone": true,
                     "mediaFadeIn": 300,
                     "mediaOpacity": 10000,
                     "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
                     "mediaRepeat": true,
                     "mediaRotation": 0,
                     "mediaScale": 2500,
@@ -123,7 +124,7 @@
                     "mediaVolume": 10000,
                     "mediaXOffset": 5000,
                     "mediaYOffset": 5000,
-                    "name": "media3",
+                    "name": "media4",
                     "type": "media"
                 }
             ],
@@ -132,13 +133,20 @@
                     "file": "clips/logo.png",
                     "name": "image1",
                     "type": "image",
-                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/beginner/clips/logo.png"
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/basic/clips/logo.png"
                 }
             ],
             "mode": "",
             "name": "screen1",
             "screen": -1,
             "type": "screen"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
         }
     ],
     "launches": {
@@ -183,7 +191,7 @@
             "source": "midi1/control1"
         },
         {
-            "destination": "screen1/media3",
+            "destination": "screen1/media4",
             "linked": true
         }
     ]
