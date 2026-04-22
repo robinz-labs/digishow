@@ -62,33 +62,62 @@ Timeline Editor for Cue Player: design the output signal playback curve in the t
 
 [DEMO VIDEO](https://www.youtube.com/@robinzlabs6390) 
 
+## Examples
 
-## DigiShow for Beginners
+To better understand the features and capabilities of DigiShow, open the `.dgs` example projects in the `examples` folder using the installed DigiShow app: 
 
-1. **Configure Interfaces:** 
+1. **basic** 
 
-	Set up control interfaces (e.g., MIDI, DMX, Arduino) for audio, lighting, and interactive devices in the Interface Manager. 
+	Beginner-friendly examples covering keyboard hotkeys, virtual pipes, presets, cues, and signal mapping (e.g., MIDI mapping). 
 
-2. **Create Signal Links:** 
+2. **audio player** 
 
-	Add signal bars in the Signal Link Table and assign specific outputs to them, where adjust output values in real time using faders. 
+	Fun examples demonstrating how to make the most of the audio player interface. 
 
-3. **Save Scenes:** 
+3. **playback control** 
 
-	Save output values in the grouped signal bars as Presets for specific scenarios. Store timeline-based signal output curves in the Cue Player. 
+	Understanding playback control is a great way to learn interactive system design. We provide a series of progressive examples. 
 
-4. **Switch Scenes (Manual):** 
+4. **presets and beats** 
 
-	Activate the saved Presets and Cue Players by tapping the buttons in the Preset Launcher or a remote web page in another smart phone. 
+	The Preset Launcher and Beat Generator are key DigiShow components. We demonstrate them with progressive lighting console examples. 
 
-5. **Trigger Scenes (Automatic):** 
+5. **audio input** 
 
-	Alternatively, connects scene switching to specific sensor triggers, by selecting the sensors as inputs and Presets as outputs in the signal bars. 
+	Learn how to connect a microphone or pickup via the Audio Input interface to obtain sound level (or vibration strength). 
 
-With these steps, you can build a live audio-visual control console or an interactive art installation. 
+6. **dmx** 
 
-[READ DETAILS](https://github.com/robinz-labs/digishow/blob/master/guides/beginner.md) 
+	Control lights using DMX and ArtNet, examples include 512-channel dimmer testing and pixel mapping. 
+
+7. **screen** 
+
+	Dynamically display images or play videos within DigiShow's Screen interface. 
+
+8. **osc** 
+
+	Exchange signal variables with external software in real time via OSC. Examples include TouchDesigner, Unity3D, Blender, and Python (works with AI agent). 
+
+9. **web app** 
  
+	Build web apps that work with DigiShow, ideal for AI agent vibe coding. 
+
+10. **remote pipe** 
+
+	Explains how to use Remote Virtual Pipes to synchronize signals between two DigiShow instances, as well as communication with WebSocket clients in web pages or python scripts. 
+
+11. **javascript**
+
+	Use JavaScript expressions and scripts in DigiShow to implement more intelligent logic.
+
+12. **ableton**
+
+	A complete demo using DigiShow with Ableton Live for making music installations. 
+
+13. **wireless** 
+
+	Build interactive wireless gadgets for DigiShow using ESP32 Arduino (via WiFi and Bluetooth).
+
 
 ## Release Downloads
 

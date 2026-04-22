@@ -142,77 +142,77 @@
 <context>
     <name>DgsLfoInterface</name>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="181"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="199"/>
         <source>LFO</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="198"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="216"/>
         <source>LFO %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="212"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="230"/>
         <source>Timecode</source>
         <translation>タイムコード</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="218"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="236"/>
         <source>Reset</source>
         <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="223"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="241"/>
         <source>Run</source>
         <translation>実行</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="229"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="247"/>
         <source>Period</source>
         <translation>周期</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="235"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="253"/>
         <source>Phase</source>
         <translation>位相</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="241"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="259"/>
         <source>Amplitude</source>
         <translation>振幅</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="247"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="265"/>
         <source>Sample</source>
         <translation>サンプリング</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="258"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="276"/>
         <source>Sine</source>
         <translation>正弦波</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="259"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="277"/>
         <source>Square</source>
         <translation>方形波</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="260"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="278"/>
         <source>Sawtooth</source>
         <translation>のこぎり波</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="261"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="279"/>
         <source>Triangle</source>
         <translation>三角波</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="262"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="280"/>
         <source>Random</source>
         <translation>ランダム</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="263"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="281"/>
         <source>None</source>
         <translation>なし</translation>
     </message>
@@ -233,30 +233,30 @@
 <context>
     <name>DgsMessengerInterface</name>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="245"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="247"/>
         <source>Serial</source>
         <translation>シリアル</translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="249"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="251"/>
         <source>TCP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="254"/>
-        <location filename="../../dgs_messenger_interface.cpp" line="258"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="256"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="260"/>
         <source>UDP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="284"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="286"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>テキスト</translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="286"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="288"/>
         <source>Hex Code</source>
-        <translation type="unfinished"></translation>
+        <translation>HEXコード</translation>
     </message>
 </context>
 <context>
@@ -416,17 +416,17 @@
         <translation>バーチャルパイプ</translation>
     </message>
     <message>
-        <location filename="../../dgs_pipe_interface.cpp" line="471"/>
+        <location filename="../../dgs_pipe_interface.cpp" line="475"/>
         <source>Analog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_pipe_interface.cpp" line="478"/>
+        <location filename="../../dgs_pipe_interface.cpp" line="482"/>
         <source>Binary</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_pipe_interface.cpp" line="486"/>
+        <location filename="../../dgs_pipe_interface.cpp" line="490"/>
         <source>Note</source>
         <translation></translation>
     </message>
@@ -2635,12 +2635,12 @@ You can enter any hex code, for example: </source>
     <message>
         <location filename="../MwEndpointSelectorMessenger.qml" line="70"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>テキスト</translation>
     </message>
     <message>
         <location filename="../MwEndpointSelectorMessenger.qml" line="71"/>
         <source>Hex Code</source>
-        <translation type="unfinished"></translation>
+        <translation>HEXコード</translation>
     </message>
 </context>
 <context>
@@ -3839,18 +3839,33 @@ Connection: %2</source>
 <context>
     <name>MwInterfaceListViewScreen</name>
     <message>
-        <location filename="../MwInterfaceListViewScreen.qml" line="117"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="94"/>
+        <source>You must also download and install the K-Lite Codec Pack so that videos can be played on the screen by DigiShow.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewScreen.qml" line="95"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewScreen.qml" line="95"/>
+        <source>Download ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewScreen.qml" line="112"/>
         <source>Preview Window</source>
         <translation>プレビューウィンドウ</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewScreen.qml" line="118"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="113"/>
         <source>Default</source>
         <translation>デフォルト</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewScreen.qml" line="77"/>
-        <location filename="../MwInterfaceListViewScreen.qml" line="119"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="76"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="114"/>
         <source>Screen</source>
         <translation>スクリーン</translation>
     </message>
@@ -4217,10 +4232,6 @@ Connection: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Preset Memory</source>
-        <translation type="vanished">プリセットメモリー</translation>
-    </message>
-    <message>
         <location filename="../MwQuickLaunchView.qml" line="526"/>
         <source>Please check the relevant LINK buttons and output signal faders in the signal link table, then save their current states and values into the preset.</source>
         <translation>信号リンクテーブル内の関連LINKボタンと出力信号フェーダーにチェックを入れ、現在の状態と値をプリセットに保存してください。</translation>
@@ -4229,10 +4240,6 @@ Connection: %2</source>
         <location filename="../MwQuickLaunchView.qml" line="539"/>
         <source>Reset</source>
         <translation>リセット</translation>
-    </message>
-    <message>
-        <source>Attached Cue Player</source>
-        <translation type="vanished">付属のCUEプレーヤー</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="584"/>
@@ -4319,16 +4326,16 @@ Tap on the preset button to activate them.</source>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="178"/>
-        <location filename="../MwSlotListView.qml" line="1287"/>
-        <location filename="../MwSlotListView.qml" line="1689"/>
+        <location filename="../MwSlotListView.qml" line="1285"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
         <source>Duplicate</source>
         <translation>複製</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="186"/>
-        <location filename="../MwSlotListView.qml" line="1308"/>
-        <location filename="../MwSlotListView.qml" line="1725"/>
-        <location filename="../MwSlotListView.qml" line="1751"/>
+        <location filename="../MwSlotListView.qml" line="1306"/>
+        <location filename="../MwSlotListView.qml" line="1723"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
@@ -4358,107 +4365,107 @@ Tap on the preset button to activate them.</source>
         <translation>やり直し</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="909"/>
+        <location filename="../MwSlotListView.qml" line="907"/>
         <source>+ CUE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1689"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
         <source>Do you want to duplicate all selected signal links ?</source>
         <translation>選択したすべての信号リンクを複製してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1689"/>
-        <location filename="../MwSlotListView.qml" line="1751"/>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Selection: %1 item(s)</source>
         <translation>選択: %1 項目</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1725"/>
+        <location filename="../MwSlotListView.qml" line="1723"/>
         <source>Do you want to delete the signal link ?</source>
         <translation>この信号リンクを削除してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1751"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
         <source>Do you want to delete all selected signal links ?</source>
         <translation>選択したすべての信号リンクを削除してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Do you want to move all selected signal links to the current cursor position ?</source>
         <translation>選択したすべての信号リンクを現在のカーソル位置に移動してもよろしいですか？</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1222"/>
+        <location filename="../MwSlotListView.qml" line="1220"/>
         <source>Select All</source>
         <translation>全選択</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1244"/>
+        <location filename="../MwSlotListView.qml" line="1242"/>
         <source>Select None</source>
         <translation>なしを選択</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1386"/>
+        <location filename="../MwSlotListView.qml" line="1384"/>
         <source>Open Interface Manager to configure your MIDI, DMX, OSC, Arduino and more device interfaces.</source>
         <translation>インターフェイス マネージャーを開いて、MIDI、DMX、OSC、Arduino などのデバイス インターフェイスを構成します。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1389"/>
+        <location filename="../MwSlotListView.qml" line="1387"/>
         <source>Tap the + button to add a new item to the signal link table, which is used to control and map the input/output signals of your devices.</source>
         <translation>+ ボタンをタップすると、デバイスの入力/出力信号を制御およびマッピングするために使用される信号リンク テーブルに新しい項目が追加されます。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1392"/>
+        <location filename="../MwSlotListView.qml" line="1390"/>
         <source>Tap the play button to activate all signal links.</source>
         <translation>再生ボタンをタップすると、すべての信号リンクがアクティブになります。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1415"/>
+        <location filename="../MwSlotListView.qml" line="1413"/>
         <source>Instructions</source>
         <translation>使用ガイドライン</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1519"/>
+        <location filename="../MwSlotListView.qml" line="1517"/>
         <source>IN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1529"/>
+        <location filename="../MwSlotListView.qml" line="1527"/>
         <source>OUT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="204"/>
-        <location filename="../MwSlotListView.qml" line="1266"/>
+        <location filename="../MwSlotListView.qml" line="1264"/>
         <source>Copy</source>
         <translation>コビー</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="304"/>
-        <location filename="../MwSlotListView.qml" line="2014"/>
+        <location filename="../MwSlotListView.qml" line="2012"/>
         <source>Signal Link</source>
         <translation>信号リンク</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1329"/>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1327"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Move</source>
         <translation>移動</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1385"/>
-        <location filename="../MwSlotListView.qml" line="1388"/>
-        <location filename="../MwSlotListView.qml" line="1391"/>
+        <location filename="../MwSlotListView.qml" line="1383"/>
+        <location filename="../MwSlotListView.qml" line="1386"/>
+        <location filename="../MwSlotListView.qml" line="1389"/>
         <source>STEP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1689"/>
-        <location filename="../MwSlotListView.qml" line="1725"/>
-        <location filename="../MwSlotListView.qml" line="1751"/>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
+        <location filename="../MwSlotListView.qml" line="1723"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>

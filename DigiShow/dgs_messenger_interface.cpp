@@ -107,8 +107,10 @@ int DgsMessengerInterface::openInterface()
             bool isHex = (endpointInfo.type == ENDPOINT_MESSENGER_HEXCODE);
             QByteArray msgData = getMessageBytes(message, isHex);
 
-            m_messenger->subscribeMessage(msgData);
-            m_subscribedMessageIndexes.append(n);
+            if (msgData.length() > 0) {
+                m_messenger->subscribeMessage(msgData);
+                m_subscribedMessageIndexes.append(n);
+            }
         }
     }
 

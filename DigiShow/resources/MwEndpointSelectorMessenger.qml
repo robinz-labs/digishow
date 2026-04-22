@@ -106,8 +106,10 @@ Item {
     }
 
     function validateAndFormatHex(hexString) {
+
         // Remove all non-hexadecimal characters
         let cleanedHex = hexString.replace(/[^0-9a-fA-F]/g, "");
+        if (cleanedHex.length === 0) return ""
 
         // Ensure even length by padding with a zero if necessary
         if (cleanedHex.length % 2 !== 0) {

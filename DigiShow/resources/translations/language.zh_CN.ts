@@ -142,77 +142,77 @@
 <context>
     <name>DgsLfoInterface</name>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="181"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="199"/>
         <source>LFO</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="198"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="216"/>
         <source>LFO %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="212"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="230"/>
         <source>Timecode</source>
         <translation>时间码</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="218"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="236"/>
         <source>Reset</source>
         <translation>重置</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="223"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="241"/>
         <source>Run</source>
         <translation>运行</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="229"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="247"/>
         <source>Period</source>
         <translation>周期</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="235"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="253"/>
         <source>Phase</source>
         <translation>相位</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="241"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="259"/>
         <source>Amplitude</source>
         <translation>振幅</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="247"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="265"/>
         <source>Sample</source>
         <translation>采样</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="258"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="276"/>
         <source>Sine</source>
         <translation>正弦波</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="259"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="277"/>
         <source>Square</source>
         <translation>方波</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="260"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="278"/>
         <source>Sawtooth</source>
         <translation>锯齿波</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="261"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="279"/>
         <source>Triangle</source>
         <translation>三角波</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="262"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="280"/>
         <source>Random</source>
         <translation>随机值</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="263"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="281"/>
         <source>None</source>
         <translation>无</translation>
     </message>
@@ -233,28 +233,28 @@
 <context>
     <name>DgsMessengerInterface</name>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="245"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="247"/>
         <source>Serial</source>
         <translation>串口</translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="249"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="251"/>
         <source>TCP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="254"/>
-        <location filename="../../dgs_messenger_interface.cpp" line="258"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="256"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="260"/>
         <source>UDP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="284"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="286"/>
         <source>Text</source>
-        <translation>文本</translation>
+        <translation>文本消息</translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="286"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="288"/>
         <source>Hex Code</source>
         <translation>HEX 代码</translation>
     </message>
@@ -416,17 +416,17 @@
         <translation>虚拟管道</translation>
     </message>
     <message>
-        <location filename="../../dgs_pipe_interface.cpp" line="471"/>
+        <location filename="../../dgs_pipe_interface.cpp" line="475"/>
         <source>Analog</source>
         <translation>模拟量</translation>
     </message>
     <message>
-        <location filename="../../dgs_pipe_interface.cpp" line="478"/>
+        <location filename="../../dgs_pipe_interface.cpp" line="482"/>
         <source>Binary</source>
         <translation>开关量</translation>
     </message>
     <message>
-        <location filename="../../dgs_pipe_interface.cpp" line="486"/>
+        <location filename="../../dgs_pipe_interface.cpp" line="490"/>
         <source>Note</source>
         <translation>音符</translation>
     </message>
@@ -3855,18 +3855,34 @@ Connection: %2</source>
 <context>
     <name>MwInterfaceListViewScreen</name>
     <message>
-        <location filename="../MwInterfaceListViewScreen.qml" line="117"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="94"/>
+        <source>You must also download and install the K-Lite Codec Pack so that videos can be played on the screen by DigiShow.</source>
+        <translation>还必须下载并安装 K-Lite Codec Pack，
+以便 DigiShow 可以在屏幕上播放视频。</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewScreen.qml" line="95"/>
+        <source>OK</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewScreen.qml" line="95"/>
+        <source>Download ...</source>
+        <translation>下载 ...</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewScreen.qml" line="112"/>
         <source>Preview Window</source>
         <translation>预览窗口</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewScreen.qml" line="118"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="113"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewScreen.qml" line="77"/>
-        <location filename="../MwInterfaceListViewScreen.qml" line="119"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="76"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="114"/>
         <source>Screen</source>
         <translation>屏幕</translation>
     </message>
@@ -4245,10 +4261,6 @@ Tap on the preset button to activate them.</source>
         <translation>你是否需要删除该预设 ？</translation>
     </message>
     <message>
-        <source>Preset Memory</source>
-        <translation type="vanished">预设状态记忆</translation>
-    </message>
-    <message>
         <location filename="../MwQuickLaunchView.qml" line="526"/>
         <source>Please check the relevant LINK buttons and output signal faders in the signal link table, then save their current states and values into the preset.</source>
         <translation>请在信号链接表中勾选相关的LINK按钮和输出信号推子，然后就可以将它们的当前状态和数值保存到预设中。</translation>
@@ -4257,10 +4269,6 @@ Tap on the preset button to activate them.</source>
         <location filename="../MwQuickLaunchView.qml" line="539"/>
         <source>Reset</source>
         <translation>重置</translation>
-    </message>
-    <message>
-        <source>Attached Cue Player</source>
-        <translation type="vanished">附加 Cue 播放器</translation>
     </message>
     <message>
         <location filename="../MwQuickLaunchView.qml" line="584"/>
@@ -4334,16 +4342,16 @@ Tap on the preset button to activate them.</source>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="178"/>
-        <location filename="../MwSlotListView.qml" line="1287"/>
-        <location filename="../MwSlotListView.qml" line="1689"/>
+        <location filename="../MwSlotListView.qml" line="1285"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
         <source>Duplicate</source>
         <translation>创建副本</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="186"/>
-        <location filename="../MwSlotListView.qml" line="1308"/>
-        <location filename="../MwSlotListView.qml" line="1725"/>
-        <location filename="../MwSlotListView.qml" line="1751"/>
+        <location filename="../MwSlotListView.qml" line="1306"/>
+        <location filename="../MwSlotListView.qml" line="1723"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -4373,107 +4381,107 @@ Tap on the preset button to activate them.</source>
         <translation>重做</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="909"/>
+        <location filename="../MwSlotListView.qml" line="907"/>
         <source>+ CUE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1689"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
         <source>Do you want to duplicate all selected signal links ?</source>
         <translation>你是否需要将所有选中的信号链接再复制一份 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1689"/>
-        <location filename="../MwSlotListView.qml" line="1751"/>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Selection: %1 item(s)</source>
         <translation>已选中: %1 项</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1725"/>
+        <location filename="../MwSlotListView.qml" line="1723"/>
         <source>Do you want to delete the signal link ?</source>
         <translation>你是否需要删除此信号链接 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1751"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
         <source>Do you want to delete all selected signal links ?</source>
         <translation>你是否需要将所有选中的信号链接都删除 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Do you want to move all selected signal links to the current cursor position ?</source>
         <translation>你是否需要将所有选中的信号链接移动到当前光标位置 ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1222"/>
+        <location filename="../MwSlotListView.qml" line="1220"/>
         <source>Select All</source>
         <translation>选择全部</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1244"/>
+        <location filename="../MwSlotListView.qml" line="1242"/>
         <source>Select None</source>
         <translation>选择无</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1386"/>
+        <location filename="../MwSlotListView.qml" line="1384"/>
         <source>Open Interface Manager to configure your MIDI, DMX, OSC, Arduino and more device interfaces.</source>
         <translation>打开 “接口管理器” 来配置你的 MIDI、DMX、OSC、Arduino 和更多设备接口。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1389"/>
+        <location filename="../MwSlotListView.qml" line="1387"/>
         <source>Tap the + button to add a new item to the signal link table, which is used to control and map the input/output signals of your devices.</source>
         <translation>点击 + 按钮，可在信号链接表中添加新项，用于控制和映射设备的输入/输出信号。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1392"/>
+        <location filename="../MwSlotListView.qml" line="1390"/>
         <source>Tap the play button to activate all signal links.</source>
         <translation>点击播放按钮，即可激活所有信号链接。</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1415"/>
+        <location filename="../MwSlotListView.qml" line="1413"/>
         <source>Instructions</source>
         <translation>使用指南</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1519"/>
+        <location filename="../MwSlotListView.qml" line="1517"/>
         <source>IN</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1529"/>
+        <location filename="../MwSlotListView.qml" line="1527"/>
         <source>OUT</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="204"/>
-        <location filename="../MwSlotListView.qml" line="1266"/>
+        <location filename="../MwSlotListView.qml" line="1264"/>
         <source>Copy</source>
         <translation>拷贝</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="304"/>
-        <location filename="../MwSlotListView.qml" line="2014"/>
+        <location filename="../MwSlotListView.qml" line="2012"/>
         <source>Signal Link</source>
         <translation>信号链接</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1329"/>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1327"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Move</source>
         <translation>移动</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1385"/>
-        <location filename="../MwSlotListView.qml" line="1388"/>
-        <location filename="../MwSlotListView.qml" line="1391"/>
+        <location filename="../MwSlotListView.qml" line="1383"/>
+        <location filename="../MwSlotListView.qml" line="1386"/>
+        <location filename="../MwSlotListView.qml" line="1389"/>
         <source>STEP</source>
         <translation>步骤</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1689"/>
-        <location filename="../MwSlotListView.qml" line="1725"/>
-        <location filename="../MwSlotListView.qml" line="1751"/>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
+        <location filename="../MwSlotListView.qml" line="1723"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>

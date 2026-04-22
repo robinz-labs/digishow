@@ -39,8 +39,7 @@ MwInterfaceListView {
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
                     anchors.margins: 20
-                    //anchors.bottom: buttonMedia.top
-                    //anchors.bottomMargin: 36
+                    anchors.rightMargin: buttonScreenHelp.visible ? 50 : 20
                     text: screenName(model.screen)
 
                     onClicked: {
@@ -76,34 +75,30 @@ MwInterfaceListView {
                         font.pixelSize: 11
                         text: qsTr("Screen")
                     }
-                }
 
-                /*
-                CButton {
-                    id: buttonMedia
-                    height: 28
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.bottom: parent.bottom
-                    anchors.margins: 20
-                    label.font.bold: false
-                    label.font.pixelSize: 11
-                    label.text: qsTr("Edit Media Library ...")
-                    box.radius: 3
+                    CButton {
+                        id: buttonScreenHelp
+                        width: 18
+                        height: 18
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.right
+                        anchors.leftMargin: 10
+                        label.text: "?"
+                        label.font.pixelSize: 11
+                        label.font.bold: true
+                        box.radius: 9
+                        visible: utilities.isWindows()
 
-                    onClicked: {
-                        // TODO:
+                        onClicked: {
+                            if (messageBox.showAndWait(
+                                    qsTr("You must also download and install the K-Lite Codec Pack so that videos can be played on the screen by DigiShow."),
+                                    qsTr("OK"), qsTr("Download ...")) === 2) {
+                                Qt.openUrlExternally("https://www.codecguide.com/download_kl.htm")
+                            }
+                        }
                     }
 
-                    Label {
-                        anchors.left: parent.left
-                        anchors.bottom: parent.top
-                        anchors.bottomMargin: 10
-                        font.pixelSize: 11
-                        text: qsTr("Preloaded Media")
-                    }
                 }
-                */
             }
         }
     }

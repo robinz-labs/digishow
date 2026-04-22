@@ -69,6 +69,24 @@ int DgsLfoInterface::openInterface()
         }
     }
 
+    // initialize LFOs with no waveform; they just work as timers
+    for (int n=0 ; n<m_endpointInfoList.length() ; n++) {
+        dgsEndpointInfo endpointInfo = m_endpointInfoList[n];
+
+        if (endpointInfo.type == ENDPOINT_LFO_TIMECODE &&
+            !m_lfos.contains(endpointInfo.channel)) {
+
+            // create an LFO object with no waveform
+            // while the LFO is running, the value does not change — only the timecode advances
+            DigishowLFO* lfo = new DigishowLFO(this);
+            lfo->setFunction(DigishowLFO::LfoNone);
+            connect(lfo, SIGNAL(valueChanged(double)), this, SLOT(onValueChanged(double)));
+            lfo->start();
+            m_lfos[endpointInfo.channel] = lfo;
+        }
+    }
+
+
     m_isInterfaceOpened = true;
     return ERR_NONE;
 }

@@ -142,77 +142,77 @@
 <context>
     <name>DgsLfoInterface</name>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="181"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="199"/>
         <source>LFO</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="198"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="216"/>
         <source>LFO %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="212"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="230"/>
         <source>Timecode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="218"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="236"/>
         <source>Reset</source>
         <translation type="unfinished">Reiniciar</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="223"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="241"/>
         <source>Run</source>
         <translation type="unfinished">Ejecutar</translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="229"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="247"/>
         <source>Period</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="235"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="253"/>
         <source>Phase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="241"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="259"/>
         <source>Amplitude</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="247"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="265"/>
         <source>Sample</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="258"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="276"/>
         <source>Sine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="259"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="277"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="260"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="278"/>
         <source>Sawtooth</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="261"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="279"/>
         <source>Triangle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="262"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="280"/>
         <source>Random</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_lfo_interface.cpp" line="263"/>
+        <location filename="../../dgs_lfo_interface.cpp" line="281"/>
         <source>None</source>
         <translation type="unfinished">Ninguno</translation>
     </message>
@@ -233,28 +233,28 @@
 <context>
     <name>DgsMessengerInterface</name>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="245"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="247"/>
         <source>Serial</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="249"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="251"/>
         <source>TCP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="254"/>
-        <location filename="../../dgs_messenger_interface.cpp" line="258"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="256"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="260"/>
         <source>UDP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="284"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="286"/>
         <source>Text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../dgs_messenger_interface.cpp" line="286"/>
+        <location filename="../../dgs_messenger_interface.cpp" line="288"/>
         <source>Hex Code</source>
         <translation type="unfinished"></translation>
     </message>
@@ -416,17 +416,17 @@
         <translation>Tubería virtual</translation>
     </message>
     <message>
-        <location filename="../../dgs_pipe_interface.cpp" line="471"/>
+        <location filename="../../dgs_pipe_interface.cpp" line="475"/>
         <source>Analog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_pipe_interface.cpp" line="478"/>
+        <location filename="../../dgs_pipe_interface.cpp" line="482"/>
         <source>Binary</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../dgs_pipe_interface.cpp" line="486"/>
+        <location filename="../../dgs_pipe_interface.cpp" line="490"/>
         <source>Note</source>
         <translation></translation>
     </message>
@@ -3840,18 +3840,33 @@ Connection: %2</source>
 <context>
     <name>MwInterfaceListViewScreen</name>
     <message>
-        <location filename="../MwInterfaceListViewScreen.qml" line="117"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="94"/>
+        <source>You must also download and install the K-Lite Codec Pack so that videos can be played on the screen by DigiShow.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewScreen.qml" line="95"/>
+        <source>OK</source>
+        <translation type="unfinished">Aceptar</translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewScreen.qml" line="95"/>
+        <source>Download ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MwInterfaceListViewScreen.qml" line="112"/>
         <source>Preview Window</source>
         <translation>Ventana de vista previa</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewScreen.qml" line="118"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="113"/>
         <source>Default</source>
         <translation>Por defecto</translation>
     </message>
     <message>
-        <location filename="../MwInterfaceListViewScreen.qml" line="77"/>
-        <location filename="../MwInterfaceListViewScreen.qml" line="119"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="76"/>
+        <location filename="../MwInterfaceListViewScreen.qml" line="114"/>
         <source>Screen</source>
         <translation>Pantalla</translation>
     </message>
@@ -4309,16 +4324,16 @@ de la izquierda.</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="178"/>
-        <location filename="../MwSlotListView.qml" line="1287"/>
-        <location filename="../MwSlotListView.qml" line="1689"/>
+        <location filename="../MwSlotListView.qml" line="1285"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
         <source>Duplicate</source>
         <translation>Duplicar</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="186"/>
-        <location filename="../MwSlotListView.qml" line="1308"/>
-        <location filename="../MwSlotListView.qml" line="1725"/>
-        <location filename="../MwSlotListView.qml" line="1751"/>
+        <location filename="../MwSlotListView.qml" line="1306"/>
+        <location filename="../MwSlotListView.qml" line="1723"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
@@ -4334,7 +4349,7 @@ de la izquierda.</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="204"/>
-        <location filename="../MwSlotListView.qml" line="1266"/>
+        <location filename="../MwSlotListView.qml" line="1264"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
@@ -4355,100 +4370,100 @@ de la izquierda.</translation>
     </message>
     <message>
         <location filename="../MwSlotListView.qml" line="304"/>
-        <location filename="../MwSlotListView.qml" line="2014"/>
+        <location filename="../MwSlotListView.qml" line="2012"/>
         <source>Signal Link</source>
         <translation>Enlace de señal</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="909"/>
+        <location filename="../MwSlotListView.qml" line="907"/>
         <source>+ CUE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1689"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
         <source>Do you want to duplicate all selected signal links ?</source>
         <translation>¿ Quieres duplicar todas los enlaces de señal seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1689"/>
-        <location filename="../MwSlotListView.qml" line="1751"/>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Selection: %1 item(s)</source>
         <translation>Selección: %1 elemento(s)</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1725"/>
+        <location filename="../MwSlotListView.qml" line="1723"/>
         <source>Do you want to delete the signal link ?</source>
         <translation>¿ Quieres eliminar el enlace de señal ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1751"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
         <source>Do you want to delete all selected signal links ?</source>
         <translation>¿ Quieres eliminar todas los enlaces de señal seleccionadas ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Do you want to move all selected signal links to the current cursor position ?</source>
         <translation>¿ Quieres mover todas los enlaces de señal seleccionadas a la posición actual del cursor ?</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1222"/>
+        <location filename="../MwSlotListView.qml" line="1220"/>
         <source>Select All</source>
         <translation>Todo</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1244"/>
+        <location filename="../MwSlotListView.qml" line="1242"/>
         <source>Select None</source>
         <translation>Ninguno</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1329"/>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1327"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Move</source>
         <translation>Mover</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1385"/>
-        <location filename="../MwSlotListView.qml" line="1388"/>
-        <location filename="../MwSlotListView.qml" line="1391"/>
+        <location filename="../MwSlotListView.qml" line="1383"/>
+        <location filename="../MwSlotListView.qml" line="1386"/>
+        <location filename="../MwSlotListView.qml" line="1389"/>
         <source>STEP</source>
         <translation>Paso</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1386"/>
+        <location filename="../MwSlotListView.qml" line="1384"/>
         <source>Open Interface Manager to configure your MIDI, DMX, OSC, Arduino and more device interfaces.</source>
         <translation>Abra Interface Manager para configurar sus interfaces MIDI, DMX, OSC, Arduino y más dispositivos.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1389"/>
+        <location filename="../MwSlotListView.qml" line="1387"/>
         <source>Tap the + button to add a new item to the signal link table, which is used to control and map the input/output signals of your devices.</source>
         <translation>Haga clic en el botón + para agregar un nuevo elemento a la tabla de enlace de señal, que se utiliza para controlar y mapear las señales de entrada/salida de sus dispositivos.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1392"/>
+        <location filename="../MwSlotListView.qml" line="1390"/>
         <source>Tap the play button to activate all signal links.</source>
         <translation>Haga clic en el botón de reproducción para activar todos los enlaces de señal.</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1415"/>
+        <location filename="../MwSlotListView.qml" line="1413"/>
         <source>Instructions</source>
         <translation>Instrucciones</translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1519"/>
+        <location filename="../MwSlotListView.qml" line="1517"/>
         <source>IN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1529"/>
+        <location filename="../MwSlotListView.qml" line="1527"/>
         <source>OUT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MwSlotListView.qml" line="1689"/>
-        <location filename="../MwSlotListView.qml" line="1725"/>
-        <location filename="../MwSlotListView.qml" line="1751"/>
-        <location filename="../MwSlotListView.qml" line="1760"/>
+        <location filename="../MwSlotListView.qml" line="1687"/>
+        <location filename="../MwSlotListView.qml" line="1723"/>
+        <location filename="../MwSlotListView.qml" line="1749"/>
+        <location filename="../MwSlotListView.qml" line="1758"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>

@@ -446,8 +446,12 @@ void DgsPipeInterface::updateMetadata_()
         labelIdentity = m_interfaceOptions.value("pipeId").toString();
     } else {
         labelType = tr("Virtual Pipe");
-        labelIdentity = m_interfaceOptions.value("comment").toString();
+        labelIdentity = m_interfaceOptions.value("tcpPort").toString();
     }
+
+    QString labelComment = m_interfaceOptions.value("comment").toString();
+    if (!labelComment.isEmpty()) labelIdentity = labelComment; // use the comment instead
+
     m_interfaceInfo.label = labelType + " " + labelIdentity;
 
     // Process endpoints
@@ -486,6 +490,8 @@ void DgsPipeInterface::updateMetadata_()
                 endpointInfo.labelEPI = tr("Note") + " " + QString::number(endpointInfo.channel);
                 break;
         }
+
+        if (!labelComment.isEmpty()) endpointInfo.labelEPT = labelComment; // use the comment instead
 
         m_endpointInfoList.append(endpointInfo);
     }

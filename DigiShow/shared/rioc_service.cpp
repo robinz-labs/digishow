@@ -51,7 +51,7 @@ bool RiocService::addSerialConnection(const QString & serialPort, int serialBaud
     }
 
     // clear the input buffer after the port is opened
-    QThread::msleep(100);
+    //QThread::msleep(100);
     serial->serialPort()->clear(QSerialPort::Input);
 
     connect(serial, SIGNAL(bytesReceived(ComHandler*)), this, SLOT(handleSerialBytesReceived(ComHandler*)));

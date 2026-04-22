@@ -370,16 +370,14 @@ Item {
                         anchors.leftMargin: labelSlotNumber.visible ? labelSlotNumber.width + 16 : 6
                         anchors.verticalCenter: labelSlotTitle.verticalCenter
                         radius: 2
-                        color: highlightedIndex===index ? "#cccccc" : "transparent"
-                        border.width: 1
-                        border.color: highlightedIndex===index ? "#cccccc" : "#333333"
+                        color: highlightedIndex===index ? "#cccccc" : "#555555"
 
                         Text {
                             id: labelEndpointIn
 
                             width: contentWidth
                             anchors.centerIn: parent
-                            color: highlightedIndex===index ? "#000000" : "#666666"
+                            color: "#000000"
                             font.pixelSize: 11
                             font.bold: false
                             text: {
@@ -414,16 +412,14 @@ Item {
                         anchors.rightMargin: 6
                         anchors.verticalCenter: labelSlotTitle.verticalCenter
                         radius: 2
-                        color: highlightedIndex===index ? "#cccccc" : "transparent"
-                        border.width: 1
-                        border.color: highlightedIndex===index ? "#cccccc" : "#333333"
+                        color: highlightedIndex===index ? "#cccccc" : "#555555"
 
                         Text {
                             id: labelEndpointOut
 
                             width: contentWidth
                             anchors.centerIn: parent
-                            color: highlightedIndex===index ? "#000000" : "#666666"
+                            color: "#000000"
                             font.pixelSize: 11
                             font.bold: false
                             text: {
@@ -455,6 +451,7 @@ Item {
                         radius: 4
                         color: model.epInColor
                         opacity: altKeyHeld && model.epInBusy ? 1.0 : 0.6
+                        clip: true
 
                         Text {
                             anchors.horizontalCenter: parent.horizontalCenter
@@ -689,6 +686,7 @@ Item {
                         radius: 4
                         color: model.epOutColor
                         opacity: altKeyHeld && model.epOutBusy ? 1.0 : 0.6
+                        clip: true
 
                         Text {
                             anchors.horizontalCenter: parent.horizontalCenter
