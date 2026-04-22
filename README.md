@@ -1,6 +1,6 @@
 # DigiShow LINK  
   
-[DOWNLOAD](https://github.com/robinz-labs/digishow/releases/latest) | [TUTORIALS](https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md) 
+[DOWNLOAD](https://github.com/robinz-labs/digishow/releases/latest) | [TUTORIALS](https://github.com/robinz-labs/digishow/blob/master/guides/tutorials.md) | [YOUTUBE](https://www.youtube.com/watch?v=XFE75XyCr3k)
   
 DigiShow is a lightweight cross-media control software designed for live performances and interactive art installations. It provides an intuitive console interface that enables signal control and mapping among various audio, lighting, robotic, and interactive devices. 
 
@@ -60,7 +60,6 @@ DigiShow main window: preset launcher, signal link table and signal mapping sett
 ![screenshot_cue_player](images/screenshot_cue_player.png)  
 Timeline Editor for Cue Player: design the output signal playback curve in the timeline. 
 
-[DEMO VIDEO](https://www.youtube.com/@robinzlabs6390) 
 
 ## Examples
 
@@ -80,7 +79,7 @@ To better understand the features and capabilities of DigiShow, open the `.dgs` 
 
 4. **presets and beats** 
 
-	The Preset Launcher and Beat Generator are key DigiShow components. We demonstrate them with progressive lighting console examples. 
+	The Preset Launcher and Beat Maker are key DigiShow components. We demonstrate them with progressive lighting console examples. 
 
 5. **audio input** 
 
