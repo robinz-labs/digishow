@@ -137,7 +137,7 @@ It's also recommended to install loopMIDI and K-Lite Codec Pack to your Windows,
 
 	In order to communicate with MIDI messages between DigiShow LINK and other software, users just need to setup a virtual MIDI bus in the operation system.  
 	[learn IAC for Mac](https://help.ableton.com/hc/en-us/articles/209774225-How-to-setup-a-virtual-MIDI-bus)  
-	[download loopMIDI for Windows](http://www.tobias-erichsen.de/software/loopmidi.html)  
+	[download loopMIDI for Windows](http://www.tobias-erichsen.de/software/loopmidi.html)  ([issue fix](https://github.com/robinz-labs/digishow/tree/master/extra/loop_midi_issue_fix))
 
 - **DMX** ENTTEC DMX USB Pro driver (FTDI VCP) 
 

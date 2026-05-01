@@ -153,7 +153,7 @@ xattr -cr /Applications/DigiShow.app
 
 	为了在 DigiShow LINK 与其他软件之间通过 MIDI 消息进行通信，用户只需在操作系统中设置一个虚拟 MIDI 总线。  
 	[了解 Mac 的 IAC](https://help.ableton.com/hc/en-us/articles/209774225-How-to-setup-a-virtual-MIDI-bus)  
-	[下载 Windows 版 loopMIDI](http://www.tobias-erichsen.de/software/loopmidi.html)
+	[下载 Windows 版 loopMIDI](http://www.tobias-erichsen.de/software/loopmidi.html) ([出问题怎么办?](https://github.com/robinz-labs/digishow/tree/master/extra/loop_midi_issue_fix/README.zh.md))
 
 - **DMX** ENTTEC DMX USB Pro 驱动程序（FTDI VCP）  
 
