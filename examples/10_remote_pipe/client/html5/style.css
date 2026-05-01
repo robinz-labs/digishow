@@ -1,0 +1,168 @@
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --text-main: #111827;
+    --text-muted: #6b7280;
+    --success: #10b981;
+    --danger: #ef4444;
+    --border: #e5e7eb;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 2.5rem;
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-main);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.description {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    background-color: #f8fafc;
+    padding: 1rem;
+    border-left: 4px solid var(--primary);
+    border-radius: 4px;
+}
+
+.control-group {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: #f9fafb;
+}
+
+.control-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.button-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.btn-off {
+    background-color: var(--text-muted);
+}
+.btn-off:hover {
+    background-color: #4b5563;
+}
+
+.btn-on {
+    background-color: var(--success);
+}
+.btn-on:hover {
+    background-color: #059669;
+}
+
+.status-panel {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: #fee2e2;
+    color: var(--danger);
+    transition: all 0.3s ease;
+}
+
+.status-badge.connected {
+    background-color: #d1fae5;
+    color: var(--success);
+}
+
+.status-badge::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: currentColor;
+    margin-right: 0.5rem;
+    box-shadow: 0 0 4px currentColor;
+}
+
+.message-box {
+    background-color: #1f2937;
+    color: #10b981;
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: "Fira Code", monospace, Consolas;
+    font-size: 0.875rem;
+    min-height: 1.25rem;
+    word-break: break-all;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}

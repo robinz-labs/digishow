@@ -1,0 +1,191 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7.1"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "media": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "value1",
+                    "optAmplitude": 1,
+                    "optFunction": "random",
+                    "optPeriod": 1000,
+                    "optPhase": 0,
+                    "optRun": true,
+                    "optSample": 200,
+                    "range": 65535,
+                    "type": "value"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "value2",
+                    "optAmplitude": 1,
+                    "optFunction": "random",
+                    "optPeriod": 1000,
+                    "optPhase": 0,
+                    "optRun": true,
+                    "optSample": 500,
+                    "range": 65535,
+                    "type": "value"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "value3",
+                    "optAmplitude": 1,
+                    "optFunction": "random",
+                    "optPeriod": 1000,
+                    "optPhase": 0,
+                    "optRun": true,
+                    "optSample": 500,
+                    "range": 65535,
+                    "type": "value"
+                }
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 4,
+                    "enabled": true,
+                    "name": "light1",
+                    "type": "light"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "initial": 1,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 5000,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media1",
+                    "type": "media"
+                },
+                {
+                    "control": 12,
+                    "enabled": true,
+                    "media": "image1",
+                    "name": "media4",
+                    "type": "media"
+                },
+                {
+                    "control": 13,
+                    "enabled": true,
+                    "media": "image1",
+                    "name": "media10",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/logo.png",
+                    "name": "image1",
+                    "type": "image",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/15_lfo/clips/logo.png"
+                }
+            ],
+            "mode": "",
+            "name": "screen1",
+            "type": "screen"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "screen1/media1",
+            "linked": true
+        },
+        {
+            "destination": "screen1/media4",
+            "linked": true,
+            "outputLow": 0.0970552885,
+            "source": "lfo1/value1"
+        },
+        {
+            "destination": "screen1/media10",
+            "linked": true,
+            "outputHigh": 1,
+            "outputInverted": false,
+            "outputLow": 0,
+            "source": "lfo1/value2"
+        },
+        {
+            "destination": "screen1/light1",
+            "linked": true,
+            "outputHigh": 0.4980392157,
+            "outputSmoothing": 0,
+            "source": "lfo1/value3"
+        }
+    ]
+}

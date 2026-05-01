@@ -13,6 +13,9 @@ artnet_512.dgs
 artnet_linkage.dgs
 在该工程中列出了 ArtNet 域0 中的512个通道，可以对所有通道的输出值进行联动调整。这个例子常用于ArtNet连接测试。
 
+artnet_to_dmx.dgs
+ArtNet-DMX转换器：将 ArtNet 域0中的512个通道和域1中的512个通道都映射到 DMX 接口中去。
+
 pixel_mapping
 像素映射 (Pixel Mapping)：透过 ArtNet / DMX 通道，将图像或视频、动画文件中的像素映射到 LED 像素灯带/矩阵上。
 在此例中，演示通过像素映射来播放动画，调整画面输出的整体亮度。

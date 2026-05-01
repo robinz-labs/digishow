@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web MIDI Synthesizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Start playing large button -->
+    <div id="start-overlay" class="start-overlay">
+        <button id="start-audio" class="start-audio-btn">Start Playing</button>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Web MIDI Synthesizer</h1>
+            <div class="midi-status">
+                <span id="midi-status">MIDI Disconnected</span>
+                <select id="midi-input-select"></select>
+                <button id="refresh-midi">Refresh MIDI Devices</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="channel-panel">
+                <div class="channel-list" id="channel-list">
+                    <!-- Dynamically generate channel control panel -->
+                </div>
+            </div>
+
+            <div class="synth-controls">
+                <h2>Synth Controls</h2>
+                <div class="control-section">
+                    <h3>Current Channel: <span id="current-channel">1</span>
+                        <button id="reset-channel" style="float:right;">Reset</button>
+                        <button id="save-channel" style="float:right;">Save</button>
+                    </h3>
+                    
+                    <div class="control-group">
+                        <label>Waveform:</label>
+                        <select id="waveform-type">
+                            <option value="sine">Sine</option>
+                            <option value="triangle" selected>Triangle</option>
+                            <option value="sawtooth">Sawtooth</option>
+                            <option value="square">Square</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-controls">
+                        <div class="control-group">
+                            <label>Cutoff Freq:</label>
+                            <input type="range" id="cutoff-freq" min="100" max="8000" value="2000">
+                            <span id="cutoff-freq-value">2000 Hz</span>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Resonance:</label>
+                            <input type="range" id="resonance" min="0" max="30" value="5">
+                            <span id="resonance-value">5</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>ADSR Envelope:</label>
+                        <div class="adsr-controls">
+                            <div>
+                                <label>Attack:</label>
+                                <input type="range" id="attack" min="0" max="2" step="0.01" value="0.1">
+                                <span id="attack-value">0.1s</span>
+                            </div>
+                            <div>
+                                <label>Decay:</label>
+                                <input type="range" id="decay" min="0" max="2" step="0.01" value="0.3">
+                                <span id="decay-value">0.3s</span>
+                            </div>
+                            <div>
+                                <label>Sustain:</label>
+                                <input type="range" id="sustain" min="0" max="1" step="0.01" value="0.7">
+                                <span id="sustain-value">0.7</span>
+                            </div>
+                            <div>
+                                <label>Release:</label>
+                                <input type="range" id="release" min="0" max="5" step="0.01" value="0.5">
+                                <span id="release-value">0.5s</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="effects-section">
+            <div class="effects-chain">
+                <div class="effect-unit">
+                    <div class="effect-header">
+                        <input type="checkbox" id="chorus-enabled" class="effect-toggle">
+                        <label for="chorus-enabled" class="effect-title">
+                            <h3>Chorus</h3>
+                        </label>
+                    </div>
+                    <div class="effect-controls">
+                        <div class="control-group">
+                            <label>Depth:</label>
+                            <input type="range" id="chorus-depth" min="0" max="1" step="0.01" value="0.3" disabled>
+                            <span id="chorus-depth-value">0.3</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Rate:</label>
+                            <input type="range" id="chorus-rate" min="0.1" max="5" step="0.1" value="1.5" disabled>
+                            <span id="chorus-rate-value">1.5 Hz</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Mix:</label>
+                            <input type="range" id="chorus-mix" class="effect-mix-slider" min="0" max="1" step="0.01" value="0.5" disabled>
+                            <span id="chorus-mix-value">0.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="effect-unit">
+                    <div class="effect-header">
+                        <input type="checkbox" id="delay-enabled" class="effect-toggle">
+                        <label for="delay-enabled" class="effect-title">
+                            <h3>Delay</h3>
+                        </label>
+                    </div>
+                    <div class="effect-controls">
+                        <div class="control-group">
+                            <label>Time:</label>
+                            <input type="range" id="delay-time" min="0" max="1" step="0.01" value="0.3" disabled>
+                            <span id="delay-time-value">0.3s</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Feedback:</label>
+                            <input type="range" id="delay-feedback" min="0" max="0.9" step="0.01" value="0.3" disabled>
+                            <span id="delay-feedback-value">0.3</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Mix:</label>
+                            <input type="range" id="delay-mix" class="effect-mix-slider" min="0" max="1" step="0.01" value="0.5" disabled>
+                            <span id="delay-mix-value">0.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="effect-unit">
+                    <div class="effect-header">
+                        <input type="checkbox" id="reverb-enabled" class="effect-toggle">
+                        <label for="reverb-enabled" class="effect-title">
+                            <h3>Reverb</h3>
+                        </label>
+                    </div>
+                    <div class="effect-controls">
+                        <div class="control-group">
+                            <label>Room Size:</label>
+                            <input type="range" id="reverb-room" min="0" max="1" step="0.01" value="0.5" disabled>
+                            <span id="reverb-room-value">0.5</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Damping:</label>
+                            <input type="range" id="reverb-damping" min="0" max="1" step="0.01" value="0.4" disabled>
+                            <span id="reverb-damping-value">0.4</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Mix:</label>
+                            <input type="range" id="reverb-mix" class="effect-mix-slider" min="0" max="1" step="0.01" value="0.5" disabled>
+                            <span id="reverb-mix-value">0.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Random note panel: full width, same width as effects (no title, more compact) -->
+        <div class="effects-section random-note-section">
+            <div class="random-note-panel">
+                <div class="random-note-grid" id="random-note-grid"></div>
+                <div class="random-note-controls">
+                    <label>
+                        <input type="checkbox" id="random-note-enabled">
+                        Enable Random Note
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="keyboard-section">
+            <div class="virtual-keyboard" id="virtual-keyboard">
+                <!-- Dynamically generate virtual keyboard -->
+            </div>
+        </div>
+
+        <div class="visualizer">
+            <canvas id="spectrum-analyzer" width="800" height="200"></canvas>
+        </div>
+    </div>
+
+    <script src="synth-engine.js"></script>
+    <script src="midi-handler.js"></script>
+    <script src="ui-controller.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

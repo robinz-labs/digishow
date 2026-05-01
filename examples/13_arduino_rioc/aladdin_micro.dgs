@@ -1,0 +1,247 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7.1"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 18,
+                    "enabled": true,
+                    "name": "analog_in3",
+                    "type": "analog_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 19,
+                    "enabled": true,
+                    "name": "analog_in4",
+                    "type": "analog_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 9,
+                    "enabled": true,
+                    "name": "pwm_out1",
+                    "type": "pwm_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 11,
+                    "enabled": true,
+                    "name": "pwm_out2",
+                    "type": "pwm_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 6,
+                    "enabled": true,
+                    "name": "pwm_out3",
+                    "type": "pwm_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 10,
+                    "enabled": true,
+                    "name": "pwm_out4",
+                    "type": "pwm_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 23,
+                    "enabled": true,
+                    "name": "digital_in1",
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 22,
+                    "enabled": true,
+                    "name": "digital_in2",
+                    "type": "digital_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 5,
+                    "enabled": true,
+                    "name": "pwm_out5",
+                    "type": "pwm_out",
+                    "unit": 1
+                },
+                {
+                    "channel": 13,
+                    "enabled": true,
+                    "name": "pwm_out6",
+                    "type": "pwm_out",
+                    "unit": 1
+                }
+            ],
+            "mode": "aladdin1",
+            "name": "rioc1",
+            "outputInterval": 20,
+            "type": "rioc"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "value1",
+                    "optAmplitude": 1,
+                    "optFunction": "sine",
+                    "optPeriod": 2000,
+                    "optPhase": 0,
+                    "optRun": true,
+                    "optSample": 20,
+                    "range": 65535,
+                    "type": "value"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "value2",
+                    "optAmplitude": 1,
+                    "optFunction": "sine",
+                    "optPeriod": 2000,
+                    "optPhase": 0.25,
+                    "optRun": true,
+                    "optSample": 20,
+                    "range": 65535,
+                    "type": "value"
+                },
+                {
+                    "channel": 3,
+                    "enabled": true,
+                    "name": "value3",
+                    "optAmplitude": 1,
+                    "optFunction": "sine",
+                    "optPeriod": 2000,
+                    "optPhase": 0.5,
+                    "optRun": true,
+                    "optSample": 20,
+                    "range": 65535,
+                    "type": "value"
+                },
+                {
+                    "channel": 4,
+                    "enabled": true,
+                    "name": "value4",
+                    "optAmplitude": 1,
+                    "optFunction": "sine",
+                    "optPeriod": 2000,
+                    "optPhase": 0.75,
+                    "optRun": true,
+                    "optSample": 20,
+                    "range": 65535,
+                    "type": "value"
+                }
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "rioc1/pwm_out1",
+            "linked": true,
+            "source": "lfo1/value1",
+            "title": "Output Y0"
+        },
+        {
+            "destination": "rioc1/pwm_out2",
+            "linked": true,
+            "source": "lfo1/value2",
+            "title": "Output Y1"
+        },
+        {
+            "destination": "rioc1/pwm_out3",
+            "linked": true,
+            "source": "lfo1/value3",
+            "title": "Output Y2"
+        },
+        {
+            "destination": "rioc1/pwm_out4",
+            "linked": true,
+            "source": "lfo1/value4",
+            "title": "Output Y3"
+        },
+        {
+            "destination": "rioc1/pwm_out5",
+            "linked": true,
+            "outputSmoothing": 1000,
+            "source": "rioc1/digital_in1",
+            "title": "X0 to Y4"
+        },
+        {
+            "destination": "rioc1/pwm_out6",
+            "linked": true,
+            "outputSmoothing": 1000,
+            "source": "rioc1/digital_in2",
+            "title": "X1 to Y5"
+        },
+        {
+            "linked": true,
+            "source": "rioc1/analog_in3",
+            "title": "Analog Input A0"
+        },
+        {
+            "destination": "",
+            "linked": true,
+            "source": "rioc1/analog_in4",
+            "title": "Analog Input A1"
+        }
+    ]
+}

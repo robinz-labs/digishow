@@ -2,6 +2,9 @@
 
 # pip install websocket-client
 
+import sys
+sys.dont_write_bytecode = True
+
 import websocket
 from digishow import DGSSignal
 
@@ -28,7 +31,7 @@ def on_message(ws, message):
 def on_error(ws, error):
     print(error)
 
-def on_close(ws):
+def on_close(ws, close_status_code, close_msg):
     print("### closed ###")
 
 def on_open(ws):
@@ -42,5 +45,9 @@ if __name__ == "__main__":
                               on_error = on_error,
                               on_close = on_close,
                               on_open = on_open)
-    ws.run_forever()
+    try:
+        ws.run_forever()
+    except KeyboardInterrupt:
+        print("\n### interrupted by user ###")
+        ws.close()
 

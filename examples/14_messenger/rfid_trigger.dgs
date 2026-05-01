@@ -1,0 +1,208 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7.1"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "comBaud": 9600,
+            "comParity": "8N1",
+            "comPort": "tty.usbserial",
+            "endpoints": [
+                {
+                    "enabled": true,
+                    "message": "52 46 49 44 30 30 30 31 0D 0A",
+                    "name": "hex1",
+                    "subscribed": true,
+                    "type": "hex"
+                },
+                {
+                    "enabled": true,
+                    "message": "52 46 49 44 30 30 30 32 0D 0A",
+                    "name": "hex2",
+                    "subscribed": true,
+                    "type": "hex"
+                },
+                {
+                    "enabled": true,
+                    "message": "52 46 49 44 30 30 30 33 0D 0A",
+                    "name": "hex3",
+                    "subscribed": true,
+                    "type": "hex"
+                }
+            ],
+            "mode": "com",
+            "name": "messenger1",
+            "type": "messenger"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "web1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 5000,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media1",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "web2",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 5000,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media2",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "web3",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 5000,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media3",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "",
+                    "name": "web1",
+                    "type": "web",
+                    "url": "https://apple.com"
+                },
+                {
+                    "file": "",
+                    "name": "web2",
+                    "type": "web",
+                    "url": "https://www.amazon.com"
+                },
+                {
+                    "file": "",
+                    "name": "web3",
+                    "type": "web",
+                    "url": "https://p5js.org/examples"
+                }
+            ],
+            "mode": "",
+            "name": "screen1",
+            "screen": 0,
+            "type": "screen"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "screen1/media1",
+            "linked": true,
+            "source": "messenger1/hex1",
+            "title": "RFID Trigger 1"
+        },
+        {
+            "destination": "screen1/media2",
+            "linked": true,
+            "source": "messenger1/hex2",
+            "title": "RFID Trigger 2"
+        },
+        {
+            "destination": "screen1/media3",
+            "linked": true,
+            "source": "messenger1/hex3",
+            "title": "RFID Trigger 3"
+        }
+    ]
+}

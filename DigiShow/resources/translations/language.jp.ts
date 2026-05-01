@@ -4004,7 +4004,7 @@ Connection: %2</source>
     </message>
     <message>
         <location filename="../MwInterfacesDialog.qml" line="481"/>
-        <source>DigiShow enables to set up virtual pipes to transfer and duplicate signals between separate links. Remote pipe can be used when need to transfer signals between several DigiShow LINK apps running on different computers.</source>
+        <source>Virtual pipes need no physical connection. Local pipes enable virtual signal transmission across separate links within the same DigiShow project. Enable Remote Link Service to allow access from another DigiShow instance, external web apps, or any WebSocket client.</source>
         <translation>DigiShowを使用すると、バーチャルパイプをセットアップして、別々のリンクの間で信号を転送および複製できます。 リモートパイプは、異なるコンピューターで実行されている複数のDigiShow LINKアプリ間で信号を転送するためのものです。</translation>
     </message>
     <message>

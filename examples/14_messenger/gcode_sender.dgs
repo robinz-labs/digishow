@@ -1,0 +1,117 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7.1"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+                {
+                    "address": "A",
+                    "enabled": true,
+                    "name": "press1",
+                    "type": "press"
+                },
+                {
+                    "address": "B",
+                    "enabled": true,
+                    "name": "press2",
+                    "type": "press"
+                }
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "comBaud": 115200,
+            "comParity": "8N1",
+            "comPort": "tty.wchusbserial",
+            "endpoints": [
+                {
+                    "enabled": true,
+                    "message": "G21G90G01Y250F600\\n",
+                    "name": "text1",
+                    "subscribed": false,
+                    "type": "text"
+                },
+                {
+                    "enabled": true,
+                    "message": "G21G90G01Y0F600\\n",
+                    "name": "text2",
+                    "subscribed": false,
+                    "type": "text"
+                }
+            ],
+            "mode": "com",
+            "name": "messenger1",
+            "type": "messenger"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "messenger1/text2",
+            "linked": true,
+            "source": "hotkey1/press1",
+            "title": "Go to Position 1"
+        },
+        {
+            "destination": "messenger1/text1",
+            "inputInverted": false,
+            "linked": true,
+            "source": "hotkey1/press2",
+            "title": "Go to Position 2"
+        }
+    ]
+}

@@ -1,0 +1,121 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7.1"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 14,
+                    "enabled": true,
+                    "name": "analog_in1",
+                    "type": "analog_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 15,
+                    "enabled": true,
+                    "name": "analog_in2",
+                    "type": "analog_in",
+                    "unit": 1
+                },
+                {
+                    "channel": 13,
+                    "enabled": true,
+                    "name": "digital_out1",
+                    "type": "digital_out",
+                    "unit": 1
+                }
+            ],
+            "mode": "arduino_uno",
+            "name": "rioc1",
+            "outputInterval": 20,
+            "type": "rioc"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "value1",
+                    "optFunction": "square",
+                    "type": "value"
+                }
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "rioc1/digital_out1",
+            "linked": true,
+            "source": "lfo1/value1",
+            "title": "LED Blinking"
+        },
+        {
+            "linked": true,
+            "source": "rioc1/analog_in1",
+            "title": "Analog Input A0"
+        },
+        {
+            "destination": "",
+            "linked": true,
+            "source": "rioc1/analog_in2",
+            "title": "Analog Input A1"
+        }
+    ]
+}

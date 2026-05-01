@@ -1,0 +1,410 @@
+{
+    "appInfo": {
+        "appExperimental": true,
+        "appName": "DigiShow LINK",
+        "appVersion": "1.7.7.1"
+    },
+    "cuePlayers": {
+    },
+    "interfaces": [
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "hotkey1",
+            "type": "hotkey"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "aplay1",
+            "type": "aplay"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "launch1",
+            "type": "launch"
+        },
+        {
+            "endpoints": [
+            ],
+            "mode": "",
+            "name": "metronome1",
+            "type": "metronome"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "timecode1",
+                    "range": 60000,
+                    "type": "timecode"
+                },
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "reset1",
+                    "type": "reset"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "value1",
+                    "optAmplitude": 1,
+                    "optFunction": "sine",
+                    "optPeriod": 2000,
+                    "optPhase": 0,
+                    "optRun": false,
+                    "optSample": 20,
+                    "range": 65535,
+                    "type": "value"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "run1",
+                    "type": "run"
+                },
+                {
+                    "channel": 2,
+                    "enabled": true,
+                    "name": "reset2",
+                    "type": "reset"
+                }
+            ],
+            "mode": "",
+            "name": "lfo1",
+            "type": "lfo"
+        },
+        {
+            "endpoints": [
+                {
+                    "channel": 1,
+                    "enabled": true,
+                    "name": "binary1",
+                    "type": "binary"
+                }
+            ],
+            "mode": "local",
+            "name": "pipe1",
+            "type": "pipe"
+        },
+        {
+            "endpoints": [
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 2000,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media2",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 3000,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media3",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 2500,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 4500,
+                    "name": "media5",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 100,
+                    "mediaScale": 2500,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 4500,
+                    "name": "media6",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 3000,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5500,
+                    "name": "media7",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 3500,
+                    "mediaScale": 2500,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 4500,
+                    "name": "media8",
+                    "type": "media"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 2500,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media9",
+                    "type": "media"
+                },
+                {
+                    "control": 4,
+                    "enabled": true,
+                    "name": "light1",
+                    "type": "light"
+                },
+                {
+                    "control": 1,
+                    "enabled": true,
+                    "media": "image1",
+                    "mediaAlone": true,
+                    "mediaFadeIn": 300,
+                    "mediaOpacity": 10000,
+                    "mediaPosition": 0,
+                    "mediaPositionA": 0,
+                    "mediaPositionB": 0,
+                    "mediaRepeat": true,
+                    "mediaRotation": 0,
+                    "mediaScale": 1500,
+                    "mediaScript": "",
+                    "mediaSpeed": 10000,
+                    "mediaVolume": 10000,
+                    "mediaXOffset": 5000,
+                    "mediaYOffset": 5000,
+                    "name": "media12",
+                    "type": "media"
+                },
+                {
+                    "control": 12,
+                    "enabled": true,
+                    "media": "image1",
+                    "name": "media1",
+                    "type": "media"
+                }
+            ],
+            "media": [
+                {
+                    "file": "clips/logo.png",
+                    "name": "image1",
+                    "type": "image",
+                    "url": "file:///Users/robin/Robin/Development/DigiShow/apps/digishow/examples/15_lfo/clips/logo.png"
+                }
+            ],
+            "mode": "",
+            "name": "screen1",
+            "type": "screen"
+        }
+    ],
+    "launches": {
+    },
+    "metronome": {
+        "bpm": 120,
+        "link": false,
+        "quantum": 4,
+        "run": false,
+        "sound": false
+    },
+    "remoteWeb": {
+        "port": 8888,
+        "run": false
+    },
+    "slots": [
+        {
+            "destination": "screen1/media12",
+            "inputHigh": 0.0166666667,
+            "inputLow": 0,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "screen1/media2",
+            "inputHigh": 0.0333333333,
+            "inputLow": 0.0166666667,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "screen1/media3",
+            "inputHigh": 0.05,
+            "inputLow": 0.0333333333,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "lfo1/reset1",
+            "inputHigh": 0.2,
+            "inputLow": 0.1833333333,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "screen1/media7",
+            "inputHigh": 0.0666666667,
+            "inputLow": 0.05,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "screen1/media5",
+            "inputHigh": 0.0833333333,
+            "inputLow": 0.0666666667,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "screen1/media6",
+            "inputHigh": 0.1,
+            "inputLow": 0.0833333333,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "screen1/media8",
+            "inputHigh": 0.1166666667,
+            "inputLow": 0.1,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "screen1/media9",
+            "inputHigh": 0.1333333333,
+            "inputLow": 0.1166666667,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "pipe1/binary1",
+            "inputHigh": 0.15,
+            "inputLow": 0.1333333333,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "screen1/light1",
+            "envelopeAttack": 100,
+            "envelopeDecay": 600,
+            "envelopeHold": 100,
+            "envelopeRelease": 1000,
+            "envelopeSustain": 0.2,
+            "linked": true,
+            "outputHigh": 0.7852764423,
+            "source": "pipe1/binary1"
+        },
+        {
+            "destination": "lfo1/run1",
+            "inputHigh": 0.1833333333,
+            "inputLow": 0.15,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "lfo1/reset2",
+            "inputHigh": 0.1833333333,
+            "inputLow": 0.15,
+            "linked": true,
+            "source": "lfo1/timecode1"
+        },
+        {
+            "destination": "screen1/media1",
+            "linked": true,
+            "outputHigh": 0.6482772436,
+            "outputLow": 0.3475360577,
+            "source": "lfo1/value1"
+        }
+    ]
+}
