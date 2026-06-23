@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiShow 宣言</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-soft: #111118;
+            --bg-card: #15151f;
+            --text: #e8e8ec;
+            --text-muted: #93939e;
+            --accent: #39ff14;
+            --accent-dim: rgba(57, 255, 20, 0.12);
+            --accent-glow: rgba(57, 255, 20, 0.35);
+            --warm: #ff9f43;
+            --warm-dim: rgba(255, 159, 67, 0.12);
+            --border: rgba(255, 255, 255, 0.08);
+            --radius: 16px;
+            --max-width: 780px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--warm);
+        }
+
+        .signal-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(circle at 20% 10%, var(--accent-dim) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, var(--warm-dim) 0%, transparent 35%),
+                linear-gradient(180deg, transparent 0%, var(--bg) 100%);
+            opacity: 0.6;
+        }
+
+        .signal-bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.15;
+            mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .lang-switcher {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 10;
+        }
+
+        .lang-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+            transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .lang-link:hover {
+            color: var(--accent);
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .lang-current {
+            color: var(--accent);
+        }
+
+        .lang-divider {
+            opacity: 0.4;
+        }
+
+        .lang-other {
+            color: var(--text-muted);
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+            padding: 6px 14px;
+            border: 1px solid var(--accent);
+            border-radius: 999px;
+            background: var(--accent-dim);
+        }
+
+        .hero-title {
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto 32px;
+            font-weight: 300;
+        }
+
+        .hero-intro {
+            font-size: 1.05rem;
+            color: var(--text);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+
+        .manifesto {
+            padding: 80px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .manifesto-item {
+            display: flex;
+            gap: 20px;
+            padding: 28px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .manifesto-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-glow);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--accent-glow);
+        }
+
+        .item-number {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--bg);
+            background: var(--accent);
+            border-radius: 12px;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .item-text {
+            font-size: 1.05rem;
+            color: var(--text);
+            padding-top: 8px;
+        }
+
+        .dedication {
+            padding: 80px 0 100px;
+            border-top: 1px solid var(--border);
+        }
+
+        .dedication-content {
+            position: relative;
+            padding: 48px;
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-soft) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .dedication-content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--warm), var(--accent));
+        }
+
+        .dedication h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--warm);
+        }
+
+        .dedication p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 24px;
+        }
+
+        .dedication blockquote {
+            font-size: 1.4rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--accent);
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .footer {
+            padding: 40px 0 60px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin-bottom: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .separator {
+            opacity: 0.4;
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 80px 0 50px;
+            }
+
+            .manifesto-item {
+                flex-direction: column;
+                padding: 22px;
+            }
+
+            .item-number {
+                width: 38px;
+                height: 38px;
+                font-size: 0.9rem;
+            }
+
+            .dedication-content {
+                padding: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signal-bg" aria-hidden="true"></div>
+
+    <nav class="lang-switcher" aria-label="切换语言">
+        <button type="button" class="lang-link" id="langSwitch" title="切换语言 / Language">
+            <span class="lang-current" id="langCurrent">中</span>
+            <span class="lang-divider">/</span>
+            <span class="lang-other" id="langOther">EN</span>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <p class="eyebrow">Manifesto</p>
+            <h1 class="hero-title" id="title">DigiShow 宣言</h1>
+            <p class="hero-subtitle" id="subtitle">为创意技术、开放协作与共同想象而写。</p>
+            <p class="hero-intro" id="intro">DigiShow 是一款轻量化的跨媒体现场控制软件，用于现场演出与互动艺术装置。本宣言是我们对艺术家、工程师、音乐人、灯光设计师、教育工作者和创客社区的承诺。</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="manifesto" id="manifesto">
+        </section>
+
+        <section class="dedication">
+            <div class="dedication-content">
+                <h2 id="dedicationTitle">缅怀 Robin Zhang</h2>
+                <p id="dedicationContent">本宣言、本软件与本社区，皆建立在 DigiShow 创作者 Robin Zhang 的愿景之上。他相信艺术与技术应当自由连接，创作工具应当开放可及，一个人的想法可以化作一群人的难忘体验。他的好奇心、慷慨与沉静而坚定的力量，继续流动在每一条信号链接、每一个 cue、每一场演出之中。我们谨以此作纪念他，并以同样的创作自由与共同想象之心将其传承下去。</p>
+                <blockquote id="dedicationQuote">“愿每一条信号都能找到它的舞台。”</blockquote>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Made for the DigiShow community.</p>
+            <p class="footer-links">
+                <a href="https://github.com/robinz-labs/digishow" target="_blank" rel="noopener">GitHub</a>
+                <span class="separator">·</span>
+                <a href="https://digishow.cc/" target="_blank" rel="noopener">DigiShow.cc</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const data = {
+            zh: {
+                lang: "zh-CN",
+                title: "DigiShow 宣言",
+                subtitle: "为创意技术、开放协作与共同想象而写。",
+                intro: "DigiShow 是一款轻量化的跨媒体现场控制软件，用于现场演出与互动艺术装置。本宣言是我们对艺术家、工程师、音乐人、灯光设计师、教育工作者和创客社区的承诺。",
+                items: [
+                    "我们是 DigiShow 的共创者。我们相信数字艺术不应被封闭的工具、昂贵的授权或割裂的协议所隔绝。",
+                    "我们相信光、声音、影像、机械与传感器本应自由对话，而 DigiShow 是连接它们的桥梁。",
+                    "我们拒绝接受专业工具只属于专业人士。任何有想法的人，都值得拥有自己的数字演出。",
+                    "我们相信演出不只是舞台上的表演，它是空间中的互动、装置里的呼吸、一群人之间的共鸣。",
+                    "我们让技术退到幕后，让创意走到台前。DigiShow 不为少数人而存在，而为每一个想要创造的人打开可能。",
+                    "我们拥抱开放与分享。代码可以被阅读，项目可以被复制，知识可以被传递。",
+                    "我们拥抱开放与连接。不同的设备、平台与创作者之间不该有孤岛，灵感可以在它们之间自由流动。",
+                    "我们拥抱跨学科的协作。音乐人、灯光师、视觉艺术家、工程师、教育工作者与学生，都能在同一个创作空间里相遇、对话、共同创造。",
+                    "我们相信最好的创意往往诞生于即兴与意外。DigiShow 让实验成本低廉，让灵感即时可见。",
+                    "我们不追求唯一的“正确做法”。每个人都可以定义自己的工作流、自己的美学、自己的演出语言。",
+                    "我们反对黑箱、垄断与孤岛。工具应服务于创作者，而非把创作者锁进围墙花园。",
+                    "我们相信 DigiShow 是一种姿态：用技术释放艺术，用分享放大创意，用协作点燃群体的创造力与动力。",
+                    "我们一起把零散的设备变成有机的系统，把个体的灵感变成群体的体验。"
+                ],
+                dedication: {
+                    title: "缅怀 Robin Zhang",
+                    content: "本宣言、本软件与本社区，皆建立在 DigiShow 创作者 Robin Zhang 的愿景之上。他相信艺术与技术应当自由连接，创作工具应当开放可及，一个人的想法可以化作一群人的难忘体验。他的好奇心、慷慨与沉静而坚定的力量，继续流动在每一条信号链接、每一个 cue、每一场演出之中。我们谨以此作纪念他，并以同样的创作自由与共同想象之心将其传承下去。",
+                    quote: "愿每一条信号都能找到它的舞台。"
+                },
+                switch: { current: "中", other: "EN", label: "切换语言" }
+            },
+            en: {
+                lang: "en",
+                title: "DigiShow Manifesto",
+                subtitle: "A declaration for creative technology, open collaboration, and shared imagination.",
+                intro: "DigiShow is a lightweight cross-media control software designed for live performances and interactive art installations. This manifesto is our promise to the community of artists, engineers, musicians, lighting designers, educators, and makers who use it.",
+                items: [
+                    "We are the co-creators of DigiShow. We believe digital art should not be walled off by closed tools, expensive licenses, or fragmented protocols.",
+                    "We believe that light, sound, image, machinery, and sensors should be free to talk to one another, and DigiShow is the bridge between them.",
+                    "We refuse to accept that professional tools belong only to professionals. Anyone with an idea deserves their own digital show.",
+                    "We believe a show is not only a performance on stage. It is the interaction in a space, the breath inside an installation, and the resonance among a group of people.",
+                    "We keep technology in the background and bring creativity to the forefront. DigiShow is not built only for a few, but opens possibilities for everyone who wants to create.",
+                    "We embrace openness and sharing. Code can be read, projects can be copied, and knowledge can be passed on.",
+                    "We embrace openness and connection. Devices, platforms, and creators should not be islands. Ideas should flow freely between all of them.",
+                    "We embrace cross-disciplinary collaboration. Musicians, lighting designers, visual artists, engineers, educators, and students can meet, converse, and create together in the same creative space.",
+                    "We believe the best ideas are often born from improvisation and happy accidents. DigiShow makes experimentation cheap and inspiration immediate.",
+                    "We do not chase a single right way to create. Everyone can define their own workflow, their own aesthetic, and their own show language.",
+                    "We oppose black boxes, monopolies, and silos. Tools should serve creators, not lock them inside a walled garden.",
+                    "We believe DigiShow is an attitude: use technology to release art, use sharing to amplify creativity, and use collaboration to ignite the collective power of a community.",
+                    "We turn scattered devices into organic systems together, and individual sparks into shared experiences."
+                ],
+                dedication: {
+                    title: "In Memory of Robin Zhang",
+                    content: "This manifesto, this software, and this community stand on the vision of Robin Zhang, the creator of DigiShow. He believed that art and technology should be freely connected, that creative tools should be open and accessible, and that a single person's idea could become a group's unforgettable experience. His curiosity, generosity, and quiet determination continue to flow through every signal link, every cue, and every show. We dedicate this work to his memory, and we carry it forward with the same spirit of creative freedom and shared imagination.",
+                    quote: "May every signal find its stage."
+                },
+                switch: { current: "EN", other: "中", label: "Language" }
+            }
+        };
+
+        function getInitialLang() {
+            const params = new URLSearchParams(window.location.search);
+            const langParam = params.get("lang");
+            if (langParam === "en" || langParam === "zh") return langParam;
+            const browserLang = navigator.language || navigator.userLanguage || "";
+            return browserLang.toLowerCase().startsWith("zh") ? "zh" : "en";
+        }
+
+        let currentLang = getInitialLang();
+
+        function render(lang) {
+            const d = data[lang];
+            document.documentElement.lang = d.lang;
+            document.title = d.title;
+            document.getElementById("title").textContent = d.title;
+            document.getElementById("subtitle").textContent = d.subtitle;
+            document.getElementById("intro").textContent = d.intro;
+
+            const manifesto = document.getElementById("manifesto");
+            manifesto.innerHTML = "";
+            d.items.forEach((text, index) => {
+                const article = document.createElement("article");
+                article.className = "manifesto-item";
+                article.innerHTML = `<span class="item-number">${index + 1}</span><p class="item-text">${text}</p>`;
+                manifesto.appendChild(article);
+            });
+
+            document.getElementById("dedicationTitle").textContent = d.dedication.title;
+            document.getElementById("dedicationContent").textContent = d.dedication.content;
+            document.getElementById("dedicationQuote").textContent = `“${d.dedication.quote}”`;
+
+            document.getElementById("langCurrent").textContent = d.switch.current;
+            document.getElementById("langOther").textContent = d.switch.other;
+            document.querySelector(".lang-switcher").setAttribute("aria-label", d.switch.label);
+            document.getElementById("langSwitch").title = d.switch.label + " / Language";
+        }
+
+        document.getElementById("langSwitch").addEventListener("click", () => {
+            currentLang = currentLang === "zh" ? "en" : "zh";
+            const params = new URLSearchParams(window.location.search);
+            params.set("lang", currentLang);
+            window.history.replaceState({}, "", "?" + params.toString());
+            render(currentLang);
+        });
+
+        render(currentLang);
+    </script>
+</body>
+</html>
